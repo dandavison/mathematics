@@ -1,0 +1,295 @@
+\documentclass[12pt]{article}
+\usepackage{notes}
+\usepackage{fullpage,amsfonts,amsmath,amssymb,mathpazo,graphicx,verbatim,parskip}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
+
+% \newcommand{i}{\mathbf{i}}
+% \newcommand{j}{\mathbf{j}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+
+\begin{document}
+
+\begin{center}
+  \section*{Linear Algebra}
+\end{center}
+
+
+%\footnote{Notes from the [Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) video series by [3blue1brown](http://www.3blue1brown.com/).}
+
+\section{ Linear transformations and matrices}
+
+A linear transformation is completely specified by
+
+\begin{enumerate}
+\item Some basis vectors $i$ and $j$
+\item Where those basis vectors are taken to by the transformation.
+\end{enumerate}
+
+How the transformation affects any other point follows from those two pieces of
+information.
+
+So $i$ might be taken to $ai + bj$, and $j$ might be taken to $ci + dj$.
+In this case we would use the following matrix to describe the
+transformation:
+
+$$
+\mat{a}{c}
+    {b}{d}
+$$
+
+Some examples are
+
+$$
+\begin{array}{ll}
+\text{stretch by a in the i-direction} & \mat{a}{0}
+                                             {0}{1}
+\\\\
+\text{stretch by a in the i-direction and shear right} & \mat{a}{b}
+                                                             {0}{1}
+\\\\
+\text{rotate anticlockwise 90°} & \mat{0}{-1}
+                                      {1}{ 0}
+\end{array}
+$$
+
+Note that we haven't said what $i$ and $j$ are yet; they \textit{define} the
+2-dimensional space that we're considering. But, we can think of them for now
+as the usual orthogonal unit vectors in 2D space.
+
+So the matrix tells us where the basis vectors have been taken to. Any other
+vector $fi + gj$ is taken to wherever that is using the transformed basis
+vectors:
+
+$$
+fi + gj \longrightarrow f\cvec{a}{b} + g\cvec{c}{d} = \cvec{fa + gc}{fb + gd}
+$$
+
+
+And that's how matrix multiplication is defined:
+
+$$
+\mat{a}{c}
+    {b}{d} \cvec{f}{g} = \cvec{fa + gc}{fb + gd}
+$$
+
+
+A matrix represents a linear transformation by showing where the basis vector
+are taken to.
+
+
+\section{ Change of basis}
+
+Suppose person B uses some other basis vectors to describe locations in
+space. Specifically, in our coordinates, their basis vectors are
+$\scvec{2}{1}$ and $\scvec{-1}{1}$.
+
+
+\textbf{When they state a vector, what is it in our coordinates?}
+
+If they say $\scvec{-1}{2}$, what is that in our coordinates?
+
+Well, if they say $\scvec{1}{0}$, that's $\scvec{2}{1}$ in our coordinates. And
+if they say $\scvec{0}{1}$, that's $\scvec{-1}{1}$ in our coordinates. So the
+matrix containing \textit{their basis vectors expressed using our coordinate system}
+transforms a point expressed in their coordinate system into one expressed in
+ours. That last sentence is critical, so hopefully it makes sense! So, the answer is
+
+$$
+\mat{2}{-1}
+    {1}{ 1} \cvec{-1}{2} = \cvec{-4}{1}.
+$$
+
+
+\textbf{When we state a vector, what is it in their coordinates?}
+
+We give the vector $\scvec{3}{2}$. What is that in their coordinate system? By
+definition, the answer is the weights that scales their basis vectors to hit
+$\scvec{3}{2}$. So, the solution to
+
+$$
+\mat{2}{-1}
+    {1}{1} \cvec{a}{b} = \cvec{3}{2}.
+$$
+
+
+Computationally, we can see that we can get the solution by multiplying both
+sides by the inverse:
+
+$$
+\cvec{a}{b} = \mat{2}{-1}
+                  {1}{1}^{-1} \cvec{3}{2}.
+$$
+
+Conceptually, we have
+
+$$
+\mat{2}{-1}
+    {1}{1} =
+\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+$$
+
+where "their representation" means the vector expressed using their coordinate
+system. So the role played by the inverse is
+
+$$
+\cvec{a}{b} =
+\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\cvec{3}{2}.
+$$
+
+\textbf{When we state a transformation, what is it in their coordinates?}
+
+We state a 90° anticlockwise rotation of 2D space:
+
+$$
+\mat{0}{-1}
+    {1}{0}
+$$
+
+what is that transformation in their coordinates? The answer is
+
+$$
+\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\mat{0}{-1}
+    {1}{0}
+\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+$$
+
+since the composition of those three transformations defines a single
+transformation that takes in a vector expressed in their coordinate system,
+converts it to our coordinate system, transforms it as requested, and then
+converts back to theirs.
+
+
+\section{ Linear and quadratic approximations to a function}
+
+% https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/quadratic-approximations/v/vector-form-of-multivariable-quadratic-approximation
+
+We construct first- and second-order approximations to a differentiable
+function $f: \R^2 \rightarrow \R$. The approximation is made at some point
+$(x_0, y_0) = \vec x_0 \in \R^2$; we demand that the value of the approximation, and the
+first and second derivatives, match those of $f$ exactly at that point.
+
+\textbf{Linear approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
+
+\begin{align*}
+L(x, y) &=
+~
+f(x_0, y_0) ~+
+(x - x_0)f_x(x_0,y_0) +
+(y - y_0)f_y(x_0,y_0)
+\\\\
+&= f(\vec x) + (\vec x - \vec x_0) \cdot \nabla_f(\vec x_0)
+\end{align*}
+
+Note that, at $(x_0, y_0)$, the first partial derivatives of $L$ are equal to
+those of $f$, as they must be. (In fact, we could say that the coefficients are
+determined by this requirement; see the quadratic case below. But the linear
+case is obvious without ``deriving'' the coefficients.)
+
+
+\textbf{Quadratic approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
+
+First note that the ``quadratic form'' $ax^2 + 2bxy + cy^2$ can be written as
+\begin{align*}
+\cvec{x}{y}^\T \mat{a}{b}
+                   {b}{c} \cvec{x}{y}.
+\end{align*}
+
+\begin{align*}
+Q(x, y) &=
+f(\vec x_0) + (x - x_0)f_x(\vec x_0) +
+(y - y_0)f_y(\vec x_0) ~+ \\
+&~~~~~~~\frac{1}{2} f_{xx}(\vec x_0)(x - x_0)^2 +
+f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
+\frac{1}{2} f_{yy}(\vec x_0)(y - y_0)^2 \\\\
+&= f(\vec x_0) +
+(\vec x - \vec x_0) \cdot \nabla f(\vec x_0) +
+\frac{1}{2}(\vec x - \vec x_0)^\T \nabla^2 f(\vec x_0)(\vec x - \vec x_0),
+\end{align*}
+where $\nabla^2 f(\vec x_0)$ is the Hessian matrix $\mat{f_{xx}}{f_{xy}}
+                                                        {f_{yx}}{f_{yy}}$ evaluated at $\vec x_0$.
+
+\subsection*{Proof}
+\begin{align*}
+Q(x, y) =
+&f(\vec x_0) + (x - x_0)f_x(\vec x_0) +
+(y - y_0)f_y(\vec x_0) ~+ \\
+&a(x - x_0)^2 +
+b(x - x_0)(y - y_0) +
+c(y - y_0)^2
+\end{align*}
+
+What are the coefficients $a,b,c$? They are determined by the requirement that
+the second partial derivatives are identical at the point of approximation
+$\vec x_0$.
+
+First look at the first partial derivatives:
+
+\begin{align*}
+  Q_x &= f_x(\vec x_0) + 2a(x - x_0) + b(y - y_0)\\
+  Q_y &= f_y(\vec x_0) + b(x - x_0) + 2c(y - y_0)\\
+\end{align*}
+so the quadratic approximation is an exact first-order approximation at $\vec x_0$, as required:
+\begin{align*}
+  Q_x(\vec x_0) &= f_x(\vec x_0) \\
+  Q_y(\vec x_0) &= f_y(\vec x_0),
+\end{align*}
+
+Now look at the second derivatives:
+\begin{align*}
+  Q_{xx} &= 0 + 2a + 0 \\
+  Q_{xy} &= 0 + 0 + b \\
+  Q_{yx} &= 0 + b + 0 \\
+  Q_{yy} &= 0 + 0 + 2c \\
+\end{align*}
+Since we require that these match those of $f$ exactly at $\vec x_0$, we have
+\begin{align*}
+  a &= \frac{1}{2} f_{xx}(\vec x_0) \\
+  b &= f_{xy}(\vec x_0) = f_{yx}(\vec x_0) \\
+  c &= \frac{1}{2} f_{yy}(\vec x_0),
+\end{align*}
+so the quadratic approximation is
+\begin{align*}
+Q(x, y) =
+&f(\vec x_0) + (x - x_0)f_x(\vec x_0) +
+(y - y_0)f_y(\vec x_0) ~+ \\
+&\frac{1}{2} f_{xx}(\vec x_0)(x - x_0)^2 +
+f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
+\frac{1}{2} f_{yy}(\vec x_0)(y - y_0)^2
+\end{align*}
+
+
+
+\section{ Positive definiteness}
+
+A square matrix $A \in \R^{n \times n}$ is positive definite if $x^TAx > 0$ for
+every $x \in \R^n - \{0\}$. Basically, this means that the image of the vector
+$x$ is correlated with the original vector; has some component in the same
+direction.
+
+% \footnote{https://www.reddit.com/r/math/comments/3uoa6d/motivation_for_positive_definite_matrices_brief/cxh21jg/}
+
+Consider first two terms of Taylor approximation to $f$ at $x_0$:
+
+$$
+f(x_0) \approx x_0 + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0) (x - x_0)^2
+$$
+
+Now suppose $x_0$ is a critical point (local minimum/maximum) and consider the difference $f(x_0) - f(x)$:
+$$
+f(x_0) - f(x) \approx \frac{1}{2}f''(x_0) (x - x_0)^2.
+$$
+
+So if the second derivative is negative, then $f$ has decreased as we moved
+away from $x_0$, showing that it was a maximum. Similarly, positive second
+derivative indicates minimum.
+
+The multivariable analog of the second derivative condition uses the Hessian
+$H$ of $f$, evaluated at $x_0$.
+$$ (x - x_0)^T H (x - x_0) $$
+So a positive definite Hessian indicates a minimum, and negative definite
+Hessian indicates a maximum.
+
+\end{document}
