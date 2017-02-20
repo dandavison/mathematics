@@ -7,10 +7,8 @@
 \usepackage{enumitem}
 \usepackage[nobreak=true]{mdframed}
 
+\usepackage{notes}
 \newcommand{\solution}{\textbf{Solution: }}
-% \newcommand{\Nbf}{\textbf{N}}
-% \newcommand{\Pbf}{\textbf{P}}
-\newcommand{\R}{\mathbb{R}}
 \renewcommand{\P}{\Pr}
 
 \title{CS189, HW2}
@@ -139,12 +137,55 @@ In the following questions, \textbf{show your work}, not just the final answer.
     \begin{enumerate}[label=(\roman*)]
         \item For every $\lambda > 0$, we have that $A + \lambda I \succ 0$.
           \begin{mdframed}
+            We want to show that $x^\T(A + \lambda I) x > 0$ for all $x \in \R^n$. We have
             \begin{align*}
               x^\T(A + \lambda I) x
+              &= x^\T(Ax + \lambda Ix) \\
+              &= x^\T Ax + \lambda x^\T x > 0
             \end{align*}
+            where the inequality is true because $x^\T Ax > 0$ due to the
+            positive definiteness of $A$, and $\lambda x^\T x > 0$ because
+            $\lambda > 0$ and $x^\T x > 0$ because it is the square of the
+            2-norm of $x$.
           \end{mdframed}
         \item There exists a $\gamma > 0$ such that $A - \gamma I \succ 0$.
-        \item All the diagonal entries of $A$ are positive; i.e. $A_{ii} > 0$ for $i = 1, \ldots, 0$.
+          \begin{mdframed}
+            (Unsolved) We want to show that a $\gamma > 0$ exists such that
+            \begin{align*}
+              x^\T(A - \gamma I) x
+              &= x^\T(Ax - \gamma Ix) \\
+              &= x^\T Ax - \gamma x^\T x > 0
+            \end{align*}
+            for all $x \in \R^n$. Such a $\gamma$ would therefore have to satisfy
+            \begin{align*}
+              \gamma < \frac{x^\T Ax}{x^\T x} = \frac{|Ax|\cos \theta}{|x|}
+            \end{align*}
+            for all $x \in \R^n$, where $\theta$ is the angle between $x$ and
+            $Ax$ and $|y|$ denotes the 2-norm.
+          \end{mdframed}
+        \item All the diagonal entries of $A$ are positive; i.e. $A_{ii} > 0$
+          for $i = 1, \ldots, n$.
+          \begin{mdframed}
+            For the case $n=2$, let the input variables be $x$ and $y$ and let
+            $A = \mat{a}{b}{b}{c}$. Since $A$ is positive definite, we have
+            $\cvec{x}{y}^\T A\cvec{x}{y} > 0$, which is a statement that a quadratic form in $x$
+            and $y$ has no real roots and is concave-up:
+            $$
+            ax^2 + 2bxy + cy^2 > 0.
+            $$
+            If we let $y = y_0 \neq 0$ be constant then we have a quadratic in $x$, the roots of which are
+            \begin{align*}
+              x
+              = \frac{-2by_0 \pm \sqrt{4b^2y_0^2 - 4acy_0^2}}{2a}
+              = y_0\frac{-b \pm \sqrt{b^2 - ac}}{a}.
+            \end{align*}
+            Since we know that there are no real roots, we have
+            $$
+            ac - b^2 > 0,
+            $$
+            and therefore $ac > 0$, i.e. $a$ and $c$ agree in sign. And since
+            the quadratic surface is concave-up, we have $a > 0$ and $c > 0$, as required.
+          \end{mdframed}
         \item $\sum_{i=1}^n \sum_{j=1}^n A_{ij} > 0$, where $A_{ij}$ is the element at the $i$-th row and $j$-th column of $A$.
     \end{enumerate}
 \end{enumerate}
