@@ -1,8 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage{notes}
-\usepackage{fullpage,amsfonts,amsmath,amssymb,mathpazo,graphicx,verbatim,parskip}
+\usepackage{fullpage,amsfonts,amsmath,amssymb,mathpazo,graphicx,verbatim,parskip,footnote}
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
-
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
 % \newcommand{i}{\mathbf{i}}
 % \newcommand{j}{\mathbf{j}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
@@ -11,11 +11,13 @@
 \begin{document}
 
 \begin{center}
-  \section*{Linear Algebra}
+  \section*{
+    Linear Algebra
+    \footnote{
+      \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
+    }
+  }
 \end{center}
-
-
-%\footnote{Notes from the [Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) video series by [3blue1brown](http://www.3blue1brown.com/).}
 
 \section{ Linear transformations and matrices}
 
@@ -162,9 +164,13 @@ converts it to our coordinate system, transforms it as requested, and then
 converts back to theirs.
 
 
-\section{ Linear and quadratic approximations to a function}
+\section*{Linear and quadratic approximations to a function
+  \footnote{
+    \href{https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/optimizing-multivariable-functions/a/reasoning-behind-the-second-partial-derivative-test}{khanacademy - Grant Sanderson - second partial derivative test}
+  }
+}
 
-% https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/quadratic-approximations/v/vector-form-of-multivariable-quadratic-approximation
+
 
 We construct first- and second-order approximations to a differentiable
 function $f: \R^2 \rightarrow \R$. The approximation is made at some point
@@ -269,9 +275,8 @@ every $x \in \R^n - \{0\}$. Basically, this means that the image of the vector
 $x$ is correlated with the original vector; has some component in the same
 direction.
 
-% \footnote{https://www.reddit.com/r/math/comments/3uoa6d/motivation_for_positive_definite_matrices_brief/cxh21jg/}
-
-Consider first two terms of Taylor approximation to $f$ at $x_0$:
+Consider\footnote{\href{https://www.reddit.com/r/math/comments/3uoa6d/motivation_for_positive_definite_matrices_brief/cxh21jg/}{reddit post}}
+first two terms of Taylor approximation to $f$ at $x_0$:
 
 $$
 f(x_0) \approx x_0 + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0) (x - x_0)^2
