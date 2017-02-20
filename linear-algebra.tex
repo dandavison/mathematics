@@ -313,35 +313,4 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
 \frac{1}{2} f_{yy}(\vec x_0)(y - y_0)^2
 \end{align*}
 
-
-
-\section{ Positive definiteness}
-
-A square matrix $A \in \R^{n \times n}$ is positive definite if $x^TAx > 0$ for
-every $x \in \R^n - \{0\}$. Basically, this means that the image of the vector
-$x$ is correlated with the original vector; has some component in the same
-direction.
-
-Consider\footnote{\href{https://www.reddit.com/r/math/comments/3uoa6d/motivation_for_positive_definite_matrices_brief/cxh21jg/}{reddit post}}
-first two terms of Taylor approximation to $f$ at $x_0$:
-
-$$
-f(x_0) \approx x_0 + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0) (x - x_0)^2
-$$
-
-Now suppose $x_0$ is a critical point (local minimum/maximum) and consider the difference $f(x_0) - f(x)$:
-$$
-f(x_0) - f(x) \approx \frac{1}{2}f''(x_0) (x - x_0)^2.
-$$
-
-So if the second derivative is negative, then $f$ has decreased as we moved
-away from $x_0$, showing that it was a maximum. Similarly, positive second
-derivative indicates minimum.
-
-The multivariable analog of the second derivative condition uses the Hessian
-$H$ of $f$, evaluated at $x_0$.
-$$ (x - x_0)^T H (x - x_0) $$
-So a positive definite Hessian indicates a minimum, and negative definite
-Hessian indicates a maximum.
-
 \end{document}
