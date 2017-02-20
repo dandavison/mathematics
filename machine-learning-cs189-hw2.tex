@@ -355,7 +355,46 @@ $$\mathbbm{1}(x = a) =
 0 & \text{if } x \neq a.
 \end{cases}$$
 \begin{mdframed}
-\solution % Solution here
+  Let the observed data vector be $\vec k = [k_1,k_2,k_3]^\T$ and the parameter
+  vector be $\vec p = [p_1, p_2, p_3]^\T$. The sampling model is
+  $\vec k \sim \text{Multinomial}(\vec p)$, so the probability of the observed
+  data vector is
+  \begin{align*}
+    \Pr(\vec k | \vec p) = \frac{n!}{k_1!k_2!k_3!}\prod_{j=1}^3 p_j^{k_j},
+  \end{align*}
+  giving the following log-likelihood function:
+  \begin{align*}
+    l(\vec p) = \log \Pr(\vec k | \vec p) = \sum_{j=1}^3 k_j \log p_j.
+  \end{align*}
+  We want to maximize this log-likelihood subject to the constraint that
+  $\sum_j p_j = 1$. To do so, we maximize the Lagrangian
+  \begin{align*}
+    \Lagr(\vec p, \lambda) = \sum_{j=1}^3 k_j \log p_j - \lambda\left(\sum_{j=1}^3 p_j - 1\right).
+  \end{align*}
+  The gradient of the Lagrangian is
+  \begin{align*}
+    \nabla_{\Lagr} =
+    \begin{bmatrix}
+      \partial \Lagr / \partial p_1\\
+      \partial \Lagr / \partial p_2\\
+      \partial \Lagr / \partial p_3\\
+      \partial \Lagr / \partial \lambda\\
+    \end{bmatrix} =
+    \begin{bmatrix}
+      k_1/p_1 - \lambda\\
+      k_2/p_2 - \lambda\\
+      k_3/p_3 - \lambda\\
+      1 - \sum_{j=1}^3 p_j\\
+    \end{bmatrix}.
+  \end{align*}
+  Solving $\nabla_{\Lagr} = 0$ yields $k_j = \widehat \lambda \widehat p_j$ and
+  $\sum_j \widehat p_j = 1$. Therefore
+  $n = \sum_j k_j = \widehat \lambda \sum_j \widehat p_j = \widehat \lambda$,
+  giving the maximum likelihood parameter estimates
+  $$
+  \widehat p_j = \frac{k_j}{n}.
+  $$
+  (Confirm that this point is a maximum.)
 \end{mdframed}
 
 
