@@ -1,0 +1,314 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{soul,color}
+\usepackage{amsfonts, amsmath}
+\usepackage{bbm}
+\usepackage{enumitem}
+\usepackage[nobreak=true]{mdframed}
+
+\newcommand{\solution}{\textbf{Solution: }}
+% \newcommand{\Nbf}{\textbf{N}}
+% \newcommand{\Pbf}{\textbf{P}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\P}{\Pr}
+
+\title{CS189, HW2}
+\author{\vspace{-6ex} \\\\Dan Davison\\\texttt{dandavison7@gmail.com}\\\\}
+% \date{January 2017}
+\date{\vspace{-6ex}}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1. Conditional Probability}
+In the following questions, \textbf{show your work}, not just the final answer.
+\begin{enumerate}[label=(\alph*)]
+\item The probability that an archer hits her target when it is windy is 0.4;
+  when it is not windy, her probability of hitting the target is 0.7. On any
+  shot, the probability of a gust of wind is 0.3. Find the probability that
+  \begin{mdframed}
+    Let the random variables involved be $W \in \{0, 1\}$ (wind no/yes) and
+    $H \in \{0, 1\}$ (hit no/yes).
+  \end{mdframed}
+    \begin{enumerate}[label=(\roman*)]
+        \item on a given shot there is a gust of wind and she hits her target.
+          \begin{mdframed}
+            $
+            \Pr(W=1, H=1) = \Pr(W=1)\Pr(H=1|W=1) = 0.3 \cdot 0.4 = 0.12
+            $
+          \end{mdframed}
+        \item she hits the target with her first shot.
+          \begin{mdframed}
+            $
+            \Pr(H=1) = \sum_{w \in \{0, 1\}} \Pr(W=w) \Pr(H=1|W=w) = 0.7 \cdot 0.7 + 0.3 \cdot 0.4 = 0.61
+            $
+          \end{mdframed}
+        \item she hits the target exactly once in two shots.
+          \begin{mdframed}
+            Each shot may be viewed as an independent draw of $(W,
+            H)$. Therefore we use $\Pr(H=1)$ from part (ii) as the success
+            probability in a binomial distribution:
+            $$
+            \Pr(\text{one hit in two trials}) = {2 \choose 1} \Pr(H=1)^1 \left(1 - \Pr(H=1)\right)^1 = 2 \cdot 0.61 \cdot 0.39 = 0.4758.
+            $$
+          \end{mdframed}
+        \item there was no gust of wind on an occasion when she missed.
+          \begin{mdframed}
+            \begin{align*}
+              \Pr(W=0|H=0)
+              &= \frac{\Pr(W=0, H=0)}{\Pr(H=0)} \\\\
+              &= \frac{\Pr(W=0) \Pr(H=0|W=0)}{\sum_{w \in \{0, 1\}} \Pr(W=w) \Pr(H=0|W=w)} \\\\
+              &= \frac{0.7 \cdot 0.3}{0.7 \cdot 0.3 + 0.3 \cdot 0.6} \\\\
+              &= 0.5385 ~~~\text{(4 d.p.)}
+            \end{align*}
+          \end{mdframed}
+    \end{enumerate}
+
+  \item Let $A, B, C$ be events. Show that if $$P(A|B, C) > P(A|B)$$
+    then $$P(A|B, C^c) < P(A|B),$$ where $C^c$ denotes the complement of
+    $C$. Assume that each event on which we are conditioning has positive
+    probability.
+
+
+
+    \begin{mdframed}
+      % Intuitively, the fact we are given is the following: if you tell me that
+      % both $B$ and $C$ occurred, then my belief that $A$ occurred is greater
+      % than if you told me that $B$ occurred and gave me no information about
+      % $C$. It is therefore intuitively reasonable that, telling me that $B$
+      % occurred but $C$ did not occur decreases my belief that $A$ occurred,
+      % compared to knowledge that $B$ occurred and ignorance about $C$.
+
+      First, we expand the conditional probabilities involved in the given inequality:
+      \begin{align*}
+        \Pr(A|B,C) = \frac{\Pr(A,B)\Pr(C|A,B)}{\Pr(B)\Pr(C|B)} > \Pr(A|B) = \frac{\Pr(A,B)}{\Pr(B)}.
+      \end{align*}
+      Multiplying both sides by $\frac{\Pr(B)}{\Pr(A,B)}$ shows that
+      \begin{align*}
+        \frac{\Pr(C|A,B)}{\Pr(C|B)} > 1,
+      \end{align*}
+      i.e. $\Pr(C|A,B) > \Pr(C|B)$.
+
+      We can transform that into a statement about $C^c$ by subtracting both sides from 1:
+      \begin{align*}
+        \Pr(C^c|A,B) = 1 - \Pr(C|A,B) < 1 - \Pr(C|B) = \Pr(C^c|B),
+      \end{align*}
+      i.e.
+      \begin{align*}
+        \frac{\Pr(C^c|A,B)}{\Pr(C^c|B)} < 1.
+      \end{align*}
+
+      Now, we want to show that $\Pr(A|B, C^c) < \Pr(A|B)$. The left hand side is
+      \begin{align*}
+        \P(A|B, C^c)
+        &= \frac{\P(A,B)\P(C^c|A,B)}{\P(B)\P(C^c|B)}
+        < \frac{\P(A,B)}{\P(B)} = \P(A|B),
+      \end{align*}
+      as required.
+
+    \end{mdframed}
+
+\end{enumerate}
+
+\newpage
+
+\subsection*{2. Positive Definiteness}
+\textbf{Definition.} Let $A \in \mathbb{R}^{n \times n}$ be a symmetric matrix.
+\begin{itemize}
+    \item We say that $A$ is \textbf{positive definite} if $\forall x \in \mathbb{R}^n - \{0\}$, $x^{\top}Ax > 0$. We denote this with $A \succ 0$.
+    \item Similarly, we say that $A$ is \textbf{positive semidefinite} if $\forall x \in \R^n$, $x^{\top}Ax \geq 0$. We denote this with $A \succeq 0$.
+\end{itemize}
+\begin{enumerate}[label=(\alph*)]
+    \item For a symmetric matrix $A \in \R^{n\times n}$, prove that all of the following are equivalent.
+    \begin{enumerate}[label=(\roman*)]
+        \item $A \succeq 0$.
+        \item $B^{\top} AB \succeq 0$, for some invertible matrix $B \in \R^{n\times n}$.
+        \item All the eigenvalues of $A$ are nonnegative.
+        \item There exists a matrix $U \in \R^{n\times n}$ such that $A = U U^{\top}$.
+    \end{enumerate}
+
+    (Suggested road map: (i) $\Leftrightarrow$ (ii), (i) $\Rightarrow$ (iii) $\Rightarrow$ (iv)$ \Rightarrow$ (i). For the implication (iii) $\Rightarrow$ (iv) use the \emph{Spectral Theorem for Symmetric Matrices}.
+
+    \begin{mdframed} \solution
+
+    \end{mdframed}
+
+    \item For a symmetric positive definite matrix $A \succ 0 \in \R^{n\times n}$, prove the following.
+    \begin{enumerate}[label=(\roman*)]
+        \item For every $\lambda > 0$, we have that $A + \lambda I \succ 0$.
+          \begin{mdframed}
+            \begin{align*}
+              x^\T(A + \lambda I) x
+            \end{align*}
+          \end{mdframed}
+        \item There exists a $\gamma > 0$ such that $A - \gamma I \succ 0$.
+        \item All the diagonal entries of $A$ are positive; i.e. $A_{ii} > 0$ for $i = 1, \ldots, 0$.
+        \item $\sum_{i=1}^n \sum_{j=1}^n A_{ij} > 0$, where $A_{ij}$ is the element at the $i$-th row and $j$-th column of $A$.
+    \end{enumerate}
+\end{enumerate}
+
+\newpage
+\subsection*{3. Derivatives and Norms}
+In the following questions, \textbf{show your work}, not just the final answer.
+\begin{enumerate}[label=(\alph*)]
+    \item Let $x, a \in \R^n$. Compute $\nabla_x(a^{\top}x)$.
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+    \item Let $A \in \R^{n\times n}$, $x \in \R^n$. Compute $\nabla_x(x^{\top} Ax)$. \\ How does the expression you derived simplify in the case that $A$ is symmetric? \\
+
+    (Hint: to get a feeling for the problem, explicitly write down a $2 \times 2$ or $3 \times 3$ matrix $A$ with components $A_{11}$, $A_{12}$, etc., explicitly expand $x^{\top}Ax$ as a polynomial without matrix notation, calculate the gradient in the usual way, and put the result back into matrix form. Then generalize the result to the $n \times n$ case.)
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+    \item Let $A, X \in \R^{n \times n}$. Compute $\nabla_X (\text{trace}(A^{\top}X))$.
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+    \item For a function $f: \R^d \rightarrow \R$ to be a norm, the distance metric $\delta(x, y) = f(x-y)$  must satisfy the triangle inequality. Is the function $f(x) = (\sqrt{|x_1|} + \sqrt{|x_2|})^2$ a norm for vectors $x \in \R^2$? Prove it or give a counterexample.
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+    \item Let $x \in \R^n$. Prove that $\lVert x \rVert_{\infty} \leq \lVert x\rVert_2 \leq \sqrt{n} \lVert x \rVert_{\infty}$.
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+    \item Let $x \in \R^n$. Prove that $\lVert x \rVert_2 \leq \lVert x \rVert_1 \leq \sqrt{n} \lVert x \rVert_2$. \\
+    (Hint: The Cauchy–Schwarz inequality may come in handy.)
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+\end{enumerate}
+
+\newpage
+\subsection*{4. Eigenvalues}
+Let $A \in \R^{n\times n}$ be a symmetric matrix with $A \succeq 0$.
+\begin{enumerate}[label=(\alph*)]
+    \item Prove that the largest eigenvalue of $A$ is $$\lambda_{\max}(A) = \max_{\lVert x \rVert_2 = 1} x^{\top} Ax.$$ \\
+    (Hint: Use the \emph{Spectral Theorem for Symmetric Matrices} to reduce the problem to the diagonal case.)
+    \begin{mdframed} \solution
+    % Solution here
+    \end{mdframed}
+
+    \item Similarly, prove that the smallest eigenvalue of $A$ is $$\lambda_{\min}(A) = \min_{\lVert x\rVert_2 = 1} x^{\top} Ax.$$
+    \begin{mdframed}
+    \solution %Solution here
+    \end{mdframed}
+
+    \item Is either of the optimization problems described in parts (a) and (b) a convex program? Justify your answer.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item Show that if $\lambda$ is an eigenvalue of $A$ then $\lambda^2$ is an eigenvalue of $A^2$, and deduce that $$\lambda_{\max}(A^2) = \lambda_{\max}(A)^2 \text{ and } \lambda_{\min}(A^2) = \lambda_{\min}(A)^2.$$
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item From parts (a), (b), and (d), show that for any vector $x \in \R^n$ such that $\lVert x \rVert_2 = 1$, $$\lambda_{\min}(A) \leq \lVert Ax \rVert_2 \leq \lambda_{\max}(A).$$
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item From part (e), deduce that for any vector $x \in \R^n$, $$\lambda_{\min}(A) \lVert x \rVert_2 \leq \lVert Ax \rVert_2 \leq \lambda_{\max}(A)\lVert x \rVert_2.$$
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+\end{enumerate}
+
+\newpage
+\subsection*{5. Gradient Descent}
+Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b^{\top}x$, where $A$ is a symmetric matrix with $0 < \lambda_{\min}(A)$ and $\lambda_{\max} (A) < 1$.
+\begin{enumerate}[label=(\alph*)]
+    \item Using the first order optimality conditions, derive a closed-form solution for the minimum possible value of $x$, which we denote $x^*$.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item Solving a linear system directly using Gaussian elimination takes $O(n^3)$ time, which may be wasteful if the matrix $A$ is sparse. For this reason, we will use gradient descent to compute an approximation to the optimal point $x^*$. Write down the update rule for gradient descent with a step size of 1.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item Show that the iterates $x^{(k)}$ satisfy the recursion $$x^{(k)} - x^* = (I-!)(x^{(k-1)} - x^*).$$
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item Show that for some $0 < \rho < 1$, $$\lVert x^{(k)} - x^* \rVert_2 \leq \rho \lVert x^{(k-1)} - x^* \rVert_2.$$
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item Let $x^{(0)} \in \R^n$ be a starting value for our gradient descent iterations. If we want our solution $x^{(k)}$ to be $\epsilon > 0$ close to $x^*$, i.e. $\lVert x^{(k)} - x^* \rVert_2 \leq \epsilon$, then how many iterations of gradient descent should we perform? In other words, how large should $k$ be? Give your answer in terms of $\rho, \lVert x^{(0)} - x^*\rVert_2, $ and $\epsilon$. Note that $0 < \rho < 1$, so $\log \rho < 0$.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item Observe that the running time of each iteration of gradient descent is dominated by a matrix-vector product. What is the overall running time of gradient descent to achieve a solution $x^{(k)}$ which is $\epsilon$-close to $x^*$? Give your answer in terms of $\rho, \lVert x^{(0)} - x^*\rVert_2, \epsilon,$ and $n$.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+\end{enumerate}
+
+\newpage
+\subsection*{6. Classification}
+Suppose we have a classification problem with classes labeled $1, \ldots, c$ and an additional "doubt" category labeled $c+1$. Let $f: \R^d \rightarrow \{1, \ldots, c+1\}$ be a decision rule. Define the loss function
+$$ R(f(x) = i|x) =
+\begin{cases}
+0 & \text{if }i = j \quad i, j \in \{1, \ldots, c\} \\
+\lambda_r & \text{if } i=c + 1 \\
+\lambda_s & \text{otherwise}
+\end{cases} $$
+where $\lambda_r \geq 0$ is the loss incurred for choosing doubt and $\lambda_s \geq 0$ is the loss incurred for making a misclassification. Hence the risk of classifying a new data point $x$ as class $i \in \{1, 2, \ldots, c+1\}$ is $$R(f(x) = i|x) = \sum_{j=1}^c L(f(x) = i, y = j) P(Y = j|x).$$
+\begin{enumerate}[label=(\alph*)]
+    \item Show that the following policy obtains the minimum risk. (1) Choose class $i$ if $P(Y = i|x) \geq P(Y = j|x)$ for all $j$ and $P(Y=i|x) \geq 1 - \lambda_r / \lambda_s$; (2) choose doubt otherwise.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item What happens if $\lambda_r = 0$? What happens if $\lambda_r > \lambda_s$?  Explain why this is consistent with what one would expect intuitively.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+\end{enumerate}
+
+\newpage
+\subsection*{7. Gaussian Classification}
+Let $P(x | \omega_i) \sim N(\mu_i, \sigma^2)$ for a two-category, one-dimensional classification problem with classes $\omega_1$ and $\omega_2$, $P(\omega_1) = P(\omega_2) = 1/2$, and $\mu_2 > \mu_1$.
+\begin{enumerate}[label=(\alph*)]
+    \item Find the Bayes optimal decision boundary and the corresponding Bayes decision rule.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+
+    \item The Bayes error is the probability of misclassification, $$ P_e = P((\text{misclassified as }\omega_1) | \omega_2)P(\omega_2) + P((\text{misclassified as }\omega_2)|\omega_1)P(\omega_1).$$
+    Show that the Bayes error associated with this decision rule is
+    $$ P_e = \frac{1}{\sqrt{2\pi}} \int_a^{\infty} e^{-z^2/2} dz$$ where $a = \frac{\mu_2 - \mu_1}{2\sigma}$.
+    \begin{mdframed}
+    \solution % Solution here
+    \end{mdframed}
+\end{enumerate}
+
+\newpage
+\subsection*{8. Maximum Likelihood Estimation}
+Let $X$ be a discrete random variable which takes values in $\{1, 2, 3\}$ with probabilities $P(X = 1) = p_1, P(X=2) = p_2,$ and $P(X = 3) = p_3$, where $p_1 + p_2 + p_3 = 1$.  Show how to use the method of maximum likelihood to estimate $p_1, p_2,$ and $p_3$ from $n$ observations of $X: x_1, \ldots, x_n$. Express your answer in terms of the counts $$k_1 = \sum_{i=1}^n \mathbbm{1}(x_i = 1), k_2 = \sum_{i=1}^n \mathbbm{1}(x_i = 2), \text{ and }k_3 = \sum_{i=1}^n \mathbbm{1}(x_i = 3),$$ where
+$$\mathbbm{1}(x = a) =
+\begin{cases}
+1 & \text{if } x = a \\
+0 & \text{if } x \neq a.
+\end{cases}$$
+\begin{mdframed}
+\solution % Solution here
+\end{mdframed}
+
+
+\end{document}
