@@ -195,8 +195,15 @@ In the following questions, \textbf{show your work}, not just the final answer.
 In the following questions, \textbf{show your work}, not just the final answer.
 \begin{enumerate}[label=(\alph*)]
     \item Let $x, a \in \R^n$. Compute $\nabla_x(a^{\top}x)$.
-    \begin{mdframed} \solution
-    % Solution here
+    \begin{mdframed}
+      Viewing $a$ as a constant and $a^\T x$ as a function
+      $f:\R^n \rightarrow \R$ with $f(x) = a^\T x$, the requested gradient is
+      the column vector of partial derivatives
+      \begin{align*}
+        \nabla_x(a^\T x)
+        = \begin{bmatrix}f_{x_1}\\f_{x_2}\\ \vdots\\f_{x_n}\end{bmatrix}
+        = a.
+      \end{align*}
     \end{mdframed}
 
     \item Let $A \in \R^{n\times n}$, $x \in \R^n$. Compute $\nabla_x(x^{\top} Ax)$. \\ How does the expression you derived simplify in the case that $A$ is symmetric? \\
