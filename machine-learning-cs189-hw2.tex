@@ -263,9 +263,9 @@ In the following questions, \textbf{show your work}, not just the final answer.
 \begin{enumerate}[label=(\alph*)]
     \item Let $x, a \in \R^n$. Compute $\nabla_x(a^{\top}x)$.
     \begin{mdframed}
-      Viewing $a$ as a constant and $a^\T x$ as a function
-      $f:\R^n \rightarrow \R$ with $f(x) = a^\T x = \sum_{i=1}^n a_ix_i$, the requested gradient is
-      the column vector of partial derivatives
+      We view $a$ as a constant vector and $a^\T x$ as a function
+      $f:\R^n \rightarrow \R$ with $f(x) = a^\T x = \sum_{i=1}^n a_ix_i$. The
+      requested gradient is the column vector of first partial derivatives
       \begin{align*}
         \nabla_x(a^\T x)
         = \begin{bmatrix}f_{x_1}\\f_{x_2}\\ \vdots\\f_{x_n}\end{bmatrix}
@@ -283,8 +283,35 @@ In the following questions, \textbf{show your work}, not just the final answer.
     \end{mdframed}
 
     \item Let $A, X \in \R^{n \times n}$. Compute $\nabla_X (\text{trace}(A^{\top}X))$.
-    \begin{mdframed} \solution
-    % Solution here
+    \begin{mdframed}
+      We view $A$ as a constant matrix and $\trace A^\T X$ as a function
+      $f:\R^{n \times n} \rightarrow \R$ with
+      $$
+      f(X)
+      = \trace A^\T X
+      = \sum_{j=1}^n A_{\cdot j} \cdot X_{\cdot j}
+      = \sum_{j=1}^n \sum_{i=1}^n A_{ij}X_{ij},
+      $$
+      where $B_{\cdot j}$ represents the $j$-th column of the matrix $B$.
+
+      The requested gradient is the matrix of first partial derivatives
+      \begin{align*}
+        \nabla_X (\text{trace}(A^{\top}X)) =
+        \begin{bmatrix}
+          \frac{\partial f}{\partial X_{11}} & \frac{\partial f}{\partial X_{12}} & \cdots & \frac{\partial f}{\partial X_{1n}} \\
+          \frac{\partial f}{\partial X_{21}} & \frac{\partial f}{\partial X_{22}} & \cdots & \frac{\partial f}{\partial X_{2n}} \\
+          \vdots                            & \vdots                             &        & \vdots                             \\
+          \frac{\partial f}{\partial X_{n1}} & \frac{\partial f}{\partial X_{n2}} & \cdots & \frac{\partial f}{\partial X_{nn}} \\
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+          A_{11}  & A_{12} & \cdots & A_{1n} \\
+          A_{21}  & A_{22} & \cdots & A_{2n} \\
+          \vdots & \vdots &        & \vdots \\
+          A_{n1}  & A_{n2} & \cdots & A_{nn} \\
+        \end{bmatrix}
+        = A.
+      \end{align*}
     \end{mdframed}
 
     \item For a function $f: \R^d \rightarrow \R$ to be a norm, the distance metric $\delta(x, y) = f(x-y)$  must satisfy the triangle inequality. Is the function $f(x) = (\sqrt{|x_1|} + \sqrt{|x_2|})^2$ a norm for vectors $x \in \R^2$? Prove it or give a counterexample.
