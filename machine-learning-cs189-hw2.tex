@@ -264,11 +264,13 @@ In the following questions, \textbf{show your work}, not just the final answer.
     \item Let $x, a \in \R^n$. Compute $\nabla_x(a^{\top}x)$.
     \begin{mdframed}
       Viewing $a$ as a constant and $a^\T x$ as a function
-      $f:\R^n \rightarrow \R$ with $f(x) = a^\T x$, the requested gradient is
+      $f:\R^n \rightarrow \R$ with $f(x) = a^\T x = \sum_{i=1}^n a_ix_i$, the requested gradient is
       the column vector of partial derivatives
       \begin{align*}
         \nabla_x(a^\T x)
         = \begin{bmatrix}f_{x_1}\\f_{x_2}\\ \vdots\\f_{x_n}\end{bmatrix}
+        = \begin{bmatrix}\frac{\partial a^\T x}{\partial x_1}\\ \frac{\partial a^\T x}{\partial x_2}\\ \vdots\\\frac{\partial a^\T x}{\partial x_n}\\\end{bmatrix}
+        = \begin{bmatrix}a_1\\a_2\\ \vdots\\a_n\end{bmatrix}
         = a.
       \end{align*}
     \end{mdframed}
