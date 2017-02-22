@@ -245,7 +245,8 @@ $$
 Q(x, y) = f(\vec x_0) + \frac{1}{2}(\vec x - \vec x_0)^\T \nabla^2 f(\vec x_0)(\vec x - \vec x_0).
 $$
 So if this is a minimum (concave-up paraboloid) then this quadratic form is
-positive for all $\vec x$, and if it's a maximum then it's negative.
+positive for all $\vec x \neq \vec x_0$ (and if it's a maximum then it's
+negative for all $\vec x \neq \vec x_0$).
 
 Basically the argument is that, instead of analyzing the function $f$ itself,
 we analyze its quadratic approximation at the critical point. So the question
