@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage{fullpage,amsfonts,amsmath,mathpazo,graphicx,verbatim,parskip}
+\usepackage{fullpage,amsfonts,amsmath,mathpazo,graphicx,verbatim,parskip,color}
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
 \usepackage{notes}
 
@@ -19,6 +19,9 @@
     \texttt{dandavison7@gmail.com}
   }
 \end{center}
+
+\section*{Useful results}
+\textbf{Geometric series} $a + aw + \ldots + aw^n = \frac{a(1 - w^{n+1})}{1-w}$
 
 \section*{I. Complex Numbers}
 
@@ -277,12 +280,17 @@ $\frac{1 - w^{n}}{1 - w} = \frac{1 - 1}{1 - w} = 0$.
   $$
   since $w^{n+1} = w$.
 
+  \textcolor{red}{This equation is true for $w$ in $n$-th root, but not for any $w$.}
+
   Taking derivatives of both sides gives
   $$
   1 + 2w + 3w^2 + \ldots + nw^{n-1} = 0,
   $$
 
   which does not agree with the given formula, so something's wrong.
+
+  \textcolor{red}{To take derivatives of both sides need to write a function
+    identity, not an identity between two numbers.}
 
   Nevertheless, if it were the case that
   $$
@@ -298,6 +306,8 @@ $\frac{1 - w^{n}}{1 - w} = \frac{1 - 1}{1 - w} = 0$.
   $$
   which also doesn't agree with the given formula.
 
+  \textcolor{red}{Again, to take a derivative, need a function on RHS that
+    agrees with LHS $\forall w$.}
 
 % \begin{comment}
 
@@ -1215,7 +1225,7 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
   \end{align*}
 \end{description}
 
-\section{Elementary functions}
+\section*{IV. Elementary functions}
 
 \subsection*{Exponential function}
 
@@ -1233,7 +1243,7 @@ Letting $z = x + iy$, we demand that $e^{x + iy} = e^xe^{iy}$, but what is $e^{i
   &= \sum_{k=0}^\infty (-1)^{k}\frac{y^{2k}}{(2k)!} +
      i\sum_{k=0}^\infty (-1)^{k}\frac{y^{2k + 1}}{(2k + 1)!}\\
 \end{align*}
-which are the Taylor series for $\cos$ and $sin$. So
+which are the Taylor series for $\cos$ and $\sin$. So
 \begin{align*}
   e^{x + iy} = e^x(\cos y + i\sin y).
 \end{align*}
@@ -1268,6 +1278,8 @@ logarithms of the point on the circle.
 The ``principal argument'' of a complex number $z$ is $\Arg z \in (-\pi,
 \pi]$. It is continuous at points away from the negative real axis.
 
+\includegraphics[width=200pt]{img/principal-arg.png}
+
 The $n$-th roots of $z$ are
 \begin{align*}
   \sqrt[n] {|z|}\left(\cos\left(\frac{\Arg z + 2k\pi}{n}\right) + i\sin\left(\frac{\Arg z + 2k\pi}{n}\right)\right),
@@ -1286,11 +1298,30 @@ The ``principal branch'' of the log function is given by
 Because they involve $\Arg$, both $\Log$ and the principal root function are
 continuous at points away from the negative real axis.
 
+Here are some diagrams of the principal branch of the square root
+function. Notice that it is discontinuous at points of the negative real
+axis. I.e. it is a branch in the domain $\C \backslash [0, -\infty)$
+
+\includegraphics[width=300pt]{img/principal-sqrt-2.png}
+\includegraphics[width=200pt]{img/principal-sqrt.png}
+
+Suppose we want a branch in a domain that includes the negative real axis. Then we can use
+\begin{align*}
+  g(z) =
+  \begin{cases}
+    \sqrt z,  &\Im z \geq 0\\
+    -\sqrt z, &\Im z < 0
+  \end{cases}
+\end{align*}
+and we could also use $-g$; there are two branches. However, these are
+discontinuous at points on the positive real axis, so they are branches in the
+domain $\C \backslash [0, +\infty)$.
+
 Consider the infinitely wide strip $\{z: -\pi < \Im z < \pi\}$. The image of
-this is the entire complex plane with 0 removed. For example, consider some
-complex number $w$ with $|w| = r > 0$. It is hit by a point on the vertical line
-$x = \ln r$. So this domain-restricted version of the exponential map has an
-inverse, and that inverse is $\Log$.
+this under the exponential map is the entire complex plane with 0 removed. For
+example, consider some complex number $w$ with $|w| = r > 0$. It is hit by a
+point on the vertical line $x = \ln r$. So this domain-restricted version of
+the exponential map has an inverse, and that inverse is $\Log$.
 
 For a multivalent function, it's not possible to find an inverse that sends
 every image point $f(z)$ back to the correct place $z$ on the left-hand side,
