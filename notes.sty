@@ -1,5 +1,9 @@
-\DeclareMathOperator{\Lagr}{\mathcal{L}}
-\DeclareMathOperator{\trace}{\text{trace}}
+% \DeclareMathOperator{\Lagr}{\mathcal{L}}
+% \DeclareMathOperator{\trace}{\text{trace}}
+% \DeclareMathOperator{\sech}{\text{sech}}
+% \DeclareMathOperator{\cosech}{\text{cosech}}
+% % \DeclareMathOperator{\sec}{\text{sec}}
+% \DeclareMathOperator{\cosec}{\text{cosec}}
 \newcommand{\1}{{-1}}
 \newcommand{\Arg}{\text{Arg}~}
 \newcommand{\CP}{\textbf{CP}}
@@ -55,7 +59,11 @@
 \newcommand{\dzbar}{\frac{\partial}{\partial \bar z}}
 \newcommand{\dzdx}{\frac{\partial z}{\partial x}}
 \newcommand{\dzdy}{\frac{\partial z}{\partial y}}
-\newcommand{\ealign}{\end{align*}}
+\DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
+\DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
+\DeclareMathOperator{\ddldmujmuj}{\frac{\partial^2 \l}{\partial \mu_j^2}}
+\DeclareMathOperator{\ddldsigmajsigmaj}{\frac{\partial^2 \l}{\partial \sigma_j^2}}
+\DeclareMathOperator{\ealign}{\end{align*}}
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
 \newcommand{\hessian}{\mathbf{H}}
 \newcommand{\matt}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
@@ -69,3 +77,4 @@
 \renewcommand{\Im}{~\text{Im}~}
 \renewcommand{\Re}{~\text{Re}~}
 \renewcommand{\vec}{\mathbf}
+\newcommand{\constant}{\text{constant}}
