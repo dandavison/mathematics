@@ -458,7 +458,7 @@ f_y &= \cvec{u_y}{v_y}\\
 The geometric interpretation of these is that they define how the image vector
 $f(z)$ changes in response to a small change to $z$.
 
-$u$ can be approximated by a local tangent plane. That's what $u_x$ and $v_x$
+$u$ can be approximated by a local tangent plane. That's what $u_x$ and $u_y$
 do. And so can $v$; that's what $v_x$ and $v_y$ do. But when we consider the
 effect of a small displacement in the 2D input space on the 2D output space, we
 describe the two tangent plane approximations jointly as a linear
@@ -1268,6 +1268,8 @@ The argument of the image point depends on the imaginary part of the input.
 Basically, the exponential map takes a vertical line $\Re z = x$ and wraps it
 round a circle infinitely many times. The radius of the circle is $e^x$.
 
+\subsection*{Branches of inverse functions}
+
 A given point on the circle is hit by infinitely many points on the line:
 $\ldots, x + i(y - 2\pi), x + iy, x + i(y + 2\pi), \ldots.$ These are the
 logarithms of the point on the circle.
@@ -1331,6 +1333,39 @@ possible preimage points. We want this to be continuous, so we often have to
 restrict the domain on the right-hand side to avoid points of discontinuity,
 e.g. remove $(-\infty, 0]$ in the case of the $\Log$ and principal root inverse
 functions.
+
+\subsection*{Hyperbolic functions}
+
+Just as their real counterparts,
+\begin{align*}
+  \cosh z &= (e^z + e^{-z})/2\\
+  \sinh z &= (e^z - e^{-z})/2
+\end{align*}
+with
+\begin{align*}
+  \tanh &= \sinh/\cosh\\
+  \coth &= 1/\tanh\\
+  \sech &= 1/\cosh\\
+  \cosech &= 1/\sinh
+\end{align*}
+
+\subsection*{Trigonometric functions}
+
+From $e^{iy} = \cos y + i \sin y$ we have $e^{-iy} = \cos y - i \sin y$ and therefore
+\begin{align*}
+  \cos y &= (e^{iy} + e^{-iy})/2\\
+  \sin y &= (e^{iy} - e^{-iy})/2i,
+\end{align*}
+for real $y$. $\cos$ and $\sin$ are defined on $\C$ by substituting a complex
+variable $z$ in place of $y$:
+\begin{align*}
+  \cos z &= (e^{iz} + e^{-iz})/2\\
+  \sin z &= (e^{iz} - e^{-iz})/2i,
+\end{align*}
+with $\tan, \cot, \sec$ and $\cosec$ also defined as usual.
+
+
+
 
 \begin{description}
 \exercise{IV.5.2}{
@@ -1448,7 +1483,24 @@ for $k \in \Z$.
 \exercise{IV.16.3}{ Prove that if $f$ is a branch of $z^c$ in an open set not
   containing 0, then $f$ is holomorphic and $f'$ is a branch of $cz^{c-1}$.
 } \\\\
-(No solution)
+A branch $f$ of $z^c$, defined on some open set excluding $0$, means that
+$f(z) = e^{c\Log z}$ for some branch $\Log$ of the logarithm map.
+
+% Similarly, a branch $g$ of $cz^{c-1}$, defined on the same open set excluding
+% $0$, means that $g(z) = ce^{(c-1)\Log z}$.
+
+The branch of the logarithm, the exponential function, and multiplication by a
+complex number are all holomorphic transformations. Therefore $f$ is
+holomorphic, because the composition of holomorphic functions with compatible
+domains and ranges is holomorphic.
+
+The derivative of $f$ is, by the chain rule,
+\begin{align*}
+f'(z) = c e^{c\Log z} \frac{d\Log z}{dz} = c e^{c\Log z} \frac{1}{z} = c \frac{f(z)}{z},
+\end{align*}
+where I have assumed without proof that $\frac{d\Log z}{dz} = \frac{1}{z}$. The
+final expression above is a branch of $cz^{c-1}$ defined in the same region
+that $f$ is defined.
 
 \end{description}
 
