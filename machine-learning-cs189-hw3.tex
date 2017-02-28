@@ -415,6 +415,14 @@ Let $X_1, \ldots, X_n \in \R^d$ be $n$ sample points drawn independently from a 
     matrices, $\Sigma$ is positive definite, and $A$ is invertible.  Derive the
     maximum likelihood estimate, denoted $\hat{\mu}$, for $\mu$.
     \begin{mdframed}
+      % Let's change coordinate system so that the mean of the Gaussian is
+      % $\mu$. Clearly we can do this by applying the transformation $A^\1$.  In
+      % this coordinate system, the sample points are the rows of
+      % $X' = (A^\1X^\T)^\T$ ($A$ is a covariance matrix of a Gaussian, hence
+      % symmetric positive definite, hence invertible).
+
+      % The mean of the rows of $X'$ is $A^\1A\mu = \mu$.
+
       Let $\eta = A\mu$. Then $\hat \eta_j = \frac{1}{n}\sum_{i=1}^nX_{ij}$ as
       above. There is a theorem (the ``invariance property'') regarding MLEs
       which states that $\hat{g(\theta)}$ is $g(\hat \theta)$, where $\hat~$
