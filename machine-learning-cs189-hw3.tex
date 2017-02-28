@@ -7,6 +7,8 @@
 \usepackage{enumitem}
 \usepackage[nobreak=true]{mdframed}
 \usepackage{notes}
+\usepackage{graphicx}
+\usepackage{minted}
 
 \newcommand{\solution}{\textbf{Solution: }}
 \renewcommand{\N}{\mathcal{N}}
@@ -230,34 +232,86 @@ Let $f(\mu, \Sigma)$ be the density function of a normally distributed random va
 \subsection*{3. Eigenvectors of the Gaussian Covariance Matrix}
 Consider two one-dimensional random variables $X_1 \sim \N(3, 9)$ and $X_2 \sim \frac{1}{2}X_1 + \N(4, 4)$, where $\N(\mu, \sigma^2)$  is a Gaussian distribution with mean $\mu$ and variance $\sigma^2$. In software, draw $N = 100$ random two-dimensional sample points from $(X_1, X_2)$ such that the $i$th value sampled from $X_2$ is calculated based on the $i$th value sampled from $X_i$.
 \begin{enumerate}[label=(\alph*)]
-    \item Compute the mean (in $\R^2$) of the sample.
-    \begin{mdframed} \solution
-    % SOLUTION HERE
-    \end{mdframed}
+  \begin{mdframed}
+    \begin{minted}{python}
+      from numpy.random import normalxxx
 
-    \item Compute the $2 \times 2$ covariance matrix of the sample.
-    \begin{mdframed} \solution
-    % SOLUTION HERE
-    \end{mdframed}
+      X1 = normal(3, 3, 100)
+      X2 = X1/2 + normal(4, 2, 100)
+      X = np.stack([X1, X2], axis=1)
+      n, d = X.shape
+    \end{minted}
+  \end{mdframed}
+\item Compute the mean (in $\R^2$) of the sample.
+  \begin{mdframed}
+    \begin{minted}{python}
+      mu = X.mean(axis=0)
+    \end{minted}
+  \end{mdframed}
 
-    \item Compute the eigenvectors and eigenvalues of this covariance matrix.
-    \begin{mdframed} \solution
-    % SOLUTION HERE
-    \end{mdframed}
+\item Compute the $2 \times 2$ covariance matrix of the sample.
+  \begin{mdframed}
+    \begin{minted}{python}
+    Sigma = (X - mu).T @ (X - mu) / (n * d)
+  \end{minted}
+  \end{mdframed}
 
-    \item On a two-dimensional grid with a horizontal axis for $X_1$ with range $[-15, 15]$ and a vertical axis for $X_2$ with range $[-15, 15]$, plot
-    \begin{enumerate}[label=(\roman*)]
-        \item all $N=100$ data points, and
-        \item arrows representing both covariance eigenvectors. The eigenvector arrows should originate at the mean and have magnitudes equal to their corresponding eigenvalues.
-    \end{enumerate}
-    \begin{mdframed} \solution
-    % SOLUTION HERE
-    \end{mdframed}
+\item Compute the eigenvectors and eigenvalues of this covariance matrix.
+  \begin{mdframed}
+    \begin{minted}{python}
+    from numpy.linalg import eigh
+    evals, evecs = eigh(Sigma)
+  \end{minted}
+  \end{mdframed}
 
-    \item Let $U = \begin{bmatrix} v_1 & v_2 \end{bmatrix}$ be a $2 \times 2$ matrix whose columns are the eigenvectors of the covariance matrix, where $v_1$ is the eigenvector with the larger eigenvalue. We use $U^{\top}$ as a rotation matrix to rotate each sample point from the $(X_1, X_2)$  coordinate system to a coordinate system aligned with the eigenvectors. (As $U^{\top} = U^{-1}$, the matrix $U$ reverses this rotation, moving back from the eigenvector coordinate system to the original coordinate system). Center your sample points by subtracting the mean $\mu$ from each point; then rotate each point by $U^{\top}$, giving $x_{\text{rotated}} = U^{\top}(x - \mu)$.  Plot these rotated points on a new two dimensional-grid, again with both axes having range $[-15, 15]$.
-    \begin{mdframed} \solution
-    % SOLUTION HERE
-    \end{mdframed}
+\item On a two-dimensional grid with a horizontal axis for $X_1$ with range $[-15, 15]$ and a vertical axis for $X_2$ with range $[-15, 15]$, plot
+  \begin{enumerate}[label=(\roman*)]
+  \item all $N=100$ data points, and
+  \item arrows representing both covariance eigenvectors. The eigenvector arrows should originate at the mean and have magnitudes equal to their corresponding eigenvalues.
+  \end{enumerate}
+  \begin{mdframed}
+    \begin{minted}{python}
+      fig = plt.figure(figsize=(10,10))
+      plt.xlim(-15,15)
+      plt.ylim(-15,15)
+      plt.scatter(X[:,0], X[:,1])
+      arrow_kwargs = dict(fc="k", ec="k", head_width=0.3, head_length=0.5)
+      plt.arrow(mu[0], mu[1],
+                evecs[:,0][0] * evals[0],
+                evecs[:,0][1] * evals[0],
+                **arrow_kwargs)
+      plt.arrow(mu[0], mu[1],
+                evecs[:,1][0] * evals[1],
+                evecs[:,1][1] * evals[1],
+                **arrow_kwargs)
+    \end{minted}
+    \includegraphics[width=300pt]{img/hw03_3d.png}
+  \end{mdframed}
+
+\item Let $U = \begin{bmatrix} v_1 & v_2 \end{bmatrix}$ be a $2 \times 2$
+  matrix whose columns are the eigenvectors of the covariance matrix, where
+  $v_1$ is the eigenvector with the larger eigenvalue. We use $U^{\top}$ as a
+  rotation matrix to rotate each sample point from the $(X_1, X_2)$ coordinate
+  system to a coordinate system aligned with the eigenvectors. (As
+  $U^{\top} = U^{-1}$, the matrix $U$ reverses this rotation, moving back from
+  the eigenvector coordinate system to the original coordinate system). Center
+  your sample points by subtracting the mean $\mu$ from each point; then rotate
+  each point by $U^{\top}$, giving $x_{\text{rotated}} = U^{\top}(x - \mu)$.
+  Plot these rotated points on a new two dimensional-grid, again with both axes
+  having range $[-15, 15]$.
+  \begin{mdframed}
+    \begin{minted}{python}
+      U = evecs[:,::-1]
+      X_centered = X - mu
+      X_centered_rotated = (U.T @ X_centered.T).T
+
+      fig = plt.figure(figsize=(10,10))
+      plt.xlim(-15,15)
+      plt.ylim(-15,15)
+      plt.scatter(X_centered_rotated[:,0], X_centered_rotated[:,1])
+    \end{minted}
+    \includegraphics[width=300pt]{img/hw03_3e.png}
+  \end{mdframed}
 
 \end{enumerate}
 
