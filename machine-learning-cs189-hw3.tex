@@ -534,8 +534,8 @@ $$ \hat{\Sigma} = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)(X_i - \mu)^{\top},$$ whic
     \end{mdframed}
 
     \item Suggest a way to fix a singular covariance matrix estimator $\hat{\Sigma}$ by replacing it with a similar but invertible matrix. Your suggestion may be a kludge, but it should not change the covariance matrix too much. Note that infinitesimal numbers do not exist; if your solution uses a very small number, explain how to calculate a number that is sufficiently small for your purposes.
-    \begin{mdframed} \solution
-    % SOLUTION HERE
+    \begin{mdframed}
+
     \end{mdframed}
 
   \item Consider the normal distribution $\N(0, \Sigma)$ with mean $\mu =
@@ -569,13 +569,22 @@ In this problem, you will build classifiers based on Gaussian discriminant analy
 The training and test data can be found on Piazza in the post corresponding to this homework. Don’t use the training/test data from Homework 1, as they have changed for this homework. Submit your predicted class labels for the test data on the Kaggle competition website and be sure to include your Kaggle display name and scores in your writeup. Also be sure to include an appendix of your code at the end of your writeup.
 
 \begin{enumerate}[label=(\alph*)]
-    \item Taking pixel values as features (no new features yet, please), fit a Gaussian distribution to each digit class using maximum likelihood estimation. This involves computing a mean and a covariance matrix for each digit class, as discussed in lecture. \emph{Tip}: You may, and probably should, contrast-normalize the images before using their pixel values. One way to normalize is to divide the pixel values of an image by the $l_2$ norm of its pixel values.
-    \item (Written answer) Visualize the covariance matrix for a particular class (digit). How do the diagonal terms compare with the off-diagonal terms? What do you conclude from this?
-    \begin{mdframed} \solution
-    % SOLUTION HERE
+\item Taking pixel values as features (no new features yet, please), fit a
+  Gaussian distribution to each digit class using maximum likelihood
+  estimation. This involves computing a mean and a covariance matrix for each
+  digit class, as discussed in lecture. \emph{Tip}: You may, and probably
+  should, contrast-normalize the images before using their pixel values. One
+  way to normalize is to divide the pixel values of an image by the $l_2$ norm
+  of its pixel values.
+\item (Written answer) Visualize the covariance matrix for a particular class
+  (digit). How do the diagonal terms compare with the off-diagonal terms? What
+  do you conclude from this?
+    \begin{mdframed}
+      \includegraphics[width=300pt]{img/hw03_6b.png}
     \end{mdframed}
 
-    \item Classify the digits in the test set on the basis of posterior probabilities with two different approaches.
+  \item Classify the digits in the test set on the basis of posterior
+    probabilities with two different approaches.
     \begin{enumerate}[label=(\roman*)]
         \item Linear discriminant analysis (LDA). Model the class conditional probabilities as Gaussians $\N(\mu_C, \Sigma)$ with different means $\mu_C$ (for class C) and the same covariance matrix $\Sigma$, the average covariance matrix of the 10 classes. \\
 
@@ -584,22 +593,54 @@ The training and test data can be found on Piazza in the post corresponding to t
         \item Quadratic discriminant analysis (QDA). Model the class conditionals as Gaussians $\N(\mu_C, \Sigma_C)$, where $\Sigma_C$ is the estimated covariance matrix for class C. (If any of these covariance matrices turn out singular, implement the trick you described in Q5.(b). You are welcome to use $k$-fold cross validation to choose the right constant(s) for that trick.) Repeat the same tests and error rate calculations you did for LDA.
 
         \item  (Written answer.) Which of LDA and QDA performed better? Why?
-        \begin{mdframed} \solution
-        % SOLUTION HERE
+        \begin{mdframed}
+          My QDA implementation is currently incorrect. The unit tests pass for
+          1 and 2D cases but when the sample points are higher-dimensional QDA
+          is classifying points essentially uniformly at random (around 90\%
+          error rate).
+          \\\\
+          Here are the error rates for my LDA implementation using the provided
+          data, with contrast normalization.
+          \\\\
+          \begin{tabular}{l|l}
+            #{training points}&Error rate\\
+            \hline
+            100 & 0.51\\
+            200 & 0.91\\
+            500 & 0.78\\
+            1000 & 0.36\\
+            2000 & 0.34\\
+            5000 & 0.31\\
+            10000 & 0.34\\
+            30000 & 0.29\\
+            50000 & 0.28\\
+          \end{tabular}
         \end{mdframed}
 
-        \item Train your best classifier with \texttt{train.mat} and classify the images in \texttt{test.mat}. Submit your labels to the online Kaggle competition. Record your optimum prediction rate in your submission. You are welcome to compute extra features for the Kaggle competition. If you do so, please describe your implementation in your assignment. Please use extra features \textbf{only} for this portion of the assignment. In your submission, include plots of error rate versus number of training examples for both LDA and QDA. Also include tables giving the error rates (as percentages) for each number of training examples for both LDA and QDA. Include written answers where indicated.
-        \begin{mdframed} \solution
-        % SOLUTION HERE
+      \item Train your best classifier with \texttt{train.mat} and classify the
+        images in \texttt{test.mat}. Submit your labels to the online Kaggle
+        competition. Record your optimum prediction rate in your
+        submission. You are welcome to compute extra features for the Kaggle
+        competition. If you do so, please describe your implementation in your
+        assignment. Please use extra features \textbf{only} for this portion of
+        the assignment. In your submission, include plots of error rate versus
+        number of training examples for both LDA and QDA. Also include tables
+        giving the error rates (as percentages) for each number of training
+        examples for both LDA and QDA. Include written answers where indicated.
+        \begin{mdframed}
+          0.77 accuracy score for digits; LDA.
         \end{mdframed}
 
     \end{enumerate}
-    \item Next, apply LDA or QDA (your choice) to spam. Submit your test results to the online Kaggle competition. Record your optimum prediction rate in your submission. If you use additional features (or omit features), please describe them. \\
+  \item Next, apply LDA or QDA (your choice) to spam. Submit your test results to the online Kaggle competition. Record your optimum prediction rate in your submission. If you use additional features (or omit features), please describe them. \\
 
-    \emph{Optional:} If you use the defaults, expect relatively low classification rates. The TAs suggest using a bag-of-words model. You may use third-party packages to implement that if you wish. Also, normalizing your vectors might help.
+      \emph{Optional:} If you use the defaults, expect relatively low
+      classification rates. The TAs suggest using a bag-of-words model. You may
+      use third-party packages to implement that if you wish. Also, normalizing
+      your vectors might help.
 
-    \begin{mdframed} \solution
-    % SOLUTION HERE
+    \begin{mdframed}
+      0.71 accuracy score for spam; LDA.
     \end{mdframed}
 
     \item \emph{Extra for Experts:} Using the \texttt{training\_data} and \texttt{training\_labels} in \texttt{spam.mat}, identify 10 words in your features set corresponding to the maximum and minimum variances. Use $k$-fold cross validation to train your classifier using only 10 variance-maximum words and record your average error rate. Do the same with the 10 minimum-variance words. What do you notice?
