@@ -409,14 +409,29 @@ Let $X_1, \ldots, X_n \in \R^d$ be $n$ sample points drawn independently from a 
       negative but I don't seem to be managing to do so.)
     \end{mdframed}
 
-
+    \newpage
   \item Suppose the normal distribution has a known covariance matrix $\Sigma$
     and an unknown mean $A \mu$, where $\Sigma$ and $A$ are known $d \times d$
     matrices, $\Sigma$ is positive definite, and $A$ is invertible.  Derive the
     maximum likelihood estimate, denoted $\hat{\mu}$, for $\mu$.
     \begin{mdframed}
       Let $\eta = A\mu$. Then $\hat \eta_j = \frac{1}{n}\sum_{i=1}^nX_{ij}$ as
-      above.
+      above. There is a theorem (the ``invariance property'') regarding MLEs
+      which states that $\hat{g(\theta)}$ is $g(\hat \theta)$, where $\hat~$
+      denotes MLE.
+
+      We know $\hat{A\mu}$. We want $\hat{\mu} = \hat{A^\1A\mu}$. By the
+      invariance property for MLEs this is
+      $$
+      \hat \mu = A^\1\hat{A\mu} = A^\1\frac{1}{n}\sum_{i=1}^nX_{ij}.
+      $$
+      I'm not entirely sure what requirements this theorem makes of $g$ but I
+      am confident that the invertible linear transformation $A^\1$ satisfies
+      them.
+
+      Alternatively, without relying on this theorem, I tried to argue from
+      first principles, but currently am confused when attempting to compute the
+      gradient for $\mu$:
 
       The likelihood function for $\mu$ is
       \begin{align*}
@@ -425,8 +440,27 @@ Let $X_1, \ldots, X_n \in \R^d$ be $n$ sample points drawn independently from a 
       \end{align*}
       and the log-likelihood function is
       \begin{align*}
-        \l(\mu) = -\frac{1}{2}\sum_{i=1}^n (X_i - A\mu)^\T\Sigma^\1(X_i - A\mu) + \constant.
+        \l(\mu)
+        &= -\frac{1}{2}\sum_{i=1}^n (X_i - A\mu)^\T\Sigma^\1(X_i - A\mu) + \constant.
       \end{align*}
+      % The first derivative with respect to $\mu$ is
+      % \begin{align*}
+      %   \dldmu = \sum_{i=1}^n (X_i - A\mu)^\T\Sigma^\1A
+      % \end{align*}
+
+      Let $\dot X_i = X_i - A\mu$. Then the log-likelihood is the following
+      quadratic form (up to an additive constant):
+      \begin{align*}
+        \l(\mu)
+        &= -\frac{1}{2}\sum_{i=1}^n \dot X_i^\T\Sigma^\1 \dot X_i\\
+        &= -\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^d\sum_{k=1}^d \(\Sigma^\1\)_{jk} \dot X_{ij} \dot X_{ik}\\
+        &= -\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^d\sum_{k=1}^d \(\Sigma^\1\)_{jk} \(X_{ij} - (A\mu)_j\) \(X_{ik} - (A\mu)_k\)\\
+        &= -\frac{1}{2}\sum_{j=1}^d\sum_{k=1}^d \(\Sigma^\1\)_{jk} \sum_{i=1}^n (X_{ij} - (A\mu)_j) (X_{ik} - (A\mu)_k)\\
+        &= -\frac{1}{2}\sum_{j=1}^d\sum_{k=1}^d \(\Sigma^\1\)_{jk} \sum_{i=1}^n \(X_{ij}X_{ik} - X_{ik}(A\mu)_j - X_{ij}(A\mu)_k + (A\mu)_j(A\mu)_k\)\\
+      \end{align*}
+
+
+
     \end{mdframed}
 
 \end{enumerate}
