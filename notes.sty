@@ -1,9 +1,15 @@
 % \DeclareMathOperator{\Lagr}{\mathcal{L}}
-% \DeclareMathOperator{\trace}{\text{trace}}
-% \DeclareMathOperator{\sech}{\text{sech}}
 % \DeclareMathOperator{\cosech}{\text{cosech}}
-% % \DeclareMathOperator{\sec}{\text{sec}}
 % \DeclareMathOperator{\cosec}{\text{cosec}}
+% \DeclareMathOperator{\sech}{\text{sech}}
+% \DeclareMathOperator{\sec}{\text{sec}}
+% \DeclareMathOperator{\trace}{\text{trace}}
+% \DeclareMathOperator{\ddldmujmuj}{\frac{\partial^2 \l}{\partial \mu_j^2}}
+% \DeclareMathOperator{\ddldsigmajsigmaj}{\frac{\partial^2 \l}{\partial \sigma_j^2}}
+% \DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
+% \DeclareMathOperator{\dldmu}{\frac{\partial \l}{\partial \mu}}
+% \DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
+% \DeclareMathOperator{\ealign}{\end{align*}}
 \newcommand{\1}{{-1}}
 \newcommand{\Arg}{\text{Arg}~}
 \newcommand{\CP}{\textbf{CP}}
@@ -21,6 +27,7 @@
 \newcommand{\T}{\mathbf{T}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\balign}{\begin{align*}}
+\newcommand{\constant}{\text{constant}}
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
 \newcommand{\dQdx}{\frac{\partial Q}{\partial x}}
 \newcommand{\dQdy}{\frac{\partial Q}{\partial y}}
@@ -59,23 +66,19 @@
 \newcommand{\dzbar}{\frac{\partial}{\partial \bar z}}
 \newcommand{\dzdx}{\frac{\partial z}{\partial x}}
 \newcommand{\dzdy}{\frac{\partial z}{\partial y}}
-\DeclareMathOperator{\dldmu}{\frac{\partial \l}{\partial \mu}}
-\DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
-\DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
-\DeclareMathOperator{\ddldmujmuj}{\frac{\partial^2 \l}{\partial \mu_j^2}}
-\DeclareMathOperator{\ddldsigmajsigmaj}{\frac{\partial^2 \l}{\partial \sigma_j^2}}
-\DeclareMathOperator{\ealign}{\end{align*}}
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
 \newcommand{\hessian}{\mathbf{H}}
+\newcommand{\limn}{\lim\limits_{n \to \infty}}
 \newcommand{\matt}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
 \newcommand{\mat}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
+\newcommand{\ninfty}{n \rightarrow \infty}
 \newcommand{\scvec}[2]{\tiny{\cvec{#1}{#2}}}
 \newcommand{\smatt}[9]{\tiny{\matt{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
 \newcommand{\smat}[4]{\tiny{\mat{#1}{#2}{#3}{#4}}}
+\newcommand{\sumn}{\sum_{n=1}^{\infty}}
 \newcommand{\textbfit}[1]{\textbf{\textit{#1}}}
 \renewcommand{\(}{\left(}
 \renewcommand{\)}{\right)}
 \renewcommand{\Im}{~\text{Im}~}
 \renewcommand{\Re}{~\text{Re}~}
 \renewcommand{\vec}{\mathbf}
-\newcommand{\constant}{\text{constant}}
