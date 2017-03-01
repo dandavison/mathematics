@@ -533,9 +533,15 @@ $$ \hat{\Sigma} = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)(X_i - \mu)^{\top},$$ whic
 
     \end{mdframed}
 
-    \item Suggest a way to fix a singular covariance matrix estimator $\hat{\Sigma}$ by replacing it with a similar but invertible matrix. Your suggestion may be a kludge, but it should not change the covariance matrix too much. Note that infinitesimal numbers do not exist; if your solution uses a very small number, explain how to calculate a number that is sufficiently small for your purposes.
+  \item Suggest a way to fix a singular covariance matrix estimator
+    $\hat{\Sigma}$ by replacing it with a similar but invertible matrix. Your
+    suggestion may be a kludge, but it should not change the covariance matrix
+    too much. Note that infinitesimal numbers do not exist; if your solution
+    uses a very small number, explain how to calculate a number that is
+    sufficiently small for your purposes.
     \begin{mdframed}
-
+      In my code I have used the pseudoinverse function
+      \texttt{numpy.linalg.pinv}.
     \end{mdframed}
 
   \item Consider the normal distribution $\N(0, \Sigma)$ with mean $\mu =
