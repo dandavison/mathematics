@@ -7,18 +7,18 @@
 
 \begin{document}
 
-% \begin{center}
-%   \section*{
-%     Math 185 - Complex Analysis\\
-%     Sarason - Complex Function Theory\\
-%   }
-% \end{center}
-% \begin{center}
-%   \small{
-%     Dan Davison\\
-%     \texttt{dandavison7@gmail.com}
-%   }
-% \end{center}
+\begin{center}
+  \section*{
+    Math 185 - Complex Analysis\\
+    Homework 5\\
+  }
+\end{center}
+\begin{center}
+  \small{
+    Dan Davison\\
+    \texttt{dandavison7@gmail.com}
+  }
+\end{center}
 
 % \section*{Useful results}
 % \textbf{Geometric series} $a + aw + \ldots + aw^n = \frac{a(1 - w^{n+1})}{1-w}$
@@ -1552,7 +1552,8 @@
   Prove that the series
   $\sum_{n=0}^\infty \(\frac{z-1}{z+1}\)^n$ converges locally uniformly in the
   half-plane $\Re z > 0$, and find the sum.
-}
+}\\
+(No attempt)
 
 \exercise{V.14.1(b)}{
   Find the radius of convergence of the following series:
@@ -1577,7 +1578,8 @@ centered at the origin. The radius of convergence is infinite.
 \exercise{V.16.2}{
   What function is represented by the power series
   $\sum_{n=1}^\infty n^2z^n$?
-}
+}\\
+(No attempt)
 
 \exercise{V.18.1}{
   Use the scheme above to determine the power series with center 0 representing
@@ -1588,26 +1590,30 @@ centered at the origin. The radius of convergence is infinite.
 Assume $f(z)$ can be represented as a power series $\sum_{n=0}^\infty a_nz^n$. We
 can write $f$ as the ratio
 \begin{align*}
-  f(z) = \frac{1}{1 + z + z^2} = \frac{\sum_{n=0}^0 z^n}{\sum_{n=0}^2 z^n} =: \frac{g(z)}{h(z)}.
+  f(z) = \frac{1}{1 + z + z^2} = \frac{\sum_{n=0}^\infty b_nz^n}{\sum_{n=0}^\infty c_nz^n} =: \frac{g(z)}{h(z)},
 \end{align*}
 
-As an infinite power series,
-$h(z) = \sum_{n=0}^2 z^n = \sum_{n=0}^\infty b_nz^n$, where $b_n = 1$ for
-$0 \leq n \leq 2$ and $b_n$ = 0 otherwise.
+where
+\begin{align*}
+  b_n &=
+  \begin{cases}
+    1, &n = 0 \\
+    0, &\text{otherwise}
+  \end{cases}\\
+  c_n &=
+  \begin{cases}
+    1, & 0 \leq n \leq 2 \\
+    0, &\text{otherwise}.
+  \end{cases}
+\end{align*}
 
 Then
 \begin{align*}
-  g(z) = \sum_{n=0}^0 z^n
+  g(z) = \sum_{n=0}^\infty b_nz^n
   &= f(z)h(z) \\
-  &= \(\sum_{n=0}^\infty a_nz^n\)\(\sum_{n=0}^\infty b_nz^n\) \\
-  &= \sum_{n=0}^\infty z^n \sum_{k=0}^n a_kb_{n-k} \\
-  &= \sum_{n=0}^2 z^n \sum_{k=0}^n a_k \\
-  &= a_0 + z(a_0 + a_1) + z^2(a_0 + a_1 + a_2)
+  &= \(\sum_{n=0}^\infty a_nz^n\)\(\sum_{n=0}^\infty c_nz^n\) \\
+  &= \sum_{n=0}^\infty z^n \sum_{k=0}^n a_kc_{n-k} \\
 \end{align*}
 \end{description}
-Therefore $a_0 = 1$, $a_1 = -a_0 = -1$ and $a_2 = 0$, so
-\begin{align*}
-  f(z) = 1 - z
-\end{align*}
 
 \end{document}
