@@ -10,6 +10,7 @@
 \usepackage{notes}
 \newcommand{\solution}{\textbf{Solution: }}
 \renewcommand{\P}{\Pr}
+\newcommand{\p}{\text{P}}
 
 \title{CS189, HW2}
 \author{\vspace{-6ex} \\\\Dan Davison\\\texttt{ddavison@berkeley.edu}\\\\}
@@ -373,32 +374,50 @@ Let $A \in \R^{n\times n}$ be a symmetric matrix with $A \succeq 0$.
 \subsection*{5. Gradient Descent}
 Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b^{\top}x$, where $A$ is a symmetric matrix with $0 < \lambda_{\min}(A)$ and $\lambda_{\max} (A) < 1$.
 \begin{enumerate}[label=(\alph*)]
-    \item Using the first order optimality conditions, derive a closed-form solution for the minimum possible value of $x$, which we denote $x^*$.
+    \item Using the first order optimality conditions, derive a closed-form
+      solution for the minimum possible value of $x$, which we denote $x^*$.
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
 
-    \item Solving a linear system directly using Gaussian elimination takes $O(n^3)$ time, which may be wasteful if the matrix $A$ is sparse. For this reason, we will use gradient descent to compute an approximation to the optimal point $x^*$. Write down the update rule for gradient descent with a step size of 1.
+  \item Solving a linear system directly using Gaussian elimination takes
+    $O(n^3)$ time, which may be wasteful if the matrix $A$ is sparse. For this
+    reason, we will use gradient descent to compute an approximation to the
+    optimal point $x^*$. Write down the update rule for gradient descent with a
+    step size of 1.
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
 
-    \item Show that the iterates $x^{(k)}$ satisfy the recursion $$x^{(k)} - x^* = (I-!)(x^{(k-1)} - x^*).$$
+  \item Show that the iterates $x^{(k)}$ satisfy the recursion
+    $$x^{(k)} - x^* = (I-!)(x^{(k-1)} - x^*).$$
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
 
-    \item Show that for some $0 < \rho < 1$, $$\lVert x^{(k)} - x^* \rVert_2 \leq \rho \lVert x^{(k-1)} - x^* \rVert_2.$$
+  \item Show that for some $0 < \rho < 1$,
+    $$\lVert x^{(k)} - x^* \rVert_2 \leq \rho \lVert x^{(k-1)} - x^*
+    \rVert_2.$$
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
 
-    \item Let $x^{(0)} \in \R^n$ be a starting value for our gradient descent iterations. If we want our solution $x^{(k)}$ to be $\epsilon > 0$ close to $x^*$, i.e. $\lVert x^{(k)} - x^* \rVert_2 \leq \epsilon$, then how many iterations of gradient descent should we perform? In other words, how large should $k$ be? Give your answer in terms of $\rho, \lVert x^{(0)} - x^*\rVert_2, $ and $\epsilon$. Note that $0 < \rho < 1$, so $\log \rho < 0$.
+  \item Let $x^{(0)} \in \R^n$ be a starting value for our gradient descent
+    iterations. If we want our solution $x^{(k)}$ to be $\epsilon > 0$ close to
+    $x^*$, i.e. $\lVert x^{(k)} - x^* \rVert_2 \leq \epsilon$, then how many
+    iterations of gradient descent should we perform? In other words, how large
+    should $k$ be? Give your answer in terms of
+    $\rho, \lVert x^{(0)} - x^*\rVert_2, $ and $\epsilon$. Note that
+    $0 < \rho < 1$, so $\log \rho < 0$.
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
 
-    \item Observe that the running time of each iteration of gradient descent is dominated by a matrix-vector product. What is the overall running time of gradient descent to achieve a solution $x^{(k)}$ which is $\epsilon$-close to $x^*$? Give your answer in terms of $\rho, \lVert x^{(0)} - x^*\rVert_2, \epsilon,$ and $n$.
+  \item Observe that the running time of each iteration of gradient descent is
+    dominated by a matrix-vector product. What is the overall running time of
+    gradient descent to achieve a solution $x^{(k)}$ which is $\epsilon$-close
+    to $x^*$? Give your answer in terms of
+    $\rho, \lVert x^{(0)} - x^*\rVert_2, \epsilon,$ and $n$.
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
@@ -428,18 +447,80 @@ where $\lambda_r \geq 0$ is the loss incurred for choosing doubt and $\lambda_s 
 
 \newpage
 \subsection*{7. Gaussian Classification}
-Let $P(x | \omega_i) \sim N(\mu_i, \sigma^2)$ for a two-category, one-dimensional classification problem with classes $\omega_1$ and $\omega_2$, $P(\omega_1) = P(\omega_2) = 1/2$, and $\mu_2 > \mu_1$.
+Let $P(x | \omega_i) \sim N(\mu_i, \sigma^2)$ for a two-category,
+one-dimensional classification problem with classes $\omega_1$ and $\omega_2$,
+$P(\omega_1) = P(\omega_2) = 1/2$, and $\mu_2 > \mu_1$.
+
 \begin{enumerate}[label=(\alph*)]
-    \item Find the Bayes optimal decision boundary and the corresponding Bayes decision rule.
+
+\item Find the Bayes optimal decision boundary and the corresponding Bayes decision rule.
     \begin{mdframed}
-    \solution % Solution here
+      A Bayes optimal decision boundary for a one-dimensional, two-class
+      problem is a point $x^*$ at which the two class posterior probabilities
+      are equal. Since the variances and priors are equal the problem is
+      symmetric and it seems intuitively clear that the decision boundary must
+      be $x^* = \frac{\mu_1 + \mu_2}{2}$, with rule
+      \begin{align*}
+        f(x) =
+        \begin{cases}
+          \omega_1, &x < x^* \\
+          \omega_2, &x > x^*
+        \end{cases}
+      \end{align*}
+      (undefined classification exactly at the boundary).
+
+      To prove this, first note that the posterior probability of membership of
+      a point $x$ in class $\omega_i$ is
+      \begin{align*}
+        % \p(\omega_i|x) = \frac{\p(\omega_i)\p(\omega_i|x)}{\p(\omega_1)\p(\omega_1|x) + \p(\omega_2)\p(\omega_2|x)}.
+        \p(\omega_i|x)
+        &= \frac{\p(\omega_i)\p(\omega_i|x)}{\p(x)} \\
+        &= \frac{1}{2\p(x)} \frac{1}{(\sqrt{2\pi}\sigma)}\exp(-\frac{(x - \mu_i)^2}{2\sigma^2})
+      \end{align*}
+      Viewed as a function of $\omega_i$, the log posterior is
+      \begin{align*}
+        \log \p(\omega_i|x) = -\frac{(x - \mu_i)^2}{2\sigma^2} + \constant,
+      \end{align*}
+      so the decision boundary $x^*$ satisfies
+      \begin{align*}
+        &-\frac{(x^* - \mu_1)^2}{2\sigma^2} = -\frac{(x^* - \mu_2)^2}{2\sigma^2} \\
+        \implies&(x^* - \mu_1)^2 = (x^* - \mu_2)^2 \\
+        % \implies&x^*(-2\mu_1 + 2\mu_2) = \mu_2^2 - \mu_1^2 \\
+        \implies&x^* = \frac{\mu_2^2 - \mu_1^2}{2(\mu_2 - \mu_1)} = \frac{\mu_2 + \mu_1}{2}. \\
+      \end{align*}
+
     \end{mdframed}
 
-    \item The Bayes error is the probability of misclassification, $$ P_e = P((\text{misclassified as }\omega_1) | \omega_2)P(\omega_2) + P((\text{misclassified as }\omega_2)|\omega_1)P(\omega_1).$$
-    Show that the Bayes error associated with this decision rule is
+  \item The Bayes error is the probability of misclassification,
+    $$ P_e = P((\text{misclassified as }\omega_1) | \omega_2)P(\omega_2) +
+    P((\text{misclassified as }\omega_2)|\omega_1)P(\omega_1).$$ Show that the
+    Bayes error associated with this decision rule is
     $$ P_e = \frac{1}{\sqrt{2\pi}} \int_a^{\infty} e^{-z^2/2} dz$$ where $a = \frac{\mu_2 - \mu_1}{2\sigma}$.
     \begin{mdframed}
-    \solution % Solution here
+      Let the random variables $X$ and $Y$ represent the sample point and its
+      class respectively.  The probability of misclassification is
+      \begin{align*}
+        P_e
+        &= P((\text{misclassified as }\omega_1) | Y=\omega_2)P(Y=\omega_2) +
+           P((\text{misclassified as }\omega_2) | Y=\omega_1)P(Y=\omega_1) \\
+        &= \frac{1}{2}\(\p(X < x^*|Y=\omega_2) + \p(X > x^*|Y=\omega_1)\).
+      \end{align*}
+      These two probability distributions are 1D Gaussians with variance
+      $\sigma^2$ and means $\mu_2$ and $\mu_1$ respectively. Now change the
+      parameterization of these Gaussians so that they both have variance 1 and
+      mean 0. The above probability becomes
+      \begin{align*}
+        P_e
+        &= \frac{1}{2}\(
+          \p(X < \frac{x^* - \mu_2}{\sigma}|Y=\omega_2) +
+          \p(X > \frac{x^* - \mu_1}{\sigma}|Y=\omega_1)
+        \) \\
+        &= \frac{1}{2\sqrt{2\pi}}\(
+          \int_{-\infty}^{(x^* - \mu_2)/\sigma} e^{-z^2} \d z +
+          \int_{(x^* - \mu_1)/\sigma}^{\infty} e^{-z^2} \d z
+          \)
+      \end{align*}
+
     \end{mdframed}
 \end{enumerate}
 
