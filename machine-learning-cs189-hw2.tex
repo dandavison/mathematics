@@ -374,11 +374,27 @@ Let $A \in \R^{n\times n}$ be a symmetric matrix with $A \succeq 0$.
 \subsection*{5. Gradient Descent}
 Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b^{\top}x$, where $A$ is a symmetric matrix with $0 < \lambda_{\min}(A)$ and $\lambda_{\max} (A) < 1$.
 \begin{enumerate}[label=(\alph*)]
-    \item Using the first order optimality conditions, derive a closed-form
-      solution for the minimum possible value of $x$, which we denote $x^*$.
-    \begin{mdframed}
-    \solution % Solution here
-    \end{mdframed}
+\item Using the first order optimality conditions, derive a closed-form
+  solution for the minimum possible value of $x$, which we denote $x^*$.
+  \begin{mdframed}
+    Let $f(\x) = \frac{1}{2} x^\T Ax - b^{\top}x$. Since
+    $x^\T Ax = \sum_{j,k}A_{jk}x_jx_k$, the gradient in the $x_j$ direction is
+    \begin{align*}
+      (\nabla_x f)_j = \sum_k A_{jk} x_k - b_j
+    \end{align*}
+    (the factor of $1/2$ cancels the 2s deriving from differentiating $x_j^2$
+    and $2x_jx_k$).
+
+    In other words,
+    \begin{align*}
+      \nabla_x f = A\x - \vec b.
+    \end{align*}
+    Setting this equal to zero gives $x^* = A^\1b$.
+
+
+    Compare the 1D version:
+    $f(x) = \frac{1}{2}ax^2 - bx \implies f'(x) = ax - b \implies x^* = b/a$.
+  \end{mdframed}
 
   \item Solving a linear system directly using Gaussian elimination takes
     $O(n^3)$ time, which may be wasteful if the matrix $A$ is sparse. For this
@@ -386,25 +402,41 @@ Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b
     optimal point $x^*$. Write down the update rule for gradient descent with a
     step size of 1.
     \begin{mdframed}
-    \solution % Solution here
+      \begin{align*}
+        &\text{for $j$ in $1 \ldots d$}\\
+        &~~~~~~~~x^{(i)}_j \leftarrow x^{(i-1)}_j - \sum_k A_{jk} x^{(i-1)}_k + b_j
+      \end{align*}
+      Or in other words,
+      \begin{align*}
+        x^{(i)}
+        &\leftarrow x^{(i-1)} - A x^{(i-1)} + b \\
+        &= (I - A)x^{(i-1)} + b
+      \end{align*}
+
     \end{mdframed}
 
-  \item Show that the iterates $x^{(k)}$ satisfy the recursion
-    $$x^{(k)} - x^* = (I-!)(x^{(k-1)} - x^*).$$
+  \item Show that the iterates $x^{(i)}$ satisfy the recursion
+    $$x^{(i)} - x^* = (I-A)(x^{(i-1)} - x^*).$$
     \begin{mdframed}
-    \solution % Solution here
+      \begin{align*}
+        x^{(i)} - x^*
+        &= (I - A)x^{(i-1)} + b - x^* \\
+        &= (I - A)x^{(i-1)} + Ax^* - x^* \\
+        &= (I - A)x^{(i-1)} + (A - I)x^* \\
+        &= (I - A)(x^{(i-1)} - x^*) \\
+      \end{align*}
     \end{mdframed}
 
   \item Show that for some $0 < \rho < 1$,
-    $$\lVert x^{(k)} - x^* \rVert_2 \leq \rho \lVert x^{(k-1)} - x^*
+    $$\lVert x^{(i)} - x^* \rVert_2 \leq \rho \lVert x^{(i-1)} - x^*
     \rVert_2.$$
     \begin{mdframed}
     \solution % Solution here
     \end{mdframed}
 
   \item Let $x^{(0)} \in \R^n$ be a starting value for our gradient descent
-    iterations. If we want our solution $x^{(k)}$ to be $\epsilon > 0$ close to
-    $x^*$, i.e. $\lVert x^{(k)} - x^* \rVert_2 \leq \epsilon$, then how many
+    iterations. If we want our solution $x^{(i)}$ to be $\epsilon > 0$ close to
+    $x^*$, i.e. $\lVert x^{(i)} - x^* \rVert_2 \leq \epsilon$, then how many
     iterations of gradient descent should we perform? In other words, how large
     should $k$ be? Give your answer in terms of
     $\rho, \lVert x^{(0)} - x^*\rVert_2, $ and $\epsilon$. Note that
@@ -415,7 +447,7 @@ Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b
 
   \item Observe that the running time of each iteration of gradient descent is
     dominated by a matrix-vector product. What is the overall running time of
-    gradient descent to achieve a solution $x^{(k)}$ which is $\epsilon$-close
+    gradient descent to achieve a solution $x^{(i)}$ which is $\epsilon$-close
     to $x^*$? Give your answer in terms of
     $\rho, \lVert x^{(0)} - x^*\rVert_2, \epsilon,$ and $n$.
     \begin{mdframed}
