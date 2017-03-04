@@ -263,25 +263,43 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
 \subsection*{3. Derivatives and Norms}
 In the following questions, \textbf{show your work}, not just the final answer.
 \begin{enumerate}[label=(\alph*)]
-    \item Let $x, a \in \R^n$. Compute $\nabla_x(a^{\top}x)$.
+    \item Let $\x, \vec a \in \R^n$. Compute $\nabla_\x(\vec a^{\top}\x)$.
     \begin{mdframed}
-      We view $a$ as a constant vector and $a^\T x$ as a function
-      $f:\R^n \rightarrow \R$ with $f(x) = a^\T x = \sum_{i=1}^n a_ix_i$. The
+      We view $\vec a$ as a constant vector and $\vec a^\T \x$ as a function
+      $f:\R^n \rightarrow \R$ with $f(\x) = \vec a^\T \x = \sum_{i=1}^n a_ix_i$. The
       requested gradient is the column vector of first partial derivatives
       \begin{align*}
-        \nabla_x(a^\T x)
+        \nabla_\x(\vec a^\T \x)
         = \begin{bmatrix}f_{x_1}\\f_{x_2}\\ \vdots\\f_{x_n}\end{bmatrix}
         = \begin{bmatrix}\frac{\partial a^\T x}{\partial x_1}\\ \frac{\partial a^\T x}{\partial x_2}\\ \vdots\\\frac{\partial a^\T x}{\partial x_n}\\\end{bmatrix}
         = \begin{bmatrix}a_1\\a_2\\ \vdots\\a_n\end{bmatrix}
-        = a.
+        = \vec a.
       \end{align*}
     \end{mdframed}
 
-    \item Let $A \in \R^{n\times n}$, $x \in \R^n$. Compute $\nabla_x(x^{\top} Ax)$. \\ How does the expression you derived simplify in the case that $A$ is symmetric? \\
+  \item Let $A \in \R^{n\times n}$, $\x \in \R^n$. Compute $\nabla_\x(\x^{\top} A\x)$. \\
+    How does the expression you derived simplify in the case that $A$ is symmetric? \\
 
     (Hint: to get a feeling for the problem, explicitly write down a $2 \times 2$ or $3 \times 3$ matrix $A$ with components $A_{11}$, $A_{12}$, etc., explicitly expand $x^{\top}Ax$ as a polynomial without matrix notation, calculate the gradient in the usual way, and put the result back into matrix form. Then generalize the result to the $n \times n$ case.)
-    \begin{mdframed} \solution
-    % Solution here
+    \begin{mdframed}
+      \textbf{$2 \times 2$ symmetric}
+      \begin{align*}
+        \x^\T A\x &= A_{11}x_1^2 + 2A_{12}x_1x_2 + A_{22}x_2^2 \\
+                  &= \sum_{jk}A_{jk}x_jx_k \\
+        \\
+        \nabla_\x(\x^{\top} A\x) &=
+        \cvec
+        {2A_{11}x_1 + 2A_{12}x_2}
+        {2A_{12}x_1 + 2A_{22}x_2} = 2A\x
+      \end{align*}
+      \textbf{$2 \times 2$}
+      \begin{align*}
+        x^\T Ax &= A_{11}x_1^2 + (A_{12} + A_{21})x_1x_2 + A_{22}x_2^2 \\\\
+        \nabla_x(x^{\top} Ax) &=
+        \cvec
+        {2A_{11}x_1 + (A_{12} + A_{21})x_2}
+        {(A_{12} + A_{21})x_1 + 2A_{22}x_2} = (A + A^\T)\x
+      \end{align*}
     \end{mdframed}
 
     \item Let $A, X \in \R^{n \times n}$. Compute $\nabla_X (\text{trace}(A^{\top}X))$.
