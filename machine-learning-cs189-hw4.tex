@@ -1,0 +1,358 @@
+\documentclass[section]{problemset}
+\def\coursenumber{CS 189:289A}
+\def\coursename{Introduction to \mbox{Machine Learning}}
+\def\coursesemester{Spring 2017}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{amsmath,mathrsfs}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{txfonts}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathcomp}
+\usepackage{tabularx}
+\usepackage{wasysym}
+\usepackage{pbox}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{bbm}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+
+\usepackage{mathtools}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\N}{\mathcal{N}}
+
+\newcommand{\solcircle}[1]{
+	\solution{\vspace{0.1in}}{#1}{
+		\textcolor{red}{#1}
+	}
+} \newcommand{\myhline}{ \begin{center} \line(1,0){450}
+\begin{center}
+тв
+\end{center}\end{center}
+}
+
+\newcommand{\mcqbubble}{\bigcirc}
+\newcommand{\mcqbubblefill}{\Large\newmoon}
+
+\newcommand{\mcqb}{$\bigcirc$\ \ }
+\newcommand{\mcqs}{\solution{\vspace{0.1in}}{\mcqb}{$\Large\newmoon$\ \ }}
+
+\newcommand{\easy}{(easy)}
+\newcommand{\med}{(medium)}
+\newcommand{\hard}{(hard)}
+\newcommand{\remove}{\textbf{(remove)}}
+\newcommand{\ambi}{(ambiguous)}
+
+\newcommand{\bb}{{\mathbf{b}}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\bmu}{{\mathbf{\mu}}}
+\newcommand{\bX}{{\mathbf{X}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bY}{{\mathbf{Y}}}
+\newcommand{\bz}{{\mathbf{z}}}
+\newcommand{\bw}{{\mathbf{w}}}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\T}{\top}
+
+\newcommand{\auth}[1]{}
+\newcommand{\com}[1]{(#1)}
+\newcommand{\delete}[1]{}
+
+\newcommand{\todo}[1]{\textcolor{blue}{#1}}
+\def\P{{\mathbb P}}
+\def\E{{\mathbb E}}
+\def\1{{\mathbf 1}}
+
+\newcommand{\argmin}{\mathrm{argmin}}
+
+
+\title{Homework 4: Regression}
+\subtitle{Due Mon., March 13}
+
+\begin{document}
+
+\section*{Instructions}
+\begin{itemize}
+\item
+We prefer that you typeset your answers using \LaTeX{} or other word processing software. Neatly handwritten and scanned solutions will also be accepted.
+\item
+Please make sure to start {\bf each question on a new page}, as grading (with Gradescope) is much easier that way!
+\item See the end of this assignment for the list of deliverables.
+\item Due {\bf Monday, March 13, 2017 at 11:59 PM.}
+
+\end{itemize}
+
+\newpage
+
+
+\begin{problem}{Logistic Regression with Newton's Method}
+
+Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
+associated values $y_1, y_2, \ldots, y_n \in \{ 0, 1 \}$,
+an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
+an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$.
+
+If we add $\ell_2$-regularization to logistic regression,
+the cost function is
+\[
+J(w) = \lambda \, |w|^2_2 -
+\sum_{i=1}^n \left(y_i \ln s_i + (1-y_i) \ln (1 - s_i) \rule{0pt}{18pt} \right)
+\]
+where $s_i = s(X_i \cdot w)$, $s(\gamma) = 1 / (1 + e^{- \gamma})$, and
+$\lambda > 0$ is the regularization parameter.
+As in lecture, the vector $s = [s_1~~~~\dots~~~~s_n]^{\T}$ is
+a useful shorthand.
+
+In this problem, you will use Newton's method to minimize this cost function
+on the four-point, two dimensional training set
+\[
+X = \begin{bmatrix} 0 &3 \\ 1& 3\\ 0 &1\\ 1 &1 \end{bmatrix},
+\hspace{1in}
+y = \begin{bmatrix} 1\\1\\0\\0 \end{bmatrix}.
+\]
+You may want to draw these points on paper to see what they look like.
+The $y$-vector implies that the first two sample points are in class $1$, and
+the last two are in class $0$.
+
+These sample points cannot be separated by a decision boundary that
+passes through the origin.
+As described in lecture, append a $1$ to each $X_i$ vector and
+use a weight vector $w \in \mathbb{R}^3$ whose last component is
+the bias term (the term we call $\alpha$ in lecture).
+
+\begin{enumerate}
+\item
+Derive the gradient of the cost function $J(w)$.
+Your answer should be a simple matrix-vector expression.
+Do NOT write your answer in terms of the individual components of
+the gradient vector.
+
+
+
+\item
+Derive the Hessian of $J(w)$.
+Again, your answer should be a simple matrix-vector expression.
+
+
+\item State the update equation for one iteration of Newton's method for this problem.
+
+
+
+\item
+We are given a regularization parameter of $\lambda = 0.07$ and
+a starting point of $w^{(0)} = \begin{bmatrix} -2 & 1 & 0 \end{bmatrix}^\T$.
+\begin{itemize}
+\item[(a)]
+State the value of $s^{(0)}$ (the value of $s$ before any iterations).
+
+
+
+\item[(b)]
+State the value of $w^{(1)}$ (the value of $w$ after one iteration).
+
+
+\item[(c)]
+State the value of $s^{(1)}$.
+
+
+\item[(d)]
+State the value of $w^{(2)}$ (the value of $w$ after two iterations).
+
+\end{itemize}
+\end{enumerate}
+\end{problem}
+
+
+\newpage
+
+
+\begin{problem}{$\ell_1$- and $\ell_2$-Regularization}
+
+
+Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
+associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
+an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
+an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$.
+For the sake of simplicity, assume that the sample data
+has been centered and whitened so that
+each feature has mean $0$ and variance $1$ and the features are uncorrelated;
+i.e., $X^\T X = nI$.
+For this question, we will not use a fictitious dimension nor a bias term;
+our linear regression function will be zero for $x = 0$.
+
+Consider linear least-squares regression with
+regularization in the $\ell_1$-norm, also known as Lasso.
+The Lasso cost function is
+\[
+J(w) = |Xw - y|^2 +\lambda \, \|w\|_{\ell_1}
+\]
+where $w \in \mathbb{R}^d$ and $\lambda > 0$ is the regularization parameter.
+Let $w^* = \argmin_{w \in \mathbb{R}^d} \, J(w)$ denote
+the weights that minimize the cost function.
+
+In the following steps, we will show that whitened training data decouples the features, so that $w^*_i$ is determined by the $i^\mathrm{th}$ feature alone (i.e., column $i$ of the design matrix $X$), regardless of the other features.  This is true for both Lasso and ridge regression.
+
+\begin{enumerate}
+\item
+We use the notation $X_{*1}, X_{*2}, \ldots, X_{*d}$ to denote column $i$ of the design matrix $X$, which represents the $i^\mathrm{th}$ feature.
+(Not to be confused with row $i$ of $X$, the sample point $X_i^\T$.)
+Write $J(w)$ in the following form for appropriate functions $g$ and $f$.
+\[
+J(w) = g(y) + \sum_{i=1}^d f(X_{*i}, w_i, y, \lambda)
+\]
+
+
+\item
+If $w_i^* > 0$, what is the value of $w_i^*$?
+
+
+\item
+If $w_i^* < 0$, what is the value of $w_i^*$?
+
+
+\item
+Considering parts 2 and 3, what is the condition for $w_i^*$ to be zero?
+
+
+\item
+Now consider ridge regression, which uses the $\ell_2$ regularization term $\lambda \, |w|^2$.
+How does this change the function $f(\cdot)$ from part 1?
+What is the new condition in which $w_i^* = 0$?
+How does it differ from the condition you obtained in part 4?
+
+
+\end{enumerate}
+\end{problem}
+
+
+\newpage
+
+
+\begin{problem} {Regression and Dual Solutions}
+
+
+\begin{enumerate}[a)]
+
+\item
+For a vector $w$, derive $\nabla \, |w|^4$.
+Then derive $\nabla_w \, |Xw - y|^4$.
+
+\item
+Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
+associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
+an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
+an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$, and
+the regularized regression problem
+\[
+w^* = \argmin_{w \in \R^d} \; |Xw - y|^4 + \lambda \, |w|^2,
+\]
+which is similar to ridge regression, but we take the fourth power
+of the error instead of the squared error.
+(It is not possible to write the optimal solution $w^*$ as
+the solution of a system of linear equations, but
+it can be found by gradient descent or Newton's method.)
+
+Show that the optimum $w^*$ is unique.
+By setting the gradient of the objective function to zero,
+show that $w^*$ can be written as
+a linear combination $w^* = \sum_{i=1}^n a_i X_i$ for some scalars
+$a_1, \ldots, a_n$.
+Write the vector $a$ of dual coefficients in terms of $X$, $y$, and
+the optimal solution $w^*$.
+
+\item Consider the regularized regression problem
+\[
+w^* = \argmin_{w \in \R^d} \; \frac{1}{n} \sum_{i=1}^n L(w^{\T} X_i, y_i) + \lambda \, |w|^2
+\]
+where the loss function $L$ is convex in its first argument.
+Prove that the optimal solution has the form $w^* = \sum_{i=1}^n a_i X_i$.
+If the loss function is not convex, does the optimal solution always have
+the form $w^* = \sum_{i=1}^n a_i X_i$?
+Justify your answer.
+\end{enumerate}
+\end{problem}
+
+
+\newpage
+
+
+\begin{problem}{Franzia Classification + Logistic Regression = Party!}
+
+Daylen is planning the frat party of the semester. He's completely stocked up on Franzia. Unfortunately, the labels for 497 boxes (test set) have been scratched off, and he needs to quickly find out which boxes contain Red wine (label 1) and White wine (label 0). Fortunately, for him the boxes still have their Nutrition Facts (features) intact and detail the chemical composition of the wine inside the boxes (the description of these features and the features themselves are provided in {\tt data.mat}). He also has 6,000 boxes with Nutrition Facts and labels intact (train set). Help Daylen figure out what the labels should be for the 497 mystery boxes.
+
+\textbf{IMPORTANT:} Do NOT use any software package for logistic regression that you didn't write yourself!
+
+\begin{enumerate}
+\item
+Derive and write down the batch gradient descent update equation for logistic regression with $\ell_2$ regularization.
+
+Choose a reasonable regularization parameter value and a reasonable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations.  (As this is batch descent, one ``iteration'' should use every sample point once.)
+
+\item
+Derive and write down the stochastic gradient descent update equation for logistic regression with $\ell_2$ regularization.  Choose a suitable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations---where now each ``iteration'' uses {\em just one} sample point.
+
+Comment on the differences between the convergence of batch and stochastic gradient descent.
+
+\item
+Instead of a constant learning rate $\epsilon$, repeat part 2 where the learning rate decreases as $\epsilon \propto 1/t$ for the $t^\mathrm{th}$ iteration. Plot the cost function vs.\ the number of iterations. Is this strategy better than having a constant $\epsilon$?
+
+\item
+Finally, train your classifier on the entire training set. Submit your predictions for the test set to Kaggle. You can only submit twice per day, so get started early! In your writeup, include your Kaggle display name and score and describe the process you used to decide which parameters to use for your best classifier.
+
+\end{enumerate}
+
+\end{problem}
+
+
+\newpage
+
+
+\begin{problem}{Real World Spam Classification}
+
+
+\textbf{Motivation}: After taking CS 189 or CS 289A, students should be able to wrestle with ``real-world'' data and problems. These issues might be deeply technical and require a theoretical background, or might demand specific domain knowledge. Here is an example that a past TA encountered.
+
+Daniel (a past CS 189 TA) interned as an anti-spam product manager for an email service provider. His company uses a linear SVM to predict whether an incoming spam message is spam or ham. He notices that the number of spam messages received tends to spike upwards a few minutes before and after midnight. Eager to obtain a return offer, he adds the timestamp of the received message, stored as number of milliseconds since the previous midnight, to each feature vector for the SVM to train on, in hopes that the ML model will identify the abnormal spike in spam volume at night. To his dismay, after testing with the new feature, Daniel discovers that the linear SVM's success rate barely improves.
+
+Why can't the linear SVM utilize the new feature well, and what can Daniel do to improve his results? Daniel is unfortunately limited to a quadratic kernel i.e. the features are at most polynomials of degree 2 over the original variables. This is an actual interview question Daniel received for a machine learning engineering position!
+
+Write a short explanation. This question is open ended, and there can be many correct answers.
+
+\end{problem}
+
+
+\newpage
+
+
+\section*{Submission Instructions}
+Please submit
+\begin{itemize}
+\item a PDF write-up containing your \textit{answers, plots, and code} to Gradescope. Be sure to include your Kaggle display name and score in the PDF.
+\item a .zip file of your \textit{code} and a README explaining how to run your code to Gradescope.
+\item your CSV file of predictions to Kaggle.
+\end{itemize}
+
+
+\end{document}
