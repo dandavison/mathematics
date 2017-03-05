@@ -1634,11 +1634,49 @@ Then
   \begin{align*}
     \frac{1}{2\pi}\int_0^{2\pi}\cos^{2n}t ~dt
     &= \frac{1}{2^{2n+1}\pi } \int_0^{2\pi} (e^{it} + e^{-it})^{2n} ~dt \\
+    &= \frac{1}{2^{2n+1}\pi } \int_\gamma (z + z^{-1})^{2n} ~dz
+  \end{align*}
+
+  Now consider the related integral
+  \begin{align*}
+    \int_\gamma z^{-1}\(z + z^{-1}\)^{2n} ~dz
+    &= \int_\gamma z^{-1}\sum_{k=0}^{2n} {2n \choose k} z^{2n - k}z^{-k} ~dz \\
+    &= \sum_{k=0}^{2n} {2n \choose k} \int_\gamma z^{2(n - k) - 1} ~dz.
+  \end{align*}
+  If $k \neq n$, then $z^{2(n - k) - 1}$ is the derivative of
+  $\frac{z^{2(n - k)}}{2(n - k)}$, in which case
+  $\int_\gamma z^{2(n - k) - 1} ~dz = 0$ since $\gamma$ is a closed
+  curve. Therefore the only terms remaining in the summation are those for
+  which $k = n$:
+  \begin{align*}
+    \int_\gamma z^{-1}\(z + z^{-1}\)^{2n} ~dz
+    &= {2n \choose n} \int_\gamma z^{-1} ~dz \\
+    &= {2n \choose n} \int_0^{2\pi} e^{-it}ie^{it} ~dz \\
+    &= {2n \choose n} 2\pi i.
+  \end{align*}
+  Returning to the original problem, we now know the value of a similar
+  integral:
+  \begin{align*}
+    \frac{1}{2^{2n+1}\pi } \int_\gamma z^{-1}(z + z^{-1})^{2n} ~dz
+    &= \frac{1}{2^{2n+1}\pi} {2n \choose n} 2\pi i \\
+    &= \frac{1}{2^{2n+1}\pi} ~\frac{(2n)!}{2(n!)} ~2\pi i \\
+    &= \frac{(n+1) \cdot (n+2) \cdots 2n}{2^{2n+1}} i \\
+  \end{align*}
+
+
+\end{mdframed}
+~\\
+~\\
+\begin{mdframed}
+  We can write the integral as
+  \begin{align*}
+    \frac{1}{2\pi}\int_0^{2\pi}\cos^{2n}t ~dt
+    &= \frac{1}{2^{2n+1}\pi } \int_0^{2\pi} (e^{it} + e^{-it})^{2n} ~dt \\
     &= \frac{1}{2^{2n+1}\pi } \int_\gamma (z + z^{-1})^{2n} ~dz \\
     &= \frac{1}{2^{2n+1}\pi } \int_\gamma \sum_{k=0}^{2n} {2n \choose k} z^{2n - k}z^{-k} ~dz \\
     &= \frac{1}{2^{2n+1}\pi } \sum_{k=0}^{2n} {2n \choose k} \int_\gamma z^{2(n - k)} ~dz.
   \end{align*}
-  Now if $n \neq k$, then $z^{2(n - k)}$ is the derivative of
+  Now if $2n \neq k$, then $z^{2(n - k)}$ is the derivative of
   $\frac{z^{2(n - k) + 1}}{2(n - k) + 1}$, in which case
   $\int_\gamma z^{2(n - k)} ~dz = 0$.
 
