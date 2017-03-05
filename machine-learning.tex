@@ -6,8 +6,6 @@
 \usepackage{notes}
 \newcommand{\solution}{\textbf{Solution: }}
 \renewcommand{\P}{\Pr}
-\newcommand{\x}{\vec x}
-\newcommand{\w}{\vec w}
 
 \title{Machine Learning}
 
@@ -47,18 +45,27 @@ In $d$-dimensions the decision boundary is a hyperplane
   features almost don't matter).
 \end{itemize}
 
-I'm still not fully comfortable with the role of $\w \cdot \x$ and the
-distance of lines to the hyperplane / origin, etc:
-\begin{mdframed}
-  \includegraphics[width=300pt]{img/machine-learning-linear-decision-boundary-2.png}
-\end{mdframed}
-Examples of linear classifiers:
-\begin{description}
-\item[Centroid method] Decision boundary perpendicular to and bisects line
+\textbf{Distance from the decision boundary to a point}: For some point $\x_i$,
+the height of the decision function plane above $\x_i$ is
+$\w \cdot \x_i + \alpha$. At the decision boundary, this height is
+zero. Looking ``straight up'' the slope of the decision function, its gradient
+is $\sqrt{w_1^2 + w_2^2} = |\w|$. So the distance of a point $\x_i$ from the
+hyperplane is $\frac{\w \cdot \x_i + \alpha}{|\w|}$. If $\w$ is not a unit
+vector, the problem can be rescaled so that it is, in which case the distance
+is $\w \cdot \x_i + \alpha$.
+\\
+% \begin{mdframed}
+%   \includegraphics[width=300pt]{img/machine-learning-linear-decision-boundary-2.png}
+% \end{mdframed}
+
+\textbf{Examples of linear classifiers}:
+\begin{itemize}
+\item \textbf{Centroid method}:  Decision boundary perpendicular to and bisects line
   connecting means of labeled training points.
-\item[Perceptron]
-\item[LDA] Fit Gaussians to each class, same covariance across classes.
-\end{description}
+\item \textbf{Perceptron}:
+\item \textbf{Maximum margin classifier}:
+\item \textbf{LDA}:  Fit Gaussians to each class, same covariance across classes.
+\end{itemize}
 
 \subsection*{Perceptron}
 
@@ -68,17 +75,23 @@ Labels $y_i \in \{-1, 1\}$. Assume $\alpha=0$ for now (decision boundary through
 \begin{align*}
   \begin{cases}
     \x_i \cdot \w \leq 0, &y_i = -1 \\
-    \x_i \cdot \w \geq 0, &y_i = +1
+    \x_i \cdot \w \geq 0, &y_i = +1.
   \end{cases}
 \end{align*}
+This is equivalent to the \textbf{constraint} $y_i\x_i \cdot \w \geq 0$.
 
-\textbf{Cost function}: minimize the total distance of misclassified points
-from the decision boundary:
+\textbf{Cost function}: total distance $R(\w)$ of misclassified points from the
+decision boundary.
+\\
+\begin{mdframed}
+  \textbf{Optimization problem}: Find $\w$ that minimizes
+  \begin{align*}
+    R(w) = \sum_i L(\x_i \cdot \w, y_i) = \sum_{i \in V} -y_i\x_i \cdot \w,
+  \end{align*}
+  where $V$ are the misclassified points.
+\end{mdframed}
 
-\begin{align*}
-  R(w) = \sum_i L(\x_i \cdot \w, y_i) = \sum_{i \in V} -y_i\x_i,
-\end{align*}
-where $V$ are the misclassified points. Per-training point loss function
+Per-training point loss function
 \begin{align*}
   L(\text{prediction}_i, y_i) = L(\x_i \cdot \w, y_i) =
   \begin{cases}
@@ -98,7 +111,7 @@ where $V$ are the misclassified points. Per-training point loss function
 \end{align*}
 \begin{itemize}
 \item On each iteration, compute the gradient; update $\w$ by taking a step
-  downhill of size $\rho$.
+  downhill of size $\rho$: $\w \leftarrow \w + \rho \sum_{i \in V} y_i\x_i$.
 \item A misclassified data point far out in dimension $j$ will cause the
   gradient to have a large component $-\sum_i y_iX_{ij}$ in that dimension.
 \item $\w$ thus becomes more closely aligned with that axis and the decision
@@ -107,12 +120,14 @@ where $V$ are the misclassified points. Per-training point loss function
   becomes more ``important'').
 \end{itemize}
 
-\textbf{Stochastic gradient descent}: on each iteration pick one misclassified
-point and update $\w$ using gradient for that point.
+\textbf{Stochastic gradient descent (Perceptron)}: on each iteration pick one misclassified
+point and update $\w$ using gradient for that point:
+$\w \leftarrow \w + \rho y_{i^*}\x_{i^*}$
 
 \textbf{Allow decision boundaries that do not pass through origin}: add a
-fictitious dimension so that sample points now lie on a plane in $(d+1)$
-dimensions. Run algorithm as above, just with the new dimensionality.
+fictitious dimension so that sample points now lie on the plane $x_{d+1} = 1$
+in $(d+1)$ dimensions. Run algorithm as above, just with the new
+dimensionality.
 \begin{align*}
   \w \cdot \x + \alpha &= 0 \\
   \cveccc{w_1}
@@ -120,7 +135,33 @@ dimensions. Run algorithm as above, just with the new dimensionality.
          {\alpha} \cdot \cveccc{x_1}{x_2}{1} &= 0.
 \end{align*}
 
-\subsection*{Maximum margin classifiers}
-TODO
+\subsection*{Optimization in weight space}
 
+\begin{tabular}{l|l}
+  $\x$-space    & $\w$-space \\
+  \hline
+  hyperplane & point $\w$ is normal vector to hyperplane \\
+  point      & hyperplane whose normal vector is the $\x$ point (? don't understand this yet)
+\end{tabular}
+
+\includegraphics[width=200pt]{img/ml-perceptron-x-space-w-space.png}
+
+\subsection*{Maximum margin classifiers}
+\textbf{Margin} is distance from hyperplane to nearest sample point.
+
+Previously, in the perceptron, we used the constraint
+$$y_i \x_i \cdot \w \geq 0.$$
+Now, we demand that there is a non-zero margin between the decision boundary
+and the points:
+$$y_i (\x_i \cdot \w + \alpha) \geq 1,$$
+The 1 on the RHS is arbitrary; I think $\w$ and $\alpha$ will adapt to make it
+true for any positive value, so the point is that we're demanding a strictly
+non-zero margin.
+\\
+\begin{mdframed}
+  \textbf{Optimization problem (quadratic program)}:\\
+    Find $\w, \alpha$ that minimize $|\w|^2$ such that
+    $y_i(\x_i \cdot \w + \alpha) \geq 1$ for all points $i$.
+  }
+\end{mdframed}
 \end{document}
