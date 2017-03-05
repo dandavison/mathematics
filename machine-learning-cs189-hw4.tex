@@ -130,6 +130,80 @@ Your answer should be a simple matrix-vector expression.
 Do NOT write your answer in terms of the individual components of
 the gradient vector.
 
+\begin{mdframed}
+The gradient of the cost function is
+\begin{align*}
+  \nabla J(\w) = \lambda \nabla |\w|^2 + \sum_i
+  y_i     \nabla \ln s_i(\w) +
+  (1-y_i) \nabla \ln(1 - s_i(\w)).
+\end{align*}
+Let's compute the three derivatives separately.
+\hlinee
+First the regularization term:
+\begin{align*}
+  \nabla |\w|^2 = \nabla \sum_{j=1}^d w_j^2 = \cveccc{2w_1}{\vdots}{2w_d} = 2\w.
+\end{align*}
+\hlinee
+Next $\ln s_i(\w)$. The partial derivative with respect to one component $w_j$ is
+\begin{align*}
+  \partiald{\ln s_i(\w)}{w_j}
+  = \frac{1}{s_i(\w)} \partiald{s_i(\w)}{w_j}
+  = (1 + e^{-\w\cdot\x_i}) \partiald{s_i(\w)}{w_j},
+\end{align*}
+and the partial derivative of the logistic function is
+\begin{align*}
+  \partiald{s_i(\w)}{w_j} &= \partiald{~(1 + e^{-\w \cdot \x_i})^{-1}}{w_j} \\
+  &= -(1 + e^{-\w \cdot \x_i})^{-2} (-x_{ij})e^{-\w\cdot\x_i} \\
+  &= x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2},
+\end{align*}
+so putting the last two results together gives
+\begin{align*}
+  \partiald{\ln s_i(\w)}{w_j} =
+  x_{ij}\frac{e^{-\w\cdot\x_i}}{1 + e^{-\w \cdot \x_i}} =
+  x_{ij}(1 - s_i(\w)),
+\end{align*}
+and therefore the gradient of $\ln s_i(\w)$ is
+\begin{align*}
+  \nabla \ln s_i(\w) =
+\cveccc
+{\partiald{\ln s_i(\w)}{w_1}}
+{\vdots}
+{\partiald{\ln s_i(\w)}{w_d}}
+=
+\cveccc
+{x_{i1}(1 - s_i(\w))}
+{\vdots}
+{x_{id}(1 - s_i(\w))}
+= (1 - s_i(\w))\x_i.
+\end{align*}
+\hlinee
+Now $\ln(1 - s_i(\w))$. We've already computed $(s_i(\w))'$, and $\frac{1}{1 - s_i(\w)} = \frac{1 + e^{-\w\cdot\x_i}}{e^{-\w\cdot\x_i}}$, so
+\begin{align*}
+  \partiald{\ln \(1 - s_i(\w)\)}{w_1}
+  &= \frac{1 + e^{-\w\cdot\x_i}}{e^{-\w\cdot\x_i}}(-1) x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2} \\
+  &= -x_{ij}s_i(\w),
+\end{align*}
+and
+\begin{align*}
+  \nabla \ln (1 - s_i(\w)) =
+\cveccc
+{-x_{i1}s_i(\w)}
+{\vdots}
+{-x_{id}s_i(\w)} =
+-s_i(\w)\x_i.
+\end{align*}
+\hlinee
+Finally, putting the three derivatives together gives the gradient of the cost function:
+\begin{align*}
+  \nabla J(\w)
+  &= \lambda \nabla |\w|^2 + \sum_i
+  y_i     \nabla \ln s_i(\w) +
+  (1-y_i) \nabla \ln(1 - s_i(\w)) \\
+  &= 2\w + \sum_i y_i (1 - s_i(\w))\x_i - \sum_i (1 - y_i) s_i(\w)\x_i \\
+  &=2\w + \y^\T(1 - \mat S)\X - (1 - \y)^\T\mat S\X,
+\end{align*}
+where $\mat S$ is a diagonal $(n \times n)$ matrix with $S_{ii} = s_i(\w)$.
+\end{mdframed}
 
 
 \item
