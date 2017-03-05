@@ -1628,6 +1628,24 @@ Then
     the unit circle, parameterized by the curve
     $\gamma(t) = e^{it} (0 \leq t \leq 2\pi)$.
 }
+\\
+\begin{mdframed}
+  We can write the integral as
+  \begin{align*}
+    \frac{1}{2\pi}\int_0^{2\pi}\cos^{2n}t ~dt
+    &= \frac{1}{2^{2n+1}\pi } \int_0^{2\pi} (e^{it} + e^{-it})^{2n} ~dt \\
+    &= \frac{1}{2^{2n+1}\pi } \int_\gamma (z + z^{-1})^{2n} ~dz \\
+    &= \frac{1}{2^{2n+1}\pi } \int_\gamma \sum_{k=0}^{2n} {2n \choose k} z^{2n - k}z^{-k} ~dz \\
+    &= \frac{1}{2^{2n+1}\pi } \sum_{k=0}^{2n} {2n \choose k} \int_\gamma z^{2(n - k)} ~dz.
+  \end{align*}
+  Now if $n \neq k$, then $z^{2(n - k)}$ is the derivative of
+  $\frac{z^{2(n - k) + 1}}{2(n - k) + 1}$, in which case
+  $\int_\gamma z^{2(n - k)} ~dz = 0$.
+
+  We can view the integral on the right side as integrating the function
+  $(z + z^{-1})^{2n}$ around the unit circle:
+
+\end{mdframed}
   \exercise{VI.8.1}{
     Let $z_1$ and $z_2$ be distinct points of $\C$. Evaluate
     $\int_{[z1,z2]}z^n dz$ and $\int_{[z1,z2]}\bar{z}^n dz$ for
