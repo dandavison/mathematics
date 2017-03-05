@@ -162,6 +162,19 @@ non-zero margin.
   \textbf{Optimization problem (quadratic program)}:\\
     Find $\w, \alpha$ that minimize $|\w|^2$ such that
     $y_i(\x_i \cdot \w + \alpha) \geq 1$ for all points $i$.
-  }
 \end{mdframed}
+
+\subsection*{Soft margin SVMs}
+
+\begin{itemize}
+\item Still quadratic program but allow points to violate margin via
+  \textbf{slack variables} $\xi_i$:
+\item Constraint is $y_i(\x_i \cdot \w + \alpha) \geq 1 - \xi_i$
+\item Find non-linear decision boundaries by introducing new features
+  comprising non-linear functions of base features (``lift points into
+  higher-dimensional space'').
+\end{itemize}
+
+\includegraphics[width=300pt]{img/ml-svm-parabolic-lifting.png}
+
 \end{document}
