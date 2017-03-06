@@ -202,10 +202,16 @@ Finally, putting the three derivatives together gives the gradient of the cost f
   &= \lambda \nabla |\w|^2 + \sum_i
   y_i     \nabla \ln s_i(\w) +
   (1-y_i) \nabla \ln(1 - s_i(\w)) \\
-  &= 2\w + \sum_i y_i (1 - s_i(\w))\x_i - \sum_i (1 - y_i) s_i(\w)\x_i \\
-  &=2\w + \y^\T(1 - \mat S)\X - (1 - \y)^\T\mat S\X,
+  &= 2\w + \sum_i y_i (1 - s_i(\w))\x_i - (1 - y_i) s_i(\w)\x_i \\
+  &= 2\w + \sum_i y_i\x_i - y_is_i(\w)\x_i - s_i(\w)\x_i + y_is_i(\w)\x_i \\
+  &= 2\w + \sum_i y_i\x_i - s_i(\w)\x_i \\
+  &= 2\w + \X^\T\y - \X^\T s(\X\w) \\
+  &= 2\w + \X^\T(\y - s(\X\w)),
 \end{align*}
-where $\mat S$ is a diagonal $(n \times n)$ matrix with $S_{ii} = s_i(\w)$.
+where
+$s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
+contains the predicted values (class probability) for each sample point, given
+parameters $\w$.
 \end{mdframed}
 
 
