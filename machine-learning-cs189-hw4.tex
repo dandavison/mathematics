@@ -264,7 +264,21 @@ Derive the Hessian of $J(w)$.
 Again, your answer should be a simple matrix-vector expression.
 
 \begin{mdframed}
-
+Using $\X_{.j}$ to denote the $n$-vector containing the $j$-th feature
+values, the $j$-th component of the gradient is
+\begin{align*}
+  \partiald{J}{w_j} = 2\lambda w_j - \X_{.j}\cdot \y + \X_{.j} \cdot s(\X\w),
+\end{align*}
+so the $(j,k)$-th entry of the Hessian is
+\begin{align*}
+  \partiald{}{w_k}\partiald{J}{w_j}
+  &= \sum_i x_{ij} \partiald{~s(\x_i\cdot \w)}{w_k} \\
+  &= 2\lambda 1_{\{j = k\}} + \sum_i x_{ij} x_{ik} s_i(\w)(1 - s_i(\w)) \\
+  &= 2\lambda 1_{\{j = k\}} + X^\T B \X,
+\end{align*}
+where $B$ is an $(n \times n)$ diagonal matrix with
+$B_{ii} = s_i(\w)(1-s_i(\w)$, and $1_{\{\cdot\}}$ is an indicator function that
+takes the value 1 when its argument is true and 0 otherwise.
 \end{mdframed}
 
 \item State the update equation for one iteration of Newton's method for this problem.
