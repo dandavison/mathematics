@@ -148,19 +148,17 @@ Next $\ln s_i(\w)$. The partial derivative with respect to one component $w_j$ i
 \begin{align*}
   \partiald{\ln s_i(\w)}{w_j}
   = \frac{1}{s_i(\w)} \partiald{s_i(\w)}{w_j}
-  = (1 + e^{-\w\cdot\x_i}) \partiald{s_i(\w)}{w_j},
 \end{align*}
 and the partial derivative of the logistic function is
 \begin{align*}
   \partiald{s_i(\w)}{w_j} &= \partiald{~(1 + e^{-\w \cdot \x_i})^{-1}}{w_j} \\
   &= -(1 + e^{-\w \cdot \x_i})^{-2} (-x_{ij})e^{-\w\cdot\x_i} \\
-  &= x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2},
+  &= x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2} \\
+  &= x_{ij}s_i(\w)(1 - s_i(\w)),
 \end{align*}
 so putting the last two results together gives
 \begin{align*}
-  \partiald{\ln s_i(\w)}{w_j} =
-  x_{ij}\frac{e^{-\w\cdot\x_i}}{1 + e^{-\w \cdot \x_i}} =
-  x_{ij}(1 - s_i(\w)),
+  \partiald{\ln s_i(\w)}{w_j} = x_{ij}(1 - s_i(\w)),
 \end{align*}
 and therefore the gradient of $\ln s_i(\w)$ is
 \begin{align*}
@@ -179,10 +177,10 @@ and therefore the gradient of $\ln s_i(\w)$ is
 = (1 - s_i(\w))\x_i.
 \end{align*}
 \hlinee
-Now $\ln(1 - s_i(\w))$. We've already computed $(s_i(\w))'$, and $\frac{1}{1 - s_i(\w)} = \frac{1 + e^{-\w\cdot\x_i}}{e^{-\w\cdot\x_i}}$, so
+Now $\ln(1 - s_i(\w))$. We've already computed $(s_i(\w))'$, so
 \begin{align*}
   \partiald{\ln \(1 - s_i(\w)\)}{w_1}
-  &= \frac{1 + e^{-\w\cdot\x_i}}{e^{-\w\cdot\x_i}}(-1) x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2} \\
+  &= \frac{1}{1 - s_i(\w)}(-1)x_{ij}s_i(\w)(1 - s_i(\w)) \\
   &= -x_{ij}s_i(\w),
 \end{align*}
 and
@@ -203,7 +201,6 @@ Finally, putting the three derivatives together gives the gradient of the cost f
   y_i     \nabla \ln s_i(\w) +
   (1-y_i) \nabla \ln(1 - s_i(\w)) \\
   &= 2\w + \sum_i y_i (1 - s_i(\w))\x_i - (1 - y_i) s_i(\w)\x_i \\
-  &= 2\w + \sum_i y_i\x_i - y_is_i(\w)\x_i - s_i(\w)\x_i + y_is_i(\w)\x_i \\
   &= 2\w + \sum_i y_i\x_i - s_i(\w)\x_i \\
   &= 2\w + \X^\T\y - \X^\T s(\X\w) \\
   &= 2\w + \X^\T(\y - s(\X\w)),
