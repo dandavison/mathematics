@@ -200,10 +200,10 @@ Finally, putting the three derivatives together gives the gradient of the cost f
   &= \lambda \nabla |\w|^2 + \sum_i
   y_i     \nabla \ln s_i(\w) +
   (1-y_i) \nabla \ln(1 - s_i(\w)) \\
-  &= 2\w + \sum_i y_i (1 - s_i(\w))\x_i - (1 - y_i) s_i(\w)\x_i \\
-  &= 2\w + \sum_i y_i\x_i - s_i(\w)\x_i \\
-  &= 2\w + \X^\T\y - \X^\T s(\X\w) \\
-  &= 2\w + \X^\T(\y - s(\X\w)),
+  &= 2\lambda\w + \sum_i y_i (1 - s_i(\w))\x_i - (1 - y_i) s_i(\w)\x_i \\
+  &= 2\lambda\w + \sum_i y_i\x_i - s_i(\w)\x_i \\
+  &= 2\lambda\w + \X^\T\y - \X^\T s(\X\w) \\
+  &= 2\lambda\w + \X^\T(\y - s(\X\w)),
 \end{align*}
 where
 $s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
