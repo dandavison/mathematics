@@ -197,13 +197,19 @@ case is obvious without ``deriving'' the coefficients.)
 
 First note that the ``quadratic form'' $ax^2 + 2bxy + cy^2$ can be written as
 \begin{align*}
-\cvec{x}{y}^\T \mat{a}{b}
-                   {b}{c} \cvec{x}{y}.
+\x^\T A \x = \cvec{x}{y}^\T \mat{a}{b}
+                                {b}{c} \cvec{x}{y}.
+\end{align*}
+This is a scalar. In general, a quadratic form for symmetric matric $A$ is
+\begin{align*}
+\x^\T A \y = \sum_{jk}A_{jk}x_jy_k.
 \end{align*}
 
-This is a scalar. In general, a quadratic form for symmetric matric $A$ is
-$q(x) = \x^\T A x = \sum_{jk}A_{jk}x_jx_k$. The gradient is given by
-$\dfdxj = 2\sum_k A_{jk}x_k$.
+The $j$-th component of the gradient of $q(\x) = \x^\T A \x$ is
+$\partiald{q}{x_j} = 2\sum_k A_{jk}x_k$, so
+\begin{align*}
+  \nabla ~\x^\T \vec A \x = 2\vec A \x.
+\end{align*}
 
 \begin{align*}
 Q(x, y) &=
