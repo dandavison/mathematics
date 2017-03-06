@@ -248,6 +248,13 @@ $s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
 contains the predicted values (class probability) for each sample point, given
 parameters $\w$.
 
+We can interpret this expression a bit. $s(\X\w)$ is an $n$-vector containing
+the predicted values for each sample point, so $\y - s(\X\w)$ is the error in
+the current predicted values, and $\X^\T(\y - s(\X\w))$ is a $d$-vector whose
+$j$-th component is large if feature $j$ is correlated with (has a large dot
+product with) the current errors. So the steepest direction downhill will tend
+to put more weight on features that are correlated with the current error in
+the predictions.
 \end{mdframed}
 ~\\~\\
 
