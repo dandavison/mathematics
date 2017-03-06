@@ -130,50 +130,13 @@ Your answer should be a simple matrix-vector expression.
 Do NOT write your answer in terms of the individual components of
 the gradient vector.
 
+\begin{comment}
 \begin{mdframed}
-  My initial version was very verbose due to discomfort with matrix
-  algebra. After looking at the lecture notes I see that it should be
-  abbreviated, something like this:
+\textbf{Initial verbose version}:
 
-First note that
-\begin{align*}
-  \partiald{s_i(\w)}{w_j} &= \partiald{~(1 + e^{-\w \cdot \x_i})^{-1}}{w_j} \\
-  &= -(1 + e^{-\w \cdot \x_i})^{-2} (-x_{ij})e^{-\w\cdot\x_i} \\
-  &= x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2} \\
-  &= x_{ij}s_i(\w)(1 - s_i(\w)),
-\end{align*}
-and therefore that
-\begin{align*}
-  \nabla s_i(\w) = s_i(\w)(1 - s_i(\w))\X_i.
-\end{align*}
-Then the gradient of the cost function is
-\begin{align*}
-  \nabla J(\w)
-  &= \lambda \nabla |\w|^2 + \sum_i
-    y_i     \nabla \ln s_i(\w) +
-    (1-y_i) \nabla \ln(1 - s_i(\w)) \\
-  &= 2\lambda\w + \sum_i
-    \frac{y_i}{s_i(\w)} \nabla s_i(\w) -
-    \frac{1 - y_i}{1 - s_i(\w)} \nabla s_i(\w) \\
-  % &= 2\lambda\w + \sum_i \nabla s_i(\w) \(\frac{y_i}{s_i(\w)} - \frac{1 - y_i}{1 - s_i(\w)}\) \\
-  &= 2\lambda\w + \sum_i \nabla s_i(\w) \(
-    \frac{y_i - s_i(\w)}
-         {s_i(\w)(1 - s_i(\w))}
-\) \\
-  &= 2\lambda\w + \sum_i \X_i\(y_i - s_i(\w)\) \\
-  &= 2\lambda\w + \X^\T\(\y - s(\X\w)\),
-\end{align*}
-where
-$s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
-contains the predicted values (class probability) for each sample point, given
-parameters $\w$.
-\end{mdframed}
-~\\~\\
-\begin{mdframed}
-Initial, verbose, version:
 The gradient of the cost function is
 \begin{align*}
-  \nabla J(\w) = \lambda \nabla |\w|^2 + \sum_i
+  \nabla J(\w) = \lambda \nabla |\w|^2 - \sum_i
   y_i     \nabla \ln s_i(\w) +
   (1-y_i) \nabla \ln(1 - s_i(\w)).
 \end{align*}
@@ -237,25 +200,65 @@ and
 Finally, putting the three derivatives together gives the gradient of the cost function:
 \begin{align*}
   \nabla J(\w)
-  &= \lambda \nabla |\w|^2 + \sum_i
+  &= \lambda \nabla |\w|^2 - \sum_i
   y_i     \nabla \ln s_i(\w) +
   (1-y_i) \nabla \ln(1 - s_i(\w)) \\
-  &= 2\lambda\w + \sum_i y_i (1 - s_i(\w))\x_i - (1 - y_i) s_i(\w)\x_i \\
-  &= 2\lambda\w + \sum_i y_i\x_i - s_i(\w)\x_i \\
-  &= 2\lambda\w + \X^\T\y - \X^\T s(\X\w) \\
-  &= 2\lambda\w + \X^\T(\y - s(\X\w)),
+  &= 2\lambda\w - \sum_i y_i (1 - s_i(\w))\x_i - (1 - y_i) s_i(\w)\x_i \\
+  &= 2\lambda\w - \sum_i y_i\x_i - s_i(\w)\x_i \\
+  &= 2\lambda\w - \X^\T\y - \X^\T s(\X\w) \\
+  &= 2\lambda\w - \X^\T(\y - s(\X\w)),
 \end{align*}
 where
 $s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
 contains the predicted values (class probability) for each sample point, given
 parameters $\w$.
 \end{mdframed}
+\end{comment}
+
+\begin{mdframed}
+First note that
+\begin{align*}
+  \partiald{s_i(\w)}{w_j} &= \partiald{~(1 + e^{-\w \cdot \x_i})^{-1}}{w_j} \\
+  &= -(1 + e^{-\w \cdot \x_i})^{-2} (-x_{ij})e^{-\w\cdot\x_i} \\
+  &= x_{ij}\frac{e^{-\w\cdot\x_i}}{(1 + e^{-\w \cdot \x_i})^2} \\
+  &= x_{ij}s_i(\w)(1 - s_i(\w)),
+\end{align*}
+and therefore that
+\begin{align*}
+  \nabla s_i(\w) = s_i(\w)(1 - s_i(\w))\X_i.
+\end{align*}
+Then the gradient of the cost function is
+\begin{align*}
+  \nabla J(\w)
+  &= \lambda \nabla |\w|^2 - \sum_i
+    y_i     \nabla \ln s_i(\w) +
+    (1-y_i) \nabla \ln(1 - s_i(\w)) \\
+  &= 2\lambda\w - \sum_i
+    \frac{y_i}{s_i(\w)} \nabla s_i(\w) -
+    \frac{1 - y_i}{1 - s_i(\w)} \nabla s_i(\w) \\
+  &= 2\lambda\w - \sum_i \nabla s_i(\w) \(
+    \frac{y_i - s_i(\w)}
+         {s_i(\w)(1 - s_i(\w))}
+\) \\
+  &= 2\lambda\w - \sum_i \X_i\(y_i - s_i(\w)\) \\
+  &= 2\lambda\w - \X^\T\(\y - s(\X\w)\),
+\end{align*}
+where
+$s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
+contains the predicted values (class probability) for each sample point, given
+parameters $\w$.
+
+\end{mdframed}
+~\\~\\
 
 
 \item
 Derive the Hessian of $J(w)$.
 Again, your answer should be a simple matrix-vector expression.
 
+\begin{mdframed}
+
+\end{mdframed}
 
 \item State the update equation for one iteration of Newton's method for this problem.
 
