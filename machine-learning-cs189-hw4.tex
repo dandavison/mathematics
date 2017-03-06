@@ -79,6 +79,8 @@
 
 \newcommand{\argmin}{\mathrm{argmin}}
 
+\newcommand{\B}{\textbf{B}}
+
 
 \title{Homework 4: Regression}
 \subtitle{\texttt{ddavison@berkeley.edu}}
@@ -274,15 +276,42 @@ so the $(j,k)$-th entry of the Hessian is
   \partiald{}{w_k}\partiald{J}{w_j}
   &= \sum_i x_{ij} \partiald{~s(\x_i\cdot \w)}{w_k} \\
   &= 2\lambda 1_{\{j = k\}} + \sum_i x_{ij} x_{ik} s_i(\w)(1 - s_i(\w)) \\
-  &= 2\lambda 1_{\{j = k\}} + X^\T B \X,
+  &= \X^\T \B \X,
 \end{align*}
-where $B$ is an $(n \times n)$ diagonal matrix with
-$B_{ii} = s_i(\w)(1-s_i(\w)$, and $1_{\{\cdot\}}$ is an indicator function that
-takes the value 1 when its argument is true and 0 otherwise.
+where $\B$ is an $(n \times n)$ diagonal matrix with
+$B_{ii} = s_i(\w)(1-s_i(\w) + 2\lambda$, and $1_{\{\cdot\}}$ is an indicator
+function that takes the value 1 when its argument is true and 0 otherwise.
 \end{mdframed}
 
-\item State the update equation for one iteration of Newton's method for this problem.
+\item State the update equation for one iteration of Newton's method for this
+  problem.
 
+\begin{mdframed}
+The quadratic approximation to the cost function at $\v$ is
+\begin{align*}
+  q(\w)
+  &= J(\v) + (\w - \v)^\T\(\grad J(\v)\) + \frac{1}{2}(\w - \v)^\T \(\hess J(\v)\) (\w - \v).
+  % &= J(\w_0) + \\
+  % &~~~~2\lambda(\w - \w_0)^\T \w_0 - \\
+  % &~~~~(\w - \w_0)^\T\X^\T\(\y - s(\X\w_0)\) + \\
+  % &~~~~\frac{1}{2}(\w - \w_0)^\T \X^\T \B|_{\w_0} \X (\w - \w_0) \\
+\end{align*}
+We want to find the $\w$ that minimizes this. The gradient of this is something
+like
+\begin{align*}
+  \grad q(\w) = \grad J(\v) + \(\hess J(\v)\)\w,
+\end{align*}
+but that's not quite right. Anyway, setting the gradient equal to zero gives
+\begin{align*}
+  \w = \v -\(\hess J(\v)\)^{-1} \grad J(\v).
+\end{align*}
+For our problem, this is (writing $\w^{(l)}$ instead of $\v$ for the value of $\w$ at iteration $l$.)
+\begin{align*}
+  \w^{(l+1)} = \w^{(l)} -\(\X^\T\B\X\)^{-1} \(2\lambda\w^{(l)} - \X^\T\(\y - s(\X\w^{(l)})\)\),
+\end{align*}
+where again $\B$ is an $(n \times n)$ diagonal matrix with
+$B_{ii} = s_i(\w^{(l)})\(1-s_i(\w^{(l)})\) + 2\lambda$
+\end{mdframed}
 
 
 \item
