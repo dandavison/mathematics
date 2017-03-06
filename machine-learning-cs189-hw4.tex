@@ -353,7 +353,7 @@ def q1_4():
 def logistic_regression_newton_update(w, X, y, lambda_):
     s = logistic(X @ w)
     gradient = 2 * lambda_ * w - X.T @ (y - s)
-    B = diag((s * (1 - s)).ravel())
+    B = diag((s * (1 - s) + 2 * lambda_).ravel())
     hessian = X.T @ B @ X
     return w - inv(hessian) @ gradient
 
@@ -369,7 +369,6 @@ State the value of $s^{(0)}$ (the value of $s$ before any iterations).
 
 \begin{mdframed}
 \begin{verbatim}
-s0
 [[ 0.95257413]
  [ 0.73105858]
  [ 0.73105858]
@@ -382,10 +381,9 @@ s0
 State the value of $w^{(1)}$ (the value of $w$ after one iteration).
 \begin{mdframed}
 \begin{verbatim}
-w1
-[[ 2.03331007]
- [ 2.06047254]
- [-5.44219256]]
+[[ 0.03660748]
+ [ 1.77901816]
+ [-3.1787346 ]]
 \end{verbatim}
 \end{mdframed}
 
@@ -394,11 +392,10 @@ w1
 State the value of $s^{(1)}$.
 \begin{mdframed}
 \begin{verbatim}
-s1
-[[ 0.67682637]
- [ 0.9411735 ]
- [ 0.03287167]
- [ 0.20613045]]
+[[ 0.89644368]
+ [ 0.89979306]
+ [ 0.19786111]
+ [ 0.20373548]]
 \end{verbatim}
 \end{mdframed}
 
@@ -407,10 +404,9 @@ s1
 State the value of $w^{(2)}$ (the value of $w$ after two iterations).
 \begin{mdframed}
 \begin{verbatim}
-w2
-[[-16.05433192]
- [ -6.62806262]
- [ 23.75459849]]
+[[-0.84243273]
+ [ 1.2968546 ]
+ [-1.60471569]]
 \end{verbatim}
 \end{mdframed}
 
