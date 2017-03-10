@@ -575,6 +575,29 @@ usually non-zero value.
 For a vector $w$, derive $\nabla \, |w|^4$.
 Then derive $\nabla_w \, |Xw - y|^4$.
 
+\begin{mdframed}
+Suppose $\w \in \R^d$. Then
+\begin{align*}
+  |\w|^4 = \(\sum_{j=1}^d w_j^2\)^2 = \sum_{j=1}^d \sum_{k=1}^d w_j^2w_k^2.
+\end{align*}
+Now consider the $j$-th component. Viewed as a function of $\w_j$, we have
+\begin{align*}
+  |\w|^4 &= w_j^4 + 2w_j^2\sum_{k=1}^d w_k^2 + \constant \\
+         &= w_j^4 + 2|\w|^2 w_j^2 + \constant,
+\end{align*}
+therefore
+\begin{align*}
+  \partiald{|\w|^4}{w_j} = 4w_j^3 + 4|\w|^2w_j,
+\end{align*}
+i.e.
+\begin{align*}
+  \grad_\w |\w|^4 = 4\(\cveccc
+  {w_1^3}
+  {\vdots}
+  {w_d^3} + |\w|^2\w\)
+\end{align*}
+\end{mdframed}
+
 \item
 Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
 associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
