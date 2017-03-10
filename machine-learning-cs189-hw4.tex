@@ -462,33 +462,69 @@ J(w) = g(y) + \sum_{i=1}^d f(X_{*i}, w_i, y, \lambda)
     =& \w^\T\X^\T\X\w - 2y^\T\X\w + \y^\T\y + \lambda ||\w||_1 \\
     =& n\w^\T\w - 2y^\T\X\w + \y^\T\y + \lambda ||\w||_1 ~~~~~~~~~~~~~~~\text{(because $\X^\T\X=n\I$)}.\\
   \end{align*}
-Now $\w^\T\w = \sum_{j=1}^d w_j^2$, and $||\w||_1 = \sum_{j=1}^d |w_j|$, and
+Now $\w^\T\w = \sum_{i=1}^d w_i^2$, and $||\w||_1 = \sum_{i=1}^d |w_i|$, and
 \begin{align*}
-  y^\T\X\w = (\y^\T\X) \w = \sum_{j=1}^d \X_{*j}^\T ~\y w_j,
+  y^\T\X\w &= (\y^\T\X) \w = \sum_{i=1}^d \X_{*i}^\T ~\y w_i, \\
 \end{align*}
 so
 \begin{align*}
-  J(\w) = g(\y) + \sum_{j=1}^d f(\X_{*j}, w_j, y, \lambda),
-\end{align*}
-where
-\begin{align*}
-  g(\y) &= \y^\T\y ~~~~~~~~~~~~~~~~~~~~~~\text{and}\\
-  f(\X_{*j}, w_j, \y, \lambda) &= nw_j^2 + \lambda|w_j| - \X_{*j}^\T ~\y w_j\\
-                              &= |w_j|\(n|w_j| + \lambda\) - \X_{*j}^\T ~\y w_j.
+  J(\w) &= g(\y) + \sum_{i=1}^d f(\X_{*i}, w_i, y, \lambda), ~~~~~~~~\text{where}\\
+  g(\y) &= \y^\T\y ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{and}\\
+  f(\X_{*i}, w_i, \y, \lambda) &= nw_i^2 + \lambda|w_i| - 2\X_{*i}^\T ~\y w_i.
+%                              &= |w_i|\(n|w_i| + \lambda\) - 2\X_{*i}^\T ~\y w_i.
 \end{align*}
 \end{mdframed}
 
 \item
 If $w_i^* > 0$, what is the value of $w_i^*$?
 
+\begin{mdframed}
+For $w_i \geq 0$, the $i$-th component of $J(\w)$ is
+\begin{align*}
+  J(\w)_i = nw_i^2 + w_i (\lambda  - 2\X_{*i}^\T ~\y) + \constant.
+\end{align*}
+so
+\begin{align*}
+  \partiald{J}{w_i} = 2nw_i + \lambda - 2\X_{*i}^\T ~\y,
+\end{align*}
+and setting the gradient equal to zero gives
+\begin{align*}
+  w^*_i =
+  \begin{cases}
+    \frac{ \lambda - 2\X_{*i}^\T ~\y }{2n}, &\lambda > 2\X_{*i}^\T ~\y \\
+    0,                                     &\text{otherwise}.
+  \end{cases}
+\end{align*}
+\end{mdframed}
 
 \item
 If $w_i^* < 0$, what is the value of $w_i^*$?
 
+\begin{mdframed}
+For $w_i \leq 0$, the $i$-th component of $J(\w)$ is
+\begin{align*}
+  J(\w)_i = nw_i^2 - w_i (\lambda  + 2\X_{*i}^\T ~\y) + \constant.
+\end{align*}
+so
+\begin{align*}
+  \partiald{J}{w_i} = 2nw_i - \lambda - 2\X_{*i}^\T ~\y,
+\end{align*}
+and setting the gradient equal to zero gives
+\begin{align*}
+  w^*_i =
+  \begin{cases}
+    \frac{ \lambda + 2\X_{*i}^\T ~\y }{2n}, &\lambda < -2\X_{*i}^\T ~\y \\
+    0,                                     &\text{otherwise}.
+  \end{cases}
+\end{align*}
+\end{mdframed}
+
 
 \item
 Considering parts 2 and 3, what is the condition for $w_i^*$ to be zero?
-
+\begin{mdframed}
+  $-2\X_{*i}^\T ~\y < \lambda < 2\X_{*i}^\T ~\y$.
+\end{mdframed}
 
 \item
 Now consider ridge regression, which uses the $\ell_2$ regularization term $\lambda \, |w|^2$.
@@ -496,6 +532,24 @@ How does this change the function $f(\cdot)$ from part 1?
 What is the new condition in which $w_i^* = 0$?
 How does it differ from the condition you obtained in part 4?
 
+\begin{mdframed}
+For ridge regression we have
+\begin{align*}
+  J(\w) &= g(\y) + \sum_{i=1}^d f(\X_{*i}, w_i, y, \lambda), ~~~~~~~~~~~\text{where}\\
+  f(\X_{*i}, w_i, \y, \lambda) &= (n+\lambda)w_i^2 - 2\X_{*i}^\T ~\y w_i,
+\end{align*}
+and $g$ is as above. So
+\begin{align*}
+  \partiald{J}{w_i} = 2(n + \lambda)w_i - 2\X_{*i}^\T ~\y,
+\end{align*}
+and
+\begin{align*}
+  w^*_i = \frac{ \X_{*i}^\T ~\y }{n + \lambda}.
+\end{align*}
+So the weight for the $i$-th feature is zero if and only if the $n$-vector
+containing the $i$-th feature is orthogonal to the observed training values
+$\y$.
+\end{mdframed}
 
 \end{enumerate}
 \end{problem}
