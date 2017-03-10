@@ -200,6 +200,61 @@ https://people.eecs.berkeley.edu/~jrs/189/lec/08.pdf
 \section*{9 The Anisotropic Multivariate Normal Distribution, QDA, and LDA}
 
 \section*{10 Regression, including Least-Squares Linear and Logistic Regression}
+\newpage
+\subsection*{Linear Least Squares Regression}
+Use fictitious dimension trick, so that $\w$ includes the offset term and $\X$
+is $(n \times (d + 1))$.
+\\
+\begin{mdframed}
+Find $\w$ that minimizes cost function $J(w)$: sum of squared difference between
+linear predictor and observed training point.
+\begin{align*}
+  J(w) = |\X \w - \y|^2 = \sum_i (\x_i^\T\w - y_i)^2
+\end{align*}
+\end{mdframed}
+
+Solve by differentiating and finding the critical point:
+\begin{align*}
+  |\X \w - \y|^2          &= \w\X^\T\X\w - 2\y^\T\X\w + \y^\T\y \\
+  \grad_\w |\X \w - \y|^2 &= 2 \X^\T\X\w - 2\X^\T\y \\
+  \w^*                    &= (\X^\T\X)^{-1}\X^\T\y =: \X^+\y
+\end{align*}
+\begin{mdframed}
+For a new sample point $\x$, the prediction is $\hat y = \x \cdot \w^*$.
+\end{mdframed}
+
+\subsubsection*{Related concepts}
+\begin{itemize}
+\item \textbf{normal equations}: linear system of $d$ equations in unknown $\w$ resulting from
+  setting the gradient equal to zero: $\X^\T\X\w - \X^\T\y = \vec 0$
+\item \textbf{pseudoinverse}: The matrix $\X^+ = (\X^\T\X)^{-1}\X^\T$ maps $\y$
+  to $\w^*$. In general there's no $\w$ that solves $\X\w = \y$, but
+  $\w^* = \X^+\y$ makes the LHS as close as possible to $\y$. So it behaves as
+  a ``left inverse'' of $\X$, since $\X^+\X = \I$ and left-multiplying by $\X^+$
+  gives the ``solution'' to $\X\w = \y$.
+\item \textbf{projection matrix} or \textbf{hat matrix}: Still focusing on the
+  training phase, the predictions are $\hat \y = \X\w^* = \X\X^+\y$. So
+  $\X\X^+$ puts that hat on $\y$, or projects $\y$ onto the hyperplane, in the
+  viewpoint described below.
+\end{itemize}
+
+\subsubsection*{Projection interpretation}
+Usually we think of $n$ points in $\R^d$. But instead, consider a separate
+column of the data for each feature: these are $d$ points in $\R^n$. The
+observed training data $\y$ is also a point in $\R^n$, and so is the prediction
+$\hat \y = \X\w$.
+
+As we vary $\w$, the prediction $\X\w$ describes a hyperplane spanned by the
+columns of $\X$.
+
+We want to find the $\w^*$ corresponding to the closest point on the hyperplane
+to $\y$. So $X\w^* - \y$ must be orthogonal to the hyperplane:
+\begin{align*}
+  \X^\T \cdot (\X\w^* - \y) = \vec 0.
+\end{align*}
+Which are the normal equations (linear system of $d$ equations), derived
+differently.
+
 
 \section*{11 More Regression; Newton’s Method; ROC Curves}
 
