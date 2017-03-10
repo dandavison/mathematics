@@ -639,26 +639,44 @@ Justify your answer.
 
 \begin{problem}{Franzia Classification + Logistic Regression = Party!}
 
-Daylen is planning the frat party of the semester. He's completely stocked up on Franzia. Unfortunately, the labels for 497 boxes (test set) have been scratched off, and he needs to quickly find out which boxes contain Red wine (label 1) and White wine (label 0). Fortunately, for him the boxes still have their Nutrition Facts (features) intact and detail the chemical composition of the wine inside the boxes (the description of these features and the features themselves are provided in {\tt data.mat}). He also has 6,000 boxes with Nutrition Facts and labels intact (train set). Help Daylen figure out what the labels should be for the 497 mystery boxes.
-
-\textbf{IMPORTANT:} Do NOT use any software package for logistic regression that you didn't write yourself!
+  Daylen is planning the frat party of the semester. He's completely stocked up
+  on Franzia. Unfortunately, the labels for 497 boxes (test set) have been
+  scratched off, and he needs to quickly find out which boxes contain Red wine
+  (label 1) and White wine (label 0). Fortunately, for him the boxes still have
+  their Nutrition Facts (features) intact and detail the chemical composition
+  of the wine inside the boxes (the description of these features and the
+  features themselves are provided in {\tt data.mat}). He also has 6,000 boxes
+  with Nutrition Facts and labels intact (train set). Help Daylen figure out
+  what the labels should be for the 497 mystery boxes.
 
 \begin{enumerate}
-\item
-Derive and write down the batch gradient descent update equation for logistic regression with $\ell_2$ regularization.
+\item Derive and write down the batch gradient descent update equation for
+  logistic regression with $\ell_2$ regularization.
 
-Choose a reasonable regularization parameter value and a reasonable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations.  (As this is batch descent, one ``iteration'' should use every sample point once.)
+  Choose a reasonable regularization parameter value and a reasonable learning
+  rate.  Run your algorithm and plot the cost function as a function of the
+  number of iterations.  (As this is batch descent, one ``iteration'' should
+  use every sample point once.)
 
-\item
-Derive and write down the stochastic gradient descent update equation for logistic regression with $\ell_2$ regularization.  Choose a suitable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations---where now each ``iteration'' uses {\em just one} sample point.
+\item Derive and write down the stochastic gradient descent update equation for
+  logistic regression with $\ell_2$ regularization.  Choose a suitable learning
+  rate.  Run your algorithm and plot the cost function as a function of the
+  number of iterations---where now each ``iteration'' uses {\em just one}
+  sample point.
 
-Comment on the differences between the convergence of batch and stochastic gradient descent.
+  Comment on the differences between the convergence of batch and stochastic
+  gradient descent.
 
-\item
-Instead of a constant learning rate $\epsilon$, repeat part 2 where the learning rate decreases as $\epsilon \propto 1/t$ for the $t^\mathrm{th}$ iteration. Plot the cost function vs.\ the number of iterations. Is this strategy better than having a constant $\epsilon$?
+\item Instead of a constant learning rate $\epsilon$, repeat part 2 where the
+  learning rate decreases as $\epsilon \propto 1/t$ for the $t^\mathrm{th}$
+  iteration. Plot the cost function vs.\ the number of iterations. Is this
+  strategy better than having a constant $\epsilon$?
 
-\item
-Finally, train your classifier on the entire training set. Submit your predictions for the test set to Kaggle. You can only submit twice per day, so get started early! In your writeup, include your Kaggle display name and score and describe the process you used to decide which parameters to use for your best classifier.
+\item Finally, train your classifier on the entire training set. Submit your
+  predictions for the test set to Kaggle. You can only submit twice per day, so
+  get started early! In your writeup, include your Kaggle display name and
+  score and describe the process you used to decide which parameters to use for
+  your best classifier.
 
 \end{enumerate}
 
