@@ -491,7 +491,7 @@ and setting the gradient equal to zero gives
 \begin{align*}
   w^*_i =
   \begin{cases}
-    \frac{ \lambda - 2\X_{*i}^\T ~\y }{2n}, &\lambda > 2\X_{*i}^\T ~\y \\
+    \frac{ 2\X_{*i}^\T ~\y - \lambda }{2n}, &\X_{*i}^\T ~\y  > \frac{\lambda}{2}\\
     0,                                     &\text{otherwise}.
   \end{cases}
 \end{align*}
@@ -513,7 +513,7 @@ and setting the gradient equal to zero gives
 \begin{align*}
   w^*_i =
   \begin{cases}
-    \frac{ \lambda + 2\X_{*i}^\T ~\y }{2n}, &\lambda < -2\X_{*i}^\T ~\y \\
+    \frac{ \lambda + 2\X_{*i}^\T ~\y }{2n}, &\X_{*i}^\T ~\y  < -\frac{\lambda}{2}\\
     0,                                     &\text{otherwise}.
   \end{cases}
 \end{align*}
@@ -523,7 +523,7 @@ and setting the gradient equal to zero gives
 \item
 Considering parts 2 and 3, what is the condition for $w_i^*$ to be zero?
 \begin{mdframed}
-  $-2\X_{*i}^\T ~\y < \lambda < 2\X_{*i}^\T ~\y$.
+  $|\X_{*i}^\T ~\y| \leq \frac{\lambda}{2}$.
 \end{mdframed}
 
 \item
@@ -546,9 +546,17 @@ and
 \begin{align*}
   w^*_i = \frac{ \X_{*i}^\T ~\y }{n + \lambda}.
 \end{align*}
-So the weight for the $i$-th feature is zero if and only if the $n$-vector
-containing the $i$-th feature is orthogonal to the observed training values
-$\y$.
+So the weight for the $i$-th feature is zero if and only if
+$\X_{*i}^\T ~\y = 0$, i.e. the $n$-vector containing the $i$-th feature is
+orthogonal to the observed training values $\y$.
+
+This is in contrast to Lasso, for which the $i$-th feature receives a weight of
+zero if $|\X_{*i}^\T ~\y| \leq \frac{\lambda}{2}$, i.e. if the dot product of
+the $i$-th feature with the training values $\y$ falls below $\lambda/2$.
+
+This result is consistent with the general notion that Lasso tends to set some
+weights to exactly zero whereas ridge regression would set them to a small but
+usually non-zero value.
 \end{mdframed}
 
 \end{enumerate}
