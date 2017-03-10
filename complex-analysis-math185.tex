@@ -8,14 +8,15 @@
 
 \begin{center}
   \section*{
-    Math 185 - Complex Analysis\\
-    Sarason - Complex Function Theory\\
+    % Math 185 - Complex Analysis\\
+    % Sarason - Complex Function Theory\\
+    Math 185 - Homework 6\\
   }
 \end{center}
 \begin{center}
   \small{
     Dan Davison\\
-    \texttt{dandavison7@gmail.com}
+    \texttt{ddavison@berkeley.edu}
   }
 \end{center}
 
@@ -1629,6 +1630,8 @@ Then
     $\gamma(t) = e^{it} (0 \leq t \leq 2\pi)$.
 }
 \\
+Here are two slightly different attempts:
+
 \begin{mdframed}
   We can write the integral as
   \begin{align*}
@@ -1668,7 +1671,7 @@ Then
 ~\\
 ~\\
 \begin{mdframed}
-  We can write the integral as
+  Alternatively we can write the integral as
   \begin{align*}
     \frac{1}{2\pi}\int_0^{2\pi}\cos^{2n}t ~dt
     &= \frac{1}{2^{2n+1}\pi } \int_0^{2\pi} (e^{it} + e^{-it})^{2n} ~dt \\
@@ -1689,9 +1692,71 @@ Then
     $\int_{[z1,z2]}z^n dz$ and $\int_{[z1,z2]}\bar{z}^n dz$ for
     $n = 0, 1, 2, \ldots$.
 }
-  \exercise{VI.8.4}{}
-  \exercise{VI.12.2}{}
-  \exercise{}{Give an example of two convergent series whose product diverges.}
+\\
+\begin{mdframed}
+Let $\gamma(t) = z_1 + t(z_2 - z_1)$ for $t \in [0, 1]$ represent the curve $[z_1,z_2]$. We have
+\begin{align*}
+  \int_{[z1,z2]}z^n dz
+  &= \int_0^1 \gamma(t)^n\gamma'(t) dt \\
+  &= (z_2 - z_1)\int_0^1 \(z_1 + t(z_2 - z_1)\)^n dt. \\
+  &= (z_2 - z_1)\sum_{k=0}^n {n \choose k} z_1^{n-k}(z_2 - z_1)^k \int_0^1 t^k dt \\
+  &= \sum_{k=0}^n \frac{{n \choose k}}{k+1} z_1^{n-k}(z_2 - z_1)^{k+1}. \\
+\end{align*}
+And for $\bar z$ we have
+\begin{align*}
+  \int_{[z1,z2]}\bar{z}^n dz
+  &= \int_0^1 \(\bar{\gamma(t)}\)^n\gamma'(t) dt \\
+  &= (z_2 - z_1)\int_0^1 \(\bar{z_1} + t(\bar{z_2} - \bar{z_1})\)^n dt \\
+  &= (z_2 - z_1)\sum_{k=0}^n {n \choose k} \bar{z_1}^{n-k}(\bar{z_2} - \bar{z_1})^k \int_0^1 t^k dt \\
+  &= \sum_{k=0}^n \frac{{n \choose k}}{k+1} \bar{z_1}^{n-k}(z_2 - z_1)^{k+1} \\
+\end{align*}
+
+
+\end{mdframed}
+
+\exercise{VI.8.3}{
+  Let the complex-valued function $f$ be defined and continuous in the disc
+  $|z-z_0| < R$. For $0 < r < R$ let $C_r$ denote the circle $|z - z_0| = r$,
+  with counterclockwise orientation.
+}
+\\
+\exercise{VI.8.4}{
+  Assume that $f$ is of class $C^1$. Prove that
+  \begin{align*}
+    \lim_{r \rightarrow 0} \frac{1}{r^2} \int_{C_r} f(z) dz = 2\pi i \dfdzbar(z_0).
+  \end{align*}
+}
+\\
+\begin{mdframed}
+  Let $\gamma(\theta) = z_0 + re^{i\theta}$ for $\theta \in [0, 2\pi]$ represent the curve $C_r$. Then
+  \begin{align*}
+    \lim_{r \rightarrow 0} \frac{1}{r^2} \int_{C_r} f(z) dz
+    &= \lim_{r \rightarrow 0} \frac{1}{r^2} \int_0^{2\pi} f(\gamma(\theta))\gamma'(\theta) d\theta \\
+    &= \lim_{r \rightarrow 0} \frac{i}{r} \int_0^{2\pi} f(z_0 + re^{i\theta})e^{i\theta} d\theta \\
+    % &= f(z_0)\lim_{r \rightarrow 0} \frac{i}{r} \int_0^{2\pi} e^{i\theta} d\theta ~~~~\text{(should justify taking limit inside integral)}\\
+  \end{align*}
+  (Not sure where to go from here.)
+  \begin{align*}
+    \dfdzbar = \frac{1}{2}\(\ddx + i\ddy\)
+  \end{align*}
+\end{mdframed}
+\exercise{VI.12.2}{
+  Evaluate the integrals $\int_0^\infty \cos t^2 d\theta$
+  and$\int_0^\infty \sin t^2 d\theta$ (the Fresnel intervals) by integrating
+  $e^{-z^2}$ in the counterclockwise direction around the boundary of the
+  region $\{z: |z|<R, 0 \leq \Arg z \leq \frac{\pi}{4}\}$ and letting
+  $R \rightarrow \infty$.
+}
+\begin{mdframed}
+  We represent the specified curve as $\gamma(\theta) = Re^{i\theta}$ for
+  $\theta \in [0, \frac{\pi}{4}]$, in which case the specified integral is
+  \begin{align*}
+    \int_0^{\pi/4} e^{-e^{2i\theta}} Rie^{i\theta} d\theta =
+    Ri\int_0^{\pi/4} e^{i\theta - e^{2i\theta}} d\theta.
+  \end{align*}
+\end{mdframed}
+
+\exercise{}{Give an example of two convergent series whose product diverges.}
 \end{description}
 
 \end{document}
