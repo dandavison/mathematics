@@ -454,6 +454,29 @@ State the value of $w^{(2)}$ (the value of $w$ after two iterations).
 % J(w) = g(y) + \sum_{i=1}^d f(X_{*i}, w_i, y, \lambda)
 % \]
 
+\begin{mdframed}
+  The cost function is
+  \begin{align*}
+    J(\w)
+    =& |\X\w - \y|^2 + \lambda ||\w||_1 \\
+    =& \w^\T\X^\T\X\w - 2y^\T\X\w + \y^\T\y + \lambda ||\w||_1 \\
+    =& n\w^\T\w - 2y^\T\X\w + \y^\T\y + \lambda ||\w||_1 ~~~~~~~~~~~~~~~\text{(because $\X^\T\X=n\I$)}.\\
+  \end{align*}
+Now $\w^\T\w = \sum_{j=1}^d w_j^2$, and $||\w||_1 = \sum_{j=1}^d |w_j|$, and
+\begin{align*}
+  y^\T\X\w = (\y^\T\X) \w = \sum_{j=1}^d \X_{*j}^\T ~\y w_j,
+\end{align*}
+so
+\begin{align*}
+  J(\w) = g(\y) + \sum_{j=1}^d f(\X_{*j}, w_j, y, \lambda),
+\end{align*}
+where
+\begin{align*}
+  g(\y) &= \y^\T\y ~~~~~~~~~~~~~~~~~~~~~~\text{and}\\
+  f(\X_{*j}, w_j, \y, \lambda) &= nw_j^2 + \lambda|w_j| - \X_{*j}^\T ~\y w_j\\
+                              &= |w_j|\(n|w_j| + \lambda\) - \X_{*j}^\T ~\y w_j.
+\end{align*}
+\end{mdframed}
 
 % \item
 % If $w_i^* > 0$, what is the value of $w_i^*$?
