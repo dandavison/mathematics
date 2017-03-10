@@ -416,43 +416,43 @@ State the value of $w^{(2)}$ (the value of $w$ after two iterations).
 \end{problem}
 
 
-% \newpage
+\newpage
 
 
-% \begin{problem}{$\ell_1$- and $\ell_2$-Regularization}
+\begin{problem}{$\ell_1$- and $\ell_2$-Regularization}
 
 
-% Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
-% associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
-% an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
-% an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$.
-% For the sake of simplicity, assume that the sample data
-% has been centered and whitened so that
-% each feature has mean $0$ and variance $1$ and the features are uncorrelated;
-% i.e., $X^\T X = nI$.
-% For this question, we will not use a fictitious dimension nor a bias term;
-% our linear regression function will be zero for $x = 0$.
+Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
+associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
+an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
+an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$.
+For the sake of simplicity, assume that the sample data
+has been centered and whitened so that
+each feature has mean $0$ and variance $1$ and the features are uncorrelated;
+i.e., $X^\T X = nI$.
+For this question, we will not use a fictitious dimension nor a bias term;
+our linear regression function will be zero for $x = 0$.
 
-% Consider linear least-squares regression with
-% regularization in the $\ell_1$-norm, also known as Lasso.
-% The Lasso cost function is
-% \[
-% J(w) = |Xw - y|^2 +\lambda \, \|w\|_{\ell_1}
-% \]
-% where $w \in \mathbb{R}^d$ and $\lambda > 0$ is the regularization parameter.
-% Let $w^* = \argmin_{w \in \mathbb{R}^d} \, J(w)$ denote
-% the weights that minimize the cost function.
+Consider linear least-squares regression with
+regularization in the $\ell_1$-norm, also known as Lasso.
+The Lasso cost function is
+\[
+J(w) = |Xw - y|^2 +\lambda \, \|w\|_{\ell_1}
+\]
+where $w \in \mathbb{R}^d$ and $\lambda > 0$ is the regularization parameter.
+Let $w^* = \argmin_{w \in \mathbb{R}^d} \, J(w)$ denote
+the weights that minimize the cost function.
 
-% In the following steps, we will show that whitened training data decouples the features, so that $w^*_i$ is determined by the $i^\mathrm{th}$ feature alone (i.e., column $i$ of the design matrix $X$), regardless of the other features.  This is true for both Lasso and ridge regression.
+In the following steps, we will show that whitened training data decouples the features, so that $w^*_i$ is determined by the $i^\mathrm{th}$ feature alone (i.e., column $i$ of the design matrix $X$), regardless of the other features.  This is true for both Lasso and ridge regression.
 
-% \begin{enumerate}
-% \item
-% We use the notation $X_{*1}, X_{*2}, \ldots, X_{*d}$ to denote column $i$ of the design matrix $X$, which represents the $i^\mathrm{th}$ feature.
-% (Not to be confused with row $i$ of $X$, the sample point $X_i^\T$.)
-% Write $J(w)$ in the following form for appropriate functions $g$ and $f$.
-% \[
-% J(w) = g(y) + \sum_{i=1}^d f(X_{*i}, w_i, y, \lambda)
-% \]
+\begin{enumerate}
+\item
+We use the notation $X_{*1}, X_{*2}, \ldots, X_{*d}$ to denote column $i$ of the design matrix $X$, which represents the $i^\mathrm{th}$ feature.
+(Not to be confused with row $i$ of $X$, the sample point $X_i^\T$.)
+Write $J(w)$ in the following form for appropriate functions $g$ and $f$.
+\[
+J(w) = g(y) + \sum_{i=1}^d f(X_{*i}, w_i, y, \lambda)
+\]
 
 \begin{mdframed}
   The cost function is
@@ -478,135 +478,135 @@ where
 \end{align*}
 \end{mdframed}
 
-% \item
-% If $w_i^* > 0$, what is the value of $w_i^*$?
+\item
+If $w_i^* > 0$, what is the value of $w_i^*$?
 
 
-% \item
-% If $w_i^* < 0$, what is the value of $w_i^*$?
+\item
+If $w_i^* < 0$, what is the value of $w_i^*$?
 
 
-% \item
-% Considering parts 2 and 3, what is the condition for $w_i^*$ to be zero?
+\item
+Considering parts 2 and 3, what is the condition for $w_i^*$ to be zero?
 
 
-% \item
-% Now consider ridge regression, which uses the $\ell_2$ regularization term $\lambda \, |w|^2$.
-% How does this change the function $f(\cdot)$ from part 1?
-% What is the new condition in which $w_i^* = 0$?
-% How does it differ from the condition you obtained in part 4?
+\item
+Now consider ridge regression, which uses the $\ell_2$ regularization term $\lambda \, |w|^2$.
+How does this change the function $f(\cdot)$ from part 1?
+What is the new condition in which $w_i^* = 0$?
+How does it differ from the condition you obtained in part 4?
 
 
-% \end{enumerate}
-% \end{problem}
+\end{enumerate}
+\end{problem}
 
 
-% \newpage
+\newpage
 
 
-% \begin{problem} {Regression and Dual Solutions}
+\begin{problem} {Regression and Dual Solutions}
 
 
-% \begin{enumerate}[a)]
+\begin{enumerate}[a)]
 
-% \item
-% For a vector $w$, derive $\nabla \, |w|^4$.
-% Then derive $\nabla_w \, |Xw - y|^4$.
+\item
+For a vector $w$, derive $\nabla \, |w|^4$.
+Then derive $\nabla_w \, |Xw - y|^4$.
 
-% \item
-% Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
-% associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
-% an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
-% an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$, and
-% the regularized regression problem
-% \[
-% w^* = \argmin_{w \in \R^d} \; |Xw - y|^4 + \lambda \, |w|^2,
-% \]
-% which is similar to ridge regression, but we take the fourth power
-% of the error instead of the squared error.
-% (It is not possible to write the optimal solution $w^*$ as
-% the solution of a system of linear equations, but
-% it can be found by gradient descent or Newton's method.)
+\item
+Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
+associated values $y_1, y_2, \ldots, y_n \in \mathbb{R}$,
+an $n \times d$ design matrix $X = [X_1~~~~\dots~~~~X_n]^{\T}$ and
+an $n$-vector $y = [y_1~~~~\dots~~~~y_n]^{\T}$, and
+the regularized regression problem
+\[
+w^* = \argmin_{w \in \R^d} \; |Xw - y|^4 + \lambda \, |w|^2,
+\]
+which is similar to ridge regression, but we take the fourth power
+of the error instead of the squared error.
+(It is not possible to write the optimal solution $w^*$ as
+the solution of a system of linear equations, but
+it can be found by gradient descent or Newton's method.)
 
-% Show that the optimum $w^*$ is unique.
-% By setting the gradient of the objective function to zero,
-% show that $w^*$ can be written as
-% a linear combination $w^* = \sum_{i=1}^n a_i X_i$ for some scalars
-% $a_1, \ldots, a_n$.
-% Write the vector $a$ of dual coefficients in terms of $X$, $y$, and
-% the optimal solution $w^*$.
+Show that the optimum $w^*$ is unique.
+By setting the gradient of the objective function to zero,
+show that $w^*$ can be written as
+a linear combination $w^* = \sum_{i=1}^n a_i X_i$ for some scalars
+$a_1, \ldots, a_n$.
+Write the vector $a$ of dual coefficients in terms of $X$, $y$, and
+the optimal solution $w^*$.
 
-% \item Consider the regularized regression problem
-% \[
-% w^* = \argmin_{w \in \R^d} \; \frac{1}{n} \sum_{i=1}^n L(w^{\T} X_i, y_i) + \lambda \, |w|^2
-% \]
-% where the loss function $L$ is convex in its first argument.
-% Prove that the optimal solution has the form $w^* = \sum_{i=1}^n a_i X_i$.
-% If the loss function is not convex, does the optimal solution always have
-% the form $w^* = \sum_{i=1}^n a_i X_i$?
-% Justify your answer.
-% \end{enumerate}
-% \end{problem}
-
-
-% \newpage
+\item Consider the regularized regression problem
+\[
+w^* = \argmin_{w \in \R^d} \; \frac{1}{n} \sum_{i=1}^n L(w^{\T} X_i, y_i) + \lambda \, |w|^2
+\]
+where the loss function $L$ is convex in its first argument.
+Prove that the optimal solution has the form $w^* = \sum_{i=1}^n a_i X_i$.
+If the loss function is not convex, does the optimal solution always have
+the form $w^* = \sum_{i=1}^n a_i X_i$?
+Justify your answer.
+\end{enumerate}
+\end{problem}
 
 
-% \begin{problem}{Franzia Classification + Logistic Regression = Party!}
-
-% Daylen is planning the frat party of the semester. He's completely stocked up on Franzia. Unfortunately, the labels for 497 boxes (test set) have been scratched off, and he needs to quickly find out which boxes contain Red wine (label 1) and White wine (label 0). Fortunately, for him the boxes still have their Nutrition Facts (features) intact and detail the chemical composition of the wine inside the boxes (the description of these features and the features themselves are provided in {\tt data.mat}). He also has 6,000 boxes with Nutrition Facts and labels intact (train set). Help Daylen figure out what the labels should be for the 497 mystery boxes.
-
-% \textbf{IMPORTANT:} Do NOT use any software package for logistic regression that you didn't write yourself!
-
-% \begin{enumerate}
-% \item
-% Derive and write down the batch gradient descent update equation for logistic regression with $\ell_2$ regularization.
-
-% Choose a reasonable regularization parameter value and a reasonable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations.  (As this is batch descent, one ``iteration'' should use every sample point once.)
-
-% \item
-% Derive and write down the stochastic gradient descent update equation for logistic regression with $\ell_2$ regularization.  Choose a suitable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations---where now each ``iteration'' uses {\em just one} sample point.
-
-% Comment on the differences between the convergence of batch and stochastic gradient descent.
-
-% \item
-% Instead of a constant learning rate $\epsilon$, repeat part 2 where the learning rate decreases as $\epsilon \propto 1/t$ for the $t^\mathrm{th}$ iteration. Plot the cost function vs.\ the number of iterations. Is this strategy better than having a constant $\epsilon$?
-
-% \item
-% Finally, train your classifier on the entire training set. Submit your predictions for the test set to Kaggle. You can only submit twice per day, so get started early! In your writeup, include your Kaggle display name and score and describe the process you used to decide which parameters to use for your best classifier.
-
-% \end{enumerate}
-
-% \end{problem}
+\newpage
 
 
-% \newpage
+\begin{problem}{Franzia Classification + Logistic Regression = Party!}
+
+Daylen is planning the frat party of the semester. He's completely stocked up on Franzia. Unfortunately, the labels for 497 boxes (test set) have been scratched off, and he needs to quickly find out which boxes contain Red wine (label 1) and White wine (label 0). Fortunately, for him the boxes still have their Nutrition Facts (features) intact and detail the chemical composition of the wine inside the boxes (the description of these features and the features themselves are provided in {\tt data.mat}). He also has 6,000 boxes with Nutrition Facts and labels intact (train set). Help Daylen figure out what the labels should be for the 497 mystery boxes.
+
+\textbf{IMPORTANT:} Do NOT use any software package for logistic regression that you didn't write yourself!
+
+\begin{enumerate}
+\item
+Derive and write down the batch gradient descent update equation for logistic regression with $\ell_2$ regularization.
+
+Choose a reasonable regularization parameter value and a reasonable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations.  (As this is batch descent, one ``iteration'' should use every sample point once.)
+
+\item
+Derive and write down the stochastic gradient descent update equation for logistic regression with $\ell_2$ regularization.  Choose a suitable learning rate.  Run your algorithm and plot the cost function as a function of the number of iterations---where now each ``iteration'' uses {\em just one} sample point.
+
+Comment on the differences between the convergence of batch and stochastic gradient descent.
+
+\item
+Instead of a constant learning rate $\epsilon$, repeat part 2 where the learning rate decreases as $\epsilon \propto 1/t$ for the $t^\mathrm{th}$ iteration. Plot the cost function vs.\ the number of iterations. Is this strategy better than having a constant $\epsilon$?
+
+\item
+Finally, train your classifier on the entire training set. Submit your predictions for the test set to Kaggle. You can only submit twice per day, so get started early! In your writeup, include your Kaggle display name and score and describe the process you used to decide which parameters to use for your best classifier.
+
+\end{enumerate}
+
+\end{problem}
 
 
-% \begin{problem}{Real World Spam Classification}
+\newpage
 
 
-% \textbf{Motivation}: After taking CS 189 or CS 289A, students should be able to wrestle with ``real-world'' data and problems. These issues might be deeply technical and require a theoretical background, or might demand specific domain knowledge. Here is an example that a past TA encountered.
-
-% Daniel (a past CS 189 TA) interned as an anti-spam product manager for an email service provider. His company uses a linear SVM to predict whether an incoming spam message is spam or ham. He notices that the number of spam messages received tends to spike upwards a few minutes before and after midnight. Eager to obtain a return offer, he adds the timestamp of the received message, stored as number of milliseconds since the previous midnight, to each feature vector for the SVM to train on, in hopes that the ML model will identify the abnormal spike in spam volume at night. To his dismay, after testing with the new feature, Daniel discovers that the linear SVM's success rate barely improves.
-
-% Why can't the linear SVM utilize the new feature well, and what can Daniel do to improve his results? Daniel is unfortunately limited to a quadratic kernel i.e. the features are at most polynomials of degree 2 over the original variables. This is an actual interview question Daniel received for a machine learning engineering position!
-
-% Write a short explanation. This question is open ended, and there can be many correct answers.
-
-% \end{problem}
+\begin{problem}{Real World Spam Classification}
 
 
-% \newpage
+\textbf{Motivation}: After taking CS 189 or CS 289A, students should be able to wrestle with ``real-world'' data and problems. These issues might be deeply technical and require a theoretical background, or might demand specific domain knowledge. Here is an example that a past TA encountered.
+
+Daniel (a past CS 189 TA) interned as an anti-spam product manager for an email service provider. His company uses a linear SVM to predict whether an incoming spam message is spam or ham. He notices that the number of spam messages received tends to spike upwards a few minutes before and after midnight. Eager to obtain a return offer, he adds the timestamp of the received message, stored as number of milliseconds since the previous midnight, to each feature vector for the SVM to train on, in hopes that the ML model will identify the abnormal spike in spam volume at night. To his dismay, after testing with the new feature, Daniel discovers that the linear SVM's success rate barely improves.
+
+Why can't the linear SVM utilize the new feature well, and what can Daniel do to improve his results? Daniel is unfortunately limited to a quadratic kernel i.e. the features are at most polynomials of degree 2 over the original variables. This is an actual interview question Daniel received for a machine learning engineering position!
+
+Write a short explanation. This question is open ended, and there can be many correct answers.
+
+\end{problem}
 
 
-% \section*{Submission Instructions}
-% Please submit
-% \begin{itemize}
-% \item a PDF write-up containing your \textit{answers, plots, and code} to Gradescope. Be sure to include your Kaggle display name and score in the PDF.
-% \item a .zip file of your \textit{code} and a README explaining how to run your code to Gradescope.
-% \item your CSV file of predictions to Kaggle.
-% \end{itemize}
+\newpage
+
+
+\section*{Submission Instructions}
+Please submit
+\begin{itemize}
+\item a PDF write-up containing your \textit{answers, plots, and code} to Gradescope. Be sure to include your Kaggle display name and score in the PDF.
+\item a .zip file of your \textit{code} and a README explaining how to run your code to Gradescope.
+\item your CSV file of predictions to Kaggle.
+\end{itemize}
 
 
 \end{document}
