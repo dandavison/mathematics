@@ -653,6 +653,24 @@ Justify your answer.
 \item Derive and write down the batch gradient descent update equation for
   logistic regression with $\ell_2$ regularization.
 
+\begin{mdframed}
+From Q1, the gradient of the cost function is
+\begin{align*}
+  \nabla J(\w) = 2\lambda\w - \X^\T\(\y - s(\X\w)\),
+\end{align*}
+where
+$s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
+contains the predicted values (class probability) for each sample point, given
+parameters $\w$.
+
+Therefore the batch gradient descent update equation with learning rate $\epsilon$ is
+\begin{align*}
+  \w^{(i+1)} = \w^{(i)} - \epsilon\(2\lambda\w^{(i)} - \X^\T\(\y - s(\X\w^{(i)})\)\).
+\end{align*}
+
+\end{mdframed}
+
+
   Choose a reasonable regularization parameter value and a reasonable learning
   rate.  Run your algorithm and plot the cost function as a function of the
   number of iterations.  (As this is batch descent, one ``iteration'' should
