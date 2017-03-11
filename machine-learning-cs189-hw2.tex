@@ -217,7 +217,14 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
 
       \textbf{(iv) $\implies$ (i)}
 
-      $A = UU^\T$ implies that $A$ is symmetric, since the following quantities are the same:
+      Let $x \in \R^n$. We see that $x^\T Ax$ is equal to the squared
+      $l_2$-norm of a vector and hence non-negative:
+      \begin{align*}
+        x^\T Ax = x^\T UU^\T x = (U^\T x)^\T U^\T x = |U^\T x|^2 \geq 0.
+      \end{align*}
+
+      Incidentlly, $A = UU^\T$ implies that $A$ is symmetric, since the
+      following quantities are the same:
       \begin{enumerate}
       \item $i,j$-th element of $UU^\T$
       \item dot product of $U$ row $i$ and $U^T$ column $j$
@@ -227,7 +234,6 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
       \item $j,i$-th element of $UU^\T$.
       \end{enumerate}
 
-      So we just need to show that a symmetric matrix is positive definite.
     \end{mdframed}
 
     \item For a symmetric positive definite matrix $A \succ 0 \in \R^{n\times n}$, prove the following.
