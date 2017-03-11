@@ -179,9 +179,12 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
     (Suggested road map: (i) $\Leftrightarrow$ (ii), (i) $\Rightarrow$ (iii) $\Rightarrow$ (iv)$ \Rightarrow$ (i). For the implication (iii) $\Rightarrow$ (iv) use the \emph{Spectral Theorem for Symmetric Matrices}.
 
     \begin{mdframed}
-      (incomplete)
+      \textbf{(i) $\iff$ (ii)}
 
-      \textbf{(i) $\Rightarrow$ (iii)}
+      Let $B = A^\T = A^\1$. Then $B$ is invertible and $B^\T AB =
+      A$. Therefore $A \succeq 0 \iff B^\T AB \succeq 0$.
+
+      \textbf{(i) $\implies$ (iii)}
 
       Let $\lambda$ be an eigenvalue of $A$ and let $v \neq \vec 0$ be an eigenvector for
       this eigenvalue, so that $Av = \lambda v$. Since $A$ is positive
@@ -192,19 +195,39 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
       % positive definite then it would be invertible. However as $A$ is positive
       % semidefinite it may not be.)
 
-      \textbf{(iii) $\Rightarrow$ (iv)}
+      \textbf{(iii) $\implies$ (iv)}
 
       We're asked to show that there exists a matrix $U$ such that $A = UU^\T$.
 
       Since $A$ is symmetric, by the Spectral Theorem for Symmetric Matrices
       its eigenvectors are orthonormal and it can be ``diagonalized'' as
-      $A = U\Lambda U^\1$ where the columns of $U$ are the eigenvectors of $A$
+      $A = U^*\Lambda U^{*\1}$ where the columns of $U^*$ are the eigenvectors of $A$
       and $\Lambda$ is a diagonal matrix containing the eigenvalues. Since the
       inverse of an orthogonal matrix is its transpose, we have
       $$
-      A = U\Lambda U^\1 = U\Lambda U^\T.
+      A = U^*\Lambda U^{*\1} = U^*\Lambda U^{*\T}.
       $$
+      Now define $U = U^*\Lambda^{1/2}$, where $\Lambda^{1/2}$ is a diagonal
+      matrix containing the square roots of the eigenvalues:
+      $\(\Lambda^{1/2}\)_{jj} = \sqrt{\lambda_j}$. Note that
+      $U^\T = (U^*\Lambda^{1/2})^\T = \Lambda^{1/2}U^{*\T}$. Then
+      \begin{align*}
+        A = U^*\Lambda U^{*\T} = U^*\Lambda^{1/2}\Lambda^{1/2} U^{*\T} = UU^\T.
+      \end{align*}
 
+      \textbf{(iv) $\implies$ (i)}
+
+      $A = UU^\T$ implies that $A$ is symmetric, since the following quantities are the same:
+      \begin{enumerate}
+      \item $i,j$-th element of $UU^\T$
+      \item dot product of $U$ row $i$ and $U^T$ column $j$
+      \item dot product of $U$ row $i$ and $U$ row $j$
+      \item dot product of $U$ row $j$ and $U$ row $i$
+      \item dot product of $U$ row $j$ and $U^\T$ column $i$
+      \item $j,i$-th element of $UU^\T$.
+      \end{enumerate}
+
+      So we just need to show that a symmetric matrix is positive definite.
     \end{mdframed}
 
     \item For a symmetric positive definite matrix $A \succ 0 \in \R^{n\times n}$, prove the following.
