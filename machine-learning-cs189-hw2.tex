@@ -284,7 +284,21 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
             % and therefore $ac > 0$, i.e. $a$ and $c$ agree in sign. And since
             % the quadratic surface is concave-up, we have $a > 0$ and $c > 0$, as required.
           \end{mdframed}
-        \item $\sum_{i=1}^n \sum_{j=1}^n A_{ij} > 0$, where $A_{ij}$ is the element at the $i$-th row and $j$-th column of $A$.
+        \item All the diagonal entries of $A$ are positive; i.e. $A_{ii} > 0$
+          for $i = 1, \ldots, n$.
+          \begin{mdframed}
+            Let $\x$ be a vector containing zeros except for a 1 in the $i$-th
+            position. Then $x^\T A x = \sum_{i,j} A_{ij}x_ix_j = A_{ii}$ so
+            this must be positive for $A$ to be PD.
+          \end{mdframed}
+        \item $\sum_{i=1}^n \sum_{j=1}^n A_{ij} > 0$, where $A_{ij}$ is the
+          element at the $i$-th row and $j$-th column of $A$.
+          \begin{mdframed}
+            Consider $x = [1, 1, \ldots, 1]^\T$.
+
+            Since $A$ is PD we require $x^\T Ax > 0$. But
+            $x^\T Ax = \sum_j \sum_k A_{jk}x_jx_k = \sum_j \sum_k A_{jk}$.
+          \end{mdframed}
     \end{enumerate}
 \end{enumerate}
 
