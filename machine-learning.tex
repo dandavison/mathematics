@@ -177,19 +177,61 @@ non-zero margin.
 
 \includegraphics[width=300pt]{img/ml-svm-parabolic-lifting.png}
 
-TODO\\
 \url{https://people.eecs.berkeley.edu/~jrs/189/lec/04.pdf}\\
 \url{https://www.youtube.com/watch?v=HOZ6ZpPA_Ks}
 
 \section*{5 Machine Learning Abstractions and Numerical Optimization}
-TODO\\
 \url{https://people.eecs.berkeley.edu/~jrs/189/lec/05.pdf}\\
 \url{https://www.youtube.com/watch?v=DeIAXPUfCbQ}
 
-\section*{6 Decision Theory; Generative and Discriminative Models}
-https://people.eecs.berkeley.edu/~jrs/189/lec/06.pdf
-https://www.youtube.com/watch?v=aXkenQ01qYI
+\section*{6 Decision Theory; Generative and Discriminative Models
+  \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/06.pdf}}
+  \footnote{\url{https://www.youtube.com/watch?v=aXkenQ01qYI}}
+}
 
+Suppose there are two possible \textbf{classes}: $\{C, D\}$
+
+\textbf{Decision rule}: $r(\x): \R^d \to \{C, D\}$
+
+\textbf{Loss function}: E.g. 0-1 loss:
+\begin{align*}
+  L(\hat y_i, y_i) =
+  \begin{cases}
+    0, & \hat y_i = y_i ~~~~~~~~~~~~~~~~~~~~\text{(correct classification)}\\
+    1, & \otherwise
+  \end{cases}
+\end{align*}
+
+\textbf{Risk}: Functional $R(r)$: expected loss for rule $r$, over $\p(X, Y)$.
+\footnote{
+\begin{align*}
+  R(r) = &\pi(Y=-1)\E_\X L(r(X), -1) + \\
+         &\pi(Y=+1)\E_\X L(r(X), +1)~~~~~~~~~~~~~~~~~~~~~~~\text{over $\p(Y)\p(X|Y)$}
+\end{align*}
+\begin{align*}
+  = \sum_X \p(X)\big(&\pi(Y=-1)L(r(X), -1) + \\
+                     &\pi(Y=+1)L(r(X), +1)\big)~~~~~\text{over $\p(X)\p(Y|X)$}
+\end{align*}
+}
+
+So what rule function $r$ minimizes the functional $R$?
+
+\textbf{Bayes decision rule}: Assign $\x$ to class $C$ if
+
+\begin{center}
+(C posterior at $\x$) $\times$ (penalty for misclassifing a true C)
+\end{center}
+
+is largest for class $C$. I.e. if
+\begin{align*}
+  \p(C|\x)L(D, C) > \p(D|\x)L(C, D).
+\end{align*}
+
+With 0-1 loss, this is: ``assign to class with highest posterior''.
+
+With 0-1 loss and two classes, it's: ``assign to class with posterior $> 0.5$''.
+
+\newpage
 \section*{7 Gaussian discriminant analysis}
 https://people.eecs.berkeley.edu/~jrs/189/lec/07.pdf
 https://www.youtube.com/watch?v=4CefboCXxZs
