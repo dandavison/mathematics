@@ -378,8 +378,10 @@ In the following questions, \textbf{show your work}, not just the final answer.
     \end{mdframed}
 
     \item For a function $f: \R^d \rightarrow \R$ to be a norm, the distance metric $\delta(x, y) = f(x-y)$  must satisfy the triangle inequality. Is the function $f(x) = (\sqrt{|x_1|} + \sqrt{|x_2|})^2$ a norm for vectors $x \in \R^2$? Prove it or give a counterexample.
-    \begin{mdframed} \solution
-    % Solution here
+    \begin{mdframed}
+      Consider $x = \cvec{1}{0}$ and $y = \cvec{0}{1}$. For $f$ to be a valid
+      norm we require $f(x) + f(y) \geq f(x + y)$. But $f(x) = f(y) = 1$
+      whereas $f(x + y) = 4$ so the triangle inequality does not hold.
     \end{mdframed}
 
     \item Let $x \in \R^n$. Prove that $\lVert x \rVert_{\infty} \leq \lVert x\rVert_2 \leq \sqrt{n} \lVert x \rVert_{\infty}$.
