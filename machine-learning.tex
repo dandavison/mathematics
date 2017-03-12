@@ -255,6 +255,22 @@ to $\y$. So $X\w^* - \y$ must be orthogonal to the hyperplane:
 Which are the normal equations (linear system of $d$ equations), derived
 differently.
 
+\subsubsection*{Weighted linear regression}
+Sample point $i$ has weight $b_i$. Diagonal $n \by n$ matrix $\mat B$ contains weights.
+\begin{align*}
+  J(\w) &= \sum_i b_i (\x_i^\T\w - y_i)^2 \\
+        & = (\X\w - \y)^\T \B (\X\w - \y) \\
+        &= \w^\T\X^\T \B \X\w - 2\y^\T \B \X\w + \y^\T\y
+\end{align*}
+Gradient
+\begin{align*}
+  \grad_\w J(\w) = 2\X^\T \B \X\w - 2\X^\T\B\y
+\end{align*}
+Solution
+\begin{align*}
+  \w^* = \(\X^\T \B \X\)^{-1}\X^\T\B\y
+\end{align*}
+
 
 \section*{11 More Regression; Newton’s Method; ROC Curves}
 
