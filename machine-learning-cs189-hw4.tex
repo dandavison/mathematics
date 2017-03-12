@@ -64,7 +64,7 @@
 \newcommand{\bx}{{\mathbf{x}}}
 \newcommand{\bmu}{{\mathbf{\mu}}}
 \newcommand{\bX}{{\mathbf{X}}}
-\newcommand{\by}{{\mathbf{y}}}
+%\newcommand{\by}{{\mathbf{y}}}
 \newcommand{\bY}{{\mathbf{Y}}}
 \newcommand{\bz}{{\mathbf{z}}}
 \newcommand{\bw}{{\mathbf{w}}}
@@ -80,7 +80,7 @@
 
 \newcommand{\argmin}{\mathrm{argmin}}
 
-\newcommand{\B}{\textbf{B}}
+%\newcommand{\B}{\textbf{B}}
 
 
 \title{Homework 4: Regression}
@@ -576,26 +576,43 @@ For a vector $w$, derive $\nabla \, |w|^4$.
 Then derive $\nabla_w \, |Xw - y|^4$.
 
 \begin{mdframed}
-Suppose $\w \in \R^d$. Then
+Suppose $\w \in \R^d$. Then $|\w|^4 \in \R$ is
 \begin{align*}
   |\w|^4 = \(\sum_{j=1}^d w_j^2\)^2 = \sum_{j=1}^d \sum_{k=1}^d w_j^2w_k^2.
 \end{align*}
 Now consider the $j$-th component. Viewed as a function of $\w_j$, we have
 \begin{align*}
-  |\w|^4 &= w_j^4 + 2w_j^2\sum_{k=1}^d w_k^2 + \constant \\
-         &= w_j^4 + 2|\w|^2 w_j^2 + \constant,
+  |\w|^4 &= w_j^4 + 2w_j^2\sum_{k \neq j} w_k^2 + \constant
 \end{align*}
 therefore
 \begin{align*}
-  \partiald{|\w|^4}{w_j} = 4w_j^3 + 4|\w|^2w_j,
+  \partiald{|\w|^4}{w_j}
+  &= 4w_j^3 + 4w_j\sum_{k \neq j} w_k^2 \\
+  &= 4|\w|^2w_j
 \end{align*}
-i.e.
+so
 \begin{align*}
-  \grad_\w |\w|^4 = 4\(\cveccc
-  {w_1^3}
-  {\vdots}
-  {w_d^3} + |\w|^2\w\)
+  \grad_\w |\w|^4 = 4|\w|^2\w.
 \end{align*}
+\end{mdframed}
+~\\
+\begin{mdframed}
+Now let $|\X\w - \y|^4 = (g \circ f)(\w)$, where
+\begin{align*}
+  &f: \R^d \rightarrow \R^n     &f(\w) = \X\w - \y \\
+  &g: \R^n \rightarrow \R       &g(\vec z) = |\vec z|^4.
+\end{align*}
+The chain rule states that $\grad (g \circ f) = (Df)^\T \grad g$, where $Df$
+is the Jacobian matrix of first partial derivatives of $f$. We have
+$\grad g(\z) = 4|\z|^2\z$ and $Df = \X$, so
+\begin{align*}
+  \grad_w |\X\w - \y|^4
+  &= (Df)^\T \grad g \\
+  &= 4|\X\w - \y|^2\X^\T (\X\w - \y) \\
+  &= 4|\X\w - \y|^2\X^\T\X\w - \X^\T\y
+\end{align*}
+
+
 \end{mdframed}
 
 \item
