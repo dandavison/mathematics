@@ -271,6 +271,32 @@ Solution
   \w^* = \(\X^\T \B \X\)^{-1}\X^\T\B\y
 \end{align*}
 
+\subsubsection*{How to compute the gradient}
+
+The cost function is $J(\w) = |\X\w - \y|^2$. We could write this as a dot product and
+multiply out:
+\begin{align*}
+  J(\w) &= (\X\w - \y) \cdot (\X\w - \y) \\
+  &= \X\w \cdot \X\w - 2 \X\w \cdot \y + \y \cdot \y \\
+  &= (\X\w)^\T \X\w - 2 (\X\w)^\T \y + \y^\T \y \\
+  &= \w^T\X^\T\X\w - 2 \w^\T\X^\T\y + \y^\T \y,
+\end{align*}
+and then we'd need to differentiate those terms w.r.t. $\w$. However, a better
+way is to use the chain rule. Define $f$ and $g$ such that
+$J: \R^d \rightarrow \R$ is their composition $J = g \circ f$:
+\begin{align*}
+  &f: \R^d \rightarrow \R^n     &f(\w) = \X\w - \y \\
+  &g: \R^n \rightarrow \R       &g(\vec z) = |\vec z|^2.
+\end{align*}
+The chain rule says that $\grad (g \circ f) = (D f)^\T \grad g$, where $D f$ is
+the derivative of $f$, i.e. the Jacobian matrix of first partial
+derivatives\footnote{The gradient $\grad$ applies only to scalar-valued
+functions.}. We have $D f(\w) = \X$ and $\grad g(\z) = 2\z$, so
+\begin{align*}
+  \grad J(\w)
+  &= 2\X^\T(\X\w - \y) \\
+  &= 2\X^\T\X\w - 2\X^\T\y.
+\end{align*}
 
 \section*{11 More Regression; Newton’s Method; ROC Curves}
 
