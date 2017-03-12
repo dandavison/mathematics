@@ -638,6 +638,32 @@ $a_1, \ldots, a_n$.
 Write the vector $a$ of dual coefficients in terms of $X$, $y$, and
 the optimal solution $w^*$.
 
+\begin{mdframed}
+The objective function $J(\w)$ is
+\begin{align*}
+  |\X\w - \y|^4 + \lambda |\w|^2
+  &= \((\X\w - \y) \cdot (\X\w - \y)\)^2 + \lambda |\w|^2 \\
+  &= \(\w^T\X^\T\X\w - 2 \w^\T\X^\T\y + \y^\T \y\)^2 + \lambda |\w|^2 \\
+\end{align*}
+
+I think this objective function is convex in $\w$, but I'm not sure how to show
+that. Basically, I think $\w^T\X^\T\X\w$ is a convex function of $\w$ since
+$\X^\T\X$ is positive definite, and $2\w^\T\X^\T\y$ is also a convex function
+of $\w$, and the sum of convex functions is convex, and the square of a convex
+function is convex, so the whole expression is convex. Being convex in $\w$
+means that there is a unique minimum at $\w^*$.
+
+The gradient of the objective function $J(\w)$ is
+\begin{align*}
+\grad_\w J(\w) = 4|\X\w - \y|^2\X^\T\X\w - \X^\T\y + 2\lambda \w.
+\end{align*}
+Setting this equal to zero gives
+\begin{align*}
+  4|\X\w^* - \y|^2\X^\T\X\w^* + 2\lambda \w^* = \X^\T\y
+\end{align*}
+\end{mdframed}
+
+
 \item Consider the regularized regression problem
 \[
 w^* = \argmin_{w \in \R^d} \; \frac{1}{n} \sum_{i=1}^n L(w^{\T} X_i, y_i) + \lambda \, |w|^2
