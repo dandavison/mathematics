@@ -215,7 +215,7 @@ linear predictor and observed training point.
 
 Solve by differentiating and finding the critical point:
 \begin{align*}
-  |\X \w - \y|^2          &= \w\X^\T\X\w - 2\y^\T\X\w + \y^\T\y \\
+  |\X \w - \y|^2          &= \w^\T\X^\T\X\w - 2\y^\T\X\w + \y^\T\y \\
   \grad_\w |\X \w - \y|^2 &= 2 \X^\T\X\w - 2\X^\T\y \\
   \w^*                    &= (\X^\T\X)^{-1}\X^\T\y =: \X^+\y
 \end{align*}
