@@ -18,7 +18,7 @@
 \item $d = 2$ where not stated.
 \end{itemize}
 
-\section*{Classification}
+\section{Classification}
 
 A \textbf{decision boundary} is a curve separating the plane (sample space)
 into two regions.
@@ -67,7 +67,7 @@ is $\w \cdot \x_i + \alpha$.
 \item \textbf{LDA}:  Fit Gaussians to each class, same covariance across classes.
 \end{itemize}
 
-\subsection*{Perceptron}
+\subsection{Perceptron}
 
 Labels $y_i \in \{-1, 1\}$. Assume $\alpha=0$ for now (decision boundary through origin).
 
@@ -135,7 +135,7 @@ dimensionality.
          {\alpha} \cdot \cveccc{x_1}{x_2}{1} &= 0.
 \end{align*}
 
-\subsection*{Optimization in weight space}
+\subsection{Optimization in weight space}
 
 \begin{tabular}{l|l}
   $\x$-space    & $\w$-space \\
@@ -146,7 +146,7 @@ dimensionality.
 
 \includegraphics[width=200pt]{img/ml-perceptron-x-space-w-space.png}
 
-\subsection*{Maximum margin classifiers}
+\subsection{Maximum margin classifiers}
 \textbf{Margin} is distance from hyperplane to nearest sample point.
 
 Previously, in the perceptron, we used the constraint
@@ -164,7 +164,7 @@ non-zero margin.
     $y_i(\x_i \cdot \w + \alpha) \geq 1$ for all points $i$.
 \end{mdframed}
 
-\subsection*{Soft margin SVMs}
+\subsection{Soft margin SVMs}
 
 \begin{itemize}
 \item Still quadratic program but allow points to violate margin via
@@ -180,12 +180,12 @@ non-zero margin.
 \url{https://people.eecs.berkeley.edu/~jrs/189/lec/04.pdf}\\
 \url{https://www.youtube.com/watch?v=HOZ6ZpPA_Ks}
 
-\section*{5 Machine Learning Abstractions and Numerical Optimization}
-\url{https://people.eecs.berkeley.edu/~jrs/189/lec/05.pdf}\\
-\url{https://www.youtube.com/watch?v=DeIAXPUfCbQ}
+% \section*{5 Machine Learning Abstractions and Numerical Optimization}
+% \url{https://people.eecs.berkeley.edu/~jrs/189/lec/05.pdf}\\
+% \url{https://www.youtube.com/watch?v=DeIAXPUfCbQ}
 
 \newpage
-\section*{6 Decision Theory; Generative and Discriminative Models
+\section{Decision Theory
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/06.pdf}}
   \footnote{\url{https://www.youtube.com/watch?v=aXkenQ01qYI}}
 }
@@ -233,16 +233,16 @@ With 0-1 loss, this is: ``assign to class with highest posterior''.
 With 0-1 loss and two classes, it's: ``assign to class with posterior $> 0.5$''.
 
 \newpage
-\section*{7 Gaussian discriminant analysis
+\section{Gaussian discriminant analysis
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/07.pdf}}
   \footnote{\url{https://www.youtube.com/watch?v=4CefboCXxZs}}
 }
 
 \newcommand{\class}{\text{class~}}
 
-\subsection*{Isotropic Gaussians}
+\subsection{Isotropic Gaussians}
 
-Multivariate data $\x$ but features uncorrelated and all features same variance.
+Multivariate data $\x$ but features uncorrelated and all features same variance.L
 
 \subsubsection*{QDA}
 Fit separate Gaussians to the training data in each class. The likelihood is
@@ -279,7 +279,7 @@ The posterior probability of class $C$ at point $\x$ is\footnote{This is
 \end{align*}
 so logistic in the quadratic expression $Q_C(\x) - Q_D(\x)$.
 
-\subsubsection*{LDA}
+\subsubsection{LDA}
 Estimate separate class means but same variance for all classes. So now
 \begin{align*}
   Q_C(\x) - Q_D(\x)
@@ -294,7 +294,7 @@ posterior is a logistic function which is constant parallel to the decision
 boundary.
 
 \newpage
-\section*{8 Eigenvectors and the Anisotropic Multivariate Gaussian Distribution
+\section{Symmetric matrices, quadratic forms and eigenvectors
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/08.pdf}}
 }
 
@@ -377,9 +377,9 @@ $\V\Lambda^k\V^\T\x$:
 $\Lambda$ is said to be the diagonalized version of $\A$.
 \section*{9 The Anisotropic Multivariate Normal Distribution, QDA, and LDA}
 
-\section*{10 Regression, including Least-Squares Linear and Logistic Regression}
 \newpage
-\subsection*{Linear Least Squares Regression}
+\section{Regression}
+\subsection{Linear Least Squares Regression}
 Use fictitious dimension trick, so that $\w$ includes the offset term and $\X$
 is $(n \times (d + 1))$.
 \\
@@ -476,8 +476,12 @@ functions.}. We have $D f(\w) = \X$ and $\grad g(\z) = 2\z$, so
   &= 2\X^\T\X\w - 2\X^\T\y.
 \end{align*}
 
-\section*{11 More Regression; Newton’s Method; ROC Curves}
+\subsection{Penalized Regression}
+TODO
 
-\section*{12 Statistical Justifications; the Bias-Variance Decomposition}
+\subsection{Logistic Regression}
+TODO
+
+% \section*{11 More Regression; Newton’s Method; ROC Curves}
 
 \end{document}
