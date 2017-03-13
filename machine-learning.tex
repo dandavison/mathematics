@@ -298,7 +298,83 @@ boundary.
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/08.pdf}}
 }
 
+\textbf{Spectral theorem}: A symmetric matrix has $n$ \textbf{orthogonal}
+eigenvectors\footnote{There may be more than $n$ (infinite) eigenvectors, but
+  $n$ orthogonal.}\footnote{Non-symmetric matrices have non-orthogonal eigenvectors in
+  general.}
 
+
+To understand a symmetric matrix $\A$, consider its \textbf{quadratic form}
+$|\A\x|^2 = \x^\T \A^2\x$ (right). Compare this to the graph of $|\z|^2$
+(left). The graphs are related by the following changes of coordinates:
+
+$\z \gets \A\x$ changes the elliptical contours into circles; scale by eigenvalues of $\A$.
+
+$\A^\1 \z \to \x$ changes circles into ellipses; scale by reciprocal of eigenvalues.
+
+\includegraphics[width=300pt]{img/machine-learning-quadratic-form-eigenvectors.png}
+
+$|\A\x|^2 = 1$ is the equation of an ellipsoid. Its axes are $v_1,\ldots,v_n$
+and its radii are $\frac{1}{\lambda_1},\ldots,\frac{1}{\lambda_n},$
+
+Bigger eigenvalue $\iff$ steeper hill.
+
+Alternate interpretation: the ellipsoids are spheres in a space with a
+different distance metric. The distance metric (metric tensor) is $\mat M=\A^2$:
+\begin{align*}
+  d(\x,\x') = |\A\x| - |\A\x'| = \sqrt{(\x - \x')\A^2(\x - \x')}
+\end{align*}
+
+
+\begin{minipage}{\textwidth}
+These are diagrams of $\x^\T\A\x$ (not $\x^\T\A^2\x$ since $\A^2$ has no negative eigenvalues):
+
+\includegraphics[width=300pt]{img/machine-learning-quadratic-form-eigenvectors-2.png}
+
+\begin{tabular}{ l | l | l }
+  \textbf{positive definite}     & eigenvalues $> 0$    & $\x^\T\A\x > 0 ~~~~~~ \forall \x \neq \0$ \\
+  \textbf{positive semidefinite} & eigenvalues $\geq 0$ & $\x^\T\A\x >= 0 ~~~~ \forall \x$ \\
+  \textbf{indefinite}            & some positive and some negative eigenvalues & \\
+  \textbf{singular}              & some zero eigenvalue \\
+\end{tabular}
+\end{minipage}
+
+Let $\Lambda$ be a diagonal matrix containing the eigenvalues and $\V$ contain
+normalized eigenvectors:
+\begin{align*}
+V = \begin{bmatrix}
+\mid & \mid & & \mid \\
+\v_1 & \v_2 & \cdots & \v_n\\
+\mid & \mid & & \mid \\
+\end{bmatrix}
+\end{align*}
+
+Note that for an \textbf{orthonormal} matrix like this:
+\begin{enumerate}
+\item It rotates / reflects the input vectors, without changing their length.
+\item  $\V^T\V = \I$, therefore $\V^\1 = \V^\T$.
+\end{enumerate}
+
+
+By the definition of eigenvector we have
+\begin{align*}
+  \A\V = \V\Lambda
+\end{align*}
+and therefore the \textbf{eigendecomposition} of $\A$
+\begin{align*}
+  \A = \V\Lambda\V^\T.
+\end{align*}
+
+So we can perform $\A\x$ as $\V\Lambda\V^\T\x$, and $\A^k\x$ as
+$\V\Lambda^k\V^\T\x$:
+
+\begin{enumerate}
+\item $\V^\T = \V^\1$ rotates the input vector into axis-aligned coordinates.
+\item $\Lambda$ scales along different axes.
+\item $\V$ returns to the original coordinates.
+\end{enumerate}
+
+$\Lambda$ is said to be the diagonalized version of $\A$.
 \section*{9 The Anisotropic Multivariate Normal Distribution, QDA, and LDA}
 
 \section*{10 Regression, including Least-Squares Linear and Logistic Regression}
