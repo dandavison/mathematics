@@ -232,6 +232,33 @@ With 0-1 loss, this is: ``assign to class with highest posterior''.
 
 With 0-1 loss and two classes, it's: ``assign to class with posterior $> 0.5$''.
 
+\textbf{Empirical risk}: Discriminative methods (e.g. logistic regression) lack
+any model for $X$. How can we estimate expected loss over $p(X,Y)$? Take the
+observed sample points as defining a discrete, uniform distribution, in which
+case
+\begin{align*}
+  \hat R(r) = \frac{1}{n}\sum L(r(x_i), y_i).
+\end{align*}
+This provides a justification for minimizing the sum/mean of per-sample loss.
+
+\newpage
+\section{Statistical justifications}
+
+Regression: want to estimate a function $f$ such that
+$y_i = f(x_i) + \epsilon$, where $\epsilon$ has unknown distribution but mean
+0. Ideal would be to estimate $f$ with $h(x_i) = \E(Y|x_i)$ since this is equal
+to $f(x_i)$.
+
+Likelihood justification for linear regression cost function.
+
+Logistic Regression from Maximum Likelihood
+
+\section{Bias-Variance Decomposition}
+
+
+
+
+
 \newpage
 \section{Gaussian discriminant analysis
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/07.pdf}}
