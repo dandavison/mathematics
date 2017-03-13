@@ -407,8 +407,8 @@ $\Lambda$ is said to be the diagonalized version of $\A$.
 \newpage
 \section{Regression}
 \subsection{Linear Least Squares Regression}
-Use fictitious dimension trick, so that $\w$ includes the offset term and $\X$
-is $(n \times (d + 1))$.
+Use fictitious dimension trick, so that $\w$ includes the offset term $\alpha$
+and $\X$ is $(n \times (d + 1))$.
 \\
 \begin{mdframed}
 Find $\w$ that minimizes cost function $J(w)$: sum of squared difference between
@@ -503,11 +503,64 @@ functions.}. We have $D f(\w) = \X$ and $\grad g(\z) = 2\z$, so
   &= 2\X^\T\X\w - 2\X^\T\y.
 \end{align*}
 
-\subsection{Penalized Regression}
+\subsection*{Penalized Regression}
 TODO
 
-\subsection{Logistic Regression}
-TODO
+\subsection*{Logistic Regression}
+
+\begin{itemize}
+\item Two classes.
+\item The observations $y_i$ are class labels (or probabilities thereof).
+\item The model states that the probability of being in class 1 is given by the
+  usual linear model, mapped onto $(0, 1)$ by the logistic function $s$:
+  $$y_i \sim \Bern(s(\x_i^\T\w)),$$
+  $$s(z) = \frac{1}{1 + e^{-z}}$$
+\end{itemize}
+Note that $s'(z) = \frac{e^{-z}}{(1 + e^{-z})^2} = s(z)(1 - s(z))$.
+
+\subsubsection*{Likelihood}
+Let $s_i = s(\x_i^\T\w)$.
+\begin{align*}
+  \L(\w)       &= \prod_i s_i^{y_i} + \(1 - s_i\)^{(1 - y_i)} \\
+  \l(\w)       &= \sum_i y_i \log s_i + (1 - y_i) \log\(1 - s_i\) \\
+\grad \l(\w) &= \sum_i \frac{y_i}{s_i}(s_i)(1 - s_i)\x_i + \frac{1 - y_i}{1 - s_i}(-1)(s_i)(1 - s_i)\x_i \\
+             &= \sum_i \x_i\(y_i(1 - s_i) - (1 - y_i)s_i\) \\
+             &= \sum_i \x_i\(y_i - s_i\) \\
+             &= \X^\T\(\y - \s(\X\w)\) ~~~~~~~~~ (d \by 1)
+\end{align*}
+
+where $\s: \R^n \to \R^n$ applies $s$ componentwise to the rows.
+
+\textbf{Optimization problem}: Find $\w$ that minimizes the cost function
+$J(\w) = -\l(\w)$.
+
+Because the weights $\w$ are tied up inside $s_i = s(\x_i^\T\w)$ it's not
+possible to find the minimum $\w^*$ by setting the gradient equal to zero
+(i.e. by solving a linear system). We can use gradient descent, or Newton's
+method.
+
+For Newton's method, we need the Hessian of the objective function. This is the
+$d \by \d$ matrix of partial derivatives of the gradient, i.e. $\X^\T$
+multiplied by the derivative (Jacobian matrix) of $\s(\X\w)$. Define
+$\f(\w) = \X\w$ so now $\s(\X\w) = (\s \circ \f)(\w)$.
+
+\begin{tabular}{l | l | l | l}
+  Function         & domain $\to$ range    & Jacobian                               & dim Jacobian \\
+  \hline
+  $\f(\w) = \X\w$  &$\R^d \rightarrow \R^n$ &$\D\f = \X$                            & $n \by d$\\
+  $\s(\z)$         &$\R^n \rightarrow \R^n$ &$\D\s(\z) = \S$ & $n \by n$
+\end{tabular}
+
+where $\S$ is a diagonal matrix with
+$\S_{ii} = \s(\x_i^\T\w)(1 - \s(\x_i^\T\w))$. Now by the chain rule,
+\begin{align*}
+%\D_\w \s(\X\w) &= \D_\w \s(\f(\w)) = ((\D_f \s) (\D_\w \f))(\w) = \s(\f(\w))(1 - \s(\f(\w)))^\T \X
+\hess J(\w) &= \X^\T \D_\w \s(\X\w) \\
+            &= \X^\T (\D_\f \s) (\D_w \f) \\
+            &= \X^\T\S\X.
+\end{align*}
+
+
 
 % \section*{11 More Regression; Newton’s Method; ROC Curves}
 
