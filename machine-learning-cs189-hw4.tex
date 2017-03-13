@@ -82,6 +82,11 @@
 
 %\newcommand{\B}{\textbf{B}}
 
+\let\L\relax
+\DeclareMathOperator{\L}{\mathcal{L}}
+\let\l\relax
+\DeclareMathOperator{\l}{\ell}
+
 
 \title{Homework 4: Regression}
 \subtitle{\texttt{ddavison@berkeley.edu}}
@@ -219,6 +224,7 @@ parameters $\w$.
 \end{comment}
 
 \begin{mdframed}
+Second, still verbose, version.
 First note that
 \begin{align*}
   \partiald{s_i(\w)}{w_j} &= \partiald{~(1 + e^{-\w \cdot \x_i})^{-1}}{w_j} \\
@@ -262,8 +268,34 @@ the predictions.
 ~\\~\\
 
 
-\item
-Derive the Hessian of $J(w)$.
+\begin{mdframed}
+Note that $s'(\gamma) = \frac{e^{-\gamma}}{(1 + e^{-\gamma})^2} = s(\gamma)(1 - s(\gamma))$.
+
+Let $s_i = s(\x_i^\T\w)$, so that $\grad_\w s_i = \x_i$. We have
+\begin{align*}
+  J(\w)     &= \lambda |\w|^2 - \sum_i y_i \log s_i + (1 - y_i) \log\(1 - s_i\),
+\end{align*}
+so
+\begin{align*}
+\grad J(\w) &= 2\lambda \w - \sum_i \frac{y_i}{s_i}(s_i)(1 - s_i)\x_i + \frac{1 - y_i}{1 - s_i}(-1)(s_i)(1 - s_i)\x_i \\
+            &= 2\lambda \w - \sum_i \x_i\(y_i(1 - s_i) - (1 - y_i)s_i\) \\
+            &= 2\lambda \w - \sum_i \x_i\(y_i - s_i\) \\
+            &= 2\lambda \w - \X^\T\(\y - \s(\X\w)\) ~~~~~~~~~ (d \by 1)
+\end{align*}
+where $\s: \R^n \to \R^n$ applies $s$ componentwise to the rows.
+
+We can interpret this expression a bit. $s(\X\w)$ is an $n$-vector containing
+the predicted values for each sample point, so $\y - s(\X\w)$ is the error in
+the current predicted values, and $\X^\T(\y - s(\X\w))$ is a $d$-vector whose
+$j$-th component is large if feature $j$ is correlated with (has a large dot
+product with) the current errors. So the steepest direction downhill will tend
+to put more weight on features that are correlated with the current error in
+the predictions.
+\end{mdframed}
+
+
+
+\item Derive the Hessian of $J(w)$.
 Again, your answer should be a simple matrix-vector expression.
 
 \begin{mdframed}
@@ -283,6 +315,36 @@ where $\B$ is an $(n \times n)$ diagonal matrix with
 $B_{ii} = s_i(\w)(1-s_i(\w) + 2\lambda$, and $1_{\{\cdot\}}$ is an indicator
 function that takes the value 1 when its argument is true and 0 otherwise.
 \end{mdframed}
+
+~\\
+\begin{mdframed}
+The Hessian is the $d \by \d$ matrix of partial derivatives of the gradient,
+so we have
+\begin{align*}
+  \hess J(\w) = 2\lambda\I + \X^\T \Jac \s(\X\w),
+\end{align*}
+where $\Jac \s$ is the Jacobian matrix of the vector-valued function $\s$.
+
+We can compute the Jacobian using the chain rule. Define $\f(\w) = \X\w$ so now
+$\s(\X\w) = (\s \circ \f)(\w)$:
+\\\\
+\begin{tabular}{l | l | l | l}
+  Function         & domain $\to$ range    & Jacobian                               & dim Jacobian \\
+  \hline
+  $\f(\w) = \X\w$  &$\R^d \rightarrow \R^n$ &$\D\f = \X$                            & $n \by d$\\
+  $\s(\z)$         &$\R^n \rightarrow \R^n$ &$\D\s(\z) = \S$ & $n \by n$
+\end{tabular}
+
+where $\S$ is a $n \by n$ diagonal matrix with $\S_{ii} = s_i(1 - s_i)$. Now by
+the chain rule,
+\begin{align*}
+%\D_\w \s(\X\w) &= \D_\w \s(\f(\w)) = ((\D_f \s) (\D_\w \f))(\w) = \s(\f(\w))(1 - \s(\f(\w)))^\T \X
+\hess J(\w) &= 2\lambda\I + \X^\T \D_\w \s(\X\w) \\
+            &= 2\lambda\I + \X^\T (\D_\f \s) (\D_w \f) \\
+            &= 2\lambda\I + \X^\T\S\X.  ~~~~~~~~~~~~~~~~~~~~~~ (d \by d)
+\end{align*}
+\end{mdframed}
+
 
 \item State the update equation for one iteration of Newton's method for this
   problem.
