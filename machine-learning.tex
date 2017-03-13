@@ -238,6 +238,61 @@ With 0-1 loss and two classes, it's: ``assign to class with posterior $> 0.5$''.
   \footnote{\url{https://www.youtube.com/watch?v=4CefboCXxZs}}
 }
 
+\newcommand{\class}{\text{class~}}
+
+\subsection*{Isotropic Gaussians}
+
+Multivariate data $\x$ but features uncorrelated and all features same variance.
+
+\subsubsection*{QDA}
+Fit separate Gaussians to the training data in each class. The likelihood is
+\begin{align*}
+  \p(\x|\class C) = \frac{1}{(2\pi)^{d/2}\sigma_C^d}\exp\(-\frac{|\x - \mu_C|^2}{\sigma_C^2}\)
+\end{align*}
+
+and we compare the value of $\p(\x|\class C) \cdot \pi_C \cdot L(D|C)$.
+
+The decision boundaries are where the posterior $\times$ loss are equal. It's
+easier to compare the log of this:
+\begin{align*}
+  Q_C(\x) = - \frac{|\x - \mu_C|^2}{\sigma_C^2} - d\log \sigma_C + \log \pi_C + \log L(D|C)
+\end{align*}
+
+\begin{comment}
+  So the decision boundary is at $\x$ satisfying
+  \begin{align*}
+    Q_C(\x) - Q_D(\x) &= 0 \\
+    \frac{|\x - \mu_D|^2}{\sigma_D^2} - \frac{|\x - \mu_C|^2}{\sigma_C^2} +
+    d\log \frac{\sigma_D}{\sigma_C} +
+    \log \frac{\pi(C)}{\pi(D)} +
+    \log \frac{L(D|C)}{L(C|D)}
+     &= 0 \\
+  \end{align*}
+\end{comment}
+
+The posterior probability of class $C$ at point $\x$ is\footnote{This is
+  assuming 0-1 loss, so the loss doesn't affect $Q_C(\x)$}
+\begin{align*}
+  \p(C|\x)
+  = \frac{\pi_C\p(\x|C)}{\pi_C\p(\x|C) + \pi_D\p(\x|D)}
+  = \frac{1}{1 + e^{-(Q_C(\x) - Q_D(\x))}},
+\end{align*}
+so logistic in the quadratic expression $Q_C(\x) - Q_D(\x)$.
+
+\subsubsection*{LDA}
+Estimate separate class means but same variance for all classes. So now
+\begin{align*}
+  Q_C(\x) - Q_D(\x)
+  &= \frac{|\x - \mu_D|^2 - |\x - \mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)} \\
+  &= \frac{(\x - \mu_D)\cdot(\x - \mu_D) - (\x - \mu_C)\cdot(\x - \mu_C)}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)} \\
+% &= \frac{ 2(\x\cdot\mu_C - \x\cdot\mu_D) + |\mu_D|^2 - |\mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)} \\
+  &= \x\cdot\frac{2(\mu_C - \mu_D)}{\sigma^2} + \(\frac{|\mu_D|^2 - |\mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)}\) \\
+  &= \x\cdot\w + \alpha
+\end{align*}
+This means that the decision boundary is linear, and (with 0-1 loss) the
+posterior is a logistic function which is constant parallel to the decision
+boundary.
+
 \newpage
 \section*{8 Eigenvectors and the Anisotropic Multivariate Gaussian Distribution
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/08.pdf}}
