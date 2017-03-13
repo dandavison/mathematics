@@ -223,8 +223,9 @@ parameters $\w$.
 \end{mdframed}
 \end{comment}
 
+\begin{comment}
 \begin{mdframed}
-Second, still verbose, version.
+\textbf{Second version, not using chain rule}:
 First note that
 \begin{align*}
   \partiald{s_i(\w)}{w_j} &= \partiald{~(1 + e^{-\w \cdot \x_i})^{-1}}{w_j} \\
@@ -265,7 +266,7 @@ product with) the current errors. So the steepest direction downhill will tend
 to put more weight on features that are correlated with the current error in
 the predictions.
 \end{mdframed}
-~\\~\\
+\end{comment}
 
 
 \begin{mdframed}
@@ -298,7 +299,9 @@ the predictions.
 \item Derive the Hessian of $J(w)$.
 Again, your answer should be a simple matrix-vector expression.
 
+\begin{comment}
 \begin{mdframed}
+\textbf{Second version, not using chain rule}:
 Using $\X_{.j}$ to denote the $n$-vector containing the $j$-th feature
 values, the $j$-th component of the gradient is
 \begin{align*}
@@ -315,8 +318,8 @@ where $\B$ is an $(n \times n)$ diagonal matrix with
 $B_{ii} = s_i(\w)(1-s_i(\w) + 2\lambda$, and $1_{\{\cdot\}}$ is an indicator
 function that takes the value 1 when its argument is true and 0 otherwise.
 \end{mdframed}
+\end{comment}
 
-~\\
 \begin{mdframed}
 The Hessian is the $d \by \d$ matrix of partial derivatives of the gradient,
 so we have
@@ -366,6 +369,9 @@ like
 \end{align*}
 but that's not quite right. Anyway, from the lecture notes, setting the
 gradient equal to zero gives
+
+\color{red}{TODO: Need to change this to account for additive $\lambda\I$ term in Hessian.}
+
 \begin{align*}
   \w = \v -\(\hess J(\v)\)^{-1} \grad J(\v).
 \end{align*}
