@@ -578,4 +578,219 @@ $\S_{ii} = \s(\x_i^\T\w)(1 - \s(\x_i^\T\w))$. Now by the chain rule,
 
 % \section*{11 More Regression; Newton’s Method; ROC Curves}
 
+\section{ Change of basis}
+
+Suppose person B uses some other basis vectors to describe locations in
+space. Specifically, in our coordinates, their basis vectors are
+$\scvec{2}{1}$ and $\scvec{-1}{1}$.
+
+
+\textbf{When they state a vector, what is it in our coordinates?}
+
+If they say $\scvec{-1}{2}$, what is that in our coordinates?
+
+Well, if they say $\scvec{1}{0}$, that's $\scvec{2}{1}$ in our coordinates. And
+if they say $\scvec{0}{1}$, that's $\scvec{-1}{1}$ in our coordinates. So the
+matrix containing \textit{their basis vectors expressed using our coordinate system}
+transforms a point expressed in their coordinate system into one expressed in
+ours. That last sentence is critical, so hopefully it makes sense! So, the answer is
+
+$$
+\mat{2}{-1}
+    {1}{ 1} \cvec{-1}{2} = \cvec{-4}{1}.
+$$
+
+
+\textbf{When we state a vector, what is it in their coordinates?}
+
+We give the vector $\scvec{3}{2}$. What is that in their coordinate system? By
+definition, the answer is the weights that scales their basis vectors to hit
+$\scvec{3}{2}$. So, the solution to
+
+$$
+\mat{2}{-1}
+    {1}{1} \cvec{a}{b} = \cvec{3}{2}.
+$$
+
+
+Computationally, we can see that we can get the solution by multiplying both
+sides by the inverse:
+
+$$
+\cvec{a}{b} = \mat{2}{-1}
+                  {1}{1}^{-1} \cvec{3}{2}.
+$$
+
+Conceptually, we have
+
+$$
+\mat{2}{-1}
+    {1}{1} =
+\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+$$
+
+where "their representation" means the vector expressed using their coordinate
+system. So the role played by the inverse is
+
+$$
+\cvec{a}{b} =
+\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\cvec{3}{2}.
+$$
+
+\textbf{When we state a transformation, what is it in their coordinates?}
+
+We state a 90° anticlockwise rotation of 2D space:
+
+$$
+\mat{0}{-1}
+    {1}{0}
+$$
+
+what is that transformation in their coordinates? The answer is
+
+$$
+\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\mat{0}{-1}
+    {1}{0}
+\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+$$
+
+since the composition of those three transformations defines a single
+transformation that takes in a vector expressed in their coordinate system,
+converts it to our coordinate system, transforms it as requested, and then
+converts back to theirs.
+
+
+\section{Symmetric matrices}
+
+\textbf{Spectral theorem for symmetric matrices}
+
+Symmetric $n \by n$ matrix $A$ (real).
+
+$A^\1 = A^\T$
+
+$n$ orthogonal eigenvectors with real eigenvalues.
+
+Orthonormal matrix $U$ containing normalized eigenvectors.
+
+$A = U\Lambda U^\1 = U\Lambda U^\T$
+
+(Eigenvalues are uniquely determined by matrix. Eigenvalues can be repeated, in which case any linear combination of their
+eigenvalues is also an eigenvalue.)
+
+
+
+\section*{Linear and quadratic approximations to a function
+  \footnote{
+    \href{https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/optimizing-multivariable-functions/a/reasoning-behind-the-second-partial-derivative-test}{khanacademy - Grant Sanderson - second partial derivative test}
+  }
+}
+
+
+
+We construct first- and second-order approximations to a differentiable
+function $f: \R^2 \rightarrow \R$. The approximation is made at some point
+$(x_0, y_0) = \vec x_0 \in \R^2$; we demand that the value of the approximation, and the
+first and second derivatives, match those of $f$ exactly at that point.
+
+\subsection*{Linear approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
+
+\begin{align*}
+L(x, y) &=
+~
+f(x_0, y_0) ~+
+(x - x_0)f_x(x_0,y_0) +
+(y - y_0)f_y(x_0,y_0)
+\\\\
+&= f(\vec x) + (\vec x - \vec x_0) \cdot \nabla_f(\vec x_0)
+\end{align*}
+
+Note that, at $(x_0, y_0)$, the first partial derivatives of $L$ are equal to
+those of $f$, as they must be. (In fact, we could say that the coefficients are
+determined by this requirement; see the quadratic case below. But the linear
+case is obvious without ``deriving'' the coefficients.)
+
+
+\subsection*{Quadratic approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
+
+First note that the ``quadratic form'' $ax^2 + 2bxy + cy^2$ can be written as
+\begin{align*}
+\x^\T A \x = \cvec{x}{y}^\T \mat{a}{b}
+                                {b}{c} \cvec{x}{y}.
+\end{align*}
+This is a scalar. In general, a quadratic form for symmetric matric $A$ is
+\begin{align*}
+\x^\T A \y = \sum_{jk}A_{jk}x_jy_k.
+\end{align*}
+
+The $j$-th component of the gradient of $q(\x) = \x^\T A \x$ is
+$\partiald{q}{x_j} = 2\sum_k A_{jk}x_k$, so
+\begin{align*}
+  \nabla ~\x^\T \vec A \x = 2\vec A \x.
+\end{align*}
+
+\begin{align*}
+Q(x, y) &=
+f(\vec x_0) + (x - x_0)f_x(\vec x_0) +
+(y - y_0)f_y(\vec x_0) ~+ \\
+&~~~~~~~\frac{1}{2} f_{xx}(\vec x_0)(x - x_0)^2 +
+f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
+\frac{1}{2} f_{yy}(\vec x_0)(y - y_0)^2 \\\\
+&= f(\vec x_0) +
+(\vec x - \vec x_0) \cdot \nabla f(\vec x_0) +
+\frac{1}{2}(\vec x - \vec x_0)^\T \nabla^2 f(\vec x_0)(\vec x - \vec x_0),
+\end{align*}
+where $\nabla^2 f(\vec x_0)$ is the Hessian matrix $\mat{f_{xx}}{f_{xy}}
+                                                        {f_{yx}}{f_{yy}}$ evaluated at $\vec x_0$.
+
+\subsection*{Second partial derivative test and positive definiteness of Hessian}
+
+The second partial derivative test for a function of two variables states that
+we examine the determinant of the Hessian evaluated at the critical point:
+$$
+D = \det \nabla^2 f(\vec x_0) = f_{xx}(\vec x_0)f_{yy}(\vec x_0) - f_{xy}(\vec x_0)^2.
+$$
+
+Notice that $D \geq 0$ implies that the sign of $f_{xx}$ and $f_{yy}$ agree
+(because we're subtracting the square of the mixed partial $f_{xy}$, i.e. a
+positive number).
+
+\begin{tabular}{ l l l l l }
+  $D$    & roots          & $f_{xx}$ &  & Hessian \\
+  \hline
+  $+$    & no real roots  & $+$     & minimum        & positive definite \\
+  $+$    & no real roots  & $-$     & maximum        & negative definite \\
+  $0$    & one real root  & $+$     & minimum        & positive semidefinite \\
+  $0$    & one real root  & $-$     & maximum        & negative semidefinite \\
+  $-$    & two real roots & n/a     & saddle point   & - \\
+\end{tabular}
+
+\subsubsection*{Explanation}
+At a critical point $\vec x_0$, the gradient is zero and the quadratic approximation is therefore
+$$
+Q(x, y) = f(\vec x_0) + \frac{1}{2}(\vec x - \vec x_0)^\T \nabla^2 f(\vec x_0)(\vec x - \vec x_0).
+$$
+So if this is a minimum (concave-up paraboloid) then this quadratic form is
+positive for all $\vec x \neq \vec x_0$ (and if it's a maximum then it's
+negative for all $\vec x \neq \vec x_0$).
+
+Basically the argument is that, instead of analyzing the function $f$ itself,
+we analyze its quadratic approximation at the critical point. So the question
+comes down to: how do we determine whether a quadratic form is always positive,
+always negative, or takes positive and negative values?
+
+To answer that, consider a generic quadratic form $ax^2 + 2bxy + cy^2$. Let $y$
+be constant at $y_0$; then we have a quadratic in $x$, the roots of which are
+\begin{align*}
+  x
+  = \frac{-2by_0 \pm \sqrt{4b^2y_0^2 - 4acy_0^2}}{2a}
+  = y_0\frac{-b \pm \sqrt{b^2 - ac}}{a}.
+\end{align*}
+So, whether this is a saddle point or a minimum/maximum depends on whether the
+quadratic form has real roots. If there are no real roots, then whether it's a
+minimum or a maximum depends on the sign of $f_{xx}$ (this sign will be the
+same as that of $f_{yy}$ in the no real roots case).
+
+
 \end{document}
