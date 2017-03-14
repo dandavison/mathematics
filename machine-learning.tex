@@ -230,7 +230,7 @@ So what rule function $r$ minimizes the functional $R$?
 
 is largest for class $C$. I.e. if
 \begin{align*}
-  \p(C|\x)L(C \to D) > \p(D|\x)L(D \to C).
+  \p(C|\x)L(D|C) > \p(D|\x)L(C|D).
 \end{align*}
 
 With 0-1 loss, this is: ``assign to class with highest posterior''.
@@ -294,12 +294,12 @@ Fit separate Gaussians to the training data in each class. The likelihood is
   \p(\x|\class C) = \frac{1}{(2\pi)^{d/2}\sigma_C^d}\exp\(-\frac{|\x - \mu_C|^2}{\sigma_C^2}\)
 \end{align*}
 
-and we compare the value of $\p(\x|\class C) \cdot \pi_C \cdot L(C \to D)$.
+and we compare the value of $\p(\x|\class C) \cdot \pi_C \cdot L(D|C)$.
 
 The decision boundaries are where the posterior $\times$ loss are equal. It's
 easier to compare the log of this:
 \begin{align*}
-  Q_C(\x) = - \frac{|\x - \mu_C|^2}{\sigma_C^2} - d\log \sigma_C + \log \pi_C + \log L(C \to D)
+  Q_C(\x) = - \frac{|\x - \mu_C|^2}{\sigma_C^2} - d\log \sigma_C + \log \pi_C + \log L(D|C)
 \end{align*}
 
 \begin{comment}
@@ -309,7 +309,7 @@ easier to compare the log of this:
     \frac{|\x - \mu_D|^2}{\sigma_D^2} - \frac{|\x - \mu_C|^2}{\sigma_C^2} +
     d\log \frac{\sigma_D}{\sigma_C} +
     \log \frac{\pi(C)}{\pi(D)} +
-    \log \frac{L(C \to D)}{L(D \to C)}
+    \log \frac{L(D|C)}{L(C|D)}
      &= 0 \\
   \end{align*}
 \end{comment}
@@ -327,10 +327,10 @@ so logistic in the quadratic expression $Q_C(\x) - Q_D(\x)$.
 Estimate separate class means but same variance for all classes. So now
 \begin{align*}
   Q_C(\x) - Q_D(\x)
-  &= \frac{|\x - \mu_D|^2 - |\x - \mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(C \to D)}{L(D \to C)} \\
-  &= \frac{(\x - \mu_D)\cdot(\x - \mu_D) - (\x - \mu_C)\cdot(\x - \mu_C)}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(C \to D)}{L(D \to C)} \\
-% &= \frac{ 2(\x\cdot\mu_C - \x\cdot\mu_D) + |\mu_D|^2 - |\mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(C \to D)}{L(D \to C)} \\
-  &= \x\cdot\frac{2(\mu_C - \mu_D)}{\sigma^2} + \(\frac{|\mu_D|^2 - |\mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(C \to D)}{L(D \to C)}\) \\
+  &= \frac{|\x - \mu_D|^2 - |\x - \mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)} \\
+  &= \frac{(\x - \mu_D)\cdot(\x - \mu_D) - (\x - \mu_C)\cdot(\x - \mu_C)}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)} \\
+% &= \frac{ 2(\x\cdot\mu_C - \x\cdot\mu_D) + |\mu_D|^2 - |\mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)} \\
+  &= \x\cdot\frac{2(\mu_C - \mu_D)}{\sigma^2} + \(\frac{|\mu_D|^2 - |\mu_C|^2}{\sigma^2} + \log \frac{\pi_C}{\pi_D} + \log \frac{L(D|C)}{L(C|D)}\) \\
   &= \x\cdot\w + \alpha
 \end{align*}
 This means that the decision boundary is linear, and (with 0-1 loss) the
