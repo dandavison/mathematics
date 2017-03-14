@@ -18,7 +18,7 @@
 \item $d = 2$ where not stated.
 \end{itemize}
 
-\section{Classification}
+\section*{Classification}
 
 A \textbf{decision boundary} is a curve separating the plane (sample space)
 into two regions.
@@ -67,7 +67,7 @@ is $\w \cdot \x_i + \alpha$.
 \item \textbf{LDA}:  Fit Gaussians to each class, same covariance across classes.
 \end{itemize}
 
-\subsection{Perceptron}
+\subsection*{Perceptron}
 
 Labels $y_i \in \{-1, 1\}$. Assume $\alpha=0$ for now (decision boundary through origin).
 
@@ -135,7 +135,7 @@ dimensionality.
          {\alpha} \cdot \cveccc{x_1}{x_2}{1} &= 0.
 \end{align*}
 
-\subsection{Optimization in weight space}
+\subsection*{Optimization in weight space}
 
 \begin{tabular}{l|l}
   $\x$-space    & $\w$-space \\
@@ -146,7 +146,7 @@ dimensionality.
 
 \includegraphics[width=200pt]{img/ml-perceptron-x-space-w-space.png}
 
-\subsection{Maximum margin classifiers}
+\subsection*{Maximum margin classifiers}
 \textbf{Margin} is distance from hyperplane to nearest sample point.
 
 Previously, in the perceptron, we used the constraint
@@ -164,28 +164,31 @@ non-zero margin.
     $y_i(\x_i \cdot \w + \alpha) \geq 1$ for all points $i$.
 \end{mdframed}
 
-\subsection{Soft margin SVMs}
+\subsection*{Soft margin SVMs
+\footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/04.pdf}}
+\footnote{ \url{https://www.youtube.com/watch?v=HOZ6ZpPA_Ks}}
+}
 
 \begin{itemize}
 \item Still quadratic program but allow points to violate margin via
-  \textbf{slack variables} $\xi_i$:
+  \textbf{slack variables} $\xi_i \geq 0$:
 \item Constraint is $y_i(\x_i \cdot \w + \alpha) \geq 1 - \xi_i$
 \item Find non-linear decision boundaries by introducing new features
   comprising non-linear functions of base features (``lift points into
   higher-dimensional space'').
 \end{itemize}
 
-\includegraphics[width=300pt]{img/ml-svm-parabolic-lifting.png}
+\includegraphics[width=300pt]{img/machine-learning-svm-1.png}
+% \includegraphics[width=300pt]{img/ml-svm-parabolic-lifting.png}
 
-\url{https://people.eecs.berkeley.edu/~jrs/189/lec/04.pdf}\\
-\url{https://www.youtube.com/watch?v=HOZ6ZpPA_Ks}
+
 
 % \section*{5 Machine Learning Abstractions and Numerical Optimization}
 % \url{https://people.eecs.berkeley.edu/~jrs/189/lec/05.pdf}\\
 % \url{https://www.youtube.com/watch?v=DeIAXPUfCbQ}
 
 \newpage
-\section{Decision Theory
+\section*{Decision Theory
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/06.pdf}}
   \footnote{\url{https://www.youtube.com/watch?v=aXkenQ01qYI}}
 }
@@ -242,7 +245,7 @@ case
 This provides a justification for minimizing the sum/mean of per-sample loss.
 
 \newpage
-\section{Statistical justifications}
+\section*{Statistical justifications}
 
 Regression: want to estimate a function $f$ such that
 $y_i = f(x_i) + \epsilon$, where $\epsilon$ has unknown distribution but mean
@@ -253,21 +256,33 @@ Likelihood justification for linear regression cost function.
 
 Logistic Regression from Maximum Likelihood
 
-\section{Bias-Variance Decomposition}
+\section*{Bias-Variance Decomposition}
+
+\includegraphics[width=300pt]{img/machine-learning-bias-variance-decomp-1.png}
 
 
 
 
 
 \newpage
-\section{Gaussian discriminant analysis
+\section*{Gaussian discriminant analysis
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/07.pdf}}
   \footnote{\url{https://www.youtube.com/watch?v=4CefboCXxZs}}
 }
 
+\textbf{Anisotropic}:
+\begin{align*}
+  \p(\x) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}} \exp\(-\frac{1}{2}(\x - \mu)^\T\Sigma^\1(\x - \mu)\)
+\end{align*}
+
+\textbf{Isotropic}:
+\begin{align*}
+  \p(\x) = \frac{1}{(2\pi)^{d/2}\sigma^d} \exp\(-\frac{|\x - \mu|^2}{2\sigma}\)
+\end{align*}
+
 \newcommand{\class}{\text{class~}}
 
-\subsection{Isotropic Gaussians}
+\subsection*{Isotropic Gaussians}
 
 Multivariate data $\x$ but features uncorrelated and all features same variance.L
 
@@ -306,7 +321,7 @@ The posterior probability of class $C$ at point $\x$ is\footnote{This is
 \end{align*}
 so logistic in the quadratic expression $Q_C(\x) - Q_D(\x)$.
 
-\subsubsection{LDA}
+\subsubsection*{LDA}
 Estimate separate class means but same variance for all classes. So now
 \begin{align*}
   Q_C(\x) - Q_D(\x)
@@ -320,8 +335,7 @@ This means that the decision boundary is linear, and (with 0-1 loss) the
 posterior is a logistic function which is constant parallel to the decision
 boundary.
 
-\newpage
-\section{Symmetric matrices, quadratic forms and eigenvectors
+\section*{Symmetric matrices, quadratic forms and eigenvectors
   \footnote{\url{https://people.eecs.berkeley.edu/~jrs/189/lec/08.pdf}}
 }
 
@@ -405,8 +419,8 @@ $\Lambda$ is said to be the diagonalized version of $\A$.
 \section*{9 The Anisotropic Multivariate Normal Distribution, QDA, and LDA}
 
 \newpage
-\section{Regression}
-\subsection{Linear Least Squares Regression}
+\section*{Regression}
+\subsection*{Linear Least Squares Regression}
 Use fictitious dimension trick, so that $\w$ includes the offset term $\alpha$
 and $\X$ is $(n \times (d + 1))$.
 \\
