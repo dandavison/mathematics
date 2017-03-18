@@ -369,18 +369,13 @@ like
 \end{align*}
 but that's not quite right. Anyway, from the lecture notes, setting the
 gradient equal to zero gives
-
-\color{red}{TODO: Need to change this to account for additive $\lambda\I$ term in Hessian.}
-
 \begin{align*}
   \w = \v -\(\hess J(\v)\)^{-1} \grad J(\v).
 \end{align*}
 For our problem, this is (writing $\w^{(l)}$ instead of $\v$ for the value of $\w$ at iteration $l$.)
 \begin{align*}
-  \w^{(l+1)} = \w^{(l)} -\(\X^\T\B\X\)^{-1} \(2\lambda\w^{(l)} - \X^\T\(\y - s(\X\w^{(l)})\)\),
+  \w^{(l+1)} = \w^{(l)} -\(2\lambda\I + \X^\T\S\X\)^{-1} \(2\lambda\w^{(l)} - \X^\T\(\y - s(\X\w^{(l)})\)\).
 \end{align*}
-where again $\B$ is an $(n \times n)$ diagonal matrix with
-$B_{ii} = s_i(\w^{(l)})\(1-s_i(\w^{(l)})\) + 2\lambda$
 \end{mdframed}
 
 
@@ -727,10 +722,14 @@ The gradient of the objective function $J(\w)$ is
 \end{align*}
 Setting this equal to zero gives
 \begin{align*}
-  4|\X\w^* - \y|^2\X^\T\X\w^* + 2\lambda \w^* = \X^\T\y
+  4|\X\w^* - \y|^2\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y \\
+  4\(\w^*^\T\X^\T\X\w^* - 2\y^\T\X\w^* + \y^\T\y\)\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y \\
+  4\w^*^\T\X^\T\X\w^* - 2\y^\T\X\w^* + \y^\T\y\)\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y,
 \end{align*}
+but I don't see how to simplify this to show that $w^*$ can be written as a
+linear combination $w^* = \sum_{i=1}^n a_i X_i$ for some scalars
+$a_1, \ldots, a_n$.
 \end{mdframed}
-
 
 \item Consider the regularized regression problem
 \[
@@ -774,9 +773,10 @@ $s(\X\w) = \cveccc{1/(1+e^{-\X_1\cdot\w})}{\vdots}{1/(1+e^{-\X_n\cdot\w})}$
 contains the predicted values (class probability) for each sample point, given
 parameters $\w$.
 
-Therefore the batch gradient descent update equation with learning rate $\epsilon$ is
+Therefore the batch gradient descent update equation with learning rate
+$\epsilon$ at iteration $k$ is
 \begin{align*}
-  \w^{(i+1)} = \w^{(i)} - \epsilon\(2\lambda\w^{(i)} - \X^\T\(\y - s(\X\w^{(i)})\)\).
+  \w^{(k+1)} = \w^{(k)} - \epsilon\(2\lambda\w^{(k)} - \X^\T\(\y - s(\X\w^{(k)})\)\).
 \end{align*}
 
 \end{mdframed}
@@ -787,11 +787,32 @@ Therefore the batch gradient descent update equation with learning rate $\epsilo
   number of iterations.  (As this is batch descent, one ``iteration'' should
   use every sample point once.)
 
+\begin{mdframed}
+  My implementation of logistic regression with regularization passes the
+  simple 1D test case, but has some numerical problems when used on the real
+  data, causing the cost function to not always decrease under gradient
+  ``descent''. Therefore I failed to make a Kaggle submission.
+\end{mdframed}
+
 \item Derive and write down the stochastic gradient descent update equation for
   logistic regression with $\ell_2$ regularization.  Choose a suitable learning
   rate.  Run your algorithm and plot the cost function as a function of the
   number of iterations---where now each ``iteration'' uses {\em just one}
   sample point.
+
+\begin{mdframed}
+The stochastic gradient descent update equation is:
+
+On each iteration:
+\begin{enumerate}
+\item Sample $i$ from a discrete Uniform distribution on
+$1, \ldots, n$.
+\item Update $w$ according to
+\begin{align*}
+  \w^{(k+1)} = \w^{(k)} - \epsilon\(2\lambda\w^{(k)} - \x_i^\T\(\y - s(\x_i^\T\w^{(k)})\)\).
+\end{align*}
+\end{enumerate}
+\end{mdframed}
 
   Comment on the differences between the convergence of batch and stochastic
   gradient descent.
@@ -828,6 +849,16 @@ Write a short explanation. This question is open ended, and there can be many co
 
 \end{problem}
 
+\begin{mdframed}
+  The way the new feature was defined means that both small and large values
+  are associated with being spam. I wonder if it would perform better if
+  instead he defined it as:
+  \begin{center}
+    Absolute value of (timestamp at noon) minus (timestamp of email)
+  \end{center}
+  although, perhaps the quadratic kernel would already be handling this.
+
+\end{mdframed}
 
 \newpage
 
