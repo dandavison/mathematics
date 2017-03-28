@@ -284,7 +284,7 @@ Logistic Regression from Maximum Likelihood
 
 \subsection*{Isotropic Gaussians}
 
-Multivariate data $\x$ but features uncorrelated and all features same variance.L
+Multivariate data $\x$ but features uncorrelated and all features same variance.
 
 \subsubsection*{QDA}
 Fit separate Gaussians to the training data in each class. The likelihood is
@@ -535,7 +535,7 @@ Note that $s'(z) = \frac{e^{-z}}{(1 + e^{-z})^2} = s(z)(1 - s(z))$.
 \subsubsection*{Likelihood}
 Let $s_i = s(\x_i^\T\w)$.
 \begin{align*}
-  \L(\w)       &= \prod_i s_i^{y_i} + \(1 - s_i\)^{(1 - y_i)} \\
+  \L(\w)       &= \prod_i s_i^{y_i} \(1 - s_i\)^{(1 - y_i)} \\
   \l(\w)       &= \sum_i y_i \log s_i + (1 - y_i) \log\(1 - s_i\) \\
 \grad \l(\w) &= \sum_i \frac{y_i}{s_i}(s_i)(1 - s_i)\x_i + \frac{1 - y_i}{1 - s_i}(-1)(s_i)(1 - s_i)\x_i \\
              &= \sum_i \x_i\(y_i(1 - s_i) - (1 - y_i)s_i\) \\
@@ -574,8 +574,9 @@ $\S_{ii} = \s(\x_i^\T\w)(1 - \s(\x_i^\T\w))$. Now by the chain rule,
             &= \X^\T\S\X.
 \end{align*}
 
-
-
 % \section*{11 More Regression; Newton’s Method; ROC Curves}
+
+
+\section*{Decision Trees}
 
 \end{document}
