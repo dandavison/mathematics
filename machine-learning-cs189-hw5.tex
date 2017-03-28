@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{soul,color}
+\usepackage{amsfonts, amsmath}
+\usepackage{bbm}
+\usepackage{enumitem}
+\usepackage[nobreak=true]{mdframed}
+
+\newcommand{\solution}{\textbf{Solution: }}
+\newcommand{\N}{\mathcal{N}}
+% \newcommand{\Pbf}{\textbf{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+
+\title{CS189, HW5: Decision Trees}
+\author{ Completed by: Your Name Here}
+% \date{January 2017}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent In this homework, you will implement decision trees and random forests for classification on 3 datasets: 1) the spam dataset, 2) a census income dataset to predict whether or not a person makes over 50k in income, and 3) a Titanic dataset to predict Titanic survivors. The data is available on Piazza. \\
+
+\noindent In lectures, you were given a basic introduction to decision trees and how such trees are trained. You were also introduced to random forests. Feel free to research different decision tree techniques online. You do not have to implement boosting, though it might help with Kaggle.
+
+\begin{enumerate}
+    \item Implement decision trees. See the Appendix for more information. You are not allowed to use any off-the-shelf decision tree implementation. Some of the datasets are not “cleaned,” i.e. there are missing values, so you can use external libraries for data preprocessing (in fact, we recommend it). Be aware that some of the later questions might require special functionality that you need to implement (e.g. max depth stopping criteria, visualizing the tree, tracing the path of a sample through the tree). You can use any programming language you wish as long as we can read and run your code with minimal effort. In this part of your writeup, \textbf{include your decision tree code.}
+    \begin{mdframed}\solution
+    % Solution here
+    \end{mdframed}
+
+    \item Implement random forests. You are not allowed to use any off-the-shelf random forest implementation. If you architected your code well, this part should be a (relatively) easy encapsulation of the previous part. In this part of your writeup, \textbf{include your random forest code.}
+    \begin{mdframed}\solution
+    % Solution here
+    \end{mdframed}
+
+    \item Describe implementation details. We aren’t looking for an essay; 1-2 sentences per question is enough.
+    \begin{enumerate}
+        \item How did you deal with categorical features and missing values?
+        \begin{mdframed} \solution
+        % Solution here
+        \end{mdframed}
+
+        \item What was your stopping criteria?
+        \begin{mdframed} \solution
+        % Solution here
+        \end{mdframed}
+
+        \item Did do anything special to speed up training?
+        \begin{mdframed} \solution
+        % Solution here
+        \end{mdframed}
+
+        \item How did you implement random forests?
+        \begin{mdframed} \solution
+        % Solution here
+        \end{mdframed}
+
+        \item Anything else cool you implemented?
+        \begin{mdframed} \solution
+        % Solution here
+        \end{mdframed}
+    \end{enumerate}
+
+    \item Performance evaluation. For each of the 3 datasets, train a decision tree and random forest and report your training and validation accuracies. You should be reporting 12 numbers (3 datasets $\times$ 2 classifiers $\times$ 2 data splits). In addition, for each of the 3 datasets, train your best model and submit your predictions to Kaggle. Include your Kaggle display name and your public scores on each dataset. You should be reporting 3 numbers.
+    \begin{mdframed}\solution
+    % Solution here
+    \end{mdframed}
+
+    \item Writeup requirements for the spam dataset:
+    \begin{enumerate}
+        \item If you use any other features or feature transformations, explain what you did in your report. You may choose to use something like bag-of-words. You can implement any custom feature extraction code in \texttt{featurize.py}, which will save your features to a \texttt{.mat} file.
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+
+        \item For your decision tree, and for a data point of your choosing from each class (spam and ham), state the splits (i.e. which feature and which value of that feature to split on) your decision tree made to classify it. Example of what this might look like:
+        \begin{enumerate}
+            \item ("viagra") $\geq 2$
+            \item ("thanks") $< 1$
+            \item ("nigeria") $\geq 3$
+            \item Therefore this email was spam.
+        \end{enumerate}
+        \begin{enumerate}
+            \item ("budget") $\geq 2$
+            \item ("spreadsheet") $\geq 1$
+            \item Therefore this email was ham.
+        \end{enumerate}
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+
+        \item For random forests, find and state the most common splits made at the root node of the trees. For example:
+        \begin{enumerate}
+            \item (”viagra”) $\geq$ 3 (20 trees)
+            \item (”thanks”) $<$ 4 (15 trees)
+            \item (”nigeria”) $\geq$ 1 (5 trees)
+        \end{enumerate}
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+    \end{enumerate}
+
+    \item Writeup requirements for the census dataset:
+    \begin{enumerate}
+        \item Do 4a, but for the census dataset
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+
+        \item Do 4b, but for the census dataset
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+
+        \item Do 4c, but for the census dataset
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+
+        \item Generate a random 80/20 training/validation split. Train decision trees with varying maximum depths (try going from depth = 1 to depth = 40) with all other hyperparameters fixed. Plot your validation accuracies. Which depth had the highest validation accuracy? Write 1-2 sentences explaining the behavior you observe in your plot. If you find that you need to plot more depths, feel free to do so.
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+
+    \end{enumerate}
+
+    \item Writeup requirements for the Titanic dataset:
+    \begin{enumerate}
+        \item Train a very shallow decision tree (for example, a depth 3 tree, although you may choose any depth that looks good) and visualize your tree. Include for each non-leaf node the feature name and the split rule, and include for leaf nodes the class your decision tree would assign.
+        \begin{mdframed}\solution
+        % Solution here
+        \end{mdframed}
+    \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
