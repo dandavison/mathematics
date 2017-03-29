@@ -6,6 +6,7 @@
 \usepackage{bbm}
 \usepackage{enumitem}
 \usepackage[nobreak=true]{mdframed}
+\usepackage{graphicx}
 
 \newcommand{\solution}{\textbf{Solution: }}
 \newcommand{\N}{\mathcal{N}}
@@ -16,7 +17,7 @@
 \newcommand{\Cov}{\text{Cov}}
 
 \title{CS189, HW5: Decision Trees}
-\author{ Completed by: Your Name Here}
+\author{Dan Davison\\\texttt{ddavison@berkeley.edu}}
 % \date{January 2017}
 \date{}
 
@@ -39,36 +40,49 @@
     (See attached code)
     \end{mdframed}
 
+\newpage
     \item Describe implementation details. We aren’t looking for an essay; 1-2 sentences per question is enough.
     \begin{enumerate}
         \item How did you deal with categorical features and missing values?
         \begin{mdframed}
           \begin{itemize}
-          \item \textbf{categorical features}
+          \item \textbf{categorical features}: I used
+            \texttt{DataFrame.get\_dummies()} from \texttt{pandas} to one-hot
+            encode categorical features.
+          \item \textbf{Missing values}: Quick rough treatment only so far: I
+            removed any row that had a missing value in a column, when that
+            column had fewer than 5 missing values. I dropped any remaining
+            columns that had missing data.
           \end{itemize}
         \end{mdframed}
 
-        \item What was your stopping criteria?
-        \begin{mdframed} \solution
-        % Solution here
+        \item What was your stopping criterion?
+        \begin{mdframed}
+          The code has a \texttt{max\_depth} parameter. Setting it to infinity
+          does not stop early.
         \end{mdframed}
 
         \item Did do anything special to speed up training?
-        \begin{mdframed} \solution
-        % Solution here
+        \begin{mdframed}
+          I used the splitting algorithm outlined in lectures.
+
+          I used \texttt{multiprocessing} to compute some accuracies in parallel.
         \end{mdframed}
 
         \item How did you implement random forests?
-        \begin{mdframed} \solution
-        % Solution here
+        \begin{mdframed}
+          I changed my \texttt{DecisionTree} class to accept three additional parameters:
+          \texttt{n\_trees}, \texttt{randomize\_features}, \texttt{randomize\_observations}.
         \end{mdframed}
 
         \item Anything else cool you implemented?
-        \begin{mdframed} \solution
-        % Solution here
+        \begin{mdframed}
+          The \texttt{model\_selection.get\_error\_rates()} function was useful
+          for running error rate experiments (varying models and data).
         \end{mdframed}
     \end{enumerate}
 
+\newpage
   \item Performance evaluation. For each of the 3 datasets, train a decision
     tree and random forest and report your training and validation
     accuracies. You should be reporting 12 numbers (3 datasets $\times$ 2
@@ -78,78 +92,209 @@
     dataset. You should be reporting 3 numbers.
     \begin{mdframed}
       \begin{tabular}{l|l|l|l|l|l|l}
-                              & spam     & spam (RF) & census & census (RF) & titanic & census (RF) \\
+                              & spam     & spam (RF) & census & census (RF) & titanic & titanic (RF) \\
         \hline
-        max depth             & $\infty$ & $\infty$  & 6      & 6           & 2       & 2    \\
-        num trees             & -        & 10        & -      & 10          & -       & 10   \\
-        training error rate   & .148     & .424      & .161   & .328        & .181    & .35  \\
-        validation error rate & .202     & .427      & .165   & .333        & .179    & .297 \\
+        max depth             & $\infty$ & $\infty$  & 6      & 6           & 2       & 2           \\
+        num trees             &          & 10        &        & 10          &         & 10          \\
+        training accuracy     & .852     & .528      & .840   & .553        & .813    & .449        \\
+        validation accuracy   & .795     & .530      & .834   & .554        & .797    & .476        \\
+        kaggle accuracy       & .809     &           & .837   &             & .826    &             \\
       \end{tabular}
+
+      kaggle name: \texttt{ddavison}
+
     \end{mdframed}
 
+\newpage
     \item Writeup requirements for the spam dataset:
     \begin{enumerate}
         \item If you use any other features or feature transformations, explain what you did in your report. You may choose to use something like bag-of-words. You can implement any custom feature extraction code in \texttt{featurize.py}, which will save your features to a \texttt{.mat} file.
-        \begin{mdframed}\solution
-        % Solution here
+        \begin{mdframed}
+          No extra features.
         \end{mdframed}
 
-        \item For your decision tree, and for a data point of your choosing from each class (spam and ham), state the splits (i.e. which feature and which value of that feature to split on) your decision tree made to classify it. Example of what this might look like:
-        \begin{enumerate}
-            \item ("viagra") $\geq 2$
-            \item ("thanks") $< 1$
-            \item ("nigeria") $\geq 3$
-            \item Therefore this email was spam.
-        \end{enumerate}
-        \begin{enumerate}
-            \item ("budget") $\geq 2$
-            \item ("spreadsheet") $\geq 1$
-            \item Therefore this email was ham.
-        \end{enumerate}
-        \begin{mdframed}\solution
-        % Solution here
+      \item For your decision tree, and for a data point of your choosing from
+        each class (spam and ham), state the splits (i.e. which feature and
+        which value of that feature to split on) your decision tree made to
+        classify it.
+
+
+        \begin{mdframed}
+        $y = 0$:
+        \begin{verbatim}
+        feature 28 <= 0.00
+        feature 29 <= 0.00
+        feature 7 <= 0.00
+        feature 19 <= 0.00
+        feature 25 <= 1.00
+        feature 13 <= 0.00
+        feature 3 <= 0.00
+        feature 0 <= 0.00
+        feature 26 <= 0.00
+        feature 31 <= 0.00
+        feature 6 <= 0.00
+        feature 16 <= 0.00
+        feature 20 <= 0.00
+        feature 30 <= 0.00
+        feature 1 <= 0.00
+        feature 5 <= 0.00
+        feature 14 <= 0.00
+        feature 21 <= 0.00
+        feature 17 <= 0.00
+        feature 2 <= 1.00
+        feature 4 <= 0.00
+        feature 18 <= 0.00
+        feature 24 <= 0.00
+        feature 10 <= 0.00
+        feature 27 <= 1.00
+        feature 15 <= 2.00
+        feature 27 <= 0.00
+        feature 12 <= 1.00
+        feature 12 <= 0.00
+        feature 8 <= 0.00
+        feature 15 <= 0.00
+        feature 2 <= 0.00
+        feature 23 <= 0.00
+        feature 25 <= 0.00
+        feature 22 <= 0.00
+        Classified as 0.0
+        \end{verbatim}
         \end{mdframed}
 
-        \item For random forests, find and state the most common splits made at the root node of the trees. For example:
-        \begin{enumerate}
-            \item (”viagra”) $\geq$ 3 (20 trees)
-            \item (”thanks”) $<$ 4 (15 trees)
-            \item (”nigeria”) $\geq$ 1 (5 trees)
-        \end{enumerate}
-        \begin{mdframed}\solution
-        % Solution here
+        \begin{mdframed}
+        $y=1$:
+        \begin{verbatim}
+        feature 28 <= 0.00
+        feature 29 <= 0.00
+        feature 7 <= 0.00
+        feature 19 <= 0.00
+        feature 25 <= 1.00
+        feature 13 <= 0.00
+        feature 3 <= 0.00
+        feature 0 <= 0.00
+        feature 26 <= 0.00
+        feature 31 <= 0.00
+        feature 6 <= 0.00
+        feature 16 <= 0.00
+        feature 20 <= 0.00
+        feature 30 <= 0.00
+        feature 1 <= 0.00
+        feature 5 <= 0.00
+        feature 14 <= 0.00
+        feature 21 <= 0.00
+        feature 17 <= 0.00
+        feature 2 <= 1.00
+        feature 4 <= 0.00
+        feature 18 <= 0.00
+        feature 24 <= 0.00
+        feature 10 <= 0.00
+        feature 27 <= 1.00
+        feature 15 <= 2.00
+        feature 27 > 0.00
+        feature 2 <= 0.00
+        feature 15 > 0.00
+        Classified as 0.0
+        \end{verbatim}
+        \end{mdframed}
+
+      \item For random forests, find and state the most common splits made at
+        the root node of the trees.
+        \begin{mdframed}
+        \begin{verbatim}
+        feature 1 > 0.00                                   (9 trees)
+        feature 4 > 0.00                                   (7 trees)
+        feature 3 > 0.00                                   (5 trees)
+        feature 2 > 0.00                                   (4 trees)
+        feature 0 > 0.00                                   (4 trees)
+        feature 1 > 3.00                                   (1 trees)
+        \end{verbatim}
         \end{mdframed}
     \end{enumerate}
 
+\newpage
     \item Writeup requirements for the census dataset:
     \begin{enumerate}
         \item Do 4a, but for the census dataset
-        \begin{mdframed}\solution
-        % Solution here
+        \begin{mdframed}
+          No extra features.
         \end{mdframed}
 
         \item Do 4b, but for the census dataset
-        \begin{mdframed}\solution
-        % Solution here
+        \begin{mdframed}
+
+$y=0$:
+\begin{verbatim}
+capital-gain <= 6849.00
+age > 27.00
+education-num <= 12.00
+White <= 0.00
+education-num <= 8.00
+hours-per-week > 42.00
+age > 57.00
+Classified as 0
+\end{verbatim}
+
+$y=1$:
+\begin{verbatim}
+capital-gain > 6849.00
+education-num <= 9.00
+capital-gain <= 20051.00
+age <= 61.00
+hours-per-week <= 35.00
+age > 34.00
+Classified as 1
+\end{verbatim}
+
         \end{mdframed}
 
         \item Do 4c, but for the census dataset
-        \begin{mdframed}\solution
-        % Solution here
+        \begin{mdframed}
+\begin{verbatim}
+age > 27.00                                        (6 trees)
+education-num > 6849.00                            (3 trees)
+fnlwgt > 0.00                                      (3 trees)
+age > 0.00                                         (3 trees)
+age > 12.00                                        (3 trees)
+education-num > 27.00                              (3 trees)
+age > 6849.00                                      (2 trees)
+fnlwgt > 12.00                                     (2 trees)
+fnlwgt > 41.00                                     (1 trees)
+fnlwgt > 6849.00                                   (1 trees)
+fnlwgt > 27.00                                     (1 trees)
+age > 1844.00                                      (1 trees)
+age > 41.00                                        (1 trees)
+\end{verbatim}
         \end{mdframed}
 
-        \item Generate a random 80/20 training/validation split. Train decision trees with varying maximum depths (try going from depth = 1 to depth = 40) with all other hyperparameters fixed. Plot your validation accuracies. Which depth had the highest validation accuracy? Write 1-2 sentences explaining the behavior you observe in your plot. If you find that you need to plot more depths, feel free to do so.
-        \begin{mdframed}\solution
-        % Solution here
+      \item Generate a random 80/20 training/validation split. Train decision
+        trees with varying maximum depths (try going from depth = 1 to depth =
+        40) with all other hyperparameters fixed. Plot your validation
+        accuracies. Which depth had the highest validation accuracy? Write 1-2
+        sentences explaining the behavior you observe in your plot. If you find
+        that you need to plot more depths, feel free to do so.
+        \begin{mdframed}
+          \includegraphics[width=400pt]{img/census_depth_experiment.png}
+
+          Trees with depth around 6 had the highest validation accuracy.\\
+
+          At depths less than 6, the variance of the classifier is low but the
+          bias of the classifier is too high (underfits the training data).\\
+
+          At depths greater than 6, the bias of the classifier is low but the
+          variance of the classifier is too high (overfits the training data).
         \end{mdframed}
 
     \end{enumerate}
 
+\newpage
     \item Writeup requirements for the Titanic dataset:
     \begin{enumerate}
-        \item Train a very shallow decision tree (for example, a depth 3 tree, although you may choose any depth that looks good) and visualize your tree. Include for each non-leaf node the feature name and the split rule, and include for leaf nodes the class your decision tree would assign.
-        \begin{mdframed}\solution
-        % Solution here
+    \item Train a very shallow decision tree (for example, a depth 3 tree,
+      although you may choose any depth that looks good) and visualize your
+      tree. Include for each non-leaf node the feature name and the split rule,
+      and include for leaf nodes the class your decision tree would assign.
+        \begin{mdframed}
+          \includegraphics[width=400pt]{img/titanic.png}
         \end{mdframed}
     \end{enumerate}
 \end{enumerate}
