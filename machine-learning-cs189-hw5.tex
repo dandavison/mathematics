@@ -30,20 +30,22 @@
 
 \begin{enumerate}
     \item Implement decision trees. See the Appendix for more information. You are not allowed to use any off-the-shelf decision tree implementation. Some of the datasets are not “cleaned,” i.e. there are missing values, so you can use external libraries for data preprocessing (in fact, we recommend it). Be aware that some of the later questions might require special functionality that you need to implement (e.g. max depth stopping criteria, visualizing the tree, tracing the path of a sample through the tree). You can use any programming language you wish as long as we can read and run your code with minimal effort. In this part of your writeup, \textbf{include your decision tree code.}
-    \begin{mdframed}\solution
-    % Solution here
+    \begin{mdframed}
+    (See attached code)
     \end{mdframed}
 
     \item Implement random forests. You are not allowed to use any off-the-shelf random forest implementation. If you architected your code well, this part should be a (relatively) easy encapsulation of the previous part. In this part of your writeup, \textbf{include your random forest code.}
-    \begin{mdframed}\solution
-    % Solution here
+    \begin{mdframed}
+    (See attached code)
     \end{mdframed}
 
     \item Describe implementation details. We aren’t looking for an essay; 1-2 sentences per question is enough.
     \begin{enumerate}
         \item How did you deal with categorical features and missing values?
-        \begin{mdframed} \solution
-        % Solution here
+        \begin{mdframed}
+          \begin{itemize}
+          \item \textbf{categorical features}
+          \end{itemize}
         \end{mdframed}
 
         \item What was your stopping criteria?
@@ -67,9 +69,22 @@
         \end{mdframed}
     \end{enumerate}
 
-    \item Performance evaluation. For each of the 3 datasets, train a decision tree and random forest and report your training and validation accuracies. You should be reporting 12 numbers (3 datasets $\times$ 2 classifiers $\times$ 2 data splits). In addition, for each of the 3 datasets, train your best model and submit your predictions to Kaggle. Include your Kaggle display name and your public scores on each dataset. You should be reporting 3 numbers.
-    \begin{mdframed}\solution
-    % Solution here
+  \item Performance evaluation. For each of the 3 datasets, train a decision
+    tree and random forest and report your training and validation
+    accuracies. You should be reporting 12 numbers (3 datasets $\times$ 2
+    classifiers $\times$ 2 data splits). In addition, for each of the 3
+    datasets, train your best model and submit your predictions to
+    Kaggle. Include your Kaggle display name and your public scores on each
+    dataset. You should be reporting 3 numbers.
+    \begin{mdframed}
+      \begin{tabular}{l|l|l|l|l|l|l}
+                              & spam     & spam (RF) & census & census (RF) & titanic & census (RF) \\
+        \hline
+        max depth             & $\infty$ & $\infty$  & 6      & 6           & 2       & 2    \\
+        num trees             & -        & 10        & -      & 10          & -       & 10   \\
+        training error rate   & .148     & .424      & .161   & .328        & .181    & .35  \\
+        validation error rate & .202     & .427      & .165   & .333        & .179    & .297 \\
+      \end{tabular}
     \end{mdframed}
 
     \item Writeup requirements for the spam dataset:
