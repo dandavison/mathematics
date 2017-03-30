@@ -18,6 +18,29 @@
 \item $d = 2$ where not stated.
 \end{itemize}
 
+\section*{Overview}
+
+Linear regression lays down a linear surface over $\R^d$. The parameters of
+that surface ($\vec w$) are scored according to the sum of squared distances of
+the $y$ values from the surface.
+
+Logistic regression lays down a logistic surface over $\R^d$. The parameters of
+that surface ($\vec w$) are scored according to the probability of drawing the
+$y$ values from the probability distribution given by the surface.
+
+In both cases, the score (cost) is a measure of distance of the $y$ values from
+the surface, i.e. a distance between $\vec y$ and the predictions
+$\hat{\vec y}$.
+
+The surface over $\R^d$ maps the $n$ sample points $\x_i \in \R^d$ to their
+predictions $y_i$ in $\R$ or $[0, 1]$.
+
+A neural net with one hidden layer of $K$ units first maps
+$\x_i \in \R^d \to \R^K$ using parameter matrix $\mat V$, and then maps
+$\R^K \to \R$ using parameters $\vec w$. Again, the cost associated with
+parameters $(\mat V, \vec w)$ is a distance between $\vec y$ and the
+$\hat{\vec y}$ values in the output layer.
+
 \section*{Classification}
 
 A \textbf{decision boundary} is a curve separating the plane (sample space)
