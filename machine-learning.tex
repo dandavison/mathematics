@@ -30,16 +30,127 @@ $y$ values from the probability distribution given by the surface.
 
 In both cases, the score (cost) is a measure of distance of the $y$ values from
 the surface, i.e. a distance between $\vec y$ and the predictions
-$\hat{\vec y}$.
+$\hat \y$.
 
 The surface over $\R^d$ maps the $n$ sample points $\x_i \in \R^d$ to their
 predictions $y_i$ in $\R$ or $[0, 1]$.
+
+\section*{Neural networks}
 
 A neural net with one hidden layer of $K$ units first maps
 $\x_i \in \R^d \to \R^K$ using parameter matrix $\mat V$, and then maps
 $\R^K \to \R$ using parameters $\vec w$. Again, the cost associated with
 parameters $(\mat V, \vec w)$ is a distance between $\vec y$ and the
-$\hat{\vec y}$ values in the output layer.
+$\hat \y$ values in the output layer.
+
+\subsection*{Backpropagation algorithm}
+
+\subsubsection*{No hidden layers: linear regression}
+
+\begin{align*}
+  \x \xrightarrow{\w} (\hat y = \x^\T\w) \rightarrow L
+\end{align*}
+
+We want to do gradient descent on $\w$.
+
+\begin{align*}
+  \partiald{L}{w_j}
+  =& \sum_i \partiald{L}{\hat{y}_i} \partiald{\hat{y}_i}{w_j} \\
+  =& \sum_i 2(\hat{y}_i - y_i) x_{ij} \\
+  =& \sum_i 2(\x_i^\T \w - y_i) x_{ij} \\
+\end{align*}
+
+Alternatively we can compute the gradient using the chain rule:
+\begin{align*}
+L(\w) = ||\X\w - \y||^2 = (\X\w - \y)^\T(\X\w - \y)
+\end{align*}
+so
+\begin{align*}
+  \grad_\w L = 2\X^\T\X\w - 2\X^\T \y
+\end{align*}
+the $j$-th component of which is
+\begin{align*}
+  \partiald{L}{w_j} = 2w_j 2X_{\cdot j} \cdot \y
+\end{align*}
+
+
+
+\begin{comment}
+\textbf{Duplicated chain rule linear regression gradient derivation}\\
+What is $\grad_\w L$? Chain rule: let $L = g \circ f$, i.e. $L(\w) = g(f(\w))$, where
+
+\begin{align*}
+  f:& \R^n \to \R^n~~~~~~~~~~~~~~~~~~~~~~~~g(\w) = \X\w - \y \\
+  g:& \R^n \to \R~~~~~~~~~~~~~~~~~~~~~~~~~f(\vec v) = \vec{v}^\T \vec v \\
+\end{align*}
+
+The chain rule says that $\grad (g \circ f) = (D f)^\T \grad g$, where $D f$ is
+the derivative of $f$, i.e. the Jacobian matrix of first partial derivatives, so
+
+\begin{align*}
+  \grad_\w L &= 2\X^\T(\X\w - \y) \\
+             &= 2\X^\T\X\w - 2\X^\T \y
+\end{align*}
+\end{comment}
+
+
+\subsubsection*{One hidden layer}
+Consider classification using a neural net with one hidden layer $\vec h$ of $H$ units.
+
+We consider one sample point $x$ at a time.
+
+There are $K$ possible categories, and the predictions $\hat y$ in the output
+layer can be interpreted as the probabilities each category given the input $x$.
+
+\textbf{Notation}:
+
+\begin{tabular}{l|l|l|l}
+  \textbf{Input layer}  & $\x$                             & $x_j$     & $d \times 1$ \\
+  \textbf{Weights}      & $\mat V$                         & $V_{hj}$  & $H \times d$ \\
+  \textbf{Hidden layer} & $\z = \tanh(\mat V \x)$          & $z_h$     & $H \times 1$ \\
+  \textbf{Weights}      & $\mat W$                         & $W_{kh}$  & $K \times H$ \\
+  \textbf{Ouput layer}  & $\vec \haty = \sigma(\mat W \z)$ & $\haty_k$ & $K \times 1$ \\
+  \textbf{Loss}         & $L(\vec \haty, \vec y)$          &           & scalar \\
+\end{tabular}
+
+where $\sigma$ is the logistic function, and $\tanh$ and $\sigma$ act elementwise.
+
+The loss (cost) function is the cross-entropy (log likelihood of training labels given
+predictions)
+
+\begin{align*}
+  L(\hat{\y}, \y) = \sum_k y_k \log(\hat y_k) + (1 - y_k) \log( 1 - \hat y_k).
+\end{align*}
+
+We want to do gradient descent on the full set $(\mat V, \mat W)$ of parameters.
+
+So the objective function is $L({\hat \y}(\z(\x)))$, or
+\begin{align*}
+  \x \xrightarrow{\mat V} \z \xrightarrow{\mat W} \hat \y \rightarrow L
+\end{align*}
+
+We want to compute the gradient vector, i.e. partials $\partiald{L}{V_{hj}}$ and
+$\partiald{L}{w_k}$.
+
+\begin{align*}
+  \partiald{L}{W_{kh}}
+  &= \partiald{}{W_{kh}} \sum_k y_k \log(\hat y_k) + (1 - y_k) \log( 1 - \hat y_k) \\
+  &= \partiald{}{W_{kh}} \sum_k y_k \log(\sigma(\mat W \z)) + (1 - y_k) \log( 1 - \sigma(\mat W \z)) \\
+  &= \sum_k
+     \frac{y_k    }{    \sigma(\mat W \z)}\partiald{\sigma(\mat W \z)}{W_{kh}} -
+     \frac{1 - y_k}{1 - \sigma(\mat W \z)}\partiald{\sigma(\mat W \z)}{W_{kh}} \\
+  &= \sum_k \partiald{\sigma(\mat W \z)}{W_{kh}} \Big(
+     \frac{y_k    }{    \sigma(\mat W \z)} -
+     \frac{1 - y_k}{1 - \sigma(\mat W \z)}   \Big) \\
+  &= \sum_k \sigma(\mat W \z)(1 - \sigma(\mat W \z)) \partiald{\mat W \z}{W_{kh}} \Big(
+     \frac{y_k    }{    \sigma(\mat W \z)} -
+     \frac{1 - y_k}{1 - \sigma(\mat W \z)}   \Big) \\
+\end{align*}
+
+First consider a parameter $w_k$ in the final map $\vec h \to \hat y$: it has some
+associated entry $\partiald{L}{w_k}$ in the gradient vector.
+
+
 
 \section*{Classification}
 
