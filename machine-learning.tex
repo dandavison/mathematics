@@ -129,26 +129,26 @@ So the objective function is $L({\hat \y}(\z(\x)))$, or
   \x \xrightarrow{\mat V} \z \xrightarrow{\mat W} \hat \y \rightarrow L
 \end{align*}
 
-We want to compute the gradient vector, i.e. partials $\partiald{L}{V_{hj}}$ and
-$\partiald{L}{w_k}$.
+We want to compute the gradient vector, i.e. partials $\partiald{L}{V_{hj}}$
+and $\partiald{L}{w_k}$.
+
+Recall that $\sigma' = \sigma (1 - \sigma)$, and note that
+$\haty_k = \sigma(\vec w_k^\T \z)$, so
+
+\begin{align*}
+  \partiald{\haty_k}{W_{kh}} &= \haty_k (1 - \haty_k) \partiald{\vec w_k^\T \z}{W_{kh}} = \haty_k (1 - \haty_k)z_h.
+\end{align*}
+
+The gradient with respect to $\mat W$ is given by
 
 \begin{align*}
   \partiald{L}{W_{kh}}
-  &= \partiald{}{W_{kh}} \sum_k y_k \log(\hat y_k) + (1 - y_k) \log( 1 - \hat y_k) \\
-  &= \partiald{}{W_{kh}} \sum_k y_k \log(\sigma(\mat W \z)) + (1 - y_k) \log( 1 - \sigma(\mat W \z)) \\
-  &= \sum_k
-     \frac{y_k    }{    \sigma(\mat W \z)}\partiald{\sigma(\mat W \z)}{W_{kh}} -
-     \frac{1 - y_k}{1 - \sigma(\mat W \z)}\partiald{\sigma(\mat W \z)}{W_{kh}} \\
-  &= \sum_k \partiald{\sigma(\mat W \z)}{W_{kh}} \Big(
-     \frac{y_k    }{    \sigma(\mat W \z)} -
-     \frac{1 - y_k}{1 - \sigma(\mat W \z)}   \Big) \\
-  &= \sum_k \sigma(\mat W \z)(1 - \sigma(\mat W \z)) \partiald{\mat W \z}{W_{kh}} \Big(
-     \frac{y_k    }{    \sigma(\mat W \z)} -
-     \frac{1 - y_k}{1 - \sigma(\mat W \z)}   \Big) \\
+  &= \partiald{}{W_{kh}} \sum_k y_k \log(\haty_k) + (1 - y_k) \log( 1 - \haty_k) \\
+  &= \sum_k y_k      \frac{ \haty_k (1 - \haty_k)z_h }{ \haty_k } -
+           (1 - y_k) \frac{ \haty_k (1 - \haty_k)z_h}{ 1 - \haty_k} \\
+  &= \sum_k y_k (1 - \haty_k)z_h - (1 - y_k) \haty_k z_h \\
+  &= z_h \sum_k y_k (1 - \haty_k) - (1 - y_k) \haty_k \\
 \end{align*}
-
-First consider a parameter $w_k$ in the final map $\vec h \to \hat y$: it has some
-associated entry $\partiald{L}{w_k}$ in the gradient vector.
 
 
 
