@@ -3,9 +3,6 @@
 \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
 \usepackage{notes}
 
-\usepackage{notes}
-\newcommand{\solution}{\textbf{Solution: }}
-\renewcommand{\P}{\Pr}
 
 \title{Machine Learning}
 
@@ -109,8 +106,8 @@ layer can be interpreted as the probabilities each category given the input $x$.
   \textbf{Weights}      & $\mat V$                         & $V_{hj}$  & $H \times d$ \\
   \textbf{Hidden layer} & $\z = \tanh(\mat V \x)$          & $z_h$     & $H \times 1$ \\
   \textbf{Weights}      & $\mat W$                         & $W_{kh}$  & $K \times H$ \\
-  \textbf{Ouput layer}  & $\vec \haty = \sigma(\mat W \z)$ & $\haty_k$ & $K \times 1$ \\
-  \textbf{Loss}         & $L(\vec \haty, \vec y)$          &           & scalar \\
+  \textbf{Ouput layer}  & $\vec \yhat = \sigma(\mat W \z)$ & $\yhat_k$ & $K \times 1$ \\
+  \textbf{Loss}         & $L(\vec \yhat, \vec y)$          &           & scalar \\
 \end{tabular}
 
 where $\sigma$ is the logistic function, and $\tanh$ and $\sigma$ act elementwise.
@@ -133,22 +130,54 @@ We want to compute the gradient vector, i.e. partials $\partiald{L}{V_{hj}}$
 and $\partiald{L}{w_k}$.
 
 Recall that $\sigma' = \sigma (1 - \sigma)$, and note that
-$\haty_k = \sigma(\vec w_k^\T \z)$, so
+$\yhat_k = \sigma(\vec w_k^\T \z)$, so
 
 \begin{align*}
-  \partiald{\haty_k}{W_{kh}} &= \haty_k (1 - \haty_k) \partiald{\vec w_k^\T \z}{W_{kh}} = \haty_k (1 - \haty_k)z_h.
+  \partiald{\yhat_k}{W_{kh}} &= \yhat_k (1 - \yhat_k) \partiald{\vec w_k^\T \z}{W_{kh}} = \yhat_k (1 - \yhat_k)z_h.
 \end{align*}
 
-The gradient with respect to $\mat W$ is given by
+The gradient with respect to $\mat W$ is
+
+\begin{align*}
+  \grad_{\w_k} L = \z(y_k - \yhat_k)
+\end{align*}
+
+(proof similar to that in Logistic Regression section), or non-vectorized version:
 
 \begin{align*}
   \partiald{L}{W_{kh}}
-  &= \partiald{}{W_{kh}} \sum_k y_k \log(\haty_k) + (1 - y_k) \log( 1 - \haty_k) \\
-  &= \sum_k y_k      \frac{ \haty_k (1 - \haty_k)z_h }{ \haty_k } -
-           (1 - y_k) \frac{ \haty_k (1 - \haty_k)z_h}{ 1 - \haty_k} \\
-  &= \sum_k y_k (1 - \haty_k)z_h - (1 - y_k) \haty_k z_h \\
-  &= z_h \sum_k y_k (1 - \haty_k) - (1 - y_k) \haty_k \\
+  &= \partiald{}{W_{kh}} \sum_{k'} y_{k'} \log(\yhat_{k'}) + (1 - y_{k'}) \log( 1 - \yhat_{k'}) \\
+  &=        y_k      \frac{ \yhat_k (1 - \yhat_k)z_h }{ \yhat_k } -
+           (1 - y_k) \frac{ \yhat_k (1 - \yhat_k)z_h}{ 1 - \yhat_k} \\
+  &= z_h \big(y_k (1 - \yhat_k) - (1 - y_k) \yhat_k \big) \\
+  &= z_h \big(y_k - \yhat_k\big)
 \end{align*}
+
+The gradient with respect to $\mat V$ is given by
+
+\begin{align*}
+  \grad_{\V_h} L = \sum_k \partiald{L}{\yhat_k} \grad_{\v_h} \yhat_k
+\end{align*}
+
+\includegraphics[width=500pt]{img/machine-learning-neural-net-backpropagation-1.png}
+
+
+\begin{align*}
+  \grad_{W_k} L &= \partiald{L}{\yhat_k} \grad_{W_k} \yhat_k \\
+  \partiald{L}{\yhat_k} &= \frac{y_k - \yhat_k}{\yhat_k (1 - \yhat_k)} \\
+  \grad_{W_k} \yhat_k &= z \yhat_k (1 - \yhat_k) \\
+\end{align*}
+
+\begin{align*}
+  \grad_z L &= \sum_k \partiald{L}{\yhat_k} \grad_z \yhat_k \\
+  \grad_z \yhat_k &= W_k \yhat_k (1 - \yhat_k) \\
+\end{align*}
+
+\begin{align*}
+  \grad_{V_h} L &= \partiald{L}{z_h} \grad_{V_h} z_h \\
+  \grad_{V_h} z_h &= x(1 - z_h^2)
+\end{align*}
+
 
 
 
