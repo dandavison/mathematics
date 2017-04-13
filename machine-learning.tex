@@ -161,6 +161,22 @@ The gradient with respect to $\mat V$ is given by
 
 \includegraphics[width=500pt]{img/machine-learning-neural-net-backpropagation-1.png}
 
+\subsection*{Trivial case}
+
+\newcommand{\matrixiijj}[4]{\begin{bmatrix}#1 & #3\\#2 & #4\end{bmatrix}}
+
+\subsubsection*{Forwards}
+
+\begin{enumerate}
+\item 1d input 0 with offset dimension: $x=\cvec{0}{1}$
+\item $K=2$. Label $y = 1$
+\item Initial $V = \matrixiijj{0}{0}{0}{0}$ (last row ignored)
+\item $Vx = \matrixiijj{0}{0}{0}{0} \cvec{0}{1} = \cvec{0}{0}$ (last element ignored)
+\item 1 hidden unit. $z \leftarrow \cvec{\tanh(0)}{1} = \cvec{0}{1}$
+\item Initial $W = \matrixiijj{0}{0}{0}{0}$
+\item $Wz = \matrixiijj{0}{0}{0}{0} \cvec{0}{1} = \cvec{0}{0}$
+\item $\yhat = \cvec{s(0)}{s(0)} = \cvec{0.5}{0.5}$
+\end{enumerate}
 
 \begin{align*}
   \grad_{W_k} L &= \partiald{L}{\yhat_k} \grad_{W_k} \yhat_k \\
