@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{notes}
+
+\begin{document}
+
+\section*{Objects}
+
+A function is a rule associating input values from one set with output values
+from another; a function is a set of (input, output) pairs in which each input
+value occurs at most once.
+
+A curve in $d$ dimensions is a set of ``connected'' $d$-dimensional points.
+
+Let $f$ be $\R \to \R$. The graph of $f$ is the set of points $(x,y)$
+satisfying $y = f(x)$. This defines a curve in 2D (which never ``turns back on
+itself''; the tangent line to the curve is never vertical.)
+
+\subsection*{Parametric form}
+
+Specifying a curve as the graph of a function (i.e. specifying one coordinate
+as a function of the others) is one way to specify a curve, but it is limited
+to functions, and even then it may not be convenient.
+
+An alternative is parametric form: suppose the x-coordinate is given by $f(t)$
+and the y-coordinate by $g(t)$. Then the curve is the set of points
+$\big(f(t), g(t)\big)$ for some range of the parameter $t$.
+
+\subsubsection*{Area under a curve}
+
+What is the area $A$ under the curve from $t=a$ to $t=b$? It's just
+$\int_\alpha^\beta y \dx$ as usual\footnote{$(\alpha, \beta) = (f(a), f(b))$},
+but how do we express this as an integral with respect to $t$?
+
+Well, $y = g(t)$; what about $\dx$? $x = f(t)$ (displacement), therefore
+$\dx = \dt f'(t)$ (velocity $\times$ time; local linear approximation). So, the
+area under the curve bounded by start and end $t$-values is
+$A = \int_a^b g(t) f'(t) \dt$.
+
+Thus, if the x-coordinate is increasing rapidly with $t$, then the area is
+larger.
+
+\subsubsection*{Length of a curve}
+
+The length of a curve is $L = \int \sqrt{\dx^2 + \dy^2}$, over some interval.
+
+This can be expressed as an integral with respect to $x$ (non-parametric form):
+$L = \int_\alpha^\beta \sqrt{1 + (\frac{\dy}{\dx})^2} \dx$.
+
+Or it can be expressed as an integral over an interval of $t$ values:
+$L = \int_a^b \sqrt{ (\frac{\dx}{\dt})^2 + (\frac{\dy}{\dt})^2} \dt$
+
+\subsubsection*{Area of a surface formed by revolution of a curve}
+
+Suppose a curve is revolved around the $x$-axis. To compute the area, we divide the surface into vertical strips: $A = \int_\alpha^\beta 2\pi y \sqrt{\dx^2 + \dy^2}$\footnote{I'm a bit confused. Why exactly do we construct these strips using the hypotenuse, whereas when approximating the area under a graph we construct rectangles $y\dx$?}.
+
+\end{document}
