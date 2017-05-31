@@ -3,6 +3,21 @@
 
 \begin{document}
 
+Calculus is a technique for computing quantities related to functions by
+treating the smooth curve or surface of function output values as being
+comprised of many local linear functions. Each linear approximation applies
+over a tiny (arbitrarily small) local interval; the linear approximation in the
+next interval will in general have a slightly different gradient.
+
+A central idea in calculus is the \textit{differential}: the change in output
+value caused by a small change in the input value, at some starting input
+value. This describes the way in which the function output changes in response
+to changes in input. Differentials are often used to compute a
+\textit{derivative}: the ratio of change in output value to the change in input
+value. Derivatives define a local \textit{linear approximation} to the
+function: over a small local region we consider the real function to be
+approximated by a line with gradient equal to the derivative at that point.
+
 \section*{Objects}
 
 A function is a rule associating input values from one set with output values
@@ -46,11 +61,26 @@ The length of a curve is $L = \int \sqrt{\dx^2 + \dy^2}$, over some interval.
 This can be expressed as an integral with respect to $x$ (non-parametric form):
 $L = \int_\alpha^\beta \sqrt{1 + (\frac{\dy}{\dx})^2} \dx$.
 
-Or it can be expressed as an integral over an interval of $t$ values:
+Or it can be expressed as an integral over an interval of $t$ values (parametric form):
 $L = \int_a^b \sqrt{ (\frac{\dx}{\dt})^2 + (\frac{\dy}{\dt})^2} \dt$
 
 \subsubsection*{Area of a surface formed by revolution of a curve}
 
 Suppose a curve is revolved around the $x$-axis. To compute the area, we divide the surface into vertical strips: $A = \int_\alpha^\beta 2\pi y \sqrt{\dx^2 + \dy^2}$\footnote{I'm a bit confused. Why exactly do we construct these strips using the hypotenuse, whereas when approximating the area under a graph we construct rectangles $y\dx$?}.
+
+
+\subsection*{Polar coordinates}
+
+
+\subsubsection*{Area of a sector bounded by a curve}
+
+What's the area of the sector bounded by the two rays and a curve, between $\theta=a$ and $\theta=b$?
+
+Note that the area of a sector of $\phi$ radians of a circle is $\pi r^2 \times \frac{\phi}{2\pi} = \frac{1}{2}\phi r^2$.
+
+We're considering a curve defined by $r = f(\theta)$. We divide it up into many
+sectors each with angle $\d\theta$. The area is
+$\int_a^b \frac{1}{2}f(\theta)^2\dtheta$.
+
 
 \end{document}
