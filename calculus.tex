@@ -1,22 +1,50 @@
 \documentclass[12pt]{article}
 \usepackage{notes}
+\usepackage{mdframed}
 
 \begin{document}
 
-Calculus is a technique for computing quantities related to functions by
+Differential calculus is a way to compute quantities related to functions by
 treating the smooth curve or surface of function output values as being
 comprised of many local linear functions. Each linear approximation applies
 over a tiny (arbitrarily small) local interval; the linear approximation in the
 next interval will in general have a slightly different gradient.
 
-A central idea in calculus is the \textit{differential}: the change in output
-value caused by a small change in the input value, at some starting input
-value. This describes the way in which the function output changes in response
-to changes in input. Differentials are often used to compute a
-\textit{derivative}: the ratio of change in output value to the change in input
-value. Derivatives define a local \textit{linear approximation} to the
-function: over a small local region we consider the real function to be
-approximated by a line with gradient equal to the derivative at that point.
+A central concept in differential calculus is the \textit{differential}: the
+change in output value caused by a small change in the input value, at some
+starting input value. This describes the way in which the function output
+changes in response to changes in input. Differentials are often used to
+compute a \textit{derivative}: the ratio of change in output value to the
+change in some input value. Derivatives define a local \textit{linear
+  approximation} to the function: over a small local region we consider the
+real function to be approximated by a line with gradient equal to the
+derivative at that point.
+
+The above is differential calculus. Integral calculus is concerned with
+``summing'' the output values of a function associated with some region in the
+input space. In the familiar case, the input space is a section of the real
+number line, and the output values are also real numbers. So ``summing'' the
+output values corresponds to calculating the area under a curve (i.e. under the
+graph of the function).
+
+Now allow the input space to be a higher dimensional Euclidean space, e.g. some
+region of the plane $\R^2$, but keep the output values as being simply real
+numbers. One question is what is the value of the integral along some
+1-dimensional \textit{path} through the input space. We imagine dividing the
+input space up into many small sections (vectors) $\Delta x_i$, as
+usual. However, when computing the contribution from one such infinitisimal
+section, it is not sufficient to say simply that this is $f(x_i)|\Delta
+x_i|$. The reason is that the appropriate contribution might depend not only on
+the position $x_i$ but on the direction of the infinitisimal displacement
+vector $\Delta x_i$. Therefore, we define $\omega_{x_i}$ to be the linear
+mapping that takes as input $\Delta x_i$ and outputs the ``height'' $f(x_i)$.
+
+What does this look like in the simple case where the answer is insensitive to
+the direction of the infinitisimal displacement vector $\Delta x_i$? I think
+$\omega$ would depend on $|\Delta x_i|$ only and not otherwise on $\Delta x_i$?
+
+Another question is what is the value of the integral over some higher
+dimensional region of input space (e.g. a subset of the plane).
 
 \section*{Objects}
 
@@ -24,7 +52,16 @@ A function is a rule associating input values from one set with output values
 from another; a function is a set of (input, output) pairs in which each input
 value occurs at most once.
 
-A curve in $d$ dimensions is a set of ``connected'' $d$-dimensional points.
+A curve in $d$ dimensions is a set of $d$-dimensional points that form a
+``connected'' 1-dimensional object. A curve can be specified as the set of
+points satisfying some condition (e.g. $x^2 + y^2 = R^2$) or by specifying that
+one dimension records the value of a function whose inputs are the other
+dimensions.
+
+A surface is a similar concept to a curve, but is 2-dimensional.
+
+The dimensionality of an object is equal to the dimensionality of the ambient
+space, minus the number of independent equations.
 
 Let $f$ be $\R \to \R$. The graph of $f$ is the set of points $(x,y)$
 satisfying $y = f(x)$. This defines a curve in 2D (which never ``turns back on
@@ -66,7 +103,11 @@ $L = \int_a^b \sqrt{ (\frac{\dx}{\dt})^2 + (\frac{\dy}{\dt})^2} \dt$
 
 \subsubsection*{Area of a surface formed by revolution of a curve}
 
-Suppose a curve is revolved around the $x$-axis. To compute the area, we divide the surface into vertical strips: $A = \int_\alpha^\beta 2\pi y \sqrt{\dx^2 + \dy^2}$\footnote{I'm a bit confused. Why exactly do we construct these strips using the hypotenuse, whereas when approximating the area under a graph we construct rectangles $y\dx$?}.
+Suppose a curve is revolved around the $x$-axis. To compute the area, we divide
+the surface into vertical strips\footnote{I'm a bit confused. Why exactly do we
+  construct these strips using the hypotenuse, whereas when approximating the
+  area under a graph we construct rectangles $y\dx$?}:
+$A = \int_\alpha^\beta 2\pi y \sqrt{\dx^2 + \dy^2}$.
 
 
 \subsection*{Polar coordinates}
@@ -79,8 +120,36 @@ What's the area of the sector bounded by the two rays and a curve, between $\the
 Note that the area of a sector of $\phi$ radians of a circle is $\pi r^2 \times \frac{\phi}{2\pi} = \frac{1}{2}\phi r^2$.
 
 We're considering a curve defined by $r = f(\theta)$. We divide it up into many
-sectors each with angle $\d\theta$. The area is
+sectors each with angle $\dtheta$. The area is
 $\int_a^b \frac{1}{2}f(\theta)^2\dtheta$.
+
+
+\newpage
+\subsection*{Math 53 Midterm I Februrary 2011 Frenkel}
+
+Consider the curve in $\R^2$ defined by the equation
+
+$$
+r = \cos(2\theta)
+$$.
+
+(a) Sketch this curve.
+\begin{mdframed}
+\end{mdframed}
+
+(b) Find the area of the region enclosed by one loop of this curve.
+
+\begin{mdframed}
+The area of a sector of $\dtheta$ radians is $\frac{\dtheta}{2\pi}\pi r^2 = \frac{\dtheta}{2}\cos^2(2\theta)$. Recall the identity $\cos^2 t = \frac{1}{2} + \frac{1}{2}\cos(2t)$. Therefore the area of one loop is
+
+\begin{align*}
+  \int_{-\pi/4}^{\pi/4} \frac{\dtheta}{2}\cos^2(2\theta)
+  =&\frac{1}{4}\int_{-\pi/4}^{\pi/4} (1 + \cos 4\theta) \dtheta \\
+  =& \Big|\frac{1}{4} + \frac{1}{16}\sin(4\theta)\Big|_{-\pi/4}^{\pi/4} \\
+  =& \frac{\pi}{8}.
+\end{align*}
+
+\end{mdframed}
 
 
 \end{document}
