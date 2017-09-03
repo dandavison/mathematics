@@ -123,9 +123,7 @@ We're considering a curve defined by $r = f(\theta)$. We divide it up into many
 sectors each with angle $\dtheta$. The area is
 $\int_a^b \frac{1}{2}f(\theta)^2\dtheta$.
 
-\section*{Lecture 8}
-
-\subsection*{Limits}
+\section*{Limits (L8)}
 
 $\frac{x^2}{x^2 + y^2}$ has no limit at $(0, 0)$.
 Easy to prove by exhibiting paths with different limits: e.g. along x-axis vs. y-axis.
@@ -142,7 +140,41 @@ Now
 
 so for any desired closeness to the limiting value 0, we can find an $r$ that will do it.
 
+\section*{Partial derivatives (L8)}
 
+Clairot's theorem: equality of mixed partials under certain continuity
+conditions.
+
+\begin{quote}
+``Same commutative structure as multiplication''; all that matters
+is how many times you have differentiated w.r.t. $x$, and to $y$;
+``differentiation is in a sense opposite to multiplication''.
+\end{quote}
+
+\section*{Differentials (L8)}
+
+\begin{quote}
+  ``The differential is the function whose graph the tangent line (plane) is,
+  but with the coordinate axes shifted to the point at which it is being
+  evaluated.''
+\end{quote}
+
+A differential, defined at a particular point in the input space, is the
+function describing the linear approximation at that point: it maps a
+displacement in the input space to a displacement in the output space.
+
+It's the function whose graph is the tangent space at that point, in a
+coordinate space shifted to have its origin at that point. So in 1D, if
+$z = f(x)$, then the differential at $x_0$ is
+
+\begin{align*}
+  \dz(x) = (x - x_0)f'(x_0).
+\end{align*}
+
+
+Not to be confused with $\Delta f$ --- the increment in the \textit{actual
+  function} value --- whereas the differential refers to the increment in the
+linear approximation.
 
 \newpage
 \subsection*{Math 53 Midterm I Februrary 2011 Frenkel}
@@ -224,7 +256,7 @@ point $(0, \pi, \pi^2)$.
 \end{mdframed}~\\
 
 5. Suppose we need to know an equation of the tangent plane to a surface $S$ at
-the point $P = (1, 3, 2)$. We don’t have an equation for $S$, but we know that the
+the point $P = (1, 3, 2)$. We don't have an equation for $S$, but we know that the
 curves
 
 \begin{align*}
@@ -234,8 +266,55 @@ r_2(s) &= \langle 3s - 2s^2, s + s^3 + s^4, s - s^2 + 2s^3 \rangle
 both lie in $S$. Find an equation of the tangent plane to $S$ at the point $P$.
 
 
-\begin{mdframed}
-1
+~\\\begin{mdframed}
+First note that $P$ lies in both curves, since $r_1(0) = r_2(1) = P$.
+
+Now we use the two curves to obtain two vectors that lie in the tangent
+plane. Their cross product is a vector normal to the tangent plane and provides
+the coefficients for the equation of the plane.
+
+The derivative of a curve $r(t)$ with respect to the parameter $t$ is a
+function giving a tangent vector. The derivatives are:
+
+\begin{align*}
+  \dot r_1(t) = \cveccc{5}{-2t}{1 - 3t^2}, ~~~
+  \dot r_2(s) = \cveccc{3 - 4s}{1 + 3s^2 + 4s^3}{1 - 2s + 6s^2}.
+\end{align*}
+
+Evaluated at $P = \cveccc{1}{3}{2}$ these are
+
+\begin{align*}
+  \dot r_1(t) = \cveccc{5}{0}{1}, ~~~
+  \dot r_2(s) = \cveccc{-1}{8}{5}.
+\end{align*}
+
+Their cross product is
+
+\begin{align*}
+  \cveccc{5}{0}{1} \times \cveccc{-1}{8}{5} =
+  \cveccc{(0 \times 5) - (1 \times 8)}
+         {(1 \times -1) - (5 \times 5)}
+         {(5 \times 8) - (0 \times -1)} =
+  \cveccc{-8}{-26}{40}
+\end{align*}
+
+
+Therefore points in the plane satisfy
+
+\begin{align*}
+  -8(x - x_0) - 26(y - y_0) + 40(z - z_0) = 0 \\
+  -8(x - 1)   - 26(y - 3)   + 40(z - 2) = 0.
+\end{align*}
+
+Would another way of doing this, without using the cross product, be to start
+by saying that the plane is the set of points $(x, y, z)$ that satisfy
+
+\begin{align*}
+  \cveccc{x}{y}{z} = \cveccc{1}{3}{2} + u\cveccc{5}{0}{1} + v \cveccc{-1}{8}{5},
+\end{align*}
+
+and then to somehow change basis/variables from $(u, v)$ to $(x, y)$?
+
 \end{mdframed}
 
 \end{document}
