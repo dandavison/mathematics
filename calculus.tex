@@ -46,38 +46,45 @@ $\omega$ would depend on $|\Delta x_i|$ only and not otherwise on $\Delta x_i$?
 Another question is what is the value of the integral over some higher
 dimensional region of input space (e.g. a subset of the plane).
 
-\section*{Objects}
+\section*{Curves and surfaces}
 
 A function is a rule associating input values from one set with output values
 from another; a function is a set of (input, output) pairs in which each input
 value occurs at most once.
 
 A curve in $d$ dimensions is a set of $d$-dimensional points that form a
-``connected'' 1-dimensional object. A curve can be specified as the set of
-points satisfying some condition (e.g. $x^2 + y^2 = R^2$) or by specifying that
-one dimension records the value of a function whose inputs are the other
-dimensions.
+``connected'' 1-dimensional object.
 
 A surface is a similar concept to a curve, but is 2-dimensional.
 
 The dimensionality of an object is equal to the dimensionality of the ambient
 space, minus the number of independent equations.
 
-Let $f$ be $\R \to \R$. The graph of $f$ is the set of points $(x,y)$
-satisfying $y = f(x)$. This defines a curve in 2D (which never ``turns back on
-itself''; the tangent line to the curve is never vertical.)
+\section*{Specifying a curve or surface}
 
-\subsection*{Parametric form}
+\textbf{Cartesian equation:} A curve can be specified as the set of points
+satisfying some condition (e.g. $x^2 + y^2 = R^2$) or by specifying that one
+dimension records the value of a function whose inputs are the other
+dimensions ($z = 3 + 1.5(x-1) - 2.7(y-2)$).
 
-Specifying a curve as the graph of a function (i.e. specifying one coordinate
-as a function of the others) is one way to specify a curve, but it is limited
-to functions, and even then it may not be convenient.
+\textbf{Graph:} Let $f$ be $\R \to \R$. The graph of $f$ is the set of points
+$(x,y)$ satisfying $y = f(x)$. This defines a curve in 2D (which never ``turns
+back on itself''; the tangent line to the curve is never vertical.)
 
-An alternative is parametric form: suppose the x-coordinate is given by $f(t)$
-and the y-coordinate by $g(t)$. Then the curve is the set of points
-$\big(f(t), g(t)\big)$ for some range of the parameter $t$.
+A curve in 3D would require two equations (to reduce the dimensionality of the
+ambient space to that of the object being specified; i.e. the intersection of
+two surfaces). In practice, curves in 3D are usually specified in parametric
+form.
 
-\subsubsection*{Area under a curve}
+\textbf{Parametric form:} For a curve in 2D, suppose the x-coordinate is given
+by $f(t)$ and the y-coordinate by $g(t)$. Then the curve is the set of points
+$\big(f(t), g(t)\big)$ for some range of the parameter $t$. E.g. a line
+represented in parametric form using vector notation:
+$\vec r = \vec r_0 + \vec v t$. (A surface would require 2 parameters, so they
+are often specified using Cartesian equations.)
+
+
+\section*{Area under a curve}
 
 What is the area $A$ under the curve from $t=a$ to $t=b$? It's just
 $\int_\alpha^\beta y \dx$ as usual\footnote{$(\alpha, \beta) = (f(a), f(b))$},
@@ -91,7 +98,7 @@ $A = \int_a^b g(t) f'(t) \dt$.
 Thus, if the x-coordinate is increasing rapidly with $t$, then the area is
 larger.
 
-\subsubsection*{Length of a curve}
+\section*{Length of a curve}
 
 The length of a curve is $L = \int \sqrt{\dx^2 + \dy^2}$, over some interval.
 
@@ -101,7 +108,7 @@ $L = \int_\alpha^\beta \sqrt{1 + (\frac{\dy}{\dx})^2} \dx$.
 Or it can be expressed as an integral over an interval of $t$ values (parametric form):
 $L = \int_a^b \sqrt{ (\frac{\dx}{\dt})^2 + (\frac{\dy}{\dt})^2} \dt$
 
-\subsubsection*{Area of a surface formed by revolution of a curve}
+\section*{Area of a surface formed by revolution of a curve}
 
 Suppose a curve is revolved around the $x$-axis. To compute the area, we divide
 the surface into vertical strips\footnote{I'm a bit confused. Why exactly do we
@@ -110,10 +117,11 @@ the surface into vertical strips\footnote{I'm a bit confused. Why exactly do we
 $A = \int_\alpha^\beta 2\pi y \sqrt{\dx^2 + \dy^2}$.
 
 
-\subsection*{Polar coordinates}
+\section*{Polar coordinates}
 
+E.g. the curve $r = \cos(\theta)$ is a circle of radius 1 centered at $(x, y) = (\frac{1}{2}, 0)$. (?)
 
-\subsubsection*{Area of a sector bounded by a curve}
+\subsection*{Area of a sector bounded by a curve}
 
 What's the area of the sector bounded by the two rays and a curve, between $\theta=a$ and $\theta=b$?
 
@@ -122,6 +130,42 @@ Note that the area of a sector of $\phi$ radians of a circle is $\pi r^2 \times 
 We're considering a curve defined by $r = f(\theta)$. We divide it up into many
 sectors each with angle $\dtheta$. The area is
 $\int_a^b \frac{1}{2}f(\theta)^2\dtheta$.
+
+\section*{Surfaces}
+
+\subsection*{Planes}
+Given a normal vector $\vec n = \cveccc{d}{e}{f}$, and a point in the plane
+$P = \cveccc{x_0}{y_0}{z_0}$, an equation specifying the plane is
+
+\begin{align*}
+  d(x - x_0) + e(y - y_0) + f(z - z_0) = 0 \\
+  dx + ey + fz = C.
+\end{align*}
+
+So the normal vector can be read off from the equation.
+
+\subsection*{Quadric surfaces}
+Ellipsoids, hyperboloids, paraboloids. Also cylinders (one variable not
+specified, e.g. $x^2 + y^2 = 1$), and cones (e.g. $z^2 = x^2 + y^2$).
+
+\section*{Tangent spaces}
+
+\subsection*{Tangent lines}
+E.g. a tangent vector is given by differentiating the parametric equation for a
+curve, giving an equation for the tangent line:
+
+\begin{align*}
+  \vec r = \vec r_0 + \cveccc{x'(t_0)}{y'(t_0)}{z'(t_0)}s = \vec r_0 + \vec v' s.
+\end{align*}
+
+\subsection*{Tangent planes}
+
+\begin{align*}
+  (z - z_o) = (x - x_0)f_x(x_0, y_0) + (y - y_0)f_y(x_0, y_0)
+\end{align*}
+
+And what's the normal vector to that tangent plane? It's $\cveccc{f_x}{f_y}{-1}$.
+
 
 \section*{Limits (L8)}
 
@@ -176,8 +220,9 @@ Not to be confused with $\Delta f$ --- the increment in the \textit{actual
   function} value --- whereas the differential refers to the increment in the
 linear approximation.
 
+
 \newpage
-\subsection*{Math 53 Midterm I Februrary 2011 Frenkel}
+\section*{Math 53 Midterm I Februrary 2011 Frenkel}
 
 1. Consider the curve in $\R^2$ defined by the equation
 
