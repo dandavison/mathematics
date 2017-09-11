@@ -2,6 +2,8 @@
 \usepackage{notes}
 \usepackage{mdframed}
 
+\newtheorem*{theorem}{Theorem}
+
 \begin{document}
 
 Differential calculus is a way to compute quantities related to functions by
@@ -144,6 +146,17 @@ $P = \cveccc{x_0}{y_0}{z_0}$, an equation specifying the plane is
 
 So the normal vector can be read off from the equation.
 
+Similarly the general equation of a line in 2D is
+
+\begin{align*}
+  d(x - x_0) + e(y - y_0) = 0,
+\end{align*}
+
+(TODO: explain this and other content towards end of L11)
+
+so $\cvecc{d}{e}$ is a normal vector to the line.
+
+
 \subsection*{Quadric surfaces}
 Ellipsoids, hyperboloids, paraboloids. Also cylinders (one variable not
 specified, e.g. $x^2 + y^2 = 1$), and cones (e.g. $z^2 = x^2 + y^2$).
@@ -164,7 +177,8 @@ curve, giving an equation for the tangent line:
   (z - z_o) = (x - x_0)f_x(x_0, y_0) + (y - y_0)f_y(x_0, y_0)
 \end{align*}
 
-And what's the normal vector to that tangent plane? It's $\cveccc{f_x}{f_y}{-1}$.
+And what's the normal vector to that tangent plane? It's
+$\cveccc{f_x(x_0, y_0)}{f_y(x_0, y_0)}{-1}$.
 
 
 \section*{Limits (L8)}
@@ -221,6 +235,34 @@ Not to be confused with $\Delta f$ --- the increment in the \textit{actual
 linear approximation.
 
 
+\section*{Directional derivatives (L11)}
+
+\theorem{
+  The directional derivative of $f(x, y)$ in the direction of a unit
+  vector $u = \cvecc{a}{b}$ is
+  \begin{align*}
+    D_u f = a\partiald{f}{x} + b\partiald{f}{y} = \nabla f \cdot \vec u.
+  \end{align*}
+}
+
+\proof{ Since $u$ is unit length, $\cvecc{ha}{hb}$ is a displacement of length
+  $h$ in the direction of $u$. Then\footnote{The proof in the lecture and in
+    Stewart is slightly different, involving defining these quantities as
+    functions of $h$ and considering the derivative w.r.t. $h$.}
+  \begin{align*}
+    D_u f(x_0, y_0)
+    :=& \lim_{h \to 0} \frac{f(x_0 + ha, y_0 + hb) - f(x_0, y_0)}{h} \\
+    =& \lim_{h \to 0} \frac{f(x_0, y_0) + ha\partiald{f}{x}(x_0, y_0) + hb\partiald{f}{y}(x_0, y_0) - f(x_0, y_0)}{h} \\
+    =& a\partiald{f}{x}(x_0, y_0) + b\partiald{f}{y}(x_0, y_0) \qed
+  \end{align*}
+
+}
+
+\section*{Gradient}
+$\nabla f(x_0, y_0)$ is normal to the level curve that cuts $f$ at $z = z_0$.
+
+Recall that $\cveccc{f_x(x_0,y_0)}{f_y(x_0,y_0)}{-1}$ is a normal vector to the
+tangent plane at $(x_0,y_0)$.
 \newpage
 \section*{Math 53 Midterm I Februrary 2011 Frenkel}
 
