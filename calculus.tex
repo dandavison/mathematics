@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{notes}
 \usepackage{mdframed}
+\newcommand{\dydx}{\frac{\dy}{\dx}}
 
 \newtheorem*{theorem}{Theorem}
 
@@ -263,6 +264,63 @@ $\nabla f(x_0, y_0)$ is normal to the level curve that cuts $f$ at $z = z_0$.
 
 Recall that $\cveccc{f_x(x_0,y_0)}{f_y(x_0,y_0)}{-1}$ is a normal vector to the
 tangent plane at $(x_0,y_0)$.
+
+\newpage
+\section*{Math 53 2017 Frenkel - Homework}
+
+\subsection*{10.2.30}
+Find equations of the tangents to the curve $x = 3t^2 + 1$, $y = 2t^3 + 1$,
+that pass through the point $(4, 3)$.
+
+~\\
+\begin{mdframed}
+  We seek points $(x_0, y_0)$ on the curve at which the tangent intersects
+  $(4, 3)$. Such points satisfy both the linear tangent equation, and the
+  Cartesian equation for the curve:
+  \begin{align*}
+    \begin{cases}
+      y_0 = 4 + (x_0 - 3)\frac{\dy}{\dx}(x_0)\\
+      y_0 = 2\(\frac{x_0-1}{3}\)^{3/2} + 1.
+    \end{cases}
+  \end{align*}
+
+  The derivative is $\dydx = (x - 1)^{1/2}$, so $x_0$ satisfies
+  \begin{align*}
+    \frac{2}{3^{3/2}}(x_0 - 1)^{3/2} - (x_0 - 3)(x_0 - 1)^{1/2} - 3 = 0.
+  \end{align*}
+
+  Letting $A = x_0 - 1$,
+  \begin{align*}
+    \frac{2}{3^{3/2}}A^{3/2} - (A - 2)A^{1/2} - 3 = 0.
+  \end{align*}
+  Letting $B = A^{1/2}$,
+  \begin{align*}
+    \frac{2}{3^{3/2}}B^3 - (B^2 - 2)B - 3 = 0 \\
+    \(\frac{2}{3^{3/2}} - 1\)B^3 + 2B - 3 = 0 \\
+  \end{align*}
+
+  But this doesn't seem to have a simple solution.
+
+\begin{verbatim}
+In [80]: sp.solve(Eq(c * B**3 + 2*B - 3, 0), B)
+Out[80]:
+[-(-1/2 - sqrt(3)*I/2)*(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3)/3 + 2/(c*(-1/2 - sqrt(3)*I/2)*(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3)),
+ -(-1/2 + sqrt(3)*I/2)*(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3)/3 + 2/(c*(-1/2 + sqrt(3)*I/2)*(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3)),
+ -(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3)/3 + 2/(c*(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3))]
+\end{verbatim}
+
+Alternatively, we have $\dy\dx = \frac{6t^2}{6t} = t$, and so
+
+\begin{align*}
+  3 - (2t^3 + 1) = t\(4 - (3t^2 + 1)\) \\
+  t^3(-2 + 3) + t(-4 + 1) + 3 - 1= 0 \\
+  t^3 -3t + 2 = 0 \\
+  (t - 1)^2(t + 2)
+\end{align*}
+
+
+\end{mdframed}
+
 \newpage
 \section*{Math 53 Midterm I Februrary 2011 Frenkel}
 
