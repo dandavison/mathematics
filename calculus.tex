@@ -336,10 +336,61 @@ Find the area enclosed by the curve $x = t^2 - 2t$, $y = \sqrt{t}$, and the y-ax
     &= \frac{1}{2} \left[ \frac{2}{5}t^{5/2} - \frac{4}{3} t^{3/2} \right]_{t=0}^{t=2} \\
     &= \frac{1}{2} \(\frac{2}{5} \sqrt{32} - \frac{4}{3} \cdot 2\sqrt{2}\) \\
     &= \(\frac{12}{15} \sqrt{2} - \frac{20}{15} \sqrt{2}\) \\
-    &= \frac{-8}{15} \sqrt{2}
+    &= \frac{-8}{15} \sqrt{2} ~~~~~~~~~ \text{(Sign is wrong)}
+  \end{align*}
+\end{mdframed}
+
+\subsection*{10.2.33}
+Find the area enclosed by the x-axis and the curve $x = t^3 + 1$, $y = 2t - t^2$
+
+\begin{mdframed}
+  The curve starts at the origin, goes up to the right, turns down to the
+  right, and intersects the x-axis again at $t = 2$.
+
+  The desired area can be expressed as a sum of vertical strips:
+
+  \begin{align*}
+    \int_{t=0}^{t=2} y\dx
+    &= \int_{t=0}^{t=2} 2t - t^2 \dx \\
+    &= \int_{t=0}^{t=2} (2t - t^2) 3t^2 \dt \\
+    &= \int_{t=0}^{t=2} 6t^3 - 3t^4 \dt \\
+    &= \left[ \frac{3}{2}t^4 - \frac{3}{5}t^5 \right]_{t=0}^{t=2} \\
+    &= \frac{240}{10} - \frac{192}{10} \\
+    &= \frac{48}{10} \\
+    &= 4 + \frac{4}{5} ~~~~~~~ \checkmark
+  \end{align*}
+\end{mdframed}
+
+\subsection*{10.2.34}
+Find the area of the region enclosed by the astroid $x = a\cos^3 \theta$,
+$y = a \sin^3\theta$.
+
+\begin{mdframed}
+  First note that $\dx = -3a\cos^2 \theta \sin\theta \dtheta$.
+
+  The area is
+
+  \begin{align*}
+    4\int_0^a y \dx
+    &= 4\int_0^a a \sin^3\theta \dx \\
+    &= 4\int_0^a -3a^2 \sin^4\theta \cos^2\theta \dtheta \\
   \end{align*}
 
-  (Sign is wrong)
+\begin{verbatim}
+In [119]: integrate(-12 * a**2 * sin(theta)**4 * cos(theta)**2, (theta, pi/2, 0))
+Out[119]: 3*pi*a**2/8
+\end{verbatim}
+
+$\checkmark$
+
+  Alternatively, $r = \sqrt{a^2\cos^6\theta + a^2\sin^6\theta}$, and the area
+  in the first quadrant is
+
+  \begin{align*}
+    \int_0^{\pi/2} \sqrt{a^2\cos^6\theta + a^2\sin^6\theta} \dtheta \\
+  \end{align*}
+
+(Sympy chokes on this integral.)
 
 \end{mdframed}
 
