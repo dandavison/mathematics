@@ -318,6 +318,28 @@ Alternatively, we have $\dy\dx = \frac{6t^2}{6t} = t$, and so
   (t - 1)^2(t + 2)
 \end{align*}
 
+\end{mdframed}
+
+\subsection*{10.2.32}
+Find the area enclosed by the curve $x = t^2 - 2t$, $y = \sqrt{t}$, and the y-axis.
+
+\begin{mdframed}
+  The curve starts at the origin, goes up and left to a turning point then goes
+  up and right to $(0, \sqrt{2})$ and continues up and right.
+
+  The desired area can be expressed as a sum of horizontal strips:
+
+  \begin{align*}
+    \int_{t=0}^{t=2} x \dy
+    &= \int_{t=0}^{t=2} \(t^2 - 2t\) \frac{1}{2}t^{-1/2} \dt \\
+    &= \frac{1}{2} \int_{t=0}^{t=2} \(t^{3/2} - 2t^{1/2}\) \dt \\
+    &= \frac{1}{2} \left[ \frac{2}{5}t^{5/2} - \frac{4}{3} t^{3/2} \right]_{t=0}^{t=2} \\
+    &= \frac{1}{2} \(\frac{2}{5} \sqrt{32} - \frac{4}{3} \cdot 2\sqrt{2}\) \\
+    &= \(\frac{12}{15} \sqrt{2} - \frac{20}{15} \sqrt{2}\) \\
+    &= \frac{-8}{15} \sqrt{2}
+  \end{align*}
+
+  (Sign is wrong)
 
 \end{mdframed}
 
