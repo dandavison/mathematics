@@ -459,6 +459,9 @@ Find the exact length of the curve
       &= \int_0^2 \sqrt{\sin^2 t + t^2 \cos^2 t + \cos^2 t + t^2 \sin^2 t} \dt \\
       &= \int_0^2 \sqrt{1 + t^2} \dt.
   \end{align*}
+
+  \textcolor{red}{Don't think these trig substitutions are the way to proceed with this integral.}
+
   Consider a right-angle triangle with adjacent $1$ and opposite $t$, so that
   $t = \tan \theta$ and
   \begin{align*}
@@ -482,7 +485,26 @@ Find the exact length of the curve
 \end{mdframed}
 
 
+\subsection*{10.2.61}
+Find the exact area of the surface obtained by rotating the given curve about
+the x-axis.
+\begin{align*}
+  x = t^3, ~~~ y = t^2, ~~~ 0 \leq t \leq 1
+\end{align*}
+\begin{mdframed}
+The Cartesian equation is $y = x^{2/3}$, so a concave-downward curve defined on $x \geq 0$.
 
+The area is a sum of infinitesemal strips each with area $2\pi y\dx$:
+\begin{align*}
+  A &= \int_{t=0}^{t=1} 2\pi y\dx \\
+    &= \int_{x=0}^{x=1} 2\pi x^{2/3}\dx = \left[ 2\pi \cdot \frac{3}{5} x^{5/3} \right]_0^1 = \frac{6\pi}{5}.\\
+\end{align*}
+Alternatively, as an integral over the t line,
+\begin{align*}
+  A &= \int_{t=0}^{t=1} 2\pi y\dx \\
+    &= \int_{t=0}^{t=1} 2\pi t^2 3t^2 \dt = \left[ \frac{6\pi}{5} t^{4} \right]_0^1 = \frac{6\pi}{5}.\\
+\end{align*}
+\end{mdframed}
 
 \newpage
 \section*{Math 53 Midterm I Februrary 2011 Frenkel}
