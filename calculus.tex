@@ -2,6 +2,8 @@
 \usepackage{notes}
 \usepackage{mdframed}
 \newcommand{\dydx}{\frac{\dy}{\dx}}
+\newcommand{\dxdt}{\frac{\dx}{\dt}}
+\newcommand{\dydt}{\frac{\dy}{\dt}}
 
 \newtheorem*{theorem}{Theorem}
 
@@ -423,6 +425,62 @@ Find the exact length of the curve
   \end{align*}
 
 \end{mdframed}
+
+\subsection*{10.2.42}
+Find the exact length of the curve
+\begin{align*}
+  x = e^t - t, ~~~ y = 4e^{t/2}, ~~~ 0 \leq t \leq 2.
+\end{align*}
+
+\begin{mdframed}
+  \begin{align*}
+    L &= \int_{t=0}^{t=2} \sqrt{\(\dxdt\)^2 + \(\dydt\)^2} \dt \\
+      &= \int_0^2 \sqrt{(e^t - 1)^2 + 4e^t} \dt
+      = \int_0^2 \sqrt{e^{2t} + 2 e^t + 1} \dt
+      = \int_0^2 e^t + 1 \dt \\
+      &= \left[e^t + t\right]_0^2
+      = e^2 + 1.  ~~~ \checkmark
+  \end{align*}
+\end{mdframed}
+
+\subsection*{10.2.43}
+
+
+\subsection*{10.2.44}
+Find the exact length of the curve
+\begin{align*}
+  x = t\sin t, ~~~ y = t \cos t, ~~~ 0 \leq t \leq 1.
+\end{align*}
+
+\begin{mdframed}
+  \begin{align*}
+    L &= \int_{t=0}^{t=2} \sqrt{\(\dxdt\)^2 + \(\dydt\)^2} \dt \\
+      &= \int_0^2 \sqrt{\(\sin t + t\cos t\)^2 + \(\cos t - t \sin t\)^2} \dt \\
+      &= \int_0^2 \sqrt{\sin^2 t + t^2 \cos^2 t + \cos^2 t + t^2 \sin^2 t} \dt \\
+      &= \int_0^2 \sqrt{1 + t^2} \dt.
+  \end{align*}
+  Consider a right-angle triangle with adjacent $1$ and opposite $t$, so that
+  $t = \tan \theta$ and
+  \begin{align*}
+    \sqrt{1 + t^2} = \frac{\text{(hypotenuse)}}{1} = \frac{1}{\cos \theta}.
+  \end{align*}
+  Note that $\dt = \frac{1}{\cos^2\theta} \d\theta$ (quotient rule), and so
+  \begin{align*}
+    L = \int_{t=0}^{t=2} \frac{1}{\cos^3 \theta} \d\theta
+  \end{align*}
+
+
+  Alternatively, consider a right-angle triangle with adjacent $t$ and opposite $1$, so that
+  $t = \cot \theta$ and
+  \begin{align*}
+    \sqrt{1 + t^2} = \frac{\text{(hypotenuse)}}{1} = \frac{1}{\sin \theta}.
+  \end{align*}
+  Note that $\dt = \frac{-1}{\sin^2\theta}$, and so
+  \begin{align*}
+    L = \int_{t=0}^{t=2} \frac{-1}{\sin^3 \theta} \d\theta
+  \end{align*}
+\end{mdframed}
+
 
 
 
