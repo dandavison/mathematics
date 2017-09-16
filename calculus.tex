@@ -394,6 +394,38 @@ $\checkmark$
 
 \end{mdframed}
 
+\subsection*{10.2.41}
+Find the exact length of the curve
+\begin{align*}
+  x = 1 + 3t^2, ~~~ y = 4 + 2t^3, ~~~ 0 \leq t \leq 1.
+\end{align*}
+
+\begin{mdframed}
+  The length is equal to the sum of hypotenuses, in the limit as the time
+  increments become small:
+  \begin{align*}
+    L &= \lim_{N \to \infty} \sum_{i=0}^N \sqrt{\Delta x(t_i, t_{i+1})^2 +
+                                             \Delta y(t_i, t_{i+1})^2}\\
+      &= \int_{t=0}^{t=1} \sqrt{\dx^2 + \dy^2}.
+  \end{align*}
+
+  Now, $\dx = 6t\dt$ and $\dy = 6t^2\dt$, so
+  \begin{align*}
+    L = \int_{t=0}^{t=1} 6t\dt \sqrt{1 + t^2}.
+  \end{align*}
+  The antiderivative is $2(1 + t^2) ^ {3/2}$, since
+  \begin{align*}
+    \ddt 2(1 + t^2) ^ {3/2} = 6t \sqrt{1 + t^2},
+  \end{align*}
+  and so
+  \begin{align*}
+    L = \left[2(1 + t^2) ^ {3/2}\right]_0^1 = 4\sqrt{2} - 2.          ~~~~~~~ \checkmark
+  \end{align*}
+
+\end{mdframed}
+
+
+
 \newpage
 \section*{Math 53 Midterm I Februrary 2011 Frenkel}
 
