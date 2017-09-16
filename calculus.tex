@@ -489,20 +489,20 @@ Find the exact length of the curve
 Find the exact area of the surface obtained by rotating the given curve about
 the x-axis.
 \begin{align*}
-  x = t^3, ~~~ y = t^2, ~~~ 0 \leq t \leq 1
+  x = t^3, ~~~ y = t^2, ~~~ 0 \leq t \leq 2
 \end{align*}
 \begin{mdframed}
 The Cartesian equation is $y = x^{2/3}$, so a concave-downward curve defined on $x \geq 0$.
 
 The area is a sum of infinitesemal strips each with area $2\pi y\dx$:
 \begin{align*}
-  A &= \int_{t=0}^{t=1} 2\pi y\dx \\
-    &= \int_{x=0}^{x=1} 2\pi x^{2/3}\dx = \left[ 2\pi \cdot \frac{3}{5} x^{5/3} \right]_0^1 = \frac{6\pi}{5}.\\
+  A &= \int_{t=0}^{t=2} 2\pi y\dx \\
+    &= \int_{x=0}^{x=8} 2\pi x^{2/3}\dx = \left[ 2\pi \cdot \frac{3}{5} x^{5/3} \right]_0^8 = \frac{6\pi \cdot 32}{5}.\\
 \end{align*}
 Alternatively, as an integral over the t line,
 \begin{align*}
-  A &= \int_{t=0}^{t=1} 2\pi y\dx \\
-    &= \int_{t=0}^{t=1} 2\pi t^2 3t^2 \dt = \left[ \frac{6\pi}{5} t^{4} \right]_0^1 = \frac{6\pi}{5}.\\
+  A &= \int_{t=0}^{t=2} 2\pi y\dx \\
+    &= \int_{t=0}^{t=2} 2\pi t^2 3t^2 \dt = \left[ \frac{6\pi}{5} t^{5} \right]_0^2 = \frac{6\pi \cdot 32}{5}. ~~~ \checkmark
 \end{align*}
 \end{mdframed}
 
