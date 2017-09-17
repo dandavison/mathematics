@@ -582,6 +582,30 @@ Alternatively, as an integral over the t line,
 \end{mdframed}
 
 \newpage
+\subsection*{10.2.63}
+Find the exact area of the surface obtained by rotating the given curve about
+the x-axis.
+\begin{align*}
+  x = a\cos^3\theta, ~~~ y = a\sin^3\theta, ~~~ 0 \leq \theta \leq \pi/2
+\end{align*}
+
+\includegraphics[width=500pt]{img.png}
+
+\begin{mdframed}
+  \begin{align*}
+    A &= \int_0^{\pi/2} 2\pi y \sqrt{\dx^2 + \dy^2}\\
+      &= \int_0^{\pi/2} 2\pi a\sin^3\theta \sqrt{(-3a\sin\theta\cos^2\theta)^2 +
+                                                (3a\cos\theta\sin^2\theta)^2} \dtheta\\
+      &= \int_0^{\pi/2} 2\pi a\sin^3\theta \sqrt{9a^2\sin^2\theta\cos^4\theta +
+                                                9a^2\cos^2\theta\sin^4\theta} \dtheta\\
+      &= \int_0^{\pi/2} 2\pi a\sin^3\theta 3a\sin\theta\cos\theta \sqrt{\cos^2 + \sin^2\theta} \dtheta\\
+      &= 6\pi a^2\int_0^{\pi/2} \sin^4\theta \cos\theta \dtheta\\
+      &= 6\pi a^2 \left[\frac{1}{5}\sin^5\theta \dtheta \right]_0^{\pi/2}\\
+      &= \frac{6}{5}\pi a^2  ~~~ \checkmark
+  \end{align*}
+\end{mdframed}
+
+\newpage
 \section*{Math 53 Midterm I Februrary 2011 Frenkel}
 
 1. Consider the curve in $\R^2$ defined by the equation
