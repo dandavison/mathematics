@@ -113,13 +113,24 @@ $L = \int_\alpha^\beta \sqrt{1 + (\frac{\dy}{\dx})^2} \dx$.
 Or it can be expressed as an integral over an interval of $t$ values (parametric form):
 $L = \int_a^b \sqrt{ (\frac{\dx}{\dt})^2 + (\frac{\dy}{\dt})^2} \dt$
 
-\section*{Area of a surface formed by revolution of a curve}
+\section*{Area and volume of revolution of a curve}
+Suppose a curve is revolved around the $x$-axis.
 
-Suppose a curve is revolved around the $x$-axis. To compute the area, we divide
-the surface into vertical strips\footnote{I'm a bit confused. Why exactly do we
+\textbf{Volume}\\
+This is computed as a sum of discs with width $\dx$:
+\begin{align*}
+  V = \int_{x=\alpha}^{x=\beta} \pi y^2 \dx.
+\end{align*}
+\textbf{Area}\\
+This is computed as a sum of strips (using the hypotenuse rather than the rectangular strips used for the volume\footnote{Why exactly do we
   construct these strips using the hypotenuse, whereas when approximating the
-  area under a graph we construct rectangles $y\dx$?}:
-$A = \int_\alpha^\beta 2\pi y \sqrt{\dx^2 + \dy^2}$.
+  area under a graph we construct rectangles $y\dx$? See \\
+  \url{https://math.stackexchange.com/questions/1691147/why-is-surface-area-not-simply-2-pi-int-ab-y-dx-instead-of-2-pi-in}\\
+  \url{https://math.stackexchange.com/questions/1074986/surface-area-of-a-solid-of-revolution-why-does-not-int-ba-2-pi-fx}\\
+  \url{https://math.stackexchange.com/questions/12906/is-value-of-pi-4}}):
+\begin{align*}
+  A = \int_{x=\alpha}^{x=\beta}  2\pi y \sqrt{\dx^2 + \dy^2}
+\end{align*}
 
 
 \section*{Polar coordinates}
@@ -502,7 +513,7 @@ The area is a sum of infinitesemal strips each with area $2\pi y\dx$:
 Alternatively, as an integral over the t line,
 \begin{align*}
   A &= \int_{t=0}^{t=2} 2\pi y\dx \\
-    &= \int_{t=0}^{t=2} 2\pi t^2 3t^2 \dt = \left[ \frac{6\pi}{5} t^{5} \right]_0^2 = \frac{6\pi \cdot 32}{5}. ~~~ \checkmark
+    &= \int_{t=0}^{t=2} 2\pi t^2 3t^2 \dt = \left[ \frac{6\pi}{5} t^{5} \right]_0^2 = \frac{6\pi \cdot 32}{5}.
 \end{align*}
 \end{mdframed}
 
