@@ -281,6 +281,56 @@ Recall that $\cveccc{f_x(x_0,y_0)}{f_y(x_0,y_0)}{-1}$ is a normal vector to the
 tangent plane at $(x_0,y_0)$.
 
 \newpage
+\section*{Math 1A Final (Adiredja)}
+
+\subsection*{1.c}
+
+\begin{mdframed}
+In order to find the maximum, we want the derivative of
+\begin{align*}
+  f(x) = \int_0^x t^2 - 1 \dt.
+\end{align*}
+We could integrate it explicitly:
+\begin{align*}
+  f(x) = \left[\frac{t^3}{3} - t \right]_0^x = \frac{x^3}{3} - x.
+\end{align*}
+So this is a function telling us the area under the curve for a given $x$. Now
+we want the maximum of this function, so we have to differentiate:
+\begin{align*}
+  \ddx \( \frac{x^3}{3} - x \) = x^2 - 1 = (x+1)(x-1)
+\end{align*}
+But, ``of course'', this was obvious from FTC.
+
+And that is zero at -1, and 1. But at 1, it's a minimum, not a maximum.
+\end{mdframed}
+
+\subsection*{2}
+This example illustrates aspects of the Fundamental Theorem of Calculus: that
+using antiderivatives to evaluate a definite integral gives the same result as
+computing the limit of the Riemann sums directly.
+
+\begin{mdframed}
+  \begin{align*}
+  \int_0^2 (2 - x^2) \dx
+    &= \lim_{N \to \infty}\sum_{i=1}^N \frac{2}{N}\(2 - \(\frac{2i}{N}\)^2\) \\
+    &= \lim_{N \to \infty}\sum_{i=1}^N \frac{4}{N} - \frac{8i^2}{N^3} \\
+    &= \lim_{N \to \infty}\(4  - \frac{8}{N^3}\sum_{i=1}^Ni^2 \)\\
+    &= \lim_{N \to \infty}\(4  - \frac{8}{N^3}\frac{N(N+1)(2N+1)}{6} \)\\
+    &= \lim_{N \to \infty}\(4  - 8\frac{(N+1)(2N+1)}{6N^2} \)\\
+    &= \lim_{N \to \infty}\(4  - 8\frac{2 + 3N^{-1} + N^{-2}}{6} \)\\
+    &= 4  - \frac{8}{3} = \frac{4}{3}\\
+  \end{align*}
+  Alternatively,
+  \begin{align*}
+  \int_0^2 (2 - x^2) \dx
+    &= \left[2x - \frac{x^3}{3}\right]_0^2 \\
+    &= 4 - \frac{8}{3} = \frac{4}{3} \qed
+  \end{align*}
+
+\end{mdframed}
+
+
+
 \section*{Math 53 2017 Frenkel - Homework}
 
 \subsection*{10.2.30}
