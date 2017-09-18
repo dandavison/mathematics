@@ -14,10 +14,8 @@
 \renewcommand{\N}{\mathcal{N}}
 \newcommand{\Pbf}{\textbf{P}}
 \renewcommand{\R}{\mathbb{R}}
-\newcommand{\E}{\mathbb{E}}
 \newcommand{\Var}{\text{Var}}
 \newcommand{\Cov}{\text{Cov}}
-\DeclareMathOperator{\p}{\text{P}}
 \let\L\relax
 \DeclareMathOperator{\L}{\mathcal{L}}
 \let\l\relax
@@ -25,9 +23,6 @@
 \renewcommand{\hat}{\widehat}
 
 \title{CS189, HW3: Gaussians}
-\author{ddavison@berkeley.edu}
-% \date{January 2017}
-\date{}
 
 \begin{document}
 
@@ -237,7 +232,7 @@ Consider two one-dimensional random variables $X_1 \sim \N(3, 9)$ and $X_2 \sim 
 \begin{enumerate}[label=(\alph*)]
   \begin{mdframed}
     \begin{minted}{python}
-      from numpy.random import normalxxx
+      from numpy.random import normal
 
       X1 = normal(3, 3, 100)
       X2 = X1/2 + normal(4, 2, 100)
@@ -609,7 +604,7 @@ The training and test data can be found on Piazza in the post corresponding to t
           data, with contrast normalization.
           \\\\
           \begin{tabular}{l|l}
-            #{training points}&Error rate\\
+            \#{training points}&Error rate\\
             \hline
             100 & 0.51\\
             200 & 0.91\\
