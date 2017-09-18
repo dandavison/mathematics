@@ -1,0 +1,171 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,amsfonts,amsmath,graphicx,verbatim,parskip,color,mdframed}
+\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
+\usepackage{minted}
+\usepackage{notes}
+
+\title{cs189 Homework 6\\
+       \small{\texttt{ddavison@berkeley.edu}}}
+\date{}
+
+\begin{document}
+\maketitle
+
+
+\subsection*{4.1 Derivations}
+
+\begin{mdframed}
+\textbf{Model specification}:
+
+$K$ possible output categories; one hidden layer of $H$ units; $\tanh$
+activation in the hidden layer; logistic activation in the output
+layer. Notation:
+
+\begin{tabular}{l|l|l|l}
+                        &                                  & indices   & dimensions \\
+  \hline
+  \textbf{Input layer}  & $\x$                             & $x_j$     & $d \times 1$ \\
+  \textbf{Weights}      & $\V$                             & $V_{hj}$  & $H \times d$ \\
+  \textbf{Hidden layer} & $\z = \tanh(\mat V \x)$          & $z_h$     & $H \times 1$ \\
+  \textbf{Weights}      & $\W$                             & $W_{kh}$  & $K \times H$ \\
+  \textbf{Ouput layer}  & $\vec \yhat = \sigma(\W \z)$     & $\yhat_k$ & $K \times 1$ \\
+  \textbf{Loss}         & $L(\vec \yhat, \vec y)$          &           & scalar \\
+\end{tabular}
+
+where $\sigma$ is the logistic function $\sigma(x) = (1-e^{-x})^{-1}$, and
+$\tanh$ and $\sigma$ act elementwise.
+
+The loss (cost) function is the cross-entropy (log likelihood of training labels given
+predictions)
+
+\begin{align*}
+  -L(\yhat, \y) = \sum_k y_k \log(\yhat_k) + (1 - y_k) \log( 1 - \yhat_k).
+\end{align*}
+
+\subsubsection*{Gradient descent algorithm}
+
+We want to do gradient descent on the full set $(\mat V, \mat W)$ of
+parameters. This involves computing gradients of the loss function $\grad_V L$
+and $\grad_W L$. We derive the gradients with respect to one row of these
+matrices at a time, and give code fragments showing how to compute the matrix
+of derivatives efficiently.
+
+Recall that $\sigma' = \sigma (1 - \sigma)$, and $\tanh' = 1 - \tanh^2$\footnote{
+The definition of $\tanh$ is $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$, so
+the derivative is
+
+\begin{align*}
+  \frac{d}{dx} \tanh(x)
+  = \frac{(e^x + e^{-x})^2 - (e^x - e^{-x})^2}{(e^x + e^{-x})^2}
+  = 1 - \frac{(e^x - e^{-x})^2}{(e^x + e^{-x})^2}
+  = 1 - \tanh^2(x)
+  = \sech^2(x).
+\end{align*}
+}
+
+
+\subsubsection*{Gradient with respect to weight matrix $\W$}
+
+$\W_k$ is one row of $\W$, of length $H+ 1$. We have
+
+\begin{align*}
+  \grad_{\W_k} L = \partiald{L}{\yhat_k}\grad_{\W_k} \yhat_k.
+\end{align*}
+
+Now, $\yhat_k = \sigma(\W_k\z)$, so
+\begin{align*}
+  \grad_{\W_k} \yhat_k = \z\yhat_k(1 - \yhat_k).
+\end{align*}
+This expression is still correct if the offset is implemented as an additional
+``dimension'', in which case the last element of $\W_k$ is the offset and the
+last element of $\z$ is 1.
+
+The derivative of the loss with respect to $\yhat_k$ is
+\begin{align*}
+  \partiald{L}{\yhat_k} =
+  -\frac{y_k}{\yhat_k} + \frac{1 - y_k}{1 - \yhat_k} =
+  \frac{\yhat_k - y_k}{\yhat_k(1 - \yhat_k)}.
+\end{align*}
+Multiplying these quantities gives
+\begin{align*}
+  \grad_{\W_k} L = \z(\yhat_k - y_k).
+\end{align*}
+
+In code we can compute the full matrix of derivatives $\grad_{\W}$ using
+vector/matrix primitives as
+\begin{align*}
+  \diag(\vec{\yhat} - \y) ~ \mat Z,
+\end{align*}
+where the rows of $\mat Z$ are each equal to $\z$:
+
+\begin{minted}{python3}
+  grad__L__z = (W.T * (yhat - y)).sum(axis=1)
+  zz = z.reshape((1, H + 1)).repeat(K, 0)
+  grad__L__W = diag(yhat - y) @ zz
+\end{minted}
+
+
+\subsubsection*{Gradient with respect to weight matrix $\V$}
+
+$\V_h$ is one row of $\V$, of length $d + 1$. We have
+
+\begin{align*}
+  \grad_{\V_h} L = \partiald{L}{\z_h}\grad_{\V_h} \z_h.
+\end{align*}
+
+Now,
+$\partiald{L}{z_h} = \sum_k \partiald{L}{\yhat_k} \partiald{\yhat_k}{z_h}$.
+We've already found $\partiald{L}{\yhat_k}$ above, and
+$\partiald{\yhat_k}{z_h} = W_{kh}\yhat_k(1 - \yhat_k)$, giving
+\begin{align*}
+  \partiald{L}{z_h} = \sum_k W_{kh} (\yhat_k - y_k).
+\end{align*}
+
+$\z_h = \tanh(\V_h \x)$, so $\grad_{\V_h} \z_h = \x(1 - z_h^2)$, and
+multiplying the two quantities gives
+
+\begin{align*}
+  \grad_{\V_h} L =  \x(1 - z_h^2) \sum_k W_{kh} (\yhat_k - y_k).
+\end{align*}
+
+
+Again, in code we can compute the full matrix of derivatives $\grad_{\V} L$
+using vector/matrix primitives:
+
+\begin{minted}{python3}
+  grad__L__z = (W.T * (yhat - y)).sum(axis=1)
+  xx = x.reshape((1, d + 1)).repeat(H + 1, 0)
+  grad__L__V = diag((1 - z ** 2) * grad__L__z) @ xx
+\end{minted}
+
+\end{mdframed}
+~\\~\\
+\begin{mdframed}
+  kaggle: \texttt{ddavison} 0.88577
+\end{mdframed}
+
+\newpage
+No submission for this question (I'm auditing the class, and just had time for
+the derivations and implementation, but do appreciate the grading on my
+derivations!)
+\begin{mdframed}
+  kaggle: \texttt{ddavison} 0.88577
+\end{mdframed}
+
+\newpage
+No submission for this question (I'm auditing the class, and just had time for
+the derivations and implementation, but do appreciate the grading on my
+derivations!)
+\begin{mdframed}
+  kaggle: \texttt{ddavison} 0.88577
+\end{mdframed}
+
+\newpage
+No submission for this question (I'm auditing the class, and just had time for
+the derivations and implementation, but do appreciate the grading on my
+derivations!)
+\begin{mdframed}
+  kaggle: \texttt{ddavison} 0.88577
+\end{mdframed}
+
+\end{document}
