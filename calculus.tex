@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{notes}
-\usepackage{mdframed}
+\usepackage{mdframed,caption}
 \renewcommand{\ddx}{\frac{\d}{\dx}}
 \newcommand{\dydx}{\frac{\dy}{\dx}}
 \newcommand{\dxdt}{\frac{\dx}{\dt}}
@@ -56,6 +56,67 @@ $\omega$ would depend on $|\Delta x_i|$ only and not otherwise on $\Delta x_i$?
 Another question is what is the value of the integral over some higher
 dimensional region of input space (e.g. a subset of the plane).
 
+\newpage
+\section{The Fundamental Theorem of (Integral) Calculus}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=500pt]{img/newton-october-1666-tract-ftc.png}
+\captionsetup{labelformat=empty,justification=centering}
+\caption[xxx]{Newton's October 1666 Tract on Fluxions.\\
+  \emph{``...the motion by which y increaseth will bee $bc = q$.''}}
+\end{figure}
+\footnotetext{\url{https://cudl.lib.cam.ac.uk/view/MS-ADD-03958/109}}
+
+Let's fix a physical example for discussing FTC: a moving object. The key
+quantity here is the distance from the starting point.
+
+Next, before writing the equations that state the FTC, let's be clear about the
+objects that are going to be involved in those equations. The most important
+object is a function that gives the distance from the starting point as a
+function of time.
+
+More generally, this is an ``accumulation function'', or ``area-so-far
+function''.
+
+Now, let's introduce some notation. The notation $\int_3^4 f(t) \dt$ is
+\textit{defined} to mean the area under the curve $f$, between $3$ and
+$4$. It's really important to be clear here: the definition of
+$\int_3^4 t^2 \dt$ is simply that it is the area under the $t^2$ curve between
+those two points. (In particular, note that the definition does \textit{not}
+involve $\frac{1}{3}t^3$).
+
+Similarly, $\int_0^4 f(t) \dt$ is the area under the curve between 0 and 4. The
+answer is a number. The answer doesn't involve $t$: $t$ is just a variable used
+internally in that expression.
+
+Now comes a slightly less obvious point: if the upper limit is not a fixed
+number, but a variable, as in $\int_0^{x} f(t) \dt$, then that entire
+expression represents a function of $x$: it takes in an $x$ value and outputs
+the area under the curve, between 0 and $x$. We can give the new function a
+name, $g$, and write the definition of $g$ as
+\begin{align*}
+  g(x) = \int_0^{x} f(t) \dt.
+\end{align*}
+
+\includegraphics[width=200pt]{img/stewart-ftc-1.png}
+
+Functions like $g$ are ``accumulation functions'', or ``area-so-far
+functions'', because they tell you the area up to $x$, i.e. the area to the
+left of $x$.
+
+The FTC is usually split into two parts. The first part states\\
+\begin{mdframed}
+  At any point $x$, the rate of change of the area-so-far function at that
+  point is the same as the height of the curve at that point.
+\end{mdframed}
+
+This is what Newton was saying when he wrote ``...the motion by which y
+increaseth will bee $q$.'': in his diagram, $y$ is the area, and $q$ is the
+height of the curve\footnote{He actually wrote ``$bc=q$''; $bc$ is a line in
+  his diagram with length $q$.}.
+
+\newpage
 \section{Curves and surfaces}
 
 A function is a rule associating input values from one set with output values
