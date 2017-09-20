@@ -68,6 +68,72 @@ dimensional region of input space (e.g. a subset of the plane).
 \end{figure}
 \footnotetext{\url{https://cudl.lib.cam.ac.uk/view/MS-ADD-03958/109}}
 
+Recall that the definition of $\int_a^b f(x) \dx$ is the area under the graph,
+computed as the limit of approximating rectangles (Riemann sums).
+
+Consider an ``accumulation function'', or ``area-so-far function'' $F$ defined
+as
+\begin{align*}
+  F(x) = \int_0^x f(u) \d u.
+\end{align*}
+
+$F(x)$ is the amount that has accumulated when we are at point $x$ in the
+input space.
+
+The FTC comes in two parts. Part I states that the rate of change of the
+
+
+
+
+\subsubsection*{Examples}
+
+In all the following examples, some quantity is
+``accumulating''\footnote{``Accumulating'' can involve decreasing as well as
+  increasing. For example if the particle starts moving back towards the
+  origin, or if the vase is being filled with a tube and someone starts sucking
+  on it rather than dispensing water.}.
+
+\begin{enumerate}
+\item $F(x)$ is the area under a graph to the left of $x$.\\
+      $f(x)$ is the height of the graph at $x$.\\
+
+\item $F(x)$ is the volume of a vase between the base and height $x$. \\
+      $f(x)$ is the cross-sectional area at height $x$.\\
+
+\item $F(t)$ is the volume of water in a vase that is being filled, at time $t$.\\
+      $f(t)$ is the rate of filling at time $t$.\\
+
+\item $F(t)$ is the position of a moving particle at time $t$, relative to the origin.\\
+      $f(t)$ is the velocity of the particle at time $t$.\\
+
+\item $F(t)$ is the number of bacteria at time $t$.\\
+      $f(t)$ is the rate at which new bacteria are produced at time $t$.
+\end{enumerate}
+
+\subsubsection*{Constant rate}
+\begin{enumerate}
+\item The height of the graph is constant at $h$ (a rectangle).\\
+      The area to the left of $x$ is $hx$.\\
+
+\item $F(x)$ is the volume of a vase between the base and height $x$. \\
+      The cross-sectional area is constant at $a$ (a cylinder).\\
+      $F(x) = ax$\\
+
+\item $F(t)$ is the volume of water in a vase that is being filled, at time $t$.\\
+      Water enters at a constant rate $v$ liters/sec.\\
+      $F(t) = vt$\\
+
+\item $F(t)$ is the displacement of a moving particle at time $t$, relative to the origin.\\
+      The velocity of the particle is constant at $v$ m/sec.\\
+      $F(t) = vt$.\\
+
+\item $F(t)$ is the number of bacteria at time $t$.\\
+      Bacteria are produced at a constant rate $v$ bacteria/sec.\\
+      $F(t) = vt$.
+\end{enumerate}
+
+
+\newpage
 Let's fix a physical example for discussing FTC: a moving object. The key
 quantity here is the distance from the starting point.
 
