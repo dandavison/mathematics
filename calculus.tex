@@ -80,10 +80,46 @@ as
 $F(x)$ is the amount that has accumulated when we are at point $x$ in the
 input space.
 
-The FTC comes in two parts. Part I states that the rate of change of the
+The FTC comes in two parts. Part I states that the derivative of the
+area-so-far function is the original function of interest:
+\begin{align*}
+  \ddx F(x) = f(x).
+\end{align*}
 
+Note that this is the first time we have connected integration with
+differentiation: $F$ was defined as a definite integral (area-so-far); nothing
+in its definition involved differentiation.
 
+Part II states that the definite integral $\int_a^b f(x) \dx$ can be computed as
+\begin{align*}
+  \int_a^b f(x) \dx = F(b) - F(a).
+\end{align*}
+I think that this is obvious from the definition of $F$ as area-so-far, but the
+point is that part I has shown us that $F$ might be obtainable as an
+antiderivative of $f$ rather than via some explicit area calculation
+(e.g. Riemann sums).
 
+So how do we prove this? What exactly is it we need to prove anyway? We have a
+definition for derivative, and we have a definition for area-so-far (limit of
+Riemann sums). So, first, using the definition of derivative,
+\begin{align*}
+  \ddx F(x) := \lim_{h \to 0} \frac{F(x+h) - F(x)}{h}.
+\end{align*}
+In the numerator is the area above a horizontal section of width
+$h$. Intuitively, this is approximately $hf(x)$, giving
+\begin{align*}
+  \ddx F(x) = \lim_{h \to 0} \frac{hf(x)}{h} = f(x),
+\end{align*}
+as desired. How to make this rigorous? Using the Riemann sums definition of area,
+\begin{align*}
+  \ddx F(x) &= \lim_{h \to 0} \frac{\lim_{N \to \infty} \sum_i^N \frac{h}{N} f\(x + \frac{ih}{N}\)}{h}\\
+            &= \lim_{N \to \infty} \frac{1}{N} \sum_i^N \lim_{h \to 0} f\(x + \frac{ih}{N}\)\\
+            &= \lim_{N \to \infty} \frac{1}{N} \sum_i^N f(x)\\
+            &= f(x).
+\end{align*}
+But in fact real proofs use the Extreme Value Theorem. I am told that one error
+in the above proof is that it is not valid to exchange the order of the two
+limits.
 
 \subsubsection*{Examples}
 
@@ -99,6 +135,9 @@ In all the following examples, some quantity is
 
 \item $F(x)$ is the volume of a vase between the base and height $x$. \\
       $f(x)$ is the cross-sectional area at height $x$.\\
+
+\item $F(r)$ is the area of a circle with radius $r$.\\
+      $f(r)$ is the diameter of a circle with radius $r$.\\
 
 \item $F(t)$ is the volume of water in a vase that is being filled, at time $t$.\\
       $f(t)$ is the rate of filling at time $t$.\\
@@ -131,6 +170,40 @@ In all the following examples, some quantity is
       Bacteria are produced at a constant rate $v$ bacteria/sec.\\
       $F(t) = vt$.
 \end{enumerate}
+
+The amount-so-far can be computed manually:
+
+\begin{enumerate}
+\item If the rate of increase is constant at $v$, then the amount to the left
+  of $x$ is simply $vx$.\\
+\item If the rate of increase at time $t$ is $ct$ (proportional to $t$), then
+  the amount-so-far graph is a triangle, so the amount to the left of $t$ is
+  $\frac{1}{2}\cdot ct \cdot t = \frac{1}{2}ct^2$.\\
+\item If the rate of increase at point $r$ is $2\pi r$ (the outer edge of a
+  growing disc), then the amount-so-far graph is a triangle again, and the area
+  of the disc is $\frac{1}{2}\cdot r \cdot 2\pi r = \pi r^2$.
+\end{enumerate}
+
+What about if the rate of increase is a more complex function? We can still
+compute the area so far manually, as a limit of Riemann sums:
+
+Compare
+\begin{align*}
+\int_0^2 (2 - x^2) \dx
+  &= \lim_{N \to \infty}\sum_{i=1}^N \frac{2}{N}\(2 - \(\frac{2i}{N}\)^2\) \\
+  &= \lim_{N \to \infty}\sum_{i=1}^N \frac{4}{N} - \frac{8i^2}{N^3} \\
+  &= \lim_{N \to \infty}\(4  - \frac{8}{N^3}\sum_{i=1}^Ni^2 \)\\
+  &= \lim_{N \to \infty}\(4  - \frac{8}{N^3}\frac{N(N+1)(2N+1)}{6} \)\\
+  &= \lim_{N \to \infty}\(4  - 8\frac{(N+1)(2N+1)}{6N^2} \)\\
+  &= \lim_{N \to \infty}\(4  - 8\frac{2 + 3N^{-1} + N^{-2}}{6} \)\\
+  &= 4  - \frac{8}{3} = \frac{4}{3}\\
+\end{align*}
+with the solution using antiderivatives:
+\begin{align*}
+\int_0^2 (2 - x^2) \dx
+  &= \left[2x - \frac{x^3}{3}\right]_0^2 \\
+  &= 4 - \frac{8}{3} = \frac{4}{3}.
+\end{align*}
 
 
 \newpage
