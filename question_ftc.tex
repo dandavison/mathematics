@@ -1,0 +1,50 @@
+I'd appreciate pointers on the flaws in the following proof sketch of the
+Fundamental Theorem of Calculus. I see that textbooks tend to use the Extreme
+Value Theorem, whereas in my proof I thought I could use Riemann sums.
+
+$$
+\DeclareMathOperator{\d}{\text{d}}
+\DeclareMathOperator{\du}{\text{du}}
+\DeclareMathOperator{\d}{\frac{\d}{\dx}}
+\DeclareMathOperator{\ddx}{\frac{\d}{\dx}}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+$$
+
+
+**Definitions**
+
+Define the definite integral of a single variable function $f$ to be a limit of
+Riemann sums (to be interpreted as the signed area under the graph of $f$)
+\begin{align}
+  \int_a^b f(u) \du := \lim_{N \to \infty} \sum_{i=1}^N \frac{b-a}{N} f\(a + \frac{i(b-a)}{N}\),
+\end{align}
+and define $F(x)$ to be the signed area under the graph of $f$ to the left of $x$:
+\begin{align}
+  F(x) &:= \int_a^x f(u) \du \\
+  &= \lim_{N \to \infty} \sum_{i=1}^N \frac{x-a}{N} f\(a + \frac{i(x-a)}{N}\).
+\end{align}
+
+**Claim**
+
+The derivative of $F$ is $f$:
+\begin{align}
+  \ddx F(x) = f(x).
+\end{align}
+
+**Proof**
+
+From the definition of derivative,
+\begin{align}
+  \ddx F(x) := \lim_{h \to 0} \frac{F(x+h) - F(x)}{h}.
+\end{align}
+In the numerator is the signed area above a horizontal section of width
+$h$. Since our definition of signed area is the limit of Riemann sums, we have
+\begin{align}
+  \ddx F(x) &= \lim_{h \to 0} \frac{\lim_{N \to \infty} \sum_i^N \frac{h}{N} f\(x + \frac{ih}{N}\)}{h}\\
+            &= \lim_{h \to 0} \lim_{N \to \infty} \frac{1}{N} \sum_i^N f\(x + \frac{ih}{N}\)\\
+            &= \lim_{N \to \infty} \frac{1}{N} \sum_i^N \lim_{h \to 0} f\(x + \frac{ih}{N}\)\\
+            &= \lim_{N \to \infty} \frac{1}{N} \sum_i^N f(x)\\
+            &= f(x).
+\end{align}
+
