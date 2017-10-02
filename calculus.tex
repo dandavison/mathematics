@@ -5,6 +5,8 @@
 \newcommand{\dydx}{\frac{\dy}{\dx}}
 \newcommand{\dxdt}{\frac{\dx}{\dt}}
 \newcommand{\dydt}{\frac{\dy}{\dt}}
+\newcommand{\dxdtheta}{\frac{\dx}{\dtheta}}
+\newcommand{\dydtheta}{\frac{\dy}{\dtheta}}
 
 \newtheorem*{theorem}{Theorem}
 
@@ -972,23 +974,98 @@ Find a polar equation for the Cartesian equation $y = x$.
 Find a polar equation for the Cartesian equation $x^2 + y^2 = 2cx$.
 \begin{mdframed}
   \begin{align*}
-    r^2 &= 2cr\cos\theta\\
-    r   &= 2c\cos\theta
-  \end{align*}
-\end{mdframed}
-
-
-\subsection*{10.3.29}
-Find a polar equation for the Cartesian equation $x^2 + y^2 = 2cx$.
-\begin{mdframed}
-  \begin{align*}
     r^2 \cos^2\theta + r^2\sin^2\theta &= 2cr\cos\theta\\
     r^2 &= 2cr\cos\theta\\
     r &= 2c\cos\theta
   \end{align*}
-\includegraphics[width=300pt]{img/10-3-29-1.png}\\
-\includegraphics[width=200pt]{img/10-3-29-2.png}
+\includegraphics[width=300pt]{img/10-3-25-1.png}\\
+\includegraphics[width=200pt]{img/10-3-25-2.png}
 \end{mdframed}
+
+\newpage
+\subsection*{10.3.29}
+Sketch the curve in polar coordinates by first sketching $r$ as a function of
+$\theta$ in Cartesian coordinates: $r = -2\sin\theta$.
+\begin{mdframed}
+  \includegraphics[width=300pt]{img/10-3-29-1.png}\\
+  Now,
+  \begin{align*}
+    r &= -2\sin\theta\\
+    r^2 &= -2r\sin\theta\\
+    x^2 + y^2 &= -2y\\
+    x^2 + (y+1)^2 &= 1,
+  \end{align*}
+  so it should be a circle with radius 1, shifted down 1 units. I believe that
+  the circle is traced once for $0 \leq \theta < \pi$, and again for
+  $\pi \leq \theta < 2\pi$.\\\\
+  \includegraphics[width=200pt]{img/10-3-29-2.png}
+  \includegraphics[width=200pt]{img/10-3-29-3.png}
+  \\
+\end{mdframed}
+
+\newpage
+\subsection*{10.3.30}
+Sketch the curve in polar coordinates by first sketching $r$ as a function of
+$\theta$ in Cartesian coordinates: $r = 1 - \cos\theta$.
+\begin{mdframed}
+  \includegraphics[width=300pt]{img/10-3-30.png}\\
+  From which we can see that the graph is a cardioid.
+  \begin{align*}
+    r = 1 - \cos\theta\\
+    r^2 = r - r\cos\theta\\
+    x^2 + y^2 = \sqrt{x^2 + y^2} - x\\
+    (x(x+1) + y^2)^2 = x^2 + y^2
+  \end{align*}
+  \includegraphics[width=400pt]{img/10-3-30-2.png}
+\end{mdframed}
+
+\subsection*{10.3.33}
+Sketch the curve in polar coordinates by first sketching $r$ as a function of
+$\theta$ in Cartesian coordinates: $r = \theta, \theta \geq 0$.
+\begin{mdframed}
+  It's a spiral.\\
+  \includegraphics[width=300pt]{img/10-3-33.png}
+\end{mdframed}
+
+\newpage
+\subsection*{10.3.35}
+Sketch the curve in polar coordinates by first sketching $r$ as a function of
+$\theta$ in Cartesian coordinates: $r = 3\cos(3\theta)$.
+\begin{mdframed}
+\includegraphics[width=300pt]{img/10-3-35.png}
+\end{mdframed}
+
+\newpage
+\subsection*{10.3.56}
+Find the slope of the tangent line to the polar curve, at $\theta$:\\
+$r = 2 + \sin 3\theta, \theta=\pi/4$
+\begin{mdframed}
+\includegraphics[width=200pt]{img/10-3-56.png}\\
+It looks like the slope might be -1. We use the chain rule, $\dydx = \(\dydtheta\)/\(\dxdtheta\)$ and so we need
+$\dxdtheta$ and $\dydtheta$.
+\begin{align*}
+  x          &= r\cos\theta = (2 + \sin 3\theta)\cos\theta\\
+  \dxdtheta  &= (3\cos 3\theta)\cos\theta - (2 + \sin 3\theta)\sin\theta\\
+  y          &= r\sin\theta = (2 + \sin 3\theta)\sin\theta\\
+  \dydtheta  &= (3\cos 3\theta)\sin\theta + (2 + \sin 3\theta)\cos\theta\\
+  \dydx &= \frac{\dydtheta}{\dxdtheta}\\
+        &= \frac{(3\cos 3\theta)\sin\theta + (2 + \sin 3\theta)\cos\theta}
+                {(3\cos 3\theta)\cos\theta - (2 + \sin 3\theta)\sin\theta}
+\end{align*}
+At $\theta=\pi/4$ this evaluates to
+\begin{align*}
+  \dydx
+  &= \frac{\frac{-3}{\sqrt{2}}\frac{1}{\sqrt{2}} + (2 + \frac{1}{\sqrt{2}})\frac{1}{\sqrt{2}}}
+          {\frac{-3}{\sqrt{2}}\frac{1}{\sqrt{2}} - (2 + \frac{1}{\sqrt{2}})\frac{1}{\sqrt{2}}}\\
+  &= \frac{ 2\sqrt{2} - 2}
+          {-2\sqrt{2} - 4}
+  = \frac{ \sqrt{2} - 1}
+         {-\sqrt{2} - 2} ~~~ \checkmark
+\end{align*}
+\end{mdframed}
+
+
+
 
 
 \subsection{Example 7: The Cycloid}
