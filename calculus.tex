@@ -7,6 +7,7 @@
 \newcommand{\dydt}{\frac{\dy}{\dt}}
 \newcommand{\dxdtheta}{\frac{\dx}{\dtheta}}
 \newcommand{\dydtheta}{\frac{\dy}{\dtheta}}
+\newcommand{\ddtheta}{\frac{\d}{\dtheta}}
 
 \newtheorem*{theorem}{Theorem}
 
@@ -1060,8 +1061,91 @@ At $\theta=\pi/4$ this evaluates to
   &= \frac{ 2\sqrt{2} - 2}
           {-2\sqrt{2} - 4}
   = \frac{ \sqrt{2} - 1}
-         {-\sqrt{2} - 2} ~~~ \checkmark
+         {-\sqrt{2} - 2} \approx -0.12 ~~~ \checkmark
 \end{align*}
+\end{mdframed}
+
+\newpage
+\subsection*{10.3.57}
+Find the slope of the tangent line to the polar curve, at $\theta$:\\
+$r = 1/\theta$, ~~~~~~$\theta = \pi$.
+\begin{mdframed}
+  \includegraphics[width=300pt]{img/10-3-57.png}\\
+  If I'm understanding this correctly, even as $\theta \to 0$, the
+  y-coordinates aproaches 1 (since $\lim_{\theta \to 0}\frac{\sin\theta}{\theta} = 1$).
+
+  Anyway, at $\theta=\pi$, the slope is negative something (hard to tell with sympy's aspect ratio).
+  \begin{align*}
+    \dydtheta
+    &= \ddtheta \frac{\sin\theta}{\theta}
+     = \frac{\theta \cos\theta - \sin\theta}{\theta^2}\\
+    \\
+    \dxdtheta
+    &= \ddtheta \frac{\cos\theta}{\theta}
+     = \frac{-\theta\sin\theta  - \cos\theta}{\theta^2}\\
+    \\
+    \dydx &= \frac{\theta \cos\theta - \sin\theta}
+                  {-\theta\sin\theta  - \cos\theta}
+  \end{align*}
+  At $\theta=\pi$ this is $-\pi$. ~~~ \checkmark
+\end{mdframed}
+
+\newpage
+\subsection*{10.3.61}
+Find the points where the tangent is horizontal or vertical.
+$r = 3\cos\theta$
+\begin{mdframed}
+  This is a circle with radius $3/2$, centered at $(3/2, 0)$. So the tangent is
+  vertical at $\theta = k\frac{\pi}{2}$ for $k \in \Z$ (the left and right
+  extrema of the circle). It's less clear where it is horizontal:
+  \begin{align*}
+    y &= \sin\theta\cos\theta\\
+    \dydtheta &= \cos^2\theta -\sin^2\theta\\
+    \\
+    x &= \cos^2\theta\\
+    \dxdtheta  &= -2\sin\theta\cos\theta\\
+  \end{align*}
+  As expected, $\dxdtheta = 0$ (tangent vertical) at
+  $\theta = k\frac{\pi}{2}, k=0, 1, 2, ...$.\\
+  And $\dydtheta = 0$ (tangent horizontal) at
+  $\theta = k\frac{\pi}{4}, k=1,3,5,...$.
+\end{mdframed}
+
+\subsection*{10.3.63}
+Find the points where the tangent is horizontal or vertical.
+$r = 1 + \cos\theta$
+
+\newpage
+\subsection*{10.3.65}
+
+Show that the polar equation $r = a\sin\theta + b\cos\theta$, where
+$ab \neq 0$, represents a circle, and find its center and radius.\\
+\begin{mdframed}
+  The general Cartesian equation of a circle is
+  \begin{align*}
+    (x - c)^2 + (y - d)^2 = e^2.
+  \end{align*}
+  We have
+  \begin{align*}
+    x &= r\cos\theta = \frac{r}{b}(r - a\sin\theta), ~~ \text{and}\\
+    y &= r\sin\theta = \frac{r}{a}(r - b\cos\theta).
+  \end{align*}
+  So the claim is that there exist constants $c, d$ and $e$ such that the
+  following holds for all $\theta$:
+  \begin{align*}
+    \(\frac{r}{b}(r - a\sin\theta) - c\)^2 +
+    \(\frac{r}{a}(r - b\cos\theta) - d\)^2 = e^2.
+  \end{align*}
+  Simplifying:
+  \begin{align*}
+    &\(\frac{r^2}{b^2}(r - a\sin\theta)^2 - 2\frac{rc}{b}(r - a\sin\theta) + c^2\) +\\
+    &\(\frac{r^2}{a^2}(r - b\cos\theta)^2 - 2\frac{rd}{a}(r - b\cos\theta) + d^2\)
+    = e^2\\\\
+    &\(\frac{r^2}{b^2}(r^2 - 2ra\sin\theta + a^2\sin^2\theta) - 2\frac{rc}{b}(r - a\sin\theta) + c^2\) +\\
+    &\(\frac{r^2}{a^2}(r^2 - 2rb\cos\theta + b^2\cos^2\theta) - 2\frac{rd}{a}(r - b\cos\theta) + d^2\)
+    = e^2
+  \end{align*}
+
 \end{mdframed}
 
 
