@@ -1123,28 +1123,73 @@ $ab \neq 0$, represents a circle, and find its center and radius.\\
 \begin{mdframed}
   The general Cartesian equation of a circle is
   \begin{align*}
-    (x - c)^2 + (y - d)^2 = e^2.
+    (x - c)^2 + (y - d)^2 = e^2,
   \end{align*}
-  We have
+  which is centered at $(c, d)$ with radius $e$. We have
   \begin{align*}
-    x &= r\cos\theta = \frac{r}{b}(r - a\sin\theta), ~~ \text{and}\\
-    y &= r\sin\theta = \frac{r}{a}(r - b\cos\theta).
+    r &= a\sin\theta + b\cos\theta\\
+    r^2 &= ar\sin\theta + br\cos\theta\\
+    x^2 + y^2 - ay - bx &= 0\\
+    \(x - \frac{b}{2}\)^2 + \(y - \frac{a}{2}\)^2 &= \frac{a^2 + b^2}{4},
   \end{align*}
-  So the claim is that there exist constants $c, d$ and $e$ such that the
-  following holds for all $\theta$:
+  so centered at $\(\frac{b}{2}, \frac{a}{2}\)$ with radius $\frac{\sqrt{a^2 + b^2}}{2}$. \checkmark
+\end{mdframed}
+
+
+\newpage
+\subsection*{10.3.66}
+Show that the curves $r = a\sin\theta$ and $r = a\cos\theta$ intersect at right
+angles.
+\begin{mdframed}
+  \includegraphics[width=300pt]{img/10-3-66.png}\\
+  Strategy:
+  \begin{enumerate}
+  \item Determine intersection
+  \item Determine tangents at intersection
+  \item Show that these are orthogonal
+  \end{enumerate}
+
+  \newpage
+  \subsubsection*{Cartesian coordinates}
+
+  \textbf{Determine intersection}\\
+  Multiplying the original polar equations on both sides by $r$, we see that in
+  Cartesian coordinates, we require points $(x, y)$ that satisfy
   \begin{align*}
-    \(\frac{r}{b}(r - a\sin\theta) - c\)^2 +
-    \(\frac{r}{a}(r - b\cos\theta) - d\)^2 = e^2.
+    \begin{cases}
+      x^2 + y^2 &= ay\\
+      x^2 + y^2 &= ax.
+    \end{cases}
   \end{align*}
-  Simplifying:
+  Clearly the two equations together imply $y = x$, since $a > 0$. Substituting
+  into the first equation, this gives
   \begin{align*}
-    &\(\frac{r^2}{b^2}(r - a\sin\theta)^2 - 2\frac{rc}{b}(r - a\sin\theta) + c^2\) +\\
-    &\(\frac{r^2}{a^2}(r - b\cos\theta)^2 - 2\frac{rd}{a}(r - b\cos\theta) + d^2\)
-    = e^2\\\\
-    &\(\frac{r^2}{b^2}(r^2 - 2ra\sin\theta + a^2\sin^2\theta) - 2\frac{rc}{b}(r - a\sin\theta) + c^2\) +\\
-    &\(\frac{r^2}{a^2}(r^2 - 2rb\cos\theta + b^2\cos^2\theta) - 2\frac{rd}{a}(r - b\cos\theta) + d^2\)
-    = e^2
+    2y^2 &= ay \iff y(2y - a) = 0 \iff y = 0 \text{~~or~~} y = \frac{a}{2}.
   \end{align*}
+  The first equation is equivalent to $x = \sqrt{ay - y^2}$, so the solutions
+  are $(0, 0)$ and $(\frac{a}{2}, \frac{a}{2})$.
+
+  \textbf{Determine tangents}
+
+
+  \textbf{Show that these are orthogonal}
+
+  Show that the dot product is zero between vectors having the same direction
+  as the tagents.
+
+
+
+  \newpage
+  \subsubsection*{Polar coordinates}
+  We need to find points $(r, \theta)$ that satisfy
+  \begin{align*}
+    \begin{cases}
+      r &= a\sin\theta\\
+      r &= a\cos\theta.
+    \end{cases}
+  \end{align*}
+
+
 
 \end{mdframed}
 
@@ -1299,4 +1344,6 @@ by saying that the plane is the set of points $(x, y, z)$ that satisfy
 and then to somehow change basis/variables from $(u, v)$ to $(x, y)$?
 
 \end{mdframed}
+
+
 \end{document}
