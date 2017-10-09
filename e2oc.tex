@@ -70,4 +70,39 @@ function $\dh = 2x \dx$ and , so
 \begin{align*}
   \frac{\d g(h(x))}{\dx} = \cos (h) \cdot 2x = \cos(x^2)\cdot 2x.
 \end{align*}
+
+\newpage
+\section{Implicit differentiation}
+Consider the circle defined by $x^2 + y^2 = 5$. Here we don't have a function
+with input and an output; we just have a set of points in 2D defined by some
+condition which they satisfy (an implicit curve).
+
+How do we find the tangent to the circle at the point $(3,4)$? We want $\dydx$.
+
+Consider a related problem. A ladder of length 5 is leaned against a wall, with
+initial height 4, and is slipping down at 1 m/s. Define $y(t)$ to be its height
+at time $t$, so $\dydt = -1$. What is $\dxdt$?
+
+Clearly the starting point is that $x(t)^2 + y(t)^2 = 5^2$. One solution is\\
+
+\begin{mdframed}
+  \begin{align*}
+    x(t) &= \(5^2 - y(t)^2\)^{1/2}\\\\
+    \dxdt &= \frac{-2y\dydt}{2 \(5^2 - y(t)^2\)^{1/2}} = \frac{y}{x}.
+  \end{align*}
+\end{mdframed}
+
+Another solution is to note that the sum of the squares is constant:\\
+
+\begin{mdframed}
+  \begin{align*}
+    \frac{\d \(x(t)^2 + y(t)^2\)}{\dt} &= 0\\\\
+    2x\dx + 2y\dy &= 0\\
+    \frac{\dx}{\dt} &= -\frac{y \dy}{x\dt} = \frac{y}{x}.
+  \end{align*}
+\end{mdframed}
+
+
+
+
 \end{document}
