@@ -1,38 +1,41 @@
 \usepackage[colorlinks=true,urlcolor=blue]{hyperref}
 \usepackage{fullpage,amsfonts,amsmath,amsthm,amssymb,graphicx,verbatim,parskip,footnote,color,mdframed}
-%\DeclareMathOperator{\sec}{\text{sec}}
-\DeclareMathOperator{\diag}{\text{diag}}
-\DeclareMathOperator{\grad}{\nabla}
-\DeclareMathOperator{\hess}{\nabla^2}
-\DeclareMathOperator{\Lagr}{\mathcal{L}}
+
+% \DeclareMathOperator{\sec}{\text{sec}}
+\DeclareMathOperator{\Bern}{\text{Bern}}
+\DeclareMathOperator{\D}{\text{D}}
+\DeclareMathOperator{\E}{\mathbb{E}}
 \DeclareMathOperator{\Jac}{\text{Jac}}
-\let\L\relax
-\DeclareMathOperator{\dx}{\text{dx}}
-\DeclareMathOperator{\dy}{\text{dy}}
-\DeclareMathOperator{\dz}{\text{dz}}
-\DeclareMathOperator{\dt}{\text{dt}}
-\DeclareMathOperator{\du}{\text{du}}
-\DeclareMathOperator{\ddt}{\frac{\text{d}}{\text{dt}}}
-\DeclareMathOperator{\dtheta}{\text{d}\theta}
-\DeclareMathOperator{\L}{\mathcal{L}}
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\DeclareMathOperator{\by}{\times}
 \DeclareMathOperator{\cosech}{\text{cosech}}
 \DeclareMathOperator{\cosec}{\text{cosec}}
 \DeclareMathOperator{\ddldmujmuj}{\frac{\partial^2 \l}{\partial \mu_j^2}}
 \DeclareMathOperator{\ddldsigmajsigmaj}{\frac{\partial^2 \l}{\partial \sigma_j^2}}
+\DeclareMathOperator{\ddt}{\frac{\text{d}}{\text{dt}}}
+\DeclareMathOperator{\diag}{\text{diag}}
 \DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
 \DeclareMathOperator{\dldmu}{\frac{\partial \l}{\partial \mu}}
 \DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
+\DeclareMathOperator{\dtheta}{\text{d}\theta}
+\DeclareMathOperator{\dt}{\text{dt}}
+\DeclareMathOperator{\du}{\text{du}}
+\DeclareMathOperator{\dx}{\text{dx}}
+\DeclareMathOperator{\dy}{\text{dy}}
+\DeclareMathOperator{\dz}{\text{dz}}
 \DeclareMathOperator{\ealign}{\end{align*}}
+\DeclareMathOperator{\grad}{\nabla}
+\DeclareMathOperator{\hess}{\nabla^2}
+\DeclareMathOperator{\p}{\text{p}}
 \DeclareMathOperator{\sech}{\text{sech}}
 \DeclareMathOperator{\trace}{\text{trace}}
-\DeclareMathOperator{\by}{\times}
-\DeclareMathOperator{\p}{\text{p}}
-\DeclareMathOperator{\E}{\mathbb{E}}
-\DeclareMathOperator{\D}{\text{D}}
+\let\L\relax\DeclareMathOperator{\L}{\mathcal{L}}
 \let\d\relax\DeclareMathOperator{\d}{\text{d}}
-\DeclareMathOperator{\Bern}{\text{Bern}}
+\newcommand{\0}{\vec 0}
 \newcommand{\1}{{-1}}
 \newcommand{\Arg}{\text{Arg}~}
+\newcommand{\A}{\mat A}
+\newcommand{\B}{\mat B}
 \newcommand{\CP}{\textbf{CP}}
 \newcommand{\Cx}{\C^\times}
 \newcommand{\C}{\mathbb{C}}
@@ -40,26 +43,22 @@
 \newcommand{\GLC}[1]{\mathrm{GL}_{#1}(\C)}
 \newcommand{\GLR}[1]{\mathrm{GL}_{#1}(\R)}
 \newcommand{\GL}{\mathrm{GL}}
+\newcommand{\I}{\vec I}
 \newcommand{\Log}{\text{Log}~}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Rx}{\R^\times}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\T}{\mathbf{T}}
-\newcommand{\X}{\mat X}
-\renewcommand{\S}{\mat S}
-\newcommand{\Y}{\mat Y}
-\newcommand{\A}{\mat A}
-\newcommand{\B}{\mat B}
 \newcommand{\V}{\mat V}
 \newcommand{\W}{\mat W}
-\newcommand{\I}{\vec I}
-\newcommand{\0}{\vec 0}
+\newcommand{\X}{\mat X}
+\newcommand{\Y}{\mat Y}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\balign}{\begin{align*}}
 \newcommand{\constant}{\text{constant}}
-\newcommand{\cveccc}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
 \newcommand{\cvecccc}[4]{\begin{bmatrix}#1\\#2\\#3\\#4\end{bmatrix}}
+\newcommand{\cveccc}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
 \newcommand{\cvecc}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}  % TODO: delete
 \newcommand{\dQdx}{\frac{\partial Q}{\partial x}}
@@ -101,33 +100,34 @@
 \newcommand{\dzdx}{\frac{\partial z}{\partial x}}
 \newcommand{\dzdy}{\frac{\partial z}{\partial y}}
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
-\newcommand{\yhat}{\hat{y}}
+\newcommand{\f}{\vec f}
 \newcommand{\hessian}{\mathbf{H}}
 \newcommand{\hlinee}{\\\rule{400pt}{0.1pt}\\}
 \newcommand{\limn}{\lim\limits_{n \to \infty}}
 \newcommand{\matttxttt}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
+\newcommand{\mattxtttt}[8]{\begin{bmatrix}#1 & #2 \\ #3 & #4 \\ #5 & #6\\ #7 & #8\\ \end{bmatrix}}
 \newcommand{\matt}{\matttxttt}
 \newcommand{\mat}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
-\newcommand{\mattxtttt}[8]{\begin{bmatrix}#1 & #2 \\ #3 & #4 \\ #5 & #6\\ #7 & #8\\ \end{bmatrix}}
 \newcommand{\ninfty}{n \rightarrow \infty}
 \newcommand{\otherwise}{\text{otherwise}}
-\newcommand{\partiald}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\partialdd}[2]{\frac{\partial^2 #1}{\partial {#2}^2}}
+\newcommand{\partiald}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\scvec}[2]{\tiny{\cvec{#1}{#2}}}
 \newcommand{\smatt}[9]{\tiny{\matt{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
 \newcommand{\smat}[4]{\tiny{\mat{#1}{#2}{#3}{#4}}}
 \newcommand{\sumn}{\sum_{n=1}^{\infty}}
+\newcommand{\s}{\vec s}
 \newcommand{\textbfit}[1]{\textbf{\textit{#1}}}
 \newcommand{\w}{\vec w}
-\renewcommand{\v}{\vec v}
 \newcommand{\x}{\vec x}
-\newcommand{\s}{\vec s}
-\newcommand{\f}{\vec f}
+\newcommand{\yhat}{\hat{y}}
 \newcommand{\y}{\vec y}
 \newcommand{\z}{\vec z}
 \renewcommand{\(}{\left(}
 \renewcommand{\)}{\right)}
 \renewcommand{\Im}{~\text{Im}~}
 \renewcommand{\Re}{~\text{Re}~}
+\renewcommand{\S}{\mat S}
 \renewcommand{\mat}{\mathbf}
 \renewcommand{\vec}{\mathbf}
+\renewcommand{\v}{\vec v}
