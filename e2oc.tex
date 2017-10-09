@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{notes, mdframed,caption}
+
+\DeclareMathOperator{\df}{\text{df}}
+\DeclareMathOperator{\dg}{\text{dg}}
+\let\dh\relax\DeclareMathOperator{\dh}{\text{dh}}
+
+\begin{document}
+
+\section{Essence of Calculus}
+\section{The paradox of the derivative}
+\section{Derivatives formulas through geometry}
+\section{Visualizing the chain rule and product rule}
+
+More complex functions can be formed by addition, multiplication and
+composition of simpler functions. How do we compute derivatives of such more
+complex functions?
+
+\subsection{Sum rule}
+Suppose $f(x) = g(x) + h(x)$. Visualize an input parameter $x$ represented by
+the x-axis, and the graphs of $g$ and $h$, and a third graph of $f$ whose
+height at every point is the sum of the other two.
+
+A horizontal nudge $\dx$ to the input causes vertical changes $\d g(x)$ and
+$\d h(x)$. The resulting vertical change to $f(x)$ is
+\begin{align*}
+  \d f(x) = \d g(x) + \d h(x),
+\end{align*}
+or equivalently
+\begin{align*}
+  \frac{\d f(x)}{\dx} = \frac{\d g(x)}{\dx} + \frac{\d h(x)}{dx}.
+\end{align*}
+
+
+\subsection{Product rule}
+Suppose $f(x) = g(x) \cdot h(x)$. Consider an input parameter $x$ and visualize a
+rectangle with one side length $g(x)$ and the other side length $h(x)$. $f(x)$
+is the area of the rectangle.
+
+A nudge $\dx$ to the input causes the sides to grow by $\d g(x)$ and $\d h(x)$
+respectively. Therefore the change to the area is approximately
+\begin{align*}
+  h(x) \d g(x) + g(x) \d h(x),
+\end{align*}
+or equivalently
+\begin{align*}
+  h(x) \frac{\d g(x)}{dx} + g(x) \frac{\d h(x)}{dx}.
+\end{align*}
+
+\subsection{Chain rule: function composition}
+Suppose $f(x) = g(h(x))$. Visualize 3 real number lines: at the top the input
+parameter $x$; in the middle $h(x)$ and at the bottom $g(h)$.
+
+A nudge $\dx$ to the input causes a change $\d h = \frac{\d h}{\dx} \dx$, which in turn causes a
+change $\dg = \frac{\dg}{\dh} \dh$. So we have
+\begin{align*}
+  \df = \d g(h(x)) = \frac{\dg}{\dh} \frac{\dh}{\dx} \dx,
+\end{align*}
+or equivalently
+\begin{align*}
+  \frac{\df}{\dh} = \frac{\d g(h(x))}{\dx} = \frac{\dg}{\dh} \frac{\dh}{\dx}.
+\end{align*}
+
+\subsubsection{Example}
+$f(x) = \sin(x^2) = g(h(x))$. So the middle number line shows $h(x) = x^2$ and
+the output number line at the bottom shows $g(h) = \sin(h)$.
+
+We know that for the outer function, $\dg = \cos h \dh$, and for the inner
+function $\dh = 2x \dx$ and , so
+\begin{align*}
+  \frac{\d g(h(x))}{\dx} = \cos (h) \cdot 2x = \cos(x^2)\cdot 2x.
+\end{align*}
+\end{document}
