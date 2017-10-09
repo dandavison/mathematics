@@ -1163,8 +1163,25 @@ angles.
   The first equation is equivalent to $x = \sqrt{ay - y^2}$, so the solutions
   are $(0, 0)$ and $(\frac{a}{2}, \frac{a}{2})$.
 
-  \textbf{Determine tangents}
+  \textbf{Determine tangents}\\
+  For the first curve we have
+  \begin{align*}
+    x^2 + y^2 - ay = 0.
+  \end{align*}
+  Viewed as a function $\R^2 \to \R$, $\dx$ and $\dy$ must satisfy
+  \begin{align*}
+    2x \dx + (2y - a) \dy &= 0\\
+    \implies \dydx &= \frac{-2x}{2y - a}.\\
+                   &= 0, \infty \text{~~at~~} (0, 0), (\frac{a}{2}, \frac{a}{2}).
+  \end{align*}
 
+  Similarly for the other curve we have
+  \begin{align*}
+    x^2 + y^2 - ax &= 0\\
+    (2x - a) \dx + 2y \dy &= 0\\
+    \dydx &= \frac{a - 2x}{2y}\\
+          &= \infty, 0.
+  \end{align*}
 
   \textbf{Show that these are orthogonal}
 
