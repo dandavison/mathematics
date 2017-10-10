@@ -73,9 +73,9 @@ function $\dh = 2x \dx$ and , so
 
 \newpage
 \section{Implicit differentiation}
-Consider the circle defined by $x^2 + y^2 = 5$. Here we don't have a function
-with input and an output; we just have a set of points in 2D defined by some
-condition which they satisfy (an implicit curve).
+Consider the circle defined by $x^2 + y^2 = 5$. Here, on the face of it, we
+don't have a function with input and an output; we just have a set of points in
+2D defined by some condition which they satisfy (an implicit curve).
 
 How do we find the tangent to the circle at the point $(3,4)$? We want $\dydx$.
 
@@ -101,6 +101,33 @@ Another solution is to note that the sum of the squares is constant:\\
     \frac{\dx}{\dt} &= -\frac{y \dy}{x\dt} = \frac{y}{x}.
   \end{align*}
 \end{mdframed}
+~\\
+In the case of the ladder problem, it was clear what was going on since we
+could differentiate $x(t)^2 + y(t)^2$ with respect to $t$.
+
+Going back to the implicit curve $x^2 + y^2 = 5$, there is in fact a function
+there: a function of two variables:
+\begin{align*}
+  z(x, y) = x^2 + y^2
+\end{align*}
+
+We want $\dydx$. The derivative of $z$ in the direction of the vector
+$\vec u = \cvecc{\dx}{\dy}$ is
+\begin{align*}
+  \D_u z &= \pzpx \dx + \pzpy \dy\\
+         &= 2x \dx + 2y \dy.
+\end{align*}
+And the condition for staying on the tangent to the circle is that $z$ stays
+constant:
+\begin{align*}
+  \D_u z &= 2x \dx + 2y \dy = 0\\
+   \frac{\dy}{\dx} &= \frac{-x}{y}.
+\end{align*}
+
+
+What is $\dydx$? It's a ratio of tiny nudges to the two input variables. OK,
+but those nudges could be anything; the ratio is not determined. But we have a
+condition: the two nudges must stay on a tangent line to the circle.
 
 
 
