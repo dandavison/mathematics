@@ -1143,7 +1143,6 @@ angles.
   \item Show that these are orthogonal
   \end{enumerate}
 
-  \newpage
   \subsubsection*{Cartesian coordinates}
 
   \textbf{Determine intersection}\\
@@ -1172,7 +1171,7 @@ angles.
   \begin{align*}
     2x \dx + (2y - a) \dy &= 0\\
     \implies \dydx &= \frac{-2x}{2y - a}.\\
-                   &= 0, \infty \text{~~at~~} (0, 0), (\frac{a}{2}, \frac{a}{2}).
+                   &= 0, \infty \text{~~at~~} \(0, 0\), \(\frac{a}{2}, \frac{a}{2}\).
   \end{align*}
 
   Similarly for the other curve we have
@@ -1180,18 +1179,23 @@ angles.
     x^2 + y^2 - ax &= 0\\
     (2x - a) \dx + 2y \dy &= 0\\
     \dydx &= \frac{a - 2x}{2y}\\
-          &= \infty, 0.
+          &= \infty, 0  \text{~~at~~} \(0, 0\), \(\frac{a}{2}, \frac{a}{2}\).
   \end{align*}
 
   \textbf{Show that these are orthogonal}
 
   Show that the dot product is zero between vectors having the same direction
-  as the tagents.
+  as the tangents.
+
+  That sounds sensible, but it is kind of clear from the values of $\dydx$
+  above that they are orthogonal at both points of intersection.
 
 
 
   \newpage
   \subsubsection*{Polar coordinates}
+
+  \textbf{Determine intersection}\\
   We need to find points $(r, \theta)$ that satisfy
   \begin{align*}
     \begin{cases}
@@ -1199,7 +1203,40 @@ angles.
       r &= a\cos\theta.
     \end{cases}
   \end{align*}
+  Clearly such points lie on the diagonal $\tan\theta = 1$, i.e.
+  $\theta = \frac{\pi}{4}$. Substituting into either equation gives
+  $r = \frac{a}{\sqrt{2}}$, so one of the points of intersection is
+  $\(\frac{a}{\sqrt{2}}, \frac{\pi}{4}\)$. The other one is at the origin but I
+  seem to be struggling to make that come out of the algebra.
 
+  \textbf{Determine tangents}\\
+  We examine $\dydtheta$ and $\dxdtheta$.
+
+  For the first curve
+  \begin{align*}
+    y         &= r\sin\theta = a\sin^2\theta\\
+    \dydtheta &= 2a\sin\theta\cos\theta = a\sin 2\theta\\
+              &= a \text{~~when~~} \theta=\frac{\pi}{4}\\
+    \\
+    x         &= r\cos\theta = a\sin\theta\cos\theta = \frac{a}{2}\sin 2 \theta\\
+    \dxdtheta &= a\cos 2\theta\\
+              &= 0 \text{~~when~~} \theta = \frac{\pi}{4},
+  \end{align*}
+  so the first curve has a vertical tangent at $\theta=\frac{\pi}{4}$.
+
+  For the second curve
+  \begin{align*}
+    x         &= r\cos\theta = a\cos^2\theta\\
+    \dxdtheta &= -2a\sin\theta\cos\theta = -a\sin 2\theta\\
+              &= -a \text{~~when~~} \theta=\frac{\pi}{4}\\
+    \\
+    y         &= r\sin\theta = a\sin\theta\cos\theta = \frac{a}{2}\sin 2 \theta\\
+    \dydtheta &= a\cos 2\theta\\
+              &= 0 \text{~~when~~} \theta = \frac{\pi}{4}.
+  \end{align*}
+  so the second curve has a horizontal tangent at $\theta=\frac{\pi}{4}$.
+
+  Therefore the two curves intersect at right-angles when $\theta=\frac{\pi}{4}$.
 
 
 \end{mdframed}
