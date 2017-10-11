@@ -40,11 +40,11 @@ is the area of the rectangle.
 A nudge $\dx$ to the input causes the sides to grow by $\d g(x)$ and $\d h(x)$
 respectively. Therefore the change to the area is approximately
 \begin{align*}
-  h(x) \d g(x) + g(x) \d h(x),
+  \d f(x) = h(x) \d g(x) + g(x) \d h(x),
 \end{align*}
 or equivalently
 \begin{align*}
-  h(x) \frac{\d g(x)}{dx} + g(x) \frac{\d h(x)}{dx}.
+  \frac{\d f(x)}{\dx} = h(x) \frac{\d g(x)}{dx} + g(x) \frac{\d h(x)}{dx}.
 \end{align*}
 
 \subsection{Chain rule: function composition}
@@ -73,6 +73,7 @@ function $\dh = 2x \dx$ and , so
 
 \newpage
 \section{Implicit differentiation}
+
 Consider the circle defined by $x^2 + y^2 = 5$. Here, on the face of it, we
 don't have a function with input and an output; we just have a set of points in
 2D defined by some condition which they satisfy (an implicit curve).
@@ -111,7 +112,20 @@ there: a function of two variables:
   z(x, y) = x^2 + y^2
 \end{align*}
 
-We want $\dydx$. The derivative of $z$ in the direction of the vector
+We want $\dydx$. What is $\dydx$? It's a ratio of two nudges to the two input
+variables. OK, but those nudges could be anything; the ratio is not
+determined. But we have a condition: the two nudges must stay on a tangent line
+to the circle. So,
+\begin{align*}
+  (x + \dx)^2 + (y + \dy)^2 &= 5\\
+  x^2 + 2x\dx + y^2 + 2y\dy &= 5\\
+  2x\dx + 2y\dy &= 0\\
+  \dydx  &= -\frac{x}{y}
+\end{align*}
+
+
+
+ The derivative of $z$ in the direction of the vector
 $\vec u = \cvecc{\dx}{\dy}$ is
 \begin{align*}
   \D_u z &= \pzpx \dx + \pzpy \dy\\
@@ -125,9 +139,13 @@ constant:
 \end{align*}
 
 
-What is $\dydx$? It's a ratio of tiny nudges to the two input variables. OK,
-but those nudges could be anything; the ratio is not determined. But we have a
-condition: the two nudges must stay on a tangent line to the circle.
+\begin{align*}
+  y^2\sin x = x
+\end{align*}
+
+
+
+
 
 
 
