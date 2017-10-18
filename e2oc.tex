@@ -32,6 +32,7 @@ or equivalently
 \end{align*}
 
 
+\newpage
 \subsection{Product rule}
 Suppose $f(x) = g(x) \cdot h(x)$. Consider an input parameter $x$ and visualize a
 rectangle with one side length $g(x)$ and the other side length $h(x)$. $f(x)$
@@ -47,6 +48,11 @@ or equivalently
   \frac{\d f(x)}{\dx} = h(x) \frac{\d g(x)}{dx} + g(x) \frac{\d h(x)}{dx}.
 \end{align*}
 
+\subsection{Integration by Parts}
+
+TODO: graphical intuition (see wikipedia page)
+
+\newpage
 \subsection{Chain rule: function composition}
 Suppose $f(x) = g(h(x))$. Visualize 3 real number lines: at the top the input
 parameter $x$; in the middle $h(x)$ and at the bottom $g(h)$.
@@ -58,7 +64,7 @@ change $\dg = \frac{\dg}{\dh} \dh$. So we have
 \end{align*}
 or equivalently
 \begin{align*}
-  \frac{\df}{\dh} = \frac{\d g(h(x))}{\dx} = \frac{\dg}{\dh} \frac{\dh}{\dx}.
+  \frac{\df}{\dx} = \frac{\d g(h(x))}{\dx} = \frac{\dg}{\dh} \frac{\dh}{\dx}.
 \end{align*}
 
 \subsubsection{Example}
@@ -66,9 +72,9 @@ $f(x) = \sin(x^2) = g(h(x))$. So the middle number line shows $h(x) = x^2$ and
 the output number line at the bottom shows $g(h) = \sin(h)$.
 
 We know that for the outer function, $\dg = \cos h \dh$, and for the inner
-function $\dh = 2x \dx$ and , so
+function $\dh = 2x \dx$, so
 \begin{align*}
-  \frac{\d g(h(x))}{\dx} = \cos (h) \cdot 2x = \cos(x^2)\cdot 2x.
+  \d g(h(x)) = \cos (h) \cdot 2x \dx = \cos(x^2)\cdot 2x \dx.
 \end{align*}
 
 \newpage
