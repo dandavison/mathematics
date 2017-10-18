@@ -1275,7 +1275,33 @@ Find the area of the region
   r = \cos\theta, ~~~ 0 \leq \theta \leq \pi/6
 \end{align*}
 \begin{mdframed}
-
+  The curve describes a circle. Note that a sector subtended by $2\pi$ radians
+  has area $\pi r^2$, therefore a sector of $\d\theta$ radians has area
+  $\frac{\d\theta}{2}r^2$. The requested area is
+\begin{align*}
+  \int_0^{\pi/6} \frac{\d\theta}{2}r^2
+  &= \int_0^{\pi/6} \frac{\d\theta}{2}\cos^2\theta.\\
+\end{align*}
+Let $I = \int \cos^2\theta \dtheta$. Integration by parts
+\begin{align*}
+  \d(u v) &= u\dv + v\du\\
+   uv &= \int u \dv + \int v \du\\
+  \int u \dv &= uv - \int v \du
+\end{align*}
+gives
+\begin{align*}
+  u &= \cos\theta\\
+  \dv  &= \cos\theta \dtheta\\
+  I = \int \cos^2 \theta \d\theta &= \cos\theta\sin\theta + \int \sin^2\theta \dtheta\\
+    &= \cos\theta\sin\theta + \theta - I\\
+    &= \frac{1}{2}\(\cos\theta\sin\theta + \theta\) + C\\
+    &= \frac{1}{4}\sin 2\theta + \frac{\theta}{2} + C
+\end{align*}
+Thus the requested area is
+\begin{align*}
+  \frac{1}{8} \sin 2\theta + \frac{1}{4}\theta \Big|^{\pi/6}_0
+  &= \frac{1}{8}\sin\frac{\pi}{3} + \frac{\pi}{24} = \frac{\sqrt{3}}{16} + \frac{\pi}{24}. \checkmark
+\end{align*}
 \end{mdframed}
 
 \subsection*{10.4.5}
