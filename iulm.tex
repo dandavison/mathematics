@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{notes}
+\usepackage{mdframed}
+
+\newcommand{\LHS}{\text{LHS}}
+\newcommand{\RHS}{\text{RHS}}
+
+\begin{document}
+\title{Introduction to University Mathematics}
+\maketitle
+\tableofcontents
+
+\section{Sheet 1}
+\newpage
+\subsection{Let $A, B, C$ be sets. Write out a proof that\\
+                    $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.}
+\begin{mdframed}
+
+The following things are defined already: intersection, union, subset.
+
+Define $\LHS = A \cap (B \cup C)$ and $\RHS = (A \cap B) \cup (A \cap C)$.
+
+We have to prove
+\begin{enumerate}
+\item that $\LHS \subset \RHS$, and
+\item that $\RHS \subset \LHS$.
+\end{enumerate}
+
+\subsubsection*{Proof of (1)}
+If $\LHS = \emptyset$, then (1) is true.
+
+Alternatively, suppose $\LHS \neq \emptyset$ and let $x \in \LHS$. Then by the
+definition of intersection, $x \in A$ and $x \in B \cup C$, and therefore by
+the definition of union either $x \in B$ or $x \in C$ or it is in both.
+
+Suppose $x \in B$. Then we have $x \in A$ and $x \in B$, so by the definition
+of intersection $x \in A \cap B$. The RHS is the union of two sets, of which
+$A \cap B$ is one. Therefore by the definition of union $x \in \RHS$.
+
+Alternatively we can suppose $x \in C$. Since union and intersection commute,
+$B$ and $C$ play equivalent roles and $x \in C$ leads to the same conclusion
+that $x \in \RHS$ by an identical argument.
+
+Therefore $\LHS \subset \RHS$.
+
+\subsubsection*{Proof of (2)}
+If $\RHS = \emptyset$, then (2) is true.
+
+Alternatively, suppose $\RHS \neq \emptyset$ and let $x \in \RHS$. Then by the
+definition of union, $x \in A \cap B$ or $x \in A \cap C$. Suppose
+$x \in A \cap B$ (and label this ``supposition 1''). Then $x \in A$ and
+$x \in B$. $x \in B \implies x \in B \cup Z$ for any set $Z$, so
+$x \in B \cup C$, and therefore $x \in \LHS$.
+
+Alternatively, at supposition 1, we could suppose $x \in A \cap C$. Due to
+the symmetry resulting from commutativity of union and interesection, this also
+leads to the conclusion $x \in \LHS$ by an identical argument.
+
+Therefore $\RHS \subset \LHS$. \qed
+\end{mdframed}
+
+\end{document}
