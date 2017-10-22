@@ -155,6 +155,46 @@ Yes it says much the same thing.
 \end{mdframed}
 
 \subsection{}
+
+\newpage
 \subsection{}
+Let’s write $n = d_md_{m-1} \cdots d_2d_1d_0$ where $0 \leq d_i \leq 9$ for
+$0 \leq i \leq m$ and $d_m \neq 0$, to mean that $n$ is an $(m+1)$-digit natural
+number and the given string of digits is its decimal representation. Prove that
+$n$ and $d_0 + d_1 + ··· + d_m−1 + d_m$ leave the same remainder
+when divided by 9.\\
+\begin{mdframed}
+  We have $n = \sum_{i=0}^m d_i 10^m$, and let $s(n) = \sum_{i=0}^m d_i$. The
+  claim is that $$n \mod 9 = s(n) \mod 9$$.
+
+  We can sort of see this informally, in that every time we count through a
+  block of 10 numbers, the remainder $\mod 9$ ``slips'' by 1. The coefficient
+  in the 10s column records the ``number of slips''. When we get to 100, we've
+  almost ``slipped through'' a whole block, and the 1 in the 100s column
+  accounts for that.
+
+  \subsubsection*{Proof}
+  Note that $10 = 1 \mod 9$. Also note that $ab \mod j = (a \mod j)(b \mod j)$
+  and $(a+b) \mod j = (a \mod j) + (b \mod j)$ (proof?). Then
+  \begin{align*}
+    n \mod 9 &= \(\sum_{i=0}^m d_i 10^m\) \mod 9\\
+             &= \(\sum_{i=0}^m \(d_i 10^m \mod 9\)\) \mod 9\\
+             &= \(\sum_{i=0}^m ((d_i \mod 9) (10^m \mod 9) \mod 9) \)\mod 9\\
+             &= \(\sum_{i=0}^m ((d_i \mod 9) (\prod_{j=1}^m 10 \mod 9) \mod 9) \)\mod 9\\
+             &= \(\sum_{i=0}^m d_i \mod 9 \)\mod 9\\
+             &= \(\sum_{i=0}^m d_i \mod 9 \)\mod 9\\
+  \end{align*}
+
+  \begin{align*}
+    n \mod 9 = s(n) \mod 9
+    &\iff n - s(n) = 0 \mod 9\\
+    &\iff \sum_{i=0}^m d_i 10^m - d_i = 0 \mod 9\\
+    &\iff (10^m - 1)\sum_{i=0}^m d_i = 0 \mod 9\\
+  \end{align*}
+  which is true for all valid values of $m$ and $d_i$.
+
+\end{mdframed}
+
+
 \subsection{}
 \end{document}
