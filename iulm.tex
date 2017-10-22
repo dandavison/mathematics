@@ -107,9 +107,53 @@ Therefore $\RHS \subset \LHS$. \qed
 
 
 \subsection{}
+\begin{mdframed}
+Poorly-worded question. ``A card that has an even number on one side has a
+vowel on the other'' might mean either of the following:
+\begin{enumerate}
+\item $\exists c: \text{even}(c) \text{~and~} \text{vowel}(c)$
+\item $\text{even}(c) \implies \text{vowel}(c)$.
+\end{enumerate}
+If we assume the intended meaning is (2), then we could disprove the hypothesis
+by finding an even card with a consonant. So we could try cards 2 and B. That
+might lead to a counter-example. If it does not, then the experiment is
+inconclusive, because a counter-example may exist in the unavailable cards in
+the rest of the pack.
+
+If we assume the intended meaning is (1), then we could try turning over 2 and
+A. That might lead to an example confirming the truth of the hypothesis. If it
+does not, then the experiment is inconclusive, because a confirmation may exist
+in the unavailable cards in the rest of the pack.
+\end{mdframed}
 \subsection{}
+\begin{mdframed}
+\subsubsection*{Mathematical induction}
+Consider a predicate function $p: \N \to \{\text{true},\text{false}\}$. We want to show
+that $p(i)$ is true for all $i \in N$. In other words,
+
+\textbf{Proposition}: $\forall ~ i \in N ~ p(i)$.\\
+
+\textbf{Proof by induction}: First demonstrate that $p(0)$ is true. Next,
+demonstrate that $p(i) \implies p(i+1)$.
+
+\end{mdframed}
+
 \subsection{}
+\begin{mdframed}
+  For all real numbers $a$ and positive reals $\epsilon$, there exists a
+  positive real $\delta$ for which the following is true: for all real numbers
+  $x$, $f(x)$ lies within a distance $\epsilon$ of $f(a)$ whenever $x$ lies
+  within a distance $\delta$ of $a$.
+\end{mdframed}
+
 \subsection{}
+\begin{mdframed}
+  \begin{align*}
+    \forall a \in \R: \forall x \in \R: \forall \epsilon \in \R^{>0}: \exists \delta \in \R^{>0}: |x - a| < \delta \implies |f(x) - f(a)| < \epsilon.
+  \end{align*}
+Yes it says much the same thing.
+\end{mdframed}
+
 \subsection{}
 \subsection{}
 \subsection{}
