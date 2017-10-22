@@ -214,5 +214,46 @@ when divided by 9.\\
 \end{mdframed}
 
 
+\newpage
 \subsection{}
+Does there exist a positive integer $N$ which is a power of 2, and a different
+positive integer $M$ obtained from $N$ by permuting its digits (in the usual
+base 10 representation), such that $M$ is also a power of 2? Note that we do
+not allow the base 10 representation of a positive integer to begin with 0.
+
+\begin{mdframed}
+  Not sure how to solve this, but here are a few observations:
+  \begin{enumerate}
+  \item If the two integers exist, they have the same number of digits in their
+    decimal representation. I.e., they both lie in
+    ${10^k,10^k + 2, \ldots, 10^{k+1} - 2}$ for some $k \geq 0$.
+  \item For each ``order of magnitude'' $k$, there are either 3 or 4 powers of
+    2.\footnote{To see this, note that we'll fit the most in if the first one
+      is $10^k$ itself. (Powers of 2 are never actually a multiple of 10, but
+      this will still give the upper bound.) Then
+      $2\cdot 10^k, 2^2\cdot 10^k,2^3\cdot 10^k$ also fit in, giving
+      4. Alternatively, the fewest that will fit in is when the first one is
+      $2(10^k - 2)$. In this case we'll also get $2^2(10^k - 2)$ and
+      $2^3(10^k - 2)$, giving 3.}
+  \item We can re-phrase the question as follows:
+    \begin{itemize}
+    \item Visualize the powers of 2 belonging to the $k$-th order
+      of magnitude as points in a $k$-dimensional grid with gridlines at
+      $0, 1, 2, ...$. So for example, for $k=2$, the powers of 2 are
+      $\{16, 32, 64\}$ and the points in the grid are
+      $\{(1,6), (3,2), (6,4)\}$.
+    \item Define an ``axis permutation'' of such a grid to be an operation that
+      exchanges two of the coordinate axes, sending each occupied grid point to a
+      new grid point.
+    \item Define a ``congruent pair'' to be an ordered pair $(n_1, n_2)$ of
+      powers of two, belonging to the same order of magnitude $k$, which has
+      the following property: there exists some sequence of axis permutations
+      after which the new location of $n_1$ is equal to the original location
+      of $n_2$.
+    \item Then we can rephrase the original question as: does there exist a $k$
+      for which a congruent pair exists?
+    \end{itemize}
+  \end{enumerate}
+\end{mdframed}
+
 \end{document}
