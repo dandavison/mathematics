@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{notes}
-\usepackage{mdframed}
+\usepackage{enumerate,mdframed}
 
 \newcommand{\LHS}{\text{LHS}}
 \newcommand{\RHS}{\text{RHS}}
@@ -76,15 +76,36 @@ Therefore $\RHS \subset \LHS$. \qed
 
   We are given that $a \geq 0, b \geq 0$. We start by noting that
   $0 \leq (a - b)^2$ is a tautology (true for all values of $a$ and
-  $b$). Therefore $$
+  $b$). Therefore
   \begin{align*}
               0 &\leq a^2 -2ab + b^2\\
     \implies  4ab &\leq a^2 + 2ab + b^2 = (a + b)^2\\
     \implies  2\sqrt{ab} &\leq a+b. \qed
   \end{align*}
-
 \end{mdframed}
+
 \subsection{}
+\begin{mdframed}
+  \begin{enumerate}[(a)]
+  \item 2 is prime or 2 is odd.\\
+    True. 2 is prime.
+  \item 2 is prime or 2 is even.\\
+    True. 2 is prime.
+  \item If 2 is odd then 2 is prime.\\
+    True. Premise is false so implication is true for all values of conclusion.
+  \item If 2 is even then 2 is prime.\\
+    True. Premise is true and conclusion is true, so implication is true.
+  \item Forall $n \in \N$, if $n$ is a square number then $n$ is not prime.\\
+    False, 1 is a square number yet not prime.
+  \item Forall $n \in \N$, $n$ is not prime if and only if $n$ is a square number.\\
+    False. 6 is not prime and yet not a square number.
+  \item For all even primes $p > 2$, $p^2 = 2016$.\\
+    True. There are no even primes greater than 2;
+    $\forall ~ x \in \emptyset, ~p(x)$ is true for any predicate $p$.
+  \end{enumerate}
+\end{mdframed}
+
+
 \subsection{}
 \subsection{}
 \subsection{}
