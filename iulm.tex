@@ -59,4 +59,37 @@ leads to the conclusion $x \in \LHS$ by an identical argument.
 Therefore $\RHS \subset \LHS$. \qed
 \end{mdframed}
 
+\section{Sheet 2}
+\newpage
+\subsection{}
+\begin{mdframed}
+  The attempted proof is flawed because it has the following form:
+  \begin{enumerate}
+  \item Suppose [the thing we are trying to prove]
+  \item Deduce from this a tautology
+  \item Conclude that [the thing we are trying to prove] is true.
+  \end{enumerate}
+  The problem is that it is possible to deduce a tautology from a false
+  statement. For example $-1 = 1 \implies 1 = 1$ by squaring both sides.
+
+  A correct proof follows.
+
+  We are given that $a \geq 0, b \geq 0$. We start by noting that
+  $0 \leq (a - b)^2$ is a tautology (true for all values of $a$ and
+  $b$). Therefore $$
+  \begin{align*}
+              0 &\leq a^2 -2ab + b^2\\
+    \implies  4ab &\leq a^2 + 2ab + b^2 = (a + b)^2\\
+    \implies  2\sqrt{ab} &\leq a+b. \qed
+  \end{align*}
+
+\end{mdframed}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
 \end{document}
