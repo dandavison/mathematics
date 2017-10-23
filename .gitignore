@@ -1,7 +1,2 @@
-*.aux
-*.dvi
-*.log
-*.out
-*.toc
-.ipynb_checkpoints/
-Untitled*.ipynb
+build/
+
