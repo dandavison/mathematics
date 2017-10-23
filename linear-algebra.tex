@@ -326,16 +326,13 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
 \end{align*}
 \section{Finding the nth Fibonacci number via an eigenvector change of basis}
 
-\newcommand{\nth}{n^{\text{th}}}
-
-
 
 This is the problem given at the end of the eigenvectors video in the
 Essence of Linear Algebra\footnote{\url{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}}
 series by 3blue1brown\footnote{\url{http://www.3blue1brown.com/}}.
 
 
-\subsection{Introduction}
+\subsection*{Introduction}
 
 Consider the matrix
 
@@ -386,7 +383,7 @@ construct a new matrix that performs exactly the same transformation as $A^n$,
 but which somehow does the exponentiation step "in one go" rather than by
 multiplying $A$ with itself $n$ times.
 
-\subsection{Solution outline}
+\subsection*{Solution outline}
 
 Matrices represent transformations, so we can talk about them as taking in some
 vector and producing some other vector. The approach we're going to take is to
@@ -415,7 +412,7 @@ transformation $n$ times in the eigenbasis, you just stretch by the
 stretch-factor raised to the $\nth$ power, rather than doing $n$ matrix
 multiplications.
 
-\subsection{Solution details}
+\subsection*{Solution details}
 
 Let's suppose we've already found the eigenvectors, and that there are two of
 them, and that we've arranged them as the two columns of a matrix $V$. $V$ holds
@@ -490,7 +487,7 @@ directly, without it having to go through the preceding 999,999 Fibonacci
 numbers.
 
 
-\subsection{The answer without showing the calculations}
+\subsection*{The answer without showing the calculations}
 
 \begin{align*}
 &\text{The eigenvectors are}
@@ -525,7 +522,7 @@ numbers.
              {2^n    \sqrt 5}
 \end{align*}
 
-\subsection{Does this actually work?}
+\subsection*{Does this actually work?}
 
 Yes.
 
@@ -552,7 +549,7 @@ Yes.
     8 21.0
     9 34.0
 
-\subsection{History}
+\subsection*{History}
 
 The formula is known as
 Binet's formula (\url{https://en.wikipedia.org/wiki/Fibonacci_number#Closed-form_expression})
@@ -569,7 +566,7 @@ where $\phi = \frac{1+\sqrt{5}}{2}$ is the
 golden ratio (\url{https://en.wikipedia.org/wiki/Golden_ratio}).
 
 
-\subsection{Calculations}
+\subsection*{Calculations}
 
 \subsubsection{1. Find the eigenvectors}
 We follow the textbook approach: We have
