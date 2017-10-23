@@ -1,23 +1,7 @@
-\documentclass[12pt]{article}
-\usepackage{notes}
-\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
-% \newcommand{i}{\mathbf{i}}
-% \newcommand{j}{\mathbf{j}}
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\renewcommand{\mat}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
-
-\begin{document}
-
-\begin{center}
-  \section*{
-    Linear Algebra
-    \footnote{
-      \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
-    }
-  }
-\end{center}
-
-\section{ Linear transformations and matrices}
+\footnotetext{
+  \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
+}
+\section{Linear transformations and matrices}
 
 A linear transformation is completely specified by
 
@@ -78,7 +62,7 @@ A matrix represents a linear transformation by showing where the basis vector
 are taken to.
 
 
-\section{ Change of basis}
+\section{Change of basis}
 
 Suppose person B uses some other basis vectors to describe locations in
 space. Specifically, in our coordinates, their basis vectors are
@@ -181,11 +165,11 @@ eigenvalues is also an eigenvalue.)
 
 
 
-\section*{Linear and quadratic approximations to a function
-  \footnote{
-    \href{https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/optimizing-multivariable-functions/a/reasoning-behind-the-second-partial-derivative-test}{khanacademy - Grant Sanderson - second partial derivative test}
-  }
+\section{Linear and quadratic approximations to a function}
+\footnote{
+  \href{https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/optimizing-multivariable-functions/a/reasoning-behind-the-second-partial-derivative-test}{khanacademy - Grant Sanderson - second partial derivative test}
 }
+
 
 
 
@@ -194,7 +178,7 @@ function $f: \R^2 \rightarrow \R$. The approximation is made at some point
 $(x_0, y_0) = \vec x_0 \in \R^2$; we demand that the value of the approximation, and the
 first and second derivatives, match those of $f$ exactly at that point.
 
-\subsection*{Linear approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
+\subsection{Linear approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
 
 \begin{align*}
 L(x, y) &=
@@ -212,7 +196,7 @@ determined by this requirement; see the quadratic case below. But the linear
 case is obvious without ``deriving'' the coefficients.)
 
 
-\subsection*{Quadratic approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
+\subsection{Quadratic approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
 
 First note that the ``quadratic form'' $ax^2 + 2bxy + cy^2$ can be written as
 \begin{align*}
@@ -244,7 +228,7 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
 where $\nabla^2 f(\vec x_0)$ is the Hessian matrix $\mat{f_{xx}}{f_{xy}}
                                                         {f_{yx}}{f_{yy}}$ evaluated at $\vec x_0$.
 
-\subsection*{Second partial derivative test and positive definiteness of Hessian}
+\subsection{Second partial derivative test and positive definiteness of Hessian}
 
 The second partial derivative test for a function of two variables states that
 we examine the determinant of the Hessian evaluated at the critical point:
@@ -292,7 +276,7 @@ quadratic form has real roots. If there are no real roots, then whether it's a
 minimum or a maximum depends on the sign of $f_{xx}$ (this sign will be the
 same as that of $f_{yy}$ in the no real roots case).
 
-\subsection*{Derivation of quadratic approximation coefficients}
+\subsection{Derivation of quadratic approximation coefficients}
 \begin{align*}
 Q(x, y) =
 &f(\vec x_0) + (x - x_0)f_x(\vec x_0) +
@@ -340,5 +324,3 @@ Q(x, y) =
 f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
 \frac{1}{2} f_{yy}(\vec x_0)(y - y_0)^2
 \end{align*}
-
-\end{document}
