@@ -254,6 +254,19 @@ not allow the base 10 representation of a positive integer to begin with 0.
       for which a congruent pair exists?
     \end{itemize}
   \end{enumerate}
+
+  I looked up the proof:
+
+  It's proof by contradiction. Suppose the pair of powers of 2 exist. The key
+  observation is that we can use the mod 9 theorem: since the digits are the
+  same (permuted) in the two integers, they sum to the same, and therefore the
+  two integers are equal mod 9. Therefore their difference is a multiple of
+  9. We know that the 4 values that are of the same length are $M, 2M, 4M,
+  8M$. So if there's a pair that differ by permutation of their digits, then
+  the difference between them must be $M, 3M$ or $7M$. In each case, that would
+  mean that $M$ is a multiple of 9, and therefore not a power of 2. That
+  contradiction proves it.
+
 \end{mdframed}
 
 \end{document}
