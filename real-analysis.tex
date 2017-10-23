@@ -1,23 +1,8 @@
-\documentclass[12pt]{article}
-\usepackage{notes}
-\usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
-
-% \newcommand{\i}{\mathbf{i}}
-% \newcommand{\j}{\mathbf{j}}
 \newcommand{\nth}{n^{\text{th}}}
-
-
-\begin{document}
-
-\begin{center}
-  \section*{Real Analysis}
-\end{center}
 
 Notes on Stewart - Calculus ch. 11
 
--------------------------------------
-
-\subsection*{Definition of sequences and series}
+\section{Definition of sequences and series}
 
 A **sequence** is an infinite sequence of numbers $a_1, a_2, a_3, ...$.
 
@@ -35,7 +20,7 @@ $$
 
 A sequence may have a limit: $\lim_{n \rightarrow \infty} a_n$. If it does then the sequence *converges*. If not, it *diverges*.
 
-\subsubsection*{Typical questions about sequences (11.1)}
+\subsection{Typical questions about sequences (11.1)}
 
 
 \textbf*{Determine whether the sequence converges or diverges. If it converges, find the limit.}
@@ -81,7 +66,7 @@ A sequence may have a limit: $\lim_{n \rightarrow \infty} a_n$. If it does then 
   $$
   But $\limn \frac{27}{2n} = 0$ so this (together with the Theorem 6 argument about the $(-1)^n$) proves that the sequence converges and that its limiting value is 0.
 
-\subsubsection*{Series}
+\subsection{Series}
 
 If the series sums to a finite value then it is said to converge; if not, it diverges.
 
@@ -102,7 +87,7 @@ $$
 
 Theorem: if $|r| < 1$ then the geometric series converges. Its value is $\frac{a}{1-r}$. For $|r| \geq 1$ it diverges.
 
-\subsubsection*{Typical questions about series}
+\subsection{Typical questions about series}
 
 \textbf*{Find the values of x for which the series converges. Find the sum of the series for those values of x.}
 
@@ -123,14 +108,14 @@ Theorem: if $|r| < 1$ then the geometric series converges. Its value is $\frac{a
   \frac{a}{1-r} = \frac{1}{1 - \frac{x-2}{3}} = \frac{3}{5-x}.
   $$
 
-\subsubsection*{Test for divergence of series}
+\subsection{Test for divergence of series}
 If the *sequence* does not converge to zero then the *series* (the sum of the infinite sequence) is divergent. That's fairly intuitive: if the sequence doesn't converge to zero then the series is going to be summing infinitely many non-zero terms and so will not converge.
 
 So that means that most of the questions about series involve decreasing sequences that converge to zero, for example $a_n = \frac{1}{n}$, or $a_n = \frac{2}{(n-3)^2}$.
 
 What's less intuitive is that even if the sequence *does* converge to zero, the series still might not converge. The famous example is $\sum_{n=1}^\infty \frac{1}{n} = \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + ...$. Although the sequence converges to zero, its sum (the series) does not converge to a finite value. On the other hand, for $\sum_{n=1}^\infty \frac{1}{n^2} = \frac{1}{1} + \frac{1}{4} + \frac{1}{9} + ...$ the sequence converges to zero and the series does have a finite value. Those facts are not obvious, they require proof: both are infinite sequences of numbers that approach zero, it's just that one aproaches zero more rapidly and has a finite sum whereas the other approaches more slowly and fails to have a finite sum. We can prove it using the *integral test*.
 
-\subsubsection*{Integral test for convergence}
+\subsection{Integral test for convergence}
 Consider a series like $\sumn \frac{1}{n}$. The continuous function $f(x) = \frac{1}{x}$ passes through the discrete points of the sequence. The integral test says that we can use the area under the graph of the continuous function to assess whether the series converges. That's because we can visualize the series as summing together infinitely many rectangles of width 1, so the sum of the areas of the rectangle is related to the area under the graph.
 
 **Integral test**: If $\int_1^\infty f(x) dx$ is convergent (has a finite value) then the series is convergent. And if the integral is divergent then the series is divergent.
@@ -156,21 +141,21 @@ $$
 $$
 
 
-\subsubsection*{p-series}
+\subsection{p-series}
 
 A p-series is a series like $\sumn \frac{1}{n^p}$.
 
 Theorem: a p-series is convergent if $p>1$ and divergent if $p \leq 1$.
 
-\subsection*{Comparison tests}
+\section{Comparison tests}
 
-\subsubsection*{Comparison to known-convergent series}
+\subsection{Comparison to known-convergent series}
 Consider a series for which all terms are *positive*. If we can show that the terms of our series are always less than the corresponding terms of a known-convergent series, then our series is convergent. SImilarly if our terms are larger than those of a known-di>vergent series, then our series is divergent.
 
 For example, we know that $\sumn\frac{1}{2^n}$ converges to zero (p-series with $p > 1$) but what about $\sumn\frac{1}{2^n + 1}$? It seems obvious that it converges to zero, but how do you prove it? The answer is that its terms are always smaller than the terms of $\sumn\frac{1}{2^n}$, therefore it also converges to zero.
 
 
-\subsubsection*{Limit comparison test}
+\subsection{Limit comparison test}
 This involves looking at the limit of the *ratio* of the terms from two different series. Suppose you have a series $\sumn b_n$ which you know either converges or diverges, and you have a series $\sumn a_n$ which you don't know the behavior of. If you can show that their ratio has a finite limit:
 
 $$
@@ -179,18 +164,18 @@ $$
 then either *both converge* or *both diverge*. Seeing as you know how $b$ behaves, that tells you whether $a$ converges or not.
 
 
-\subsection*{Alternating series}
+\section{Alternating series}
 The two theorems about alternating series are fairly obvious if we draw a picture of an alternating series.
 
-\subsection*{Alternating series test}
+\section{Alternating series test}
 The previous tests are all for series with positive terms only. Alternating series are often the result of a $(-1)^n$ factor, for example $\sumn (-1)^n \frac{1}{n}$. The **alternating series test** says: look at the *absolute values*; if they are decreasing (i.e. $|a_{n+1}| < |a_n|$), and if their limit is zero, then the series converges.
 
 
-\subsubsection*{Alternating series remainder theorem}
+\subsection{Alternating series remainder theorem}
 The absolute size of the error is less than or equal to the size of the first neglected term. (Only for alternating series!)
 
 
-\subsection*{Absolute and conditional convergence}
+\section{Absolute and conditional convergence}
 
 Sometimes a series with positive and negative terms might converge, but the absolute value version of the same series does *not* converge. This situation is called **conditional convergence**. An example is $\sumn (-1)^n \frac{1}{n}$. This converges (by alternating series test: the successive terms get smaller) but the absolute version doesn't converge (as discussed above).
 
@@ -200,11 +185,11 @@ Theorem: if an alternating series is absolutely convergent, then the alternating
 
 In other words, there are two different categories of convergent alternating series: conditional (only the alternating version converges), and absolute (both versions converge).
 
-\subsection*{Ratio and root tests}
+\section{Ratio and root tests}
 
 These can be used for alternating and non-alternating series.
 
-\subsubsection*{Ratio test}
+\subsection{Ratio test}
 Write down the ratio of successive terms in the series $\frac{a_{n+1}}{a_n}$, take the absolute value and take the limit of that. So $\limn \Big|\frac{a_{n+1}}{a_n}\Big|$. There are 3 possible outcomes:
 
 $$
@@ -218,7 +203,7 @@ $$
 If the original series was alternating, then these conclusions of "convergent" and "divergent" apply to the alternating series too, as well as the series of absolute values.
 
 
-\subsubsection*{Root test}
+\subsection{Root test}
 This is like the ratio test, but you use it if there are powers of $n$.
 
 Evaluate the limit of the absolute value of the $\nth$ root of the $\nth$: $|\sqrt[n]{a_n}|$. The cases are the same as for the ratio test:
@@ -233,18 +218,18 @@ $$
 $$
 
 
-\subsection*{Strategy}
+\section{Strategy}
 
 See section 11.7 for overall strategy for testing series for convergence/divergence.
 
 
-\subsection*{Power series}
+\section{Power series}
 
-\subsubsection*{Geometric series}
+\subsection{Geometric series}
 
 One class of tricks involves connecting the function to a geometric series. For example,
 
-\subsubsection*{Taylor and Maclaurin series}
+\subsection{Taylor and Maclaurin series}
 
 Memorize the general formula for a Taylor series around a point $a$. (Maclaurin series is the same but with $a=0$).
 
@@ -252,7 +237,7 @@ A common question is: over what interval of $x$-values does the series converge?
 
 
 
-\subsection*{Problems}
+\section{Problems}
 
 - **11.1: 3, 25, 37**
 - **11.2: (14, 29, 42)**
@@ -295,7 +280,7 @@ A common question is: over what interval of $x$-values does the series converge?
     - Use the ratio test to assess radius of convergence
 
 
-\subsubsection*{Maclaurin series derivation}
+\subsection{Maclaurin series derivation}
 
 Suppose that any function of a real number $f(x)$ can be represented by a "power series" with certain coefficients $c_i$
 
@@ -339,5 +324,3 @@ For example, take $f(x) = e^x$. The derivatives are all the same of course: $f^{
 $$
 e^x = 1 + \frac{x}{1} + \frac{x^2}{2!} + \frac{x^3}{3!} + ... = \sum_{i=0}^\infty \frac{x^i}{i!}
 $$
-
-\end{document}
