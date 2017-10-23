@@ -230,6 +230,7 @@ Let $f(\mu, \Sigma)$ be the density function of a normally distributed random va
 \subsection*{3. Eigenvectors of the Gaussian Covariance Matrix}
 Consider two one-dimensional random variables $X_1 \sim \N(3, 9)$ and $X_2 \sim \frac{1}{2}X_1 + \N(4, 4)$, where $\N(\mu, \sigma^2)$  is a Gaussian distribution with mean $\mu$ and variance $\sigma^2$. In software, draw $N = 100$ random two-dimensional sample points from $(X_1, X_2)$ such that the $i$th value sampled from $X_2$ is calculated based on the $i$th value sampled from $X_i$.
 \begin{enumerate}[label=(\alph*)]
+  \item
   \begin{mdframed}
     \begin{minted}{python}
       from numpy.random import normal
