@@ -1,7 +1,8 @@
 \newcommand{\solution}{\textbf{Solution: }}
 \renewcommand{\P}{\Pr}
 
-\subsection*{1. Conditional Probability}
+\section{Homework 2}
+\subsection{Conditional Probability}
 In the following questions, \textbf{show your work}, not just the final answer.
 \begin{enumerate}[label=(\alph*)]
 \item The probability that an archer hits her target when it is windy is 0.4;
@@ -93,7 +94,7 @@ In the following questions, \textbf{show your work}, not just the final answer.
 
 \newpage
 
-\subsection*{Positive Definiteness (2016)}
+\subsection{Positive Definiteness (2016)}
 
 3.
 
@@ -141,7 +142,7 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
 \end{mdframed}
 \newpage
 
-\subsection*{2. Positive Definiteness}
+\subsection{Positive Definiteness}
 \textbf{Definition.} Let $A \in \mathbb{R}^{n \times n}$ be a symmetric matrix.
 \begin{itemize}
     \item We say that $A$ is \textbf{positive definite} if $\forall x \in \mathbb{R}^n - \{0\}$, $x^{\top}Ax > 0$. We denote this with $A \succ 0$.
@@ -283,7 +284,7 @@ and what you proved in (b) to find a matrix $B$ such that $A = B^\T B$.)
 \end{enumerate}
 
 \newpage
-\subsection*{3. Derivatives and Norms}
+\subsection{Derivatives and Norms}
 In the following questions, \textbf{show your work}, not just the final answer.
 \begin{enumerate}[label=(\alph*)]
     \item Let $\x, \vec a \in \R^n$. Compute $\nabla_\x(\vec a^{\top}\x)$.
@@ -378,7 +379,7 @@ In the following questions, \textbf{show your work}, not just the final answer.
 \end{enumerate}
 
 \newpage
-\subsection*{4. Eigenvalues}
+\subsection{Eigenvalues}
 Let $A \in \R^{n\times n}$ be a symmetric matrix with $A \succeq 0$.
 \begin{enumerate}[label=(\alph*)]
     \item Prove that the largest eigenvalue of $A$ is $$\lambda_{\max}(A) = \max_{\lVert x \rVert_2 = 1} x^{\top} Ax.$$ \\
@@ -414,7 +415,7 @@ Let $A \in \R^{n\times n}$ be a symmetric matrix with $A \succeq 0$.
 \end{enumerate}
 
 \newpage
-\subsection*{5. Gradient Descent}
+\subsection{Gradient Descent}
 Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b^{\top}x$, where $A$ is a symmetric matrix with $0 < \lambda_{\min}(A)$ and $\lambda_{\max} (A) < 1$.
 \begin{enumerate}[label=(\alph*)]
 \item Using the first order optimality conditions, derive a closed-form
@@ -499,7 +500,7 @@ Consider the optimization problem $\min_{x \in \R^n} \frac{1}{2} x^{\top} Ax - b
 \end{enumerate}
 
 \newpage
-\subsection*{6. Classification}
+\subsection{Classification}
 Suppose we have a classification problem with classes labeled $1, \ldots, c$ and an additional "doubt" category labeled $c+1$. Let $f: \R^d \rightarrow \{1, \ldots, c+1\}$ be a decision rule. Define the loss function
 $$ R(f(x) = i|x) =
 \begin{cases}
@@ -521,7 +522,7 @@ where $\lambda_r \geq 0$ is the loss incurred for choosing doubt and $\lambda_s 
 \end{enumerate}
 
 \newpage
-\subsection*{7. Gaussian Classification}
+\subsection{Gaussian Classification}
 Let $P(x | \omega_i) \sim N(\mu_i, \sigma^2)$ for a two-category,
 one-dimensional classification problem with classes $\omega_1$ and $\omega_2$,
 $P(\omega_1) = P(\omega_2) = 1/2$, and $\mu_2 > \mu_1$.
@@ -600,7 +601,7 @@ $P(\omega_1) = P(\omega_2) = 1/2$, and $\mu_2 > \mu_1$.
 \end{enumerate}
 
 \newpage
-\subsection*{8. Maximum Likelihood Estimation}
+\subsection{Maximum Likelihood Estimation}
 Let $X$ be a discrete random variable which takes values in $\{1, 2, 3\}$ with probabilities $P(X = 1) = p_1, P(X=2) = p_2,$ and $P(X = 3) = p_3$, where $p_1 + p_2 + p_3 = 1$.  Show how to use the method of maximum likelihood to estimate $p_1, p_2,$ and $p_3$ from $n$ observations of $X: x_1, \ldots, x_n$. Express your answer in terms of the counts $$k_1 = \sum_{i=1}^n \mathbbm{1}(x_i = 1), k_2 = \sum_{i=1}^n \mathbbm{1}(x_i = 2), \text{ and }k_3 = \sum_{i=1}^n \mathbbm{1}(x_i = 3),$$ where
 $$\mathbbm{1}(x = a) =
 \begin{cases}
