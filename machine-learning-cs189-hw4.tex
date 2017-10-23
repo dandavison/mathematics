@@ -1,7 +1,4 @@
-\documentclass[section]{problemset}
-\def\coursenumber{CS 189:289A}
-\def\coursename{Introduction to \mbox{Machine Learning}}
-\def\coursesemester{Spring 2017}
+\documentclass{article}
 
 \usepackage{notes}
 \usepackage[margin=1in]{geometry}
@@ -95,7 +92,7 @@
 \newpage
 
 
-\begin{problem}{Logistic Regression with Newton's Method}
+\subsection*{Logistic Regression with Newton's Method}
 
 Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
 associated values $y_1, y_2, \ldots, y_n \in \{ 0, 1 \}$,
@@ -475,13 +472,12 @@ State the value of $w^{(2)}$ (the value of $w$ after two iterations).
 
 \end{itemize}
 \end{enumerate}
-\end{problem}
 
 
 \newpage
 
 
-\begin{problem}{$\ell_1$- and $\ell_2$-Regularization}
+\subsection*{$\ell_1$- and $\ell_2$-Regularization}
 
 
 Consider sample points $X_1, X_2, \ldots, X_n \in \mathbb{R}^d$ and
@@ -622,13 +618,12 @@ usually non-zero value.
 \end{mdframed}
 
 \end{enumerate}
-\end{problem}
 
 
 \newpage
 
 
-\begin{problem} {Regression and Dual Solutions}
+\subsection* {Regression and Dual Solutions}
 
 
 \begin{enumerate}[a)]
@@ -720,11 +715,12 @@ The gradient of the objective function $J(\w)$ is
 \grad_\w J(\w) = 4|\X\w - \y|^2\X^\T\X\w - \X^\T\y + 2\lambda \w.
 \end{align*}
 Setting this equal to zero gives
-\begin{align*}
-  4|\X\w^* - \y|^2\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y \\
-  4\(\w^*^\T\X^\T\X\w^* - 2\y^\T\X\w^* + \y^\T\y\)\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y \\
-  4\w^*^\T\X^\T\X\w^* - 2\y^\T\X\w^* + \y^\T\y\)\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y,
-\end{align*}
+TODO: LaTeX error
+% \begin{align*}
+%   4|\X\w^* - \y|^2\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y \\
+%   4\(\w^*^\T\X^\T\X\w^* - 2\y^\T\X\w^* + \y^\T\y\)\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y \\
+%   4\w^*^\T\X^\T\X\w^* - 2\y^\T\X\w^* + \y^\T\y\)\X^\T\X\w^* + 2\lambda \w^* &= \X^\T\y,
+% \end{align*}
 but I don't see how to simplify this to show that $w^*$ can be written as a
 linear combination $w^* = \sum_{i=1}^n a_i X_i$ for some scalars
 $a_1, \ldots, a_n$.
@@ -740,13 +736,12 @@ If the loss function is not convex, does the optimal solution always have
 the form $w^* = \sum_{i=1}^n a_i X_i$?
 Justify your answer.
 \end{enumerate}
-\end{problem}
 
 
 \newpage
 
 
-\begin{problem}{Franzia Classification + Logistic Regression = Party!}
+\subsection*{Franzia Classification + Logistic Regression = Party!}
 
   Daylen is planning the frat party of the semester. He's completely stocked up
   on Franzia. Unfortunately, the labels for 497 boxes (test set) have been
@@ -829,13 +824,12 @@ $1, \ldots, n$.
 
 \end{enumerate}
 
-\end{problem}
 
 
 \newpage
 
 
-\begin{problem}{Real World Spam Classification}
+\subsection*{Real World Spam Classification}
 
 
 \textbf{Motivation}: After taking CS 189 or CS 289A, students should be able to wrestle with ``real-world'' data and problems. These issues might be deeply technical and require a theoretical background, or might demand specific domain knowledge. Here is an example that a past TA encountered.
@@ -846,7 +840,6 @@ Why can't the linear SVM utilize the new feature well, and what can Daniel do to
 
 Write a short explanation. This question is open ended, and there can be many correct answers.
 
-\end{problem}
 
 \begin{mdframed}
   The way the new feature was defined means that both small and large values
