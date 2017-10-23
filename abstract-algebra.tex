@@ -1,24 +1,44 @@
 \newcommand{\alphainv}{\alpha^{-1}}
 
-\section{Group, Homomorphism}
+\section{Group}
 A group is a set, together with an operation that can be performed on two
 elements to produce another element.
 
-Concrete examples of groups:
+\subsection{Examples of finite order}
 
-- $\{1, i, -1, -i\}$ where the operation is multiplication of complex numbers.
-
-- $GL_n(\R)$: the set of $n \times n$ matrices, under matrix multiplication.
-
-- $S_2$: the set of permutations of two objects, where the operation is
+\begin{itemize}
+\item $S_2$: the set of permutations of two objects, where the operation is
   composition of functions.  There are just two elements in the group: the
   do-nothing permutation and the switch-the-elements permutation: $\{e,
   \tau\}$.
 
-- $S_3$: the set of permutations of three objects. There are 6 elements: the
+\item $S_3$: the set of permutations of three objects. There are 6 elements: the
   identity, 3 transitions[ref]A transition is a permutation that switches two
   elements and leaves all other alone[/ref] and two cyclic permutations.
 
+\item $\{1, i, -1, -i\}$ where the operation is multiplication of complex numbers.
+
+\item $GL_n(\R)$: the set of $n \times n$ matrices, under matrix multiplication.
+
+\item $SL_n(\R)$: set of $n \times n$ matrices with determinant $1$ (kernel of the
+  determinant homomorphism $GL_n(\R) \rightarrow \R^x$ and therefore a normal
+  subgroup of $GL_n(\R)$)
+\end{itemize}
+
+\subsection{Examples of infinite order}
+
+\begin{itemize}
+\item $\Z^+$ integers under addition
+
+\item $\Z^x$ integers under multiplication
+
+\item $\Z_{>0}^+$ positive integers under addition
+
+\item Similarly, $\Q+$, $\Q^x$, $\C^+$, $\C^x$, $\R^+$, $\R^x$ etc
+
+\end{itemize}
+
+\section{Homomorphism}
 A \textbf{homomorphism} is a map\footnote{"map" is a synonym of "function".} from
 one group to another. If it is bijective, it is an \textbf{isomorphism}. If it is
 bijective and from a group to itself (i.e. a permutation of the group elements)
