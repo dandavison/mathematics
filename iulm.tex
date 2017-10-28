@@ -82,7 +82,11 @@ $|A \cup B| = |A| + n$. Specifically, let $B = X$ with $|X| = n$. We want to
 show that when $|B|$ is increased to $n+1$, then $|A \cup B| = |A| + n+1$.
 
 To increase $|B|$ to $n+1$, a new element $y \notin X$ must be added to
-$B$. Also $y \notin A$ since we are told that $A$ and $B$ are disjoint. So now
+$B$.\footnote{I'm not comfortable with this. When passing from $|B| = n$ to
+  $|B| = n+1$, the two sets need not differ just by adjoining a new element;
+  they might be completely different, with no elements in
+  common. \label{cardinality-induction-discomfort}} Also $y \notin A$ since we
+are told that $A$ and $B$ are disjoint. So now
 \begin{align*}
   |A \cup B| &= |A \cup (X \cup \{y\})|\\
              &= |(A \cup X) \cup \{y\}| ~~~~\text{by associativity of union operation.}
@@ -138,7 +142,7 @@ proving \eqref{3-backward}, and completing the proof of equality of LHS and
 RHS.
 
 Finally we are asked to deduce that $|A| + |B| = |A \cup B| + |A \cap B|$, or
-equivalently $|A \cup B| &= |A| + |B| - |A \cap B|$. From the above, we know
+equivalently $|A \cup B| = |A| + |B| - |A \cap B|$. From the above, we know
 that
 \begin{align*}
   |A \cup B| &= |(A \setminus B) \cup (A \cap B) \cup (B \setminus A)|\\
@@ -155,9 +159,37 @@ $|X \setminus Y| = |X| - |X \cap Y|$\footnote{Does this need proof?}, therefore
 
 \newpage
 \subsection*{} % 4
-\includegraphics[width=400pt]{img/iulm-1-4.png}
+\includegraphics[width=500pt]{img/iulm-1-4.png}
 \begin{mdframed}
+We use induction on $|I|$.
 
+The first proposition is $A \cap \bigcup_{i \in I} B_i = \bigcup_{i \in I} (A \cap B_i)$.
+
+If $|I| = 0$ then $I = \emptyset$ and the proposition is true since the LHS is
+\begin{align*}
+A \cap \bigcup_{i \in \emptyset} B_i = A \cap \emptyset = \emptyset,
+\end{align*}
+and the RHS is
+\begin{align*}
+  \bigcup_{i \in \emptyset} (A \cap B_i) = \emptyset.
+\end{align*}
+
+\textit{Remark}: we also know it holds for $|I| = 1$ (immediate) and $|I| = 2$
+(a De Morgan's law).
+
+For induction, we assume that the proposition holds for $|I| = n \in \N$ and we
+seek to show that it holds for $|I| = n + 1$. Specifically, assume it holds
+for $I=X$ where $|X| = n$ and consider $I = X \cup \{y\}$ where
+$y \notin X$.\footnote{Again, not comfortable with this, see previous footnote
+  \ref{cardinality-induction-discomfort}.} Then the LHS is
+\begin{align*}
+  A \cap \bigcup_{i \in X \cup \{y\}} B_i
+  &= A \cap \(\(\bigcup_{i \in X} B_i\) \cup B_y\)\\
+  &= \(A \cap \bigcup_{i \in X} B_i\) \cup \(A \cap B_y\) ~~~\text{(a De Morgan's law)}\\
+  &= \(\bigcup_{i \in X} (A \cap B_i)\) \cup \(A \cap B_y\) ~~~\text{(by assumption)}\\
+  &= \(\bigcup_{i \in X \cup \{y\}} (A \cap B_i)\),
+\end{align*}
+as desired. This completes the proof by induction of the first proposition.
 \end{mdframed}
 
 \newpage
