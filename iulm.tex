@@ -91,8 +91,46 @@ $y \notin A$ since we are told that $A$ and $B$ are disjoint. So now
 
 \end{mdframed}
 
-\newpage\includegraphics[width=300pt]{img/iulm-1-3-ii.png}
+\includegraphics[width=300pt]{img/iulm-1-3-ii.png}
 \begin{mdframed}
+
+First, we show that
+\begin{align}
+  A \cup B ~~~ &\subset ~~~ (A \setminus B) \cup (A \cap B) \cup (B \setminus A).\label{3-forward}
+\end{align}
+Let $\LHS$ and $\RHS$ denote the expressions on the left- and right-hand sides
+of the subset operator, respectively.
+
+To show \eqref{3-forward}, first note that if $A \cup B = \emptyset$ then
+\eqref{3-forward} is true. Alternatively suppose $A \cup B \neq \emptyset$ and
+let $x \in A \cup B$. Note that since union and intersection commute, there are
+symmetries in LHS and RHS, and in fact $A$ and $B$ are
+exchangeable\footnote{need to define ``exchangeable''} in those
+expressions. With that in mind, suppose that $x \in A$. Then either
+$x \in A \cap B$ or $x \in A \setminus B$. Thus $x$ belongs to one of the three
+sets in the union on the RHS. Alternatively we could have chosen $x \in B$, but
+due to the symmetry described above we would be able to make an analogous
+argument to conclude again that $x \in \RHS$. Thus we've shown that either LHS
+is empty, or that any element of LHS is also an element of RHS, proving
+\eqref{3-forward}.
+
+Next we show that
+\begin{align}
+  (A \setminus B) \cup (A \cap B) \cup (B \setminus A) ~~~ &\subset ~~~ A \cup B. \label{3-backward}
+\end{align}
+
+Again, let $\LHS$ and $\RHS$ denote the expressions on the left- and right-hand
+sides of the subset operator, respectively.
+
+And again, if $\LHS = \emptyset$ then \eqref{3-backward} is
+true. Alternatively, suppose $\LHS \neq \emptyset$. This implies that either
+$A$ or $B$ is non-empty, since at least one of them has contributed at least
+one element to the union. Suppose that $A \neq \emptyset$ and let $x \in
+A$. Then $x \in A \cup B = \RHS$. Alternatively we could have chosen
+$B \neq \emptyset$ and reached the same conclusion. Thus we've shown that
+either LHS is empty, or that any element of LHS is also an element of RHS,
+proving \eqref{3-backward}, and completing the proof of equality of LHS and
+RHS.
 \end{mdframed}
 
 \subsection*{} % 4
