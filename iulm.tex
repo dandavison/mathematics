@@ -161,21 +161,23 @@ $|X \setminus Y| = |X| - |X \cap Y|$\footnote{Does this need proof?}, therefore
 \subsection*{} % 4
 \includegraphics[width=500pt]{img/iulm-1-4.png}
 \begin{mdframed}
-We use induction on $|I|$.
+  \textit{Remark}: these propositions are extensions to the n-ary cases of the
+  basic theorems concerning distribution of union over binary intersection, and
+  of intersection over binary union. The proofs are by induction on $|I|$,
+  relying on the binary base cases.
+
+Let $\alpha \in I$.
 
 The first proposition is $A \cap \bigcup_{i \in I} B_i = \bigcup_{i \in I} (A \cap B_i)$.
 
-If $|I| = 0$ then $I = \emptyset$ and the proposition is true since the LHS is
+If $|I| = 1$ then the result holds since the LHS is
 \begin{align*}
-A \cap \bigcup_{i \in \emptyset} B_i = A \cap \emptyset = \emptyset,
+  A \cap \bigcap_{i \in \{\alpha\}} B_i = A \cap B_\alpha,
 \end{align*}
 and the RHS is
 \begin{align*}
-  \bigcup_{i \in \emptyset} (A \cap B_i) = \emptyset.
+  \bigcup_{i \in \{\alpha\}} (A \cap B_i) = A \cap B_\alpha.
 \end{align*}
-
-\textit{Remark}: we also know it holds for $|I| = 1$ (immediate) and $|I| = 2$
-(a De Morgan's law).
 
 For induction, we assume that the proposition holds for $|I| = n \in \N$ and we
 seek to show that it holds for $|I| = n + 1$. Specifically, assume it holds
@@ -185,12 +187,43 @@ $y \notin X$.\footnote{Again, not comfortable with this, see previous footnote
 \begin{align*}
   A \cap \bigcup_{i \in X \cup \{y\}} B_i
   &= A \cap \(\(\bigcup_{i \in X} B_i\) \cup B_y\)\\
-  &= \(A \cap \bigcup_{i \in X} B_i\) \cup \(A \cap B_y\) ~~~\text{(a De Morgan's law)}\\
+  &= \(A \cap \bigcup_{i \in X} B_i\) \cup \(A \cap B_y\) ~~~\text{(distribution of intersection over binary union)}\\
   &= \(\bigcup_{i \in X} (A \cap B_i)\) \cup \(A \cap B_y\) ~~~\text{(by assumption)}\\
   &= \(\bigcup_{i \in X \cup \{y\}} (A \cap B_i)\),
 \end{align*}
-as desired. This completes the proof by induction of the first proposition.
+as desired. This completes a proof by induction of the first proposition.
 \end{mdframed}
+
+\includegraphics[width=500pt]{img/iulm-1-4.png}
+\begin{mdframed}
+The second proposition is $A \cup \bigcap_{i \in I} B_i = \bigcap_{i \in I} (A \cup B_i)$.
+
+Let $\alpha \in I$.
+
+If $|I| = 1$ then the result holds since the LHS is
+\begin{align*}
+  A \cup \bigcap_{i \in \{\alpha\}} B_i = A \cup B_\alpha,
+\end{align*}
+and the RHS is
+\begin{align*}
+  \bigcap_{i \in \{\alpha\}} (A \cup B_i) = A \cup B_\alpha.
+\end{align*}
+
+For induction, assume that the result holds for $|I| = n > 0$. We seek to show
+that it holds for $|I| = n + 1$. Specifically, assume it holds for $I=X$ where
+$|X| = n$ and consider $I = Y = X \cup \{y\}$ where $y \notin X$ so that
+$|Y| = n + 1$.\footnote{Ditto re. discomfort, see
+  \ref{cardinality-induction-discomfort}.} Then the LHS is
+\begin{align*}
+  A \cup \bigcap_{i \in X \cup \{y\}} B_i
+  &= A \cup \(\(\bigcap_{i \in X} B_i\) \cap B_y\)\\
+  &= \(A \cup \(\bigcap_{i \in X} B_i\)\) \cap  \(A \cup B_y\) ~~~\text{(distribution of union over binary intersection)}\\
+  &= \(\bigcap_{i \in X} (A \cup B_i)\) \cap  \(A \cup B_y\) ~~~\text{(by assumption)}\\
+  &= \bigcap_{i \in X \cup \{y\}} (A \cup B_i).
+\end{align*}
+
+\end{mdframed}
+
 
 \newpage
 \subsection*{} % 5
