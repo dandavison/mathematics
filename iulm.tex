@@ -256,6 +256,52 @@ $|Y| = n + 1$.\footnote{Ditto re. discomfort, see
 \subsection*{} % 7
 \includegraphics[width=400pt]{img/iulm-1-7.png}
 \begin{mdframed}
+  \begin{enumerate}[label=(\roman*)]
+  \item $f([a,b])$ is the image of the set $[a,b]$ under $f$.
+    \begin{itemize}
+    \item $f([0, \pi]) = [0, 1]$
+    \item $f([0, 2\pi]) = [-1, 1]$
+    \item $f([0, 3\pi]) = [-1, 1]$
+    \end{itemize}
+  \item $f^\1(A)$ is the preimage of $A$ under $f$
+    \begin{itemize}
+    \item $f^\1(\{0\}) = \{k\pi~|~k \in \Z\}$
+    \item $f^\1(\{1\}) = \{\frac{\pi}{2} + 2k\pi ~|~ k \in \Z\}$
+    \item $f^\1(\{2\}) = \emptyset$
+    \end{itemize}
+  \item The LHS is
+    \begin{align*}
+      f(A \cap B)
+      &= f([0, \pi] \cap [2\pi,3\pi])\\
+      &= f(\emptyset)\\
+      &= \emptyset,
+    \end{align*}
+    and the RHS is
+    \begin{align*}
+      f(A) \cap f(B)
+      &= f([0, \pi]) \cap f([2\pi,3\pi])\\
+      &= [0, 1] \cap [0, 1]\\
+      &= [0, 1].
+    \end{align*}
+  \item
+    \begin{itemize}
+    \item $f(A) = [0, 1]$
+    \item
+      \begin{align*}
+        f^\1(f(A))
+        &= f^\1([0, 1])\\
+        &= \bigcup_{k \in \Z} ~[2k\pi, (2k + 1)\pi]
+      \end{align*}
+    \item
+      \begin{align*}
+        f(f^\1(A))
+        &= f(f^\1([0, \pi]))\\
+        &= f(f^\1([0, 1]))\\
+        &= f(\bigcup_{k \in \Z} ~[2k\pi, (2k + 1)\pi])\\
+        &= [0,1]
+      \end{align*}
+    \end{itemize}
+  \end{enumerate}
 \end{mdframed}
 
 \newpage
