@@ -370,21 +370,73 @@ def partitions(n):
   \item The claim is that the union of two images is the image of the
     union.
 
-    \textcolor{blue}{This is seeming a bit pedestrian! Are there more interesting proofs?}
+    \textcolor{blue}{This is seeming a bit pedestrian! Is there a more elegant way to do this?}
 
-    First we prove $f(A) \cup f(B) \subset f(A \cup B)$. If $A$ and $B$ are
-    both empty then $\LHS = f(\emptyset) \cup f(\emptyset) = \emptyset$ and so
-    the proposition is true. Alternatively, suppose $A$ is non-empty and let
+    First we prove $f(A) \cup f(B) \subset f(A \cup B)$.
+
+    $LHS = \emptyset$ if and only if $A$ and $B$ are both empty (in which case
+    $\LHS = f(\emptyset) \cup f(\emptyset) = \emptyset$). In this case, the
+    subset relation is true.
+
+    Alternatively, suppose $LHS \neq \emptyset$. This is true if and only if
+    $A$ is non-empty or $B$ is non-empty. Suppose $A$ is non-empty and let
     $x \in A$. Then $f(x) \in f(A)$ and so $f(x) \in \LHS$. Also
-    $x \in A \cup B$ so $f(x) \in \RHS$. We could also have supposed $B$ is
-    non-empty but due to the symmetries in LHS and RHS this would lead to the
-    same conclusion.
+    $x \in A \cup B$ so $f(x) \in \RHS$. Alternatively, we could have supposed
+    $B$ is non-empty, but due to the symmetries in LHS and RHS this would lead
+    to the same conclusion. Therefore any element of the LHS is an element of
+    the RHS, as required.
 
-    Second, we prove $f(A \cup B) \subset f(A) \cup f(B)$. If $A$ and $B$ are
-    both empty then $\LHS = f(\emptyset) = \emptyset$ and so the proposition is
-    true. Alternately assume $A$ is non-empty and let $x \in A$. Then $f(x)$ ...
+    Second, we prove $f(A \cup B) \subset f(A) \cup f(B)$.
 
-  \item The claim is that the union of preimages is the preimage of the union.
+    $LHS = \emptyset$ if and only if $A$ and $B$ are both empty (in which case
+    $\LHS = f(\emptyset) = \emptyset$). In this case the subset relation is
+    true. Alternately assume $A$ is non-empty and let $x \in A$. Then
+    $f(x) \in f(A \cup B)$ and $f(x) \in f(A)$, so the element of the LHS is
+    contained in the RHS. Alternatively we could have supposed $B$ is
+    non-empty, but due to the symmetries in LHS and RHS this would lead to the
+    same conclusion. Therefore any element of the LHS is an element of the RHS,
+    as required.
+
+  \item Let $\LHS = f^\1(C) \cup f^\1(D)$, and $\RHS = f^\1(C \cup D)$. The
+    claim is $LHS=RHS$ (i.e., informally, that the union of preimages is the
+    preimage of the union.)
+
+    \textcolor{blue}{Trying a slight variation: contradiction rather than
+      proving forwards and reverse subset containment.}
+
+    There are two ways that could be untrue; let's show that they both lead to
+    contradictions.
+    \begin{enumerate}
+    \item There is an element of the LHS which is not an element of the RHS. So
+      let $x \in \LHS$ be such an element. Then $f$ maps $x$ into either $C$ or
+      $D$. But this would mean that $f$ maps $x$ into $C\cup D$, and therefore
+      that $x \in \RHS$, which is a contradiction.
+    \item There is an element of RHS which is not an element of LHS. So let $x$
+      be such an element. Then $f$ maps $x$ into $C \cup D$. But this means
+      that $f$ maps $x$ into either $C$ or $D$, and therefore that
+      $x \in \LHS$, which is a contradiction.
+    \end{enumerate}
+    These contradictions prove that $LHS=RHS$.
+
+  \item Let $LHS = f^\1(C) \cap f^\1(D)$, and $RHS = f^\1(C \cap D)$. The claim
+    is that $\LHS = \RHS$ (i.e., informally, that the intersection of preimages
+    is the preimage of the intersection).
+
+    There are two ways that could be untrue; let's show that they both lead to
+    contradictions.
+    \begin{enumerate}
+    \item There is an element of the LHS which is not an element of the RHS. So
+      let $x \in \LHS$ be such an element. Then $f$ maps $x$ into both $C$ and
+      $D$. But then $f$ maps $x$ into $C \cap D$ and therefore $x \in \RHS$,
+      which is a contradiction.
+    \item There is an element of RHS which is not an element of LHS. So let $x$
+      be such an element. Then $f$ maps $x$ into $C \cap D$. But this means
+      that $f$ maps $x$ into both $C$ and $D$, and therefore that
+      $x \in \LHS$, which is a contradiction.
+    \end{enumerate}
+    These contradictions prove that $LHS=RHS$.
+
+
   \end{enumerate}
 \end{mdframed}
 
