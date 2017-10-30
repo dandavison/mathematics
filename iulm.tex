@@ -244,12 +244,70 @@ $|Y| = n + 1$.\footnote{Ditto re. discomfort, see
 \subsection*{} % 6
 \includegraphics[width=400pt]{img/iulm-1-6.png}
 \begin{mdframed}
+  Let $P_n$ be the number of partitions of a set of size $n$. It's easy to see
+  by direct enumeration that the first 3 values of $P_n$ are
+  \\
   \begin{tabular}{c|c}
+    $n$ & $P_n$\\
+    \hline
     1 & 1\\
-    2 & 1 + 1 = 2 \\
-    3 & 1 + 3 + 1 = 5 \\
-    4 & 1 + 3 + 3 + 6 + 1 = 14
-  \end{tabular}
+    2 & 2 \\
+    3 & 5 \\
+  \end{tabular}\\
+  \\
+  $P_4$ is 15 but from that point onwards it's laborious and error-prone to try
+  to enumerate them manually.
+
+  A recursive algorithm for enumerating the partitions of a set of size $n$ is
+  given below. From the algorithm, we can see that the following recurrence
+  relation holds for $n > 1$. Let $A_{n,i}$ be the $i$-th partition of a set of
+  size $n$. Then
+  \begin{align*}
+    P_n = P_{n-1} + \sum_{i=1}^{P_{n-1}}|A_{n-1,i}|.
+  \end{align*}
+  This gives the following values:\\\\
+  \begin{tabular}{c|c|c}
+    $n$ & $|A_{n,i}|$ multiplicites& $P_n$\\
+    \hline
+    1 & $1 \cdot 1$                                     & 1  \\
+    2 & $1 \cdot 1 + 2 \cdot 1$                         & 2  \\
+    3 & $1 \cdot 1 + 2 \cdot 3 + 3 \cdot 1$             & 5  \\
+    4 & $1 \cdot 1 + 2 \cdot 7 + 3 \cdot 6 + 4 \cdot 1$ & 15 \\
+    5 & ...                                             & 52 \\
+  \end{tabular}\\
+  \newpage
+  \begin{minted}{python3}
+from copy import deepcopy
+
+def partitions(n):
+    """
+    Return a list of all partitions of the set {1, 2, ..., n}
+
+    A partition is a list of parts.
+    A part is a list of elements.
+    """
+    if n == 0:
+        return [[]]
+    else:
+        _partitions = []
+        for partition in partitions(n - 1):
+
+            # For each part of the n-1 partition, create a new
+            # partition in which the new element is added to that part
+            # and the other parts are unchanged.
+            for i in range(len(partition)):
+                _partition = deepcopy(partition)
+                _partition[i].append(n)
+                _partitions.append(_partition)
+
+            # Also create a new partition in which the new element is
+            # added as a singleton.
+            _partition = deepcopy(partition)
+            _partition.append([n])
+            _partitions.append(_partition)
+
+        return _partitions
+  \end{minted}
 \end{mdframed}
 
 \newpage
