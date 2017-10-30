@@ -471,10 +471,11 @@ def partitions(n):
 \includegraphics[width=500pt]{img/iulm-1-10.png}
 \begin{mdframed}
 \begin{enumerate}[label=(\roman*)]
-\item The possible values for the domain of $f$ are $\wp(A)$. Consider the set
-  of $f:A \to B$ with domain $A^*$ where $|A^*| = k$. For each element $a$ of
-  the domain there are $|B| = 5$ possible choices for $f(a)$. Therefore there
-  are $|B|^k$ such $f$ and the total number of $f$ is
+
+\item The possible values for the domain of $f$ are $\wp(A)$. Let $f_k:A \to B$
+  have domain $A^*$ where $|A^*| = k$. For each element $a$ of the domain there
+  are $|B| = 5$ possible choices for $f_k(a)$. Therefore there are $|B|^k$ such
+  $f_k$ and the total number of $f:A \to B$ is
   \begin{align*}
    \sum_{A^* \in \wp(A)} |B|^{|A^*|}
     = \sum_{k=0}^{|A|} {|A| \choose k} |B|^k
@@ -496,6 +497,46 @@ def partitions(n):
     + 5 \cdot 3^4  % 5 . 81  = 405
     + 1 \cdot 3^5  % 1 . 243 = 243
     =                         1024.
+  \end{align*}
+
+\item Injective $f:A \to B$ are those $f$ for which each element in the range
+  is hit by exactly one element of the domain. Note that the size of the domain
+  cannot exceed that of the codomain.
+
+  The possible values for the domain of $f$ are
+  $\{A^* ~|~ A^* \in \wp(A), |A^*| \leq |B|\}$. Let $f_k:A \to B$ have domain
+  $A^*$ where $|A^*| = k \leq |B|$. Each element of the domain chooses a
+  different element of $B$, so the number of $f_k$ is equal to the number of
+  ordered subsets of $\{1, 2, \ldots, |B|\}$ of size $k$, which is
+  $\frac{|B|!}{(|B| - k)!}$. Therefore the total number of injective
+  $f:A \to B$ is
+  \begin{align*}
+   \sum_{A^* \in \wp(A), |A^*| \leq |B|} \frac{|B|!}{\(|B| - |A^*|\)!}
+    &= \sum_{k=0}^{\min(|A|, |B|)} {|A| \choose k} \frac{|B|!}{\(|B| - k\)!}\\
+    &= \sum_{k=0}^{\min(|A|, |B|)} \frac{|A|!}{k!(|A| - k)!} \frac{|B|!}{\(|B| - k\)!}\\
+    &= 6 \cdot 120\(\frac{1}{1(6)(120)}  % 0
+                   +\frac{1}{1(2)(24)}   % 1
+                   +\frac{1}{2(1)(6)}    % 2
+                   +\frac{1}{6(1)(2)}\)\\  % 3
+    &=              1     % 0
+                   +15    % 1
+                   +60    % 2
+                   +60    % 3
+     = 136.
+  \end{align*}
+
+\item The number of injective $f:B \to A$ is
+  \begin{align*}
+    \sum_{k=0}^{\min(|A|, |B|)} \frac{|B|!}{k!(|B| - k)!} \frac{|A|!}{\(|A| - k\)!}
+    &= 6 \cdot 120\(\frac{1}{1.120.6}      % 0
+                   +\frac{1}{1.24.2}     % 1
+                   +\frac{1}{2.6.1}      % 2
+                   +\frac{1}{6.2.1}\)\\  % 3
+    &=              1     % 0
+                   +15    % 1
+                   +60    % 2
+                   +60    % 3
+     = 136.
   \end{align*}
 
 \end{enumerate}
