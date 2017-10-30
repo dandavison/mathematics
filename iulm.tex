@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage{enumerate,mdframed}
+\usepackage{enumerate}
 \usepackage{notes}
 
 \newcommand{\LHS}{\text{LHS}}
@@ -194,7 +194,7 @@ $y \notin X$.\footnote{Again, not comfortable with this, see previous footnote
 as desired. This completes a proof by induction of the first proposition.
 \end{mdframed}
 
-\includegraphics[width=500pt]{img/iulm-1-4.png}
+\includegraphics[width=400pt]{img/iulm-1-4.png}
 \begin{mdframed}
 The second proposition is $A \cup \bigcap_{i \in I} B_i = \bigcap_{i \in I} (A \cup B_i)$.
 
@@ -235,8 +235,8 @@ $|Y| = n + 1$.\footnote{Ditto re. discomfort, see
     $2 \nmid 3$ and $3 \nmid 4$ yet $2 | 4$.)
   \item The $\mod 2016$ relation is reflexive, symmetric and transitive.
   \item The $\text{hcf} > 2016$ relation is reflexive and symmetric but not
-    transitive. (E.g. consider $a = 2016+1, b = 2\cdot(2016+1)\cdot(2016+2)$
-    and $c = 2016+2$. We have $a R b$ and $b R c$ yet not $a R c$.
+    transitive. (E.g. consider $a = (2016+1), b = 2\cdot(2016+1)\cdot(2016+2)$
+    and $c = (2016+2)$. We have $a R b$ and $b R c$ yet not $a R c$.
   \end{enumerate}
 \end{mdframed}
 
@@ -308,6 +308,26 @@ $|Y| = n + 1$.\footnote{Ditto re. discomfort, see
 \subsection*{} % 8
 \includegraphics[width=400pt]{img/iulm-1-8.png}
 \begin{mdframed}
+  \begin{enumerate}[label=(\roman*)]
+  \item The claim is that the union of two images is the image of the
+    union.
+
+    \textcolor{blue}{This is seeming a bit pedestrian! Are there more interesting proofs?}
+
+    First we prove $f(A) \cup f(B) \subset f(A \cup B)$. If $A$ and $B$ are
+    both empty then $\LHS = f(\emptyset) \cup f(\emptyset) = \emptyset$ and so
+    the proposition is true. Alternatively, suppose $A$ is non-empty and let
+    $x \in A$. Then $f(x) \in f(A)$ and so $f(x) \in \LHS$. Also
+    $x \in A \cup B$ so $f(x) \in \RHS$. We could also have supposed $B$ is
+    non-empty but due to the symmetries in LHS and RHS this would lead to the
+    same conclusion.
+
+    Second, we prove $f(A \cup B) \subset f(A) \cup f(B)$. If $A$ and $B$ are
+    both empty then $\LHS = f(\emptyset) = \emptyset$ and so the proposition is
+    true. Alternately assume $A$ is non-empty and let $x \in A$. Then $f(x)$ ...
+
+  \item The claim is that the union of preimages is the preimage of the union.
+  \end{enumerate}
 \end{mdframed}
 
 \newpage
