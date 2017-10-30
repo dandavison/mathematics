@@ -543,8 +543,9 @@ def partitions(n):
 \end{mdframed}
 
 \newpage
-\section{Sheet 2}
-\subsection{}
+\section*{Sheet 2}
+\subsection*{}
+\includegraphics[width=450pt]{img/iulm-2-1.png}
 \begin{mdframed}
   The attempted proof is flawed because it has the following form:
   \begin{enumerate}
@@ -567,7 +568,8 @@ def partitions(n):
   \end{align*}
 \end{mdframed}
 
-\subsection{}
+\subsection*{}
+\includegraphics[width=450pt]{img/iulm-2-2.png}
 \begin{mdframed}
   \begin{enumerate}[(a)]
   \item 2 is prime or 2 is odd.\\
@@ -578,9 +580,9 @@ def partitions(n):
     True. Premise is false so implication is true for all values of conclusion.
   \item If 2 is even then 2 is prime.\\
     True. Premise is true and conclusion is true, so implication is true.
-  \item Forall $n \in \N$, if $n$ is a square number then $n$ is not prime.\\
+  \item For all $n \in \N$, if $n$ is a square number then $n$ is not prime.\\
     False, 1 is a square number yet not prime.
-  \item Forall $n \in \N$, $n$ is not prime if and only if $n$ is a square number.\\
+  \item For all $n \in \N$, $n$ is not prime if and only if $n$ is a square number.\\
     False. 6 is not prime and yet not a square number.
   \item For all even primes $p > 2$, $p^2 = 2016$.\\
     True. There are no even primes greater than 2;
@@ -589,7 +591,8 @@ def partitions(n):
 \end{mdframed}
 
 
-\subsection{}
+\subsection*{}
+\includegraphics[width=450pt]{img/iulm-2-3.png}
 \begin{mdframed}
 Poorly-worded question. ``A card that has an even number on one side has a
 vowel on the other'' might mean either of the following:
@@ -608,7 +611,9 @@ A. That might lead to an example confirming the truth of the hypothesis. If it
 does not, then the experiment is inconclusive, because a confirmation may exist
 in the unavailable cards in the rest of the pack.
 \end{mdframed}
-\subsection{}
+
+\subsection*{}
+\includegraphics[width=400pt]{img/iulm-2-4.png}
 \begin{mdframed}
 \subsubsection*{Mathematical induction}
 Consider a predicate function $p: \N \to \{\text{true},\text{false}\}$. We want to show
@@ -621,7 +626,8 @@ demonstrate that $p(i) \implies p(i+1)$.
 
 \end{mdframed}
 
-\subsection{}
+\subsection*{}
+\includegraphics[width=400pt]{img/iulm-5.png}
 \begin{mdframed}
   For all real numbers $a$ and positive reals $\epsilon$, there exists a
   positive real $\delta$ for which the following is true: for all real numbers
@@ -629,7 +635,8 @@ demonstrate that $p(i) \implies p(i+1)$.
   within a distance $\delta$ of $a$.
 \end{mdframed}
 
-\subsection{}
+\subsection*{}
+\includegraphics[width=400pt]{img/iulm-2-6.png}
 \begin{mdframed}
   \begin{align*}
     \forall a \in \R: \forall x \in \R: \forall \epsilon \in \R^{>0}: \exists \delta \in \R^{>0}: |x - a| < \delta \implies |f(x) - f(a)| < \epsilon.
@@ -637,15 +644,11 @@ demonstrate that $p(i) \implies p(i+1)$.
 Yes it says much the same thing.
 \end{mdframed}
 
-\subsection{}
+\subsection*{}
+\includegraphics[width=450pt]{img/iulm-2-7.png}
 
-\newpage
-\subsection{}
-Let’s write $n = d_md_{m-1} \cdots d_2d_1d_0$ where $0 \leq d_i \leq 9$ for
-$0 \leq i \leq m$ and $d_m \neq 0$, to mean that $n$ is an $(m+1)$-digit natural
-number and the given string of digits is its decimal representation. Prove that
-$n$ and $d_0 + d_1 + ··· + d_m−1 + d_m$ leave the same remainder
-when divided by 9.\\
+\subsection*{}
+\includegraphics[width=450pt]{img/iulm-2-8.png}
 \begin{mdframed}
   We can sort of see this informally, in that every time we count through a
   block of 10 numbers, the remainder $\mod 9$ ``slips'' by 1. The coefficient
@@ -697,13 +700,8 @@ when divided by 9.\\
 \end{mdframed}
 
 
-\newpage
-\subsection{}
-Does there exist a positive integer $N$ which is a power of 2, and a different
-positive integer $M$ obtained from $N$ by permuting its digits (in the usual
-base 10 representation), such that $M$ is also a power of 2? Note that we do
-not allow the base 10 representation of a positive integer to begin with 0.
-
+\subsection*{}
+\includegraphics[width=450pt]{img/iulm-9.png}
 \begin{mdframed}
   Not sure how to solve this, but here are a few observations:
   \begin{enumerate}
