@@ -444,6 +444,26 @@ def partitions(n):
 \subsection*{} % 9
 \includegraphics[width=400pt]{img/iulm-1-9.png}
 \begin{mdframed}
+\begin{enumerate}[label=(\roman*)]
+\item The definition of $f^\1(f(X))$ is $\{x~|~f(x) \in f(X)\}$. $X$ is
+  certainly a subset of this set, by the definition of $f(X)$. So if we suppose
+  an element $x' \in X$ exists for which $x' \notin f^\1(f(X))$, then we have
+  an immediate contradiction. Therefore no such $x'$ exists, proving the
+  claim.
+
+  No equality does not always hold. As a counter-example, let
+  $f: \R \to [-1, 1]$ with $f(x) = \sin(x)$, and let $X = [0,
+  \frac{\pi}{2}]$. Then $f(X) = [0, 1]$. However
+  $f^\1(f(X)) = \bigcup_{k \in \Z} ~[2k\pi, 2k\pi + \frac{\pi}{2}] \neq X$.
+  \textit{Conjecture}: The proposed equality holds if and only if $f$ is
+  injective.
+
+\item No, this is not always true. As a counter-example, consider
+  $Y \neq \emptyset$ where $Y \cap f(A) = \emptyset$ (i.e. there is no element
+  of the domain which is mapped into $Y$ by $f$). Then $f^\1(Y) = \emptyset$
+  and so $f(f^\1(Y)) = \emptyset \neq Y$. \textit{Conjecture}: the proposed
+  subset relationship holds if and only if $f$ is surjective.
+\end{enumerate}
 \end{mdframed}
 
 \newpage
