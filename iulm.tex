@@ -513,7 +513,7 @@ def partitions(n):
   \begin{align*}
    \sum_{A^* \in \wp(A), |A^*| \leq |B|} \frac{|B|!}{\(|B| - |A^*|\)!}
     &= \sum_{k=0}^{\min(|A|, |B|)} {|A| \choose k} \frac{|B|!}{\(|B| - k\)!}\\
-    &= \sum_{k=0}^{\min(|A|, |B|)} \frac{|A|!}{k!(|A| - k)!} \frac{|B|!}{\(|B| - k\)!}\\
+    &= |A|!|B|!\sum_{k=0}^{\min(|A|, |B|)} \frac{1}{k!(|A| - k)! (|B| - k)!}\\
     &= 6 \cdot 120\(\frac{1}{1(6)(120)}  % 0
                    +\frac{1}{1(2)(24)}   % 1
                    +\frac{1}{2(1)(6)}    % 2
@@ -525,19 +525,34 @@ def partitions(n):
      = 136.
   \end{align*}
 
-\item The number of injective $f:B \to A$ is
+\item The number of injective $f:B \to A$ is also 136 (the expression above is
+  symmetric in $A$ and $B$).
+
+\item Surjective $f:A \to B$ are those $f$ which hit every element of the
+  codomain. Therefore the size of the codomain cannot exceed that of the
+  domain. Therefore there are no such $f$, since $|A| < |B|$.
+
+\item Let $f_k:B \to A$ have domain $B^*$ where $|B^*| = k \geq |A|$. Each
+  element of the domain chooses a different element of $A$, but we also require
+  that every element of $A$ is chosen at least once. To count the number of
+  ways of doing this, we demand that $|A|$ elements of the domain choose
+  distinct values of $A$: there are $|A|!$ ways of making those
+  assignments. The remaining $k - |A|$ elements of the domain can choose freely
+  from among $A$, so the total number of valid arrangements is
+  $|A|!(k - |A|)|A| / k!$, where the factor of $k!$ eliminates duplicates
+  differing only in order. Therefore the number of surjective $f:B \to A$ is
   \begin{align*}
-    \sum_{k=0}^{\min(|A|, |B|)} \frac{|B|!}{k!(|B| - k)!} \frac{|A|!}{\(|A| - k\)!}
-    &= 6 \cdot 120\(\frac{1}{1.120.6}      % 0
-                   +\frac{1}{1.24.2}     % 1
-                   +\frac{1}{2.6.1}      % 2
-                   +\frac{1}{6.2.1}\)\\  % 3
-    &=              1     % 0
-                   +15    % 1
-                   +60    % 2
-                   +60    % 3
-     = 136.
+    \sum_{B^* \in \wp(B), |B^*| \geq |A|} \frac{|A|!(|B^*| - |A|)|A|}{|B^*|!}
+    &= \sum_{k=|A|}^{|B|}{|B| \choose k} \frac{|A|!(k - |A|)|A|}{k!}\\
+    &= |B|!|A|!|A|\sum_{k=|A|}^{|B|}\frac{(k - |A|)}{(k!)^2(|B|-k)!}\\
+    &= 120 \cdot 6 \cdot 3\(
+                \frac{0}{36 \cdot 2}  % 3
+              + \frac{1}{24^2 \cdot 1}  % 4
+              + \frac{2}{120^2 \cdot 1}  % 5
+      \)
+    &= \frac{90}{24} + \frac{36}{120}
   \end{align*}
+
 
 \end{enumerate}
 \end{mdframed}
