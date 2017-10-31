@@ -514,10 +514,10 @@ def partitions(n):
    \sum_{A^* \in \wp(A), |A^*| \leq |B|} \frac{|B|!}{\(|B| - |A^*|\)!}
     &= \sum_{k=0}^{\min(|A|, |B|)} {|A| \choose k} \frac{|B|!}{\(|B| - k\)!}\\
     &= |A|!|B|!\sum_{k=0}^{\min(|A|, |B|)} \frac{1}{k!(|A| - k)! (|B| - k)!}\\
-    &= 6 \cdot 120\(\frac{1}{1(6)(120)}  % 0
-                   +\frac{1}{1(2)(24)}   % 1
-                   +\frac{1}{2(1)(6)}    % 2
-                   +\frac{1}{6(1)(2)}\)\\  % 3
+    &= 6 \cdot 120\(\frac{1}{1 \cdot 6 \cdot 120}  % 0
+                   +\frac{1}{1 \cdot 2 \cdot 24}   % 1
+                   +\frac{1}{2 \cdot 1 \cdot 6}    % 2
+                   +\frac{1}{6 \cdot 1 \cdot 2}\)\\  % 3
     &=              1     % 0
                    +15    % 1
                    +60    % 2
@@ -609,10 +609,11 @@ def partitions(n):
 \subsection*{}
 \includegraphics[width=450pt]{img/iulm-2-3.png}
 \begin{mdframed}
-Poorly-worded question. ``A card that has an even number on one side has a
-vowel on the other'' might mean either of the following:
+  I think the wording of this question is ambiguous: ``A card that has an even
+  number on one side has a vowel on the other'' might mean either of the
+  following:
 \begin{enumerate}
-\item $\exists c: \text{even}(c) \text{~and~} \text{vowel}(c)$
+\item $\exists ~ c: \text{even}(c) \text{~and~} \text{vowel}(c)$
 \item $\text{even}(c) \implies \text{vowel}(c)$.
 \end{enumerate}
 If we assume the intended meaning is (2), then we could disprove the hypothesis
@@ -661,15 +662,16 @@ Yes it says much the same thing.
 
 \subsection*{}
 \includegraphics[width=450pt]{img/iulm-2-7.png}
+\begin{mdframed}
+  \begin{tabular}{c|c}
+    1 &
+  \end{tabular}
+\end{mdframed}
+
 
 \subsection*{}
 \includegraphics[width=450pt]{img/iulm-2-8.png}
 \begin{mdframed}
-  We can sort of see this informally, in that every time we count through a
-  block of 10 numbers, the remainder $\mod 9$ ``slips'' by 1. The coefficient
-  in the 10s column records the ``number of slips''. When we get to 100, we've
-  almost ``slipped through'' a whole block, and the 1 in the 100s column
-  accounts for that.
   \subsubsection*{Proof}
   We have $n = \sum_{i=0}^m d_i 10^m$, and let $s(n) = \sum_{i=0}^m d_i$. Let
   $\bar{i}$ be the equivalence class of numbers that have $i \mod 9$ as their
