@@ -279,18 +279,18 @@ $|Y| = n + 1$.\footnote{Ditto re. discomfort, see
   \begin{minted}{python3}
 from copy import deepcopy
 
-def partitions(n):
+def get_partitions(n):
     """
     Return a list of all partitions of the set {1, 2, ..., n}
 
     A partition is a list of parts.
-    A part is a list of elements.
+    A part is a list of integers.
     """
     if n == 0:
         return [[]]
     else:
-        _partitions = []
-        for partition in partitions(n - 1):
+        partitions = []
+        for partition in get_partitions(n - 1):
 
             # For each part of the n-1 partition, create a new
             # partition in which the new element is added to that part
@@ -298,15 +298,13 @@ def partitions(n):
             for i in range(len(partition)):
                 _partition = deepcopy(partition)
                 _partition[i].append(n)
-                _partitions.append(_partition)
+                partitions.append(_partition)
 
             # Also create a new partition in which the new element is
             # added as a singleton.
-            _partition = deepcopy(partition)
-            _partition.append([n])
-            _partitions.append(_partition)
+            partitions.append(partition + [[n]])
 
-        return _partitions
+        return partitions
   \end{minted}
 \end{mdframed}
 
@@ -472,87 +470,38 @@ def partitions(n):
 \begin{mdframed}
 \begin{enumerate}[label=(\roman*)]
 
-\item The possible values for the domain of $f$ are $\wp(A)$. Let $f_k:A \to B$
-  have domain $A^*$ where $|A^*| = k$. For each element $a$ of the domain there
-  are $|B| = 5$ possible choices for $f_k(a)$. Therefore there are $|B|^k$ such
-  $f_k$ and the total number of $f:A \to B$ is
-  \begin{align*}
-   \sum_{A^* \in \wp(A)} |B|^{|A^*|}
-    = \sum_{k=0}^{|A|} {|A| \choose k} |B|^k
-    = \sum_{k=0}^3 {3 \choose k} 5^k
-    = 1 \cdot 5^0 % 1 .  1  =   1
-    + 3 \cdot 5^1 % 3 .  5  =  15
-    + 3 \cdot 5^2 % 3 . 25  =  75
-    + 1 \cdot 5^3 % 1 . 125 = 125
-    =                         216.
-  \end{align*}
+\item For each $a \in A$ of the domain there are $|B| = 5$ possible choices for
+  $f(a)$. Therefore there are $|B|^{|A|} = 5^3 = 125$ distinct $f:A \to B$.
 \item By the same argument with $A$ and $B$ interchanged, the number of
-  $f: B \to A$ is
-  \begin{align*}
-    \sum_{k=0}^5 {5 \choose k} 3^k
-    = 1 \cdot 3^0  % 1 . 1   =   1
-    + 5 \cdot 3^1  % 5 . 3   =  15
-    + 10 \cdot 3^2 % 10 . 9  =  90
-    + 10 \cdot 3^3 % 10 . 27 = 270
-    + 5 \cdot 3^4  % 5 . 81  = 405
-    + 1 \cdot 3^5  % 1 . 243 = 243
-    =                         1024.
-  \end{align*}
+  $f: B \to A$ is $3^5 = 243$.
 
-\item Injective $f:A \to B$ are those $f$ for which each element in the range
-  is hit by exactly one element of the domain. Note that the size of the domain
-  cannot exceed that of the codomain.
+\item Injective $f:A \to B$ are those $f$ for which each element of the image
+  is hit by exactly one element of the domain. Note that the size of the image
+  equals the size of the domain, and therefore that the codomain must be at
+  least as large as the domain.
 
-  The possible values for the domain of $f$ are
-  $\{A^* ~|~ A^* \in \wp(A), |A^*| \leq |B|\}$. Let $f_k:A \to B$ have domain
-  $A^*$ where $|A^*| = k \leq |B|$. Each element of the domain chooses a
-  different element of $B$, so the number of $f_k$ is equal to the number of
-  ordered subsets of $\{1, 2, \ldots, |B|\}$ of size $k$, which is
-  $\frac{|B|!}{(|B| - k)!}$. Therefore the total number of injective
-  $f:A \to B$ is
-  \begin{align*}
-   \sum_{A^* \in \wp(A), |A^*| \leq |B|} \frac{|B|!}{\(|B| - |A^*|\)!}
-    &= \sum_{k=0}^{\min(|A|, |B|)} {|A| \choose k} \frac{|B|!}{\(|B| - k\)!}\\
-    &= |A|!|B|!\sum_{k=0}^{\min(|A|, |B|)} \frac{1}{k!(|A| - k)! (|B| - k)!}\\
-    &= 6 \cdot 120\(\frac{1}{1 \cdot 6 \cdot 120}  % 0
-                   +\frac{1}{1 \cdot 2 \cdot 24}   % 1
-                   +\frac{1}{2 \cdot 1 \cdot 6}    % 2
-                   +\frac{1}{6 \cdot 1 \cdot 2}\)\\  % 3
-    &=              1     % 0
-                   +15    % 1
-                   +60    % 2
-                   +60    % 3
-     = 136.
-  \end{align*}
+  This problem is equivalent to counting the number of $|A|$-tuples that can be
+  formed by sampling from $B$ without replacement, since each element of $A$
+  can be thought of as ``choosing'' an element of $B$. This number is
+  $(|B|)_{|A|} = 5 \cdot 4 \cdot 3 = 60$.
 
-\item The number of injective $f:B \to A$ is also 136 (the expression above is
-  symmetric in $A$ and $B$).
+\item There are no injective $f:B \to A$ because the codomain ($A$) is smaller
+  than the domain ($B$).
 
 \item Surjective $f:A \to B$ are those $f$ which hit every element of the
-  codomain. Therefore the size of the codomain cannot exceed that of the
+  codomain ($B$). Therefore the size of the codomain cannot exceed that of the
   domain. Therefore there are no such $f$, since $|A| < |B|$.
 
-\item Let $f_k:B \to A$ have domain $B^*$ where $|B^*| = k \geq |A|$. Each
-  element of the domain chooses a different element of $A$, but we also require
-  that every element of $A$ is chosen at least once. To count the number of
-  ways of doing this, we demand that $|A|$ elements of the domain choose
-  distinct values of $A$: there are $|A|!$ ways of making those
-  assignments. The remaining $k - |A|$ elements of the domain can choose freely
-  from among $A$, so the total number of valid arrangements is
-  $|A|!(k - |A|)|A| / k!$, where the factor of $k!$ eliminates duplicates
-  differing only in order. Therefore the number of surjective $f:B \to A$ is
+\item To count the number of surjective $f:B \to A$, note that the problem is
+  equivalent to assigning $|B|$ balls to $|A|$ labeled buckets, leaving no
+  empty buckets, and recording the identity of the balls in each bucket. This
+  is equal to the number of partitions of $B$ of size $|A|$, multiplied by
+  $|A|!$ (the number of distinct labelings of $A$). The answer (without
+  proof) is
   \begin{align*}
-    \sum_{B^* \in \wp(B), |B^*| \geq |A|} \frac{|A|!(|B^*| - |A|)|A|}{|B^*|!}
-    &= \sum_{k=|A|}^{|B|}{|B| \choose k} \frac{|A|!(k - |A|)|A|}{k!}\\
-    &= |B|!|A|!|A|\sum_{k=|A|}^{|B|}\frac{(k - |A|)}{(k!)^2(|B|-k)!}\\
-    &= 120 \cdot 6 \cdot 3\(
-                \frac{0}{36 \cdot 2}  % 3
-              + \frac{1}{24^2 \cdot 1}  % 4
-              + \frac{2}{120^2 \cdot 1}  % 5
-      \)
-    &= \frac{90}{24} + \frac{36}{120}
+    S(|B|, |A|) \cdot |A|! = 25 \cdot 6 = 150,
   \end{align*}
-
+  where $S(n, k)$ is a Stirling number of the second kind.
 
 \end{enumerate}
 \end{mdframed}
