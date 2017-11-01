@@ -670,9 +670,23 @@ Yes it says much the same thing.
 
 
 \subsection*{}
-\includegraphics[width=450pt]{img/iulm-2-8.png}
+\includegraphics[width=450pt]{img/iulm-2-8.png}\\
+\textcolor{blue}{Here are two different proofs.}
+\subsubsection*{Proof 1}
 \begin{mdframed}
-  \subsubsection*{Proof}
+  We have $n = \sum_{i=0}^m d_i 10^m$, and the sum of the digits be
+  $s(n) = \sum_{i=0}^m d_i$. These have the same remainder when
+  \begin{align*}
+    n \mod 9 = s(n) \mod 9
+    &\iff n - s(n) = 0 \mod 9\\
+    &\iff \sum_{i=0}^m d_i 10^m - d_i = 0 \mod 9\\
+    &\iff (10^m - 1)\sum_{i=0}^m d_i = 0 \mod 9\\
+  \end{align*}
+  which is true for all valid values of $m$ and $d_i$.
+\end{mdframed}
+~\\
+\subsubsection*{Proof 2}
+\begin{mdframed}
   We have $n = \sum_{i=0}^m d_i 10^m$, and let $s(n) = \sum_{i=0}^m d_i$. Let
   $\bar{i}$ be the equivalence class of numbers that have $i \mod 9$ as their
   remainder when divided by 9 (clear way to make this definition?). The claim
@@ -692,10 +706,10 @@ Yes it says much the same thing.
   \begin{align*}
   \bar{ij} = \bar i \otimes \bar j,
   \end{align*}
-  where $\oplus$ and $\otimes$ denote the addition and multiplication
-  operations on the set of equivalence classes. (The notation below doesn't
-  always manage to distinguish between addition and multiplication on $\Z$
-  versus the $\oplus$ and $\otimes$ operators.) Therefore
+  where the $\oplus$ and $\otimes$ operators on the right-hand sides denote
+  addition and multiplication of equivalence classes. (The notation below
+  doesn't always manage to distinguish between addition and multiplication on
+  $\Z$ versus the $\oplus$ and $\otimes$ operators.)  Therefore
   \begin{align*}
     \bar n &= \bar{\sum_{i=0}^m d_i 10^m}
            = \sum_{i=0}^m \bar{d_i 10^m}
@@ -706,14 +720,6 @@ Yes it says much the same thing.
            = \sum_{i=0}^m \bar{d_i}
            = \bar{\sum_{i=0}^m d_i} = \bar{s(n)}. \qed\\
   \end{align*}
-  Alternatively,
-  \begin{align*}
-    n \mod 9 = s(n) \mod 9
-    &\iff n - s(n) = 0 \mod 9\\
-    &\iff \sum_{i=0}^m d_i 10^m - d_i = 0 \mod 9\\
-    &\iff (10^m - 1)\sum_{i=0}^m d_i = 0 \mod 9\\
-  \end{align*}
-  which is true for all valid values of $m$ and $d_i$.
 \end{mdframed}
 
 
