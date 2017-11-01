@@ -1,8 +1,47 @@
-\section{Equivalence relations and partitions}
-An equivalence relation on a set $A$ is a subset of $A^2$. Thus for each pair
-$(a_1, a_2) \in A^2$ the equivalence relation says whether they are or are
-not related.
+\section{Combinatorics}
+The number of $k$-tuples that can be chosen from $n$ items without
+replacement is
+\begin{align*}
+  (n)_k = n \cdot (n-1) \cdots (n - k + 1) = \frac{n!}{(n-k)!}
+\end{align*}
 
-This doesn't tell you explicitly which group a pair belongs to. But the
-information is there: the groups are the connected components in the graph in
-which two vertices are connected if they are related.
+The number of sets of size $k$ that can be chosen from $n$ items is
+\begin{align*}
+  {n \choose k} = \frac{(n)_k}{k!} = \frac{n!}{k!(n-k)!}.
+\end{align*}
+
+The number of ways that $n$ items can be put into $k$ buckets, with no empty
+buckets, recording only the counts in each bucket (not the identities of the
+items), is
+\begin{align*}
+  {n-1 \choose k -1}.
+\end{align*}
+\textit{Proof}: Represent this as $n$ unlabeled stars, and $k-1$ bars
+representing the partition of the stars into different buckets. There are $n-1$
+gaps where the bars can be placed, hence ${n-1 \choose k -1}$ ways of dividing
+up the items.
+
+The number of ways that $n$ items can be put into $k$ buckets, with no empty
+buckets, recording the identities of the items in each bucket, is the number of
+\textit{partitions} of size $k$ of a set of size $n$. It is equal to the
+Stirling number of the second kind:
+\begin{align*}
+  S(n, k) = \frac{1}{k!} \sum_{i=0}^k(-1)^i{k \choose i}(k-i)^n. ~~ \blue{\text{(check this)}}
+\end{align*}
+\textit{Proof}:
+
+\section{Relations and partitions}
+A relation on a set $A$ is a subset of $A^2$. Thus for a pair
+$(a_1, a_2) \in A^2$ the relation says whether $a_1$ is related to $a_2$.
+
+An equivalence relation is a relation that is reflexive, symmetric, and
+transitive, and thus makes sense as defining a partitioning of the set into
+groups of equivalent elements.
+
+The equivalence relation doesn't tell you explicitly which group a pair belongs
+to (it just tells you that they are in the same group). But the information is
+there: the groups are the connected components in the graph in which two
+vertices are connected if they are related. There are fewer equivalence
+relations than assignments to labeled buckets, since the equivalence relation
+does not identify the buckets. \blue{How many equivalence relations are there,
+  compared to Stirling II number and stars-and-bars count configurations?}
