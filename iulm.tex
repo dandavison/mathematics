@@ -503,7 +503,58 @@ def get_partitions(n):
   \end{align*}
   where $S(n, k)$ is a Stirling number of the second kind.
 
+  \textit{Proof}: We want to know the number of surjective $f:B \to A$. Let's
+  prove it for the specific case of $|B| = 5$ and $|A| = 3$.
+
+  First note that there are $3^5$ functions from $B$ to $A$. However, some of
+  these will miss one or more of the elements of $A$. The number of
+  $f: B \to A$ that miss one element of $A$ is ... \blue{I haven't understood
+    this inclusion-exclusion argument yet.}
+
 \end{enumerate}
+
+We can check these numbers with some brute-force enumeration:
+
+\begin{minted}[fontsize=\footnotesize]{python3}
+def classify_relations(A_size, B_size):
+    def is_function(rel):
+        domain = [a for a, b in rel]
+        return len(set(domain)) == len(domain)
+
+    def is_injection(rel):
+        image = [b for a, b in rel]
+        return len(set(image)) == len(image)
+
+    def is_surjection(rel, codomain):
+        image = [b for a, b in rel]
+        return set(image) == set(codomain)
+
+    A, B = range(A_size), range(B_size)
+    relations = powerset(product(A, B))
+    cnts = {
+        'function': [],
+        'injection': [],
+        'surjection': [],
+    }
+    for rel in relations:
+        domain = [a for a, b in rel]
+        if set(domain) != set(A):
+            continue
+        if is_function(rel):
+            cnts['function'].append(rel)
+            if is_injection(rel):
+                cnts['injection'].append(rel)
+            if is_surjection(rel, B):
+                cnts['surjection'].append(rel)
+    return cnts
+
+{k: len(v) for k, v in classify_relations(3, 5).items()}
+# {'function': 125, 'injection': 60, 'surjection': 0}
+
+{k: len(v) for k, v in classify_relations(5, 3).items()}
+# {'function': 243, 'injection': 0, 'surjection': 150}
+\end{minted}
+
 \end{mdframed}
 
 \newpage
