@@ -59,6 +59,10 @@ There are $p^n$ elements in a vector space of dimension $n$ over the field $\F_p
 \end{mdframed}
 \includegraphics[width=250pt]{img/linear-algebra-a0-1-1-b.png}
 \begin{mdframed}
+  \textit{Remark}: This is like the 8 vectors that form the unit cube in
+  $\R^3$, except that when extended beyond the cube by vector addition or
+  scalar multiplication they ``wrap around''.
+
   Note that
   \begin{align*}
     (\F_2)^3 = \{&\bar 0, \bar 1\}^3\\
@@ -85,7 +89,26 @@ There are $p^n$ elements in a vector space of dimension $n$ over the field $\F_p
 
 \subsection*{} % 2
 \includegraphics[width=400pt]{img/linear-algebra-a0-1-2.png}\\
+\begin{mdframed}
+We need to:
+\begin{enumerate}
+\item \textit{Exhibit a proper subspace $S[x] \subset \R[x]$ and a bijection $f:\R[x] \to S[x]$}\\\\
+  Let $r(x) = a_0 + a_1x^1 + a_2x^2 + \ldots \in \R[x]$.
 
+  Define $\sigma: \R \to (0, 1)$, where $\sigma(a) = \frac{e^a}{1 + e^a}$.
+
+  Define $S[x] = \{a_0 + a_1x^1 + a_2x^2 + \ldots ~|~ a_0, a_1, a_2 \in (0, 1) \}$.
+
+  Note that $S[x] \subset \R[x]$.
+
+  Define $f:\R[x] \to S[x]$ where $f(a_0 + a_1x^1 + a_2x^2 + \ldots) = \sigma(a_0) + \sigma(a_1)x^1 + \sigma(a_2)x^2 + \ldots$
+
+\item \textit{Prove that $f$ preserves addition}\\
+\item \textit{Prove that $f$ preserves scalar multiplication}\\
+\end{enumerate}
+\end{mdframed}
+
+\newpage
 \subsection*{} % 3
 \includegraphics[width=400pt]{img/linear-algebra-a0-1-3.png}\\
 \begin{mdframed}
