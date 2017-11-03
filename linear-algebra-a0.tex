@@ -88,24 +88,22 @@ There are $p^n$ elements in a vector space of dimension $n$ over the field $\F_p
 
 
 \subsection*{} % 2
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-2.png}\\
+\includegraphics[width=450pt]{img/linear-algebra-a0-1-2.png}\\
 \begin{mdframed}
 We need to:
 \begin{enumerate}
 \item \textbf{\textit{Exhibit a proper subspace $S[x] \subset \R[x]$ and a bijection $f:\R[x] \to S[x]$}}\\\\
   Let $a_i \in \R$ for $i = 0, 1, 2, \ldots$ so that
-  $\R[x] = \{\sum_{i=0}^\infty a_ix^i\}$.
+  $\R[x] = \{a_0 + a_1x^1 + a_2x^2 + \ldots\}$.
 
-  Define $S[x] = \{\sum_{i=0}^\infty a_ix^i ~|~a_0 = 0\}$.
+  Define $S[x] = \{0 + a_1x^1 + a_2x^2 + a_3x^3 + \ldots\}$, i.e. the restriction
+  of $\R[x]$ to those polynomials that have constant term zero.
 
   $S[x]$ is a proper subspace of $\R[x]$ since it contains the zero polynomial,
   and is closed under addition and scalar multiplication.
 
   Define $f: \R[x] \to S[x]$ where
-  $f\Big(\sum_{i=0}^\infty a_ix^i\Big) = \sum_{i=0}^\infty a_ix^{i+1}$.
-
-  Define $f: \R[x] \to S[x]$ where
-  $f(a_0 + a_1x^1 + a_2x^2 + \ldots) = 0 + a_0x^1 + a_1x^2 + a_2x^3 + \ldots$
+  $f(a_0 + a_1x^1 + a_2x^2 + \ldots) = 0 + a_0x^1 + a_1x^2 + a_2x^3 + \ldots$.
 
   $f$ is clearly injective, since if $f(r(x)) = f(r'(x))$ then their
   coefficients $a_0, a_1, \ldots$ are the same and hence $r(x) = r'(x)$.
@@ -117,7 +115,7 @@ We need to:
 \item \textbf{\textit{Prove that $f$ preserves addition}}\\\\
   Let $a_i,b_i \in \R$ for $i = 0, 1, 2, \ldots$
 
-  Let $r(x) = \sum_{i=0}^\infty a_ix^i$ and $r'(x) = \sum_{i=0}^\infty b_ix^i$.
+  Let $r(x) = a_0 + a_1x^1 + a_2x^2 + \ldots$ and $r'(x) = b_0 + b_1x^1 + b_2x^2 + \ldots$.
 
   Then
   \begin{align*}
