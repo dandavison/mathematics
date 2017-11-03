@@ -92,19 +92,56 @@ There are $p^n$ elements in a vector space of dimension $n$ over the field $\F_p
 \begin{mdframed}
 We need to:
 \begin{enumerate}
-\item \textit{Exhibit a proper subspace $S[x] \subset \R[x]$ and a bijection $f:\R[x] \to S[x]$}\\\\
-  Let $r(x) = a_0 + a_1x^1 + a_2x^2 + \ldots \in \R[x]$.
+\item \textbf{\textit{Exhibit a proper subspace $S[x] \subset \R[x]$ and a bijection $f:\R[x] \to S[x]$}}\\\\
+  Let $a_i \in \R$ for $i = 0, 1, 2, \ldots$ so that
+  $\R[x] = \{\sum_{i=0}^\infty a_ix^i\}$.
 
-  Define $\sigma: \R \to (0, 1)$, where $\sigma(a) = \frac{e^a}{1 + e^a}$.
+  Define $S[x] = \{\sum_{i=0}^\infty a_ix^i ~|~a_0 = 0\}$.
 
-  Define $S[x] = \{a_0 + a_1x^1 + a_2x^2 + \ldots ~|~ a_0, a_1, a_2 \in (0, 1) \}$.
+  $S[x]$ is a proper subspace of $\R[x]$ since it contains the zero polynomial,
+  and is closed under addition and scalar multiplication.
 
-  Note that $S[x] \subset \R[x]$.
+  Define $f: \R[x] \to S[x]$ where
+  $f\Big(\sum_{i=0}^\infty a_ix^i\Big) = \sum_{i=0}^\infty a_ix^{i+1}$.
 
-  Define $f:\R[x] \to S[x]$ where $f(a_0 + a_1x^1 + a_2x^2 + \ldots) = \sigma(a_0) + \sigma(a_1)x^1 + \sigma(a_2)x^2 + \ldots$
+  Define $f: \R[x] \to S[x]$ where
+  $f(a_0 + a_1x^1 + a_2x^2 + \ldots) = 0 + a_0x^1 + a_1x^2 + a_2x^3 + \ldots$
 
-\item \textit{Prove that $f$ preserves addition}\\
-\item \textit{Prove that $f$ preserves scalar multiplication}\\
+  $f$ is clearly injective, since if $f(r(x)) = f(r'(x))$ then their
+  coefficients $a_0, a_1, \ldots$ are the same and hence $r(x) = r'(x)$.
+
+  Also, $f$ is clearly surjective since if
+  $s(x) = a_1x^1 + a_2x^2 + a_3x^3 + \ldots$ then
+  $s(x) = f(a_1 + a_2x^1 + a_3x^2 + \ldots)$.
+
+\item \textbf{\textit{Prove that $f$ preserves addition}}\\\\
+  Let $a_i,b_i \in \R$ for $i = 0, 1, 2, \ldots$
+
+  Let $r(x) = \sum_{i=0}^\infty a_ix^i$ and $r'(x) = \sum_{i=0}^\infty b_ix^i$.
+
+  Then
+  \begin{align*}
+    f\Big(r(x) + r'(x)\Big)
+    &= f\Big((a_0 + b_0) + (a_1 + b_1)x^1 + (a_2 + b_2)x^2 + \ldots\Big)\\
+    &= 0 + (a_0 + b_0)x^1 + (a_1 + b_1)x^2 + (a_2 + b_2)x^3 + \ldots\\
+    &= \Big(0 + a_0x^1 + a_1x^2 + a_2x^3 + \ldots \Big) \\
+    &+ \Big(0 + b_0x^1 + b_1x^2 + b_2x^3 + \ldots \Big) \\
+    &= f\Big(r(x)\Big) + f\Big(r'(x)\Big).
+  \end{align*}
+
+  \begin{align*}
+  \end{align*}
+
+\item \textbf{\textit{Prove that $f$ preserves scalar multiplication}}
+  \begin{align*}
+    f\Big(\lambda r(x)\Big)
+    &= f\Big(\lambda a_0 + \lambda a_1x^1 + \lambda a_2x^2 + \ldots \Big) \\
+    &= 0 + \lambda a_0x^1 + \lambda a_1x^2 + \lambda a_2x^3 + \ldots \\
+    &= \lambda(0 + a_0x^1 + a_1x^2 + a_2x^3 + \ldots) \\
+    &= \lambda f\Big(r(x)\Big)
+  \end{align*}
+
+
 \end{enumerate}
 \end{mdframed}
 
