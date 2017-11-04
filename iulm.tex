@@ -86,7 +86,16 @@ $B$.\footnote{I'm not comfortable with this. When passing from $|B| = n$ to
   $|B| = n+1$, the two sets need not differ just by adjoining a new element;
   they might be completely different, with no elements in
   common. \label{cardinality-induction-discomfort}} Also $y \notin A$ since we
-are told that $A$ and $B$ are disjoint. So now
+are told that $A$ and $B$ are disjoint.
+
+\red{TODO: to get round this problem, take an arbitrary set $X'$ of size $n+1$
+  and create a set $X$ of size $n$ by removing an element from it. Then the
+  result holds for $X$ by assumption if we can show that it holds for $X'$ then
+  we have shown it holds for any...?}
+
+
+
+ So now
 \begin{align*}
   |A \cup B| &= |A \cup (X \cup \{y\})|\\
              &= |(A \cup X) \cup \{y\}| ~~~~\text{by associativity of union operation.}
