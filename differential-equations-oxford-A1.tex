@@ -21,33 +21,35 @@
 
   \subsubsection*{(b) Show that the limit function is continuous}
 
-  We are told that $\{y_n\}_{n \geq 0}$ converges uniformly to $y$.
-
   The claim is that if each $y_n$ is continuous on $[a,b]$ then $y$ is
-  continuous on $[a,b]$.
+  continuous on $[a,b]$. We are told that
+  \begin{enumerate}
+  \item $\{y_n\}_{n \geq 0}$ converges uniformly to $y$, and
+  \item each $y_n$ is continuous on $[a,b]$.
+  \end{enumerate}
 
-  We need to show that for every $\epsilon > 0$, and for every
-  $x_0 \in [a, b]$, there exists a $\delta > 0$ such that
-  $|x - x_0| < \delta \implies |y(x) - y(x_0)| < \epsilon$.
+  % We need to show that for every $\epsilon > 0$, for every $x_0 \in [a, b]$,
+  % there exists a $\delta > 0$ such that
+  % $|x - x_0| < \delta \implies |y(x) - y(x_0)| < \epsilon$.
 
+  Fix arbitrary $\epsilon > 0$ and $x_0 \in [a,b]$.
 
+  Let $m \in \N$ be such that $|y_m(x_0) - y(x_0)| < \epsilon/3$. Such an $m$
+  exists because the $\{y_n\}$ converge uniformly to $y$.
 
-  We prove this by induction on $n$.
+  Let $\delta$ be such that
+  $|x - x_0| < \delta \implies |y_m(x) - y_m(x_0)| < \epsilon/3$. Such a
+  $\delta$ exists because $y_m$ is continuous on $[a,b]$.
 
-  We are told that $y_0$ is continuous on $[a,b]$.
+  Fix an arbitrary $x$ such that $|x - x_0| < \delta$.
 
-  Now assume that $y_i$ is continuous on $[a,b]$; we need to show that
-  $y_{i+1}$ is continuous on $[a,b]$.
-
-  Fix arbitrary $\epsilon > 0$ and $x_0 \in [a,b]$. Let $m \in \N$ be such that
-  for every $n > m$, $y_n(x_0)$ differs from $y(x_0)$ by no more than
-  $\epsilon$ at every point of $[a,b]$. We know that $m$ exists, since the
-  sequence of functions converge uniformly to $y$.
-
-  Since $y_i$ is continuous on $[a,b]$, there exists a $\delta > 0$ such that
-  $|x - x_0| < \delta \implies |y_i(x) - y_i(x_0)| < \epsilon$.
-
-  Therefore
+  Now we have the following:
+  \begin{enumerate}
+  \item $|y(x_0) - y_m(x_0)| < \epsilon/3$ ~~~~ by convergence of the $\{y_n\}$
+  \item $|y_m(x_0) - y_m(x)| < \epsilon/3$ ~~~ by continuity of $y_m$
+  \item $|y_m(x) - y(x)| < \epsilon/3$    ~~~~~~ by convergence of the $\{y_n\}$
+  \end{enumerate}
+  Therefore $|y(x_0) - y(x)| < \epsilon$, proving continuity of $y$ on $[a,b]$. \qed
 
   \subsubsection*{(c) Show that the definite integrals converge}
 
