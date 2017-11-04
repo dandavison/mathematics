@@ -1,8 +1,13 @@
-linear-algebra-oxford-A0:
-	cd build && rubber -d --shell-escape linear-algebra-oxford-A0.tex
+all: notes linear-algebra-oxford-A0 differential-equations-oxford-A1 iulm
+
+notes:
+	cd build && rubber -d --shell-escape notes.tex
 
 iulm:
 	cd build && rubber -d --shell-escape iulm.tex
 
-notes:
-	cd build && rubber -d --shell-escape notes.tex
+linear-algebra-oxford-A0:
+	cd build && rubber -d --shell-escape linear-algebra-oxford-A0.tex
+
+differential-equations-oxford-A1:
+	cd build && rubber -d --shell-escape differential-equations-oxford-A1.tex
