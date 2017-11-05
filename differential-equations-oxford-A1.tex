@@ -56,9 +56,58 @@
 
   \blue{(Approximate time taken for reading and producing an answer: 4hrs)}
 
-  \subsubsection*{(c) Show limits of definite integrals }
+  \subsubsection*{(c) Show limit of definite integral I}
+
+  Let $I_n = \int_a^b |y_n(x) - y(x)| \dx$.
+
+  The claim is that $\lim_{n \to \infty} I_n = 0$.
+
+  In other words
+  $\forall \epsilon > 0: \exists~ m \in \N: \forall~ n > m: |I_n - 0| <
+  \epsilon$.
+
+  Fix an $\epsilon > 0$.
+
+  Since the $\{y_n\}$ converge uniformly to $y$, there exists an $m \in \N$
+  such that for all $n > m$ and for all $x \in [a,b]$
+  \begin{align*}
+    |y_n(x) - y(x)| < \epsilon/(b-a).
+  \end{align*}
+
+  Therefore $\int_a^b |y_n(x) - y(x)| \dx < \epsilon$ for all $n > m$, as required. \qed
 
 
+  \newpage
+  \subsubsection*{(d) Show limit of definite integral II}
+
+  The claim is that $\lim_{n \to \infty} \int_a^b y_n(x) \dx = \int_a^b y(x) \dx$.
+
+  In other words:
+  $\forall \epsilon > 0: \exists~ m \in \N: \forall~ n > m:$
+  \begin{align*}
+    \Big|\(\int_a^b y_n(x) \dx\) - \(\int_a^b y(x) \dx\)\Big| < \epsilon.
+  \end{align*}
+
+  This is equivalent to:
+  $\forall \epsilon > 0: \exists~ m \in \N: \forall~ n > m:$
+  \begin{align*}
+    A_1 := \Big|\int_a^b \(y_n(x) - y(x)\) \dx\Big| < \epsilon.
+  \end{align*}
+
+  From part (c) above, we know that:
+  $\forall \epsilon > 0: \exists~ m \in \N: \forall~ n > m:$
+  \begin{align*}
+    A_2 := \int_a^b |y_n(x) - y(x)| \dx < \epsilon.
+  \end{align*}
+
+  Now\footnote{How do I prove this section properly?} if the sign of $y_n(x) - y(x)$ is constant for all $x \in [a,b]$
+  (i.e. the graphs do not cross over), then $A_1 = A_2 < \epsilon$. Otherwise,
+  there is some cancellation in the integral $A_1$ and
+  $0 \leq A_1 < A_2 < \epsilon$. So the same choice of $m$ as was used in part
+  (c) works here, since for that value of $m$, we have $A_1 < \epsilon$ as
+  required.
+
+  \blue{(Approximate time taken for (c) and (d): 2hrs)}
 \end{mdframed}
 
 \newpage
