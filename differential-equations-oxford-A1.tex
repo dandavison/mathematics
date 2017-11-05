@@ -110,9 +110,44 @@
   \blue{(Approximate time taken for (c) and (d): 2hrs)}
 \end{mdframed}
 
-\newpage
 \includegraphics[width=450pt]{img/differential-equations-a1-1-1-b.png}\\
 \begin{mdframed}
+\begin{align*}
+\lim_{n \to \infty} \frac{nx}{}
+\end{align*}
+
+Fix an arbitrary $\epsilon > 0$.
+
+We need to show that for all $x \in [0,1]$ there exists $m \in \N$ such that for all $n > m$
+\begin{align*}
+       &|nxe^{-nx^2} - 0| < \epsilon\\
+  \iff &ne^{-nx^2} < \frac{\epsilon}{x}\\
+  \iff &\frac{n}{e^{nx^2}} < \frac{\epsilon}{x}\\
+  \iff &\log(n) - nx^2 < \log(\epsilon/x)
+\end{align*}
+
+For the limit of the definite integral we have
+\begin{align*}
+  \int_0^1 nxe^{-nx^2} \dx
+  = \Big[-\frac{1}{2}e^{-nx^2}\Big]_0^1 = \frac{1}{2}(1 - e^{-n}),
+\end{align*}
+and so $\lim_{n \to \infty} \int_0^1 y_n(x) \dx = \frac{1}{2}$.
+
+To find the maximum value attained by $y_n(x)$ for $x \in [0,1]$, note that the
+derivative is
+\begin{align*}
+  \frac{\d y_n(x)}{\dx} = nx(-2nx)e^{-nx^2} + ne^{-nx^2} = ne^{-nx^2}(1 - 2nx^2),
+\end{align*}
+and therefore that the only solution to $\frac{\d y_n(x)}{\dx} = 0$ for
+$x \in [0,1]$ is $x = \frac{1}{\sqrt{2n}}$. Since there is only one critical
+point, and since $y_n(x) \geq 0$, and $y_n(0) = 0$, this must be a
+maximum. Therefore
+\begin{align*}
+  \max_{x \in [0,1]} y_n(x)
+  = n\frac{1}{\sqrt{2n}}e^{-n(\frac{1}{\sqrt{2n}})^2}
+  = \sqrt{\frac{n}{2e}}.
+\end{align*}
+
 \end{mdframed}
 
 \end{document}
