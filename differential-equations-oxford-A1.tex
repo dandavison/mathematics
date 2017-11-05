@@ -9,7 +9,6 @@
 
 \section{Sheet 1}
 
-\newpage
 \subsection*{}
 \includegraphics[width=450pt]{img/differential-equations-a1-1-1-a.png}\\
 \begin{mdframed}
@@ -28,7 +27,7 @@
   \item each $y_n$ is continuous on $[a,b]$.
   \end{enumerate}
   ~\\
-  \textbf{Diagram of proof:}\\
+  \textbf{Informal illustration of proof:}\\
   \includegraphics[width=200pt]{img/differential-equations-a1-1-1-a-diagram.png}\\
 
   % We need to show that for every $\epsilon > 0$, for every $x_0 \in [a, b]$,
@@ -76,8 +75,6 @@
 
   Therefore $\int_a^b |y_n(x) - y(x)| \dx < \epsilon$ for all $n > m$, as required. \qed
 
-
-  \newpage
   \subsubsection*{(d) Show limit of definite integral II}
 
   The claim is that $\lim_{n \to \infty} \int_a^b y_n(x) \dx = \int_a^b y(x) \dx$.
@@ -105,33 +102,35 @@
   there is some cancellation in the integral $A_1$ and
   $0 \leq A_1 < A_2 < \epsilon$. So the same choice of $m$ as was used in part
   (c) works here, since for that value of $m$, we have $A_1 < \epsilon$ as
-  required.
+  required. \qed
 
   \blue{(Approximate time taken for (c) and (d): 2hrs)}
 \end{mdframed}
 
 \includegraphics[width=450pt]{img/differential-equations-a1-1-1-b.png}\\
 \begin{mdframed}
+To show that $y_n(x) := \frac{nx}{e^{nx^2}} \to 0$ for all $x \in [0,1]$, first note that it is true
+for $x = 0$ since $y_n(0) = 0$ for all $n \in \N$. So we have to show it is
+true for $x \in (0, 1]$.
+
+Fix $x \in (0, 1]$ and define $f(\alpha) = \frac{\alpha x}{e^{\alpha x²}}$
+for $\alpha \in \R$.  $\lim_{\alpha \to \infty} f(\alpha)$ is an
+indeterminate form $\frac{\infty}{\infty}$ and we can use l'H\^{o}pital's
+rule, differentiating with respect to $\alpha$:
 \begin{align*}
-\lim_{n \to \infty} \frac{nx}{}
+  \lim_{\alpha \to \infty} \frac{\alpha x}{e^{\alpha x^2}}
+  = \lim_{\alpha \to \infty} \frac{x}{x^2e^{\alpha x^2}} = 0.
 \end{align*}
 
-Fix an arbitrary $\epsilon > 0$.
-
-We need to show that for all $x \in [0,1]$ there exists $m \in \N$ such that for all $n > m$
-\begin{align*}
-       &|nxe^{-nx^2} - 0| < \epsilon\\
-  \iff &ne^{-nx^2} < \frac{\epsilon}{x}\\
-  \iff &\frac{n}{e^{nx^2}} < \frac{\epsilon}{x}\\
-  \iff &\log(n) - nx^2 < \log(\epsilon/x)
-\end{align*}
+Since $f(\alpha) = y_n$ at integer values of $\alpha$ it follows that
+$\lim_{n\to\infty}y_n(x) = 0$ for all $x \in (0, 1]$. \qed
 
 For the limit of the definite integral we have
 \begin{align*}
   \int_0^1 nxe^{-nx^2} \dx
   = \Big[-\frac{1}{2}e^{-nx^2}\Big]_0^1 = \frac{1}{2}(1 - e^{-n}),
 \end{align*}
-and so $\lim_{n \to \infty} \int_0^1 y_n(x) \dx = \frac{1}{2}$.
+and so $\lim_{n \to \infty} \int_0^1 y_n(x) \dx = \frac{1}{2}$. \qed
 
 To find the maximum value attained by $y_n(x)$ for $x \in [0,1]$, note that the
 derivative is
@@ -139,15 +138,22 @@ derivative is
   \frac{\d y_n(x)}{\dx} = nx(-2nx)e^{-nx^2} + ne^{-nx^2} = ne^{-nx^2}(1 - 2nx^2),
 \end{align*}
 and therefore that the only solution to $\frac{\d y_n(x)}{\dx} = 0$ for
-$x \in [0,1]$ is $x = \frac{1}{\sqrt{2n}}$. Since there is only one critical
-point, and since $y_n(x) \geq 0$, and $y_n(0) = 0$, this must be a
-maximum. Therefore
+$x \in [0,1]$ is $x = \frac{1}{\sqrt{2n}}$.
+
+The second derivative is
+\begin{align*}
+  % \frac{\d}{\dx} ne^{-nx^2}(1 - 2nx^2) =
+  ne^{-nx^2}(-4nx) -2n^2xe^{-nx^2}(1 - 2nx^2)
+  = 2n^2xe^{-nx^2}\(2nx^2 - 3\).
+\end{align*}
+This is negative at the critical point $x = \frac{1}{\sqrt{2n}}$ showing that
+it is a maximum. Therefore
 \begin{align*}
   \max_{x \in [0,1]} y_n(x)
   = n\frac{1}{\sqrt{2n}}e^{-n(\frac{1}{\sqrt{2n}})^2}
-  = \sqrt{\frac{n}{2e}}.
+  = \sqrt{\frac{n}{2e}}. \qed
 \end{align*}
-
+\blue{(Approximate time for reading and producing answer: 3 hrs)}
 \end{mdframed}
 
 \end{document}
