@@ -11,6 +11,8 @@
 \subsection*{} % 1
 \includegraphics[width=450pt]{img/linear-algebra-a0-1-1-a.png}\\
 \begin{mdframed}
+  \blue{(Unlike the question, I am trying to use notation that distinguishes
+    between integers and their equivalence classes.)}\\
   Let $a, b, c \in \Z$ with $0 \leq a < p, ~~ 0 \leq b < p, ~~ 0 \leq c < p$.
 
   Let $\bar a, \bar b, \bar c \in \F$ be equivalence classes of integers modulo $p$.
@@ -35,14 +37,34 @@
     \begin{enumerate}
     \item \textit{Existence of identity}: $\bar 1$ is the identity since
       $\bar a \bar 1 = \bar{a\cdot 1} = \bar{a}$ for all $\bar a \in \F_p$.
-    \item \textit{Existence of inverses for everything except additive
-        identity}: We need to show that for all
-      $\bar a \in \F_p \setminus \{\bar 0\}$ there exists $\bar b \in \F_p$
-      such that $\bar a ~ \bar b = \bar 1$. \red{TODO: I couldn't think how to
-        show this. I eventually allowed myself to google a little which brought
-        up people pointing to the fact that since $a$ and $p$ are coprime,
-        there exist $n, m$ such that $an + pm = 1$. Haven't thought about what
-        to do with that yet.}
+      \newpage
+    \item \textit{Existence of inverses for everything except additive identity}:\\\\
+      The claim is that for all $\bar a \in \F_p \setminus \{\bar 0\}$ there
+      exists $\bar b \in \F_p$ such that $\bar a ~ \bar b = \bar 1$.
+
+      Fix an arbitrary $a \in \{1, \ldots, p-1\}$.
+
+      The claim is equivalent to the following: there exists
+      $b \in \{0, 1, \ldots, p\}$ such that for all $i, j \in \Z$ there exists
+      $k \in \Z$ such that $(ip + a)(jp + b) = kp + 1$.
+
+      But note that $(ip + a)(jp + b) = p(ijp + aj + bi) + ab$ and therefore
+      \begin{align*}
+        &(ip + a)(jp + b) = kp + 1\\
+        \iff &ab = p(k - ijp - aj - bi) + 1.
+      \end{align*}
+      Since $k$ can be chosen freely, the condition is simply that for all
+      $i, j \in \Z$ there exists $k \in \Z$ such that $ab = kp + 1$.
+
+      Note\footnote{\red{I eventually allowed myself to google for a hint here
+          which brought up people pointing to Bezout's identity.}} that $a$ and
+      $p$ are coprime (gcd is 1). By Bezout's identity, there exists
+      $b, -k \in \Z$ such that
+      \begin{align*}
+        ba + (-k)p = 1 \iff ab = kp + 1. \qed
+      \end{align*}
+
+
     \item \textit{Commutativity}:
       $\bar a ~ \bar b = \bar{ab} = \bar{b} ~ \bar{a}$ for all $a, b \in \F_p$.
     \item \textit{Associativity}:
