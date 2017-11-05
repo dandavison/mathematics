@@ -1,10 +1,30 @@
-\section{Continuity}
-A function $f:\R \to \R$ is continuous at $x_0$ if and only if for every
-distance $\epsilon$ in the output space, a distance $\delta$ in the input space
-can be found such that
+\section{Definitions}
+\subsection{Limit}
+A sequence has a limit $L$ iff for any distance $\epsilon$, no matter how
+small, there is a point in the sequence beyond which all values are within
+$\epsilon$ of $L$.
+
+A sequence $(x_n)$ has limit $L$ iff for all $\epsilon > 0$ there exists an
+$m \in \N$ such that $|x_n - L| < \epsilon$ for all $n > m$.
+
+\subsubsection{Limit of sequence of functions}
+A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
+$x$ in the input set the sequence $\{f_n(x)\}_{n\geq 0}$ has limit $f(x)$.
+
+They \textit{converge uniformly} to $f$ iff the same $m$ works for all input
+values.
+
+\subsection{Continuity}
+A function $f$ is continuous at a point $x_0$ iff for any distance $\epsilon$,
+no matter how small, a $\delta$ exists such that all input values within
+$\delta$ of $x_0$ are mapped to within $\epsilon$ of $f(x_0)$.
+
+Let $U \subseteq \R$. A function $f:U \to \R$ is continuous at $x_0$ if and
+only if for every distance $\epsilon$ in the output space, a distance $\delta$
+in the input space can be found such that
 $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$.
 
-Notes on Stewart - Calculus ch. 11
+\section{Notes on Stewart - Calculus ch. 11}
 
 \section{Definition of sequences and series}
 
