@@ -257,4 +257,25 @@ So $f$ satisfies a Lipschitz condition.
   input rectangle, so why are they being combined and compared arithmetically?
 \end{enumerate}
 
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-1-3.png}\\
+\end{mdframed}
+\subsubsection*{(2)}
+
+\subsubsection*{Find the solution explicitly}
+Find general solution using separation of variables:
+\begin{align*}
+  \dydx &= (1 - 2x)y\\
+  \frac{1}{y}\dy &= (1 - 2x) \dx\\
+  \int \frac{1}{y} \dy &= \int (1 - 2x) \dx\\
+               \log y  &= x - x^2 + C\\
+       y &= Ae^{x(1-x)}
+\end{align*}
+Use initial values to find particular solution:
+\begin{align*}
+  1 = Ae^0 = A
+\end{align*}
+
+
 \end{document}
