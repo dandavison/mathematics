@@ -10,7 +10,7 @@
 
 \section{Sheet 1}
 
-\subsection*{}
+\subsection*{} % 1
 \includegraphics[width=450pt]{img/differential-equations-a1-1-1-a.png}\\
 \begin{mdframed}
   \subsubsection*{(a) Definition of uniform convergence}
@@ -155,6 +155,38 @@ it is a maximum. Therefore
   = \sqrt{\frac{n}{2e}}. \qed
 \end{align*}
 \blue{(Approximate time for reading and producing answer: 3 hrs)}
+\end{mdframed}
+
+
+\subsection*{} % 2
+\includegraphics[width=400pt]{img/differential-equations-a1-1-2.png}\\
+\begin{mdframed}
+\subsubsection*{Weierstrass M-test}
+The series of functions $(u_n)_{n\geq 0}$ converges uniformly on $[a,b]$ if
+\begin{enumerate}
+\item there exists a sequence $(M_n)_{n\geq 0}$ such that $|u_n(x)| \leq M_n$
+  for all $n \geq 0$ and for all $x \in [a,b]$, and
+\item the series $\sum_{n=0}^\infty M_n$ converges.
+\end{enumerate}
+~\\
+Define $u_n(x) = (-1)^n ~ \frac{\cos nx}{1 + n^2}$.
+
+Let $M_n = \frac{1}{1 + n^2}$ and note that $|u_n| \leq M_n$ for all
+$x \in [-\pi,\pi]$.
+
+Note that the integral
+$\int_1^\infty \frac{1}{x^2} \dx = [-\frac{1}{x}]_1^\infty = 1$ converges,
+therefore the series $\sum_{n=1}^\infty \frac{1}{n^2}$ converges by the
+integral test for convergent series.
+
+Now $M_n < \frac{1}{n^2}$ for $n > 0$, so the series $\sum_{n=1}^\infty M_n$
+converges. Therefore the series $\sum_{n=0}^\infty M_n$ also converges, since
+its tail converges.
+
+Therefore the series $\sum_{n=0}^\infty u_n$ converges uniformly on
+$[-\pi,\pi]$.
+
+
 \end{mdframed}
 
 \end{document}
