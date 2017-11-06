@@ -9,111 +9,117 @@
 \maketitle
 
 \section*{Sheet 1}
+
 \subsection*{} % 1
-\includegraphics[width=450pt]{img/linear-algebra-a0-1-1-a.png}\\
 \begin{mdframed}
-  Let\footnote{Unlike the question, I am trying to use notation that
-    distinguishes between integers and their equivalence classes.}
-  $a, b, c \in \Z$ with $0 \leq a < p, ~~ 0 \leq b < p, ~~ 0 \leq c < p$.
+\includegraphics[width=450pt]{img/linear-algebra-a0-1-1-a.png}\\
+\end{mdframed}
 
-  Let $\bar a, \bar b, \bar c \in \F$ be equivalence classes of integers modulo $p$.
+Let\footnote{Unlike the question, I am trying to use notation that
+  distinguishes between integers and their equivalence classes.}
+$a, b, c \in \Z$ with $0 \leq a < p, ~~ 0 \leq b < p, ~~ 0 \leq c < p$.
 
-  The field axioms are listed below, together with proof that they hold for $\F_p$.
+Let $\bar a, \bar b, \bar c \in \F$ be equivalence classes of integers modulo $p$.
+
+The field axioms are listed below, together with proof that they hold for $\F_p$.
+\begin{enumerate}
+\item \textbf{Additive axioms}\\
+  Define $\bar a + \bar b := \bar{a + b}$, then:
   \begin{enumerate}
-  \item \textbf{Additive axioms}\\
-    Define $\bar a + \bar b := \bar{a + b}$, then:
-    \begin{enumerate}
-    \item \textit{Existence of identity}: $\bar 0$ is the identity since
-      $\bar a + \bar 0 = \bar{a + 0} = \bar{a}$ for all $\bar a \in \F_p$.
-    \item \textit{Existence of inverses}: $(\bar a)^\1 = \bar{-a}$ since
-      $\bar a + \bar{-a} = \bar{a + -a} = \bar{0}$ for all $a \in \F_p$.
-    \item \textit{Commutativity}:
-      $\bar a + \bar b = \bar{a + b} = \bar{b} + \bar{a}$ for all $a, b \in \F_p$.
-    \item \textit{Associativity}:
-      $\bar a + (\bar b + \bar c) = \bar a + \bar {b + c} = \bar{a + b + c} =
-      \bar{a + b} + \bar{c} = (\bar a + \bar b) + \bar{c}$.
-    \end{enumerate}
-  \item \textbf{Multiplicative axioms}\\
-    Define $\bar a ~ \bar b := \bar{ab}$, then:
-    \begin{enumerate}
-    \item \textit{Existence of identity}: $\bar 1$ is the identity since
-      $\bar a \bar 1 = \bar{a\cdot 1} = \bar{a}$ for all $\bar a \in \F_p$.
-      \newpage
-    \item \textit{Existence of inverses for everything except additive identity}:\\\\
-      The claim is that for all $\bar a \in \F_p \setminus \{\bar 0\}$ there
-      exists $\bar b \in \F_p$ such that $\bar a ~ \bar b = \bar 1$.
-
-      Fix an arbitrary $a \in \{1, \ldots, p-1\}$.
-
-      The claim is equivalent to the following: there exists
-      $b \in \{0, 1, \ldots, p\}$ such that for all $i, j \in \Z$ there exists
-      $k \in \Z$ such that $(ip + a)(jp + b) = kp + 1$.
-
-      But note that $(ip + a)(jp + b) = p(ijp + aj + bi) + ab$ and therefore
-      \begin{align*}
-        &(ip + a)(jp + b) = kp + 1\\
-        \iff &ab = p(k - ijp - aj - bi) + 1.
-      \end{align*}
-      Since $k$ can be chosen freely, the condition is simply that for all
-      $i, j \in \Z$ there exists $k \in \Z$ such that $ab = kp + 1$.
-
-      Note\footnote{I eventually allowed myself to google for a hint here which
-        brought up people pointing to Bezout's identity.} that $a$ and $p$ are
-      coprime (gcd is 1). By Bezout's identity, there exists $b, -k \in \Z$
-      such that
-      \begin{align*}
-        ba + (-k)p = 1 \iff ab = kp + 1. \qed
-      \end{align*}
-
-
-    \item \textit{Commutativity}:
-      $\bar a ~ \bar b = \bar{ab} = \bar{b} ~ \bar{a}$ for all $a, b \in \F_p$.
-    \item \textit{Associativity}:
-      $\bar a (\bar b \bar c) = \bar a + \bar {bc} = \bar{abc} =
-      \bar{ab}~\bar{c} = (\bar a ~ \bar b) \bar{c}$.
-    \end{enumerate}
-  \item \textbf{Distributive axiom}
-    \begin{enumerate}
-    \item \textit{Multiplication distributes over addition}: $\bar a (\bar b + \bar c) = \bar a (\bar{b + c}) = \bar{a(b+c)} = \bar{ab +
-      ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
-    \end{enumerate}
+  \item \textit{Existence of identity}: $\bar 0$ is the identity since
+    $\bar a + \bar 0 = \bar{a + 0} = \bar{a}$ for all $\bar a \in \F_p$.
+  \item \textit{Existence of inverses}: $(\bar a)^\1 = \bar{-a}$ since
+    $\bar a + \bar{-a} = \bar{a + -a} = \bar{0}$ for all $a \in \F_p$.
+  \item \textit{Commutativity}:
+    $\bar a + \bar b = \bar{a + b} = \bar{b} + \bar{a}$ for all $a, b \in \F_p$.
+  \item \textit{Associativity}:
+    $\bar a + (\bar b + \bar c) = \bar a + \bar {b + c} = \bar{a + b + c} =
+    \bar{a + b} + \bar{c} = (\bar a + \bar b) + \bar{c}$.
   \end{enumerate}
+\item \textbf{Multiplicative axioms}\\
+  Define $\bar a ~ \bar b := \bar{ab}$, then:
+  \begin{enumerate}
+  \item \textit{Existence of identity}: $\bar 1$ is the identity since
+    $\bar a \bar 1 = \bar{a\cdot 1} = \bar{a}$ for all $\bar a \in \F_p$.
+    \newpage
+  \item \textit{Existence of inverses for everything except additive identity}:\\\\
+    The claim is that for all $\bar a \in \F_p \setminus \{\bar 0\}$ there
+    exists $\bar b \in \F_p$ such that $\bar a ~ \bar b = \bar 1$.
+
+    Fix an arbitrary $a \in \{1, \ldots, p-1\}$.
+
+    The claim is equivalent to the following: there exists
+    $b \in \{0, 1, \ldots, p\}$ such that for all $i, j \in \Z$ there exists
+    $k \in \Z$ such that $(ip + a)(jp + b) = kp + 1$.
+
+    But note that $(ip + a)(jp + b) = p(ijp + aj + bi) + ab$ and therefore
+    \begin{align*}
+      &(ip + a)(jp + b) = kp + 1\\
+      \iff &ab = p(k - ijp - aj - bi) + 1.
+    \end{align*}
+    Since $k$ can be chosen freely, the condition is simply that for all
+    $i, j \in \Z$ there exists $k \in \Z$ such that $ab = kp + 1$.
+
+    Note\footnote{I eventually allowed myself to google for a hint here which
+      brought up people pointing to Bezout's identity.} that $a$ and $p$ are
+    coprime (gcd is 1). By Bezout's identity, there exists $b, -k \in \Z$
+    such that
+    \begin{align*}
+      ba + (-k)p = 1 \iff ab = kp + 1. \qed
+    \end{align*}
+
+
+  \item \textit{Commutativity}:
+    $\bar a ~ \bar b = \bar{ab} = \bar{b} ~ \bar{a}$ for all $a, b \in \F_p$.
+  \item \textit{Associativity}:
+    $\bar a (\bar b \bar c) = \bar a + \bar {bc} = \bar{abc} =
+    \bar{ab}~\bar{c} = (\bar a ~ \bar b) \bar{c}$.
+  \end{enumerate}
+\item \textbf{Distributive axiom}
+  \begin{enumerate}
+  \item \textit{Multiplication distributes over addition}: $\bar a (\bar b + \bar c) = \bar a (\bar{b + c}) = \bar{a(b+c)} = \bar{ab +
+    ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
+  \end{enumerate}
+\end{enumerate}
 
 There are $p^n$ elements in a vector space of dimension $n$ over the field $\F_p$.
-\end{mdframed}
+\newpage
+\begin{mdframed}
 \includegraphics[width=200pt]{img/linear-algebra-a0-1-1-b.png}
-\begin{mdframed}
-  \textit{Remark}: This is like the 8 vectors that form the unit cube in
-  $\R^3$, except that when extended beyond the cube by vector addition or
-  scalar multiplication they ``wrap around''.
-
-  Note that
-  \begin{align*}
-    (\F_2)^3 = \{&\bar 0, \bar 1\}^3\\
-             = \{&(\bar 0, \bar 0, \bar 0),\\
-                 &(\bar 0, \bar 0, \bar 1),\\
-                 &(\bar 0, \bar 1, \bar 0),\\
-                 &(\bar 0, \bar 1, \bar 1),\\
-                 &(\bar 1, \bar 0, \bar 0),\\
-                 &(\bar 1, \bar 0, \bar 1),\\
-                 &(\bar 1, \bar 1, \bar 0),\\
-                 &(\bar 1, \bar 1, \bar 1)\}.
-  \end{align*}
-  The set of subspaces of $(\F_2)^3$ is
-  \begin{align*}
-    &\{\{(\bar 0, \bar 0, \bar 0)\}\} ~~~~~~~~~~~~~~~~~~~~~ \cup\\
-    &\{\{(\bar 0, \bar 0, \bar 0), x\} ~|~ x \in (\F_2)^3\} ~~~ \cup\\
-    &\{\{(\bar 0, a, b) ~|~ a, b \in \F_2\}\}  ~~~~~~~ \cup\\
-    &\{\{(a, \bar 0, b) ~|~ a, b \in \F_2\}\}  ~~~~~~~ \cup\\
-    &\{\{(a, b, \bar 0) ~|~ a, b \in \F_2\}\}  ~~~~~~~ \cup\\
-    &\{(\F_2)^3\}.
-  \end{align*}
 \end{mdframed}
 
+\textit{Remark}: This is like the 8 vectors that form the unit cube in
+$\R^3$, except that when extended beyond the cube by vector addition or
+scalar multiplication they ``wrap around''.
 
+Note that
+\begin{align*}
+  (\F_2)^3 = \{&\bar 0, \bar 1\}^3\\
+           = \{&(\bar 0, \bar 0, \bar 0),\\
+               &(\bar 0, \bar 0, \bar 1),\\
+               &(\bar 0, \bar 1, \bar 0),\\
+               &(\bar 0, \bar 1, \bar 1),\\
+               &(\bar 1, \bar 0, \bar 0),\\
+               &(\bar 1, \bar 0, \bar 1),\\
+               &(\bar 1, \bar 1, \bar 0),\\
+               &(\bar 1, \bar 1, \bar 1)\}.
+\end{align*}
+The set of subspaces of $(\F_2)^3$ is
+\begin{align*}
+  &\{\{(\bar 0, \bar 0, \bar 0)\}\} ~~~~~~~~~~~~~~~~~~~~~ \cup\\
+  &\{\{(\bar 0, \bar 0, \bar 0), x\} ~|~ x \in (\F_2)^3\} ~~~ \cup\\
+  &\{\{(\bar 0, a, b) ~|~ a, b \in \F_2\}\}  ~~~~~~~ \cup\\
+  &\{\{(a, \bar 0, b) ~|~ a, b \in \F_2\}\}  ~~~~~~~ \cup\\
+  &\{\{(a, b, \bar 0) ~|~ a, b \in \F_2\}\}  ~~~~~~~ \cup\\
+  &\{(\F_2)^3\}.
+\end{align*}
+
+
+\newpage
 \subsection*{} % 2
-\includegraphics[width=450pt]{img/linear-algebra-a0-1-2.png}\\
 \begin{mdframed}
+\includegraphics[width=450pt]{img/linear-algebra-a0-1-2.png}\\
+\end{mdframed}
 We need to:
 \begin{enumerate}
 \item \textbf{\textit{Exhibit a proper subspace $S[x] \subset \R[x]$ and a bijection $f:\R[x] \to S[x]$}}\\\\
@@ -165,49 +171,62 @@ We need to:
 
 
 \end{enumerate}
-\end{mdframed}
 
 \newpage
 \subsection*{} % 3
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-3.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-3.png}\\
 \end{mdframed}
 
 \subsection*{} % 4
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-4.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-4.png}\\
 \end{mdframed}
 
 \subsection*{} % 5
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-5-a.png}\\
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-5-b.png}\\
-\includegraphics[width=280pt]{img/linear-algebra-a0-1-5-c.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-5-a.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-5-b.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=280pt]{img/linear-algebra-a0-1-5-c.png}\\
 \end{mdframed}
 
 \subsection*{} % 6
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-6-a.png}\\
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-6-b.png}\\
-\includegraphics[width=350pt]{img/linear-algebra-a0-1-6-c.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-6-a.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-6-b.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=350pt]{img/linear-algebra-a0-1-6-c.png}\\
 \end{mdframed}
 
 \subsection*{} % 7
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-7.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-7.png}\\
 \end{mdframed}
 
 \subsection*{} % 8
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-8.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-8.png}\\
 \end{mdframed}
 
 \subsection*{} % 9
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-9-a.png}\\
-\includegraphics[width=280pt]{img/linear-algebra-a0-1-9-b.png}\\
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-9-c.png}\\
-\includegraphics[width=270pt]{img/linear-algebra-a0-1-9-d.png}\\
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-9-a.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=280pt]{img/linear-algebra-a0-1-9-b.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-1-9-c.png}\\
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=270pt]{img/linear-algebra-a0-1-9-d.png}\\
 \end{mdframed}
 
 \end{document}
