@@ -222,7 +222,33 @@ We need to show that this situation satisfies the requirements of Picard's
 theorem.
 
 \textbf{Are the $y_n$ contained within the square?}\\
-TODO: It looks plausible.
+We need to show that $\frac{-1}{\sqrt{2}} \leq y_n(x) \leq \frac{1}{\sqrt{2}}$
+for all $n > 0$ and for all $x \in [\frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]$.
+
+It is true for $y_0(x) = 0$.
+
+Suppose it is true for $y_n$. For induction we require that
+\begin{align*}
+  y_{n+1}(x) = \frac{x^3}{3} + \int_0^x y_n(t)^2 \dt
+\end{align*}
+is bounded by $\frac{-1}{\sqrt{2}}$ and $\frac{1}{\sqrt{2}}$.
+
+A lower bound for $y_{n+1}(x)$ is given by taking $x = \frac{-1}{\sqrt{2}}$ and
+$y_n(x) = 0$ (i.e. a constant function). In this case
+$y_{n+1}(x) = \(\frac{-1}{\sqrt{2}}\)^3 > \frac{-1}{\sqrt{2}}$.
+
+An upper bound for $y_{n+1}(x)$ is given by taking $x = \frac{1}{\sqrt{2}}$ and
+$y_n(x) = \frac{1}{\sqrt{2}}$ (i.e. a constant function). In this case
+\begin{align*}
+  y_{n+1}(x) =
+  \(\frac{1}{\sqrt{2}}\)^3 + \frac{1}{\sqrt{2}}\cdot \frac{1}{2}
+  = \frac{1}{2^{3/2}} + \frac{1}{2^{3/2}}
+  = \frac{1}{\sqrt{2}}.
+\end{align*}
+
+Therefore by induction, the $y_n$ are contained within the vertical bounds of
+the square.
+
 
 \textbf{Does $f(x, y) = x^2 + y^2$ satisfy a Lipschitz condition?}\\\\
 Let $S = \{(x,y): |x| \leq \frac{1}{\sqrt{2}}, |y| \leq \frac{1}{\sqrt{2}}\}$
@@ -231,8 +257,8 @@ denote the square.
 A Lipschitz condition requires that $\exists L$ such that
 $|f(x, u) - f(x, v)| \leq L|u - v|$ for all $(x,u) \in S$, $(x,v) \in S$.
 
-Note that $f$ is differentiable on $S$ and that
-$f_y = x^2 + 2y \in \Big[\frac{1}{2} - \sqrt{2}, \frac{1}{2} + \sqrt{2}\Big]$.
+Note that $f$ is differentiable on $S$ and that the image of $f_y = x^2 + 2y$
+on $S$ is $\Big[\frac{1}{2} - \sqrt{2}, \frac{1}{2} + \sqrt{2}\Big]$.
 
 Therefore by the Mean Value Theorem, for all $(x,u) \in S$, $(x,v) \in S$,
 there exists $w \in [u, v]$ such that
@@ -245,17 +271,8 @@ and therefore
 \end{align*}
 So $f$ satisfies a Lipschitz condition.
 
-\red{\subsubsection*{Questions}}
-\begin{enumerate}
-\item I'm struggling to make sense of Picard criterion $\mathbf{P(i)}$ on page 10 of the
-  lecture
-  notes\footnote{\url{https://courses.maths.ox.ac.uk/node/download_material/5375}}
-  \begin{mdframed}
-    \includegraphics[width=400pt]{img/differential-equations-a1-picard-theorem-question.png}
-  \end{mdframed}
-  $M$ is a distance in the output space, but $h$ and $k$ are distances in the
-  input rectangle, so why are they being combined and compared arithmetically?
-\end{enumerate}
+Therefore the sequence of functions given by the Picard iterates
+$y_0, y_1, \ldots$ converge uniformly to a solution of the ODE on $|x| \leq \frac{1}{\sqrt{2}}$.
 
 \newpage
 \begin{mdframed}
@@ -267,15 +284,38 @@ So $f$ satisfies a Lipschitz condition.
 Find general solution using separation of variables:
 \begin{align*}
   \dydx &= (1 - 2x)y\\
-  \frac{1}{y}\dy &= (1 - 2x) \dx\\
-  \int \frac{1}{y} \dy &= \int (1 - 2x) \dx\\
-               \log y  &= x - x^2 + C\\
-       y &= Ae^{x(1-x)}
+  \frac{1}{y}\dydx &= (1 - 2x)\\
+  \int \frac{1}{y} \dydx \dx &= \int (1 - 2x)y \dx
+\end{align*}
+(Note\footnote{Reminder to self: We don't use the Leibnitz notation to perform
+  ``cancellations''. This is asking for the antiderivative, with respect to $x$,
+  of $\frac{1}{y(x)}y'(x)$, the answer to which is $\log(y(x)) + C$.})
+\begin{align*}
+  \log y  &= x - x^2 + C\\
+  y &= Ae^{x(1-x)}
 \end{align*}
 Use initial values to find particular solution:
 \begin{align*}
-  1 = Ae^0 = A
+  1 &= Ae^0 = A\\
+  y(x) &= e^{x(1-x)}
+\end{align*}
+At $x=x_0$ the Taylor series expansion of this is
+\begin{align*}
+  y(x) &= \sum_{n=0}^\infty \frac{y^{(n)}(x_0)}{n!} (x - x_0)^n\\
+       &=
 \end{align*}
 
 
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-1-4-a.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-1-4-b.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-1-4-c.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-1-4-d.png}
+\end{mdframed}
 \end{document}
