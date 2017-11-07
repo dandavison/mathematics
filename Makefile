@@ -1,16 +1,13 @@
-all: notes linear-algebra-oxford-A0 differential-equations-oxford-A1 iulm questions
+all: *.pdf
 
-notes:
-	cd build && rubber -d --shell-escape notes.tex
+%.pdf: %.tex build
+	cd build && \
+	ln -sf ../$*.tex && \
+	ln -sf ../$*.pdf && \
+	rubber -d --shell-escape $*
 
-iulm:
-	cd build && rubber -d --shell-escape iulm.tex
-
-linear-algebra-oxford-A0:
-	cd build && rubber -d --shell-escape linear-algebra-oxford-A0.tex
-
-differential-equations-oxford-A1:
-	cd build && rubber -d --shell-escape differential-equations-oxford-A1.tex
-
-questions:
-	cd build && rubber -d --shell-escape questions.tex
+build:
+	mkdir -p build
+	cd build && ln -s ../img
+	cd build && ln -s ../oxford.sty
+	cd build && ln -s ../notes.sty
