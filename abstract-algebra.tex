@@ -1,8 +1,105 @@
 \newcommand{\alphainv}{\alpha^{-1}}
 
-\section{Group}
+\section{Definitions}
+
+\subsection{Group}
 A group is a set, together with an operation that can be performed on two
-elements to produce another element.
+elements to produce another element. I.e. it is a triple $(S, \cdot, I)$
+specifying the set, the operation and the identity element respectively. It
+satisfies the group axioms:
+\begin{enumerate}
+\item associativity
+\item existence of an inverse for each element
+\item closed under the operation
+\end{enumerate}
+If the operation is commutative it is said to be ``abelian''.
+
+\subsection{Field}
+A field is a set $\F$ for which both $(\F, +, 0)$ and $(\F, \times, 1)$ are abelian groups.
+
+
+\subsection{Vector space}
+A vector space $V$ over a field $\F$ is an abelian group $(V, +, 0)$ for which
+multiplication by ``scalars'' from $\F$ is defined, and additionally satisfies
+\begin{enumerate}
+\item Linear combinations using scalars from $\F$ remain within the vector
+  space:\\
+  $au + bv \in V$ for all $a, b \in \F$ and $u, v \in V$.
+\end{enumerate}
+
+
+\subsection{Linear independence}
+A set of vectors $\{v_1, v_2, \ldots\}$ are linearly independent if the only
+solution to
+\begin{align*}
+  a_1v_1 + a_2v_2 + \ldots = 0
+\end{align*}
+is $a_1 = a_2 = \ldots = 0$.
+
+
+\subsection{Span}
+The span of a set of vectors is the set of all vectors that can be formed from
+them by linear combination.
+
+
+\subsection{Basis}
+$E \subset V$ is a basis for $V$ if
+\begin{enumerate}
+\item $E$ spans $V$
+\item if the addition to any further $v \in V\setminus E$ to $E$ would cause
+  $E$ to lose its linear dependence.
+\end{enumerate}
+
+
+\subsection{Coordinates}
+The coordinate of a vector $v$ in basis $E = \{e_1, e_2, \ldots, e_n\}$ is the
+unique list of scalars $a_1, a_2, \ldots, a_n$ such that
+$v = a_1e_1 + a_2e_2 + \ldots + a_ne_n$.
+
+So although a vector $v$ may live in an $n$-dimensional space, $v$ does not
+consist of a list of $n$ components until it is represented by its coordinates
+in a particular basis.
+
+
+\subsection{Linear transformation}
+A linear transformation $f: V \to W$ is a homomorphism between the vector
+spaces, preserving linear transformation: for $u, v \in V$
+\begin{align*}
+  f(au + bv) = af(u) + bf(v).
+\end{align*}
+
+Having fixed a basis $E$ for $V$, to specify $f$ it's sufficient to specify
+$f(e)$ for all $e \in E$. That's what a matrix is: it contains $f(e_j)$ in
+column $j$.
+
+\section*{Examples of Vector Spaces}
+
+\subsection{The space of functions $f:\N \to \R$}
+
+The elements of the vector space are functions (i.e. subsets of $\N \times \R$).
+
+(They are sequences.)
+
+This is a group under addition of functions: $f + g: \N \to \R$ where
+$(f + g)(n) = f(n) + g(n)$. The identity is the zero function $f(n) = 0$.
+
+So we have addition of functions, but multiplication of functions plays no
+role. Is the set of all functions a field?
+
+
+The vector space is over a field, say $\R$. For $a \in \R$, $(af)(n) = a(f(n))$.
+
+Once we have established a basis $E$, then each function can be assigned
+numerical coordinates in the (infinite-dimensional) vector space.
+
+So what would be a basis for this vector space?
+
+
+
+
+\newpage
+\section{Groups}
+
 
 \subsection{Examples of finite order}
 

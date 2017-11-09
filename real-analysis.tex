@@ -1,5 +1,5 @@
 \section{Definitions}
-\subsection{Limit}
+\subsection{Convergence, Limit}
 A sequence has a limit $L$ iff for any distance $\epsilon$, no matter how
 small, there is a point in the sequence beyond which all values are within
 $\epsilon$ of $L$.
@@ -7,7 +7,7 @@ $\epsilon$ of $L$.
 A sequence $(x_n)$ has limit $L$ iff for all $\epsilon > 0$ there exists an
 $m \in \N$ such that $|x_n - L| < \epsilon$ for all $n > m$.
 
-\subsubsection{Limit of sequence of functions}
+\subsubsection{Uniform convergence, sequence of functions}
 A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
 $x$ in the input set the sequence $\{f_n(x)\}_{n\geq 0}$ has limit $f(x)$.
 
@@ -23,6 +23,13 @@ Let $U \subseteq \R$. A function $f:U \to \R$ is continuous at $x_0$ if and
 only if for every distance $\epsilon$ in the output space, a distance $\delta$
 in the input space can be found such that
 $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$.
+
+\subsubsection{Uniform continuity}
+A function $f$ is uniformly continuous iff the same $\delta$ works for all $x_0$.
+
+A function $f$ is uniformly continuous iff for all $\epsilon$, no matter how
+small, a $\delta$ exists such that for all $x_0 \in U$, if $x$ is within
+$\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \section{Sequences and Series}
 \footnotetext{Stewart Calculus ch. 11}
