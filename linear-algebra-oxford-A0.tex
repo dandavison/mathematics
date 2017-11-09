@@ -207,14 +207,63 @@ Similarly, $F_2 = \R^2$, and every basis of $F_2$ has cardinality 2.
 \end{mdframed}
 We need to show
 \begin{enumerate}
-\item \textbf{Addition yields an abelian group}
+\item \textbf{$\F_p$ is an abelian group under addition}\\
+  Define $\bar g(x) + \bar h(x) := \bar{g(x) + h(x)}$, then:
   \begin{enumerate}
-  \item The additive identity is $\bar 0$, i.e. the equivalence class of the zero polynomial.
-  \item For an arbitrary element $\bar{g(x)}$ its additive inverse is $\bar{-g(x)}$
-  \item Addition is commutative and associative
+  \item \textit{Existence of identity}: The additive identity is $\bar 0$ is the identity since
+    $\bar a + \bar 0 = \bar{a + 0} = \bar{a}$ for all $\bar a \in \F_p$.
+  \item \textit{Existence of inverses}: $(\bar a)^\1 = \bar{-a}$ since
+    $\bar a + \bar{-a} = \bar{a + -a} = \bar{0}$ for all $a \in \F_p$.
+  \item \textit{Commutativity}:
+    $\bar a + \bar b = \bar{a + b} = \bar{b} + \bar{a}$ for all $a, b \in \F_p$.
+  \item \textit{Associativity}:
+    $\bar a + (\bar b + \bar c) = \bar a + \bar {b + c} = \bar{a + b + c} =
+    \bar{a + b} + \bar{c} = (\bar a + \bar b) + \bar{c}$.
   \end{enumerate}
-\item \textbf{Multiplication yields an abelian group}
-\item \textbf{Multiplication distributes over addition}
+\item \textbf{$\F_p\setminus\{\bar 0\}$ is an abelian group under multiplication}\\
+  Define $\bar a ~ \bar b := \bar{ab}$, then:
+  \begin{enumerate}
+  \item \textit{Existence of identity}: $\bar 1$ is the identity since
+    $\bar a \bar 1 = \bar{a\cdot 1} = \bar{a}$ for all $\bar a \in \F_p$.
+    \newpage
+  \item \textit{Existence of inverses for everything except additive identity}:\\\\
+    The claim is that for all $\bar a \in \F_p \setminus \{\bar 0\}$ there
+    exists $\bar b \in \F_p$ such that $\bar a ~ \bar b = \bar 1$.
+
+    Fix an arbitrary $a \in \{1, \ldots, p-1\}$.
+
+    The claim is equivalent to the following: there exists
+    $b \in \{0, 1, \ldots, p\}$ such that for all $i, j \in \Z$ there exists
+    $k \in \Z$ such that $(ip + a)(jp + b) = kp + 1$.
+
+    But note that $(ip + a)(jp + b) = p(ijp + aj + bi) + ab$ and therefore
+    \begin{align*}
+      &(ip + a)(jp + b) = kp + 1\\
+      \iff &ab = p(k - ijp - aj - bi) + 1.
+    \end{align*}
+    Since $k$ can be chosen freely, the condition is simply that for all
+    $i, j \in \Z$ there exists $k \in \Z$ such that $ab = kp + 1$.
+
+    Note\footnote{I eventually allowed myself to google for a hint here which
+      brought up people pointing to Bezout's identity.} that $a$ and $p$ are
+    coprime (gcd is 1). By Bezout's identity, there exists $b, -k \in \Z$
+    such that
+    \begin{align*}
+      ba + (-k)p = 1 \iff ab = kp + 1. \qed
+    \end{align*}
+
+
+  \item \textit{Commutativity}:
+    $\bar a ~ \bar b = \bar{ab} = \bar{b} ~ \bar{a}$ for all $a, b \in \F_p$.
+  \item \textit{Associativity}:
+    $\bar a (\bar b \bar c) = \bar a + \bar {bc} = \bar{abc} =
+    \bar{ab}~\bar{c} = (\bar a ~ \bar b) \bar{c}$.
+  \end{enumerate}
+\item \textbf{Distributive axiom}
+  \begin{enumerate}
+  \item \textit{Multiplication distributes over addition}: $\bar a (\bar b + \bar c) = \bar a (\bar{b + c}) = \bar{a(b+c)} = \bar{ab +
+    ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
+  \end{enumerate}
 \end{enumerate}
 
 \subsection*{} % 5
