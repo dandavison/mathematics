@@ -1,48 +1,48 @@
-Let $x$ be the position of a particle in one dimension, and let $t$ be time. So
+Let $y$ be the position of a particle in one dimension, and let $t$ be time. So
 there is just a single input variable: $t$.
 
 An Ordinary Differential Equation is an equation relating the input variable
-$t$ to $x$ and its derivatives. So, in general,
+$t$ to $y$ and its derivatives. So, in general,
 \begin{align*}
-  f\(t, x, x', x'', \ldots\) = 0.
+  f\(t, y, y', y'', \ldots\) = 0.
 \end{align*}
 
 A first-order ODE involves first derivatives only.
 
-Consider the subset\footnote{I.e. $f(t, x, x') = 0$ can be rearranged to give
-  $x'$ as a function of $t, x$.} of first-order ODEs that specify a velocity
-$v(t, x)$ at each point in $(t, x)$ space. Thus this ODE contains all the
+Consider the subset\footnote{I.e. $f(t, y, y') = 0$ can be rearranged to give
+  $y'$ as a function of $t, y$.} of first-order ODEs that specify a velocity
+$v(t, y)$ at each point in $(t, y)$ space. Thus this ODE contains all the
 information needed to animate the motion of the particle, starting from any
-point $(t_0, x_0)$. So the statement of the initial condition problem is
+point $(t_0, y_0)$. So the statement of the initial condition problem is
 \begin{align*}
-  \dxdt = v(t, x) ~~~~~~~~~~ x(t_0) = x_0.
+  \dydt = v(t, y) ~~~~~~~~~~ y(t_0) = y_0.
 \end{align*}
 
-The solution to an ODE is a function $x = \varphi(t)$ that describes a motion
+The solution to an ODE is a function $y = \varphi(t)$ that describes a motion
 of the particle having the specified velocities at each point it passes
-through. I.e., if $x = \varphi(t)$ is a solution, then
+through. I.e., if $y = \varphi(t)$ is a solution, then
 \begin{align*}
   \frac{\d \varphi}{\dt} = v\Big(t, \varphi(t)\Big) ~~~~~~~~~~~~~\text{for all $t$}.
 \end{align*}
 
-The phase space of this problem is the set of all possible $(x, v)$ values.?
+The phase space of this problem is the set of all possible $(y, v)$ values.?
 
 \section{Special cases}
 \subsection{Velocity depends on time only}
 \begin{align*}
-  \dxdt = v(t)
+  \dydt = v(t)
 \end{align*}
 \includegraphics[width=340pt]{img/differential-equations-1-direction-field.png}\\
 To find functions that solves this, one possibility is that we can find the
 antiderivative explicitly:
 \begin{align*}
-  \int \dxdt \dt := x(t) + C = \int v(t) \dt.
+  \int \dydt \dt := y(t) + C = \int v(t) \dt.
 \end{align*}
 
 
 \subsection{Velocity depends on location only (autonomous)}
 \begin{align*}
-  \dxdt = v(x)
+  \dydt = v(y)
 \end{align*}
 \includegraphics[width=400pt]{img/differential-equations-2-direction-field.png}\\
 
@@ -99,46 +99,46 @@ So the estimated age of a sample with proportion $p_1$ is
 \section{Picard's Existence Theorem}
 Consider again the initial condition problem
 \begin{align*}
-  \dxdt = v(t, x) ~~~~~~~~~~ x(t_0) = x_0.
+  \dydt = v(t, y) ~~~~~~~~~~ y(t_0) = y_0.
 \end{align*}
 
 
 The ODE could also be written as
 \begin{align*}
-  x(t) = \int v\Big(t, x(t)\Big) \dt + C,
+  y(t) = \int v\Big(t, y(t)\Big) \dt + C,
 \end{align*}
 but this is merely an equivalent restatement, since the definition of
 indefinite integral is antiderivative. If we can find an antiderivative, then
 fine. If not, note that by FTC, the following definite integral describes a
 solution:
 \begin{align*}
-  x(t) = x(t_0) + \int_{t_0}^t v\Big(\tau, x(\tau)\Big) \d\tau.
+  y(t) = y(t_0) + \int_{t_0}^t v\Big(\tau, y(\tau)\Big) \d\tau.
 \end{align*}
-But this specifies $x(t)$ in terms of itself, since the velocity $v$ depends
+But this specifies $y(t)$ in terms of itself, since the velocity $v$ depends
 not only on $t$ but also on the current position\footnote{for example, the rate
   of change of the proportion on carbon-14 depends on the current proportion of
   carbon-14.}.
 
 \theorem{The following sequence of functions converges to a unique solution:
   \begin{align*}
-    x_0(t) &= x(t_0)\\
-    x_n(t) &= x(t_0) + \int_{t_0}^t v\Big(\tau, x_{n-1}(\tau)\Big) \d\tau.\\
+    y_0(t) &= y(t_0)\\
+    y_n(t) &= y(t_0) + \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) \d\tau.\\
   \end{align*}
 }
 
 \proof{}
 We show
 \begin{enumerate}
-\item The $x_n(t)$ converge to a function $x(t)$
+\item The $y_n(t)$ converge to a function $y(t)$
 \item This function is a solution
 \item It is unique
 \end{enumerate}
 
-\subsection{Proof that the $x_n(t)$ converge to a function $x(t)$}
+\subsection{Proof that the $y_n(t)$ converge to a function $y(t)$}
 
 Note that the
 
-Define $e_n(t) = x_n(t) - x_{n-1}(t)$ and note that $x_n(t) = x(t_0) + \sum_{i=1}^n e_n(t)$.
+Define $e_n(t) = y_n(t) - y_{n-1}(t)$ and note that $y_n(t) = y(t_0) + \sum_{i=1}^n e_n(t)$.
 \begin{align*}
 
 \end{align*}
@@ -147,11 +147,11 @@ Define $e_n(t) = x_n(t) - x_{n-1}(t)$ and note that $x_n(t) = x(t_0) + \sum_{i=1
 \section{Simmons}
 
 \subsection{Picard's theorem}
-For every point $(t, x)$ in a rectangle, the ODE
+For every point $(t, y)$ in a rectangle, the ODE
 \begin{align*}
-  \dxdt = f(t, x)
+  \dydt = f(t, y)
 \end{align*}
-has a solution passing through that point if $\partiald{f}{x}$ is Lipschitz
+has a solution passing through that point if $\partiald{f}{y}$ is Lipschitz
 continuous in that rectangle.
 
 \subsection{Families of curves}
