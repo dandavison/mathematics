@@ -136,12 +136,32 @@ We show
 
 \subsection{Proof that the $y_n(t)$ converge to a function $y(t)$}
 
-Note that the
-
-Define $e_n(t) = y_n(t) - y_{n-1}(t)$ and note that $y_n(t) = y(t_0) + \sum_{i=1}^n e_n(t)$.
+Note that
 \begin{align*}
-
+  y_n(t) = y_0(t) + \sum_{i=1}^n \Big(y_n(t) - y_{n-1}(t)\Big),
 \end{align*}
+so it suffices to show that this series converges. A term in the series is
+\begin{align*}
+  y_{n+1}(t) - y_{n}(t) = \int_{t_0}^t v\Big(\tau, y_n(\tau)\Big) -
+                                     v\Big(\tau, y_{n-1}(\tau)\Big) \dt.
+\end{align*}
+Now, by assumption, $|\partiald{v}{y}| \leq M$ at all points in the rectangle
+($v$ is Lipschitz). Therefore
+\begin{align*}
+  \Big|v\Big(t, y_n(t)\Big) -
+       v\Big(t, y_{n-1}(t)\Big)\Big| \leq M\Big|y_n(t) - y_{n-1}(t)\Big|.
+\end{align*}
+And since $\Big|\int_a^b f(t) \dt\Big| \leq \int_a^b |f(t)| \dt$,
+\begin{align*}
+  \Big|y_{n+1}(t) - y_{n}(t)\Big| \leq M\Bigg|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big|\Bigg| \d\tau.
+\end{align*}
+\footnote{The outer modulus is required to handle the case $t < t_0$.}
+So letting $e_n(t) = \Big|y_n(t) - y_{n-1}(t)\Big|$ we have
+\begin{align*}
+  e_1(t) &= \Big|y_1(t) - y_0\Big| \leq \ldots
+\end{align*}
+TODO
+
 
 \newpage
 \section{Simmons}
