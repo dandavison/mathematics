@@ -1,36 +1,51 @@
-\section{Ordinary Differential Equations}
+Let $x$ be the position of a particle in one dimension, and let $t$ be time. So
+there is just a single input variable: $t$.
 
-Let $x$ be the position of a particle in one dimension, and let $t$ be time.
+An Ordinary Differential Equation is an equation relating the input variable
+$t$ to $x$ and its derivatives. So, in general,
+\begin{align*}
+  f\(t, x, x', x'', \ldots\) = 0.
+\end{align*}
 
-An Ordinary Differential Equation specifies a velocity $v(t, x)$ at each point
-in $(t, x)$ space. Thus an ODE contains all the information needed to animate
-the motion of the particle, starting from any point $(t_0, x_0)$.
+A first-order ODE involves first derivatives only.
+
+Consider the subset\footnote{I.e. $f(t, x, x') = 0$ can be rearranged to give
+  $x'$ as a function of $t, x$.} of first-order ODEs that specify a velocity
+$v(t, x)$ at each point in $(t, x)$ space. Thus this ODE contains all the
+information needed to animate the motion of the particle, starting from any
+point $(t_0, x_0)$. So the statement of the initial condition problem is
+\begin{align*}
+  \dxdt = v(t, x) ~~~~~~~~~~ x(t_0) = x_0.
+\end{align*}
 
 The solution to an ODE is a function $x = \varphi(t)$ that describes a motion
 of the particle having the specified velocities at each point it passes
 through. I.e., if $x = \varphi(t)$ is a solution, then
 \begin{align*}
-  \frac{\d \varphi}{\dt} = v(t, \varphi(t)) ~~~~~~~~~~~~~\text{for all $t$}.
+  \frac{\d \varphi}{\dt} = v\Big(t, \varphi(t)\Big) ~~~~~~~~~~~~~\text{for all $t$}.
 \end{align*}
 
 The phase space of this problem is the set of all possible $(x, v)$ values.?
 
-\subsection{Special cases}
-\subsubsection{Velocity depends on time only}
+\section{Special cases}
+\subsection{Velocity depends on time only}
 \begin{align*}
   \dxdt = v(t)
 \end{align*}
 \includegraphics[width=340pt]{img/differential-equations-1-direction-field.png}\\
-To find functions that solves this, we find the antiderivative:
+To find functions that solves this, one possibility is that we can find the
+antiderivative explicitly:
 \begin{align*}
-  \int \dxdt \dt := x(t) + C = \int v(t) \dt
+  \int \dxdt \dt := x(t) + C = \int v(t) \dt.
 \end{align*}
 
-\subsubsection{Velocity depends on location only (autonomous)}
+
+\subsection{Velocity depends on location only (autonomous)}
 \begin{align*}
   \dxdt = v(x)
 \end{align*}
 \includegraphics[width=400pt]{img/differential-equations-2-direction-field.png}\\
+
 
 
 \section{Examples}
@@ -80,18 +95,109 @@ So the estimated age of a sample with proportion $p_1$ is
 \end{align*}
 
 
+
+\section{Picard's Existence Theorem}
+Consider again the initial condition problem
+\begin{align*}
+  \dxdt = v(t, x) ~~~~~~~~~~ x(t_0) = x_0.
+\end{align*}
+
+
+The ODE could also be written as
+\begin{align*}
+  x(t) = \int v\Big(t, x(t)\Big) \dt + C,
+\end{align*}
+but this is merely an equivalent restatement, since the definition of
+indefinite integral is antiderivative. If we can find an antiderivative, then
+fine. If not, note that by FTC, the following definite integral describes a
+solution:
+\begin{align*}
+  x(t) = x(t_0) + \int_{t_0}^t v\Big(\tau, x(\tau)\Big) \d\tau.
+\end{align*}
+But this specifies $x(t)$ in terms of itself, since the velocity $v$ depends
+not only on $t$ but also on the current position\footnote{for example, the rate
+  of change of the proportion on carbon-14 depends on the current proportion of
+  carbon-14.}.
+
+\theorem{The following sequence of functions converges to a unique solution:
+  \begin{align*}
+    x_0(t) &= x(t_0)\\
+    x_n(t) &= x(t_0) + \int_{t_0}^t v\Big(\tau, x_{n-1}(\tau)\Big) \d\tau.\\
+  \end{align*}
+}
+
+\proof{}
+We show
+\begin{enumerate}
+\item The $x_n(t)$ converge to a function $x(t)$
+\item This function is a solution
+\item It is unique
+\end{enumerate}
+
+\subsection{Proof that the $x_n(t)$ converge to a function $x(t)$}
+
+Note that the
+
+Define $e_n(t) = x_n(t) - x_{n-1}(t)$ and note that $x_n(t) = x(t_0) + \sum_{i=1}^n e_n(t)$.
 \begin{align*}
 
 \end{align*}
 
-\section{Arnold - Problems}
-\subsection{}
-\begin{mdframed}
-  At what altitude is the density of the air one half of that at the surface of
-  the Earth? Regard temperature as constant. One cubic meter of air at the
-  Earth's surface weighs 1250g.
-\end{mdframed}
+\newpage
+\section{Simmons}
+
+\subsection{Picard's theorem}
+For every point $(t, x)$ in a rectangle, the ODE
 \begin{align*}
-  \rho(0) = 1250\\
-  &=
+  \dxdt = f(t, x)
 \end{align*}
+has a solution passing through that point if $\partiald{f}{x}$ is Lipschitz
+continuous in that rectangle.
+
+\subsection{Families of curves}
+For a family of curves, say the family of circles
+\begin{align}
+  x^2 + y^2 = c^2 \label{simmons-circles}
+\end{align}
+we can obtain a differential equation by implicit differentiation:
+\begin{align}
+  2x + 2y\dydx = 0. \label{simmons-circles-de}
+\end{align}
+Alternatively (eoc),
+\begin{align*}
+  (x + \dx)^2 + (y + \dy)^2 &= c^2\\
+  x^2 + 2x\dx + y^2 + 2y\dy &= c^2\\
+        2x\dx  + 2y\dy     &= 0.
+\end{align*}
+
+\subsection{Orthogonal trajectories}
+What's the family of curves each of which is equal to every circle in \eqref{simmons-circles}?
+
+Well, we know that their gradients are negative the inverse of the circle
+gradients. So if we let $\dydx$ now be the gradient of the orthogonal
+trajectories, then from \eqref{simmons-circles-de},
+\begin{align*}
+  2x - 2y\dxdy = 0
+\end{align*}
+is an ODE specifying the family of orthogonal trajectories. Thus
+\begin{align*}
+  \dydx &= \frac{y}{x}\\
+  \log(y) &= \log(x) + C\\
+       y &= Ax,
+\end{align*}
+so the orthogonal trajectories are lines through the origin, as expected.
+
+\subsection{Use of polar coordinates to make a problem tractable (separable)}
+TODO
+
+% \section{Arnold - Problems}
+% \subsection{}
+% \begin{mdframed}
+%   At what altitude is the density of the air one half of that at the surface of
+%   the Earth? Regard temperature as constant. One cubic meter of air at the
+%   Earth's surface weighs 1250g.
+% \end{mdframed}
+% \begin{align*}
+%   \rho(0) = 1250\\
+%   &=
+% \end{align*}
