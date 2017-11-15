@@ -206,7 +206,7 @@ Consider an ODE $y' = f\Big(x, y(x)\Big)$ with initial condition $y(a) = b$.
 The sequence of Picard approximations are given by
 \begin{align*}
   y_0(x)    &= b\\
-  y_{n+1}(x) &= b + \int_0^x f\Big(t, y_n(t)\Big) \dt.
+  y_{n+1}(x) &= b + \int_a^x f\Big(t, y_n(t)\Big) \dt.
 \end{align*}
 
 \subsubsection*{(1)}
@@ -237,17 +237,19 @@ Suppose it is true for $y_n$. For induction we require that
 \end{align*}
 is bounded by $\frac{-1}{\sqrt{2}}$ and $\frac{1}{\sqrt{2}}$.
 
-A lower bound for $y_{n+1}(x)$ is given by taking $x = \frac{-1}{\sqrt{2}}$ and
-$y_n(x) = 0$ (i.e. a constant function). In this case
-$y_{n+1}(x) = \(\frac{-1}{\sqrt{2}}\)^3 > \frac{-1}{\sqrt{2}}$.
-
-An upper bound for $y_{n+1}(x)$ is given by taking $x = \frac{1}{\sqrt{2}}$ and
-$y_n(x) = \frac{1}{\sqrt{2}}$ (i.e. a constant function). In this case
+A lower bound for $y_{n+1}(x)$ is given by $x = \frac{-1}{\sqrt{2}}$ and
+$y_n(x) = 0$ (i.e. a constant function), in which case
+\begin{align*}
+y_{n+1}(x) = \(\frac{-1}{3\sqrt{2}}\)^3 > \frac{-1}{\sqrt{2}}.
+\end{align*}
+An upper bound for $y_{n+1}(x)$ is given by $x = \frac{1}{\sqrt{2}}$ and
+$y_n(x) = \frac{1}{\sqrt{2}}$ (i.e. a constant function), in which case
 \begin{align*}
   y_{n+1}(x) =
-  \(\frac{1}{\sqrt{2}}\)^3 + \frac{1}{\sqrt{2}}\cdot \frac{1}{2}
-  = \frac{1}{2^{3/2}} + \frac{1}{2^{3/2}}
-  = \frac{1}{\sqrt{2}}.
+  \(\frac{1}{3\sqrt{2}}\)^3 + \frac{1}{\sqrt{2}}\cdot \frac{1}{2}
+  = \frac{1}{2^{3/2}}\(\frac{1}{3} + 1\)
+  = \frac{1}{\sqrt{2}} \cdot \frac{1}{2} \cdot \frac{4}{3}
+  < \frac{1}{\sqrt{2}}.
 \end{align*}
 
 Therefore by induction, the $y_n$ are contained within the vertical bounds of
@@ -283,6 +285,51 @@ $y_0, y_1, \ldots$ converge uniformly to a solution of the ODE on $|x| \leq \fra
 \includegraphics[width=400pt]{img/differential-equations-a1-1-3.png}\\
 \end{mdframed}
 \subsubsection*{(2)}
+\subsubsection*{Find the solution via Picard's theorem}
+The ODE is
+\begin{align*}
+  y'(x) = (1 - 2x)y.
+\end{align*}
+Picard iterates are
+\begin{align*}
+  y_0(x) &= 1\\
+  y_1(x) &= 1 + \int_0^x (1 - 2t)\cdot 1 \dt\\
+         &= 1 + [t - t^2]_0^x\\
+         &= 1 + x - x^2\\
+  y_2(x) &= 1 + \int_0^x (1 - 2t)(1 + t - t^2) \dt\\
+         &= 1 + \int_0^x 1 + t - t^2 -2t -2t^2 + 2t^3 \dt\\
+         &= 1 + \int_0^x 1 - t - 3t^2 + 2t^3 \dt\\
+         &= 1 + x - \frac{1}{2}x^2 - x^3 + 8x^4\\
+  y_3(x) &= 1 + \int_0^x (1 - 2t)(1 + t - \frac{1}{2}t^2 - t^3 + \frac{1}{2}t^4)\\
+         &= 1 + \int_0^x 1 + t - \frac{1}{2}t^2 - t^3 + \frac{1}{2}t^4 - 2t - 2t^2 + t^3 + 2t^4 - t^5\\
+         &= 1 + \int_0^x 1 - t - \frac{5}{2}t^2 + \frac{5}{2}t^4 - t^5\\
+         &= 1 + x - \frac{1}{2}x^2 - \frac{5}{6}x^3 + \frac{1}{2}x^5 - \frac{1}{6}x^6
+\end{align*}
+
+\begin{mdframed}
+\textbf{Check solution with sympy}
+\begin{minted}{python3}
+from sympy import latex, integrate, symbols
+t, y, tau = symbols('t y tau')
+
+def picard(f, y_prev, a, b):
+    return b + integrate(f.subs([(t, tau), (y, y_prev)]), (tau, a, t))
+
+a, b = 0, 1
+
+y = b
+for i in [1, 2, 3]:
+    f = (1 - 2*t) * y
+    y_next = picard(f, y, a, b)
+    print(latex(y_next))
+    y = y_next
+\end{minted}
+\begin{align*}
+  - t^{2} + t + 1\\
+  \frac{t^{4}}{2} - t^{3} - \frac{t^{2}}{2} + t + 1\\
+  - \frac{t^{6}}{6} + \frac{t^{5}}{2} - \frac{5 t^{3}}{6} - \frac{t^{2}}{2} + t + 1\\
+\end{align*}
+\end{mdframed}
 
 \subsubsection*{Find the solution explicitly}
 Find general solution using separation of variables:
@@ -291,9 +338,9 @@ Find general solution using separation of variables:
   \frac{1}{y}\dydx &= (1 - 2x)\\
   \int \frac{1}{y} \dydx \dx &= \int (1 - 2x)y \dx
 \end{align*}
-(Note\footnote{Reminder to self: We don't use the Leibnitz notation to perform
-  ``cancellations''. This is asking for the antiderivative, with respect to $x$,
-  of $\frac{1}{y(x)}y'(x)$, the answer to which is $\log(y(x)) + C$.})
+(Note\footnote{We don't use the Leibnitz notation to perform
+  ``cancellations''. This is asking for the antiderivative, with respect to
+  $x$, of $\frac{1}{y(x)}y'(x)$, the answer to which is $\log(y(x)) + C$.})
 \begin{align*}
   \log y  &= x - x^2 + C\\
   y &= Ae^{x(1-x)}
@@ -301,12 +348,27 @@ Find general solution using separation of variables:
 Use initial values to find particular solution:
 \begin{align*}
   1 &= Ae^0 = A\\
-  y(x) &= e^{x(1-x)}
+  y(x) &= e^{x - x^2}
 \end{align*}
-At $x=x_0$ the Taylor series expansion of this is
+The first few derivatives are
 \begin{align*}
-  y(x) &= \sum_{n=0}^\infty \frac{y^{(n)}(x_0)}{n!} (x - x_0)^n\\
-       &=
+y^{(1)}(x) &= (1 - 2x)e^{x - x^2}\\
+y^{(2)}(x) &= (1 - 2x)^2e^{x - x^2} + (-2)e^{x - x^2}\\
+          &= (-1 - 4x + 4x^2)e^{x - x^2}\\
+y^{(3)}(x) &= (-1 - 4x + 4x^2)(1 - 2x)e^{x - x^2} + (-4 + 8x)e^{x - x^2}\\
+           &= (-1 - 4x + 4x^2 + 2x + 8x^2 - 8x^3 - 4 + 8x)e^{x - x^2}\\
+           &= (-5 + 6x + 12x^2 - 8x^3)e^{x - x^2}
+\end{align*}
+
+At $x=x_0$ the Taylor series expansion of the solution is
+\begin{align*}
+  y(x) &= e^{x - x^2}\\
+       &= \sum_{n=0}^\infty \frac{y^{(n)}(x_0)}{n!} (x - x_0)^n\\
+       &= \frac{e^{x_0 - x_0^2}}{1}\\
+       &+ \frac{(1 - 2x_0)e^{x_0 - x_0^2}}{1} (x - x_0)\\
+       &+ \frac{(-1 - 4x_0 + 4x_0^2)e^{x_0 - x_0^2}}{2} (x - x_0)^2\\
+       &+ \frac{(-5 + 6x_0 + 12x_0^2 - 8x_0^3)e^{x_0 - x_0^2}}{6} (x - x_0)^3\\
+       &+ \ldots
 \end{align*}
 
 
