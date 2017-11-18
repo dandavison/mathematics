@@ -203,7 +203,7 @@ $[-\pi,\pi]$.
 
 Consider an ODE $y' = f\Big(x, y(x)\Big)$ with initial condition $y(a) = b$.
 
-The sequence of Picard approximations are given by
+The sequence of Picard approximations are defined by
 \begin{align*}
   y_0(x)    &= b\\
   y_{n+1}(x) &= b + \int_a^x f\Big(t, y_n(t)\Big) \dt.
@@ -225,60 +225,26 @@ The sequence of Picard approximations are given by
 We need to show that this situation satisfies the requirements of Picard's
 theorem.
 
-\textbf{Are the $y_n$ contained within the square?}\\
-We need to show that $\frac{-1}{\sqrt{2}} \leq y_n(x) \leq \frac{1}{\sqrt{2}}$
-for all $n > 0$ and for all $x \in [\frac{-1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]$.
+Define $v(x, y) = x^2 + y^2$ and let $h = \frac{1}{\sqrt{2}}$ be half the width
+of the square, which is centered at $(0, 0)$.
 
-It is true for $y_0(x) = 0$.
-
-Suppose it is true for $y_n$. For induction we require that
-\begin{align*}
-  y_{n+1}(x) = \frac{x^3}{3} + \int_0^x y_n(t)^2 \dt
-\end{align*}
-is bounded by $\frac{-1}{\sqrt{2}}$ and $\frac{1}{\sqrt{2}}$.
-
-A lower bound for $y_{n+1}(x)$ is given by $x = \frac{-1}{\sqrt{2}}$ and
-$y_n(x) = 0$ (i.e. a constant function), in which case
-\begin{align*}
-y_{n+1}(x) = \(\frac{-1}{3\sqrt{2}}\)^3 > \frac{-1}{\sqrt{2}}.
-\end{align*}
-An upper bound for $y_{n+1}(x)$ is given by $x = \frac{1}{\sqrt{2}}$ and
-$y_n(x) = \frac{1}{\sqrt{2}}$ (i.e. a constant function), in which case
-\begin{align*}
-  y_{n+1}(x) =
-  \(\frac{1}{3\sqrt{2}}\)^3 + \frac{1}{\sqrt{2}}\cdot \frac{1}{2}
-  = \frac{1}{2^{3/2}}\(\frac{1}{3} + 1\)
-  = \frac{1}{\sqrt{2}} \cdot \frac{1}{2} \cdot \frac{4}{3}
-  < \frac{1}{\sqrt{2}}.
-\end{align*}
-
-Therefore by induction, the $y_n$ are contained within the vertical bounds of
-the square.
-
-
-\textbf{Does $f(x, y) = x^2 + y^2$ satisfy a Lipschitz condition?}\\\\
-Let $S = \{(x,y): |x| \leq \frac{1}{\sqrt{2}}, |y| \leq \frac{1}{\sqrt{2}}\}$
-denote the square.
-
-A Lipschitz condition requires that $\exists L$ such that
-$|f(x, u) - f(x, v)| \leq L|u - v|$ for all $(x,u) \in S$, $(x,v) \in S$.
-
-Note that $f$ is differentiable on $S$ and that the image of $f_y = x^2 + 2y$
-on $S$ is $\Big[\frac{1}{2} - \sqrt{2}, \frac{1}{2} + \sqrt{2}\Big]$.
-
-Therefore by the Mean Value Theorem, for all $(x,u) \in S$, $(x,v) \in S$,
-there exists $w \in [u, v]$ such that
-\begin{align*}
-  f(x, v) - f(x, u) = f_y'(x, w)\cdot(v - u),
-\end{align*}
-and therefore
-\begin{align*}
-  |f(x, v) - f(x, u)| \leq \Big(\frac{1}{2} + \sqrt{2}\Big)|v - u|.
-\end{align*}
-So $f$ satisfies a Lipschitz condition.
+\begin{enumerate}
+\item \textbf{$|v|$ must be bounded by some $M>0$ in the rectangle, with $Mh \leq h$}\\
+  True. The maximum value attained by $|v|$ in the rectangle is $M = 1$.
+\item \textbf{$v$ must be Lipschitz continuous in $y$}\\
+  True. The maximum value of $|\partiald{v}{y}|$ on the rectangle is
+  $2\cdot\frac{1}{\sqrt{2}} = \sqrt{2}$. Let $(x, y_0)$ and $(x, y_1)$ be two
+  points lying on a line parallel to the $y$ axis in the rectangle. By the Mean
+  Value Theorem, the partial derivative at some point in this line is equal to
+  the slope of the line joining $v(x, y_0)$ and $v(x, y_1)$. Therefore the
+  slope of this line cannot exceed $\sqrt{2}$. I.e.
+  $|v(x, y_1) - v(x, y_0)| \leq \sqrt{2}|y_1 - y_0|$; $v$ is Lipschitz
+  continuous in the $y$ direction within the rectangle.
+\end{enumerate}
 
 Therefore the sequence of functions given by the Picard iterates
-$y_0, y_1, \ldots$ converge uniformly to a solution of the ODE on $|x| \leq \frac{1}{\sqrt{2}}$.
+$y_0, y_1, \ldots$ converge uniformly to a solution of the ODE on
+$|x| \leq \frac{1}{\sqrt{2}}$.\\\\
 
 \newpage
 \begin{mdframed}
@@ -291,14 +257,20 @@ The ODE is
   y'(x) = (1 - 2x)y.
 \end{align*}
 
-Let $f(x, y) = (1 - 2x)y$.
+Let $v(x, y) = (1 - 2x)y$ and define an arbitrary rectangle
+$\{(x, y) ~:~ |x| \leq h, |y| \leq k\}$.
 
-\textbf{Show that $f$ is bounded}\\
-\red{Picard's theorem requires that $f$ is bounded within the region of
-interest. However, $f \to \mp \infty$ as $x \to \pm \infty$.}
+\begin{enumerate}
+\item \textbf{$|v|$ must be bounded by some $M>0$ in the rectangle, with $Mh \leq k$}\\
+  \red{False. The maximum value attained by $|v|$ in the rectangle is
+    $M=(1+2h)k$. Therefore $Mh = h(1 + 2h)k > k$.} But this contradicts the
+  question.
 
-\textbf{Show that $f$ is Lipschitz in the $y$-direction}\\
-\red{The partial derivative is $\partiald{f}{y} = (1 - 2x)$ which again is unbounded on $\R$.}
+\item \textbf{$v$ must be Lipschitz continuous in $y$}\\
+  The maximum value of $|\partiald{v}{y}|$ on the rectangle is $1 + 2h$, so $v$
+  is Lipschitz continuous in the $y$ direction.
+\end{enumerate}
+
 
 \subsubsection*{Find the solution via Picard's theorem}
 
@@ -390,9 +362,30 @@ So the first few terms appear to match the Picard iterates.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/differential-equations-a1-1-4-a.png}
 \end{mdframed}
+The partial derivative with respect to $y$ is
+$\partiald{F}{y} = \frac{x}{3}y^{-2/3}$.
+
+Note that the rectangle necessarily includes the origin. But
+$\partiald{F}{y} \to \infty$ as $y \to 0$. So $F$ does not satisfy a Lipschitz
+condition in the $y$ direction.\\
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/differential-equations-a1-1-4-b.png}
 \end{mdframed}
+
+First note that we can solve this by separation-of-variables:
+\begin{align*}
+  y' &= xy^{1/3}\\
+  \int y^{-1/3} \dy  &= \int x \dx\\
+   \frac{3}{2}y^{2/3}  &= \frac{1}{2}x^2 + C\\
+    y &= \(\frac{1}{3}x^2 + C\)^{3/2}\\
+    y(0) &= C^{3/2} = b\\
+    y &= \(\frac{1}{3}x^2 + b^{2/3}\)^{3/2}\\
+\end{align*}
+
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/differential-equations-a1-1-4-c.png}
 \end{mdframed}
