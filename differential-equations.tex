@@ -210,8 +210,8 @@ which does not exist for all $x$ in the rectangle.
 We will show that the following sequence of functions converges to a unique
 solution:
 \begin{align*}
-  y_0(t) &= y(t_0)\\
-  y_n(t) &= y(t_0) + \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) \d\tau.\\
+  y_0(t) &= y_0\\
+  y_n(t) &= y_0 + \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) \d\tau.\\
 \end{align*}
 
 The basic idea is to write the limiting function $y_\infty(t)$ as a telescoping
@@ -233,28 +233,52 @@ We need to show
 \item It is unique
 \end{enumerate}
 
+\newpage
 \subsection{Proof that the $y_n(t)$ converge uniformly to a function $y_\infty(t)$}
 We are going to use the Weierstrass M-test to show that the series of functions
 converge uniformly. So, we need to show that each $e_n$ is bounded
-by some $M_n$, and that the series $\sum_{n=1}^\infty M_n$ converges.
+by some $W_n$, and that the series $\sum_{n=1}^\infty W_n$ converges.
 
 A single term in the series is
 \begin{align*}
-  e_{n+1}(t) = \int_{t_0}^t v\Big(\tau, y_n(\tau)\Big) -
-                          v\Big(\tau, y_{n-1}(\tau)\Big) \dt.
+  e_{n}(t) = \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) -
+                         v\Big(\tau, y_{n-2}(\tau)\Big) \dt.
 \end{align*}
 
 Now, by assumption, the straight line slope between any two points lying on a
 vertical line is $\leq M$ ($v$ is Lipschitz in that direction). Therefore
 \begin{align*}
-  \Big|v\Big(t, y_n(t)\Big) -
-       v\Big(t, y_{n-1}(t)\Big)\Big| \leq L\Big|y_n(t) - y_{n-1}(t)\Big|.
+  \Big|v\Big(t, y_{n-1}(t)\Big) -
+       v\Big(t, y_{n-2}(t)\Big)\Big| \leq L\Big|y_{n-1}(t) - y_{n-2}(t)\Big|.
 \end{align*}
 And since $\Big|\int_a^b f(t) \dt\Big| \leq \int_a^b |f(t)| \dt$,
 \begin{align*}
-  \Big|e_{n+1}(t)\Big| \leq L\Bigg|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|.
+  |e_n(t)| \leq L\Big|\int_{t_0}^t \Big|y_{n-1}(\tau) - y_{n-2}(\tau)\Big| \d\tau \Bigg|.
 \end{align*}
-\footnote{The outer modulus is required to handle the case $t < t_0$.}\\
+\footnote{The outer modulus is required to handle the case $t < t_0$.}
+
+For the Weierstrass M-test we need to express the RHS as a constant $W_n$,
+depending only on $L, M, n, t_0, y_0$. We will do this by induction.
+
+Recall that the definition of the $e_n$ is
+\begin{align*}
+  e_n(t) := y_n(t) - y_{n-1}(t).
+\end{align*}
+
+For the first few terms we have
+\begin{align*}
+  |e_1(t)| &    = \int_{t_0}^t v(\tau, y_0) \d\tau\\
+           & \leq M|t - t_0|\\
+  |e_2(t)| & \leq L\Big|\int_{t_0}^t \Big|y_1(\tau) - y_0(\tau)\Big| \d\tau \Bigg|\\
+           &    = L\Big|\int_{t_0}^t |e_1(\tau)| \d\tau \Bigg|\\
+           & \leq LM|(t - t_0)^2|\\
+  |e_3(t)| & \leq L\Big|\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau \Bigg|\\
+           &    = L\Big|\int_{t_0}^t |e_2(\tau)| \d\tau \Bigg|\\
+           & \leq L^2M|(t - t_0)^3|.
+\end{align*}
+So this suggests that $|e_n(t)| \leq L^{n-1}M|(t - t_0)^n|$.
+
+
 \newpage
 \blue{
   The next stage of the proof is to use this bound on the $n$-th term to
@@ -271,7 +295,8 @@ and that this converges.
 ~\\
 So letting $e_n(t) = \Big|y_n(t) - y_{n-1}(t)\Big|$ we have
 \begin{align*}
-  e_1(t) &= \Big|y_1(t) - y_0\Big| \leq M\int_{t_0}^t\Big|y_1(\tau) - y_0\Big| \d\tau \leq L^2(t - t_0)\\
+  e_1(t) &= \Big|y_1(t) - y_0\Big| \leq
+            M\int_{t_0}^t\Big|y_1(\tau) - y_0\Big| \d\tau \leq L^2(t - t_0)\\
   e_1(t) &= \Big|y_1(t) - y_0\Big| \leq \ldots
 \end{align*}
 TODO
