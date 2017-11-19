@@ -261,51 +261,48 @@ And since $\Big|\int_a^b f(t) \dt\Big| \leq \int_a^b |f(t)| \dt$,
 For the Weierstrass M-test we need to express the RHS as a constant $W_n$,
 depending only on $L, M, n, t_0, y_0$. We will do this by induction.
 
+\newpage
 Recall that the definition of the $e_n$ is
 \begin{align*}
   e_n(t) := y_n(t) - y_{n-1}(t).
 \end{align*}
 
-\newpage
 For the first few terms we have
 \begin{align*}
   |e_1(t)| &    = \int_{t_0}^t v(\tau, y_0) \d\tau\\
-           & \leq M|t - t_0| \leq Mh\\
-  |e_2(t)| & \leq L\Big|\int_{t_0}^t \Big|y_1(\tau) - y_0(\tau)\Big| \d\tau \Bigg|\\
-           &    = L\Big|\int_{t_0}^t |e_1(\tau)| \d\tau \Bigg|\\
-           & \leq LM|t - t_0|^2 \leq LMh^2\\
-  |e_3(t)| & \leq L\Big|\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau \Bigg|\\
-           &    = L\Big|\int_{t_0}^t |e_2(\tau)| \d\tau \Bigg|\\
-           & \leq L^2M|t - t_0|^3  \leq L^2Mh^3\\
+           & \leq M(t - t_0) \leq Mh\\
+  |e_2(t)| & \leq L\int_{t_0}^t \Big|y_1(\tau) - y_0(\tau)\Big| \d\tau\\
+           &    = L\int_{t_0}^t |e_1(\tau)| \d\tau\\
+           & \leq L\int_{t_0}^t M(\tau - t_0) \d\tau\\
+           &    = LM\frac{(\tau - t_0)^2}{2} \Big|_{t_0}^t \\
+           &    = LM\frac{(t - t_0)^2}{2} \\
+  |e_3(t)| & \leq L\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau\\
+           &    = L\int_{t_0}^t |e_2(\tau)| \d\tau\\
+           & \leq L\int_{t_0}^t LM\frac{(t - t_0)^2}{2} \d\tau\\
+           &    = L^2M\frac{(t - t_0)^3}{3!}
 \end{align*}
-So it seems that $|e_n(t)| \leq L^{n-1}Mh^n$. To prove this, note that we know
-it is true of $e_1$. So suppose it is true of $e_n$. The next term is
+So it seems that $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$. To prove this, note that we know
+it is true of $e_1$. So suppose it is true of $e_n$. Then the next term is
 \begin{align*}
-  e_{n+1}(t) &   :=   y_{n+1}(t) - y_n(t)\\
-            & \leq L\Big|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|\\
-            &= L\Big|\int_{t_0}^t |e_n(\tau)| \d\tau \Bigg|\\
-            & \leq L^nMh^{n+1}.
+  e_{n+1}(t) &   := y_{n+1}(t) - y_n(t)\\
+            & \leq L\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau\\
+            &=     L\int_{t_0}^t |e_n(\tau)| \d\tau\\
+            &=     L\int_{t_0}^t L^{n-1}M\frac{(\tau - t_0)^n}{n!} \d\tau\\
+            &=     L^nM\frac{(t - t_0)^{n+1}}{(n+1)!^{~~~}}\\
+            & \leq L^nM\frac{h^{n+1}}{(n+1)!},
 \end{align*}
+so $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$ for all $n \geq 1$ by induction.
+
 Recall that our aim is to show that the Weierstrass M-test series
-$\sum_{n=0}^\infty W_n$ converges. Our current proposal for the terms is
-\begin{align*}
-  W_n = L^{n-1}Mh^n.
-\end{align*}
-
-\red{TODO: Other proofs have a factorial term $n!$ as the denominator of these
-  bounds (e.g. see P. J. Collins textbook below). Understand the origin of this
-  factorial term and complete the proof that the series converges by
-  Weierstrass M-test.}
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/z1.png}
-\end{mdframed}
-
+$\sum_{n=0}^\infty W_n = L^{n-1}M\frac{h^n}{n!}$ converges.
 
 \subsection{Proof that $y_\infty(t)$ is a solution}
 
-\textbf{Overview}\\
+To prove that the limiting function $y_\infty$ is a solution, we could either
 
+\begin{enumerate}
+\item show that $y'_\infty$
+\end{enumerate}
 
 \newpage
 \section{Simmons}
