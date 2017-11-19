@@ -245,8 +245,9 @@ A single term in the series is
                          v\Big(\tau, y_{n-2}(\tau)\Big) \dt.
 \end{align*}
 
-Now, by assumption, the straight line slope between any two points lying on a
-vertical line is $\leq M$ ($v$ is Lipschitz in that direction). Therefore
+Now, by assumption, $v$ is Lipschitz in the $y$ direction with bound
+$L$. (Informally, this means that the absolute value of the straight line slope
+between any two points lying on a vertical line is bounded by $L$). Therefore
 \begin{align*}
   \Big|v\Big(t, y_{n-1}(t)\Big) -
        v\Big(t, y_{n-2}(t)\Big)\Big| \leq L\Big|y_{n-1}(t) - y_{n-2}(t)\Big|.
@@ -265,19 +266,28 @@ Recall that the definition of the $e_n$ is
   e_n(t) := y_n(t) - y_{n-1}(t).
 \end{align*}
 
+\newpage
 For the first few terms we have
 \begin{align*}
   |e_1(t)| &    = \int_{t_0}^t v(\tau, y_0) \d\tau\\
            & \leq M|t - t_0|\\
   |e_2(t)| & \leq L\Big|\int_{t_0}^t \Big|y_1(\tau) - y_0(\tau)\Big| \d\tau \Bigg|\\
            &    = L\Big|\int_{t_0}^t |e_1(\tau)| \d\tau \Bigg|\\
-           & \leq LM|(t - t_0)^2|\\
+           & \leq LM|t - t_0|^2\\
   |e_3(t)| & \leq L\Big|\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau \Bigg|\\
            &    = L\Big|\int_{t_0}^t |e_2(\tau)| \d\tau \Bigg|\\
-           & \leq L^2M|(t - t_0)^3|.
+                            & \leq L^2M|t - t_0|^3.
 \end{align*}
-So this suggests that $|e_n(t)| \leq L^{n-1}M|(t - t_0)^n|$.
+So it seems that $|e_n(t)| \leq L^{n-1}M|t - t_0|^n$.
 
+To prove this, note that we know it is true of $e_1$. So suppose it is true of
+$e_n$. The next term is
+\begin{align*}
+  e_{n+1}(t) &   :=   y_{n+1}(t) - y_n(t)\\
+            & \leq L\Big|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|\\
+            &= L\Big|\int_{t_0}^t |e_n(\tau)| \d\tau \Bigg|\\
+            & \leq L^nM|t - t_0|^{n+1}.
+\end{align*}
 
 \newpage
 \blue{
