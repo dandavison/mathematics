@@ -206,12 +206,25 @@ which does not exist for all $x$ in the rectangle.
 
 \newpage
 \subsection{Proof}
+
 We will show that the following sequence of functions converges to a unique
 solution:
-  \begin{align*}
-    y_0(t) &= y(t_0)\\
-    y_n(t) &= y(t_0) + \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) \d\tau.\\
-  \end{align*}
+\begin{align*}
+  y_0(t) &= y(t_0)\\
+  y_n(t) &= y(t_0) + \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) \d\tau.\\
+\end{align*}
+
+The basic idea is to write the limiting function $y_\infty(t)$ as a telescoping
+sum, and then to show that the series thus defined converges.
+
+Define
+\begin{align*}
+  e_n = y_n - y_{n-1}, ~~~~~~~ n = 1, 2, \ldots.
+\end{align*}
+Then the limiting function that is our objective is
+\begin{align*}
+  y_\infty = y_0 + \sum_{n=1}^\infty e_n.
+\end{align*}
 
 We need to show
 \begin{enumerate}
@@ -220,22 +233,17 @@ We need to show
 \item It is unique
 \end{enumerate}
 
-\subsection{Proof that the $y_n(t)$ converge to a function $y_\infty(t)$}
+\subsection{Proof that the $y_n(t)$ converge uniformly to a function $y_\infty(t)$}
+We are going to use the Weierstrass M-test to show that the series of functions
+converge uniformly. So, we need to show that each $e_n$ is bounded
+by some $M_n$, and that the series $\sum_{n=1}^\infty M_n$ converges.
 
-\textbf{Overview}\\
-The basic idea here is to write the limiting function $y_\infty(t)$ as a
-telescoping sum, and then to show that the series thus defined converges.
+A single term in the series is
+\begin{align*}
+  e_{n+1}(t) = \int_{t_0}^t v\Big(\tau, y_n(\tau)\Big) -
+                          v\Big(\tau, y_{n-1}(\tau)\Big) \dt.
+\end{align*}
 
-\textbf{Proof}\\
-Note that
-\begin{align*}
-  y_n(t) = y_0(t) + \sum_{i=1}^n \Big(y_n(t) - y_{n-1}(t)\Big),
-\end{align*}
-so it suffices to show that this series converges. A term in the series is
-\begin{align*}
-  y_{n+1}(t) - y_{n}(t) = \int_{t_0}^t v\Big(\tau, y_n(\tau)\Big) -
-                                     v\Big(\tau, y_{n-1}(\tau)\Big) \dt.
-\end{align*}
 Now, by assumption, the straight line slope between any two points lying on a
 vertical line is $\leq M$ ($v$ is Lipschitz in that direction). Therefore
 \begin{align*}
@@ -244,7 +252,7 @@ vertical line is $\leq M$ ($v$ is Lipschitz in that direction). Therefore
 \end{align*}
 And since $\Big|\int_a^b f(t) \dt\Big| \leq \int_a^b |f(t)| \dt$,
 \begin{align*}
-  \Big|y_{n+1}(t) - y_{n}(t)\Big| \leq L\Bigg|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|.
+  \Big|e_{n+1}(t)\Big| \leq L\Bigg|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|.
 \end{align*}
 \footnote{The outer modulus is required to handle the case $t < t_0$.}\\
 \newpage
@@ -322,14 +330,14 @@ so the orthogonal trajectories are lines through the origin, as expected.
 \subsection{Use of polar coordinates to make a problem tractable (separable)}
 TODO
 
-% \section{Arnold - Problems}
-% \subsection{}
-% \begin{mdframed}
-%   At what altitude is the density of the air one half of that at the surface of
-%   the Earth? Regard temperature as constant. One cubic meter of air at the
-%   Earth's surface weighs 1250g.
-% \end{mdframed}
-% \begin{align*}
-%   \rho(0) = 1250\\
-%   &=
-% \end{align*}
+\section{Arnold - Problems}
+\subsection{}
+\begin{mdframed}
+  At what altitude is the density of the air one half of that at the surface of
+  the Earth? Regard temperature as constant. One cubic meter of air at the
+  Earth's surface weighs 1250g.
+\end{mdframed}
+\begin{align*}
+  \rho(0) = 1250\\
+  &=
+\end{align*}
