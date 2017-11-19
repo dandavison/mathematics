@@ -270,47 +270,36 @@ Recall that the definition of the $e_n$ is
 For the first few terms we have
 \begin{align*}
   |e_1(t)| &    = \int_{t_0}^t v(\tau, y_0) \d\tau\\
-           & \leq M|t - t_0|\\
+           & \leq M|t - t_0| \leq Mh\\
   |e_2(t)| & \leq L\Big|\int_{t_0}^t \Big|y_1(\tau) - y_0(\tau)\Big| \d\tau \Bigg|\\
            &    = L\Big|\int_{t_0}^t |e_1(\tau)| \d\tau \Bigg|\\
-           & \leq LM|t - t_0|^2\\
+           & \leq LM|t - t_0|^2 \leq LMh^2\\
   |e_3(t)| & \leq L\Big|\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau \Bigg|\\
            &    = L\Big|\int_{t_0}^t |e_2(\tau)| \d\tau \Bigg|\\
-                            & \leq L^2M|t - t_0|^3.
+           & \leq L^2M|t - t_0|^3  \leq L^2Mh^3\\
 \end{align*}
-So it seems that $|e_n(t)| \leq L^{n-1}M|t - t_0|^n$.
-
-To prove this, note that we know it is true of $e_1$. So suppose it is true of
-$e_n$. The next term is
+So it seems that $|e_n(t)| \leq L^{n-1}Mh^n$. To prove this, note that we know
+it is true of $e_1$. So suppose it is true of $e_n$. The next term is
 \begin{align*}
   e_{n+1}(t) &   :=   y_{n+1}(t) - y_n(t)\\
             & \leq L\Big|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|\\
             &= L\Big|\int_{t_0}^t |e_n(\tau)| \d\tau \Bigg|\\
-            & \leq L^nM|t - t_0|^{n+1}.
+            & \leq L^nMh^{n+1}.
+\end{align*}
+Recall that our aim is to show that the Weierstrass M-test series
+$\sum_{n=0}^\infty W_n$ converges. Our current proposal for the terms is
+\begin{align*}
+  W_n = L^{n-1}Mh^n.
 \end{align*}
 
-\newpage
-\blue{
-  The next stage of the proof is to use this bound on the $n$-th term to
-  show that the series converges. Basically, we have two bounds:
-  \begin{enumerate}
-  \item The velocity does not exceed $M$
-  \item The rate of change of velocity with $y$ does not exceed $L$
-  \end{enumerate}
-We're going to somehow show that
-\begin{align*}
-  |e_n(t)| \leq \frac{L^{n-1}M}{n!}(t-t_0)^n \leq \frac{L^{n-1}M}{n!}h^n
-\end{align*}
-and that this converges.
-~\\
-So letting $e_n(t) = \Big|y_n(t) - y_{n-1}(t)\Big|$ we have
-\begin{align*}
-  e_1(t) &= \Big|y_1(t) - y_0\Big| \leq
-            M\int_{t_0}^t\Big|y_1(\tau) - y_0\Big| \d\tau \leq L^2(t - t_0)\\
-  e_1(t) &= \Big|y_1(t) - y_0\Big| \leq \ldots
-\end{align*}
-TODO
-}
+\red{TODO: Other proofs have a factorial term $n!$ as the denominator of these
+  bounds (e.g. see P. J. Collins textbook below). Understand the origin of this
+  factorial term and complete the proof that the series converges by
+  Weierstrass M-test.}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/z1.png}
+\end{mdframed}
 
 
 \subsection{Proof that $y_\infty(t)$ is a solution}
