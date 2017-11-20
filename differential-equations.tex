@@ -279,7 +279,7 @@ For the first few terms we have
   |e_3(t)| & \leq L\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau\\
            &    = L\int_{t_0}^t |e_2(\tau)| \d\tau\\
            & \leq L\int_{t_0}^t LM\frac{(t - t_0)^2}{2} \d\tau\\
-           &    = L^2M\frac{(t - t_0)^3}{3!}
+           &    = L^2M\frac{(t - t_0)^3}{3!}.
 \end{align*}
 So it seems that $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$. To prove this, note that we know
 it is true of $e_1$. So suppose it is true of $e_n$. Then the next term is
@@ -292,17 +292,71 @@ it is true of $e_1$. So suppose it is true of $e_n$. Then the next term is
             & \leq L^nM\frac{h^{n+1}}{(n+1)!},
 \end{align*}
 so $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$ for all $n \geq 1$ by induction.
+\newpage
+Recall that our aim is to show that the series
+$\sum_{n=1}^\infty W_n = L^{n-1}M\frac{h^n}{n!}$ converges. According to the
+Ratio Test for convergence of a series, we examine
+\begin{align*}
+  \lim_{n\to \infty} \frac{W_{n+1}}{W_n}
+  &= \lim_{n\to\infty} \frac{L^nM\frac{h^{n+1}}{(n+1)!}}
+                          {L^{n-1}M\frac{h^n}{n!}}
+   = \lim_{n\to\infty} \frac{Lh}{n+1}
+    = 0.
+\end{align*}
+So:
+\begin{enumerate}
+\item The series $\sum_{n=1}^\infty W_n$ converges, by the Ratio Test.
+\item Therefore the series $\sum_{n=1}^\infty e_n(t)$ converges uniformly, by
+  the Weierstrass M-test.
+\item Therefore the sequence $(y_n)_{n\geq 0}$ converges uniformly to a
+  limiting function $y_\infty(t)$, since
+  $\sum_{n=1}^\infty e_n(t) = y_\infty(t) - y_0$.
+\end{enumerate}
 
-Recall that our aim is to show that the Weierstrass M-test series
-$\sum_{n=0}^\infty W_n = L^{n-1}M\frac{h^n}{n!}$ converges.
+
 
 \subsection{Proof that $y_\infty(t)$ is a solution}
 
-To prove that the limiting function $y_\infty$ is a solution, we could either
+To prove that the limiting function $y_\infty$ is a solution, we need to show
+that
+\begin{align*}
+  y'_\infty(t) = v(t, y_\infty(t)) \text{~~~~~~~and~~~~~~~} y_\infty(t_0) = y_0.
+\end{align*}
 
-\begin{enumerate}
-\item show that $y'_\infty$
-\end{enumerate}
+Recall the definition of the Picard successive approximations:
+\begin{align*}
+    y_n(t) &= y_0 + \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) \d\tau.
+\end{align*}
+Certainly, $y_\infty(t_0) = y_0$. And
+\begin{align*}
+  y_\infty(t) = \lim_{n\to \infty} y_n = y_0 + \int_{t_0}^t v(\tau, y_\infty(\tau)) \d\tau
+\end{align*}
+as long as it is justified to take the limit inside the integral.
+
+This would be justified if $v(\tau, y_n(\tau))$ converges uniformly to
+$v(\tau, y_\infty(\tau))$. These are two different functions, both mapping $t$
+to the first derivative. Let's write them as $v_{y_n}(t)$ and
+$v_{y_\infty}(t)$. We're looking for uniform convergence of the former to the
+latter, i.e. uniform over all values of $t$. The definition of uniform
+convergence is that there exists real $\epsilon > 0$ and integer $N \geq 0$
+such that for all $t$, if $n > N$ then
+$|v_{y_\infty}(t) - v_{y_n}(t)| < \epsilon$.
+
+By assumption $v$ is Lipschitz in the $y$ direction, so
+\begin{align*}
+  |v(t, y_1) - v(t, y_2)| \leq L|y_1 - y_2| \leq 2Lk ~~~~~~~\forall y_1, y_2 \in [-k, k],
+\end{align*}
+giving the bound needed to prove uniform convergence.
+
+Therefore
+\begin{align*}
+  y_\infty(t) = y_0 + \int_{t_0}^t v(\tau, y_\infty(\tau)) \d\tau,
+\end{align*}
+and therefore, by differentiating both sides,
+\begin{align*}
+  y'_\infty(t) = v(t, y_\infty(t)).
+\end{align*}
+
 
 \newpage
 \section{Simmons}
