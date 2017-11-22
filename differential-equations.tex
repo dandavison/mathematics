@@ -313,8 +313,6 @@ So:
   $\sum_{n=1}^\infty e_n(t) = y_\infty(t) - y_0$.
 \end{enumerate}
 
-
-
 \subsection{Proof that $y_\infty(t)$ is a solution}
 
 To prove that the limiting function $y_\infty$ is a solution, we need to show
@@ -356,6 +354,19 @@ and therefore, by differentiating both sides,
 \begin{align*}
   y'_\infty(t) = v(t, y_\infty(t)).
 \end{align*}
+
+\subsection{Proof that $y_\infty(t)$ is the unique solution}
+
+Suppose both $y_\infty$ and $Y$ are solutions. Their difference is
+\begin{align*}
+  \Big|y_\infty(t) - Y(t)\Big| &= \Bigg|\(y_0 + \int_{t_0}^t v(\tau, y_\infty(\tau)) \d\tau\) -
+                                 \(y_0 + \int_{t_0}^t v(\tau, Y(\tau)) \d\tau\)\Bigg|\\
+          &\leq \int_{t_0}^t \Big|v(\tau, y_\infty(\tau)) -
+                                 v(\tau, Y(\tau))\Big| \d\tau\\
+          &\leq \int_{t_0}^t L|y_\infty(\tau) - Y(\tau)| \d\tau\\
+          &\leq Lk(t - t_0).
+\end{align*}
+
 
 
 \newpage
