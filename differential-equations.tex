@@ -380,12 +380,6 @@ $t$ as $n \to \infty$.\\
 \includegraphics[width=250pt]{img/differential-equations-picard-convergence-uniqueness.png}
 \end{mdframed}
 
-We know that
-\begin{align*}
-  |d_n(t) \leq|
-\end{align*}
-
-
 The first term is
 \begin{align*}
   d_0(t) = \int_{t_0}^t v(\tau, Y(\tau)) \d\tau.
@@ -398,26 +392,33 @@ provides a bound:
 \end{align*}
 Subsequent terms are
 \begin{align*}
-  |d_1(t)| = |d_0(t) - y_1(t)|
-\end{align*}
-
-
-Subsequent terms are
-\begin{align*}
-  |d_1(t)| &=    \Big|Y(t) - y_1(t)\Big|\\
-           &=    \Bigg|\int_{t_0}^t v(\tau, Y(\tau)) - v(\tau, y_0(\tau)) \d\tau\Bigg|\\
-           &\leq \Bigg|\int_{t_0}^t \Big|v(\tau, Y(\tau)) - v(\tau, y_0(\tau))\Big| \d\tau\Bigg|.
+  |d_n(t)| &=    \Big|Y(t) - y_n(t)\Big|\\
+           &=    \Bigg|\int_{t_0}^t v(\tau, Y(\tau)) - v(\tau, y_{n-1}(\tau)) \d\tau\Bigg|\\
+           &\leq \Bigg|\int_{t_0}^t \Big|v(\tau, Y(\tau)) - v(\tau, y_{n-1}(\tau))\Big| \d\tau\Bigg|.
 \end{align*}
 As in the convergence proof, this involves a difference in $v$ height, so we
 can use the Lipschitz assumption to express $d_n$ in terms of $d_{n-1}$:
 \begin{align*}
-  |d_1(t)| &\leq \Bigg|\int_{t_0}^t L\Big|Y(\tau) - y_0(\tau)\Big| \d\tau\Bigg|\\
-           &   = \Bigg|L\int_{t_0}^t \Big|d_0(\tau)\Big| \d\tau\Bigg|\\
+  |d_n(t)| &\leq \Bigg|\int_{t_0}^t L\Big|Y(\tau) - y_{n-1}(\tau)\Big| \d\tau\Bigg|\\
+           &   = \Bigg|L\int_{t_0}^t \Big|d_{n-1}(\tau)\Big| \d\tau\Bigg|
+\end{align*}
+So the first few terms are
+\begin{align*}
+  |d_0(t)| &\leq M|t - t_0|\\
+  |d_1(t)| &\leq \Bigg|L\int_{t_0}^t \Big|d_0(\tau)\Big| \d\tau\Bigg|\\
            &\leq \Bigg|L\int_{t_0}^t M|\tau - t_0| \d\tau\Bigg|\\
            &\leq LM\frac{|\tau - t_0|^2}{2}\Bigg|_{t_0}^t\\
            &   = LM\frac{|t - t_0|^2}{2}\\
+  |d_2(t)| &\leq \Bigg|L\int_{t_0}^t \Big|d_1(\tau)\Big| \d\tau\Bigg|\\
+           &\leq \Bigg|L^2M\int_{t_0}^t \frac{|\tau - t_0|^2}{2} \d\tau\Bigg|\\
+           &   = L^2M \frac{|t - t_0|^3}{3!}.
 \end{align*}
 
+So (\textbf{TODO: proof}) $|d_n(t)| \leq L^nM ~\frac{h^{n+1}}{(n+1)!^{~~~~}}$.
+
+Therefore $d_n(t) \to 0$ as $n \to \infty$ for all $t$, proving that if $Y$ is
+a solution, then $y_\infty = Y$. This completes the proof of Picard's existence
+theorem. \qed
 
 
 
