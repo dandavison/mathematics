@@ -204,7 +204,7 @@ The solution passing through the initial value $y(0) = 1$ is
 which does not exist for all $x$ in the rectangle.
 
 
-% \newpage
+\newpage
 \subsection{Proof}
 
 Consider the sequence of functions
@@ -351,37 +351,74 @@ and therefore, by differentiating both sides,
 
 \subsection{Proof that $y_\infty(t)$ is the unique solution}
 
-Suppose $Y$ is a solution. Let the difference between $Y$ and $y_n$ be
-\begin{align*}
-  e_n(t) := |Y(t) - y_n(t)|.
-\end{align*}
-We're going to show that $e_n(t) \to 0$ as $n \to \infty$.
+We've shown that $(y_n)_{n\geq 0}$ converges to a solution $y_\infty$. Now we
+need to show that if $Y$ is a solution then $Y = y_\infty$.
 
-The first few terms are
+Recall that the proof of convergence relied on the following:
+\begin{enumerate}
+\item The definition of $e_n$ meant that $e_n$ could be expressed in terms of $e_{n-1}$.
+\item A bound for the first term $e_1$ was provided by the assumption that $v$
+  was bounded. Informally, this placed a bound on the amount of $v$ height
+  difference that could be accumulated by $y_1$ between $t_0$ and $t$.
+\item A bound for subsequent terms could be expressed in terms of the bound for
+  the previous term. Informally, this was because the subsequent terms involved
+  differences in $v$ height, which are bounded due to the Lipschitz
+  assumption.
+\end{enumerate}
+
+We now need to do something similar to demonstrate that if $Y$ is a solution,
+then $y_n \to Y$ as $n \to \infty$.
+
+So suppose $Y$ is a solution. Then
 \begin{align*}
-  e_1(t) &=    |Y(t) - y_0|\\
-         &\leq \int_{t_0}^t |v(\tau, Y(\tau))| d\tau\\
-         &\leq M(t - t_0)\\
-  e_2(t) &=    |Y(t) - y_1(t)|\\
-         &=    |Y(t) + y_0 - y_1(t)|\\
-         &\leq \int_{t_0}^t \Big|v(\tau, Y(\tau)) - v(\tau, y_1(\tau))\Big| d\tau\\
-         &\leq \int_{t_0}^t L\Big|Y(\tau) - y_1(\tau)\Big| d\tau\\
+  Y(t) = y_0 + \int_{t_0}^t v(\tau, Y(\tau)) \d\tau.
+\end{align*}
+Define $d_n(t) = Y(t) - y_n(t)$. We need to show that $|d_n(t)| \to 0$ for all
+$t$ as $n \to \infty$.\\
+
+\begin{mdframed}
+\includegraphics[width=250pt]{img/differential-equations-picard-convergence-uniqueness.png}
+\end{mdframed}
+
+We know that
+\begin{align*}
+  |d_n(t) \leq|
 \end{align*}
 
+
+The first term is
 \begin{align*}
-  \Big|y_n(t) - Y(t)\Big|
-          &= \Bigg|\(y_0 + \int_{t_0}^t v(\tau, y_n(\tau)) \d\tau\) -
-                   \(y_0 + \int_{t_0}^t v(\tau, Y(\tau)) \d\tau\)\Bigg|\\
-          &\leq \int_{t_0}^t \Big|v(\tau, y_n(\tau)) -
-                                 v(\tau, Y(\tau))\Big| \d\tau\\
-          &\leq \int_{t_0}^t L|y_n(\tau) - Y(\tau)| \d\tau\\
-          &\leq Lk(t - t_0).
+  d_0(t) = \int_{t_0}^t v(\tau, Y(\tau)) \d\tau.
 \end{align*}
-For $n=0$ the RHS is
+
+As in the convergence proof, the fact that $v$ is assumed to be bounded
+provides a bound:
 \begin{align*}
-  \int_{t_0}^t L|y_0 - Y(\tau)| \d\tau
-  &=
+  |d_0(t)| \leq M|t - t_0|.
 \end{align*}
+Subsequent terms are
+\begin{align*}
+  |d_1(t)| = |d_0(t) - y_1(t)|
+\end{align*}
+
+
+Subsequent terms are
+\begin{align*}
+  |d_1(t)| &=    \Big|Y(t) - y_1(t)\Big|\\
+           &=    \Bigg|\int_{t_0}^t v(\tau, Y(\tau)) - v(\tau, y_0(\tau)) \d\tau\Bigg|\\
+           &\leq \Bigg|\int_{t_0}^t \Big|v(\tau, Y(\tau)) - v(\tau, y_0(\tau))\Big| \d\tau\Bigg|.
+\end{align*}
+As in the convergence proof, this involves a difference in $v$ height, so we
+can use the Lipschitz assumption to express $d_n$ in terms of $d_{n-1}$:
+\begin{align*}
+  |d_1(t)| &\leq \Bigg|\int_{t_0}^t L\Big|Y(\tau) - y_0(\tau)\Big| \d\tau\Bigg|\\
+           &   = \Bigg|L\int_{t_0}^t \Big|d_0(\tau)\Big| \d\tau\Bigg|\\
+           &\leq \Bigg|L\int_{t_0}^t M|\tau - t_0| \d\tau\Bigg|\\
+           &\leq LM\frac{|\tau - t_0|^2}{2}\Bigg|_{t_0}^t\\
+           &   = LM\frac{|t - t_0|^2}{2}\\
+\end{align*}
+
+
 
 
 \newpage
