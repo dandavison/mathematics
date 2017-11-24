@@ -225,35 +225,38 @@ sum, and then to show that the series thus defined converges.
 
 Define
 \begin{align*}
-  e_n(t) = y_n(t) - y_{n-1}(t), ~~~~~~~ n = 1, 2, \ldots.
+  e_n(t) = y_{n+1}(t) - y_n(t), ~~~~~~~ n = 0, 1, 2, \ldots.
 \end{align*}
 Then the limiting function that is our objective is
 \begin{align*}
-  y_\infty(t) = y_0 + \sum_{n=1}^\infty e_n(t),
+  y_\infty(t) = y_0 + \sum_{n=0}^\infty e_n(t),
 \end{align*}
 if the series converges.
 
 We are going to use the Weierstrass M-test to show that the series of functions
-$\sum_{n=1}^\infty e_n(t)$ converge uniformly. So, we need to show that each
+$\sum_{n=0}^\infty e_n(t)$ converge uniformly. So, we need to show that each
 $e_n$ is bounded in absolute value by some constant $W_n$, and that the series
-$\sum_{n=1}^\infty W_n$ converges.
+$\sum_{n=0}^\infty W_n$ converges.
 
-For $n \geq 2$ each term is
+For $n \geq 1$ each term is
 \begin{align*}
-  e_{n}(t) = \int_{t_0}^t v\Big(\tau, y_{n-1}(\tau)\Big) -
-                         v\Big(\tau, y_{n-2}(\tau)\Big) \dt.
+  e_{n}(t) = \int_{t_0}^t v\Big(\tau, y_n(\tau)\Big) -
+                         v\Big(\tau, y_{n-1}(\tau)\Big) \dt.
 \end{align*}
 
 Now, by assumption, $v$ is Lipschitz in the $y$ direction with bound
 $L$. (Informally, this means that the absolute value of the straight line slope
 between any two points lying on a vertical line is bounded by $L$). Therefore
 \begin{align*}
-  \Big|v\Big(t, y_{n-1}(t)\Big) -
-       v\Big(t, y_{n-2}(t)\Big)\Big| \leq L\Big|y_{n-1}(t) - y_{n-2}(t)\Big|.
+      \Big|v\Big(t, y_n(t)\Big) -
+           v\Big(t, y_{n-1}(t)\Big)\Big|
+\leq L\Big|y_n(t) - y_{n-1}(t)\Big|.
 \end{align*}
 And since $\Big|\int_a^b f(t) \dt\Big| \leq \int_a^b |f(t)| \dt$,
 \begin{align*}
-  |e_n(t)| \leq L\Bigg|\int_{t_0}^t \Big|y_{n-1}(\tau) - y_{n-2}(\tau)\Big| \d\tau \Bigg|.
+  |e_n(t)|
+  &\leq L\Bigg|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau \Bigg|\\
+  &   = L\Bigg|\int_{t_0}^t \Big|e_{n-1}\Big| \d\tau \Bigg|.
 \end{align*}
 \footnote{The outer modulus is required to handle the case $t < t_0$.}
 
@@ -262,49 +265,47 @@ depending only on $L, M, n, t_0, y_0$. We will do this by induction.
 
 For the first few terms we have
 \begin{align*}
-  |e_1(t)| &    = \Bigg|\int_{t_0}^t v(\tau, y_0) \d\tau\Bigg|\\
-           & \leq M|t - t_0| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{since, by assumption, $v$ is bounded by $M$}\\
+  |e_0(t)| &    = \Bigg|\int_{t_0}^t v(\tau, y_0) \d\tau\Bigg|\\
+           & \leq M|t - t_0| ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{(by assumption that $v$ is bounded by $M$)}\\
            & \leq Mh\\
-  |e_2(t)| & \leq L\Bigg|\int_{t_0}^t \Big|y_1(\tau) - y_0(\tau)\Big| \d\tau\Bigg| ~~~~~~~~~~~~~~\text{since, by assumption, $v$ is Lipschitz in $y$}\\
-           &    = L\Bigg|\int_{t_0}^t |e_1(\tau)| \d\tau\Bigg|\\
+  |e_1(t)| &    = L\Bigg|\int_{t_0}^t |e_0(\tau)| \d\tau\Bigg|  ~~~~~~~~~~~~~~~~~~~~~~~~\text{(by assumption that $v$ is Lipschitz in $y$)}\\
            & \leq L\Bigg|\int_{t_0}^t M|\tau - t_0| \d\tau\Bigg|\\
            &    = LM\frac{|\tau - t_0|^2}{2} \Big|_{t_0}^t \\
            &    = LM\frac{|t - t_0|^2}{2} \\
-  |e_3(t)| & \leq L\Bigg|\int_{t_0}^t \Big|y_2(\tau) - y_1(\tau)\Big| \d\tau\Bigg|\\
-           &    = L\Bigg|\int_{t_0}^t |e_2(\tau)| \d\tau\Bigg|\\
+  |e_2(t)| &    = L\Bigg|\int_{t_0}^t |e_1(\tau)| \d\tau\Bigg|  ~~~~~~~~~~~~~~~~~~~~~~~~\text{(by assumption that $v$ is Lipschitz in $y$)}\\
            & \leq L\Bigg|\int_{t_0}^t LM\frac{|t - t_0|^2}{2} \d\tau\Bigg|\\
            &    = L^2M\frac{|t - t_0|^3}{3!}.
 \end{align*}
-So it seems that $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$. To prove this, note that we know
-it is true of $e_1$. So suppose it is true of $e_n$. Then the next term is
+So it seems that $|e_n(t)| \leq L^nM\frac{h^{n+1}}{(n+1)!}$. To prove this, note that we know
+it is true of $e_0$. So suppose it is true of $e_n$. Then the next term is
 \begin{align*}
-  |e_{n+1}(t)| & :=   \Big|y_{n+1}(t) - y_n(t)\Big|\\
-              & \leq L\Bigg|\int_{t_0}^t \Big|y_n(\tau) - y_{n-1}(\tau)\Big| \d\tau\Bigg|\\
+  |e_{n+1}(t)| & :=   \Big|y_{n+2}(t) - y_{n+1}(t)\Big|\\
+              & \leq L\Bigg|\int_{t_0}^t \Big|y_{n+1}(\tau) - y_{n}(\tau)\Big| \d\tau\Bigg|\\
               &=     L\Bigg|\int_{t_0}^t |e_n(\tau)| \d\tau\Bigg|\\
-              &=     L\Bigg|\int_{t_0}^t L^{n-1}M\frac{|\tau - t_0|^n}{n!} \d\tau\Bigg|\\
-              &=     L^nM\frac{|t - t_0|^{n+1}}{(n+1)!^{~~~}}\\
-              & \leq L^nM\frac{h^{n+1}}{(n+1)!},
+              &=     L\Bigg|\int_{t_0}^t L^nM\frac{|\tau - t_0|^{n+1}}{(n+1)!} \d\tau\Bigg|\\
+              &=     L^{n+1}M\frac{|t - t_0|^{n+2}}{(n+2)!^{~~~}}\\
+              & \leq L^{n+1}M\frac{h^{n+2}}{(n+2)!^{~~~}},
 \end{align*}
-so $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$ for all $n \geq 1$ by induction.
+so $|e_n(t)| \leq L^nM\frac{h^{n+1}}{(n+1)!}$ for all $n \geq 0$ by induction.
 
 Recall that our aim is to show that the series
-$\sum_{n=1}^\infty W_n = L^{n-1}M\frac{h^n}{n!}$ converges. According to the
+$\sum_{n=0}^\infty W_n = L^nM\frac{h^{n+1}}{(n+1)!}$ converges. According to the
 Ratio Test for convergence of a series, we examine
 \begin{align}
   \lim_{n\to \infty} \frac{W_{n+1}}{W_n}
-  &= \lim_{n\to\infty} \frac{L^nM\frac{h^{n+1}}{(n+1)!}}
-                          {L^{n-1}M\frac{h^n}{n!}}
-   = \lim_{n\to\infty} \frac{Lh}{n+1}
+  &= \lim_{n\to\infty} \frac{L^{n+1}M\frac{h^{n+2}}{(n+2)!}}
+                          {L^nM\frac{h^{n+1}}{(n+1)!}}
+   = \lim_{n\to\infty} \frac{Lh}{n+2}
     = 0. \label{picard-ratio-test}
 \end{align}
 So:
 \begin{enumerate}
-\item The series $\sum_{n=1}^\infty W_n$ converges, by the Ratio Test.
-\item Therefore the series $\sum_{n=1}^\infty e_n(t)$ converges uniformly, by
+\item The series $\sum_{n=0}^\infty W_n$ converges, by the Ratio Test.
+\item Therefore the series $\sum_{n=0}^\infty e_n(t)$ converges uniformly, by
   the Weierstrass M-test.
 \item Therefore the sequence $(y_n)_{n\geq 0}$ converges uniformly to a
   limiting function $y_\infty(t)$, since
-  $\sum_{n=1}^\infty e_n(t) = y_\infty(t) - y_0$.
+  $\sum_{n=0}^\infty e_n(t) = y_\infty(t) - y_0$.
 \end{enumerate}
 
 \subsection{Proof that $y_\infty(t)$ is a solution}
@@ -400,7 +401,7 @@ As in the convergence proof, this involves a difference in $v$ height, so we
 can use the Lipschitz assumption to express $d_n$ in terms of $d_{n-1}$:
 \begin{align*}
   |d_n(t)| &\leq \Bigg|\int_{t_0}^t L\Big|Y(\tau) - y_{n-1}(\tau)\Big| \d\tau\Bigg|\\
-           &   = \Bigg|L\int_{t_0}^t \Big|d_{n-1}(\tau)\Big| \d\tau\Bigg|
+           &   = \Bigg|L\int_{t_0}^t \Big|d_{n-1}(\tau)\Big| \d\tau\Bigg|.
 \end{align*}
 The first few terms are
 \begin{align*}
