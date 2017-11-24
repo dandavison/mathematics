@@ -290,13 +290,13 @@ so $|e_n(t)| \leq L^{n-1}M\frac{h^n}{n!}$ for all $n \geq 1$ by induction.
 Recall that our aim is to show that the series
 $\sum_{n=1}^\infty W_n = L^{n-1}M\frac{h^n}{n!}$ converges. According to the
 Ratio Test for convergence of a series, we examine
-\begin{align*}
+\begin{align}
   \lim_{n\to \infty} \frac{W_{n+1}}{W_n}
   &= \lim_{n\to\infty} \frac{L^nM\frac{h^{n+1}}{(n+1)!}}
                           {L^{n-1}M\frac{h^n}{n!}}
    = \lim_{n\to\infty} \frac{Lh}{n+1}
-    = 0.
-\end{align*}
+    = 0. \label{picard-ratio-test}
+\end{align}
 So:
 \begin{enumerate}
 \item The series $\sum_{n=1}^\infty W_n$ converges, by the Ratio Test.
@@ -402,19 +402,32 @@ can use the Lipschitz assumption to express $d_n$ in terms of $d_{n-1}$:
   |d_n(t)| &\leq \Bigg|\int_{t_0}^t L\Big|Y(\tau) - y_{n-1}(\tau)\Big| \d\tau\Bigg|\\
            &   = \Bigg|L\int_{t_0}^t \Big|d_{n-1}(\tau)\Big| \d\tau\Bigg|
 \end{align*}
-So the first few terms are
+The first few terms are
 \begin{align*}
   |d_0(t)| &\leq M|t - t_0|\\
   |d_1(t)| &\leq \Bigg|L\int_{t_0}^t \Big|d_0(\tau)\Big| \d\tau\Bigg|\\
            &\leq \Bigg|L\int_{t_0}^t M|\tau - t_0| \d\tau\Bigg|\\
-           &\leq LM\frac{|\tau - t_0|^2}{2}\Bigg|_{t_0}^t\\
+           &   = LM\frac{|\tau - t_0|^2}{2}\Bigg|_{t_0}^t\\
            &   = LM\frac{|t - t_0|^2}{2}\\
   |d_2(t)| &\leq \Bigg|L\int_{t_0}^t \Big|d_1(\tau)\Big| \d\tau\Bigg|\\
            &\leq \Bigg|L^2M\int_{t_0}^t \frac{|\tau - t_0|^2}{2} \d\tau\Bigg|\\
            &   = L^2M \frac{|t - t_0|^3}{3!}.
 \end{align*}
+\newpage
+So it seems that
+\begin{align*}
+  |d_n(t)| \leq L^nM \frac{|t - t_0|^{n+1}}{(n+1)!^{~~~~}}
+\end{align*}
+This is true for $n=0$. For induction, suppose that it is true for $n$. Then
+\begin{align*}
+  |d_{n+1}(t)| &\leq L\Bigg|\int_{t_0}^t \Big|d_{n-1}(\tau)\Big| \d\tau\Bigg|\\
+              &   = L^{n+1}M \Bigg|\int_{t_0}^t \Big|\frac{|t - t_0|^{n+1}}{(n+1)!^{~~~~}}\Big| \d\tau\Bigg|\\
+              &   = L^{n+1}M \frac{|t - t_0|^{n+2}}{(n+2)!^{~~~~}}\\
+              &\leq L^{n+1}M \frac{h^{n+2}}{(n+2)!^{~~~~}}
+\end{align*}
 
-So (\textbf{TODO: proof}) $|d_n(t)| \leq L^nM ~\frac{h^{n+1}}{(n+1)!^{~~~~}}$.
+We've seen already \eqref{picard-ratio-test} that the limit of this sequence is
+zero, by the Ratio Test.
 
 Therefore $d_n(t) \to 0$ as $n \to \infty$ for all $t$, proving that if $Y$ is
 a solution, then $y_\infty = Y$. This completes the proof of Picard's existence
