@@ -403,21 +403,130 @@ First note that we can solve this by separation-of-variables:
 \includegraphics[width=400pt]{img/differential-equations-a1-1-5.png}
 \end{mdframed}
 
-\subsubsection*{Proof that the sequence converges uniformly to a limiting function}
+We have to show the following:
+\begin{enumerate}
+\item that the sequence of functions converges uniformly to a limiting function,
+\item that the limiting function is a solution, and
+\item that the solution is unique.
+\end{enumerate}
 
-\textbf{\textit{Overview}}: We write the $n$-th term as a telescoping sum and show that
-this series converges uniformly.
+\subsubsection*{1. Proof that the sequence converges uniformly to a limiting function}
 
-\textbf{\textit{Proof}}:\\\\
-Define $e_n(x) = y_n(x) - y_{n-1}(x)$.
+\begin{proof}
+Restrict attention to a rectangle with width $2h$ and height $2k$, centered
+on $(a, f(a))$.
 
-Note that $\sum_{i=1}^n e_n(x) = $
+Note that, since $f$ and $K$ are continuous, there exist bounds $B, C \in \R$
+such that $\Big|f(x)\Big| < B$ and $\Big|K(x, x')\Big| \leq C$, for
+$x, x' \in [a,b]$.
 
-\subsubsection*{Proof that the limiting function is a solution}
+Define $y_\infty = \limn y_n$.
 
+Define $e_n(x) = y_{n+1}(x) - y_n(x)$.
 
-\subsubsection*{Proof that the solution is unique}
+Note that $y_\infty(x) = \sum_{i=0}^\infty e_n(x) + y_0(x) = \sum_{i=0}^\infty e_n(x) - f(x)$.
 
+Therefore, to show that $(y_n)_{n\geq 0}$ converges uniformly, it suffices to
+show that $\sum_{i=0}^\infty e_n(x)$ converges uniformly.
 
+We will use the Weierstrass M-test for this. Therefore, for each $n$ we need to
+find a constant bound $W_n$ such that $|y_n(x)| \leq W_n$ for all
+$x \in [a,b]$, and we need to show that the sequence $W_n$ converges.
 
+Note that for $n \geq 1$
+\begin{align*}
+  |e_n(x)| &   = \Bigg|\int_a^x K(x, t) \Big(y_n(x) - y_{n-1}(x)\Big)\dt\Bigg|\\
+           &\leq \Bigg|\int_a^x \Big|K(x, t)\Big| \Big|y_n(x) - y_{n-1}(x)\Big|\dt\Bigg|\\
+           &\leq \Bigg|\int_a^x \Big|K(x, t)\Big| \Big|e_{n-1}(t)\Big|\dt\Bigg|.
+\end{align*}
+The first two terms are
+\begin{align*}
+  |e_0(x)| &=    y_1(x) - f(x)\\
+           &=    \int_a^x K(x, t) f(t)\dt\\
+           &\leq BC|x - a|\\
+  |e_1(x)| &\leq \Bigg|\int_a^x \Big|K(x, t)\Big| \Big|e_0(t)\Big|\dt\Bigg|\\
+           &\leq BC\Bigg|\int_a^x \Big|K(x, t)\Big| \Big|t - a\Big| \dt\Bigg|\\
+           &\leq BC^2\frac{|x - a|^2}{2}.
+\end{align*}
+Let $W_n = BC^{n+1}\frac{h^{n+1}}{(n+1)!}$.
+
+It seems that $|e_n(x)| \leq W_n$ for all $n \geq 0$. To prove this, note that
+it is true for $n=0$. For induction, suppose that it is true for $n$. Then
+\begin{align*}
+  |e_{n+1}(x)|& \leq \Bigg|\int_a^x \Big|K(x, t)\Big| \Big|e_{n}(t)\Big|\dt\Bigg|\\
+             & \leq \Bigg|\int_a^x \Big|K(x, t)\Big| BC^{n+1}\frac{(t - a)^{n+1}}{(n+1)!^{~~~~}}\dt\Bigg|\\
+             & \leq BC^{n+2}\frac{(x - a)^{n+2}}{(n+2)!^{~~~}}\\
+             & \leq BC^{n+2}\frac{h^{n+2}}{(n+2)!}\\
+             &= W_{n+1},
+\end{align*}
+as required. Therefore $|e_n| \leq W_n$ holds for all $n \geq 0$. The Ratio
+Test shows that the sequence $(W_n)_{n\geq 0}$ converges to zero:
+\begin{align*}
+  \limn \frac{W_{n+1}}{W_n}
+  = \limn \frac{BC^{n+2}\frac{h^{n+2}}{(n+2)!}}
+                {BC^{n+1}\frac{h^{n+1}}{(n+1)!}}
+  = \limn \frac{Ch}{n+2}
+  = 0.
+\end{align*}
+Therefore the series $\sum_{i=0}^\infty e_n(x)$ converges uniformly by the
+Weierstrass M-test, and therefore $(y_n)_{n\geq 0}$ converges uniformly.
+\end{proof}
+
+\subsubsection*{2. Proof that the limiting function is a solution}
+
+\begin{proof}
+To prove that $y_\infty$ is a solution we need to show that
+\begin{align*}
+  y_\infty(x) = \limn y_n(x) = f(x) + \int_a^x K(x, t) y_\infty(t) \dt
+  ~~~~~~~\text{and}~~~~~~~
+  y_\infty(a) = f(x).
+\end{align*}
+The second requirement, $y_\infty(a) = f(x)$, is clearly true.
+
+The definition of $y_n$ is
+\begin{align*}
+  y_n(x) = f(x) + \int_a^x K(x, t) y_{n-1}(t) \dt.
+\end{align*}
+If it were valid to take the limit inside the integral then we would have
+\begin{align*}
+  y_\infty(x) = \limn y_n(x) = f(x) + \int_a^x K(x, t) y_\infty(t) \dt
+\end{align*}
+as required. To justify taking the limit inside the integral it's sufficient to
+prove that $K(x, t) y_{n}(t)$ converges uniformly to $K(x, t) y_\infty(t)$. But
+this simply requires that $y_{n}(t)$ converges uniformly to $y_\infty(t)$,
+which has been proved already.
+\end{proof}
+
+\subsubsection*{3. Proof that the solution is unique}
+
+\begin{proof}
+Suppose that $Y$ is a solution and define $d_n(x) = Y(x) - y_n(x)$. We will
+show that $\limn |d_n(x)| = 0$.
+
+Recall that we are working in a rectangle with width $2h$ and height $2k$,
+centered on $(a, f(a))$.
+
+We have
+\begin{align*}
+  |d_0(x)| &=    \Bigg|\int_a^x K(x,t)Y(t) \dt\Bigg|\\
+           &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|Y(t)\Big| \dt\Bigg|\\
+           &\leq Ck|x-a|.
+\end{align*}
+
+For $n \geq 1$ we have
+\begin{align*}
+  |d_n(x)| &= \Bigg|\int_a^x K(x,t)\Big(Y(t) - y_{n-1}(t)\Big) \dt\Bigg|\\
+           &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|d_{n-1}(t)\Big|\dt\Bigg|\\
+\end{align*}
+For induction, suppose that $|d_n(x)| \leq C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}$. This is true for $n=0$. For $n+1$, we have
+
+\begin{align*}
+|d_{n+1}(x)| &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|d_{n}(t)\Big|\dt\Bigg|\\
+            &=    \Bigg|\int_a^x \Big|K(x,t)\Big|C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}\dt\Bigg|\\
+            &=    C^{n+2}k\frac{|t-a|^{n+2}}{(n+2)!}\\
+            &\leq C^{n+2}k\frac{h^{n+2}}{(n+2)!},
+\end{align*}
+which, as shown above, converges to 0 as $n \to \infty$. Therefore
+$\limn |d_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
+\end{proof}
 \end{document}
