@@ -276,8 +276,24 @@ For the first few terms we have
            & \leq L\Bigg|\int_{t_0}^t LM\frac{|t - t_0|^2}{2} \d\tau\Bigg|\\
            &    = L^2M\frac{|t - t_0|^3}{3!}.
 \end{align*}
-So it seems that $|e_n(t)| \leq L^nM\frac{h^{n+1}}{(n+1)!}$. To prove this, note that we know
-it is true of $e_0$. So suppose it is true of $e_n$. Then the next term is
+So it seems that\\
+
+\begin{lemma} \label{picard-convergence-induction}
+Suppose
+\begin{enumerate}
+\item $|e_0(t)| \leq Mh$,
+\item $|e_n(t)| \leq L\Bigg|\int_{t_0}^t \Big|e_{n-1}\Big| \d\tau \Bigg|$ for $n \geq 1$.
+\end{enumerate}
+Then
+\begin{align*}
+|e_n(t)| \leq L^nM\frac{h^{n+1}}{(n+1)!} =: W_n.
+\end{align*}
+Furthermore, $\lim_{n\to\infty}W_n = 0$.
+\end{lemma}
+
+\begin{proof}
+To prove this, note that we know it is true of $e_0$. So suppose it is true of
+$e_n$. Then the next term is
 \begin{align*}
   |e_{n+1}(t)| & :=   \Big|y_{n+2}(t) - y_{n+1}(t)\Big|\\
               & \leq L\Bigg|\int_{t_0}^t \Big|y_{n+1}(\tau) - y_{n}(\tau)\Big| \d\tau\Bigg|\\
@@ -287,23 +303,25 @@ it is true of $e_0$. So suppose it is true of $e_n$. Then the next term is
               & \leq L^{n+1}M\frac{h^{n+2}}{(n+2)!^{~~~}},
 \end{align*}
 so
-\begin{align}
-|e_n(t)| \leq L^nM\frac{h^{n+1}}{(n+1)!} \label{picard-convergence-induction}
-\end{align}
+\begin{align*}
+|e_n(t)| \leq L^nM\frac{h^{n+1}}{(n+1)!}
+\end{align*}
 for all $n \geq 0$ by induction.
 
-Recall that our aim is to show that the series
-$\sum_{n=0}^\infty W_n = L^nM\frac{h^{n+1}}{(n+1)!}$ converges. According to the
-Ratio Test for convergence of a series, we examine
-\begin{align}
+According to the Ratio Test for convergence of a series, we examine
+\begin{align*}
   \lim_{n\to \infty} \frac{W_{n+1}}{W_n}
   &= \lim_{n\to\infty} \frac{L^{n+1}M\frac{h^{n+2}}{(n+2)!}}
                           {L^nM\frac{h^{n+1}}{(n+1)!}}
    = \lim_{n\to\infty} \frac{Lh}{n+2}
-    = 0. \label{picard-ratio-test}
-\end{align}
-So:
+    = 0,
+\end{align*}
+proving that the series $\sum_{n=0}^\infty W_n$ converges.
+\end{proof}
+
+To summarize:
 \begin{enumerate}
+\item Each $e_n(t)$ is bounded in absolute value by $W_n = L^nM\frac{h^{n+1}}{(n+1)!}$
 \item The series $\sum_{n=0}^\infty W_n$ converges, by the Ratio Test.
 \item Therefore the series $\sum_{n=0}^\infty e_n(t)$ converges uniformly, by
   the Weierstrass M-test.
@@ -408,10 +426,10 @@ can use the Lipschitz assumption to express $d_n$ in terms of $d_{n-1}$:
            &   = \Bigg|L\int_{t_0}^t \Big|d_{n-1}(\tau)\Big| \d\tau\Bigg|.
 \end{align*}
 
-This is exactly the same situation as \eqref{picard-convergence-induction} with
-$d_n(t)$ substituted for $e_n(t)$, therefore $d_n(t) \to 0$ as $n \to \infty$
-for all $t$, proving that if $Y$ is a solution, then $y_\infty = Y$. This
-completes the proof of Picard's existence theorem. \qed
+Therefore we can apply Lemma \ref{picard-convergence-induction} with $d_n(t)$
+substituted for $e_n(t)$, to conclude that $d_n(t) \to 0$ as $n \to \infty$ for
+all $t$, proving that if $Y$ is a solution, then $y_\infty = Y$. This completes
+the proof of Picard's existence theorem. \qed
 
 
 \newpage
