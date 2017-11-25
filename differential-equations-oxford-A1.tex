@@ -407,7 +407,8 @@ We have to show the following:
 \begin{enumerate}
 \item that the sequence of functions converges uniformly to a limiting function,
 \item that the limiting function is a solution, and
-\item that the solution is unique.
+\item that the solution is unique, and
+\item that the solution ``depends continuously on $f$''.
 \end{enumerate}
 
 \subsubsection*{1. Proof that the sequence converges uniformly to a limiting function}
@@ -529,4 +530,13 @@ For induction, suppose that $|d_n(x)| \leq C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}$. 
 which, as shown above, converges to 0 as $n \to \infty$. Therefore
 $\limn |d_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
 \end{proof}
+
+\subsubsection*{3. Proof that the solution ``depends continuously on $f$''}
+
+\begin{definition}
+  A solution $y(f)$ depends continuously on $f$ if for every $\epsilon > 0$
+  there exists $\delta > 0$ such that if $|f(x) - f^*(x)| < \delta$ for all
+  $x \in [a,b]$ then $|y(f)(x) - y(f^*)(x)| < \epsilon$ for all $x \in [a,b]$.
+\end{definition}
+
 \end{document}
