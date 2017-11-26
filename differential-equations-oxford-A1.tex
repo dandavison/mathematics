@@ -501,34 +501,35 @@ which has been proved already.
 \subsubsection*{3. Proof that the solution is unique}
 
 \begin{proof}
-Suppose that $Y$ is a solution and define $d_n(x) = Y(x) - y_n(x)$. We will
-show that $\limn |d_n(x)| = 0$.
+Suppose that $Y$ is a solution and define $e_n(x) = Y(x) - y_n(x)$. We will
+show that $\limn |e_n(x)| = 0$.
 
 Recall that we are working in a rectangle with width $2h$ and height $2k$,
 centered on $(a, f(a))$.
 
 We have
 \begin{align*}
-  |d_0(x)| &=    \Bigg|\int_a^x K(x,t)Y(t) \dt\Bigg|\\
+  |e_0(x)| &=    \Bigg|\int_a^x K(x,t)Y(t) \dt\Bigg|\\
            &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|Y(t)\Big| \dt\Bigg|\\
            &\leq Ck|x-a|.
 \end{align*}
 
 For $n \geq 1$ we have
 \begin{align*}
-  |d_n(x)| &= \Bigg|\int_a^x K(x,t)\Big(Y(t) - y_{n-1}(t)\Big) \dt\Bigg|\\
+  |e_n(x)| &= \Bigg|\int_a^x K(x,t)\Big(Y(t) - y_{n-1}(t)\Big) \dt\Bigg|\\
            &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|d_{n-1}(t)\Big|\dt\Bigg|\\
 \end{align*}
-For induction, suppose that $|d_n(x)| \leq C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}$. This is true for $n=0$. For $n+1$, we have
+For induction, suppose that $|e_n(x)| \leq
+C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}$. This is true for $n=0$. For $n+1$, we have
 
 \begin{align*}
-|d_{n+1}(x)| &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|d_{n}(t)\Big|\dt\Bigg|\\
+|e_{n+1}(x)| &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|d_{n}(t)\Big|\dt\Bigg|\\
             &=    \Bigg|\int_a^x \Big|K(x,t)\Big|C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}\dt\Bigg|\\
             &=    C^{n+2}k\frac{|t-a|^{n+2}}{(n+2)!}\\
             &\leq C^{n+2}k\frac{h^{n+2}}{(n+2)!},
 \end{align*}
 which, as shown above, converges to 0 as $n \to \infty$. Therefore
-$\limn |d_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
+$\limn |e_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
 \end{proof}
 
 \subsubsection*{3. Proof that the solution ``depends continuously on $f$''}
