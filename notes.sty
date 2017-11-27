@@ -5,6 +5,23 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{minted}
 \setminted{fontsize=\footnotesize}
+
+\newtheorem{theorem}{\\Theorem}
+\newtheorem*{theorem*}{\\Theorem}
+
+\newtheorem{lemma}[theorem]{\\Lemma} % share number sequence with theorem
+\newtheorem*{lemma*}{\\Lemma}
+
+\newtheorem{definition}[theorem]{\\Definition}
+\newtheorem*{definition*}{\\Definition}
+
+\newtheorem{claim}[theorem]{\\Claim}
+\newtheorem*{claim*}{\\Claim}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{\\Remark}
+\newtheorem*{remark*}{\\Remark}
+
 % \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
 
 % \DeclareMathOperator{\sec}{\text{sec}}
