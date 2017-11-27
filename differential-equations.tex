@@ -31,6 +31,57 @@ every point on the curve.
 
 The phase space of this problem is the set of all possible $(y, v)$ values.?
 
+
+\section{Taxonomy}
+
+\subsection{Linear DEs}
+A \textbf{linear DE} can be written as $Ly = f$, where $L$
+is a linear operator. The domain of $f$ is the same as the domain of
+$y$.
+
+Basically this means that derivatives of $y$ of any degree may appear, but they
+may not be multiplied together. I.e.
+\begin{align*}
+  \sum_{n=0}^d P_i(t) \frac{\d^ny}{\dt^n}(t) = Q(t)
+\end{align*}
+is a linear DE of degree $d$. (The 0-th derivative is the function $y$ itself.)
+The $P_i(t)$ and $Q(t)$ may be any (?) functions of the independent variable.
+
+\textbf{Theorem}: Linear combinations of solutions of linear DEs are themselves
+solutions.
+
+If $Q(t) = 0$ then it is a \textbf{homogeneous linear DE}.
+
+\subsection{First-order linear DEs: integrating factors}
+A \textbf{first-order linear DE} can be written in the form
+\begin{align*}
+  y'(t) + P(t)y(t) = Q(t).
+\end{align*}
+
+First-order linear DEs can be solved by use of an \textbf{integrating factor}:
+we seek $I(t)$ such that
+\begin{align*}
+  \Big(I(t)y(t)\Big)' = I(t)\Big(y'(t) + P(t)y(t)\Big),
+\end{align*}
+since then
+\begin{align*}
+  y(t) = \frac{1}{I(t)}\int I(t)Q(t) \dt + C.
+\end{align*}
+
+To find $I$, we want:
+\begin{align*}
+  \Big(I(t)y(t)\Big)' = I(t)\Big(y'(t) + P(t)y(t)\Big),
+\end{align*}
+i.e.
+\begin{align*}
+  I(t)y'(t) + I'(t)y(t) &= I(t)y'(t) + I(t)P(t)y(t)\\
+  I'(t) &= I(t)P(t)\\
+  \int \frac{1}{I(t)} \d I &= \int P(t) \dt\\
+                        I &= Ae^{\int P(t) \dt},
+\end{align*}
+so we use $I(t) = e^{\int P(t) \dt}$.
+
+
 \section{Special cases}
 \subsection{Velocity depends on time only}
 \begin{align*}
@@ -203,9 +254,25 @@ The solution passing through the initial value $y(0) = 1$ is
 \end{align*}
 which does not exist for all $x$ in the rectangle.
 
+\newpage
+
+\subsection{Gronwall's theorem}
+
+
+\subsection{Contraction mapping theorem}
+The following images are from Arnold, \textit{Ordinary Differential Equations}.\\
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-picard-contraction-mapping-fixed-point-arnold.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-picard-contraction-mapping-fixed-point-arnold-2.png}
+\end{mdframed}
+
 
 \newpage
-\subsection{Proof}
+\subsection{Proof of Picard's existence theorem}
 
 Consider the sequence of functions
 \begin{align*}
@@ -219,7 +286,7 @@ We will show that
 \item $y_\infty(t)$ is the only solution.
 \end{enumerate}
 
-\subsection{Proof that the $y_n(t)$ converge uniformly to a function $y_\infty(t)$}
+\subsubsection{Proof that the $y_n(t)$ converge uniformly to a function $y_\infty(t)$}
 The basic idea is to write the limiting function $y_\infty(t)$ as a telescoping
 sum, and then to show that the series thus defined converges.
 
@@ -330,7 +397,7 @@ To summarize:
   $\sum_{n=0}^\infty e_n(t) = y_\infty(t) - y_0$.
 \end{enumerate}
 
-\subsection{Proof that $y_\infty(t)$ is a solution}
+\subsubsection{Proof that $y_\infty(t)$ is a solution}
 
 To prove that the limiting function $y_\infty$ is a solution, we need to show
 that
@@ -372,7 +439,7 @@ and therefore, by differentiating both sides,
   y'_\infty(t) = v(t, y_\infty(t)).
 \end{align*}
 
-\subsection{Proof that $y_\infty(t)$ is the unique solution}
+\subsubsection{Proof that $y_\infty(t)$ is the unique solution}
 
 We've shown that $(y_n)_{n\geq 0}$ converges to a solution $y_\infty$. Now we
 need to show that if $Y$ is a solution then $Y = y_\infty$.
