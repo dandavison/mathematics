@@ -427,7 +427,7 @@ Define $y_\infty = \limn y_n$.
 
 Define $e_n(x) = y_{n+1}(x) - y_n(x)$.
 
-Note that $y_\infty(x) = \sum_{i=0}^\infty e_n(x) + y_0(x) = \sum_{i=0}^\infty e_n(x) - f(x)$.
+Note that $y_\infty(x) = \sum_{i=0}^\infty e_n(x) + y_0(x) = \sum_{i=0}^\infty e_n(x) + f(x)$.
 
 Therefore, to show that $(y_n)_{n\geq 0}$ converges uniformly, it suffices to
 show that $\sum_{i=0}^\infty e_n(x)$ converges uniformly.
@@ -537,6 +537,34 @@ $\limn |e_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
 \newpage
 \subsubsection*{3. Proof that the solution ``depends continuously on $f$''}
 
+\begin{proof}
+  Let $f,g: [a,b] \to \R$ and fix $\epsilon > 0$. Let $y_f(x)$ and $y_g(x)$ be
+  solutions to the respective IVPs:
+  \begin{align*}
+    y_f(x) &= f(x) + \int_a^x K(x, t) y_f(t) \dt\\
+    y_g(x) &= g(x) + \int_a^x K(x, t) y_g(t) \dt.
+  \end{align*}
+We have
+\begin{align*}
+  \Big|y_f(x) - y_g(x)\Big|
+  &\leq \Big|f(x) - g(x)\Big| + \Bigg|\int_a^x K(x, t) y_f(t) - y_g(t) \dt\Bigg|\\
+  &\leq \Big|f(x) - g(x)\Big| + C\Bigg|\int_a^x \Big|y_f(t) - y_g(t)\Big| \dt\Bigg|,
+\end{align*}
+therefore by Gronwall's inequality
+\begin{align*}
+  \Big|y_f(x) - y_g(x)\Big| &\leq \Big|f(x) - g(x)\Big|e^{C|x-a|}\\
+                            &\leq \Big|f(x) - g(x)\Big|e^{Ch}.
+\end{align*}
+Let $\epsilon > 0$ and let $\delta(\epsilon) = e^{-Ch}\epsilon$. Then the
+solution ``depends continuously on $f$'' in the sense that
+$\forall ~ x \in [a, b] ~ \forall ~ \epsilon > 0$
+\begin{align*}
+  \Big|f(x) - g(x)\Big| < \delta(\epsilon) \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
+\end{align*}
+\end{proof}
+
+\hrule
+
 Let $\|g\|$ be the sup norm for a real-valued function $g$ defined on $[a,b]$:
 \begin{align*}
   \|g\| := \sup_{x\in [a,b]} \Big|g(x)\Big|.
@@ -550,7 +578,7 @@ $f$. I.e., $y(f)$ satisfies
 \end{align*}
 
 \begin{definition*}
-  A solution $y(f)$ depends continuously on a function $f$ if for every
+  The solution $y_\infty$ depends continuously on $f$ if for every
   $\epsilon > 0$ there exists $\delta > 0$ such that if $\|f - g\| < \delta$
   then $\|y(f) - y(g)\| < \epsilon$.
 \end{definition*}
@@ -558,6 +586,7 @@ $f$. I.e., $y(f)$ satisfies
 \begin{claim*}
   $y_\infty$ depends continuously on $f$.
 \end{claim*}
+
 
 \begin{proof}
 Let $f,g:[a,b]\to\R$ and fix $\epsilon > 0$.
