@@ -8,6 +8,7 @@
 \author{Dan Davison}
 \maketitle
 
+\begin{comment}
 \section{Sheet 1}
 
 \subsection*{} % 1
@@ -396,6 +397,7 @@ First note that we can solve this by separation-of-variables:
 \begin{mdframed}
 \includegraphics[width=400pt]{img/differential-equations-a1-1-4-d.png}
 \end{mdframed}
+\end{comment}
 
 \newpage
 \subsection*{}  % 5
@@ -470,7 +472,8 @@ Test shows that the sequence $(W_n)_{n\geq 0}$ converges to zero:
   = 0.
 \end{align*}
 Therefore the series $\sum_{i=0}^\infty e_n(x)$ converges uniformly by the
-Weierstrass M-test, and therefore $(y_n)_{n\geq 0}$ converges uniformly.
+Weierstrass M-test, and therefore $(y_n)_{n\geq 0}$ converges uniformly to a
+limiting function, which we will denote as $y_\infty$.
 \end{proof}
 
 \subsubsection*{2. Proof that the limiting function is a solution}
@@ -521,7 +524,6 @@ For $n \geq 1$ we have
 \end{align*}
 For induction, suppose that $|e_n(x)| \leq
 C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}$. This is true for $n=0$. For $n+1$, we have
-
 \begin{align*}
 |e_{n+1}(x)| &\leq \Bigg|\int_a^x \Big|K(x,t)\Big|\Big|d_{n}(t)\Big|\dt\Bigg|\\
             &=    \Bigg|\int_a^x \Big|K(x,t)\Big|C^{n+1}k\frac{|t-a|^{n+1}}{(n+1)!}\dt\Bigg|\\
@@ -532,12 +534,56 @@ which, as shown above, converges to 0 as $n \to \infty$. Therefore
 $\limn |e_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
 \end{proof}
 
+\newpage
 \subsubsection*{3. Proof that the solution ``depends continuously on $f$''}
 
-\begin{definition}
-  A solution $y(f)$ depends continuously on $f$ if for every $\epsilon > 0$
-  there exists $\delta > 0$ such that if $|f(x) - f^*(x)| < \delta$ for all
-  $x \in [a,b]$ then $|y(f)(x) - y(f^*)(x)| < \epsilon$ for all $x \in [a,b]$.
-\end{definition}
+Let $\|g\|$ be the sup norm for a real-valued function $g$ defined on $[a,b]$:
+\begin{align*}
+  \|g\| := \sup_{x\in [a,b]} \Big|g(x)\Big|.
+\end{align*}
+
+We switch notation to make explicit that a solution $y$ depends on the function
+$f$. So now $y(f):[a,b]\to\R$ is the solution of the IVP posed with function
+$f$. I.e., $y(f)$ satisfies
+\begin{align*}
+  y(f)(x) = f(x) + \int_a^x K(x, t) ~ y(f)(t) \dt.
+\end{align*}
+
+\begin{definition*}
+  A solution $y(f)$ depends continuously on a function $f$ if for every
+  $\epsilon > 0$ there exists $\delta > 0$ such that if $\|f - g\| < \delta$
+  then $\|y(f) - y(g)\| < \epsilon$.
+\end{definition*}
+
+\begin{claim*}
+  $y_\infty$ depends continuously on $f$.
+\end{claim*}
+
+\begin{proof}
+Let $f,g:[a,b]\to\R$ and fix $\epsilon > 0$.
+
+We have
+\begin{align*}
+  \Big(y_\infty(f) - y_\infty(g)\Big)(x) =
+  \(f - g\)(x) +
+  \int_a^x K(x, t) \Big(y_\infty(f) - y_\infty(g)\Big)(t) \dt.
+\end{align*}
+Therefore
+\begin{align*}
+  \Big\|y_\infty(f) - y_\infty(g)\Big\| \leq
+  \Big\|f - g\Big\| +
+  \Bigg\|\int_a^x K(x, t) \Big(y_\infty(f) - y_\infty(g)\Big)(t) \dt\Bigg\|.
+\end{align*}
+Suppose $\|y_\infty(f) - y_\infty(g)\| \leq \epsilon$. Then
+\begin{align*}
+  0
+  \leq \Big\|f - g\Big\| + (x - a)C\epsilon - \epsilon
+     =  \Big\|f - g\Big\| + \epsilon\Big((x - a)C - 1\Big)
+\end{align*}
+
+
+
+
+\end{proof}
 
 \end{document}
