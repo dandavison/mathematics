@@ -256,8 +256,58 @@ which does not exist for all $x$ in the rectangle.
 
 \newpage
 
-\subsection{Gronwall's theorem}
+\subsection{Gronwall's inequality}
 
+\begin{theorem*}[Gronwall's inequality]
+  Let $t_0, y_0$ and $\lambda$ be known constants, and let $y$ be a non-negative
+  continuous function. Suppose that
+  \begin{align*}
+    y(t) \leq y_0 + \lambda\Bigg|\int_{t_0}^t y(\tau) \d\tau\Bigg|.
+  \end{align*}
+  Then
+  \begin{align*}
+    y(t) \leq y_0e^{\lambda(t - t_0)}.
+  \end{align*}
+\end{theorem*}
+
+\begin{mdframed}
+\includegraphics[width=200pt]{img/differential-equations-picard-gronwall.png}
+\end{mdframed}
+
+\begin{remark*}
+  I think something close to the following is true: The above diagram from
+  Arnold is strongly suggestive of Gronwall's inequality. If the Picard
+  successive approximation procedure maps a function $\varphi$ onto itself,
+  then that's a solution. The only other possibility is that it maps $\varphi$
+  onto a function $A\varphi$ which is strictly greater. In that case, $\varphi$
+  is bounded above by the true solution.
+\end{remark*}
+
+\begin{remark*}
+  If we had equality instead of the inequality, then differentiation would give
+  \begin{align*}
+    y'(t) = \lambda y(t).
+  \end{align*}
+  This is the just the differential equation version of the integral equation
+  with which we started. Recall that the general form of an ODE is
+  \begin{align*}
+    y'(t) = v(t, y(t)),
+  \end{align*}
+  so here we have $v(t, y(t)) = Ay(t)$. In other words, the direction field
+  does not depend on $t$, as in Arnold's diagram.
+
+  The solution to this ODE, with initial state $y(t_0) = y_0$, is
+  \begin{align*}
+    y(t) = y_0e^{\lambda(t - t_0)}.
+  \end{align*}
+  So Gronwell's inequality is saying that $y$ is bounded above by the solution
+  to the differential equation that results from replacing the inequality with
+  equality.
+\end{remark*}
+
+\begin{proof}
+
+\end{proof}
 
 \subsection{Contraction mapping theorem}
 The following images are from Arnold, \textit{Ordinary Differential Equations}.\\
