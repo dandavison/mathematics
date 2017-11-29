@@ -537,6 +537,15 @@ $\limn |e_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
 \newpage
 \subsubsection*{3. Proof that the solution ``depends continuously on $f$''}
 
+Here are two versions.
+
+\begin{theorem*}[Version 1: ``pointwise'' continuity]
+For all $x \in [a, b]$ and for all $\epsilon > 0$, there exists $\delta > 0$ such that
+\begin{align*}
+  \Big|f(x) - g(x)\Big| < \delta \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
+\end{align*}
+\end{theorem*}
+
 \begin{proof}
   Let $f,g: [a,b] \to \R$ and fix $\epsilon > 0$. Let $y_f(x)$ and $y_g(x)$ be
   solutions to the respective IVPs:
@@ -564,11 +573,18 @@ $\forall ~ x \in [a, b] ~ \forall ~ \epsilon > 0$
 \end{proof}
 
 \hrule
-
 Let $\|g\|$ be the sup norm for a real-valued function $g$ defined on $[a,b]$:
 \begin{align*}
   \|g\| := \sup_{x\in [a,b]} \Big|g(x)\Big|.
 \end{align*}
+
+\begin{theorem*}[Version 2]
+For all $x \in [a, b]$ and for all $\epsilon > 0$, there exists $\delta > 0$ such that
+\begin{align*}
+  \Big|f(x) - g(x)\Big| < \delta \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
+\end{align*}
+\end{theorem*}
+
 
 We switch notation to make explicit that a solution $y$ depends on the function
 $f$. So now $y(f):[a,b]\to\R$ is the solution of the IVP posed with function
