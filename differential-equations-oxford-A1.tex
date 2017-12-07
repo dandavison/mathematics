@@ -3,12 +3,13 @@
 \usepackage{notes}
 \usepackage{oxford}
 
+\newcommand{\Ch}{\mathcal{C}_h}
+
 \begin{document}
 \title{Oxford A1 - Differential Equations \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5372}}}
 \author{Dan Davison}
 \maketitle
 
-\begin{comment}
 \section{Sheet 1}
 
 \subsection*{} % 1
@@ -397,7 +398,6 @@ First note that we can solve this by separation-of-variables:
 \begin{mdframed}
 \includegraphics[width=400pt]{img/differential-equations-a1-1-4-d.png}
 \end{mdframed}
-\end{comment}
 
 \newpage
 \subsection*{}  % 5
@@ -537,98 +537,117 @@ $\limn |e_n(x)| = 0$ and therefore if $Y$ is a solution then $y_\infty = Y$.
 \newpage
 \subsubsection*{3. Proof that the solution ``depends continuously on $f$''}
 
-Here are two versions.
+I've attempted to prove two similar theorems that match the description:
+``depends continuously on $f$''.
 
-\begin{theorem*}[Version 1: ``pointwise'' continuity]
-For all $x \in [a, b]$ and for all $\epsilon > 0$, there exists $\delta > 0$ such that
+Let $f,g: [a,b] \to \R$ and let $y_f(x)$ and $y_g(x)$ be solutions to the
+respective IVPs:
 \begin{align*}
-  \Big|f(x) - g(x)\Big| < \delta \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
+  y_f(x) &= f(x) + \int_a^x K(x, t) y_f(t) \dt\\
+  y_g(x) &= g(x) + \int_a^x K(x, t) y_g(t) \dt.
 \end{align*}
+
+\hrule
+\begin{theorem*}[Version 1: ``pointwise'' continuity]
+  For all $x \in [a, b]$ and for all $\epsilon > 0$, there exists $\delta > 0$ such that
+  \begin{align*}
+    \Big|f(x) - g(x)\Big| < \delta \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
+  \end{align*}
 \end{theorem*}
 
 \begin{proof}
-  Let $f,g: [a,b] \to \R$ and fix $\epsilon > 0$. Let $y_f(x)$ and $y_g(x)$ be
-  solutions to the respective IVPs:
+  We have
   \begin{align*}
-    y_f(x) &= f(x) + \int_a^x K(x, t) y_f(t) \dt\\
-    y_g(x) &= g(x) + \int_a^x K(x, t) y_g(t) \dt.
+    \Big|y_f(x) - y_g(x)\Big|
+    &\leq \Big|f(x) - g(x)\Big| + \Bigg|\int_a^x K(x, t) y_f(t) - y_g(t) \dt\Bigg|\\
+    &\leq \Big|f(x) - g(x)\Big| + C\Bigg|\int_a^x \Big|y_f(t) - y_g(t)\Big| \dt\Bigg|,
   \end{align*}
-We have
-\begin{align*}
-  \Big|y_f(x) - y_g(x)\Big|
-  &\leq \Big|f(x) - g(x)\Big| + \Bigg|\int_a^x K(x, t) y_f(t) - y_g(t) \dt\Bigg|\\
-  &\leq \Big|f(x) - g(x)\Big| + C\Bigg|\int_a^x \Big|y_f(t) - y_g(t)\Big| \dt\Bigg|,
-\end{align*}
-therefore by Gronwall's inequality
-\begin{align*}
-  \Big|y_f(x) - y_g(x)\Big| &\leq \Big|f(x) - g(x)\Big|e^{C|x-a|}\\
-                            &\leq \Big|f(x) - g(x)\Big|e^{Ch}.
-\end{align*}
-Let $\epsilon > 0$ and let $\delta(\epsilon) = e^{-Ch}\epsilon$. Then the
-solution ``depends continuously on $f$'' in the sense that
-$\forall ~ x \in [a, b] ~ \forall ~ \epsilon > 0$
-\begin{align*}
-  \Big|f(x) - g(x)\Big| < \delta(\epsilon) \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
-\end{align*}
+  therefore by Gronwall's inequality
+  \begin{align*}
+    \Big|y_f(x) - y_g(x)\Big| &\leq \Big|f(x) - g(x)\Big|e^{C|x-a|}\\
+                              &\leq \Big|f(x) - g(x)\Big|e^{Ch}.
+  \end{align*}
+  Therefore we can choose $\delta(\epsilon) = e^{-Ch}\epsilon$.
 \end{proof}
 
 \hrule
+
+\newpage
 Let $\|g\|$ be the sup norm for a real-valued function $g$ defined on $[a,b]$:
 \begin{align*}
   \|g\| := \sup_{x\in [a,b]} \Big|g(x)\Big|.
 \end{align*}
 
-\begin{theorem*}[Version 2]
-For all $x \in [a, b]$ and for all $\epsilon > 0$, there exists $\delta > 0$ such that
-\begin{align*}
-  \Big|f(x) - g(x)\Big| < \delta \implies \Big|y_f(x) - y_g(x)\Big| < \epsilon.
-\end{align*}
+\begin{theorem*}[Version 2: continuity in function space]
+  For all $\epsilon > 0$ there exists $\delta > 0$ such that
+  \begin{align*}
+    \|f - g\| < \delta \implies \|y_f - y_g\| < \epsilon.
+  \end{align*}
 \end{theorem*}
 
-
-We switch notation to make explicit that a solution $y$ depends on the function
-$f$. So now $y(f):[a,b]\to\R$ is the solution of the IVP posed with function
-$f$. I.e., $y(f)$ satisfies
-\begin{align*}
-  y(f)(x) = f(x) + \int_a^x K(x, t) ~ y(f)(t) \dt.
-\end{align*}
-
-\begin{definition*}
-  The solution $y_\infty$ depends continuously on $f$ if for every
-  $\epsilon > 0$ there exists $\delta > 0$ such that if $\|f - g\| < \delta$
-  then $\|y(f) - y(g)\| < \epsilon$.
-\end{definition*}
-
-\begin{claim*}
-  $y_\infty$ depends continuously on $f$.
-\end{claim*}
-
-
 \begin{proof}
-Let $f,g:[a,b]\to\R$ and fix $\epsilon > 0$.
-
 We have
 \begin{align*}
-  \Big(y_\infty(f) - y_\infty(g)\Big)(x) =
+  (y_f - y_g)(x) =
   \(f - g\)(x) +
-  \int_a^x K(x, t) \Big(y_\infty(f) - y_\infty(g)\Big)(t) \dt.
+  \int_a^x K(x, t) (y_f - y_g)(t) \dt.
 \end{align*}
 Therefore
 \begin{align*}
-  \Big\|y_\infty(f) - y_\infty(g)\Big\| \leq
-  \Big\|f - g\Big\| +
-  \Bigg\|\int_a^x K(x, t) \Big(y_\infty(f) - y_\infty(g)\Big)(t) \dt\Bigg\|.
+  \|y_f - y_g\|
+  &   = \sup_{x\in[a,b]} \Bigg| (f - g)(x) + \int_a^x K(x, t) (y_f - y_g)(t) \dt \Bigg|\\
+  &\leq \sup_{x\in[a,b]} \Big| (f - g)(x) \Big|
+      + \sup_{x\in[a,b]} \Bigg|\int_a^x K(x, t) (y_f - y_g)(t) \dt \Bigg|\\
+  &   =   \|f - g\| + \Bigg\|\int_a^x K(x, t) (y_f - y_g)(t) \dt\Bigg\|.
 \end{align*}
-Suppose $\|y_\infty(f) - y_\infty(g)\| \leq \epsilon$. Then
+\end{proof}
+
+\newpage
+\section{Sheet 2}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-2-1-0.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300pt]{img/differential-equations-a1-2-1-1.png}
+\end{mdframed}
+
 \begin{align*}
-  0
-  \leq \Big\|f - g\Big\| + (x - a)C\epsilon - \epsilon
-     =  \Big\|f - g\Big\| + \epsilon\Big((x - a)C - 1\Big)
+  \Bigg\| \int_a^x \ubar{g}(t) \dt \Bigg\|_1
+  &  := \Bigg| \int_a^x g_1(t) \dt \Bigg| +
+        \Bigg| \int_a^x g_2(t) \dt \Bigg|\\
+  &\leq \Bigg| \int_a^x |g_1(t)| \dt \Bigg| +
+        \Bigg| \int_a^x |g_2(t)| \dt \Bigg|\\
+  &\leq \Bigg| \int_a^x |g_1(t)| \dt        +
+               \int_a^x |g_2(t)| \dt \Bigg|\\
+  &  =: \Bigg| \int_a^x \|\ubar{g}(t)\|_1 \dt \Bigg|
 \end{align*}
 
+\begin{mdframed}
+\includegraphics[width=400pt]{img/differential-equations-a1-2-1-2.png}
+\end{mdframed}
+
+We need to show that $T:\Ch \to \Ch$ and that $T$ is a contraction.
+
+Let $u,v \in \Ch$.
+
+\begin{claim*}
+  $T(u) \in \Ch$ for all $u \in \Ch$.
+\end{claim*}
 
 
 
+\begin{claim*}
+  There exists $0 < K < 1$ such that $\|T(y)\|_1 \leq K\|y\|_1$ for all $y \in \Ch$.
+\end{claim*}
+
+\begin{proof}
+  \begin{align*}
+    \|T(\ubar{y})\|_1
+    &   = \sup_{x \in [a,b]} \Bigg\|\int_a^x \ubar{f}(s, \ubar{y}(s)) \ds \Bigg\|_1\\
+    &   = \Bigg|\int_a^x f_1(s, y_1(s)) \ds \Bigg| +
+          \Bigg|\int_a^x f_2(s, y_2(s)) \ds \Bigg|
+  \end{align*}
 \end{proof}
 
 \end{document}

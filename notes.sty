@@ -6,6 +6,8 @@
 \usepackage{minted}
 \setminted{fontsize=\footnotesize}
 
+\newcommand{\ubar}[1]{\text{\b{$#1$}}}
+
 \newtheorem{theorem}{\\Theorem}
 \newtheorem*{theorem*}{\\Theorem}
 
@@ -21,6 +23,10 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{\\Remark}
 \newtheorem*{remark*}{\\Remark}
+
+% https://tex.stackexchange.com/questions/8089/changing-style-of-proof
+\let\oldproofname=\proofname
+\renewcommand{\proofname}{\rm\bf{\oldproofname}}
 
 % \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
 
@@ -42,6 +48,7 @@
 \DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
 \DeclareMathOperator{\dtheta}{\text{d}\theta}
 \DeclareMathOperator{\dt}{\text{dt}}
+\DeclareMathOperator{\ds}{\text{ds}}
 \DeclareMathOperator{\du}{\text{du}}
 \DeclareMathOperator{\dv}{\text{dv}}
 \DeclareMathOperator{\dx}{\text{dx}}
@@ -171,6 +178,7 @@
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\End}{~\text{End}~}
 
 \DeclareMathOperator{\df}{\text{df}}
 \DeclareMathOperator{\dg}{\text{dg}}

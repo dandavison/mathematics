@@ -2,21 +2,26 @@
 
 \section{Definitions}
 
+\subsection{Maps}
+\begin{itemize}
+\item \textbf{Homomorphism}: A structure-preserving map between two groups
+\item \textbf{Endomorphism}: A homomorphism from a group to itself
+\end{itemize}
+
 \subsection{Group}
-A group is a set, together with an operation that can be performed on two
-elements to produce another element. I.e. it is a triple $(S, \cdot, I)$
-specifying the set, the operation and the identity element respectively. It
-satisfies the group axioms:
+A group is a set, together with a binary operation that maps any two elements
+to another element in the set. I.e. it is a triple $(S, \cdot, I)$ specifying
+the set, the operation and the identity element respectively. It satisfies the
+group axioms:
 \begin{enumerate}
-\item associativity
+\item existence of identity
 \item existence of an inverse for each element
-\item closed under the operation
+\item associativity
 \end{enumerate}
 If the operation is commutative it is said to be ``abelian''.
 
 \subsection{Field}
 A field is a set $\F$ for which both $(\F, +, 0)$ and $(\F, \times, 1)$ are abelian groups.
-
 
 \subsection{Vector space}
 A vector space $V$ over a field $\F$ is an abelian group $(V, +, 0)$ for which
@@ -27,8 +32,116 @@ multiplication by ``scalars'' from $\F$ is defined, and additionally satisfies
   $au + bv \in V$ for all $a, b \in \F$ and $u, v \in V$.
 \end{enumerate}
 
+\subsection{Ring}
 
-\subsection{Linear independence}
+\footnote{Gross, Abstract Algebra, lecture 24}
+
+A ring is an abelian group $(R, +, 0)$ which additionally has a multiplication
+operation. The multiplication may or may not be commutative, and does not
+necessarily have inverses. Both distributive laws must hold unless we're
+assuming commutativity: $a(b + c))$ and $(b + c)a$.
+
+\subsubsection{Examples}
+\begin{itemize}
+\item zero ring $\{0\}$ (multiplicative identity is $1 = 0$ in this ring; in
+  any other ring $1 \neq 0$.)
+\item Any field is a ring
+\item $\Z$
+\item $\Z/n\Z$
+\item Set of $n \times n$ matrices over a field
+\end{itemize}
+
+Subrings must contain $0, 1$.
+
+Subring of $\C$: Gaussian integers $\Z + i\Z$.
+
+What about sets of lines through the origin in complex plane such that angles
+are closed under addition? That's a subring of $\C$ too right?
+
+``Best way to get rings'': \textbf{endomorphism ring}. Start with an abelian
+group $(A, +, 0)$. The endomorphism ring is the set of all group homomorphisms
+$A \to A$ \footnote{aren't these called automorphisms?}
+\begin{align*}
+\End(A) = \{f: A \to A\}
+\end{align*}
+Addition and multiplication are defined by
+\begin{align*}
+  (f + g)(a) &= f(a) + g(a)\\
+  (fg)(a)    &= f(g(a)).
+\end{align*}
+It must have an additive identity. This must be the constant zero function
+$0(a) = 0$. Is that a homomorphism? Yes: $0(a + b) = 0 = 0(a) + 0(b)$.
+
+And additive inverse: $(-f)(a) = -(f(a))$. Is that a homomorphism? Yes:
+\begin{align*}
+  (-f)(a + b) = -(f(a + b)) = -(f(a) + f(b)) = -f(a) + -f(b)
+\end{align*}
+
+The multiplicative identity is just the identity homomorphism.
+
+Multiplication (i.e. composition) is not necessarily commutative.
+
+It would be a field if there were multiplicative inverses: do these exist? Only
+for those homomorphisms that are isomorphisms.
+
+To construct the ring $\Z$: it's (isomorphic to) the endomorphism ring of the
+group $(\Z, +, 0)$. What's the correspondence between group homomorphisms and
+integers? Well, consider group homomorphism $f$. The entire homomorphism is
+determined by $f(1)$! Since
+\begin{align*}
+  f(1) &= k\\
+  f(2) &= f(1 + 1) = f(1) + f(1) = 2k\\
+       \ldots\\
+  f(n) &= kn.
+\end{align*}
+So we map the homomorphism $f$ to the integer $f(1)$.
+
+And if $f(1) = k_1$ and $g(1) = k_2$, then multiplication of integers is
+\begin{align*}
+  (f \times g)(n) = f(g(n)) = k_1k_2n.
+\end{align*}
+This is the reason why the product of two negative integers is positive: a
+negative number corresponds to a homomorphism that maps positive integers to
+negative.
+
+Similarly,
+\begin{align*}
+  \Z/n\Z = \End(\Z/n\Z, +, 0)
+\end{align*}
+since we identify $1$ with...
+
+This is a phenomenon of cyclic groups. I.e. $\Z/n\Z$ (finite) and $\Z$
+(infinite). There are no other cyclic groups.
+
+\subsection{Polynomial}
+
+A polynomial is $P(x) = a_0 + a_1x^1 + \ldots + a_nx^n$.
+
+The coefficients $a_i$ must come from some ring $R$, and the set of all such
+polynomials is written $R[x]$.
+
+If $R$ is a commutative ring, so is $R[x]$.
+
+Therefore we can write a polynomial in two variables as $R[x][y]$, i.e. the
+coefficients of the polynomial in $y$ are themselves polynomials in $x$.
+
+If $R = \C$ this leads towards algebraic geometry. Rings like integers,
+Gaussian integers, etc are the subject of number theory.
+
+The variable/``indeterminate'' $x$ must also come from some ring, since it is
+involved in both addition and multiplication (?).
+
+Multiplication of polynomials e.g. coefficients from $R = \Z/2\Z$:
+\begin{align*}
+(x + 1)(x + 1) = x^2 + 2x + 1 = x^2 + 1
+\end{align*}
+since $2 = 0 \mod 2$.
+
+\section{Vector Spaces}
+
+\subsection{Definitions}
+
+\subsubsection{Linear independence}
 A set of vectors $\{v_1, v_2, \ldots\}$ are linearly independent if the only
 solution to
 \begin{align*}
@@ -37,12 +150,12 @@ solution to
 is $a_1 = a_2 = \ldots = 0$.
 
 
-\subsection{Span}
+\subsubsection{Span}
 The span of a set of vectors is the set of all vectors that can be formed from
 them by linear combination.
 
 
-\subsection{Basis}
+\subsubsection{Basis}
 $E \subset V$ is a basis for $V$ if
 \begin{enumerate}
 \item $E$ spans $V$
@@ -51,7 +164,7 @@ $E \subset V$ is a basis for $V$ if
 \end{enumerate}
 
 
-\subsection{Coordinates}
+\subsubsection{Coordinates}
 The coordinate of a vector $v$ in basis $E = \{e_1, e_2, \ldots, e_n\}$ is the
 unique list of scalars $a_1, a_2, \ldots, a_n$ such that
 $v = a_1e_1 + a_2e_2 + \ldots + a_ne_n$.
@@ -61,7 +174,7 @@ consist of a list of $n$ components until it is represented by its coordinates
 in a particular basis.
 
 
-\subsection{Linear transformation}
+\subsubsection{Linear transformation}
 A linear transformation $f: V \to W$ is a homomorphism between the vector
 spaces, preserving linear transformation: for $u, v \in V$
 \begin{align*}
@@ -72,7 +185,6 @@ Having fixed a basis $E$ for $V$, to specify $f$ it's sufficient to specify
 $f(e)$ for all $e \in E$. That's what a matrix is: it contains $f(e_j)$ in
 column $j$.
 
-\section*{Examples of Vector Spaces}
 
 \subsection{The space of functions $f:\N \to \R$}
 
