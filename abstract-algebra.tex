@@ -212,6 +212,26 @@ So what would be a basis for this vector space?
 \newpage
 \section{Groups}
 
+Consider a set $A$ with $n$ elements. A \textbf{permutation} is a bijection:
+$A \to A$. There are $n!$ permutations of $A$.
+
+The set of permutations of a set of size $n$ is denoted
+$S_n = \Sym(\{1,2,\ldots,n\})$. It is a group, under composition: the
+\textbf{symmetry group} of $A$.
+
+Consider an $n$-sided regular polygon. A \textbf{symmetry} of the polygon is an
+isometry of the plane which preserves the polygon. The \textbf{dihedral group}
+$D_{2n}$ is the group of symmetries under composition. It is of order $2n$. Let
+$r$ be a clockwise rotation through $360/n$ degrees, and let $s$ be a
+reflection about a chosen axis of symmetry. The elements of the group are
+\begin{align*}
+  e, r, r^2, \ldots, r^{n-1}, s, sr, sr^2, \ldots, sr^{n-1}.
+\end{align*}
+
+Note that the set of symmetries is a proper subset of the set of permutations
+of the vertices: for example the permutation which interchanges two adjacent
+vertices but leaves all other vertices unchanged is not a symmetry.
+
 
 \subsection{Examples of finite order}
 
@@ -222,8 +242,8 @@ So what would be a basis for this vector space?
   \tau\}$.
 
 \item $S_3$: the set of permutations of three objects. There are 6 elements: the
-  identity, 3 transitions[ref]A transition is a permutation that switches two
-  elements and leaves all other alone[/ref] and two cyclic permutations.
+  identity, 3 transitions\footnote{A transition is a permutation that switches two
+  elements and leaves all other alone} and two cyclic permutations.
 
 \item $\{1, i, -1, -i\}$ where the operation is multiplication of complex numbers.
 
@@ -248,13 +268,13 @@ So what would be a basis for this vector space?
 \end{itemize}
 
 \section{Homomorphism}
-A \textbf{homomorphism} is a map\footnote{"map" is a synonym of "function".} from
-one group to another. If it is bijective, it is an \textbf{isomorphism}. If it is
-bijective and from a group to itself (i.e. a permutation of the group elements)
-then it is an \textbf{automorphism}. The critical feature of these concepts is that
-they "preserve group structure", i.e. they preserve the relationships among
-group elements defined by the group operation. Suppose that they map from group
-$G$ to group $G'$. Then the preservation-of-structure criterion is that the map
+A \textbf{homomorphism} is a map from one group to another. If it is bijective,
+it is an \textbf{isomorphism}. If it is bijective and from a group to itself
+(i.e. a permutation of the group elements) then it is an
+\textbf{automorphism}. The critical feature of these concepts is that they
+"preserve group structure", i.e. they preserve the relationships among group
+elements defined by the group operation. Suppose that they map from group $G$
+to group $G'$. Then the preservation-of-structure criterion is that the map
 sends a product $g_1 \circ g_2$ to the product of whatever the separate
 elements are sent to:
 
@@ -345,7 +365,9 @@ $$
 Suppose $\alpha$ is an automorphism that sends $g_1$ and $g_2$ to $g_1'$ and
 $g_2'$, respectively.
 
-<img width="300 px" src="/notes/images/group-theory/inverse-of-automorphism-1.png" />
+\begin{mdframed}
+\includegraphics[width=300pt]{img/inverse-of-automorphism-1.png}
+\end{mdframed}
 
 We need to show that $\alphainv$ preserves structure, i.e. that when $\alphainv$ acts
 on an element which is a product, say $g_1'g_2'$, it sends it to the product of
@@ -381,6 +403,19 @@ as required.
 }
 
 \section{Quotient groups}
+
+\subsection{Summary}
+A quotient group can be formed by:
+\begin{enumerate}
+\item Identify a subgroup
+\item Form cosets
+\item Inherit operation on cosets from operation on original group elements
+\end{enumerate}
+But only if the subgroup is normal: that's what's required for inheriting the
+group operation to result in a well-defined operation on the cosets (i.e. all
+members of the coset, when acting as exemplars of the coset, give the same
+result.)
+
 \subsection{Modular arithmetic}
 
 The canonical example of a quotient group comes from "modular arithmetic" on
@@ -400,9 +435,9 @@ subtle/slippery, and it helps to pause and consider exactly what's going on.
 
 Let's be explicit about what $\bar 1$ actually is: it's the set of all integers
 that have $1$ as their remainder when divided by $4$. So, $5 \in \bar 1$ for
-example. What we've just done is define an addition operation on these *sets*
-(as opposed to addition of integers). The operation works as follows. To add
-$\bar 2$ and $\bar 3$, you do the following:
+example. What we've just done is define an addition operation on these
+\emph{sets} (as opposed to addition of integers). The operation works as
+follows. To add $\bar 2$ and $\bar 3$, you do the following:
 
 1. Take any number that has remainder $2$ (mod $4$) and any number that has
    remainder $3$ (mod $4$).
@@ -412,80 +447,84 @@ $\bar 2$ and $\bar 3$, you do the following:
 There are two important points here.
 
 Firstly, we didn't need anything beyond what we had to come up with this
-operation: it uses the addition operation that's *already defined* on the main
-group to define an operation on the subsets.
+operation: it uses the addition operation that's \emph{already defined} on the
+main group to define an operation on the subsets.
 
 Secondly, it is only well-defined if you always get the same answer regardless
 of which integers you pick in step (1). In this case that is true.
 
-So we have an example of a "quotient group": $\{\bar 0, \bar 1, \bar 2, \bar
+So we have an example of a ``quotient group'': $\{\bar 0, \bar 1, \bar 2, \bar
 3\}$ under this addition operation. Let's recap and start putting this in group
 theoretic terminology.
 
-TODO: What's going on with multiplication? This seems to be preserved as well
-by the map that sends integers to their equivalence group / coset.
+\footnotetext{Multiplication preserves structure also: $\Z/n\Z$ is a field iff
+  $n$ is prime.}
 
 \subsection{A quotient group is a group of cosets}
 
 $\bar 0$ (mod $4$) is the following subset of the integers $\Z$ under addition:
 $\{\ldots, -12, -8, -4, 0, 4, 8, 12, \ldots\}$. It's not only a subset, but a
-*subgroup* (it contains the identity element $0$, every element has an additive
-inverse, and addition stays within the subset). It is written as $4\Z$ (or in
-general, $n\Z$ for mod $n$). However, we will often use $H$ for a subgroup, so
-let's call it $H$.
+\emph{subgroup} (it contains the identity element $0$, every element has an
+additive inverse, and addition stays within the subset). It is written as $4\Z$
+(or in general, $n\Z$ for mod $n$). However, we will often use $H$ for a
+subgroup, so let's call it $H$.
 
 $\bar 1 = \{\ldots, -11, -7, -3, 1, 5, 9, 13, \ldots\}$ is not a subgroup of
-$\Z$ because it does not contain the identity element. What it is is a *coset*
-of the subgroup $H$: the set comprising all the results you get by adding $1$
-to elements of $H$. We can write this as $1 + H$. In fact, it's usually written
-$1H$; we just have to remember that the operation here is additive rather than
-multiplicative.
+$\Z$ because it does not contain the identity element. What it is is a
+\emph{coset} of the subgroup $H$: the set comprising all the results you get by
+adding $1$ to elements of $H$. We can write this as $1 + H$. In fact, it's
+usually written $1H$; we just have to remember that the operation here is
+additive rather than multiplicative.
 
 Of course, $\bar 2$ and $\bar 3$ are cosets defined in the same way. $\{\bar 0,
 \bar 1, \bar 2, \bar 3\}$ are the only distinct cosets: for example, $\bar 4 =
 4+H$ is exactly the same set of integers as $\bar 0$. Similarly, $5 + H = \bar
 1$, etc.
 
-So we arrived at the integers mod $4$ quotient group as follows:
+So we arrived at the (integers mod $4$) quotient group as follows:
 
-1. We started with the group of integers under addition, $\Z^+$.
-2. We identified a subgroup $H$.
-3. We identified the cosets of $H$: $\{H, 1+H, 2+H, 3+H\}$
-4. We defined an operation on the cosets: $(i+H) + (j+H) = (i+j)+H$.
-5. We noted that it was only well-defined because
-  $$
-  \textstack{any number with}{remainder $i$} +
-  \textstack{any number with}{remainder $j$} =
-  \textstack{a number with the same}{remainder as $i+j$}.
-  $$
+\begin{enumerate}
+\item We started with the group of integers under addition, $\Z^+$.
+\item We identified a subgroup $H$.
+\item We identified the cosets of $H$: $\{H, 1+H, 2+H, 3+H\}$
+\item We defined an operation on the cosets: $(i+H) + (j+H) = (i+j)+H$.
+\item We noted that it was only well-defined because
+  \begin{align*}
+    \textstack{any number with}{remainder $i$} +
+    \textstack{any number with}{remainder $j$} =
+    \textstack{a number with the same}{remainder as $i+j$}.
+  \end{align*}
+\end{enumerate}
 
 Note that (3) and (4) can equally be written like this, which is how it's
-likely to be written write when considering subgroups and cosets more
-abstractly:
+likely to be written when considering subgroups and cosets more abstractly:
 
-(3). We identified the cosets of $H$: $\{H, 1H, 2H, 3H\}$
-
-(4). We defined an operation on the cosets: $(iH) + (jH) = (ij)H$.
-
+\begin{enumerate}
+\item We identified the cosets of $H$: $\{H, 1H, 2H, 3H\}$
+\item We defined an operation on the cosets: $(iH) + (jH) = (ij)H$.
+\end{enumerate}
 
 \subsection{Notational digression}
 
 The integers mod $4$ is written $\Z/4\Z$. It's an example of a quotient
 group. You read that as $(\text{some group}) / (\text{some subgroup})$. In this
-case the group is the integers under addition, and the subgroup is $4Z =
-\{\ldots, -12, -8, -4, 0, 4, 8, 12, \ldots\}$[ref]In this context, $4\Z$ always
-means multiplication, even if the group operation is addition! So it's the set
-$\{4z|z \in \Z\}$. It is *not* the same as the coset $4 + \Z = \{4+z|z \in
-\Z\}$. This is a well-established notational inconsistency. [/ref]. In general,
-one writes $G/H$ to refer to the quotient group of "$G$ mod $H$".
+case the group is the integers under addition, and the subgroup is
+$4Z = \{\ldots, -12, -8, -4, 0, 4, 8, 12, \ldots\}$\footnote{In this context,
+  $4\Z$ always means multiplication, even if the group operation is addition!
+  So it's the set $\{4z|z \in \Z\}$. It is \emph{not} the same as the coset
+  $4 + \Z = \{4+z|z \in \Z\}$. This is a well-established notational
+  inconsistency.}. In general, one writes $G/H$ to refer to the quotient group
+of "$G$ mod $H$".
 
 
 \subsection{A second example of a quotient group}
 
-Here's an example of a (simple) problem from an undergraduate textbook on group theory:
+Here's an example of a (simple) problem from an undergraduate textbook on group theory:\\
 
-> Identify the quotient group $\R^\times/P$, where $P$ denotes the subgroup of
-> positive real numbers.
+\begin{mdframed}
+  Identify the quotient group $\R^\times/P$, where $P$ denotes the subgroup of
+  positive real numbers.
+\end{mdframed}
 
 What does this mean and how does one do it? Well, let's try to follow the same
 steps as for the integers mod $4$ example above.
@@ -502,12 +541,13 @@ all the negative reals (if $x$ is negative). So the set of cosets has those two
 sets as its elements: $\{P, -1P\}$.
 
 OK, so we've done steps (1)-(3). Now, what's the group operation that's going
-to combine two cosets and produce another coset? Well, in the integers mod $4$
-example, we used the standard addition of integers to define the result of
-adding cosets $i+H$ and $j+H$ to be the coset $(i+j)+H$. The analogous
-definition here would be to use the standard multiplication of real numbers to
-say that $(xP)(yP) = (xy)P$. That's going to lead us to the following
-intuitively reasonable multiplication table:
+to combine two cosets and produce another coset? Well, the whole point is that
+this group operation is inherited from the original group: that's what we did
+in the integers mod $4$ example; we used the standard addition of integers to
+define the result of adding cosets $i+H$ and $j+H$ to be the coset
+$(i+j)+H$. The analogous definition here would be to use the standard
+multiplication of real numbers to say that $(xP)(yP) = (xy)P$. That's going to
+lead us to the following intuitively reasonable multiplication table:
 
 $$
 \begin{array}{ c|cc }
@@ -524,9 +564,9 @@ And we conclude that the quotient group is isomorphic to the group of size 2
 The only question is (5): is the operation on cosets well-defined? In this
 case, the answer is yes: for example, any positive number $x \in P$, multiplied
 by any negative number $y \in -1P$, is going to give a negative number $xy \in
--1P$.[ref]We can prove it easily here because the group is commutative:
+-1P$.\footnote{We can prove it easily here because the group is commutative:
 $(xP)(yP) = (Px)(yP) = P(xy)P = (xy)PP = (xy)P$. In addition to commutativity
-those steps make use of associativity and closure.[/ref].
+those steps make use of associativity and closure.}.
 
 
 \subsection{Quotient groups of arbitrary groups}
@@ -534,7 +574,7 @@ those steps make use of associativity and closure.[/ref].
 What about in general? If we have a subgroup, can we just identify the cosets
 of the subgroup, and define a composition law on them using the composition law
 from the main group? Will it always be well-defined in the sense answered
-above? The answer is: yes if and only if the subgroup is "normal".
+above? The answer is: yes if and only if the subgroup is ``normal''.
 
 A normal subgroup $H$ is defined to be a subgroup that is closed under
 conjugation. This means that you can take any element $g$ of the main group,
@@ -547,18 +587,113 @@ define the operation on the cosets).
 So, if you need to find a quotient group of some subgroup, you need to show
 that the subgroup is normal. There are two ways of doing that:
 
-1. Show that it is closed under conjugation.
-2. Show that it is the kernel of a homomorphism.
+\begin{enumerate}
+\item Show that it is closed under conjugation.
+\item Show that it is the kernel of a homomorphism.
+\end{enumerate}
 
+\subsection{Quotient groups}
+[Notes based on Tim Gowers' blog \footnote{\url{https://gowers.wordpress.com/2011/11/20/normal-subgroups-and-quotient-groups/}}]
 
+A mapping $f$ \textbf{preserves structure}:
+\begin{align*}
+  a  & \mapsto f(a)\\
+  b  & \mapsto f(b)\\
+  ab & \mapsto f(a)f(b)
+\end{align*}
 
+\textbf{Isomorphism}: a bijection that preserves structure.
+
+\textbf{Homomorphism}: a mapping that preserves structure but isn't necessarily
+a bijection.\footnote{I.e. it might not be injective (might send different
+  inputs to the same output), or might not be surjective (might fail to hit
+  certain elements).}
+
+The \textbf{kernel} of a homomorphism is a \textbf{subgroup} \footnote{Kernel
+  is $\{a:f(a) = e\}$.
+
+Contains identity? Yes, homomorphisms always send the identity to the identity
+($f(ea) = f(e)f(a)$ but this must equal $f(a)$, hence $f(e)$ is the identity.)
+
+Contains inverses? Yes, $f(aa^\1) = f(a)f(a^\1) = ef(a^\1) = e$, so $f(a^\1)$ must also be $e$.}.
+
+\textbf{Example}: the group of \emph{rotations} of $\R^3$ is a subgroup of the
+group of rigid motions that fix the origin (the latter includes
+reflections). Now the $\det:\GLR{3} \to \R$ mapping is a homomorphism, since
+$\det(T_1T_2) \equiv \det(T1)\det(T_2)$. The rotations are those mappings with
+determinant 1, hence they are the kernel of a homomorphism.
+
+\textbf{Is every subgroup the kernel of a homomorphism?} No (theorem
+\ref{some-subgroups-not-kernel}).
+
+The counter example given in that proof is an element of the form $g^\1hg$ for
+$h$ in the subgroup and $g$ outside the subgroup. Basically, we observe that
+\begin{align*}
+\varphi(g^\1hg) =
+\varphi(g^\1)\cdot\varphi(h)\cdot \varphi(g) =
+\varphi(g^\1)\cdot e\cdot\varphi(g) =
+\varphi(g^\1)\cdot \varphi(g) =
+\varphi(e) =
+e,
+\end{align*}
+and therefore that the subgroup, if it is to be a kernel, must \emph{contain}
+all products of the form $g^\1hg$ (conjugation by an element outside the
+subgroup). So,
+\begin{align*}
+  \textbf{kernel of homomorphism} \implies \textbf{closed under conjugation}.
+\end{align*}
+But does
+\begin{align*}
+  \textbf{closed under conjugation} \implies \textbf{kernel of homomorphism}
+\end{align*}
+?
+
+Suppose that $\varphi:G \to K$ is a homomorphism from $G$ to some group $K$,
+and that the kernel of $\varphi$ is $H$. Then
+
+\begin{theorem}
+  The left and right cosets of $H$ are the same, and $\varphi$ is constant on
+  the cosets.
+\end{theorem}
+
+~\\~\\~\\~\\~\\
+\hrule
+\begin{theorem}\label{some-subgroups-not-kernel}
+[Some subgroups are not the kernel of any homomorphism]
+\end{theorem}
+
+\begin{proof}
+Counter-example: consider the permutation group
+$S_3 = \{e, (12), (13), (23), (231), (312)\}$, and its subgroup $\{e,
+(12)\}$.
+
+Suppose this subgroup is the kernel of a homomorphism. I.e.
+$e \mapsto e, (12) \mapsto e$, but nothing else is sent to the identity.
+
+Now consider $(13)(12)(13)$:
+\begin{align*}
+  123 \to 321 \to 231 \to 132,
+\end{align*}
+i.e. $(13)(12)(13) = (23)$.
+
+But
+\begin{align*}
+  \varphi\Big((13)(12)(13)\Big) =
+  \varphi\Big((13)\Big) \varphi\Big((12)\Big) \varphi\Big((13)\Big) =
+  \varphi\Big((13)\Big) \varphi\Big((13)\Big) = \varphi\Big((13)(13)\Big) = e,
+\end{align*}
+so $(23) \mapsto e$, which is a contradiction. Therefore $\{e,(12)\}$ isn't the
+kernel of any homomorphism.
+\end{proof}
+
+\newpage
 \subsection{First isomorphism theorem}
 
-\footnotetext{https://theoremoftheweek.wordpress.com/2010/05/20/theorem-26-the-first-isomorphism-theorem/ | Cambridge Theorem of the Week blog}
+\footnotetext{\url{https://theoremoftheweek.wordpress.com/2010/05/20/theorem-26-the-first-isomorphism-theorem/}}
 
 Every normal subgroup is the kernel of the homomorphism that sends a group element to its coset.
 
-Can two "different" homomorphisms share the same kernel?
+Can two distinct homomorphisms share the same kernel?
 
 Let $f: G \rightarrow G'$ be a homomorphism with kernel $N$. $e \in N$,
 therefore every $g \in G$ is in some coset $gN$, so the set of cosets
@@ -567,7 +702,7 @@ $gn_2$ of the same coset. These both get sent to the same value, since
 $f(gn_i) = f(g)f(n_i) = f(g)$.
 
 So is it possible to have homomorphisms $f$ and $\varphi$ with the same kernel
-$N$ but with $f(g) \neq \varphi(g)$ for some $g \in G$? If that were true
+$N$ but with $f(g) \neq \varphi(g)$ for some $g \in G$? If that were true [...]
 \section{Exercises - Harvard E122}
 Exercises from Artin *Algebra* 1st edition.
 
