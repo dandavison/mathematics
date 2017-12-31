@@ -577,3 +577,24 @@ y)/y}$.
   \end{align*}
   which proves the claim by induction.
 \end{proof}
+
+\begin{proof}[Proof 2]~\\
+  The claim is true for $n=0$, so restrict attention to $n > 0$. We want to show that
+  \begin{align*}
+    \frac{1 - x^n}{n(1 - x)} \leq 1.
+  \end{align*}
+  Note that
+  \begin{align*}
+    (1 - x)\sum_{i=0}^{n-1}x^i &= (1 + x + x^2 + \ldots + x^{n-1}) - (x + x^2 + x^3 + \ldots + x^n)\\
+                              &= 1 - x^n.
+  \end{align*}
+  (This can be arrived at by performing long division of $1-x$ into $1 - x^n$.)
+
+  Therefore the ratio is
+  \begin{align*}
+    \frac{1 - x^n}{n(1 - x)} &= \frac{(1 - x)\sum_{i=0}^{n-1}x^i}{n(1 - x)}\\
+                             &= \frac{1}{n}\sum_{i=0}^{n-1}x^i,
+  \end{align*}
+  which is less than 1, as required.
+
+\end{proof}
