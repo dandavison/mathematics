@@ -29,6 +29,8 @@
   they are linearly independent.
 \end{definition*}
 
+
+\newpage
 \subsubsection*{(ii)}
 
 \begin{theorem*}[Steinitz Exchange Lemma]
@@ -41,23 +43,36 @@
   is also a basis for $V$.
 \end{theorem*}
 
-\begin{proof}
-  Let $P(m)$ be the following proposition:
+[So informally, any set of linearly independent vectors can be made into a
+basis by contributing missing vectors from an existing basis collection.]
 
-  It's true for $m = n$, since the dimension of $V$ is $n$, and therefore any
-  collection of $n$ linearly independent vectors is a basis.
+\begin{proof}~\\
+  Let $P(m)$ be the following proposition: given linearly independent
+  $w_1, \ldots, w_m \in V$, then, possibly after reordering the $v_i$, the set
+  $\{w_1, \ldots, w_m, v_{m+1}, \ldots, v_n\}$ is a basis for $V$.
 
-  Let $m = n - 1$. We want to show that there exists a $v_i$ that can be
-  contributed to the $\{w_i\}$ without losing linear independence.
+  Note that the dimension of $V$ is $n$.
 
-  The $\{w_i\}$ span a subspace $U$ of $V$, of dimension $m = n-1$.
+  $P(n)$ is true, since the $w_i$ are linearly independent by definition and
+  every set of $n$ linearly independent vectors in $V$ spans $V$.
 
-  Let $v_n$ (after reordering the $\{v_i\}$) be an element of the basis that is
-  not in $U$ (there exists at least one such $v_i$).
+  Suppose for induction that $P(k)$ is true. So we have that
+  $w_1, \ldots, w_k, v_{k+1}, \ldots, v_n$ is a basis. We want to show that
+  $P(k-1)$ is true.
+
+  Consider $w_1, \ldots, w_{k-1}$. These span a subspace $U \subset V$ of
+  dimension $k-1$.
+
+  We have $k$ unused vectors $v_1, \ldots, v_k$. Since these are linearly
+  independent, at least one of them must not be in $U$. Reorder them so that
+  $v_k \notin U$. Then $w_1, \ldots, w_{k-1}, v_k, v_{k+1}, \ldots, v_n$ are a
+  linearly independent set of size $n$, and therefore span $V$, so $P(k-1)$ is
+  true.
 
 
 \end{proof}
 
+\newpage
 \subsubsection*{(iii)}
 
 $\implies$\\
@@ -187,8 +202,15 @@ A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b 
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-2.png}
 \end{mdframed}
 
-\subsubsection*{(i)}
+\subsubsection*{(i)} The mapping takes vectors in a lower dimensional space and
+outputs vectors in a higher dimensional space. E.g. suppose $T_A:\R^1 \to \R^2$
+and let $A = \scvec{s}{t}$. Then $Ax = (xs, xt)$ i.e. $\Im T_A$ is a line
+through the origin.
 
+\begin{align*}
+  m &=    \dim(\ker T_A) + \dim(\im T_A)\\
+    &\leq \dim(\ker T_A) + n\\
+\end{align*}
 ~\\
 \subsection*{} % 2.c
 \begin{mdframed}
