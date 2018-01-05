@@ -592,28 +592,30 @@ that the subgroup is normal. There are two ways of doing that:
 \item Show that it is the kernel of a homomorphism.
 \end{enumerate}
 
+\newpage
 \subsection{Quotient groups}
-[Notes based on Tim Gowers' blog \footnote{\url{https://gowers.wordpress.com/2011/11/20/normal-subgroups-and-quotient-groups/}}]
+\footnotetext{Notes based on Tim Gowers' blog \url{https://gowers.wordpress.com/2011/11/20/normal-subgroups-and-quotient-groups/}}
 
-A mapping $f$ \textbf{preserves structure}:
+A mapping $f$ \underline{preserves structure} if, for example:
 \begin{align*}
   a  & \mapsto f(a)\\
   b  & \mapsto f(b)\\
   ab & \mapsto f(a)f(b)
 \end{align*}
 
-\textbf{Isomorphism}: a bijection that preserves structure.
+An \underline{isomorphism} is a bijection that preserves structure.
 
-\textbf{Homomorphism}: a mapping that preserves structure but isn't necessarily
-a bijection.\footnote{I.e. it might not be injective (might send different
-  inputs to the same output), or might not be surjective (might fail to hit
-  certain elements).}
+A \underline{homomorphism} is a mapping that preserves structure but isn't
+necessarily a bijection.\footnote{I.e. it might not be injective (might send
+  different inputs to the same output), or might not be surjective (might fail
+  to hit certain elements).}
 
-The \textbf{kernel} of a homomorphism is a \textbf{subgroup} \footnote{Kernel
-  is $\{a:f(a) = e\}$.
-
+\begin{theorem}
+The \underline{kernel} of a homomorphism is a \underline{subgroup} \footnote{\textbf{Proof.}\\Kernel
+  is $\{a:f(a) = e\}$.\\
 Contains identity? Yes, homomorphisms always send the identity to the identity
 ($f(ea) = f(e)f(a)$ but this must equal $f(a)$, hence $f(e)$ is the identity.)
+\end{theorem}
 
 Contains inverses? Yes, $f(aa^\1) = f(a)f(a^\1) = ef(a^\1) = e$, so $f(a^\1)$ must also be $e$.}.
 
@@ -623,11 +625,13 @@ reflections). Now the $\det:\GLR{3} \to \R$ mapping is a homomorphism, since
 $\det(T_1T_2) \equiv \det(T1)\det(T_2)$. The rotations are those mappings with
 determinant 1, hence they are the kernel of a homomorphism.
 
-\textbf{Is every subgroup the kernel of a homomorphism?} No (theorem
-\ref{some-subgroups-not-kernel}).
+\begin{theorem}
+Some subgroups are not the kernel of any homomorphism
+\end{theorem}
 
-The counter example given in that proof is an element of the form $g^\1hg$ for
-$h$ in the subgroup and $g$ outside the subgroup. Basically, we observe that
+The counter example given in the proof (below) is an element of the form
+$g^\1hg$ for $h$ in the subgroup and $g$ outside the subgroup. Basically, we
+observe that
 \begin{align*}
 \varphi(g^\1hg) =
 \varphi(g^\1)\cdot\varphi(h)\cdot \varphi(g) =
@@ -638,31 +642,58 @@ e,
 \end{align*}
 and therefore that the subgroup, if it is to be a kernel, must \emph{contain}
 all products of the form $g^\1hg$ (conjugation by an element outside the
-subgroup). So,
+subgroup).
+
+So,
 \begin{align*}
   \textbf{kernel of homomorphism} \implies \textbf{closed under conjugation}.
 \end{align*}
 But does
 \begin{align*}
-  \textbf{closed under conjugation} \implies \textbf{kernel of homomorphism}
+  \textbf{closed under conjugation} \implies \textbf{kernel of homomorphism} ~ ?
 \end{align*}
-?
+Yes. Closure under conjugation implies that the \textbf{subgroup is the kernel
+  of the homomorphism which maps $g$ to its coset, with the operation on cosets
+  inherited from the group}: $(g_1H) \cdot (g_2H) = g_1g_2H$. Justification of
+this claim follows.
 
 Suppose that $\varphi:G \to K$ is a homomorphism from $G$ to some group $K$,
-and that the kernel of $\varphi$ is $H$. Then
+and that the kernel of $\varphi$ is $H$ and that $H$ is closed under
+conjugation. What can we deduce about $\varphi$?
+
+\begin{theorem}~\\
+  The left and right cosets of $H$ coincide, and $\varphi$ is constant on
+  the cosets, taking different values on each coset.
+\end{theorem}
+
+This means that there is a \underline{bijection} between the cosets of $H$ and
+the \underline{image} of $\varphi$. So, we can say that the image of $\varphi$
+\textit{is} the cosets of $H$.
+
+\begin{theorem}~\\
+  If $\varphi(g_1H) = a_1$ and $\varphi(g_2H) = a_2$ then
+  $\varphi(g_1g_2H) = a_1a_2$.
+\end{theorem}
+
+This allows us to define the group operation on the elements of the image of
+$\varphi$: it implies that
+\begin{align*}
+  (g_1H) \cdot (g_2H) = g_1g_2H.
+\end{align*}
 
 \begin{theorem}
-  The left and right cosets of $H$ are the same, and $\varphi$ is constant on
-  the cosets.
+\begin{align*}
+  \textbf{kernel of homomorphism} \iff \textbf{closed under conjugation} \iff gH = Hg ~~~ \forall g \in G
+\end{align*}
 \end{theorem}
 
 ~\\~\\~\\~\\~\\
 \hrule
-\begin{theorem}\label{some-subgroups-not-kernel}
-[Some subgroups are not the kernel of any homomorphism]
-\end{theorem}
+\begin{theorem*}
+  Some subgroups are not the kernel of any homomorphism.
+\end{theorem*}
 
-\begin{proof}
+\begin{proof} \label{some-subgroups-not-kernel}
 Counter-example: consider the permutation group
 $S_3 = \{e, (12), (13), (23), (231), (312)\}$, and its subgroup $\{e,
 (12)\}$.
@@ -686,6 +717,24 @@ so $(23) \mapsto e$, which is a contradiction. Therefore $\{e,(12)\}$ isn't the
 kernel of any homomorphism.
 \end{proof}
 
+\begin{theorem*}
+  The left and right cosets of $H$ coincide, and $\varphi$ is constant on the
+  cosets, taking different values on each coset.
+\end{theorem*}
+
+\begin{proof}
+  TODO
+\end{proof}
+
+
+\begin{theorem*}~\\
+  If $\varphi(g_1H) = a_1$ and $\varphi(g_2H) = a_2$ then
+  $\varphi(g_1g_2H) = a_1a_2$.
+\end{theorem*}
+
+\begin{proof}
+  TODO
+\end{proof}
 \newpage
 \subsection{First isomorphism theorem}
 

@@ -5,8 +5,9 @@
 % % \usepackage[utf8]{inputenc}
 % % \usepackage[T1]{fontenc}
 \usepackage[shortlabels]{enumitem}
-\usepackage{minted}
-\setminted{fontsize=\footnotesize}
+
+% \usepackage{minted}
+% \setminted{fontsize=\footnotesize}
 
 \newcommand{\ubar}[1]{\text{\b{$#1$}}}
 
@@ -66,6 +67,8 @@
 \let\l\relax\DeclareMathOperator{\l}{\ell}
 \let\d\relax\DeclareMathOperator{\d}{\text{d}}
 \let\D\relax\DeclareMathOperator{\D}{\text{D}}
+\let\Im\relax\DeclareMathOperator{\Im}{\text{im}}
+\DeclareMathOperator{\im}{\text{im}}
 \newcommand{\0}{\vec 0}
 \newcommand{\1}{{-1}}
 \newcommand{\Arg}{\text{Arg}~}
@@ -170,7 +173,6 @@
 \renewcommand{\(}{\left(}
 \renewcommand{\)}{\right)}
 \renewcommand{\emptyset}{\varnothing}
-\renewcommand{\Im}{~\text{Im}~}
 \renewcommand{\Re}{~\text{Re}~}
 \renewcommand{\S}{\vec S}
 \renewcommand{\vec}{\mathbf}
@@ -181,6 +183,9 @@
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
 \newcommand{\End}{~\text{End}~}
+\newcommand{\Unif}{\text{Unif}}
+\newcommand{\Sym}{\text{Sym}}
+
 
 \DeclareMathOperator{\df}{\text{df}}
 \DeclareMathOperator{\dg}{\text{dg}}

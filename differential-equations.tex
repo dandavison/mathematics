@@ -1,3 +1,4 @@
+\begin{comment}
 Let $y$ be the position of a particle in one dimension, and let $t$ be time. So
 there is just a single input variable: $t$.
 
@@ -148,9 +149,51 @@ So the estimated age of a sample with proportion $p_1$ is
 \begin{align*}
   t = \frac{1}{\lambda}\log\(\frac{p_0}{p_1}\).
 \end{align*}
+\end{comment}
+
+\begin{lemma} \label{replacement-lemma}
+[Replacement Lemma]
+Suppose $f: [a,b] \to \R$ is continuous. Then for $x \in [a,b]$
+\begin{align*}
+  \int_a^t \Bigg(\int_a^{\tau'} f(\tau)\d\tau\Bigg)\d\tau' = \int_a^t (t - \tau) f(\tau) \d\tau.
+\end{align*}
+\end{lemma}
+
+\section{Integral equations}
+\footnotetext{Collins, Differential Equations, ch. 1}
+
+Consider the differential equation
+\begin{align*}
+  y''(t) + \lambda y(t) = g(t),
+\end{align*}
+where $y, g: [0, L] \to \R$, $g$ is a known continuous function, and $\lambda > 0$.
+
+Integration from $0$ to $t$ once gives
+\begin{align*}
+  y'(t) - y'(0) + \lambda \int_0^t y(\tau) \d\tau
+  &= \int_0^t g(\tau) \d\tau,
+\end{align*}
+and a second time gives
+\begin{align*}
+  y(t) - y(0) - y'(0)t + \lambda \int_0^t\int_0^{\tau'} y(\tau) \d\tau \d\tau'
+  &= \int_0^t\int_0^{\tau'} g(\tau) \d\tau\d\tau'.
+\end{align*}
+By the Replacement Lemma (\ref{replacement-lemma}),
+\begin{align*}
+  y(t) - y(0) - y'(0)t + \lambda \int_0^t (t - \tau) y(\tau) \d\tau
+  &= \int_0^t (t - \tau) g(\tau) \d\tau.
+\end{align*}
+Now impose the initial conditions $y(0) = 0$, $y'(0) = v_0$. Then
+\begin{align*}
+  y(t) &= f(t) - \lambda \int_0^t (t - \tau) y(\tau) \d\tau,
+\end{align*}
+where $f(t)$ is the known function
+\begin{align*}
+  f(t) &= v_0t + \int_0^t (t - \tau) g(\tau) \d\tau.
+\end{align*}
 
 
-
+\begin{comment}
 \section{Picard's Existence Theorem}
 Consider again the initial value problem
 \begin{align*}
@@ -652,3 +695,4 @@ TODO
   \rho(0) = 1250\\
   &=
 \end{align*}
+\end{comment}
