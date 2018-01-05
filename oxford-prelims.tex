@@ -33,6 +33,19 @@
 \newpage
 \subsubsection*{(ii)}
 
+\begin{claim*}
+  $n+1$ vectors in $\R^n$ cannot be linearly independent.
+\end{claim*}
+
+\begin{proof}
+  We want to show that there exists $\lambda_1, \ldots, \lambda_{n+1}$, not all
+  zero, such that $\sum \lambda_ix_i = 0$.
+
+  Suppose they are linearly independent. Then the first $n$ form a basis
+  (assuming it is known that $n$ LI vectors span $\R^n$). Therefore the last
+  one can be written as a linear combination of the first $n$.
+\end{proof}
+
 \begin{theorem*}[Steinitz Exchange Lemma]
   Let $V$ be a vector space, let $v_1, \ldots, v_n$ be a basis for $V$ and
   let $w_1, \ldots, w_m \in V$ be linearly independent, where $m \leq
