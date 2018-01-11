@@ -108,11 +108,48 @@ So $v_1, v_2, \ldots, v_n$ span $V$ (TODO: but how do we know that $a_1 \neq \su
 TODO: linear independence
 
 ~\\
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-1-2.png}
 \end{mdframed}
 
+\renewcommand{\cvec}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+
+Let $x_1 = \cvec{a}{b}$ and $x_2 = \cvec{c}{d}$
+
+We prove the negation; that $x_1, x_2$ linearly dependent is equivalent to
+$ad - bc = 0$.
+
+First, we prove that $x_1, x_2$ linearly dependent implies $ad - bc = 0$.
+
+Since they are linearly dependent, there exists $\lambda_1, \lambda_2 \in \R$
+such that $\lambda_1x_1 + \lambda_2x_2 = 0$, with at least one of
+$\lambda_1, \lambda_2$ non-zero.
+
+Suppose, without loss of generality, that $\lambda_1 = 0$. Then
+$\lambda_2 \neq 0$ and therefore $c = d = 0$, and therefore $ad - bc = 0$.
+
+The remaining case is that $\lambda_1 \neq 0$ and $\lambda_2 \neq 0$. Then
+\begin{align*}
+  \begin{cases}
+    a\lambda_1 + c\lambda_2 = 0\\
+    b\lambda_1 + d\lambda_2 = 0,
+  \end{cases}
+\end{align*}
+therefore
+\begin{align*}
+\lambda_1 &= -\frac{c}{a}\lambda_2,
+\end{align*}
+therefore
+\begin{align*}
+  \Big(-\frac{bc}{a} + d\Big)\lambda_2 = 0,
+\end{align*}
+therefore
+\begin{align*}
+  ad - bc = 0.
+\end{align*}
 ~\\
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-1-3.png}
 \end{mdframed}
