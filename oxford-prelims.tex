@@ -73,7 +73,6 @@ contributing vectors from an existing spanning set.]
   \begin{enumerate}[label=\roman*)]
   \item linearly independent vectors $v_1, \ldots, v_k$ exist, by hypothesis of $P(k)$
   \item $j < k$, by the induction hypothesis $P(j)$
-  \item $j \leq n$, by the induction hypothesis $P(j)$
   \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $V$, by the induction hypothesis $P(j)$.
   \end{enumerate}
   ~\\
@@ -83,36 +82,6 @@ contributing vectors from an existing spanning set.]
   \end{align*}
   (i) and (ii) imply that $v_1, \ldots, v_{j+1}$ are linearly independent, and
   therefore that at least one of the $\mu_i$ is non-zero.
-
-
-
-
-
-
-
-
-  % Let $P(m)$ be the following proposition: given linearly independent
-  % $w_1, \ldots, w_m \in V$, then, possibly after reordering the $v_i$, the set
-  % $\{w_1, \ldots, w_m, v_{m+1}, \ldots, v_n\}$ is a basis for $V$.
-
-  % Note that the dimension of $V$ is $n$.
-
-  % $P(n)$ is true, since the $w_i$ are linearly independent by definition and
-  % every set of $n$ linearly independent vectors in $V$ spans $V$.
-
-  % Suppose for induction that $P(k)$ is true. So we have that
-  % $w_1, \ldots, w_k, v_{k+1}, \ldots, v_n$ is a basis. We want to show that
-  % $P(k-1)$ is true.
-
-  % Consider $w_1, \ldots, w_{k-1}$. These span a subspace $U \subset V$ of
-  % dimension $k-1$.
-
-  % We have $k$ unused vectors $v_1, \ldots, v_k$. Since these are linearly
-  % independent, at least one of them must not be in $U$. Reorder them so that
-  % $v_k \notin U$. Then $w_1, \ldots, w_{k-1}, v_k, v_{k+1}, \ldots, v_n$ are a
-  % linearly independent set of size $n$, and therefore span $V$, so $P(k-1)$ is
-  % true.
-
 
 \end{proof}
 
