@@ -33,19 +33,6 @@
 \newpage
 \subsubsection*{(ii)}
 
-\begin{claim*}
-  $n+1$ vectors in $\R^n$ cannot be linearly independent.
-\end{claim*}
-
-\begin{proof}
-  We want to show that there exists $\lambda_1, \ldots, \lambda_{n+1}$, not all
-  zero, such that $\sum \lambda_ix_i = 0$.
-
-  Suppose they are linearly independent. Then the first $n$ form a basis
-  (assuming it is known that $n$ LI vectors span $\R^n$). Therefore the last
-  one can be written as a linear combination of the first $n$.
-\end{proof}
-
 \begin{theorem*}[Steinitz Exchange Lemma]
   Let $V$ be a vector space. Let $v_1, \ldots, v_m$ be a linearly independent
   set of vectors in $V$, and let $w_1, \ldots, w_n$ span $V$. Then,
@@ -58,7 +45,8 @@
 
 [Informally: if a set of vectors is linearly independent, then it can be no
 larger than a spanning set, and it can be made into a spanning set by
-contributing vectors from an existing spanning set.]
+contributing vectors from an existing spanning set. One implication is that
+``dimension'' is well-defined: it is ... ?]
 
 \begin{proof}~\\
   Let $P(k)$ be the following proposition: the theorem is true for $m = 0, 1, \ldots, k$.
@@ -71,18 +59,34 @@ contributing vectors from an existing spanning set.]
   the following facts:~\\
 
   \begin{enumerate}[label=\roman*)]
-  \item linearly independent vectors $v_1, \ldots, v_k$ exist, by hypothesis of $P(k)$
-  \item $j < k$, by the induction hypothesis $P(j)$
-  \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $V$, by the induction hypothesis $P(j)$.
+  \item linearly independent vectors $v_1, \ldots, v_k$ exist, by hypothesis of
+    $P(k)$ \label{steinitz-lindep}
+  \item $j < k$, by the induction hypothesis $P(j)$ \label{steinitz-j<k}
+  \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $V$, by the induction
+    hypothesis $P(j)$. \label{steinitz-span}
   \end{enumerate}
   ~\\
-  (iv) implies that we can write $v_{j+1}$ as a unique linear combination:
+  Fact \ref{steinitz-span} implies that we can write $v_{j+1}$ as a unique linear combination:
   \begin{align*}
-    v_{j+1} = \sum_{i=1}^j \lambda_iv_i + \sum_{i=j+1}^n\mu_iw_i.
+    v_{j+1} = \sum_{i=1}^j \lambda_iv_i + \sum_{i=j+1}^n\lambda_iw_i.
   \end{align*}
-  (i) and (ii) imply that $v_1, \ldots, v_{j+1}$ are linearly independent, and
-  therefore that at least one of the $\mu_i$ is non-zero.
+  Facts \ref{steinitz-lindep} and \ref{steinitz-j<k} imply that
+  $v_1, \ldots, v_{j+1}$ are linearly independent, and therefore that at least
+  one of the $\lambda_{j+1} \ldots \lambda_n$ is non-zero.
 
+  Re-order the $w_i$ such that $\lambda_{j+1} \neq 0$. Then
+  \begin{align*}
+    \w_{j+1} = \frac{1}{\lambda_{j+1}}\Big(v_{j+1} - \sum_{i=1}^j \lambda_iv_i - \sum_{i=j+2}^n\lambda_iw_i\Big).
+  \end{align*}
+  In other words, $w_{j+1}$ is in the span of
+  $v_1, \ldots, v_{j+1}, w_{j+2}, \ldots, w_n$. Let $U \subseteq V$ denote this
+  span.
+
+  Therefore the span of $v_1, \ldots, v_{j}, w_{j+1}, \ldots, w_n$ is a subset
+  of $U$.
+
+  But we know from \ref{steinitz-span} that this latter span is $V$. Therefore
+  $V \subseteq U$, and therefore $U = V$.
 \end{proof}
 
 \newpage
