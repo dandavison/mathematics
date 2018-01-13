@@ -47,40 +47,71 @@
 \end{proof}
 
 \begin{theorem*}[Steinitz Exchange Lemma]
-  Let $V$ be a vector space, let $v_1, \ldots, v_n$ be a basis for $V$ and
-  let $w_1, \ldots, w_m \in V$ be linearly independent, where $m \leq
-  n$. Then, possibly after reordering the $v_i$,
-  \begin{align*}
-    w_1, \ldots, w_m, v_{m+1}, \ldots, v_n
-  \end{align*}
-  is also a basis for $V$.
+  Let $V$ be a vector space. Let $v_1, \ldots, v_m$ be a linearly independent
+  set of vectors in $V$, and let $w_1, \ldots, w_n$ span $V$. Then,
+  \begin{enumerate}[label=\roman*)]
+  \item $m \leq n$
+  \item $v_1, \ldots, v_m, w_{m+1}, \ldots, w_n$ also spans $V$, possibly after
+    reordering the $w_i$.
+  \end{enumerate}
 \end{theorem*}
 
-[So informally, any set of linearly independent vectors can be made into a
-basis by contributing missing vectors from an existing basis collection.]
+[Informally: if a set of vectors is linearly independent, then it can be no
+larger than a spanning set, and it can be made into a spanning set by
+contributing vectors from an existing spanning set.]
 
 \begin{proof}~\\
-  Let $P(m)$ be the following proposition: given linearly independent
-  $w_1, \ldots, w_m \in V$, then, possibly after reordering the $v_i$, the set
-  $\{w_1, \ldots, w_m, v_{m+1}, \ldots, v_n\}$ is a basis for $V$.
+  Let $P(k)$ be the following proposition: the theorem is true for $m = 0, 1, \ldots, k$.
 
-  Note that the dimension of $V$ is $n$.
+  Fix an arbitrary integer $k > 0$. We want to show that $P(k)$ is true.
 
-  $P(n)$ is true, since the $w_i$ are linearly independent by definition and
-  every set of $n$ linearly independent vectors in $V$ spans $V$.
+  $P(0)$ is true, since the $w_i$ span $V$ by hypothesis.
 
-  Suppose for induction that $P(k)$ is true. So we have that
-  $w_1, \ldots, w_k, v_{k+1}, \ldots, v_n$ is a basis. We want to show that
-  $P(k-1)$ is true.
+  For induction, suppose $P(j)$ is true, where $j < k$. At this point, we know
+  the following facts:~\\
 
-  Consider $w_1, \ldots, w_{k-1}$. These span a subspace $U \subset V$ of
-  dimension $k-1$.
+  \begin{enumerate}[label=\roman*)]
+  \item linearly independent vectors $v_1, \ldots, v_k$ exist, by hypothesis of $P(k)$
+  \item $j < k$, by the induction hypothesis $P(j)$
+  \item $j \leq n$, by the induction hypothesis $P(j)$
+  \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $V$, by the induction hypothesis $P(j)$.
+  \end{enumerate}
+  ~\\
+  (iv) implies that we can write $v_{j+1}$ as a unique linear combination:
+  \begin{align*}
+    v_{j+1} = \sum_{i=1}^j \lambda_iv_i + \sum_{i=j+1}^n\mu_iw_i.
+  \end{align*}
+  (i) and (ii) imply that $v_1, \ldots, v_{j+1}$ are linearly independent, and
+  therefore that at least one of the $\mu_i$ is non-zero.
 
-  We have $k$ unused vectors $v_1, \ldots, v_k$. Since these are linearly
-  independent, at least one of them must not be in $U$. Reorder them so that
-  $v_k \notin U$. Then $w_1, \ldots, w_{k-1}, v_k, v_{k+1}, \ldots, v_n$ are a
-  linearly independent set of size $n$, and therefore span $V$, so $P(k-1)$ is
-  true.
+
+
+
+
+
+
+
+  % Let $P(m)$ be the following proposition: given linearly independent
+  % $w_1, \ldots, w_m \in V$, then, possibly after reordering the $v_i$, the set
+  % $\{w_1, \ldots, w_m, v_{m+1}, \ldots, v_n\}$ is a basis for $V$.
+
+  % Note that the dimension of $V$ is $n$.
+
+  % $P(n)$ is true, since the $w_i$ are linearly independent by definition and
+  % every set of $n$ linearly independent vectors in $V$ spans $V$.
+
+  % Suppose for induction that $P(k)$ is true. So we have that
+  % $w_1, \ldots, w_k, v_{k+1}, \ldots, v_n$ is a basis. We want to show that
+  % $P(k-1)$ is true.
+
+  % Consider $w_1, \ldots, w_{k-1}$. These span a subspace $U \subset V$ of
+  % dimension $k-1$.
+
+  % We have $k$ unused vectors $v_1, \ldots, v_k$. Since these are linearly
+  % independent, at least one of them must not be in $U$. Reorder them so that
+  % $v_k \notin U$. Then $w_1, \ldots, w_{k-1}, v_k, v_{k+1}, \ldots, v_n$ are a
+  % linearly independent set of size $n$, and therefore span $V$, so $P(k-1)$ is
+  % true.
 
 
 \end{proof}
