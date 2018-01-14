@@ -17,6 +17,35 @@ more one-dimensional character: $\{1, i\}$ are no longer linearly independent.
 \footnotetext{
   \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
 }
+\section{Span, basis, dimension}
+\begin{theorem}
+  Every basis has the same size.
+\end{theorem}
+
+\begin{proof} Let $v_1, \ldots, v_n$ be a basis for a vector space $V$.
+
+
+\end{proof}
+
+\begin{theorem}
+  A spanning set that is the same size as a basis is also a basis.
+\end{theorem}
+
+\begin{proof}
+  Let $v_1, \ldots, v_n$ be a basis for a vector space $V$, and let
+  $u_1, \ldots, u_n$ span $V$.
+
+  We know that $v_1, \ldots, v_n$ are linearly independent and that if we
+  remove any one of them they will cease to span.
+
+  We want to show that $u_1, \ldots, u_n$ are linearly independent.
+
+  Suppose, that the $u_i$ are not linearly independent and that
+  $u_2, \ldots, u_n$ span $V$. Thus there are $n-1$ vectors in this spanning
+  set. But the Steinitz Exchange Lemma states that if $v_1, \ldots, v_n$ are
+  linearly independent and $u_1, \ldots, u_m$ span, then $n \leq m$. This
+  contradiction proves that the $u_i$ are linearly independent.
+\end{proof}
 \section{Linear transformations and matrices}
 
 A linear transformation is completely specified by

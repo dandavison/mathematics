@@ -31,24 +31,34 @@
 
 
 \newpage
-\subsubsection*{(ii)}
+\subsubsection*{}
+\begin{mdframed}
+\includegraphics[width=200pt]{img/oxford-prelims-2017-A-1-1-2.png}
+\end{mdframed}
 
 \begin{theorem*}[Steinitz Exchange Lemma]
   Let $V$ be a vector space. Let $v_1, \ldots, v_m$ be a linearly independent
   set of vectors in $V$, and let $w_1, \ldots, w_n$ span $V$. Then,
   \begin{enumerate}[label=\roman*)]
   \item $m \leq n$
-  \item $v_1, \ldots, v_m, w_{m+1}, \ldots, w_n$ also spans $V$, possibly after
-    reordering the $w_i$.
+  \item $v_1, \ldots, v_m, w_{m+1}, \ldots, w_n$ also spans $V$, for some
+    ordering of the $w_i$.
   \end{enumerate}
 \end{theorem*}
 
 [Informally: if a set of vectors is linearly independent, then it can be no
 larger than a spanning set, and it can be made into a spanning set by
-contributing vectors from an existing spanning set. One implication is that
-``dimension'' is well-defined: it is ... ?]
+contributing vectors from an existing spanning set.]
 
-\begin{proof}~\\
+\textbf{Corollaries}
+\begin{enumerate}
+\item Every basis has the same size.
+\item A spanning set that is the same size as a basis is also a basis.
+\item We can define ``dimension'' to be the size of a basis, and this is
+  well-defined.
+\end{enumerate}
+
+\begin{proof}
   Let $P(k)$ be the following proposition: the theorem is true for $m = 0, 1, \ldots, k$.
 
   Fix an arbitrary integer $k > 0$. We want to show that $P(k)$ is true.
@@ -59,20 +69,28 @@ contributing vectors from an existing spanning set. One implication is that
   the following facts:~\\
 
   \begin{enumerate}[label=\roman*)]
-  \item linearly independent vectors $v_1, \ldots, v_k$ exist, by hypothesis of
+  \item linearly independent vectors $v_1, \ldots, v_k$ exist, by hypothesis in
     $P(k)$ \label{steinitz-lindep}
   \item $j < k$, by the induction hypothesis $P(j)$ \label{steinitz-j<k}
+  \item $j \leq n$, by the induction hypothesis $P(j)$ \label{steinitz-j-leq-n}
   \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $V$, by the induction
     hypothesis $P(j)$. \label{steinitz-span}
   \end{enumerate}
   ~\\
-  Fact \ref{steinitz-span} implies that we can write $v_{j+1}$ as a unique linear combination:
+  We want to show that $j+1 \leq n$, and that
+  $v_1, \ldots, v_{j+1}, w_{j+2}, \ldots, w_n$ spans $V$, for some ordering of
+  the $w_i$.
+
+  Fact \ref{steinitz-span} implies that we can write $v_{j+1}$ as a unique
+  linear combination:
   \begin{align*}
     v_{j+1} = \sum_{i=1}^j \lambda_iv_i + \sum_{i=j+1}^n\lambda_iw_i.
   \end{align*}
   Facts \ref{steinitz-lindep} and \ref{steinitz-j<k} imply that
   $v_1, \ldots, v_{j+1}$ are linearly independent, and therefore that at least
   one of the $\lambda_{j+1} \ldots \lambda_n$ is non-zero.
+
+  \red{At what point do we conclude that $j+1 \leq n$?}
 
   Re-order the $w_i$ such that $\lambda_{j+1} \neq 0$. Then
   \begin{align*}
@@ -89,27 +107,39 @@ contributing vectors from an existing spanning set. One implication is that
   $V \subseteq U$, and therefore $U = V$.
 \end{proof}
 
+
+
 \newpage
-\subsubsection*{(iii)}
+\subsubsection*{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-1-1-3.png}
+\end{mdframed}
+
 
 $\implies$\\
 
 
 $\impliedby$\\
-Let $v_1, v_2 - v_1, \ldots, v_n - v_1$ be a basis of $V$.
+For the reverse implication, suppose that $v_1, v_2 - v_1, \ldots, v_n - v_1$
+is a basis of $V$.
 
-Then for all $w \in V$ there exist $a_1, \ldots, a_n$, all non-zero, such that
+Then for all $w \in V$ there exist unique coordinates $a_1, \ldots, a_n$ such that
 \begin{align*}
   a_1v_1 + \sum_{i=2}^n a_i(v_i - v_1) = w.
 \end{align*}
 Therefore
 \begin{align*}
-  \Big(a_1 - \sum_{i=2}^na_i\Big)v_1 + \sum_{i=2}^n a_iv_i = w.
+  \Big(a_1 - \sum_{i=2}^na_i\Big)v_1 + \sum_{i=2}^n a_iv_i = w,
 \end{align*}
 
-So $v_1, v_2, \ldots, v_n$ span $V$ (TODO: but how do we know that $a_1 \neq \sum_{i=2}^na_i$?)
+proving that $v_1, v_2, \ldots, v_n$ span $V$.
 
-TODO: linear independence
+It remains to show that $v_1, v_2, \ldots, v_n$ are linearly independent.
+
+I want to say: we know that $v_1, v_2, \ldots, v_n$ span $V$, and this spanning
+set is the same size as a known basis, therefore this spanning set is also
+linearly independent.
+
 
 ~\\
 \newpage
