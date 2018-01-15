@@ -216,13 +216,12 @@ dependent.
 
 \end{proof}
 
-~\\
-\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-1-3.png}
 \end{mdframed}
 
-~\\
+\red{TODO}
+
 \subsection*{}  % 2
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-1.png}
@@ -233,30 +232,14 @@ dependent.
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-1-1.png}
 \end{mdframed}
 
-By definition,  $\Im T_A = \{Ax: x \in \R^m\}$.
+By definition,  $\im T_A = \{Ax: x \in \R^m\}$.
 
 Let $S$ denote the proposition ``$Ax = b$ has a solution''.
 
 By the definition of ``has a solution'', $S$ is equivalent to the proposition
 ``there exists $x \in \R^m$ such that $Ax = b$''.
 
-We see that $S \implies b \in \Im T_A$, and also that $b \in \Im T_A \implies S$.
-
-% By definition, $\Im T_A = \{b : \exists x : Ax = b\}$, we then have $b \in \Im
-% T_A$. Therefore $S \implies b \in \Im T_A$.
-
-% Conversely if $b \in \Im T_A$ then
-
-% ``$Ax = b$ has a solution'' is logically equivalent to ``$b \in \Im T_A$'' by
-% the definitions of ``have a solution'' and $\Im$: they both mean ``there exists
-% $x \in \R^m$ such that $Ax = b$''.
-
-% The meaning of ``$Ax = b$ has a solution'' is: there exists $x \in \R^m$ such that
-% $Ax = b$.
-
-% If $b \in \Im T_A$ then, by definition of $\Im$, $Ax = b$ has a solution.
-
-% Conversely, if $Ax = b$ has a solution, then $b \in \Im T_A$.
+We see that $S \implies b \in \im T_A$, and also that $b \in \im T_A \implies S$.
 
 \subsubsection*{} % 2.a.ii
 \begin{mdframed}
@@ -265,8 +248,10 @@ We see that $S \implies b \in \Im T_A$, and also that $b \in \Im T_A \implies S$
 
 Let $S_u$ denote the proposition ``$Ax = b$ has a unique solution''.
 
+First we prove the forwards implication:
+
 \begin{claim*}
-  $S_u \implies \Big(b \in \Im T_A ~~\text{and}~~ \ker T_A = \{0\}\Big)$.
+  $S_u \implies \Big(b \in \im T_A ~~\text{and}~~ \ker T_A = \{0\}\Big)$.
 \end{claim*}
 
 \begin{proof}
@@ -285,6 +270,8 @@ A(x + y) = Ax + Ay = b + 0 = b,
 so $x + y \neq x$ is also a solution; a contradiction. Therefore no such $y$
 exists and we see that $S_u \implies \ker T_A = \{0\}$.
 \end{proof}
+
+Now we prove the reverse implication:
 
 \begin{claim*}
   $\Big(b \in \Im T_A ~~\text{and}~~ \ker T_A = \{0\}\Big) \implies S_u$.
@@ -314,7 +301,6 @@ for all $\alpha \in \R$
 A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b - b) = b.
 \end{align*}
 
-~\\
 \subsection*{} % 2.b
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-2.png}
