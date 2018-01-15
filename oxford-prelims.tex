@@ -29,11 +29,9 @@
   they are linearly independent.
 \end{definition*}
 
-
-\newpage
 \subsubsection*{}
 \begin{mdframed}
-\includegraphics[width=200pt]{img/oxford-prelims-2017-A-1-1-2.png}
+\includegraphics[width=250pt]{img/oxford-prelims-2017-A-1-1-2.png}
 \end{mdframed}
 
 \begin{theorem*}[Steinitz Exchange Lemma]
@@ -116,30 +114,45 @@ contributing vectors from an existing spanning set.]
 \end{mdframed}
 
 
+\begin{proof}~\\
 $\implies$\\
+For the forward implication, suppose that $v_1, \ldots, v_n$ is a basis of $V$.
 
+Then for all $w \in V$ there exist unique coordinates $\lambda_1, \ldots, \lambda_n$ such that
+\begin{align*}
+  \sum_{i=1}^n \lambda_iv_i &= w.
+\end{align*}
+Subtracting $\(\sum_{i=1}^n \lambda_i\)v_1$ from both sides we have
+\begin{align*}
+  \sum_{i=1}^n \lambda_i(v_i - v_1) &= w - \(\sum_{i=1}^n \lambda_i\)v_1\\
+  \(\sum_{i=1}^n \lambda_i\)v_1 + \sum_{i=2}^n \lambda_i(v_i - v_1) &= w,
+\end{align*}
+proving that $v_1, v_2 - v_1, \ldots, v_n - v_1$ spans $V$.
+
+Furthermore, $v_1, v_2 - v_1, \ldots, v_n - v_1$ are linearly independent,
+since a corollary of the Steinitz Exchange Lemma is that if a spanning set is
+the same size as a linearly independent set, then the spanning set is also
+linearly independent (and the linearly independent set spans, so in fact both
+are bases).
 
 $\impliedby$\\
 For the reverse implication, suppose that $v_1, v_2 - v_1, \ldots, v_n - v_1$
 is a basis of $V$.
 
-Then for all $w \in V$ there exist unique coordinates $a_1, \ldots, a_n$ such that
+Then for all $w \in V$ there exist unique coordinates $\lambda_1, \ldots, \lambda_n$ such that
 \begin{align*}
-  a_1v_1 + \sum_{i=2}^n a_i(v_i - v_1) = w.
+  \lambda_1v_1 + \sum_{i=2}^n \lambda_i(v_i - v_1) = w.
 \end{align*}
-Therefore
+Equivalently,
 \begin{align*}
-  \Big(a_1 - \sum_{i=2}^na_i\Big)v_1 + \sum_{i=2}^n a_iv_i = w,
+  \Big(\lambda_1 - \sum_{i=2}^n\lambda_i\Big)v_1 + \sum_{i=2}^n \lambda_iv_i = w,
 \end{align*}
 
 proving that $v_1, v_2, \ldots, v_n$ span $V$.
 
-It remains to show that $v_1, v_2, \ldots, v_n$ are linearly independent.
-
-I want to say: we know that $v_1, v_2, \ldots, v_n$ span $V$, and this spanning
-set is the same size as a known basis, therefore this spanning set is also
-linearly independent.
-
+Furthermore, $v_1, v_2, \ldots, v_n$ are linearly independent, by the same
+Steinitz Exchange Lemma argument given above.
+\end{proof}
 
 ~\\
 \newpage
@@ -149,12 +162,15 @@ linearly independent.
 
 \renewcommand{\cvec}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
 
+\begin{proof}
 Let $x_1 = \cvec{a}{b}$ and $x_2 = \cvec{c}{d}$
 
 We prove the negation; that $x_1, x_2$ linearly dependent is equivalent to
 $ad - bc = 0$.
 
-First, we prove that $x_1, x_2$ linearly dependent implies $ad - bc = 0$.
+$\implies$\\
+For the forwards implication, we prove that $x_1, x_2$ linearly dependent
+implies $ad - bc = 0$.
 
 Since they are linearly dependent, there exists $\lambda_1, \lambda_2 \in \R$
 such that $\lambda_1x_1 + \lambda_2x_2 = 0$, with at least one of
@@ -172,16 +188,34 @@ The remaining case is that $\lambda_1 \neq 0$ and $\lambda_2 \neq 0$. Then
 \end{align*}
 therefore
 \begin{align*}
-\lambda_1 &= -\frac{c}{a}\lambda_2,
+  \lambda_1                            &= -\frac{c}{a}\lambda_2\\
+  \Big(-\frac{bc}{a} + d\Big)\lambda_2 &= 0\\
+  ad - bc                              &= 0.
 \end{align*}
-therefore
-\begin{align*}
-  \Big(-\frac{bc}{a} + d\Big)\lambda_2 = 0,
-\end{align*}
-therefore
-\begin{align*}
-  ad - bc = 0.
-\end{align*}
+
+$\impliedby$\\
+For the reverse implication, we prove that $ad - bc = 0$ implies $x_1, x_2$
+linearly dependent.
+
+\red{TODO: Not sure how to do this without resorting to properties of
+  determinant of linear transformation.}
+
+Let $u_1, u_2$ be a basis for $\R^2$ and consider the matrix
+$\mat{a}{c} {b}{d}$ with respect to this basis.
+
+Viewed as a linear transformation, the matrix sends $u_1 \mapsto x_1$ and
+$u_2 \mapsto x_2$.
+
+The determinant of this matrix is $ad - bc$. Since the determinant is zero, the
+linear transformation maps the basis vectors into a one- or zero-dimensional
+subspace.
+
+Therefore $x_1,x_2$ lie in a one dimensional subspace. Therefore
+$x_1 = \lambda x_2$ for some $\lambda \in \R$. Therefore $x_1,x_2$ are linearly
+dependent.
+
+\end{proof}
+
 ~\\
 \newpage
 \begin{mdframed}
@@ -264,7 +298,7 @@ Now suppose that $\ker T_A = \{0\}$ and that $y \neq x$ is another solution. But
 \begin{align*}
   A(x - y) = Ax - Ay = b - b = 0,
 \end{align*}
-so $x - y \neq 0 \in \ker T_A$; a contradition. Therefore if $\ker T_A = \{0\}$
+so $x - y \neq 0 \in \ker T_A$; a contradiction. Therefore if $\ker T_A = \{0\}$
 then no such $y$ exists.
 \end{proof}
 
