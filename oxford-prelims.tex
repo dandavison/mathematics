@@ -34,12 +34,57 @@
 \includegraphics[width=250pt]{img/oxford-prelims-2017-A-1-1-2.png}
 \end{mdframed}
 
-\begin{theorem*}[Steinitz Exchange Lemma]
-  Let $V$ be a vector space. Let $v_1, \ldots, v_m$ be a linearly independent
-  set of vectors in $V$, and let $w_1, \ldots, w_n$ span $V$. Then,
+\newpage
+\begin{theorem*}[Steinitz Exchange Lemma - version 1]
+  Let $V$ be a subset of a vector space $X$. Let $u \in \Span V$. Let $v \in V$
+  be such that $u \notin \Span\(V \setminus \{v\}\)$. Then
+  $\Span\(\(V \setminus \{v\}\) \cup \{u\}\) = \Span V$.
+\end{theorem*}
+
+[Informally: Take a set of vectors, one of which is $v$. Suppose their span
+contains $u$, but, after removing $v$, their span no longer contains $u$. Now
+consider the set resulting after exchanging $u$ for $v$. The span of this set
+is the same as that of the original.]
+
+\begin{proof}~\\
+  Let $V$ be $v_1, \ldots, v_n$, and let $u \in \Span V$.
+
+  Note that $u = \sum_{i=1}^n\gamma_iv_i$ for some
+  $\gamma_1, \ldots, \gamma_n \in \R$, and therefore
+  $v_1 = \frac{1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\)$.
+
+  Reorder the $v_i$ such that $u \notin \Span\(v_2, \ldots, v_n\)$.
+
+  For the forwards direction, let $w$ be in $\Span\(u, v_2, \ldots, v_n\)$; we
+  want to show that this implies $w \in \Span\(v_1, \ldots, v_n\)$.
+
+  We have $w &= au + \sum_{i=2}^n\lambda_iv_i$ for some
+  $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
+  \begin{align*}
+    w &= a\sum_{i=1}^n\gamma_iv_i + \sum_{i=2}^n\lambda_iv_i\\
+      &= a\gamma_1v_1 + \sum_{i=2}^n(\gamma_i + \lambda_i)v_i,
+  \end{align*}
+  proving that $w \in \Span\(v_1, \ldots, v_n\)$ as required.
+
+  For the reverse direction, let $w$ be in $\Span\(v_1, \ldots, v_n\)$; we want
+  to show that this implies $w \in \Span\(u, v_2, \ldots, v_n\)$.
+
+  We have $w = \sum_{i=1}^n\lambda_iv_i$ for some
+  $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
+  \begin{align*}
+    w &= \frac{\lambda_1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\) + \sum_{i=2}^n\lambda_iv_i\\
+      &= \frac{\lambda_1}{\gamma_1}u + \sum_{i=2}^n(\lambda_i - \gamma_i)v_i,
+  \end{align*}
+  proving that $w \in \Span\(u, v_2, \ldots, v_n\)$ as required.
+\end{proof}
+
+\newpage
+\begin{theorem*}[Steinitz Exchange Lemma - version 2]
+  Let $X$ be a vector space. Let $v_1, \ldots, v_m$ be a linearly independent
+  set of vectors in $X$, and let $w_1, \ldots, w_n$ span $X$. Then,
   \begin{enumerate}[label=\roman*)]
   \item $m \leq n$
-  \item $v_1, \ldots, v_m, w_{m+1}, \ldots, w_n$ also spans $V$, for some
+  \item $v_1, \ldots, v_m, w_{m+1}, \ldots, w_n$ also spans $X$, for some
     ordering of the $w_i$.
   \end{enumerate}
 \end{theorem*}
@@ -61,7 +106,7 @@ contributing vectors from an existing spanning set.]
 
   Fix an arbitrary integer $k > 0$. We want to show that $P(k)$ is true.
 
-  $P(0)$ is true, since the $w_i$ span $V$ by hypothesis.
+  $P(0)$ is true, since the $w_i$ span $X$ by hypothesis.
 
   For induction, suppose $P(j)$ is true, where $j < k$. At this point, we know
   the following facts:~\\
@@ -71,12 +116,12 @@ contributing vectors from an existing spanning set.]
     $P(k)$ \label{steinitz-lindep}
   \item $j < k$, by the induction hypothesis $P(j)$ \label{steinitz-j<k}
   \item $j \leq n$, by the induction hypothesis $P(j)$ \label{steinitz-j-leq-n}
-  \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $V$, by the induction
+  \item $v_1, \ldots, v_j, w_{j+1}, \ldots, w_n$ spans $X$, by the induction
     hypothesis $P(j)$. \label{steinitz-span}
   \end{enumerate}
   ~\\
   We want to show that $j+1 \leq n$, and that
-  $v_1, \ldots, v_{j+1}, w_{j+2}, \ldots, w_n$ spans $V$, for some ordering of
+  $v_1, \ldots, v_{j+1}, w_{j+2}, \ldots, w_n$ spans $X$, for some ordering of
   the $w_i$.
 
   Fact \ref{steinitz-span} implies that we can write $v_{j+1}$ as a unique
@@ -95,14 +140,14 @@ contributing vectors from an existing spanning set.]
     \w_{j+1} = \frac{1}{\lambda_{j+1}}\Big(v_{j+1} - \sum_{i=1}^j \lambda_iv_i - \sum_{i=j+2}^n\lambda_iw_i\Big).
   \end{align*}
   In other words, $w_{j+1}$ is in the span of
-  $v_1, \ldots, v_{j+1}, w_{j+2}, \ldots, w_n$. Let $U \subseteq V$ denote this
+  $v_1, \ldots, v_{j+1}, w_{j+2}, \ldots, w_n$. Let $Y \subseteq X$ denote this
   span.
 
   Therefore the span of $v_1, \ldots, v_{j}, w_{j+1}, \ldots, w_n$ is a subset
   of $U$.
 
-  But we know from \ref{steinitz-span} that this latter span is $V$. Therefore
-  $V \subseteq U$, and therefore $U = V$.
+  But we know from \ref{steinitz-span} that this latter span is $X$. Therefore
+  $X \subseteq Y$, and therefore $Y = X$.
 \end{proof}
 
 
