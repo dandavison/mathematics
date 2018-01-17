@@ -62,21 +62,17 @@ is the same as that of the original.]
   It is clear that any vector in $\Span~ \{u, v_2, \ldots, v_n\}$ can be
   rewritten as a linear combination of $\{v_1, \ldots, v_n\}$, and conversely
   that any vector in $\Span~ \{v_1, \ldots, v_n\}$ can be rewritten as a linear
-  combination of $\{u, v_2, \ldots, v_n\}$ which proves the theorem
-  \footnote{
-    For the forwards direction, let $w$ be in $\Span~ \{u, v_2, \ldots, v_n\}$ we
-    want to show that this implies $w \in \Span~ \{v_1, \ldots, v_n\}$.
-
-    We have $w = au + \sum_{i=2}^n\lambda_iv_i$ for some
+  combination of $\{u, v_2, \ldots, v_n\}$ \footnote{
+    For the forwards direction, let $w$ be in $\Span~ \{u, v_2, \ldots,
+    v_n\}$. We have $w = au + \sum_{i=2}^n\lambda_iv_i$ for some
     $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
     $$
       w = a\sum_{i=1}^n\gamma_iv_i + \sum_{i=2}^n\lambda_iv_i
         = a\gamma_1v_1 + \sum_{i=2}^n(\gamma_i + \lambda_i)v_i,
     $$
-    proving that $w \in \Span~ \{v_1, \ldots, v_n\}$, as required.~\\
-
-    For the reverse direction, let $w$ be in $\Span~ \{v_1, \ldots, v_n\}$; we want
-    to show that this implies $w \in \Span~ \{u, v_2, \ldots, v_n\}$. We have $w = \sum_{i=1}^n\lambda_iv_i$ for some
+    proving that $w \in \Span~ \{v_1, \ldots, v_n\}$, as required. For the
+    reverse direction, let $w$ be in $\Span~ \{v_1, \ldots, v_n\}$. We have
+    $w = \sum_{i=1}^n\lambda_iv_i$ for some
     $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
     $$
       w = \frac{\lambda_1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\) + \sum_{i=2}^n\lambda_iv_i
