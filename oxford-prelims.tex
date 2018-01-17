@@ -47,27 +47,28 @@ consider the set resulting after exchanging $u$ for $v$. The span of this set
 is the same as that of the original.]
 
 \begin{proof}~\\
-  Let $V$ be $v_1, \ldots, v_n$, and let $u \in \Span V$.
+  Let $V$ be $\{v_1, \ldots, v_n\}$, and let $u \in \Span V$.
+
+  Reorder the $v_i$ such that $u \notin \Span~ \{v_2, \ldots, v_n\}$.
 
   Note that $u = \sum_{i=1}^n\gamma_iv_i$ for some
-  $\gamma_1, \ldots, \gamma_n \in \R$, and therefore
-  $v_1 = \frac{1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\)$.
+  $\gamma_1, \ldots, \gamma_n \in \R$, where $\gamma_1 \neq 0$.
 
-  Reorder the $v_i$ such that $u \notin \Span\(v_2, \ldots, v_n\)$.
+  Therefore $v_1 = \frac{1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\)$.
 
-  For the forwards direction, let $w$ be in $\Span\(u, v_2, \ldots, v_n\)$; we
-  want to show that this implies $w \in \Span\(v_1, \ldots, v_n\)$.
+  For the forwards direction, let $w$ be in $\Span~ \{u, v_2, \ldots, v_n\}$; we
+  want to show that this implies $w \in \Span~ \{v_1, \ldots, v_n\}$.
 
-  We have $w &= au + \sum_{i=2}^n\lambda_iv_i$ for some
+  We have $w = au + \sum_{i=2}^n\lambda_iv_i$ for some
   $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
   \begin{align*}
     w &= a\sum_{i=1}^n\gamma_iv_i + \sum_{i=2}^n\lambda_iv_i\\
       &= a\gamma_1v_1 + \sum_{i=2}^n(\gamma_i + \lambda_i)v_i,
   \end{align*}
-  proving that $w \in \Span\(v_1, \ldots, v_n\)$ as required.
+  proving that $w \in \Span~ \{v_1, \ldots, v_n\}$ as required.
 
-  For the reverse direction, let $w$ be in $\Span\(v_1, \ldots, v_n\)$; we want
-  to show that this implies $w \in \Span\(u, v_2, \ldots, v_n\)$.
+  For the reverse direction, let $w$ be in $\Span~ \{v_1, \ldots, v_n\}$; we want
+  to show that this implies $w \in \Span~ \{u, v_2, \ldots, v_n\}$.
 
   We have $w = \sum_{i=1}^n\lambda_iv_i$ for some
   $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
@@ -75,8 +76,34 @@ is the same as that of the original.]
     w &= \frac{\lambda_1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\) + \sum_{i=2}^n\lambda_iv_i\\
       &= \frac{\lambda_1}{\gamma_1}u + \sum_{i=2}^n(\lambda_i - \gamma_i)v_i,
   \end{align*}
-  proving that $w \in \Span\(u, v_2, \ldots, v_n\)$ as required.
+  proving that $w \in \Span~ \{u, v_2, \ldots, v_n\}$ as required.
 \end{proof}
+
+\newpage
+\begin{theorem*}
+  A linearly independent set can be no larger than a spanning set.
+\end{theorem*}
+
+\begin{proof}
+  Let $V$ be a vector space.
+
+  Let $i_1, \ldots, i_m \in V$ be linearly independent.
+
+  Let $s_1, \ldots, s_n \in V$ span $V$.
+
+  Suppose for a contradiction that $m > n$.
+
+
+\end{proof}
+
+\begin{theorem*}
+  Every basis has the same size.
+\end{theorem*}
+
+\begin{theorem*}
+  A spanning set that is the same size as a basis is also a basis.
+\end{theorem*}
+
 
 \newpage
 \begin{theorem*}[Steinitz Exchange Lemma - version 2]
