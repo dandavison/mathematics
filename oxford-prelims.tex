@@ -363,6 +363,26 @@ A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b 
   \end{tabular}
 \end{table}
 
+\textbf{(i)} $m < n$. \textbf{No}: case A or C.
+
+% We have $\dim(\Dom T_A) < \dim(\Cod T_A)$. It is possible that
+% $\dim(\Dom T_A) \leq \dim(\Im T_A)$ in which case there will not be infinitely
+% many solutions.
+
+\textbf{(ii)} $m = n$ and $\vec b = \vec 0$. \textbf{No}: case B or C.
+
+% We know that $\vec b \in \Im T_A$, since $\vec b = \vec 0$. However, it is
+% possible that $A$ is invertible. In that case there will be exactly one
+% solution for all $b$. (Otherwise, there are infinitely many solutions.)
+
+\textbf{(iii)} $m > n$. \textbf{No}: case A, C or D
+
+% It is possible that $\dim(\Im T_A) < n$, in which case it is possible that
+% $b \notin \Im T_A$, in which case there are zero solutions. (But if
+% $b \in \Im T_A$ then there are infinitely many solutions.)
+
+\textbf{(iv)} $m > n$ and $T_A$ is onto. \textbf{No}: case D
+
 \begin{lemma*}
   $Ax = b$ has infinitely many solutions for all $b \in \Cod T_A$ if and only
   if $\dim(\Dom T_A) > \dim(\Im T_A)$
@@ -371,26 +391,6 @@ A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b 
 [Either the map is from a higher dimensional space to a lower dimensional
 space, or the image is a lower dimensional subspace.]
 
-
-\textbf{(i)} $m < n$. \textbf{No}: case A or C.
-
-We have $\dim(\Dom T_A) < \dim(\Cod T_A)$. It is possible that
-$\dim(\Dom T_A) \leq \dim(\Im T_A)$ in which case there will not be infinitely
-many solutions.
-
-\textbf{(ii)} $m = n$ and $\vec b = \vec 0$. \textbf{No}: case B or C.
-
-We know that $\vec b \in \Im T_A$, since $\vec b = \vec 0$. However, it is
-possible that $A$ is invertible. In that case there will be exactly one
-solution for all $b$. (Otherwise, there are infinitely many solutions.)
-
-\textbf{(iii)} $m > n$. \textbf{No}: case A, C or D
-
-It is possible that $\dim(\Im T_A) < n$, in which case it is possible that
-$b \notin \Im T_A$, in which case there are zero solutions. (But if
-$b \in \Im T_A$ then there are infinitely many solutions.)
-
-\textbf{(iv)} $m > n$ and $T_A$ is onto. \textbf{No}: case D
 
 \subsection*{} % 2.c
 \begin{mdframed}
