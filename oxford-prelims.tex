@@ -170,14 +170,38 @@ Steinitz Exchange Lemma argument given above.
 \renewcommand{\cvec}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
 
 \begin{proof}
-  For the forwards implication, suppose $\cvec{a}{b}$ and $\cvec{c}{d}$ are
-  linearly independent and suppose, for a contradiction, that $ad - bc = 0$.
+  For the forwards implication, suppose for a contradiction that $\cvec{a}{b}$
+  and $\cvec{c}{d}$ are linearly independent and $ad - bc = 0$.
 
   Note that $d\cvec{a}{b} - b\cvec{c}{d} = \cvec{0}{0}$. But this contradicts
   linear independence, since if $b = d = 0$ then $\cvec{a}{b} = \cvec{a}{0}$
   and $\cvec{c}{d} = \cvec{c}{0}$ are linearly dependent.
 
-  For the reverse implication, suppose $ad - bc \neq 0$.
+  Therefore linear independence implies $ad - bc \neq 0$.
+
+  For the reverse implication, suppose for a contradiction that $\cvec{a}{b}$
+  and $\cvec{c}{d}$ are linearly dependent and $ad - bc \neq 0$.
+
+  Note that $\cvec{c}{d} = \lambda \cvec{a}{b}$ for some $\lambda \in \R$.
+
+  % Consider $\lambda_1\cvec{a}{b} + \lambda_2 \cvec{c}{d} = \cvec{0}{0}$.
+
+  Therefore $d\cvec{a}{b} - b\cvec{c}{d} = d\cvec{a}{b} - b\lambda\cvec{a}{b}$,
+  giving the following system of equations:
+  \begin{align*}
+    \begin{cases}
+      ab\lambda &= bc\\
+      bd        &= b^2\lambda.
+    \end{cases}
+  \end{align*}
+  Suppose that $b \neq 0$. Then $d = b\lambda$, hence $ad = bc$, a contradiction.
+
+  Alternatively, suppose $b = 0$. Then in order for $\cvec{a}{b} = \cvec{a}{0}$
+  and $\cvec{c}{d}$ to be linearly dependent, we must have $d = 0$ (OK?). In
+  which case $ad - bc = 0$, a contradiction again.
+
+  Therefore $ad - bc \neq 0$ implies linear independence.
+
 \end{proof}
 
 \newpage
