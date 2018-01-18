@@ -276,18 +276,18 @@ Steinitz Exchange Lemma argument given above.
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-1-1.png}
 \end{mdframed}
 
-By definition,  $\im T_A = \{Ax: x \in \R^m\}$.
+By definition,  $\Im T_A = \{Ax: x \in \R^m\}$.
 
 Let $S$ denote the proposition ``$Ax = b$ has a solution''.
 
 By the definition of ``has a solution'', $S$ is equivalent to the proposition
 ``there exists $x \in \R^m$ such that $Ax = b$''.
 
-We see that $S \implies b \in \im T_A$, and also that $b \in \im T_A \implies S$.
+We see that $S \implies b \in \Im T_A$, and also that $b \in \Im T_A \implies S$.
 
 \subsubsection*{} % 2.a.ii
 \begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-1-2.png}
+\includegraphics[width=350pt]{img/oxford-prelims-2017-A-2-1-2.png}
 \end{mdframed}
 
 Let $S_u$ denote the proposition ``$Ax = b$ has a unique solution''.
@@ -295,7 +295,7 @@ Let $S_u$ denote the proposition ``$Ax = b$ has a unique solution''.
 First we prove the forwards implication:
 
 \begin{claim*}
-  $S_u \implies \Big(b \in \im T_A ~~\text{and}~~ \ker T_A = \{0\}\Big)$.
+  $S_u \implies \Big(b \in \Im T_A ~~\text{and}~~ \ker T_A = \{0\}\Big)$.
 \end{claim*}
 
 \begin{proof}
@@ -345,21 +345,53 @@ for all $\alpha \in \R$
 A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b - b) = b.
 \end{align*}
 
+\newpage
 \subsection*{} % 2.b
 \begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-2-0.png}\\
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-2.png}
 \end{mdframed}
 
-\subsubsection*{(i)} The mapping takes vectors in a lower dimensional space and
-outputs vectors in a higher dimensional space. E.g. suppose $T_A:\R^1 \to \R^2$
-and let $A = \scvec{s}{t}$. Then $Ax = (xs, xt)$ i.e. $\Im T_A$ is a line
-through the origin.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    $          $ & $\Im < \Cod$ & $\Im = \Cod$   & $\Im > \Cod$\\
+    \hline
+    $\Dom < \Im$ & Impossible   & Impossible     & Impossible  \\
+    $\Dom = \Im$ & 0 or 1 (A)   & 1 (B)          & Impossible  \\
+    $\Dom > \Im$ & $\infty$ (C) & $\infty$ (D)   & Impossible  \\
+  \end{tabular}
+\end{table}
 
-\begin{align*}
-  m &=    \dim(\ker T_A) + \dim(\im T_A)\\
-    &\leq \dim(\ker T_A) + n\\
-\end{align*}
-~\\
+\begin{lemma*}
+  $Ax = b$ has infinitely many solutions for all $b \in \Cod T_A$ if and only
+  if $\dim(\Dom T_A) > \dim(\Im T_A)$
+\end{lemma*}
+
+[Either the map is from a higher dimensional space to a lower dimensional
+space, or the image is a lower dimensional subspace.]
+
+
+\textbf{(i)} $m < n$. \textbf{No}: case A or C.
+
+We have $\dim(\Dom T_A) < \dim(\Cod T_A)$. It is possible that
+$\dim(\Dom T_A) \leq \dim(\Im T_A)$ in which case there will not be infinitely
+many solutions.
+
+\textbf{(ii)} $m = n$ and $\vec b = \vec 0$. \textbf{No}: case B or C.
+
+We know that $\vec b \in \Im T_A$, since $\vec b = \vec 0$. However, it is
+possible that $A$ is invertible. In that case there will be exactly one
+solution for all $b$. (Otherwise, there are infinitely many solutions.)
+
+\textbf{(iii)} $m > n$. \textbf{No}: case A, C or D
+
+It is possible that $\dim(\Im T_A) < n$, in which case it is possible that
+$b \notin \Im T_A$, in which case there are zero solutions. (But if
+$b \in \Im T_A$ then there are infinitely many solutions.)
+
+\textbf{(iv)} $m > n$ and $T_A$ is onto. \textbf{No}: case D
+
 \subsection*{} % 2.c
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-3.png}
