@@ -49,28 +49,25 @@ is the same as that of the original.]
 \begin{proof}~\\
   Let $X$ be $\{v_1, \ldots, v_n\}$, and let $u \in \Span X$.
 
-  Reorder the $v_i$ such that $u \notin \Span~ \{v_2, \ldots, v_n\}$.
+  Reorder the $v_i$ such that $u \notin \Span\(v_2, \ldots, v_n\)$.
 
   Note that $u = \sum_{i=1}^n\gamma_iv_i$ for some
   $\gamma_1, \ldots, \gamma_n \in \R$, where $\gamma_1 \neq 0$.
 
   Therefore $v_1 = \frac{1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\)$.
 
-  So we have $u \in \Span~ \{v_1, \ldots, v_n\}$ and
-  $v_1 \in \Span~ \{u, v_2, \ldots, v_n\}$.
+  So we have $u \in \Span\(v_1, \ldots, v_n\)$ and
+  $v_1 \in \Span\(u, v_2, \ldots, v_n\)$.
 
-  It is clear that any vector in $\Span~ \{u, v_2, \ldots, v_n\}$ can be
-  rewritten as a linear combination of $\{v_1, \ldots, v_n\}$, and conversely
-  that any vector in $\Span~ \{v_1, \ldots, v_n\}$ can be rewritten as a linear
-  combination of $\{u, v_2, \ldots, v_n\}$ \footnote{
-    For the forwards direction, let $w$ be in $\Span~ \{u, v_2, \ldots,
-    v_n\}$. We have $w = au + \sum_{i=2}^n\lambda_iv_i$ for some
+  It is clear\footnote{
+    For the forwards direction, let $w$ be in $\Span\(u, v_2, \ldots,
+    v_n\)$. We have $w = au + \sum_{i=2}^n\lambda_iv_i$ for some
     $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
     $$
       w = a\sum_{i=1}^n\gamma_iv_i + \sum_{i=2}^n\lambda_iv_i
         = a\gamma_1v_1 + \sum_{i=2}^n(\gamma_i + \lambda_i)v_i,
     $$
-    proving that $w \in \Span~ \{v_1, \ldots, v_n\}$, as required. For the
+    proving that $w \in \Span\(v_1, \ldots, v_n\)$, as required. For the
     reverse direction, let $w$ be in $\Span~ \{v_1, \ldots, v_n\}$. We have
     $w = \sum_{i=1}^n\lambda_iv_i$ for some
     $a, \lambda_2, \ldots, \lambda_n \in \R$, and therefore
@@ -78,8 +75,11 @@ is the same as that of the original.]
       w = \frac{\lambda_1}{\gamma_1}\(u - \sum_{i=2}^n\gamma_iv_i\) + \sum_{i=2}^n\lambda_iv_i
         = \frac{\lambda_1}{\gamma_1}u + \sum_{i=2}^n(\lambda_i - \gamma_i)v_i,
     $$
-    proving that $w \in \Span~ \{u, v_2, \ldots, v_n\}$, as required.
-  }.
+    proving that $w \in \Span\(u, v_2, \ldots, v_n\)$, as required.  } that any
+  vector in $\Span\(u, v_2, \ldots, v_n\)$ can be rewritten as a linear
+  combination of $v_1, \ldots, v_n$, and conversely that any vector in
+  $\Span\(v_1, \ldots, v_n\)$ can be rewritten as a linear combination of
+  $u, v_2, \ldots, v_n$.
 
 \end{proof}
 
