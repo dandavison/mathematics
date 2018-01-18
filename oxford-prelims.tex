@@ -91,12 +91,16 @@ is the same as that of the original.]
 \begin{proof}
   Let $V$ be a vector space.
 
-  Let $i_1, \ldots, i_m \in V$ be linearly independent.
+  Let $S = u_1, \ldots, u_m$ be linearly independent vectors in $V$.
 
-  Let $s_1, \ldots, s_n \in V$ span $V$.
+  Let $T = v_1, \ldots, v_n$ span $V$.
 
-  Suppose for a contradiction that $m > n$.
+  The argument involves repeatedly substituting members of the two sets so that
+  after $m$ steps, $m$ members of $T$ have been removed, each time being
+  replaced by a member of $S$.
 
+  Therefore $m \leq n$, i.e. a linearly independent set can be no larger than a
+  spanning set.
 
 \end{proof}
 
@@ -166,58 +170,71 @@ Steinitz Exchange Lemma argument given above.
 \renewcommand{\cvec}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
 
 \begin{proof}
-Let $x_1 = \cvec{a}{b}$ and $x_2 = \cvec{c}{d}$
+  For the forwards implication, suppose $\cvec{a}{b}$ and $\cvec{c}{d}$ are
+  linearly independent and suppose, for a contradiction, that $ad - bc = 0$.
 
-We prove the negation; that $x_1, x_2$ linearly dependent is equivalent to
-$ad - bc = 0$.
+  Note that $d\cvec{a}{b} - b\cvec{c}{d} = \cvec{0}{0}$. But this contradicts
+  linear independence, since if $b = d = 0$ then $\cvec{a}{b} = \cvec{a}{0}$
+  and $\cvec{c}{d} = \cvec{c}{0}$ are linearly dependent.
 
-$\implies$\\
-For the forwards implication, we prove that $x_1, x_2$ linearly dependent
-implies $ad - bc = 0$.
-
-Since they are linearly dependent, there exists $\lambda_1, \lambda_2 \in \R$
-such that $\lambda_1x_1 + \lambda_2x_2 = 0$, with at least one of
-$\lambda_1, \lambda_2$ non-zero.
-
-Suppose, without loss of generality, that $\lambda_1 = 0$. Then
-$\lambda_2 \neq 0$ and therefore $c = d = 0$, and therefore $ad - bc = 0$.
-
-The remaining case is that $\lambda_1 \neq 0$ and $\lambda_2 \neq 0$. Then
-\begin{align*}
-  \begin{cases}
-    a\lambda_1 + c\lambda_2 = 0\\
-    b\lambda_1 + d\lambda_2 = 0,
-  \end{cases}
-\end{align*}
-therefore
-\begin{align*}
-  \lambda_1                            &= -\frac{c}{a}\lambda_2\\
-  \Big(-\frac{bc}{a} + d\Big)\lambda_2 &= 0\\
-  ad - bc                              &= 0.
-\end{align*}
-
-$\impliedby$\\
-For the reverse implication, we prove that $ad - bc = 0$ implies $x_1, x_2$
-linearly dependent.
-
-\red{TODO: Not sure how to do this without resorting to properties of
-  determinant of linear transformation.}
-
-Let $u_1, u_2$ be a basis for $\R^2$ and consider the matrix
-$\mat{a}{c} {b}{d}$ with respect to this basis.
-
-Viewed as a linear transformation, the matrix sends $u_1 \mapsto x_1$ and
-$u_2 \mapsto x_2$.
-
-The determinant of this matrix is $ad - bc$. Since the determinant is zero, the
-linear transformation maps the basis vectors into a one- or zero-dimensional
-subspace.
-
-Therefore $x_1,x_2$ lie in a one dimensional subspace. Therefore
-$x_1 = \lambda x_2$ for some $\lambda \in \R$. Therefore $x_1,x_2$ are linearly
-dependent.
-
+  For the reverse implication, suppose $ad - bc \neq 0$.
 \end{proof}
+
+\newpage
+
+% \begin{proof}
+% Let $x_1 = \cvec{a}{b}$ and $x_2 = \cvec{c}{d}$
+
+% We prove the negation; that $x_1, x_2$ linearly dependent is equivalent to
+% $ad - bc = 0$.
+
+% $\implies$\\
+% For the forwards implication, we prove that $x_1, x_2$ linearly dependent
+% implies $ad - bc = 0$.
+
+% Since they are linearly dependent, there exists $\lambda_1, \lambda_2 \in \R$
+% such that $\lambda_1x_1 + \lambda_2x_2 = 0$, with at least one of
+% $\lambda_1, \lambda_2$ non-zero.
+
+% Suppose, without loss of generality, that $\lambda_1 = 0$. Then
+% $\lambda_2 \neq 0$ and therefore $c = d = 0$, and therefore $ad - bc = 0$.
+
+% The remaining case is that $\lambda_1 \neq 0$ and $\lambda_2 \neq 0$. Then
+% \begin{align*}
+%   \begin{cases}
+%     a\lambda_1 + c\lambda_2 = 0\\
+%     b\lambda_1 + d\lambda_2 = 0,
+%   \end{cases}
+% \end{align*}
+% therefore
+% \begin{align*}
+%   \lambda_1                            &= -\frac{c}{a}\lambda_2\\
+%   \Big(-\frac{bc}{a} + d\Big)\lambda_2 &= 0\\
+%   ad - bc                              &= 0.
+% \end{align*}
+
+% $\impliedby$\\
+% For the reverse implication, we prove that $ad - bc = 0$ implies $x_1, x_2$
+% linearly dependent.
+
+% \red{TODO: Not sure how to do this without resorting to properties of
+%   determinant of linear transformation.}
+
+% Let $u_1, u_2$ be a basis for $\R^2$ and consider the matrix
+% $\mat{a}{c} {b}{d}$ with respect to this basis.
+
+% Viewed as a linear transformation, the matrix sends $u_1 \mapsto x_1$ and
+% $u_2 \mapsto x_2$.
+
+% The determinant of this matrix is $ad - bc$. Since the determinant is zero, the
+% linear transformation maps the basis vectors into a one- or zero-dimensional
+% subspace.
+
+% Therefore $x_1,x_2$ lie in a one dimensional subspace. Therefore
+% $x_1 = \lambda x_2$ for some $\lambda \in \R$. Therefore $x_1,x_2$ are linearly
+% dependent.
+
+% \end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-1-3.png}
