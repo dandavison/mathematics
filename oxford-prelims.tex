@@ -355,11 +355,11 @@ A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b 
 \begin{table}[h]
   \centering
   \begin{tabular}{|c|c|c|c|}
-    $          $ & $\Im < \Cod$ & $\Im = \Cod$   & $\Im > \Cod$\\
+    $          $ & $\Im < \Cod$      & $\Im = \Cod$   & $\Im > \Cod$\\
     \hline
-    $\Dom < \Im$ & Impossible   & Impossible     & Impossible  \\
-    $\Dom = \Im$ & 0 or 1 (A)   & 1 (B)          & Impossible  \\
-    $\Dom > \Im$ & $\infty$ (C) & $\infty$ (D)   & Impossible  \\
+    $\Dom < \Im$ & Impossible        & Impossible     & Impossible  \\
+    $\Dom = \Im$ & 0 or 1 (A)        & 1 (B)          & Impossible  \\
+    $\Dom > \Im$ & 0 or $\infty$ (C) & $\infty$ (D)   & Impossible  \\
   \end{tabular}
 \end{table}
 
@@ -381,7 +381,7 @@ A\Big(x_1 + \alpha (x_2 - x_1)\Big) = Ax_1 + \alpha(Ax_2 - Ax_1) = b + \alpha(b 
 % $b \notin \Im T_A$, in which case there are zero solutions. (But if
 % $b \in \Im T_A$ then there are infinitely many solutions.)
 
-\textbf{(iv)} $m > n$ and $T_A$ is onto. \textbf{No}: case D
+\textbf{(iv)} $m > n$ and $T_A$ is onto. \textbf{Yes}: case D
 
 \begin{lemma*}
   $Ax = b$ has infinitely many solutions for all $b \in \Cod T_A$ if and only
@@ -396,5 +396,53 @@ space, or the image is a lower dimensional subspace.]
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-2-3.png}
 \end{mdframed}
+
+Could be case B (1 solution) or C (infinite solutions).
+
+\textbf{(i)} Impossible
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-1.png}
+\end{mdframed}
+
+\begin{definition*}
+The pre-image of $X$ is $T^\1(X) := \{u ~|~ T(u) \in X\}$.
+\end{definition*}
+
+\begin{claim*}
+  $T^\1(X)$ is a subspace of $U$ that contains $\Ker T$.
+\end{claim*}
+
+\begin{proof}
+  To show that $T^\1(X)$ is a subspace of $U$ we must show that it is a subset
+  of $U$, that it contains the zero vector, and that it is closed under taking
+  linear combinations.
+
+  $T^\1(X)$ is a subset of $U$ by definition of pre-image.
+
+  Note that $0_V \in X$, since $X$ is a subspace of $V$. Therefore
+  $\Ker T \subseteq T^\1(X)$.
+
+  $T$ is linear, therefore $T(0_U) = 0_V$, therefore $0_U \in T^\1(X)$.
+
+  Let $u_1, \ldots, u_n \in T^\1(X)$ and let $T(u_i) = x_i \in X$ for
+  $i=1,\ldots, n$. Consider the linear combination $\sum \lambda_iu_i$ for
+  scalars $\lambda_i$. We have
+  $T\Big(\sum \lambda_iu_i\Big) = \sum \lambda_ix_i \in X$ by the linearity of
+  $T$ and by the fact that $X$ is a subspace. Therefore $T^\1(X)$ is closed
+  under taking linear combinations.
+\end{proof}
+
+\begin{claim*}
+  $\dim T^\1(X) = \dim\(X \cap \Im T\) + n_T$
+\end{claim*}
+
+\begin{proof}
+  Choose a basis $u_1, \ldots, u_n$ for $T^{-1}(X)$.
+
+
+\end{proof}
+
 
 \end{document}
