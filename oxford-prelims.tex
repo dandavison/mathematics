@@ -415,31 +415,96 @@ The pre-image of $X$ is $T^\1(X) := \{u ~|~ T(u) \in X\}$.
 \end{claim*}
 
 \begin{proof}
+  Note that $0_V \in X$, since $X$ is a subspace of $V$. Therefore
+  $\Ker T \subseteq T^\1(X)$.
+
   To show that $T^\1(X)$ is a subspace of $U$ we must show that it is a subset
   of $U$, that it contains the zero vector, and that it is closed under taking
   linear combinations.
 
   $T^\1(X)$ is a subset of $U$ by definition of pre-image.
 
-  Note that $0_V \in X$, since $X$ is a subspace of $V$. Therefore
-  $\Ker T \subseteq T^\1(X)$.
-
   $T$ is linear, therefore $T(0_U) = 0_V$, therefore $0_U \in T^\1(X)$.
 
-  Let $u_1, \ldots, u_n \in T^\1(X)$ and let $T(u_i) = x_i \in X$ for
-  $i=1,\ldots, n$. Consider the linear combination $\sum \lambda_iu_i$ for
+  Let $u_1, \ldots, u_n \in T^\1(X)$ and for $i=1,\ldots, n$ let
+  $x_i = T(u_i)$. Consider the linear combination $\sumin \lambda_iu_i$ for
   scalars $\lambda_i$. We have
-  $T\Big(\sum \lambda_iu_i\Big) = \sum \lambda_ix_i \in X$ by the linearity of
-  $T$ and by the fact that $X$ is a subspace. Therefore $T^\1(X)$ is closed
+  $T\Big(\sumin \lambda_iu_i\Big) = \sumin \lambda_ix_i \in X$ by the linearity
+  of $T$ and by the fact that $X$ is a subspace. Therefore $T^\1(X)$ is closed
   under taking linear combinations.
 \end{proof}
 
+\newpage
 \begin{claim*}
   $\dim T^\1(X) = \dim\(X \cap \Im T\) + n_T$
 \end{claim*}
 
+\begin{lemma}\label{subspace-basis-extension}
+  Let $U$ be a subspace of a finite-dimensional vector space $V$. Then every
+  basis of $U$ can be extended to be a basis of $V$. I.e. if $v_1, \ldots, v_m$
+  is a basis for $U$, then there exists a basis
+  $v_1, \ldots, v_m, v_{m+1}, \ldots, v_n$ of $V$.
+\end{lemma}
+
+\begin{lemma}\label{transformed-basis-spans-image}
+  Let $U, V$ be vector spaces, let $u_1, \ldots, u_n$ span $U$ and let
+  $T:U \to V$ be a linear transformation. Then $T(u_1), \ldots, T(u_n)$ spans
+  $V$.
+\end{lemma}
+
 \begin{proof}
-  Choose a basis $u_1, \ldots, u_n$ for $T^{-1}(X)$.
+  Let $T^*: \(T^\1(X)\) \to \(X \cap \Im T\)$ be the restriction of $T$ to $T^\1(X)$.
+
+  From above we have $\Ker T \subseteq T^\1(X)$, therefore $\Ker T = \Ker T^*$
+  and $n_T = n_{T^*}$.
+
+  Choose a basis $u_1, \ldots, u_{n_T}$ for $\Ker T^*$ and let
+  $n = \dim T^\1(X)$.
+
+  From Lemma \ref{subspace-basis-extension}, this basis can be extended to a
+  basis $u_1, \ldots, u_{n_T}, u_{n_T+1}, \ldots, u_n$ of $T^\1(X)$.
+
+  From Lemma \ref{transformed-basis-spans-image},
+  $T^*(u_1), \ldots, T^*(u_{n_T}), T^*(u_{n_T+1}), \ldots, T^*(u_n)$ spans
+  $\Im T^*$.
+
+  Moreover, $T^*(u_{n_T+1}), \ldots, T^*(u_n)$ spans $\Im T^*$, since
+  $T^*(u_1) = \ldots = T^*(u_{n_T}) = 0_V$.
+
+  Suppose that $T^*(u_{n_T+1}), \ldots, T^*(u_n)$ are linearly independent.
+
+  Then they are a basis for $\Im T^*$ and we have
+  $r_{T^*} := \dim(\Im T^*) = n - n_T$.
+
+  Note that $\Im T^* = X \cap \Im T$, and recall that $n := \dim T^\1(X)$.
+
+  So we have $\dim T^\1(X) = \dim\(X \cap \Im T\) + n_T$ as required.
+
+  It remains to show that $T^*(u_{n_T+1}), \ldots, T^*(u_{n_T+r_{T^*}})$ are linearly
+  independent.
+
+  % Rename and relabel these as follows: for $i = 1, \ldots, r_{T^*}$, let
+  % $x_i = u_{n_T + i}$.
+
+  Consider an arbitrary linear dependence relation
+  $\sum_{i=1}^{r_{T^*}} \lambda_iT^*(u_{n_T + i}) = 0_V$, for some scalars
+  $\lambda_i, \ldots, \lambda_{r_{T^*}}$
+
+  Since $T^*$ is linear, we have
+  $T^*\Big(\sum_{i=1}^{r_{T^*}} \lambda_i(u_{n_T + i})\Big) = 0_V$ and hence
+  $\sum_{i=1}^{r_{T^*}} \lambda_iu_{n_T+i} \in \Ker T^*$.
+
+  Therefore, using the basis for $\Ker T^*$, we have
+  $\sum_{i=1}^{r_{T^*}} \lambda_iu_{n_T+i} = \sum_{i=1}^{n_T} \alpha_iu_i$, for
+  some scalars $\alpha_i, \ldots, \alpha_{r_{T^*}}$.
+
+  Therefore $\sum_{i=1}^{n_T+r_{T^*}}\beta_iu_i = 0$, where each $\beta_i$ is
+  either $\lambda_i$ or $-\alpha_i$. But since the $u_i$ are a basis of
+  $T^\1(X)$ they are linearly independent, hence all the $\beta_i$ are zero,
+  and so $\lambda_i = 0$ for all $i \in \{1, \ldots, r_{T^*}\}$.
+
+  Therefore $T^*(u_{n_T+1}), \ldots, T^*(u_{n_T+r_{T^*}})$ are linearly
+  independent.
 
 
 \end{proof}
