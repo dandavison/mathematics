@@ -505,9 +505,63 @@ The pre-image of $X$ is $T^\1(X) := \{u ~|~ T(u) \in X\}$.
 
   Therefore $T^*(u_{n_T+1}), \ldots, T^*(u_{n_T+r_{T^*}})$ are linearly
   independent.
-
-
 \end{proof}
 
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-0.png}\\
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-2.png}
+\end{mdframed}
+% $\Im ST := \{w ~|~ \exists u: S(T(u)) = w\}$
+% $\Im S' := \{w ~|~ \exists v \in \Im T: S(v) = w\}$
+
+\textbf{(i)}
+
+\begin{claim*}
+  $\Im ST = \Im S'$.
+\end{claim*}
+\begin{proof}
+For the forwards direction, let $w \in \Im ST$. Then $\exists u \in U$ such
+that $S(T(u)) = w$. Since $T(u) \in \Im T$, we have $\exists v \in \Im T$
+such that $S(v) = w$. Therefore $w \in \Im S'$.
+
+For the reverse direction, let $w \in \Im S'$. Then $\exists v \in \Im T$ such
+that $S(v) = w$. Therefore $\exists u \in U$ such that $S(T(u)) = w$. Therefore
+$w \in \Im ST$.
+\end{proof}
+
+\begin{claim*}
+  $r_{ST} \leq \min\(r_S, r_T\)$.
+\end{claim*}
+\begin{proof}
+  $\Im S'$ is a subspace of $\Im S$\footnote{
+    $\Im S'$ is a subset of $\Im S$ and contains $0_W$. Consider
+    $\sumin \lambda_iw_i$ for $w_i \in \Im S'$ and scalars $\lambda_i$. For
+    each $w_i$ let $u_i \in \Im T$ be such that $S(u_i) = w_i$. Then
+    $\Big(\sumin \lambda_i u_i\Big) \in \Im T$ and
+    $\sumin \lambda_i w_i = \sumin \lambda_i S(u_i) = S\Big(\sumin \lambda_i
+    u_i\Big)$. Therefore $\Im S'$ is a subspace of $\Im S$.
+  }, therefore $r_{S'} \leq r_S$ by Lemma \ref{subspace-basis-extension}. Since
+  $\Im S' = \Im ST$, we have $r_{ST} \leq r_S$.
+
+Let $v_1, \ldots, v_{r_T}$ be a basis for $\Im T$. From Lemma
+\ref{transformed-basis-spans-image} we have $S(v_1), \ldots, S(v_{r_T})$ span
+$\Im S' = \Im ST$. Therefore $r_{ST} \leq r_T$.
+
+Therefore $r_{ST} \leq \min\(r_S, r_T\)$.
+\end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-1.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-2.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-3.png}
+\end{mdframed}
 
 \end{document}
