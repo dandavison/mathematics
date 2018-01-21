@@ -406,6 +406,8 @@ Could be case B (1 solution) or C (infinite solutions).
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-1.png}
 \end{mdframed}
 
+\includegraphics[width=300pt]{img/oxford-prelims-2017-A-3-diagram.png}
+
 \begin{definition*}
 The pre-image of $X$ is $T^\1(X) := \{u ~|~ T(u) \in X\}$.
 \end{definition*}
@@ -623,14 +625,33 @@ Therefore $r_{ST} \leq \min\(r_S, r_T\)$.
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-0.png}\\
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-2.png}
 \end{mdframed}
+\includegraphics[width=300pt]{img/oxford-prelims-2017-A-3-diagram.png}\\
 \textbf{(iii)}
 
 \begin{claim*}
-  $\dim S = r_{ST} + n_{ST}$.
+  $\dim U = r_{ST} + n_{ST}$.
 \end{claim*}
 
 \begin{proof}
+  Let $d = \dim U$.
 
+  We need to show that $r_{ST} = d - n_{ST}$, as the diagram suggests is true.
+
+  Long-winded way, similar to previous:
+
+  Let $u_1, \ldots, u_{n_{ST}}$ be a basis of $\Ker ST$.
+
+  We can extend this to a basis
+  $u_1, \ldots, u_{n_{ST}}, u_{n_{ST} + 1}, \ldots, u_d$ of $U$, by Lemma
+  \ref{subspace-basis-extension}.
+
+  As before, we conclude that $u_{n_{ST} + 1}, \ldots, u_d$ span $r_{ST}$,
+  since $u_1, \ldots, u_{n_{ST}}$ are in the kernel of $ST$.
+
+  And as before we conclude that, moreover, $u_{n_{ST} + 1}, \ldots, u_d$ are
+  linearly independent.
+
+  Thus we conclude that $r_{ST} = \dim U - n_{ST}$, as required.
 \end{proof}
 
 \newpage
