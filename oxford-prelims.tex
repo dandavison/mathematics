@@ -495,11 +495,11 @@ The pre-image of $X$ is $T^\1(X) := \{u ~|~ T(u) \in X\}$.
   $\sum_{i=1}^{r_{T^*}} \lambda_iu_{n_T+i} \in \Ker T^*$.
 
   Therefore, using the basis for $\Ker T^*$, we have
-  $\sum_{i=1}^{r_{T^*}} \lambda_iu_{n_T+i} = \sum_{i=1}^{n_T} \alpha_iu_i$, for
-  some scalars $\alpha_i, \ldots, \alpha_{r_{T^*}}$.
+  $\sum_{i=1}^{r_{T^*}} \lambda_iu_{n_T+i} = \sum_{i=1}^{n_T} \gamma_iu_i$, for
+  some scalars $\gamma_i, \ldots, \gamma_{r_{T^*}}$.
 
   Therefore $\sum_{i=1}^{n_T+r_{T^*}}\beta_iu_i = 0$, where each $\beta_i$ is
-  either $\lambda_i$ or $-\alpha_i$. But since the $u_i$ are a basis of
+  either $\lambda_i$ or $-\gamma_i$. But since the $u_i$ are a basis of
   $T^\1(X)$ they are linearly independent, hence all the $\beta_i$ are zero,
   and so $\lambda_i = 0$ for all $i \in \{1, \ldots, r_{T^*}\}$.
 
@@ -549,6 +549,88 @@ Let $v_1, \ldots, v_{r_T}$ be a basis for $\Im T$. From Lemma
 $\Im S' = \Im ST$. Therefore $r_{ST} \leq r_T$.
 
 Therefore $r_{ST} \leq \min\(r_S, r_T\)$.
+\end{proof}
+
+\textbf{(ii)}
+
+\begin{claim*}
+  $\Ker ST = T^\1\(\Ker S'\)$
+\end{claim*}
+
+\begin{proof}~\\
+  $u \in \Ker ST \iff S'(T(u)) = 0_W \iff T(u) \in \Ker S' \iff u \in T^\1\(\Ker S'\)$.
+\end{proof}
+
+\newpage
+\begin{claim*}
+  $n_{ST} = n_{S'} + n_T \leq n_S + n_T$.
+\end{claim*}
+
+\begin{proof}
+  Note that $\Ker T$ is a subspace of $\Ker ST$.
+
+  Let $u_1, \ldots, u_{n_T}$ be a basis for $\Ker T$.
+
+  By Lemma \ref{subspace-basis-extension}, this can be extended to a basis
+  $u_1, \ldots, u_{n_T}, u_{n_T + 1}, \ldots, u_{n_{ST}}$ of
+  $\Ker ST = T^\1\(\Ker S'\)$.
+
+  By Lemma \ref{transformed-basis-spans-image},
+  $T(u_1), \ldots, T(u_{n_T}), T(u_{n_T + 1}), \ldots, T(u_{n_{ST}})$ spans
+  $\Ker S'$.
+
+  However $T(u_1) = T(u_2) = \ldots = T(u_{n_T}) = 0_V$, therefore
+  $T(u_{n_T + 1}), \ldots, T(u_{n_{ST}})$ also spans $\Ker S'$.
+
+  Therefore $n_{S'} \leq n_{ST} - n_T$.
+
+  In order to prove that this is an equality, we need to show that
+  $T(u_{n_T + 1}), \ldots, T(u_{n_{ST}})$ are linearly independent. This
+  argument procedes in the usual manner:
+
+  Suppose there exist scalars $\lambda_{n_T+1}, \ldots, \lambda_{n_{ST}}$ such
+  that $\sum_{i=n_T+1}^{n_{ST}} \lambda_i T(u_{i}) = 0_V$. Since $T$ is linear
+  we have $T\Big(\sum_{i=n_T+1}^{n_{ST}} \lambda_i u_{i}\Big) = 0_V$, therefore
+  $\Big(\sum_{i=n_T+1}^{n_{ST}} \lambda_i u_{i}\Big) \in \Ker T$.
+
+  Using our basis for $\Ker T$, we have that there exist scalars
+  $\gamma_i, \ldots, \gamma_{n_T}$ such that
+  $\sum_{i=n_T+1}^{n_{ST}} \lambda_i u_{i} = \sum_{i=1}^{n_T} \gamma_i u_i$. In
+  other words, $\sum_{i=1}^{n_{ST}} \beta_i u_i = 0_U$, where
+  $\beta_i = \gamma_i$ if $i < n_T$, otherwise $\beta_i = \lambda_i$.
+
+  But $u_1, \ldots, u_{n_{ST}}$ are linearly independent. So we see that
+  \begin{align*}
+    \sum_{i=n_T+1}^{n_{ST}} \lambda_i T(u_{i}) = 0_V
+    \implies
+    \lambda_{n_T+1} = \lambda_{n_T+2} = \ldots = \lambda_{n_{ST}} = 0.
+  \end{align*}
+
+  So $T(u_{n_T + 1}), \ldots, T(u_{n_{ST}})$ are linearly independent, and
+  therefore are a basis for $\Ker S'$.
+
+  Therefore $n_{S'} = n_{ST} - n_T$, or equivalently, $n_{ST} = n_{S'} + n_T$,
+  as required.
+
+  Finally, $\Ker S'$ is a subspace of $\Ker S$, therefore $n_{S'} \leq n_S$ by
+  Lemma \ref{subspace-basis-extension}.
+
+  Therefore $n_{ST} = n_{S'} + n_T \leq n_S + n_T$, as required.
+\end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-0.png}\\
+\includegraphics[width=400pt]{img/oxford-prelims-2017-A-3-2.png}
+\end{mdframed}
+\textbf{(iii)}
+
+\begin{claim*}
+  $\dim S = r_{ST} + n_{ST}$.
+\end{claim*}
+
+\begin{proof}
+
 \end{proof}
 
 \newpage
