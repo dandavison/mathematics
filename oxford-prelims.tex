@@ -658,7 +658,64 @@ Therefore $r_{ST} \leq \min\(r_S, r_T\)$.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-1.png}
 \end{mdframed}
+\textbf{(i)}
+\begin{definition*}
+  The \textbf{characteristic polynomial} $\chi_T$ of $T$ is
+  $\det(A - \lambda I)$, where $A$ is the matrix of $T$ with respect to some,
+  initial and final, basis of $V$.
+\end{definition*}
 
+This is well-defined because:
+
+\begin{claim*}
+  Let $A$ be a matrix of $T$ with respect to initial and final basis $B$, and
+  let $A'$ be a matrix of $T$ with respect to initial and final basis
+  $B'$. Then $\det(A - \lambda I) = \det(A' - \lambda I)$.
+\end{claim*}
+
+\begin{proof}
+  This follows from the fact that the determinant of $T$ does not depend on the
+  choice of basis.
+\end{proof}
+
+\textbf{(ii)}
+\begin{definition*}
+  A scalar $\lambda$ is an \textbf{eigenvalue} of $T$ if there exists a
+  non-zero vector $v \in V$ such that $Tv = \lambda v$. In that case $v$ is an
+  \textbf{eigenvector} of $T$.
+\end{definition*}
+
+\begin{definition*}
+  The \textbf{eigenspace} $E_\lambda$ is the set of all vectors $v$ for which
+  $Tv = \lambda v$. Equivalently, it is $\Ker(T - \lambda I)$.
+\end{definition*}
+
+\begin{claim*}
+  $E_\lambda$ is a subspace of $V$.
+\end{claim*}
+
+\begin{proof}
+  Clearly $E_\lambda \subseteq V$. Also, $0_V \in E_\lambda$.
+
+  Let $v_1, \ldots, v_n \in E_\lambda$ and let $\gamma_1, \ldots, \gamma_n$ be
+  scalars from the field. We want to show that an arbitrary linear combination
+  $\sumin \gamma_i v_i$ is in $E_\lambda$. Indeed, we have
+  $T\Big(\sumin \gamma_i v_i\Big) = \sumin \gamma_i T(v_i) = \sumin \gamma_i
+  \lambda v_i = \lambda\Big(\sumin \gamma_i v_i\Big)$, as required.
+\end{proof}
+
+\begin{claim*}
+  $E_\lambda \cap E_\mu = \{0\}$.
+\end{claim*}
+
+\begin{proof}
+  Let $v \neq 0_V \in E_\lambda$. Suppose $v \in E_\mu$. Then
+  $Tv = \lambda v = \mu v$, therefore $(\lambda - \mu)v = 0$. Since
+  $\mu \neq \lambda$ and $v \neq 0_V$, this is a contradiction, proving that
+  $E_\lambda \cap E_\mu = \{0\}$.
+\end{proof}
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-2.png}
 \end{mdframed}
