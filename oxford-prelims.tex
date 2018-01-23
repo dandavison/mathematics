@@ -144,8 +144,8 @@ non-zero proper subspaces of $\R^2$ is the set of such lines.
 
 
 \begin{proof}
-  We prove the negation:
-  $U \not\subseteq W \land W \not\subseteq U \iff (U \cup V) \not\subspaceeq V$.
+  First we prove that $(U \not\subseteq W$ and
+  $W \not\subseteq U) \implies (U \cup V) \not\subspaceeq V$.
 
   Suppose that $U \not\subseteq W$ and $W \not\subseteq U$. Then there exists
   $u \in U$, $w \in W$ such that $u \notin W$ and $w \notin U$.
@@ -156,7 +156,17 @@ non-zero proper subspaces of $\R^2$ is the set of such lines.
   Similarly, $(u + w) \notin W$. Therefore $(u + w) \notin U \cup W$, and so
   $U \cup W$ is not a subspace of $V$.
 
-  Conversely, suppose that $U \cup W$ is not a subspace of $V$.
+  Conversely, suppose $U \subseteq W$ or $W \subseteq U$. Suppose, without loss
+  of generality, that $U \subseteq W$. Then $U \cup W = W \subspaceeq V$.
+
+  % Conversely, suppose that $U \cup W$ is not a subspace of $V$. It contains $0$
+  % and is a subset, so it must fail on closure under vector addition or scalar
+  % multiplication. Therefore there exists scalar $\lambda$ and
+  % $v_1, v_2 \in U \cup W$ such that $v_1 + \lambda v_2 \notin U \cup W$. But
+  % $v_1$ and $v_2$ cannot both be in $U$, since $U$ is a subspace, and for the
+  % same reason they cannot both be in $V$. Therefore one of $v_1, v_2$ is in
+  % $U \setminus W$ and the other is in $W \setminus U$. Therefore
+  % $U \not\subseteq W \land W \not\subseteq U$.
 \end{proof}
 
 \begin{mdframed}
