@@ -675,7 +675,13 @@ This is well-defined because:
 
 \begin{proof}
   This follows from the fact that the determinant of $T$ does not depend on the
-  choice of basis.
+  choice of basis:
+
+  [Need to account for the $-\lambda I$ additive term.]
+
+  Let $P$ be the change-of-basis matrix, so that $A' = P^\1AP$.
+
+  Then $\det A' = \det(P^\1)\det(A)\det(P) = \det(P^\1)\det(P)\det(A) = \det(I)\det(A) = \det(A)$.
 \end{proof}
 
 \textbf{(ii)}
@@ -715,13 +721,40 @@ This is well-defined because:
   $E_\lambda \cap E_\mu = \{0\}$.
 \end{proof}
 
+\textbf{(iii)}\\
+\begin{proof}
+  The following statements are equivalent:
+
+  $\lambda$ is an eigenvalue of $T$.
+
+  $\exists v \neq 0_V$ such that $Tv = \lambda v$.
+
+  $\exists v \neq 0_V$ such that $\(T - \lambda I\)v = 0_V$.
+
+  $\Ker(T - \lambda I) \neq \{0_V\}$.
+
+  $T - \lambda I$ is non-invertible.
+
+  $\det(T - \lambda I) = 0$.
+
+  $\chi_T(\lambda) = 0$.
+\end{proof}
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-2.png}
 \end{mdframed}
 
+\newcommand{\id}{\mathrm{id}}
+
+Suppose $T^2 = \id_V$. Then $T = T^\1$. Therefore $\det T = \pm 1$.
+
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-3.png}
 \end{mdframed}
+
+Since $\dim V = 3$, we have $n_T \in \{0, 1, 2, 3\}$.
 
 \end{document}
