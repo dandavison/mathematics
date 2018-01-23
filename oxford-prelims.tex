@@ -105,6 +105,65 @@ non-zero proper subspaces of $\R^2$ is the set of such lines.
   \end{enumerate}
 \end{enumerate}
 
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-9.png}
+\end{mdframed}
+
+\begin{proof}
+  $0 \in U + W$ since $0 \in U$ and $0 \in W$.
+
+  Let $a \in U + W$. Then $a = u + w$ for some $u \in U, w \in W$. Therefore
+  $a = u + w$ for some $u, w \in V$, so $a \in V$. Therefore
+  $U + W \subseteq V$.
+
+  Let $u_1, u_2 \in U$ and $w_1, w_2 \in W$, so that
+  $(u_1 + w_1), (u_2 + w_2) \in U + W$, and let $\lambda$ be a scalar. Note
+  that
+  $$
+  (u_1 + w_1) + \lambda(u_2 + w_2) = (u_1 + \lambda u_2) + (w_1 + \lambda w_2) \in U + W.
+  $$
+  Therefore $U + W \subspaceeq V$ by the Subspace Test.
+
+  Regarding $U \cap V$, it contains zero and is clearly a subset of $V$. Let
+  $a_1, a_2 \in U \cap V$. Then $a_1, a_2 \in U$, so
+  $a_1 + \lambda a_2 \in U \subseteq V$ for all scalars $\lambda$. Therefore
+  $U \cap V \subspaceeq V$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-10.png}
+\end{mdframed}
+
+\begin{proof}
+  $0 \notin U \setminus W$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-11.png}
+\end{mdframed}
+
+
+\begin{proof}
+  We prove the negation:
+  $U \not\subseteq W \land W \not\subseteq U \iff (U \cup V) \not\subspaceeq V$.
+
+  Suppose that $U \not\subseteq W$ and $W \not\subseteq U$. Then there exists
+  $u \in U$, $w \in W$ such that $u \notin W$ and $w \notin U$.
+
+  Suppose $(u + w) \in U$. Then $(u + w) - u \in U$. But then $w \in U$ which
+  is a contradiction. Therefore $(u + w) \notin U$.
+
+  Similarly, $(u + w) \notin W$. Therefore $(u + w) \notin U \cup W$, and so
+  $U \cup W$ is not a subspace of $V$.
+
+  Conversely, suppose that $U \cup W$ is not a subspace of $V$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-12.png}
+\end{mdframed}
+
+
 
 \section{2017}
 
