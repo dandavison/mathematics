@@ -5,6 +5,107 @@
 
 \begin{document}
 
+\section{Exercises in lecture notes}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-1.png}
+\end{mdframed}
+
+\begin{proof}
+  From (VS4), $-z$ exists, and we have $v + z + (-z) = v = v + (-z)$, which is a
+  contradiction if $z \neq 0_V$.
+\end{proof}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-2.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-3.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-4.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-thm-3-2.png}
+\end{mdframed}
+
+\begin{proof}
+  Suppose $U$ is a subspace of $V$. Then by definition of subspace
+  (non-emptiness) $U$ is non-empty, hence $u \in U$ exists. Also by definition
+  of subspace (closure under scalar multiplication) $\lambda u \in U$. In
+  particular, $0u = 0_V \in U$. Finally by definition of subspace (closure
+  under vector addition) $\lambda u + v \in U$, for all $u, v \in U$.
+
+  Conversely, suppose $0_V \in U$ and $\lambda u + v \in U$ for all
+  $u, v \in U$. Then $U \neq \emptyset$. Letting $\lambda = 1$ we see that
+  $u + v \in U$ for all $u, v \in U$, and letting $v = 0$, we see that
+  $\lambda u \in U$ for all $u \in U$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-5.png}
+\end{mdframed}
+
+\begin{proof}
+  Suppose $U$ is a non-zero proper subspace of $\R^1$. Then
+  $\exists ~ u \in U$, and $\lambda u \in U$ for all $\lambda \in \R$, hence
+  $U = \R$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=350pt]{img/oxford-prelims-M1-linear-algebra-3-6.png}
+\end{mdframed}
+Take a circle with centre $(0, 0)$ and radius $r > 0$. For a point $v$ on the
+circle, construct the line passing through $v$ and the origin. The set of
+non-zero proper subspaces of $\R^2$ is the set of such lines.
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-7.png}
+\end{mdframed}
+
+\begin{proof}
+  $0 \in U$ since we can take all $\alpha_i = 0$.
+
+  Let $u_1, u_2 \in U$. Then $\alpha_1u_1 + u_2 \in U$ for all $\alpha_1 \in F$
+  by definition of $U$, since $\alpha_1u_1 + u_2 = \alpha_1 u_1 + \alpha_2 u_2$
+  with $\alpha_2 = 1$.
+
+  (This works even if $m = 1$ since then $u_1 = u_2$ and
+  $\alpha_1u_1 + u_2 = \alpha_1 u_1 + u_1 = (\alpha_1 + 1)u_1 \in U$).
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-8.png}
+\end{mdframed}
+
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{enumerate}[label=(\roman*)]
+  \item Yes. Contains $0$ and
+    \begin{align*}
+      &a_1 + \lambda a_2 + b_1 + \lambda b_2 - c_1 - \lambda c_2 - d_1 - \lambda d_2\\
+      =~&(a_1 + b_1) - (c_1 + d_1) + \lambda\Big((a_2 + b_2) - (c_2 + d_2)\Big)\\
+      =~&0.
+    \end{align*}
+  \item No. Does not contain 0.
+  \item No. Contains 0 but $(a_1)^2 - (b_1)^2 = (a_2)^2 - (b_2)^2 = 0 \nimplies (a_1 + a_2)^2 - (b_1 + b_2)^2 = 0$
+  \end{enumerate}
+\item
+  \begin{enumerate}[label=(\roman*)]
+  \item Yes. Contains 0 and closed under addition and scalar multiplication.
+  \item No. Zero matrix not invertible.
+  \item No. Neither $\mat{1}{1}
+                                {1}{1}$ nor $\mat{0}{0}
+                                                 {1}{2}$ are invertible.
+        Yet their sum $\mat{1}{1}
+                           {2}{3}$ is invertible.
+  \end{enumerate}
+\end{enumerate}
+
+
 \section{2017}
 
 \subsection*{}  % 1
