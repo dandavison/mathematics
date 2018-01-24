@@ -173,7 +173,24 @@ non-zero proper subspaces of $\R^2$ is the set of such lines.
 \includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-12.png}
 \end{mdframed}
 
+\begin{enumerate}[label=(\alph*)]
+\item Let $v_1 \in (L \cap M) + (L \cap N)$. Then $v_1 = v_2 + v_3$ where
+  $v_2, v_3 \in L$. Therefore $v_1 \in L$ since $L$ is a subspace. Also
+  $v_2 \in M$ and $v_3 \in N$, therefore $v_1 \in M + N$. Therefore
+  $v_1 \in L \cap (M + N)$.
 
+\item Suppose $L =$ (line through $(1, 0)$), $M =$ (line through $(1,1)$) and
+  $N = $ (line through $(0, 1)$). Then $(L \cap M) + (L \cap N) = \{0\}$. But
+  $(M + N) = \R^2$, so $L \cap (M + N) = L \neq \{0\}$.
+
+\item No, it's not true in general. Let $L, M, N$ be the lines in $\R^2$
+  defined in (b) above. Then $L + (M \cap N) = L$. But
+  $(L + M) \cap (L + N) = \R^2 \cap \R^2 = \R^2 \neq L$.
+\end{enumerate}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-linear-algebra-3-13.png}
+\end{mdframed}
 
 \section{2017}
 
