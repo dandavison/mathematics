@@ -166,9 +166,11 @@
 \newcommand{\hessian}{\mathbf{H}}
 \newcommand{\hlinee}{\\\rule{400pt}{0.1pt}\\}
 \newcommand{\limn}{\lim\limits_{n \to \infty}}
-\newcommand{\matttxttt}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
+\newcommand{\vecMMM}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
+\newcommand{\matMMxNN}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
+\newcommand{\matMMMxNNN}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
 \newcommand{\mattxtttt}[8]{\begin{bmatrix}#1 & #2 \\ #3 & #4 \\ #5 & #6\\ #7 & #8\\ \end{bmatrix}}
-\newcommand{\matt}{\matttxttt}
+\newcommand{\matt}{\matMMMxNNN}
 \newcommand{\mat}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
 \newcommand{\ninfty}{n \rightarrow \infty}
 \newcommand{\otherwise}{\text{otherwise}}
