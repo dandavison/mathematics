@@ -17,6 +17,40 @@ more one-dimensional character: $\{1, i\}$ are no longer linearly independent.
 \footnotetext{
   \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
 }
+
+\section{Examples of vector spaces}
+\begin{enumerate}
+\item The set $\R^n$ of $n-$tuples of real numbers, under componentwise
+  addition and multiplication by real scalars.
+\item The set $M_{m \times n}(\R)$ of $m\times n$ matrices, under componentwise
+  addition and multiplication by real scalars.
+\item The field $\C$ with multiplication by real scalars is equivalent to $\R^2$.
+\item The set of solutions of a system of \textit{homogeneous} linear equations
+  in $n$ variables is a subspace $V$ of $\R^n$. (Let $A$ be the matrix
+  representing the system and let $u$ and $v$ be solutions. Then $Au = Av = 0$
+  and $V$ is a subspace since $A(u + v) = Au + Av = 0$, and
+  $A(\lambda u) = \lambda Au = 0$.)
+\item The set $\R_n[x]$ of polynomials of degree $\leq n$ is a real vector
+  space.
+\item The set $\R^X$ of real-valued functions on any set $X$ is a real vector
+  space. Examples:
+  \begin{enumerate}
+  \item Let $[n] = \{1, 2, \ldots, n\}$. Note that the function space $\R^{[n]}$ is
+    the same as $\R^n$ (both are sets of $n-$tuples of reals).
+  \item Similarly, $\R^{[m]\times[n]}$ is the same as $M_{m \times n}(\R)$.
+  \item $\R^\R$, the set of all functions $\R\to\R$.
+  \item The set of continuous functions $\R \to \R$, and differentiable functions
+    $\R \to \R$, under pointwise addition and pointwise scalar multiplication
+    (from any field?).
+  \item Set of solutions of a homogeneous linear ODE
+  \end{enumerate}
+\item Sequences $(a_n)$ of real numbers, under term-wise addition and term-wise
+  scalar multiplication, form a vector space, identifiable with the function
+  space $\R^\N$. Examples:
+  \begin{enumerate}
+  \item Set of convergent sequences
+  \end{enumerate}
+\end{enumerate}
 \section{Span, basis, dimension}
 \begin{theorem}
   Every basis has the same size.
