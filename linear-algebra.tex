@@ -1,4 +1,59 @@
 \section{Definitions}
+
+\subsection{Linear system}
+
+Consider the linear systems
+\begin{align*}
+  \begin{array}{cc}
+    \begin{cases}
+      x = 0\\
+      y = 0
+    \end{cases}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~&
+    \begin{cases}
+      x - y = 0\\
+      x + y = 1\\
+      x - z = 0
+    \end{cases}
+  \end{array}
+\end{align*}
+
+A ``solution'' is an assignment of values to the variables which makes all the
+equations true.
+
+In other words, we notice that the equations involve two variables, and
+consider the set of 2-tuples $S = \{(x, y) ~|~ x, y \in \R\}$.
+
+The set of solutions is the subset of $S$ for which the equations are all true.
+
+Geometrically, we think of the 2-tuple $(a, b)$ as a point in the $\R^2$
+plane. Specifically, if our basis is $\vec e_1, \vec e_2$, then $(a, b)$ is the
+point $a\vec e_1 + b\vec e_2$. We might imagine that the basis is the standard
+orthogonal basis, but that's not necessary.
+
+The linear equations describe hyperplanes (lines, planes etc) in $S$.
+
+The set of solutions is the intersection of these hyperplanes: another
+hyperplane or the empty set.
+
+So at this point, we do not treat the ambient space as a vector space (we're
+not adding or scaling points), and neither the equation hyperplanes nor the
+solution hyperplane, need be a subspace (since it need not contain the origin).
+
+Next, we rewrite the linear system as a matrix applied to a vector:
+\begin{align*}
+  \begin{array}{cc}
+    \matMMxNN{1}{0}
+             {0}{1} \vecMM{x}{y} = \vecMM{0}{0}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&
+    \matMMxNN{1}{-1}
+             {1}{1} \vecMM{x}{y} = \vecMM{0}{1}.
+  \end{array}
+\end{align*}
+
+
+
+
 \subsection{Subspace}
 A subspace $U$ of $V$ is a subset of $V$ for which
 \begin{enumerate}

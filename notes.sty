@@ -166,9 +166,10 @@
 \newcommand{\hessian}{\mathbf{H}}
 \newcommand{\hlinee}{\\\rule{400pt}{0.1pt}\\}
 \newcommand{\limn}{\lim\limits_{n \to \infty}}
-\newcommand{\vecMMM}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
-\newcommand{\matMMxNN}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
-\newcommand{\matMMMxNNN}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
+\newcommand{\vecMM}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\newcommand{\vecMMM}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\newcommand{\matMMxNN}[4]{\begin{pmatrix}#1 & #2\\#3 & #4\\ \end{pmatrix}}
+\newcommand{\matMMMxNNN}[9]{\begin{pmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{pmatrix}}
 \newcommand{\mattxtttt}[8]{\begin{bmatrix}#1 & #2 \\ #3 & #4 \\ #5 & #6\\ #7 & #8\\ \end{bmatrix}}
 \newcommand{\matt}{\matMMMxNNN}
 \newcommand{\mat}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
@@ -212,3 +213,11 @@
 \DeclareMathOperator{\df}{\text{df}}
 \DeclareMathOperator{\dg}{\text{dg}}
 \let\dh\relax\DeclareMathOperator{\dh}{\text{dh}}
+
+
+% https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix$
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
