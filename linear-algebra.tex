@@ -18,20 +18,21 @@ Consider the linear systems
   \end{array}
 \end{align*}
 
-A ``solution'' is an assignment of values to the variables which makes all the
-equations true.
+A ``solution'' is an assignment of values to the $n$ variables which makes all
+$m$ equations true.
 
-In other words, we notice that the equations involve two variables, and
-consider the set of 2-tuples $S = \{(x, y) ~|~ x, y \in \R\}$.
+In other words, we notice that the equations involve $n$ variables, and
+consider the set of $n$-tuples
+$S = \{(x, y, \ldots) ~|~ x, y, \ldots \in \R\}$.
 
-The set of solutions is the subset of $S$ for which the equations are all true.
+The set of solutions is the subset of $S$ for which all the equations are true.
 
 Geometrically, we think of the 2-tuple $(a, b)$ as a point in the $\R^2$
 plane. Specifically, if our basis is $\vec e_1, \vec e_2$, then $(a, b)$ is the
 point $a\vec e_1 + b\vec e_2$. We might imagine that the basis is the standard
 orthogonal basis, but that's not necessary.
 
-The linear equations describe hyperplanes (lines, planes etc) in $S$.
+The linear equations define hyperplanes (lines, planes etc) in $S$.
 
 The set of solutions is the intersection of these hyperplanes: another
 hyperplane or the empty set.
@@ -40,18 +41,73 @@ So at this point, we do not treat the ambient space as a vector space (we're
 not adding or scaling points), and neither the equation hyperplanes nor the
 solution hyperplane, need be a subspace (since it need not contain the origin).
 
-Next, we rewrite the linear system as a matrix applied to a vector:
+Next, we rewrite the linear system as a matrix applied to a vector, $Ax = b$:
 \begin{align*}
   \begin{array}{cc}
     \matMMxNN{1}{0}
              {0}{1} \vecMM{x}{y} = \vecMM{0}{0}
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&
-    \matMMxNN{1}{-1}
-             {1}{1} \vecMM{x}{y} = \vecMM{0}{1}.
+    \matMMMxNN{1}{-1}
+              {1}{~~1}
+              {1}{-1} \vecMM{x}{y} = \vecMMM{0}{1}{0}.
   \end{array}
 \end{align*}
 
+The equation coefficients are now represented by a linear transformation
+$A:\R^n \to \R^m$.
 
+This matrix equation is saying:
+\begin{enumerate}
+\item Let the $x$ coefficients be a vector $\vec a_1 \in \R^m$. And let the $y$
+  coefficients be another vector $\vec a_2 \in \R^m$, and so on.
+\item So now you have $n$ vectors spanning some subspace of $\R^m$.
+\item Is $b$ in their span? If so, for what values of $x, y, \ldots$ does
+  $x\vec a_1 + y\vec a_2 + \cdots = b$?
+\end{enumerate}
+
+From Frenkel's Multivariable Calculus lectures:
+
+\begin{center}
+  \begin{quote}
+    \textit{The dimensionality of an object is equal to the dimensionality of the
+      ambient space, minus the number of independent equations.}
+  \end{quote}
+\end{center}
+
+So, basically, suppose there are $n$ variables. Then the solution set is a
+subset (hyperplane) of $\R^n$, and
+
+\begin{tabular}{c|c}
+  Independent equations & Solution set\\
+  \hline
+  1                     & $(n - 1)$-dimensional hyperplane \\
+  2                     & $(n - 2)$-dimensional hyperplane \\
+  \vdots                & \vdots \\
+  $n-1$                 & line \\
+  $n$                   & point \\
+  $n + 1$               & impossible \\
+  \vdots                & \vdots
+\end{tabular}
+
+So when do we get no solutions? That's when
+\begin{align*}
+  &\text{the $n$ columns of $A$ do not span $\R^m$}\\
+  \iff &\Rank A < \text{(number of equations)}\\
+  \iff &\text{not all equations independent},
+\end{align*}
+and $b$ is not in their span.
+
+In other words, suppose we have a linear system involving $n$ variables.
+
+Suppose that all the $m$ equations are independent: full row rank.
+
+Then $m \leq n$.
+
+Now we introduce a dependent equation into the system.
+
+\red{One error above is that its only the coefficients of the equation that
+  we're considering when we say the rows are dependent/independent. So it's not
+  correct to talk about ``independent equations''.}
 
 
 \subsection{Subspace}
