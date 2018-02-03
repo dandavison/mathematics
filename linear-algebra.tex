@@ -1,3 +1,5 @@
+\newcommand{\mat}{\matMMxNN}
+
 \section{Definitions}
 
 \subsection{Linear system}
@@ -44,8 +46,8 @@ solution hyperplane, need be a subspace (since it need not contain the origin).
 Next, we rewrite the linear system as a matrix applied to a vector, $Ax = b$:
 \begin{align*}
   \begin{array}{cc}
-    \matMMxNN{1}{0}
-             {0}{1} \vecMM{x}{y} = \vecMM{0}{0}
+    \mat{1}{0}
+        {0}{1} \vecMM{x}{y} = \vecMM{0}{0}
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&
     \matMMMxNN{1}{-1}
               {1}{~~1}
@@ -300,15 +302,15 @@ Conceptually, we have
 $$
 \mat{2}{-1}
     {1}{1} =
-\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
 $$
 
-where "their representation" means the vector expressed using their coordinate
+where ``their representation'' means the vector expressed using their coordinate
 system. So the role played by the inverse is
 
 $$
 \cvec{a}{b} =
-\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
 \cvec{3}{2}.
 $$
 
@@ -324,10 +326,10 @@ $$
 what is that transformation in their coordinates? The answer is
 
 $$
-\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
 \mat{0}{-1}
     {1}{0}
-\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
 $$
 
 since the composition of those three transformations defines a single
@@ -590,9 +592,9 @@ I.e., we're going to compute the overall transformation as this product of
 matrices (remember that one reads these things right-to-left):
 
 $$
-\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
-\begin{bmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{bmatrix}^n
-\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
+\begin{pmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{pmatrix}^n
+\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
 $$
 
 The crux of all this is that the exponentiation is efficient in the
@@ -616,7 +618,7 @@ performing all three steps is going to look like
 
 $$
 V
-\begin{bmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{bmatrix}^n
+\begin{pmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{pmatrix}^n
 V^{-1}
 $$
 
@@ -625,9 +627,9 @@ OK, so what is the matrix in the middle? The
 can compute it as
 
 $$
-\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
 A
-\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
 $$
 
 In other words the matrix in the middle is
@@ -647,13 +649,13 @@ $$
 Put back into words, that's
 
 $$
-\begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
 \Bigg(
-    \begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+    \begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
     A
-    \begin{bmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{bmatrix}
+    \begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
 \Bigg)^n
-\begin{bmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{bmatrix}
+\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
 $$
 
 
