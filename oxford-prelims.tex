@@ -3,6 +3,9 @@
 \usepackage{notes}
 \usepackage{oxford}
 
+\DeclareMathOperator{\id}{\mathrm{id}}
+
+
 \begin{document}
 
 \section{Exercises in lecture notes}
@@ -1088,12 +1091,21 @@ This is well-defined because:
 \begin{proof}
   Clearly $E_\lambda \subseteq V$. Also, $0_V \in E_\lambda$.
 
-  Let $v_1, \ldots, v_n \in E_\lambda$ and let $\gamma_1, \ldots, \gamma_n$ be
-  scalars from the field. We want to show that an arbitrary linear combination
-  $\sumin \gamma_i v_i$ is in $E_\lambda$. Indeed, we have
-  $T\Big(\sumin \gamma_i v_i\Big) = \sumin \gamma_i T(v_i) = \sumin \gamma_i
-  \lambda v_i = \lambda\Big(\sumin \gamma_i v_i\Big)$, as required.
+  Let $v_1, v_2 \in E_\lambda$ and let $\gamma$ be a scalar from the
+  field. Then
+  $$
+  T(v_1 + \gamma v_2) =
+  T(v_1) + \gamma T(v_2) =
+  \lambda v_1 + \lambda\gamma v_2 =
+  \lambda(v_1 + \gamma v_2).
+  $$
+  Therefore the eigenspace $E_\lambda$ is a subspace by the Subset Test.
 \end{proof}
+
+I think there's a non-trivial point here: if two eigenvectors have the same
+eigenvalue, the linearity of the transformation means that all vectors in their
+span are also eigenvectors in the same eigenspace. I.e. the only way to have
+distinct eigenspaces is
 
 \begin{claim*}
   $E_\lambda \cap E_\mu = \{0\}$.
@@ -1130,16 +1142,55 @@ This is well-defined because:
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-2.png}
 \end{mdframed}
 
-\newcommand{\id}{\mathrm{id}}
-
 Suppose $T^2 = \id_V$. Then $T = T^\1$. Therefore $\det T = \pm 1$.
 
+\red{TODO}
 
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-3.png}
 \end{mdframed}
 
-Since $\dim V = 3$, we have $n_T \in \{0, 1, 2, 3\}$.
+
+\begin{proof}
+  We assume that
+  \begin{align*}
+    T^3 &= T\\
+    T^2 &\neq T\\
+    T^2 &\neq \id_V.
+  \end{align*}
+
+  Since $\dim V = 3$, we have $n_T \in \{0, 1, 2, 3\}$.
+
+  Suppose $n_T = 0$. Then $T^\1$ exists and we have
+  $T^\1T^3 = T^2 = T^\1T = \id_V$, which contradicts one of the
+  assumptions. Therefore $n_T \neq 0$.
+
+  Suppose $n_T = 3$. Then $\Im T = \{0\}$. Therefore $T^2 = T$, which
+  contradicts one of the assumptions. Therefore $n_T \neq 3$.
+
+  Therefore $n_T \in \{1, 2\}$.
+\end{proof}
+
+\begin{proof}
+  Suppose $n_T = 2$.
+
+  Let $\{v_1, v_2\}$ be a basis for the nullspace of $T$.
+
+  By the Steinitz Exchange lemma, we can find a vector $v_3$ such that
+  $(v_1, v_2, v_3)$ is an ordered basis of $V$. Then the matrix of $T$ with
+  respect to this basis is
+  \begin{align*}
+    \matMMMxNNN{\vline}{\vline}{\vline}
+               {T(v_1)}{T(v_2)}{T(v_3)}
+               {\vline}{\vline}{\vline} =
+    \matMMMxNNN{\vline}{\vline}{\vline}
+               {0_V}{0_V}{T(v_3)}
+               {\vline}{\vline}{\vline}.
+  \end{align*}
+
+  \red{TODO}
+
+\end{proof}
 
 \end{document}
