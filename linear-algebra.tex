@@ -337,7 +337,124 @@ transformation that takes in a vector expressed in their coordinate system,
 converts it to our coordinate system, transforms it as requested, and then
 converts back to theirs.
 
+Let
+\begin{align*}
+  P = \mat{2}{-1}
+          {1}{1}
+\end{align*}
+be the change-of-basis matrix . Then the matrix, in their coordinates, of the
+rotation transformation is
+$$
+P^\1\mat{0}{-1}
+        {1}{0} P.
+$$
 
+What about the uniform stretch transformation? In our coordinates this has
+matrix $\lambda I = \mat{\lambda}{0}
+                        {0}{\lambda}$. In their coordinates, it has matrix
+\begin{align*}
+P^\1\lambda I P = \lambda P^\1 P = \lambda I.
+\end{align*}
+I.e. a uniform stretch transformation represented by a diagonal matrix has the
+same matrix in any basis. That's because -- forget about introducing any basis
+-- there is only one ``uniform stretch transformation'': it's the
+transformation that acts on space like it's a balloon being inflated
+uniformly. Whatever basis vectors you choose, each one $\vec e_i$ is going to be taken
+to $\lambda \vec e_i$. That means the matrix of the transformation, in whatever basis,
+is $\mat{\lambda}{0}
+        {0}{\lambda}$, because the vector
+\begin{quote}
+``one unit in the $\vec e_1$ direction, zero units in the $\vec e_2$ direction''
+\end{quote}
+is going to be taken to the vector
+\begin{quote}
+``$\lambda$ units in the $\vec e_1$ direction, zero units in the $\vec e_2$ direction''.
+\end{quote}
+
+What about a non-uniform stretch transformation?
+
+\newpage
+Consider $\R^2$. Fix a first basis vector $e_1$.
+
+Consider the map $T:\R^2\to\R^2$ which stretches space by a factor of 2 in the
+direction of $e_1$, and by a factor of 3 in the orthogonal direction.
+
+Suppose that the second basis vector $e_2$ is orthogonal to $e_1$ and has the
+same magnitude.
+
+Then the matrix of $T$ is $\mat{2}{0}
+                               {0}{3}$ with respect to this basis.
+~\\
+
+Now consider an alternative basis $\{f_1, f_2\}$ where $f_2$ intersects with
+$f_1$ at $45\deg$.
+
+Specifically, with respect to basis $\{e_1, e_2\}$, we have $f_1 = (1, 0)$ and
+$f_2 = (1, 1)$.
+
+Then the matrix of $T$ with respect to basis $\{f_1, f_2\}$ is
+\begin{align*}
+  \mat{1}{1}
+      {0}{1}^\1 \mat{2}{0}
+                    {0}{3} \mat{1}{1}
+                               {0}{1} &=
+  % \mat{1}{-1}
+  %     {0}{1} \mat{2}{0}
+  %                {0}{3} \mat{1}{1}
+  %                           {0}{1} \\ &=
+  \mat{1}{-1}
+      {0}{1}  \mat{2}{2}
+                  {0}{3} \\ &=
+  \mat{2}{-1}
+      {0}{3}.
+\end{align*}
+(It's obvious that $f_1 \mapsto (2, 0)$; that $f_2 \mapsto (-1, 3)$ is clear in
+a diagram.)
+
+The eigenvalues of $T$ are clearly 2 and 3, independent of basis.
+
+The eigenspaces are the line through $e_1$, and the line through $e_2$.
+
+So with respect to basis $\{e_1, e_2\}$, the eigenspaces are
+$\{(a, 0) ~|~ a \in \R\}$ and $\{(0, a) ~|~ a \in \R\}$.
+
+And with respect to basis $\{f_1, f_2\}$, the eigenspaces are
+$\{(a, 0) ~|~ a \in \R\}$ and $\{(-a, a) ~|~ a \in \R\}$.
+
+\begin{comment}
+  The characteristic polynomial is $\det(A - \lambda I) = 0$, where $A$ is a
+  matrix of $T$ with respect to some basis. Let $A = \mat{2}{0}
+  {0}{3}$. Then
+  \begin{align*}
+    \det(A - \lambda I) = \det \mat{2 - \lambda}{0}
+    {0}{3 - \lambda} = (2 - \lambda)(3 - \lambda).
+  \end{align*}
+  So the eigenvalues are 2 and 3.
+
+  The eigenspace $E_2$ with respect to basis $\{e_1, e_2\}$ is the set of
+  solutions to
+  \begin{align*}
+    \mat{2}{0}
+    {0}{3} \vecMM{x}{y} = \vecMM{2x}{2y}.
+  \end{align*}
+\end{comment}
+
+\newpage
+Consider the map which stretches space by a factor of 2 in one direction, and a
+factor of 3 in another direction.
+
+Then there exists a basis for which the map has matrix
+$
+\mat{2}{0}
+    {0}{3}
+$.
+
+What are the eigenspaces of this map?
+
+The characteristic polynomial (basis independent) is $\det(A - \lambda I) = 0$
+where $A$ is the matrix of the map wrt some basis.
+
+\newpage
 \section{Symmetric matrices}
 
 \textbf{Spectral theorem for symmetric matrices}
