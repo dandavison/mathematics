@@ -1057,13 +1057,16 @@ This is well-defined because:
 
 \begin{proof}
   This follows from the fact that the determinant of $T$ does not depend on the
-  choice of basis:
+  choice of basis.
 
-  [Need to account for the $-\lambda I$ additive term.]
-
-  Let $P$ be the change-of-basis matrix, so that $A' = P^\1AP$.
-
-  Then $\det A' = \det(P^\1)\det(A)\det(P) = \det(P^\1)\det(P)\det(A) = \det(I)\det(A) = \det(A)$.
+  Let $P$ be the change-of-basis matrix, so that $A' = P^\1AP$. Then
+  \begin{align*}
+    \det(A' - \lambda I) &= \det(P^\1AP - \lambda I)\\
+                         &= \det(P^\1AP - P^\1 P \lambda I)\\
+                         &= \det(P^\1\(A - \lambda I\)P)\\
+                         &= \det(P^\1)\det(A - \lambda I)\det(P)\\
+                         &= \det(A - \lambda I)
+  \end{align*}
 \end{proof}
 
 \textbf{(ii)}
