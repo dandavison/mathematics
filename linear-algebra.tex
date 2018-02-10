@@ -1,17 +1,23 @@
-\newcommand{\mat}{\matMMxNN}
-
 \section{Examples of vector spaces}
 \begin{enumerate}
-\item The set $\R^n$ of $n-$tuples of real numbers, under componentwise
-  addition and multiplication by real scalars.
-\item The set $M_{m \times n}(\R)$ of $m\times n$ matrices, under componentwise
-  addition and multiplication by real scalars.
-\item The field $\C$ with multiplication by real scalars is equivalent to $\R^2$.
-\item The set of solutions of a system of \textit{homogeneous} linear equations
-  in $n$ variables is a subspace $V$ of $\R^n$. (Let $A$ be the matrix
-  representing the system and let $u$ and $v$ be solutions. Then $Au = Av = 0$
-  and $V$ is a subspace since $A(u + v) = Au + Av = 0$, and
-  $A(\lambda u) = \lambda Au = 0$.)
+\item The set $\R^n$ of $n-$tuples of real numbers, under componentwise addition and componentwise
+  multiplication by real scalars.
+\item Complex numbers
+  \begin{enumerate}
+  \item $\C$ under addition with multiplication by scalars from $\C$ is a field, and therefore a
+    vector space. It is one-dimensional ($1$ and $i$ are not linearly independent).
+  \item The set $\C^n$ of $n-$tuples of complex numbers, under componentwise addition and
+    componentwise multiplication by complex numbers.
+  \item $\C$ under addition with multiplication by real scalars is equivalent to $\R^2$.
+  \end{enumerate}
+\item Matrices \& linear transformations:
+  \begin{enumerate}
+  \item The set $M_{m \times n}(\R)$ of $m\times n$ matrices is a vector space, under componentwise
+    addition and multiplication by real scalars.
+  \item The set $\mathrm{Hom}(V, W)$ of linear transformations from vector space $V$ to vector
+    space $W$ is a vector space: for scalar $a$, define $(aT)(v) := a(T(v))$, and
+    $(S + T)v := S(v) + T(v)$.
+  \end{enumerate}
 \item The set $\R_n[x]$ of polynomials of degree $\leq n$ is a real vector
   space.
 \item The set $\R^X$ of real-valued functions on any set $X$ is a real vector
@@ -32,6 +38,11 @@
   \begin{enumerate}
   \item Set of convergent sequences
   \end{enumerate}
+\item The set of solutions of a system of \textit{homogeneous} linear equations
+  in $n$ variables is a subspace $V$ of $\R^n$. (Let $A$ be the matrix
+  representing the system and let $u$ and $v$ be solutions. Then $Au = Av = 0$
+  and $V$ is a subspace since $A(u + v) = Au + Av = 0$, and
+  $A(\lambda u) = \lambda Au = 0$.)
 \end{enumerate}
 
 \section{Linear systems}
