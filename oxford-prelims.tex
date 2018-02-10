@@ -1142,9 +1142,28 @@ distinct eigenspaces is
 \includegraphics[width=400pt]{img/oxford-prelims-2017-A-4-2.png}
 \end{mdframed}
 
-Suppose $T^2 = \id_V$. Then $T = T^\1$. Therefore $\det T = \pm 1$.
+Suppose $T^2 = I$. Then $T = T^\1$. Therefore $\det T = \pm 1$.
+
+$T^\1$ exists, therefore $T$ is full rank, therefore $T$ has 3 linearly
+independent eigenvectors.
+
+Let $v_1, v_2, v_3$ be linearly independent eigenvectors of $T$.
+
+Then $v_1, v_2, v_3$ are a basis of $T$ and all matrices of $T$ with respect to
+this basis are diagonal.
+
+Rescale $v_1, v_2, v_3$ such that the diagonal entries
+$\lambda_1, \lambda_2, \lambda_3$ each have magnitude 1.
 
 \red{TODO}
+
+Let $\lambda_1, \lambda_2, \lambda_3$ be the eigenvalues of $T$.
+
+We have $\lambda_1\lambda_2\lambda_3 = \det T = \pm 1$.
+
+Since $T^2 \neq T$, we have $T \neq I$, therefore at least one of
+$\lambda_1, \lambda_2, \lambda_3$ is not equal to 1.
+
 
 \newpage
 \begin{mdframed}
@@ -1163,7 +1182,7 @@ Suppose $T^2 = \id_V$. Then $T = T^\1$. Therefore $\det T = \pm 1$.
   Since $\dim V = 3$, we have $n_T \in \{0, 1, 2, 3\}$.
 
   Suppose $n_T = 0$. Then $T^\1$ exists and we have
-  $T^\1T^3 = T^2 = T^\1T = \id_V$, which contradicts one of the
+  $T^\1T^3 = T^2 = T^\1T = I$, which contradicts one of the
   assumptions. Therefore $n_T \neq 0$.
 
   Suppose $n_T = 3$. Then $\Im T = \{0\}$. Therefore $T^2 = T$, which
