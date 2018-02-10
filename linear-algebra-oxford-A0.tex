@@ -301,11 +301,89 @@ The field axioms are listed below, together with proof that they hold for $P$.
 \end{enumerate}
 
 \newpage
-\subsection*{} % 5
+
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-5-a.png}\\
+\includegraphics[width=400pt]{img/linear-algebra-eg-2-6.png}
 \end{mdframed}
 
+\begin{claim*}
+  $m\Z$ is an ideal in $\Z$.
+\end{claim*}
+
+\begin{proof}Let $s, t \in m\Z$ and $i, j, k \in \Z$.
+
+  Then $s = mi$ and $t = mj$ for some $i, j$.
+
+  Therefore $s - t = m(i - j) \in m\Z$ and $ks = sk = m(ki) \in m\Z$.
+\end{proof}
+
+\begin{claim*}
+  Every ideal in $\Z$ is of the form $m\Z$.
+\end{claim*}
+
+\begin{proof}
+  Let $I$ be an ideal in $\Z$ and let $m$ be the smallest non-zero positive integer in $I$.
+
+  % Let $i \in I$. We have that $i - m \in I$ and that $mi \in I$.
+
+  % We want to show that $i \in m\Z$.
+
+  Let $i \in I$. We want to show that $i \in m\Z$.
+
+  We have:
+
+  $ki \in I$ for all $k \in \Z$.
+
+  $i - j \in I$ for all $j \in I$.
+
+  $i - m \in I$.
+
+
+ % By the definition of an ideal, $ki \in I$ for
+ %  all $k \in \Z$. Therefore $i$ is a multiple of $m$.
+
+  % Conversely, suppose $i \in m\Z$. We want to show that $i \in I$.
+
+
+  % is a multiple of $m$. So $i = km$ for some $k \in \Z$.
+\end{proof}
+
+
+\newpage
+\subsection*{} % 5
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-5-a.png}\\
+\end{mdframed}
+
+The set of ideals of a field $\F$ is $\{a\F ~|~ a \in \F\} = \{\{0\}, \F\}$.
+
+The set of ideals of the ring $\Z$ is $\{m\Z ~|~ m \in \Z\}$.
+
+
+\begin{definition*}
+  Let $R, S$ be rings and let $r_1, r_2 \in R$. A \emph{ring homomorphism} is $f:R \to S$ such that
+  $f(r_1 + r_2) = f(r_1) + f(r_2)$ and $f(r_1r_2) = f(r_1)f(r_2)$.
+\end{definition*}
+
+\begin{claim*}
+  The kernel of any ring homomorphism is an ideal.
+\end{claim*}
+
+\begin{proof}
+  Let $H$ be the kernel of a ring homomorphism $f:R \to S$, and let
+
+  We want to show that
+  \begin{enumerate}
+  \item $h_1 - h_2 \in H$ for all $h_1, h_2 \in H$, and \label{ring-hom-ideal-1}
+  \item $rh \in H$ for all $r \in R, h \in H$. \label{ring-hom-ideal-2}
+  \end{enumerate}
+
+  We have $f(h_1 - h_2) = f(h_1) + f(-h_2) = f(h_1) - f(h_2) = 0 - 0 = 0$, proving
+  (\ref{ring-hom-ideal-1}).
+
+  And $f(rh) = f(r)f(h) = f(r)\cdot 0 = 0$, proving (\ref{ring-hom-ideal-2}).
+
+\end{proof}
 
 
 
