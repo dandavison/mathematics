@@ -253,6 +253,68 @@ $$
 A matrix represents a linear transformation by showing where the basis vector
 are taken to.
 
+\section{Eigenvalues, eigenvectors, characteristic polynomial}
+
+Let $V$ be a vector space and let $T:V \to V$ be a linear transformation.
+
+\begin{definition*}[eigenvalue]
+  $\lambda$ is an \textit{eigenvalue} of $T$ iff there exists $v \in V$ such
+  that $Tv = \lambda v$.
+\end{definition*}
+
+\begin{definition*}[eigenspace]
+  $E_\lambda = \{v ~|~ Tv = \lambda v\}$ is an \textit{eigenspace} of $T$.
+\end{definition*}
+
+\begin{definition*}[eigenvector]
+  An \textit{eigenvector} is a non-zero element of an eigenspace.
+\end{definition*}
+
+\begin{definition*}[characteristic polynomial]
+  The characteristic polynomial of $T$ is $\chi_T(x) = \det(T - xI)$. Note that
+  $\lambda$ is an eigenvalue of $T$ iff $x=\lambda$ is a root of $\chi_T(x)$.
+\end{definition*}
+
+\begin{intuition*}~\\
+  Decompose $T$ as the sum of two transformations: $T = \lambda I + T^*$. This
+  means that the effect of applying $T$ to a vector is the same as applying
+  $\lambda I$ to the vector, and separately applying $T^*$ to the same vector,
+  and adding the two results.
+
+  Note that applying $\lambda I$ to a vector just scales the vector by $\lambda$.
+
+  Note that $T^* = T - \lambda I$.
+
+  Therefore what $T - \lambda I$ does to a vector is: whatever remains to be done after
+  scaling by $\lambda$, in order to have the same effect as $T$.
+
+  Suppose $\lambda$ is an eigenvalue. Then there exists an eigenspace
+  $E_\lambda$ (a line, at least) containing vectors which are simply stretched
+  by a factor $\lambda$. So for $v \in E_\lambda$, nothing remains to be done
+  after scaling by $\lambda$, and so we have $(T - \lambda I)(v) = 0$.
+
+  Therefore
+  \begin{itemize}
+  \item If $T - \lambda I$ has a nullspace containing a non-zero element, then
+    $\lambda$ is an eigenvalue and the nullspace is the eigenspace for
+    $\lambda$.
+  \item The roots of $\det(T - xI)$ are the eigenvalues of $T$.
+  \end{itemize}
+
+\end{intuition*}
+
+\begin{remark*}[Repeated eigenvalues]~\\
+  If two eigenvectors share the same eigenvalue then they are in the same eigenspace.
+\end{remark*}
+
+\begin{proof}
+  Suppose that $Tv_1 = \lambda v_1$ and $Tv_2 = \lambda v_2$ and
+  $v_1 \neq v_2$, and let $a$ be a scalar.
+
+  Then
+  $T(v_1 + av_2) = T(v_1) + aT(v_2) = \lambda v_1 + a\lambda v_2 = \lambda(v_1
+  + av_2)$.
+\end{proof}
 
 \section{Change of basis}
 
