@@ -2,44 +2,47 @@
 
 \section{Definitions}
 
-\subsection{Maps}
-\begin{itemize}
-\item \textbf{Homomorphism}: A structure-preserving map between two groups
-\item \textbf{Endomorphism}: A homomorphism from a group to itself
-\end{itemize}
+\begin{definition*}[Group]
+  A group is a set, together with a binary operation that maps any two elements
+  to another element in the set. I.e. it is a triple $(S, \cdot, I)$ specifying
+  the set, the operation and the identity element respectively. It satisfies the
+  group axioms:
+  \begin{enumerate}
+  \item existence of identity
+  \item existence of an inverse for each element
+  \item associativity
+  \end{enumerate}
+  If the operation is commutative it is said to be ``abelian''.
+\end{definition*}
 
-\subsection{Group}
-A group is a set, together with a binary operation that maps any two elements
-to another element in the set. I.e. it is a triple $(S, \cdot, I)$ specifying
-the set, the operation and the identity element respectively. It satisfies the
-group axioms:
-\begin{enumerate}
-\item existence of identity
-\item existence of an inverse for each element
-\item associativity
-\end{enumerate}
-If the operation is commutative it is said to be ``abelian''.
+\begin{definition*}[Homomorphism]
+  A structure-preserving map between two groups
+\end{definition*}
 
-\subsection{Field}
-A field is a set $\F$ for which both $(\F, +, 0)$ and $(\F, \times, 1)$ are abelian groups.
+\begin{definition*}[Endomorphism]
+  A homomorphism from a group to itself.
+\end{definition*}
 
-\subsection{Vector space}
-A vector space $V$ over a field $\F$ is an abelian group $(V, +, 0)$ for which
-multiplication by ``scalars'' from $\F$ is defined, and additionally satisfies
-\begin{enumerate}
-\item Linear combinations using scalars from $\F$ remain within the vector
-  space:\\
-  $au + bv \in V$ for all $a, b \in \F$ and $u, v \in V$.
-\end{enumerate}
+\begin{definition*}[Field]
+  A field is a set $\F$ for which both $(\F, +, 0)$ and $(\F, \times, 1)$ are abelian groups.
+\end{definition*}
 
-\subsection{Ring}
+\begin{definition*}[Vector space]
+  A vector space $V$ over a field $\F$ is an abelian group $(V, +, 0)$ for which
+  multiplication by ``scalars'' from $\F$ is defined, and additionally satisfies
+  \begin{enumerate}
+  \item Linear combinations using scalars from $\F$ remain within the vector
+    space:\\
+    $au + bv \in V$ for all $a, b \in \F$ and $u, v \in V$.
+  \end{enumerate}
+\end{definition*}
 
-\footnote{Gross, Abstract Algebra, lecture 24}
-
+\begin{definition*}[Ring]\footnote{Gross, Abstract Algebra, lecture 24}
 A ring is an abelian group $(R, +, 0)$ which additionally has a multiplication
 operation. The multiplication may or may not be commutative, and does not
 necessarily have inverses. Both distributive laws must hold unless we're
 assuming commutativity: $a(b + c))$ and $(b + c)a$.
+\end{definition*}
 
 \subsubsection{Examples}
 \begin{itemize}
@@ -159,7 +162,7 @@ them by linear combination.
 $E \subset V$ is a basis for $V$ if
 \begin{enumerate}
 \item $E$ spans $V$
-\item if the addition to any further $v \in V\setminus E$ to $E$ would cause
+\item if the addition of any further $v \in V\setminus E$ to $E$ would cause
   $E$ to lose its linear dependence.
 \end{enumerate}
 
@@ -615,9 +618,8 @@ The \underline{kernel} of a homomorphism is a \underline{subgroup} \footnote{\te
   is $\{a:f(a) = e\}$.\\
 Contains identity? Yes, homomorphisms always send the identity to the identity
 ($f(ea) = f(e)f(a)$ but this must equal $f(a)$, hence $f(e)$ is the identity.)
-\end{theorem}
-
 Contains inverses? Yes, $f(aa^\1) = f(a)f(a^\1) = ef(a^\1) = e$, so $f(a^\1)$ must also be $e$.}.
+\end{theorem}
 
 \textbf{Example}: the group of \emph{rotations} of $\R^3$ is a subgroup of the
 group of rigid motions that fix the origin (the latter includes
