@@ -15,7 +15,7 @@
 % \usepackage[utf8]{inputenc}
 % \usepackage{mathabx}
 \usepackage{mdframed}
-% \usepackage{minted} \setminted{fontsize=\footnotesize}
+\usepackage{minted} \setminted{fontsize=\footnotesize}
 \usepackage{parskip}
 \usepackage{verbatim}
 
@@ -33,9 +33,13 @@
 \newtheorem{claim}[theorem]{\\Claim}
 \newtheorem*{claim*}{\\Claim}
 
-\theoremstyle{remark}
+\theoremstyle{definition}
 \newtheorem{remark}[theorem]{\\Remark}
 \newtheorem*{remark*}{\\Remark}
+
+\theoremstyle{definition}
+\newtheorem{intuition}[theorem]{\\Intuition}
+\newtheorem*{intuition*}{\\Intuition}
 
 % https://tex.stackexchange.com/questions/8089/changing-style-of-proof
 \let\oldproofname=\proofname
@@ -83,6 +87,7 @@
 \DeclareMathOperator{\Cod}{\mathrm{Cod}}
 \DeclareMathOperator{\Span}{\mathrm{Span}}
 \DeclareMathOperator{\ColSp}{\mathrm{ColSpace}}
+\DeclareMathOperator{\NullSp}{\mathrm{NullSpace}}
 \DeclareMathOperator{\RowSp}{\mathrm{RowSpace}}
 \DeclareMathOperator{\ColRank}{\mathrm{ColRank}}
 \DeclareMathOperator{\RowRank}{\mathrm{RowRank}}
