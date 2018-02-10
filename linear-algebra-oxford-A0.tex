@@ -387,12 +387,79 @@ The set of ideals of the ring $\Z$ is $\{m\Z ~|~ m \in \Z\}$.
 
 
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-1-5-b.png}\\
 \end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/ideal-in-integers.png}
+\end{mdframed}
+
+\begin{mdframed}
+\begin{remark*}
+  Recall that in group theory a quotient group is formed by:
+  \begin{enumerate}
+  \item Identify a subgroup.
+  \item Form cosets.
+  \item Inherit operation on cosets from operation on original group elements.
+  \end{enumerate}
+  But only if the subgroup is normal.
+
+  Here, the ideal $I$ is playing the role of subgroup.~\\
+\end{remark*}
+\end{mdframed}
+
+Let $S$ and $T$ be cosets, and let $r \in S$ and $r' \in T$. We need to show that $rr' + I$ is the
+same coset, for all choices of $r$, $r'$.
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=280pt]{img/linear-algebra-a0-1-5-c.png}\\
 \end{mdframed}
+\begin{theorem*}[First Isomorphism theorem for groups]
+  Let:
+  \begin{itemize}
+  \item $G$ be a group, with $g \in G$
+  \item $H \subset G$ be a normal subgroup
+  \item $X$ be the set of cosets of $H$
+  \item $C_1, C_2 \in X$, with $g_1 \in C_1$, $g_2 \in C_2$
+  \end{itemize}
+  Then:
+  \begin{itemize}
+  \item $X$ is a group with group operation defined by $C_1 \cdot C_2 := g_1 \cdot g_2$, and this
+    is well-defined.
+  \item $H$ is the identity in $X$.
+  \item The map $\phi: G \to X$ defined by $g \mapsto (g + H)$ is a group homomorphism.
+  \item The kernel of $\phi$ is $H$.
+  \end{itemize}
+\end{theorem*}
+
+\begin{theorem}[First Isomorphism theorem for groups/rings]~\\
+  \textbf{Let}:~\\
+  \begin{tabular}{l|l} \\
+    $G$ be a group, with $g \in G$             & $R$ be a ring\\
+    $H \subset G$ be a normal subgroup         & $I \subset R$ be an ideal \\
+    $X$ be the set of cosets of $H$            & $X$ be the set of cosets of $I$ \\
+    $C_1, C_2 \in X$, with $g_1 \in C_1$, $g_2 \in C_2$  & $C_1, C_2 \in X$
+  \end{tabular}
+  ~\\~\\
+  \textbf{Then}~\\
+  \begin{tabular}{l|l} \\
+    $X$ is a group with group operation defined by & $X$ is a ring with multiplication defined by\\
+    $C_1 \cdot C_2 := (g_1 \cdot g_2) + H$.        & $C_1 \cdot C_2 := g_1g_2 + I$\\
+    &\\
+    $H$ is the identity in $X$. &
+    $I$ is the identity in $X$\\
+    &\\
+    The map $\phi: G \to X$ defined by & The map $\phi: R \to X$ defined by \\
+    $g \mapsto (g + H)$ is a group homomorphism. & $r \mapsto (r + I)$ is a group homomorphism. \\
+    &\\
+    The kernel of $\phi$ is $H$. & The kernel of $\phi$ is $I$.
+  \end{tabular}
+
+\end{theorem}
+
 
 \newpage
 \subsection*{} % 6
