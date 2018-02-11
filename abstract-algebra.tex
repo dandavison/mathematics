@@ -271,6 +271,7 @@ vertices but leaves all other vertices unchanged is not a symmetry.
 \end{itemize}
 
 \section{Homomorphism}
+
 A \textbf{homomorphism} is a map from one group to another. If it is bijective,
 it is an \textbf{isomorphism}. If it is bijective and from a group to itself
 (i.e. a permutation of the group elements) then it is an
@@ -287,6 +288,17 @@ $$
 
 There the composition on the left is happening in $G$ and the composition on
 the right is happening in $G'$. (For an automorphism, $G=G'$.)
+
+Another way of saying this is that ``the following diagram commutes'':
+\begin{align*}
+  \matMMMxNNN
+  {g_1, g_2}{\xrightarrow{~~f~~}}{f(g_1), f(g_2)}
+  {\Big\downarrow}{}{\Big\downarrow}
+  {g_1g_2}{\xrightarrow{~~f~~}}{f(g_1g_2) = f(g_1)f(g_2)},
+\end{align*}
+i.e. it does not matter whether you first perform the internal structure operation on the left-hand
+side and then apply $f$, or alternatively apply $f$ first and perform the internal structure
+operation on the right-hand side.
 
 Note that an element such as $g_1$ that is being sent somewhere by a morphism
 may itself already be a map of sorts, e.g. if it is a permutation in
@@ -406,6 +418,54 @@ as required.
 }
 
 \section{Quotient groups}
+
+\begin{theorem}[First Isomorphism theorem: statement I]~\\
+  Let $f:G \to H$ be a group homomorphism.
+
+  Let $\sim$ be an equivalence relation on $G$ defined by $g_1 \sim g_2 \iff f(g_1) = f(g_2)$.
+
+  Then the set $G/{\sim}$ of equivalence classes ``inherits the structure'' of $G$ in the following
+  sense:
+
+  Let $C_1, C_2 \in G/{\sim}$ be equivalence classes with $g_1 \in C_1$ and $g_2 \in C_2$. Define
+  $C_1C_2 := $ (equivalence class of $g_1g_2$). Then this is well-defined and $G/{\sim}$ is a group
+  under this operation.
+
+  \red{TODO: state something about isomorphism of $G/{\sim}$ and $\Im f$.}
+\end{theorem}
+
+\begin{remark*}~\\
+  Note that the equivalence class of $g_1$, i.e. the preimage of $f(g_1)$, is
+  \begin{align*}
+    f^\1(f(g_1)) = g_1\cdot\Ker f.
+  \end{align*}
+  This is true since, (reverse direction) if $k \in \Ker f$, then $f(g_1k) = f(g_1)e = f(g_1)$; and
+  (forwards direction) if $f(g_2) = f(g_1)$ then (\red{TODO: prove subset in this direction}).
+
+  Therefore an equivalent definition of the equivalence relation is:
+
+  $G/{\Ker f} := G/{\sim}$, where $g_1 \sim g_2 \iff (g_1\cdot \Ker f) = (g_2\cdot \Ker f)$.
+
+  $G/{\Ker f}$ is a set of cosets of $\Ker f$, and may also be thought of as a set of equivalence
+  classes of $\sim$.
+
+  This gives rise to the conventional statement of the theorem:
+\end{remark*}
+
+\begin{theorem}[First Isomorphism theorem: statement II]~\\
+  Let $f:G \to H$ be a group homomorphism.
+
+  Then the set $G/{\Ker f}$ ``inherits the structure'' of $G$ in the following sense:
+
+  Let $C_1, C_2 \in G/{\Ker f}$ be cosets of $\Ker f$, with $g_1 \in C_1$ and $g_2 \in C_2$. Define
+  $C_1C_2 := $ ($g_1g_2\cdot \Ker f$). Then this is well-defined and $G/{\Ker f}$ is a group under
+  this operation.
+
+  \red{TODO: state something about isomorphism of $G/{\Ker f}$ and $\Im f$.}
+\end{theorem}
+
+
+
 
 \subsection{Summary}
 A quotient group can be formed by:
