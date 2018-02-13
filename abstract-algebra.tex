@@ -452,6 +452,8 @@ as required.
   any map.
 \item You use the values of $f$ to define an equivalence relation $\sim$ on $G$. That's not
   special, you could do that with any map.
+\item Note that this will only be interesting if $f$ is non-injective, i.e. if the equivalence
+  relation does actually group some elements together.
 \item You define a group operation on the equivalence classes of $G$. This is ``inherited from the
   underlying group''\footnote{ What this means is that the rule for combining equivalence classes
     is as follows:
@@ -463,7 +465,7 @@ as required.
   \end{enumerate}
 }.
 
-So far everything has been straightforward, but here is the first subtle point:
+So far everything has been straightforward; here is the only subtle point:
 
 It is essential that the operation defined on the equivalence classes is well-defined. Fortunately,
 it will be. Ultimately, the reason is that the equivalence classes were defined by the values of a
@@ -473,12 +475,24 @@ homomorphism, not just any arbitrary labeling.
   \begin{enumerate}
   \item Obvious: It is smaller (simpler) than the original group $G$: you have ``modded out'' by
     the equivalence relation.
-  \item Obvious: All information about the original multiplicative structure on $G$ is preserved in
-    the multiplicative structure on $G/{\sim}$. This is because we decided that the group operation
-    on the equivalence classes would be inherited from $G$.
+  \item Somewhat obvious: All information about the original group structure on $G$ is preserved in
+    the group structure on $G/{\sim}$. This is because we decided that the group operation on the
+    equivalence classes would be inherited from $G$.
   \item Obvious: There is a one-to-one correspondence between the equivalence classes and the image
     of the homomorphism (the elements of the image ``label'' the equivalence classes).
-  \item Less obvious: this one-to-one correspondence is actually an isomorphism.
+  \item Somewhat obvious: this one-to-one correspondence is actually an isomorphism.
+
+    Why? We started off with a non-injective homomorphism $G \to H$. Then we did two things: (1) we
+    coalesced into a single new element all the elements in $G$ that mapped to the same element in
+    $H$; (2) we declared that the new coalesced element on the left
+
+    This is fairly obvious: in $G$ we have collapsed elements that map to the same value in $H$,
+    into a single element, associated that new element with the value in $H$, and declared that,
+    when it comes to the binary group operation, its behavior is inherited from the elements in $G$
+    that were collapsed to form it. So if we had a non-injective homomorphism to start off with,
+    it's clear that we now have an injective homomorphism, because we have coalesced the elements
+    on the left-hand side that mapped to the same element; i.e. there's now an isomorphism between
+    the equivalence classes and the image of $f$.
 
     Question: is this obvious? Clearly it comes about because the group operation on the
     equivalence classes was defined by reference to the original group operation on $G$, and by
