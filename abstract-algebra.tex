@@ -235,8 +235,9 @@ Note that the set of symmetries is a proper subset of the set of permutations
 of the vertices: for example the permutation which interchanges two adjacent
 vertices but leaves all other vertices unchanged is not a symmetry.
 
+\section{Examples of groups, homomorphisms and quotients}
 
-\subsection{Examples of finite order}
+\subsection{Finite order}
 
 \begin{itemize}
 \item $S_2$: the set of permutations of two objects, where the operation is
@@ -249,34 +250,60 @@ vertices but leaves all other vertices unchanged is not a symmetry.
   elements and leaves all other alone} and two cyclic permutations.
 
 \item $\{1, i, -1, -i\}$ where the operation is multiplication of complex numbers.
-
-\item $GL_n(\R)$: the set of $n \times n$ matrices, under matrix multiplication.
-
-\item $SL_n(\R)$: set of $n \times n$ matrices with determinant $1$ (kernel of the
-  determinant homomorphism $GL_n(\R) \rightarrow \R^x$ and therefore a normal
-  subgroup of $GL_n(\R)$)
 \end{itemize}
 
-\subsection{Examples of infinite order}
+\subsection{Infinite order}
 
 \begin{itemize}
 \item $\Z^+$ integers under addition
+  \begin{itemize}
+  \item[$\diamond$] A homomorphism is $f:\Z^+ \to \{0, 1\}$, given by $f(n) =
+    \begin{cases}
+      0, ~~\text{$n$ is even}\\
+      1, ~~\text{$n$ is odd}\\
+    \end{cases},$ with the operation on $\{0, 1\}$ being addition mod 2. The kernel is
+    $evens = 2\Z$, and the resulting quotient group is
+    $\Z/2\Z = \{evens, odds\} = \{2\Z, 2\Z + 1\}$.
+  \end{itemize}
 
 \item $\Z^\times$ integers under multiplication
-
+  \begin{itemize}
+  \item[$\diamond$] A homomorphism is $f:\Z^+ \to \{0, 1\}$, given by $f(n) =
+    \begin{cases}
+      0, ~~\text{$n$ is even}\\
+      1, ~~\text{$n$ is odd}\\
+    \end{cases}$, with the operation on $\{0, 1\}$ being multiplication. The kernel is
+    $odds = 2\Z + 1$, and the resulting quotient group is
+    $Z^\times/(2\Z + 1) = \{odds, evens\} = \{2\Z + 1, 2\Z\}$.
+  \end{itemize}
 \item $\Z_{>0}^+$ positive integers under addition
 
 \item Similarly, $\Q^+$, $\Q^\times$, $\C^+$, $\C^x$, $\R^+$, $\R^x$ etc
 
+\item $GL_n(\F)$: the set of $n \times n$ matrices with entries from the field $\F$, under matrix
+  multiplication.
+  \begin{itemize}
+  \item[$\diamond$] A homomorphism is $f:GL_n(\F) \to \F^\times$ given by $A \mapsto \det(A)$. This
+    is a homomorphism since $\det(AB) = \det(A) \det(B)$. The kernel is the set $SL_n(\F)$ of
+    matrices with determinant 1. If the field is $\R$ then these rotate or flip space without
+    stretching it. The resulting quotient group is the set $\{\mathcal{A}(x) ~|~ x \in \F\}$, where
+    $\mathcal{A}(x)$ is the set of matrices with determinant $x$.
+  \end{itemize}
+
+\item $SL_n(\R)$: set of $n \times n$ matrices with determinant $1$ (kernel of the
+  determinant homomorphism $GL_n(\R) \rightarrow \R^\times$ and therefore a normal
+  subgroup of $GL_n(\R)$)
 \end{itemize}
 
+
+\newpage
 \section{Homomorphism}
 
 A \textbf{homomorphism} is a map from one group to another. If it is bijective,
 it is an \textbf{isomorphism}. If it is bijective and from a group to itself
 (i.e. a permutation of the group elements) then it is an
 \textbf{automorphism}. The critical feature of these concepts is that they
-"preserve group structure", i.e. they preserve the relationships among group
+``preserve group structure'', i.e. they preserve the relationships among group
 elements defined by the group operation. Suppose that they map from group $G$
 to group $G'$. Then the preservation-of-structure criterion is that the map
 sends a product $g_1 \circ g_2$ to the product of whatever the separate
@@ -419,6 +446,48 @@ as required.
 
 \section{Quotient groups}
 
+\subsection{Quotient groups and the first isomorphism theorem in plain English}
+\begin{enumerate}
+\item You have groups $G$ and $H$ and a homomorphism $f:G \to H$. That is special; it is not just
+  any map.
+\item You use the values of $f$ to define an equivalence relation $\sim$ on $G$. That's not
+  special, you could do that with any map.
+\item You define a group operation on the equivalence classes of $G$. This is ``inherited from the
+  underlying group''\footnote{ What this means is that the rule for combining equivalence classes
+    is as follows:
+  \begin{enumerate}
+  \item Pick an arbitrary element of each equivalence class.
+  \item Combine those two elements according to the group operation.
+  \item Declare the result of the operation on equivalence classes to be the equivalence class of
+    the group-element level result.
+  \end{enumerate}
+}.
+
+So far everything has been straightforward, but here is the first subtle point:
+
+It is essential that the operation defined on the equivalence classes is well-defined. Fortunately,
+it will be. Ultimately, the reason is that the equivalence classes were defined by the values of a
+homomorphism, not just any arbitrary labeling.
+\item So now you have a new group $G/{\sim}$ containing equivalence classes. There are four
+  interesting things about it:
+  \begin{enumerate}
+  \item Obvious: It is smaller (simpler) than the original group $G$: you have ``modded out'' by
+    the equivalence relation.
+  \item Obvious: All information about the original multiplicative structure on $G$ is preserved in
+    the multiplicative structure on $G/{\sim}$. This is because we decided that the group operation
+    on the equivalence classes would be inherited from $G$.
+  \item Obvious: There is a one-to-one correspondence between the equivalence classes and the image
+    of the homomorphism (the elements of the image ``label'' the equivalence classes).
+  \item Less obvious: this one-to-one correspondence is actually an isomorphism.
+
+    Question: is this obvious? Clearly it comes about because the group operation on the
+    equivalence classes was defined by reference to the original group operation on $G$, and by
+    reference to $f$. However, the group operation on $H$ was never used directly, and yet there is
+    an isomorphism $G/{\sim} \cong \Im f \subseteq H$.
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
 \begin{theorem}[First Isomorphism theorem: statement I]~\\
   Let $f:G \to H$ be a group homomorphism.
 
@@ -431,7 +500,11 @@ as required.
   $C_1C_2 := $ (equivalence class of $g_1g_2$). Then this is well-defined and $G/{\sim}$ is a group
   under this operation.
 
-  \red{TODO: state something about isomorphism of $G/{\sim}$ and $\Im f$.}
+  \red{TODO: state something about isomorphism of $G/{\sim}$ and $\Im f$. The group operation in
+    $H$ could be anything; all we know is that $f:G \to H$ is a homomorphism. And the group
+    operation in $G/{\sim}$ is inherited from $G$. The point here is that the map
+    $G/{\sim} \to \Im f$ is a homomorphism, just as the original map $f:G\to H$ was. In fact, it's
+    an isomorphism, because it is a bijection.}
 \end{theorem}
 
 \begin{remark*}~\\
