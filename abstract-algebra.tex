@@ -290,6 +290,18 @@ vertices but leaves all other vertices unchanged is not a symmetry.
     $\mathcal{A}(x)$ is the set of matrices with determinant $x$.
   \end{itemize}
 
+\item The set $\F[x]$ of polynomials with coefficients in a field $\F$ can be a vector space, and a
+  ring. (Not a field, since multiplicative inverses don't exist for degree $\geq 1$.)
+
+  As a vector space, differentiation is a linear transformation (homomorphism). This is
+  non-injective (polynomials differing only by an additive constant additive are sent to the same
+  polynomial). The kernel is the set of degree 0 polynomials ($\F$). The quotient space $\F[x]/\F$
+  contains cosets of the form $p(x) + \F$, i.e. a set of polynomials differing only by an additive
+  constant.
+
+  But differentiation does not preserve multiplication of polynomials, so it is not a ring
+  homomorphism.
+
 \item $SL_n(\R)$: set of $n \times n$ matrices with determinant $1$ (kernel of the
   determinant homomorphism $GL_n(\R) \rightarrow \R^\times$ and therefore a normal
   subgroup of $GL_n(\R)$)
@@ -485,19 +497,6 @@ homomorphism, not just any arbitrary labeling.
     Why? We started off with a non-injective homomorphism $G \to H$. Then we did two things: (1) we
     coalesced into a single new element all the elements in $G$ that mapped to the same element in
     $H$; (2) we declared that the new coalesced element on the left
-
-    This is fairly obvious: in $G$ we have collapsed elements that map to the same value in $H$,
-    into a single element, associated that new element with the value in $H$, and declared that,
-    when it comes to the binary group operation, its behavior is inherited from the elements in $G$
-    that were collapsed to form it. So if we had a non-injective homomorphism to start off with,
-    it's clear that we now have an injective homomorphism, because we have coalesced the elements
-    on the left-hand side that mapped to the same element; i.e. there's now an isomorphism between
-    the equivalence classes and the image of $f$.
-
-    Question: is this obvious? Clearly it comes about because the group operation on the
-    equivalence classes was defined by reference to the original group operation on $G$, and by
-    reference to $f$. However, the group operation on $H$ was never used directly, and yet there is
-    an isomorphism $G/{\sim} \cong \Im f \subseteq H$.
   \end{enumerate}
 \end{enumerate}
 
@@ -505,7 +504,7 @@ homomorphism, not just any arbitrary labeling.
 \begin{theorem}[First Isomorphism theorem: statement I]~\\
   Let $f:G \to H$ be a group homomorphism.
 
-  Let $\sim$ be an equivalence relation on $G$ defined by $g_1 \sim g_2 \iff f(g_1) = f(g_2)$.
+  Let $\sim$ be the equivalence relation on $G$ defined by $g_1 \sim g_2 \iff f(g_1) = f(g_2)$.
 
   Then the set $G/{\sim}$ of equivalence classes ``inherits the structure'' of $G$ in the following
   sense:

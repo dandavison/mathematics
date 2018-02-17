@@ -1158,3 +1158,66 @@ V \Big(V^{-1}AV\Big)^n V^{-1}
 \mat{\frac{\big((1 + \sqrt 5)^{n-1} - (1 - \sqrt 5)^{n-1}\big)}{2^{n-1}\sqrt 5}}{\frac{\big((1 + \sqrt 5)^n     - (1 - \sqrt 5)^n    \big)}{2^n    \sqrt 5}}
     {\frac{\big((1 + \sqrt 5)^n     - (1 - \sqrt 5)^n    \big)}{2^n    \sqrt 5}}{\frac{\big((1 + \sqrt 5)^{n+1} - (1 - \sqrt 5)^{n+1}\big)}{2^{n+1}\sqrt 5}}
 \end{align*}
+
+\section{Polynomials, rings, minimal and characteristic polynomials}
+
+Let $f(x) \in \F[x]$ be a polynomial: $f(x) = a_kx^k + \ldots + a_0$.
+
+Let $A \in M_n(\F)$ be an $n \times n$ matrix over a field $\F$.
+
+We can evaluate the polynomial on the matrix: $f(A) = a_kA^k + \ldots + a_0I$.
+
+\begin{theorem*}
+  For all $A \in M_n(\F)$, there exists $f(x) \in \F[x]$ such that $f(A) = 0$.
+\end{theorem*}
+
+\begin{proof}
+  Note that $\dim M_n(\F) = n^2$.\footnote{Let $\Delta_{ij} \in M_n(\F)$ be the matrix with $(i,j)$-th entry 1, and 0
+    elsewhere. Then $\{\Delta_{ij} ~|~ i,j \leq n\}$ is a basis.}
+
+  Let $k > n^2$. Then $A^k, A^{k-1}, \ldots, I$ is linearly dependent. Therefore there exists a
+  $k$-th degree polynomial $f(x) \in \F[x]$ such that $f(A) = 0$.
+\end{proof}
+
+\begin{theorem*}
+  The assignment $E_A: f(x) \to f(A)$ is a ring homomorphism.
+\end{theorem*}
+
+\red{It's not an isomorphism because some $f(A) = g(A)$ for $f \neq g$? I.e. it's non-injective.
+  So the kernel is the set of polynomials $p(x)$ such that $p(A) = 0$. It contains the minimal and
+  characteristic polynomials.}
+
+\begin{proof}
+  Let $f, g \in \F[x]$ with $f(x) = a_Jx^J + \ldots + a_0$ and $g(x) = b_Jx^J + \ldots + b_0$. (If
+  $f$ and $g$ are not of the same degree then pad the lower degree one with zero coefficients to
+  make it the same degree as the higher one.)
+
+  Addition:
+  \begin{align*}
+    E_A\Big((f + g)(x)\Big) &= (f + g)(A)\\
+                            &= f(A) + g(A)~~~~\text{(by definition of addition of polynomials)}\\
+                            &= E_A\Big(f(x)\Big) + E_A\Big(g(x)\Big)
+  \end{align*}
+  Multiplication:
+  \begin{align*}
+    E_A\Big((fg)(x)\Big)    &= (fg)(A)\\
+                            &= f(A)g(A)~~~~\text{(by definition of multiplication of polynomials)}\\
+                            &= E_A\Big(f(x)\Big)E_A\Big(g(x)\Big)
+  \end{align*}
+\end{proof}
+
+\begin{definition*}[Minimal polynomial]
+  Let $V$ be a finite-dimensional vector space over $\F$, and let $A$ be a matrix of a linear
+  transformation $T:V \to V$.
+
+  The \emph{minimal polynomial} $m_A(x)$ is the monic polynomial $p(x)$ of minimal degree such that
+  $p(A) = 0$.
+\end{definition*}
+
+\begin{theorem*}
+  ~\\
+  \begin{enumerate}
+  \item The minimal polynomial is unique.
+  \item Let $f(x)$ be a polynomial. If $f(A) = 0$ then $m_A | f$.
+  \end{enumerate}
+\end{theorem*}

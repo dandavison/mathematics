@@ -426,14 +426,14 @@ same coset, for all choices of $r$, $r'$.
 It is an abelian group under addition since:
 \begin{enumerate}
 \item The zero matrix is the additive identity.
-\item Multiplying a matrix by $-1$ gives its additive inverse.
+\item For all $r \in R$, we have $-r \in R$. Therefore for $A \in M_n(R)$ we have $-A \in M_n(R)$.
 \item It is closed (result is a matrix of same dimension).
 \item Addition commutes.
 \end{enumerate}
 
 Under multiplication:
 \begin{enumerate}
-\item It is closed.
+\item It is closed because addition and multiplication in the ring are closed.
 \item Multiplication is associative.
 \item Both distributive laws hold ($A(B + C) = AB + AC$ and $(B + C)A = BA + CA$.)
 \end{enumerate}
@@ -472,7 +472,8 @@ and
 \begin{align*}
   \Big(f(AB)\Big)_{ij}
   &= (AB)_{ij}I ~~~~~~~~~~~~~~~~~~~\text{(by definition of the induced map)}\\
-  &\vdots   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{\red{(hm, this seems like it would get messy)}}\\
+  &= \sum_k A_{ik}B_{kj}I\\
+  &= \sum_k (A_{ik}I)(B_{kj}I)\\
   &= \Big(f(A)f(B)\Big)_{ij}.
 \end{align*}
 
@@ -528,17 +529,42 @@ The set of diagonal matrices is the sole ideal?
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-1.png}
 \end{mdframed}
-Consider a coset $v + U$, before applying $T$.
+\begin{mdframed}
+  \begin{example*}
+    Let $V = \R^3$, $U$ be a one-dimensional subspace, and $T$ be rotation around the axis
+    $U$. Choose an orthonormal basis $\{w, v, u\}$ for $\R^3$ where $u \in U$. Then the matrix
+    of $T$ is
+    \begin{align*}
+      \matMMMxNNN
+      {\cos\theta}{-\sin\theta}{0}
+      {\sin\theta}{~~\cos\theta}{0}
+      {0}         {           0}{1}.
+    \end{align*}
 
-Now apply $T$. The elements of the coset are now $T(v) + U$.
+    $V/U$ is the set of lines parallel to $U$. $U$ is the kernel of a projection onto $\R^2$, and
+    $V/U \cong \R^2$.
 
-Therefore $T$ induces a mapping $\bar T$ of cosets given by $\bar T(v + U) = T(v) + U$.
+    ``In some sense'' the matrix of $\bar T:V/U \to V/U$ is the block
+    $\matMMxNN{\cos\theta}{-\sin\theta}
+              {\sin\theta}{~~\cos\theta}$.
+  \end{example*}
+\end{mdframed}
+
+Let $v + U$ be a coset of $U$. Then the induced mapping is given by
+\begin{align*}
+  \bar T(v + U) &= \{T(v + u) ~|~ u \in U\}\\
+                &= \{T(v) + T(u) ~|~ u \in U\}\\
+                &= T(v) + T(U)\\
+                &= T(v) + U.
+\end{align*}
 
 \begin{claim*}
   $\bar T$ is a linear map.
 \end{claim*}
 
 \begin{proof}~\\
+  \red{TODO: is there any question about it being well-defined?}
+
   Vector addition:
   \begin{align*}
     \bar T\Big((v + U) + (w + U)\Big)
@@ -558,6 +584,74 @@ Therefore $T$ induces a mapping $\bar T$ of cosets given by $\bar T(v + U) = T(v
     &= \lambda \bar T(v + U)~~~~~\text{(by definition of $\bar T$)}
   \end{align*}
 \end{proof}
+
+\begin{definition*}[Minimal polynomial]
+  Let $V$ be a finite-dimensional vector space over $\F$, and let $A$ be a matrix of a linear
+  transformation $T:V \to V$.
+
+  The \emph{minimal polynomial} $m_A(x)$ is the monic polynomial $p(x)$ of minimal degree such that
+  $p(A) = 0$.
+\end{definition*}
+
+\begin{lemma*}~\\
+  \begin{enumerate}
+  \item The minimal polynomial exists for any endomorphic linear transformation.
+  \item The minimal polynomial is unique.
+  \item Let $f(x)$ be a polynomial. If $f(A) = 0$ then $m_A | f$.
+  \end{enumerate}
+\end{lemma*}
+
+\begin{claim*}
+  The minimal polynomial of $\bar T$ divides the minimal polynomial of $T$.
+\end{claim*}
+
+\begin{proof} (I)\\
+
+  \begin{align*}
+    m_T(\bar T)
+  \end{align*}
+
+  $\vdots$
+
+  We have $m_T(\bar T) = 0$, therefore $m_{\bar T}| m_T$.
+
+\end{proof}
+
+\begin{proof} (II)\\
+  Let $J = \dim U$ and $K = \dim V$.
+
+  Pick a basis of $U$ and extend it to a basis $\mathcal B$ of $V$.
+
+  Order the elements of the basis $\mathcal B$ such that the last $J$ elements are the basis of
+  $U$.
+
+  Let $A$ be the matrix of $T$ with respect to $\mathcal B$.
+
+  Then, since $U$ is invariant under $T$, $A$ has a block structure
+  \begin{align*}
+    A = \matMMxNN{~\bar A}{0}
+                 {~0     }{B}.
+  \end{align*}
+
+  Claim: $\bar A$ is the matrix of $\bar T$ with respect to some basis of $V/U$.
+
+  Note that
+  \begin{align*}
+    \lambda A^n = \matMMxNN{~\lambda{\bar A}^n}{0}
+                            {~0      }{\lambda B^n}.
+  \end{align*}
+  Let $p(x)$ be a polynomial. Then $p(A) = 0 \implies p(\bar A) = 0$.
+
+  Let $m_A(x)$ and $m_{\bar A}(x)$ be the minimal polynomials of $A$ and $\bar A$ respectively.
+
+  By definition, $m_A(A) = 0$.
+
+  Therefore $m_A(\bar A) = 0$, therefore $m_{\bar A}| m_A$.
+
+  Equivalently, $m_{\bar T}| m_T$.
+\end{proof}
+
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2.png}

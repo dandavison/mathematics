@@ -6,25 +6,55 @@
 \begin{document}
 
 \section{A0 - Linear Algebra}
-\subsection{Basis of space of functions $f:\N \to \R$}
-\red{Doesn't this suggest, contra the question, that every basis of $F_\infty$
-  is countable? Let's attempt to prove that and see what goes wrong...
-  ~\\\\
-  Basic question: if I show it is true for all finite sets $1, 2, \ldots, n$,
-  that is not the same as showing that it true for $\N$, right?
-}
-
-\hrule
-~\\
-Alternatively, do something like a diagonal argument: enumerate the elements of
-a basis, and then show that there is an element of the basis that is not
-contained within the enumeration.
+\begin{enumerate}
+\item Are the elements of a vector space always ``array-like'', allowing ``componentwise''
+  operations? (i.e. functions are array like because they can be considered to be an indexed set of
+  tuples.) $\rightarrow$ Does every vector space have a basis $\rightarrow$ Axiom of Choice, Zorn's
+  Lemma.
+\item When is multiplication of functions defined to be composition versus componentwise
+  multiplication? $(fg)(x) := f(g(x))$ vs $(fg)(x) := f(x)g(x)$. $\rightarrow$ Either might make
+  sense.
+\item In $\R^3$ a set of basis vectors have no natural order. But in e.g. the space of functions on
+  $(0, 1)$ the basis vectors would have a natural order I think. What distinction is being
+  identified there? $\rightarrow$ well, $R^n$ basis vectors do have an order.
+\item Conrad says
+  \begin{quote}
+    ``there is a nonzero monic polynomial that kills a linear operator A''.
+  \end{quote}
+  Now in general applying a polynomial to a linear transformation (``operator'') is not
+  well-defined (choice of basis $\rightarrow$ different matrix $\rightarrow$ different
+  result). However, (theorem) if the polynomial kills a matrix $A$ then it will also kill $A$ after
+  any change-of-basis. Because $(P^\1AP)^k = (P^\1AP)(P^\1AP)\cdots (P^\1AP) = (P^\1A^kP)$
+  ...hmm. Not sure I understand this:
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/question-linear-algebra-a0-minimal-polynomial.png}
+  \end{mdframed}
+\item What is an example of a subring that is not an ideal?\\
+  \url{https://math.stackexchange.com/questions/1098217/subring-which-is-not-an-ideal}
+\item Definition of direct sum\\
+  Halmos says
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/question-linear-algebra-a0-direct-sum-halmos.png}
+  \end{mdframed}
+  Lauder says
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/question-linear-algebra-a0-direct-sum-lauder.png}
+  \end{mdframed}
+\item ``Operator'' vs ``Linear transformation''\\
+  Conrad uses ``operator'' whereas Oxford notes use ``transformation'' for what is AFAIK the same
+  concept
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/question-linear-algebra-a0-operator-halmos.png}
+  \end{mdframed}
+\end{enumerate}
 
 
 \section{A1 - Differential Equations}
 
-\includegraphics[width=400pt]{img/question-differential-equations-a1-warning.png}\\
+\begin{enumerate}
+\item \includegraphics[width=400pt]{img/question-differential-equations-a1-warning.png}\\
+  Why does solution not exist for $x > 1$?
+\end{enumerate}
 
-Why does solution not exist for $x > 1$?
 
 \end{document}
