@@ -661,8 +661,6 @@ Let $v + U$ be a coset of $U$. Then the induced mapping is given by
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-1.png}
 \end{mdframed}
 
-\newcommand{\mc}{\mathcal}
-
 Let $D^n:\mc P \to \mc P$ be the $n$-th derivative operator.
 
 Then $\mc P_n$ is the kernel of $D^{n+1}$.
@@ -784,6 +782,9 @@ If it were well-defined, the induced map would be $\bar L:\mc P/\mc P_n \to \mc 
 
 \newpage
 \begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
+\end{mdframed}
+\begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
 \end{mdframed}
 Recall that:
@@ -802,7 +803,26 @@ $o(x) = 0$.)
 
 Therefore $L$ does indeed induce a map $\bar L:\mc P/\mc E \to \mc P/\mc E$.
 
-\red{TODO: choose a basis and find matrix of $\bar L$.}
+A basis for $\mc E$ is $\{1, x^2, x^4, \ldots\}$.
+
+To extend this basis to a basis for $\mc P$ we can add the elements of $\{x, x^3, x^5, \ldots\}$.
+
+Therefore (theorem) a basis for $\mc P/\mc E$ is $\{x + \mc E, x^3 + \mc E, x^5 + \mc E, \ldots\}$.
+
+\red{TODO: Doesn't the basis need to include $\mc E$??}
+
+Since the quotient space is infinite-dimensional, $\bar L$ has no finite matrix representation.
+
+As an ``infinite matrix'' it would be
+\begin{align*}
+  \begin{pmatrix}
+    0      & 0      & 0      & \cdots\\
+    1      & 0      & 0      & \cdots\\
+    0      & 1      & 0      & \cdots\\
+    \vdots & \vdots & \vdots & \ddots
+  \end{pmatrix},
+\end{align*}
+that is, an infinite-dimensional identity matrix below a row of zeros.
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
