@@ -4,6 +4,7 @@
 \usepackage{oxford}
 
 \begin{document}
+
 \title{Oxford A0 - Linear Algebra \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5353}}}
 \author{Dan Davison}
 \maketitle
@@ -656,21 +657,157 @@ Let $v + U$ be a coset of $U$. Then the induced mapping is given by
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2.png}
 \end{mdframed}
-
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-1.png}
 \end{mdframed}
 
+\newcommand{\mc}{\mathcal}
+
+Let $D^n:\mc P \to \mc P$ be the $n$-th derivative operator.
+
+Then $\mc P_n$ is the kernel of $D^{n+1}$.
+
+Furthermore, $D^n$ is a homomorphism (preserves addition of polynomials).
+
+By the First Isomorphism Theorem, $\mc P/\mc P_n \cong \Im D^{n+1}$.
+
+\begin{claim*}
+  $\Im D^n = \mc P$ (surjective) for all $n \in \N$.
+\end{claim*}
+
+\begin{proof}
+  Let $p(x) = \sum_{i=1}^k\lambda_ix^k \in \mc P$. Then
+  $D^n \Big(x^n\sum_{i=1}^k\frac{\lambda_i}{(k+n)_{(n)}}x^k\Big) = p(x)$, so $D^n$ is surjective.
+\end{proof}
+
+Therefore $\mc P/\mc P_n \cong \mc P$.
+
+Therefore $\mc P/\mc P_n$ is infinite-dimensional.
+
+\begin{remark*}
+Each element of $\mc P/\mc P_n$ is a set of polynomials differing only by additive terms
+of degree $n$ or less.
+\end{remark*}
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
 \end{mdframed}
+Let $\mc E$ and $\mc O$ be the set of even and odd polynomials respectively.
+
+Let $f:\mc P \to \mc P$ be given by $p(x) := $ (the odd terms of $p(x)$).
+
+Then $\Im f = \mc O$ and $\Ker f = \mc E$.
+
+Therefore $\mc P/\mc E \cong \mc O$, infinite-dimensional.
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
+\end{mdframed}
+Let $f: \mc P \to \mc P$ be given by $f(p(x)) := $ (remainder after division by $x^n$).
+
+\begin{claim*}
+  $f$ is a homomorphism: $f(p(x) + q(x)) = f(p(x)) + f(q(x))$.
+\end{claim*}
+
+Note that $x^n\mc P$ is the kernel of $f$.
+
+\begin{claim*}
+  $\Im f = \mc P_n$.
+\end{claim*}
+
+\red{TODO: prove or disprove}.
+
+If these claims are true, then $\mc P/x^n\mc P \cong \mc P_n$, finite-dimensional.
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
+\end{mdframed}
+
+\begin{claim*}
+  $L$ is linear.
+\end{claim*}
+
+\begin{proof} Note that multiplication of polynomials distributes over addition:
+  \begin{align*}
+    \Big(\sum_{i=0}^k a_ix^i\Big)\Big(\sum_{i=0}^k b_ix^i + \sum_{i=0}^k c_ix^i\Big)
+    &= \Big(\sum_{i=0}^k a_ix^i\Big)\Big(\sum_{i=0}^k (b_i + c_i)x^i\Big)\\
+    &= \Big(\sum_{i=0}^{k}\sum_{j=0}^k a_i(b_j + c_j)x^{i+j}\Big)\\
+    &= \Big(\sum_{i=0}^{k}\sum_{j=0}^k a_ib_jx^{i+j}\Big) +
+       \Big(\sum_{i=0}^{k}\sum_{j=0}^k a_ic_jx^{i+j}\Big)\\
+    &= \Big(\sum_{i=0}^k a_ix^i\Big)\Big(\sum_{i=0}^k b_ix^i\Big) +
+       \Big(\sum_{i=0}^k a_ix^i\Big)\Big(\sum_{i=0}^k c_ix^i\Big).
+  \end{align*}
+  Therefore
+  \begin{align*}
+    L(f(x) + g(x)) &= x^2(f(x) + g(x))\\
+                   &= x^2f(x) + x^2(g(x))\\
+                   &= L(f(x)) + L(g(x)).
+  \end{align*}
+\end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
+\end{mdframed}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-1.png}
+\end{mdframed}
+
+Recall that:
+\begin{enumerate}
+\item $\mc P_n$ is the kernel of $D^{(n+1)}$.
+\item Every coset $\Big(p(x) + \mc P_n\Big) \in \mc P/\mc P_n$ is a set of polynomials differing
+  only by additive terms of degree $n$ or less.
+\end{enumerate}
+
+If it were well-defined, the induced map would be $\bar L:\mc P/\mc P_n \to \mc P/\mc P_n$ given by
+\begin{align*}
+  \bar L\Big(p(x) + \mc P_n\Big) :=& x^2\Big(p(x) + \mc P_n\Big)\\
+                                  =& x^2p(x) + x^2\mc P_n.
+\end{align*}
+
+
+\begin{claim*}
+  Not well-defined: $\Im \bar L \not\subseteq \mc P/\mc P_n$. %  for $n > 2$.
+\end{claim*}
+
+\begin{proof}
+  Let $n \geq 1$ and consider $\bar L(0 + \mc P_n) := x^2\mc P_n$.
+
+  We have $0 \in x^2\mc P_n$ and $x^2x^{n-1} = x^{n+1} \in x^2\mc P_n$.
+
+  These differ by an additive term of degree $n+1$.
+
+  Therefore $x^2\mc P_n \not\in \mc P/\mc P_n$.
+\end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
+\end{mdframed}
+Recall that:
+\begin{enumerate}
+\item $\mc P/\mc E \cong \mc O$, infinite-dimensional.
+\item Every coset is of the form $o(x) + \mc E$, for some odd polynomial $o(x) \in \mc O$.
+\end{enumerate}
+If it were well-defined, the induced map would be $\bar L:\mc P/\mc E \to \mc P/\mc E$ given, for
+odd polynomial $o(x) \in \mc O$, by
+\begin{align*}
+  \bar L\Big(o(x) + \mc E\Big) :=& x^2o(x) + x^2\mc E\\
+                                =& x^2o(x) + \mc E.
+\end{align*}
+Note that $x^2o(x) \in \mc O$, therefore $\Im \bar L \subseteq \mc P/\mc E$. (This remains true for
+$o(x) = 0$.)
+
+Therefore $L$ does indeed induce a map $\bar L:\mc P/\mc E \to \mc P/\mc E$.
+
+\red{TODO: choose a basis and find matrix of $\bar L$.}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
 \end{mdframed}
 
-\begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
-\end{mdframed}
+
 
 \end{document}
