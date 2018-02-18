@@ -7,16 +7,20 @@
 
 \section{A0 - Linear Algebra}
 \begin{enumerate}
+\item Can a normal subgroup be the kernel of more than one homomorphism? I think so. If so, are the
+  images of those homomorphisms isomorphic? Presumably. \blue{yep}
 \item Are the elements of a vector space always ``array-like'', allowing ``componentwise''
   operations? (i.e. functions are array like because they can be considered to be an indexed set of
-  tuples.) $\rightarrow$ Does every vector space have a basis $\rightarrow$ Axiom of Choice, Zorn's
-  Lemma.
+  tuples.) \blue{$\rightarrow$ Does every vector space have a basis \blue{$\rightarrow$ Axiom of Choice,
+    Zorn's Lemma.}}
 \item When is multiplication of functions defined to be composition versus componentwise
-  multiplication? $(fg)(x) := f(g(x))$ vs $(fg)(x) := f(x)g(x)$. $\rightarrow$ Either might make
-  sense.
+  multiplication? $(fg)(x) := f(g(x))$ vs $(fg)(x) := f(x)g(x)$. \blue{$\rightarrow$ Either might
+    make sense.}
 \item In $\R^3$ a set of basis vectors have no natural order. But in e.g. the space of functions on
   $(0, 1)$ the basis vectors would have a natural order I think. What distinction is being
-  identified there? $\rightarrow$ well, $R^n$ basis vectors do have an order.
+  identified there? \blue{$\rightarrow$ well, $R^n$ basis vectors do have an order. But yes there
+    are bases of vector spaces with no natural order (e.g. space of functions on a set with no
+    ordering).}
 \item Conrad says
   \begin{quote}
     ``there is a nonzero monic polynomial that kills a linear operator A''.
@@ -29,6 +33,10 @@
   \begin{mdframed}
     \includegraphics[width=400pt]{img/question-linear-algebra-a0-minimal-polynomial.png}
   \end{mdframed}
+  \blue{$\rightarrow$ Ultimately feeding a transformation to a polynomial outputs another
+    transformation; it's basis-independent. Algebraically,
+    $f(P^\1AP) = \sum_i a_i(P^\1AP)^i = \sum_i a_iP^\1A^iP = P^\1\Big(\sum_ia_iA^i\Big)P =
+    P^\1f(A)P$.}
 \item What is an example of a subring that is not an ideal?\\
   \url{https://math.stackexchange.com/questions/1098217/subring-which-is-not-an-ideal}
 \item Definition of direct sum\\
