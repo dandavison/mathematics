@@ -674,8 +674,8 @@ By the First Isomorphism Theorem, $\mc P/\mc P_n \cong \Im D^{n+1}$.
 \end{claim*}
 
 \begin{proof}
-  Let $p(x) = \sum_{i=1}^k\lambda_ix^k \in \mc P$. Then
-  $D^n \Big(x^n\sum_{i=1}^k\frac{\lambda_i}{(k+n)_{(n)}}x^k\Big) = p(x)$, so $D^n$ is surjective.
+  Let $p(x) = \sum_{i=1}^k\lambda_ix^i \in \mc P$. Then
+  $D^n \Big(x^n\sum_{i=1}^k\frac{\lambda_i}{(i>+n)_{(n)}}x^i\Big) = p(x)$, so $D^n$ is surjective.
 \end{proof}
 
 Therefore $\mc P/\mc P_n \cong \mc P$.
@@ -711,7 +711,7 @@ Let $f: \mc P \to \mc P$ be given by $f(p(x)) := $ (remainder after division by 
 Note that $x^n\mc P$ is the kernel of $f$.
 
 \begin{claim*}
-  $\Im f = \mc P_n$.
+  $\Im f = \mc P_{n-1}$.
 \end{claim*}
 
 \red{TODO: prove or disprove}.
@@ -738,10 +738,11 @@ If these claims are true, then $\mc P/x^n\mc P \cong \mc P_n$, finite-dimensiona
   \end{align*}
   Therefore
   \begin{align*}
-    L(f(x) + g(x)) &= x^2(f(x) + g(x))\\
-                   &= x^2f(x) + x^2(g(x))\\
-                   &= L(f(x)) + L(g(x)).
+    L(af(x) + bg(x)) &= x^2(af(x) + bg(x))\\
+                     &= ax^2f(x) + bx^2g(x)\\
+                     &= aL(f(x)) + bL(g(x)),
   \end{align*}
+  where $a, b \in \F$.
 \end{proof}
 
 \newpage
@@ -809,7 +810,14 @@ To extend this basis to a basis for $\mc P$ we can add the elements of $\{x, x^3
 
 Therefore (theorem) a basis for $\mc P/\mc E$ is $\{x + \mc E, x^3 + \mc E, x^5 + \mc E, \ldots\}$.
 
-\red{TODO: Doesn't the basis need to include $\mc E$??}
+\begin{mdframed}
+  \begin{remark*}
+    Note that $\mc E$ is not in the basis since it is the additive identity in $\mc P/\mc E$: Let 0
+    be the additive identity in the field $\F$. Then
+    $\mc E = 0(x + \mc E) + 0(x^3 + \mc E) + \ldots$. This is true since in general
+    $0\vec v = (1 - 1)\vec v = \vec v - \vec v = \vec 0$.
+  \end{remark*}
+\end{mdframed}
 
 Since the quotient space is infinite-dimensional, $\bar L$ has no finite matrix representation.
 
@@ -828,6 +836,37 @@ that is, an infinite-dimensional identity matrix below a row of zeros.
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
 \end{mdframed}
 
+Recall that:
+\begin{enumerate}
+\item $x^n\mc P$ is the kernel of the homomorphism which sends $p(x) \in \mc P$ to its remainder
+  after division by $x^n$. The image is $\mc P_{n-1}$.
+\item Therefore $\mc P/x^n\mc P \cong \mc P_{n-1}$, finite-dimensional.
+\item Every coset is of the form $p(x) + x^n\mc P$.
+\end{enumerate}
 
+Note that $L(x^n\mc P) = x^{n+2}\mc P \subseteq x^n\mc P$.
+
+Therefore (theorem) the formula
+\begin{align*}
+  \bar L\Big(p(x) + x^n\mc P\Big) := x^2p(x) + x^{n+2}\mc P.
+\end{align*}
+gives a well-defined linear map of quotients.
+
+If the induced map were well-defined it would be $\bar L:\mc P/x^n\mc P \to \mc P/x^n\mc P$, given,
+for $p(x) \in \mc P$, by
+
+\begin{claim*}
+  $\bar L$ is well-defined.
+\end{claim*}
+
+\begin{proof}
+  Let $p(x)$ and $q(x)$ be polynomials such that $p(x) + x^n\mc P = q(x) + x^n\mc P$.
+\end{proof}
+
+I think this is well-defined. E.g. $\Im \bar L \subseteq \mc P/x^n\mc P$, as required.
+
+A basis for $x^n\mc P$ is
+
+% A basis for $\mc P/x^n\mc P$ is $\{x^n\mc P\}$
 
 \end{document}
