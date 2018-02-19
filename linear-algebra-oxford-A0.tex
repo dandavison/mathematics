@@ -653,7 +653,7 @@ Let $v + U$ be a coset of $U$. Then the induced mapping is given by
 \end{proof}
 
 
-\newpage
+% \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2.png}
 \end{mdframed}
@@ -749,60 +749,59 @@ If these claims are true, then $\mc P/x^n\mc P \cong \mc P_n$, finite-dimensiona
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
 \end{mdframed}
+
+First, a theorem and a corollary:
+
+\begin{theorem*}
+  Let $L:V \to W$ be an isomorphism\footnote{note: not linear; but why not homomorphism?} between
+  vector spaces $V$ and $W$, and let $A \subseteq V, B \subseteq W$ be subspaces. Then the formula
+  $\bar L(v + A) = L(v) + B$ gives a well-defined linear map $\bar L:V/A \to W/B$ if and only if
+  $L(A) \subseteq B$.
+\end{theorem*}
+
+Therefore
+
+\begin{corollary*}
+  Let $L:V \to V$ with $U$ a subspace of $V$. Then $L$ induces a linear map of quotients
+  $\bar L:V/U \to V/U$ given by $v + U \mapsto L(v) + U$ if and only if $U$ is invariant under $T$.
+\end{corollary*}
+
+~\\
+
 \begin{mdframed}
   \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-1.png}
 \end{mdframed}
 
-Recall that:
-\begin{enumerate}
-\item $\mc P_n$ is the kernel of $D^{(n+1)}$.
-\item Every coset $\Big(p(x) + \mc P_n\Big) \in \mc P/\mc P_n$ is a set of polynomials differing
-  only by additive terms of degree $n$ or less.
-\end{enumerate}
+% Recall that:
+% \begin{enumerate}
+% \item $\mc P_n$ is the kernel of $D^{(n+1)}$.
+% \item Every coset $\Big(p(x) + \mc P_n\Big) \in \mc P/\mc P_n$ is a set of polynomials differing
+%   only by additive terms of degree $n$ or less.
+% \end{enumerate}
 
-If it were well-defined, the induced map would be $\bar L:\mc P/\mc P_n \to \mc P/\mc P_n$ given by
+Note that $L(\mc P_n) = x^2\mc P_n = \mc P_{n+2} \not\subseteq \mc P_n$.
+
+Therefore the formula
 \begin{align*}
-  \bar L\Big(p(x) + \mc P_n\Big) :=& x^2\Big(p(x) + \mc P_n\Big)\\
-                                  =& x^2p(x) + x^2\mc P_n.
+  \bar L\Big(p(x) + \mc P_n\Big) := x^2p(x) + \mc P_n
 \end{align*}
+does not give a well-defined map $\bar L:\mc P/\mc P_n \to \mc P/\mc P_n$.
 
-
-\begin{claim*}
-  Not well-defined: $\Im \bar L \not\subseteq \mc P/\mc P_n$. %  for $n > 2$.
-\end{claim*}
-
-\begin{proof}
-  Let $n \geq 1$ and consider $\bar L(0 + \mc P_n) := x^2\mc P_n$.
-
-  We have $0 \in x^2\mc P_n$ and $x^2x^{n-1} = x^{n+1} \in x^2\mc P_n$.
-
-  These differ by an additive term of degree $n+1$.
-
-  Therefore $x^2\mc P_n \not\in \mc P/\mc P_n$.
-\end{proof}
-
-\newpage
-\begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
-\end{mdframed}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
 \end{mdframed}
-Recall that:
-\begin{enumerate}
-\item $\mc P/\mc E \cong \mc O$, infinite-dimensional.
-\item Every coset is of the form $o(x) + \mc E$, for some odd polynomial $o(x) \in \mc O$.
-\end{enumerate}
-If it were well-defined, the induced map would be $\bar L:\mc P/\mc E \to \mc P/\mc E$ given, for
-odd polynomial $o(x) \in \mc O$, by
-\begin{align*}
-  \bar L\Big(o(x) + \mc E\Big) :=& x^2o(x) + x^2\mc E\\
-                                =& x^2o(x) + \mc E.
-\end{align*}
-Note that $x^2o(x) \in \mc O$, therefore $\Im \bar L \subseteq \mc P/\mc E$. (This remains true for
-$o(x) = 0$.)
 
-Therefore $L$ does indeed induce a map $\bar L:\mc P/\mc E \to \mc P/\mc E$.
+% Recall that:
+% \begin{enumerate}
+% \item $\mc P/\mc E \cong \mc O$, infinite-dimensional.
+% \item Every coset is of the form $o(x) + \mc E$, for some odd polynomial $o(x) \in \mc O$.
+% \end{enumerate}
+
+Note that $L(\mc E) = x^2\mc E = \mc E$. Therefore the formula
+\begin{align*}
+  \bar L\Big(p(x) + \mc E\Big) := x^2p(x) + \mc E
+\end{align*}
+does give a well-defined linear map of quotients $\bar L:\mc P/\mc E \to \mc P/\mc E$.
 
 A basis for $\mc E$ is $\{1, x^2, x^4, \ldots\}$.
 
@@ -810,63 +809,66 @@ To extend this basis to a basis for $\mc P$ we can add the elements of $\{x, x^3
 
 Therefore (theorem) a basis for $\mc P/\mc E$ is $\{x + \mc E, x^3 + \mc E, x^5 + \mc E, \ldots\}$.
 
-\begin{mdframed}
-  \begin{remark*}
-    Note that $\mc E$ is not in the basis since it is the additive identity in $\mc P/\mc E$: Let 0
-    be the additive identity in the field $\F$. Then
-    $\mc E = 0(x + \mc E) + 0(x^3 + \mc E) + \ldots$. This is true since in general
-    $0\vec v = (1 - 1)\vec v = \vec v - \vec v = \vec 0$.
-  \end{remark*}
-\end{mdframed}
+However, the quotient space $\mc P/\mc E \cong \mc O$ is infinite-dimensional and therefore
+$\bar L$ has no matrix representation.
 
-Since the quotient space is infinite-dimensional, $\bar L$ has no finite matrix representation.
+% \begin{mdframed}
+%   \begin{remark*}
+%     Note that $\mc E$ is not in the basis since it is the additive identity in $\mc P/\mc E$: Let 0
+%     be the additive identity in the field $\F$. Then
+%     $\mc E = 0(x + \mc E) + 0(x^3 + \mc E) + \ldots$. This is true since in general
+%     $0\vec v = (1 - 1)\vec v = \vec v - \vec v = \vec 0$.
+%   \end{remark*}
+% \end{mdframed}
 
-As an ``infinite matrix'' it would be
-\begin{align*}
-  \begin{pmatrix}
-    0      & 0      & 0      & \cdots\\
-    1      & 0      & 0      & \cdots\\
-    0      & 1      & 0      & \cdots\\
-    \vdots & \vdots & \vdots & \ddots
-  \end{pmatrix},
-\end{align*}
-that is, an infinite-dimensional identity matrix below a row of zeros.
+% Since the quotient space is infinite-dimensional, $\bar L$ has no finite matrix representation.
+
+% As an ``infinite matrix'' it would be
+% \begin{align*}
+%   \begin{pmatrix}
+%     0      & 0      & 0      & \cdots\\
+%     1      & 0      & 0      & \cdots\\
+%     0      & 1      & 0      & \cdots\\
+%     \vdots & \vdots & \vdots & \ddots
+%   \end{pmatrix},
+% \end{align*}
+% that is, an infinite-dimensional identity matrix below a row of zeros.
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
 \end{mdframed}
 
-Recall that:
-\begin{enumerate}
-\item $x^n\mc P$ is the kernel of the homomorphism which sends $p(x) \in \mc P$ to its remainder
-  after division by $x^n$. The image is $\mc P_{n-1}$.
-\item Therefore $\mc P/x^n\mc P \cong \mc P_{n-1}$, finite-dimensional.
-\item Every coset is of the form $p(x) + x^n\mc P$.
-\end{enumerate}
+% Recall that:
+% \begin{enumerate}
+% \item $x^n\mc P$ is the kernel of the homomorphism which sends $p(x) \in \mc P$ to its remainder
+%   after division by $x^n$. The image is $\mc P_{n-1}$.
+% \item Therefore $\mc P/x^n\mc P \cong \mc P_{n-1}$, finite-dimensional.
+% \item Every coset is of the form $p(x) + x^n\mc P$.
+% \end{enumerate}
 
 Note that $L(x^n\mc P) = x^{n+2}\mc P \subseteq x^n\mc P$.
 
-Therefore (theorem) the formula
+Therefore the formula
 \begin{align*}
-  \bar L\Big(p(x) + x^n\mc P\Big) := x^2p(x) + x^{n+2}\mc P.
+  \bar L\Big(p(x) + x^n\mc P\Big) := x^2p(x) + x^n\mc P.
 \end{align*}
 gives a well-defined linear map of quotients.
 
-If the induced map were well-defined it would be $\bar L:\mc P/x^n\mc P \to \mc P/x^n\mc P$, given,
-for $p(x) \in \mc P$, by
+A basis for $\mc P$ is $\{1, x, x^2, \ldots\}$.
 
-\begin{claim*}
-  $\bar L$ is well-defined.
-\end{claim*}
+A basis for $x^n\mc P$ is $\{x^n, x^{n+1}, \ldots\}$.
 
-\begin{proof}
-  Let $p(x)$ and $q(x)$ be polynomials such that $p(x) + x^n\mc P = q(x) + x^n\mc P$.
-\end{proof}
+Therefore (theorem) a basis for the quotient space $\mc P/x^n\mc P$ is
+\begin{align*}
+  \{1 + x^n\mc P, x + x^n\mc P, x^2 + x^n\mc P, \ldots, x^{n-1} + x^n\mc P\}.
+\end{align*}
 
-I think this is well-defined. E.g. $\Im \bar L \subseteq \mc P/x^n\mc P$, as required.
+A matrix representation for $\bar L$ with respect to this basis is
+\begin{align*}
+  [\vec a_1, \vec a_2, \ldots, \vec a_{n-1}],
+\end{align*}
+where $\vec a_{j}$ is a column vector with 1 in its $(j + 2)$-th entry, and 0 elsewhere.
 
-A basis for $x^n\mc P$ is
 
-% A basis for $\mc P/x^n\mc P$ is $\{x^n\mc P\}$
 
 \end{document}

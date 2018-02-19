@@ -7,11 +7,21 @@
 
 \section{A0 - Linear Algebra}
 \begin{enumerate}
+\item Why is $T$ an isomorphism here rather than merely a homomorphism? I guess the point is that
+  $T$ need not be linear? But why need it be bijective? Also, what's the justification for the
+  sentence ``Now $\bar T$ will be linear if it is well-defined.'' in the proof?
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/question-linear-algebra-a0-induced-map-well-defined-theorem.png}
+  \end{mdframed}
 \item Why does the basis $\bar B$ of a quotient space not include the element $U$? (i.e. the coset
   which is the subspace/kernel).
   \begin{mdframed}
     \includegraphics[width=400pt]{img/question-linear-algebra-a0-basis-of-quotient-space.png}
   \end{mdframed}
+  \blue{$\rightarrow$ because $U$ is the identity in the quotient space. Its coordinates are
+    $(0, 0, ...)$ with respect to the basis $\bar B$. Let 0 be the additive identity in the field
+    $\F$. Then $0v = \vec 0$ for all $v$, where $\vec 0$ is the additive identity in the abelian
+    group of the vector space.}
 \item Can a normal subgroup be the kernel of more than one homomorphism? I think so. If so, are the
   images of those homomorphisms isomorphic? Presumably. \blue{yep}
 \item Are the elements of a vector space always ``array-like'', allowing ``componentwise''

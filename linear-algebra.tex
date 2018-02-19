@@ -1221,3 +1221,21 @@ We can evaluate the polynomial on the matrix: $f(A) = a_kA^k + \ldots + a_0I$.
   \item Let $f(x)$ be a polynomial. If $f(A) = 0$ then $m_A | f$.
   \end{enumerate}
 \end{theorem*}
+
+
+\section{Quotient spaces, induced maps}
+
+\begin{theorem*}
+  Let $T:V \to W$ be an isomorphism\footnote{note: not linear; but why not homomorphism?} between
+  vector spaces $V$ and $W$, and let $A \subseteq V, B \subseteq W$ be subspaces. Then the formula
+  $\bar T(v + A) = T(v) + B$ gives a well-defined linear map $\bar T:V/A \to W/B$ if and only if
+  $T(A) \subseteq B$.
+\end{theorem*}
+
+Therefore
+
+\begin{theorem*}
+  Let $T:V \to V$ with $U$ a subspace of $V$. If $U$ is $T$-invariant, then $T$ induces a linear
+  map of quotients $\bar T:V/U \to V/U$ given by $v + U \mapsto T(v) + U$.
+\end{theorem*}
+
