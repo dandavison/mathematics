@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+\usepackage{enumerate}
+\usepackage{notes}
+\usepackage{oxford}
+
+\begin{document}
+
+\begin{mdframed}
+  Choose 3 points uniformly over the circumference of a circle. What's the
+  probability that the inscribed triangle contains the center of the circle?
+\end{mdframed}
+
+The first point is arbitrary. The second point is separated from the first by
+an arc of $X \sim \Unif(0, \pi)$ radians. Given this first arc of $X$ radians,
+consider the arc of $X$ radians that lies on the opposite side of the
+circle. If the third point falls within this arc then the 3 points define a
+triangle containing the centre. Let $q$ be the desired probability and $\phi$
+be the probability density of $X$. Then
+\begin{align*}
+  q &= \int_0^{\pi} \frac{x}{2\pi}\phi_X(x) \dx\\
+    &= \int_0^{\pi} \frac{x}{2\pi}\frac{1}{\pi} \dx\\
+    &= \frac{1}{2\pi^2} \frac{\pi^2}{2}\\
+    &= \frac{1}{4}.
+\end{align*}
+
+
+\begin{mdframed}
+  Choose 4 points uniformly over the surface of a sphere. What's the
+  probability that the inscribed tetrahedron contains the center of the sphere?
+\end{mdframed}
+
+The first point is arbitrary. The second point lies on a great circle passing
+through the first point, and is separated from the first point by an arc of
+$X_1 \sim \Unif(0, \pi)$ radians. The third point is specified by a latitude
+$X_2 \sim \Unif(0, \pi)$ and a longitude $X_3 \sim \Unif(0, \pi)$.  $X_1$,
+$X_2$ and $X_3$ define a subset of the surface area of the sphere (a hyperbolic
+triangle lying in the surface of the sphere).
+
+There is a corresponding subset on the opposite side of the sphere with the
+same shape and surface area (For each of the 3 points, draw a line through the
+centre of the sphere and find its intersection with the surface beyond. The
+second subset is the hyperbolic triangle defined by these 3 points of
+intersection).
+
+If the fourth point lies in this second subset then the tetrahedron contains
+the center of the sphere. Therefore the desired probability is the area of the
+hyperbolic triangle, as a proportion of the total surface area, averaged over
+possible values of $X_1, X_2, X_3$.
+
+Also, note that $\Big(\frac{1}{4}\Big)^{3/2} = \frac{1}{8}$, i.e. this is the
+value expected from a straightforward scaling argument when passing from 2D to
+3D.
+
+\end{document}
