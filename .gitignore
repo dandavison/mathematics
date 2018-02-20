@@ -1,2 +1,4 @@
 build/
-
+*.pdf
+_region_.tex
+fragments.tex
