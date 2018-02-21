@@ -314,7 +314,48 @@ $$
 
 
 
-\section{Exercises}
+
+\section{Oxford - A2 - Metric Spaces}
+
+\begin{theorem*}
+  Let $f:V \to W$ be a linear map between normed vector spaces. Then $f$ is continuous if and only
+  if $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded.
+\end{theorem*}
+
+\begin{proof}~\\
+  Let $v \in V$.
+
+  Note that $f(v) = f(v) - f(0)$ since $f$ is linear.
+
+  Suppose $f$ is continuous. Then it is continuous at 0.
+
+  Therefore for every $\epsilon > 0$ there exists $\delta > 0$ such that
+  $\norm{v} < \delta \implies \norm{f(v)} < \epsilon.$
+
+  $\vdots$
+
+  For the converse, suppose that $\norm{v} \leq 1 \implies \norm{f(v)} < M$.
+
+  Let $\epsilon > 0$ be given.
+
+  Pick $\delta > 0$ such that $\delta M < \epsilon$.
+
+  Now consider two points $u, v \in V$ where $\norm{u - v} < \delta$. We have
+  \begin{align*}
+    \norm{f(u) - f(v)} = \norm{f(u - v)} = \delta\norm{f\(\frac{u - v}{\delta}\)}.
+  \end{align*}
+
+  Note that $\norm{\frac{u - v}{\delta}} < 1$, therefore $\norm{f\(\frac{u - v}{\delta}\)} <
+  M$. Therefore we have
+  \begin{align*}
+    \norm{f(u) - f(v)} < \delta M < \epsilon
+  \end{align*}
+  as required.
+
+
+\end{proof}
+
+% \section{Exercises}
 
 - \textbf{11.1: 3, 25, 37}
 - \textbf{11.2: (14, 29, 42)}

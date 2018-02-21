@@ -10,6 +10,8 @@
 
 \title{Oxford A2 - Metric Spaces and Complex Analysis
   \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5378}}} \author{Dan Davison}
+\author{}
+\date{}
 \maketitle
 
 \section{Sheet 1}
@@ -98,4 +100,57 @@ Therefore $d_1(a, b) = \sum_{i=1}^n\epsilon_{a_ib_i} = d(a, b)$, as required.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-1-3.png}
 \end{mdframed}
+
+\begin{lemma*}
+  Let $f:V \to W$ be a linear map between normed vector spaces. Then $f$ is continuous if and only
+  if $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded.
+\end{lemma*}
+
+\begin{proof}
+  See $\epsilon-\delta$ argument in lecture notes.
+\end{proof}
+
+\begin{claim*}
+  The Euclidean norm is independent of basis.
+\end{claim*}
+
+\begin{claim*}
+  $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded. \Intuition{the image of the unit sphere is
+    bounded in norm}
+\end{claim*}
+
+\begin{proof}
+Let $\mc B$ be a basis for $\R^n$.
+
+Note that $\norm{f(x)}^2 := \sum_{i=1}^n f(x)_i^2$, where $f(x)_i$ is the $i$-th coordinate of
+$f(x)$ with respect to basis $\mc B$.
+
+Therefore it is sufficient to show that $\{|f(x)_i| : \norm{x} \leq 1\}$ is bounded for all
+$1 \leq i \leq n$.
+
+Let $a_i$ be the $i$-th row of the $n \times n$ matrix of $f$ with respect to basis $\mc B$.
+
+Then $|f(x)_i| = |\langle a_i, x \rangle| \leq \norm{a_i}\norm{x}$.
+\end{proof}
+
+\begin{intuition*}
+  The proof of the (linear, continuous) $\iff$ (linear, image bounded in norm) lemma uses
+  $\epsilon-\delta$ arguments. Then we use Cauchy-Schwarz to show that the image of the unit sphere
+  is bounded in norm as prescribed.
+\end{intuition*}
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-4.png}
+\end{mdframed}
+
+In other words: show that the sequence
+\begin{enumerate}
+\item always passes through every point in $X$ which is not $l$
+\item can also pass through $l$
+\end{enumerate}
+
+?
+
 \end{document}
