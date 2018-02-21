@@ -267,6 +267,51 @@ Memorize the general formula for a Taylor series around a point $a$. (Maclaurin 
 
 A common question is: over what interval of $x$-values does the series converge? This can be answered using the Ratio Test for convergence.
 
+\subsubsection{Maclaurin series derivation}
+
+Suppose that any function of a real number $f(x)$ can be represented by a "power series" with certain coefficients $c_i$
+
+$$
+f(x) = c_0 + c_1x^1 + c_2x^2 + c_3x^3 + c_4x^4 + ...
+$$
+
+If that is so, there are two questions:
+
+(1) what are the coefficients for any given function? This can be established
+by differentiating and evaluating the result at $x=0$.
+
+(2) Over what interval of $x$-values does the series converge? This can be
+answered using the Ratio Test for convergence.
+
+To answer (1), firstly, without differentiating at all, we see that $c_0 = f(0)$. Then differentiate once:
+
+$$
+f'(x) = c_1 + 2c_2x^1 + 3c_3x^2 + 4c_4x^3 + ...
+$$
+
+and we see that evaluating the first derivative at $x=0$ gives the coefficient
+$c_1 = f'(0)$. Differentiating again yields $c_2$:
+
+\begin{align*}
+f''(x) &= (2\cdot 1)c_2 + (3\cdot 2)c_3x^1 + (4\cdot 3)c_4x^2 + ... \\
+\frac{f''(0)}{2} &= c_2
+\end{align*}
+
+Continuing like that it becomes clear that each coefficient is equal to an $\nth$ derivative evaluated at zero, divided by a factorial term which results from the repeated differentiation:
+
+\begin{align*}
+f'''(x) &= (3\cdot2)c_3 + (4\cdot3\cdot2)c_4x^1 + ... \\
+\frac{f'''(0)}{3!} &= c_2
+\end{align*}
+
+and in general $c_n = \frac{f^{(n)}(0)}{n!}$.
+
+For example, take $f(x) = e^x$. The derivatives are all the same of course: $f^{(n)}(x) = e^x$. And $e^0 = 1$, so
+
+$$
+e^x = 1 + \frac{x}{1} + \frac{x^2}{2!} + \frac{x^3}{3!} + ... = \sum_{i=0}^\infty \frac{x^i}{i!}
+$$
+
 
 
 \section{Exercises}
@@ -312,50 +357,6 @@ A common question is: over what interval of $x$-values does the series converge?
     - Use the ratio test to assess radius of convergence
 
 
-\subsubsection{Maclaurin series derivation}
-
-Suppose that any function of a real number $f(x)$ can be represented by a "power series" with certain coefficients $c_i$
-
-$$
-f(x) = c_0 + c_1x^1 + c_2x^2 + c_3x^3 + c_4x^4 + ...
-$$
-
-If that is so, there are two questions:
-
-(1) what are the coefficients for any given function? This can be established
-by differentiating and evaluating the result at $x=0$.
-
-(2) Over what interval of $x$-values does the series converge? This can be
-answered using the Ratio Test for convergence.
-
-To answer (1), firstly, without differentiating at all, we see that $c_0 = f(0)$. Then differentiate once:
-
-$$
-f'(x) = c_1 + 2c_2x^1 + 3c_3x^2 + 4c_4x^3 + ...
-$$
-
-and we see that evaluating the first derivative at $x=0$ gives the coefficient
-$c_1 = f'(0)$. Differentiating again yields $c_2$:
-
-\begin{align*}
-f''(x) &= (2\cdot 1)c_2 + (3\cdot 2)c_3x^1 + (4\cdot 3)c_4x^2 + ... \\
-\frac{f''(0)}{2} &= c_2
-\end{align*}
-
-Continuing like that it becomes clear that each coefficient is equal to an $\nth$ derivative evaluated at zero, divided by a factorial term which results from the repeated differentiation:
-
-\begin{align*}
-f'''(x) &= (3\cdot2)c_3 + (4\cdot3\cdot2)c_4x^1 + ... \\
-\frac{f'''(0)}{3!} &= c_2
-\end{align*}
-
-and in general $c_n = \frac{f^{(n)}(0)}{n!}$.
-
-For example, take $f(x) = e^x$. The derivatives are all the same of course: $f^{(n)}(x) = e^x$. And $e^0 = 1$, so
-
-$$
-e^x = 1 + \frac{x}{1} + \frac{x^2}{2!} + \frac{x^3}{3!} + ... = \sum_{i=0}^\infty \frac{x^i}{i!}
-$$
 \section{Exercises - Rudin - Principles of Mathematical Analysis}
 
 ~\\\hrule
