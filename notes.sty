@@ -6,6 +6,7 @@
 \usepackage{caption}
 \usepackage{centernot}
 \usepackage{color}
+\usepackage{comment}
 \usepackage[shortlabels]{enumitem}
 % \usepackage[T1]{fontenc}
 \usepackage{footnote}
@@ -19,7 +20,7 @@
 \usepackage{parskip}
 \usepackage{verbatim}
 
-
+% \excludecomment{proof}
 
 \newtheorem{theorem}{\\Theorem}
 \newtheorem*{theorem*}{\\Theorem}
@@ -55,6 +56,7 @@
 % \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
 
 % \DeclareMathOperator{\sec}{\text{sec}}
+\DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator{\Bern}{\text{Bern}}
 \DeclareMathOperator{\D}{\text{D}}
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -252,6 +254,9 @@
 \newcommand{\mc}{\mathcal}
 
 
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\seq}{\subseteq}
 
 % deprecated
 \newcommand{\mat}{\matMMxNN}

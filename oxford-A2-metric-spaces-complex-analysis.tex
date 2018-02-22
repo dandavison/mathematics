@@ -145,12 +145,32 @@ Then $|f(x)_i| = |\langle a_i, x \rangle| \leq \norm{a_i}\norm{x}$.
 \includegraphics[width=400pt]{img/oxford-a2-1-4.png}
 \end{mdframed}
 
-In other words: show that the sequence
-\begin{enumerate}
-\item always passes through every point in $X$ which is not $l$
-\item can also pass through $l$
-\end{enumerate}
+Let $B(x, r)$ be an open ball of radius $r$ centered at $x$.
 
-?
+Note that for every $\delta > 0$ there exists $N \in \N$ such that $d(x_n, \ell) < \delta$ for all
+$n > N$.
+
+Let $y \neq \ell$ and let $N = \min\{n ~|~ d(x_n, \ell) < d(y, \ell)\}$.
+
+Let $M = \argmin_{n \in \{1, \ldots, N\}} D(n)$, where $D:\N \to \R$ is defined by
+$D(n) :=
+\begin{cases}
+  d(x_n, y), &x_n \neq y\\
+  \infty, &x_n = y
+\end{cases}$.
+
+Informally, $x_M$ is the element of $S$ that is closest but not equal to $y$.
+
+Note that $\Big(B(\ell, \frac{x_M - y}{2})\setminus\{\ell\}\Big) \cap S = \emptyset$.
+
+Therefore $y \neq \ell \implies y \notin S'$, or equivalently, $S' \seq \{\ell\}$.
+
+Now suppose that $S$ is such that there exists $N \in \N$ such that $x_n = \ell$ for all $n > N$.
+
+Let $M = \max\{n ~|~ x_n \neq \ell\}$.
+
+Note that $\Big(B(\ell, \frac{x_M - \ell}{2})\setminus\{\ell\}\Big) \cap S = \emptyset$.
+
+Therefore it is possible that $\ell \notin S'$, or equivalently, $S' = \emptyset$.
 
 \end{document}

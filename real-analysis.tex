@@ -317,10 +317,10 @@ $$
 
 \section{Oxford - A2 - Metric Spaces}
 
-\begin{theorem*}
+\begin{theorem}
   Let $f:V \to W$ be a linear map between normed vector spaces. Then $f$ is continuous if and only
   if $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded.
-\end{theorem*}
+\end{theorem}
 
 \begin{proof}~\\
   Let $v \in V$.
@@ -351,11 +351,152 @@ $$
     \norm{f(u) - f(v)} < \delta M < \epsilon
   \end{align*}
   as required.
-
-
 \end{proof}
 
-% \section{Exercises}
+\begin{theorem}
+  $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded for linear map $f$, under the Euclidean norm
+  $\norm{}_2$.
+\end{theorem}
+
+\begin{proof}
+  See Oxford A2 Sheet 1 exercises.
+\end{proof}
+
+
+\begin{definition}[Metric space]~\\
+  Let $X$ be a set. Suppose $d:X \times X \to \R$ satisfies positivity, symmetry and the triangle
+  equality. Then $d$ is a metric and $(X, d)$ is a metric space.
+\end{definition}
+
+\begin{definition}[Open ball]~\\
+  Let $(X, d)$ be a metric space, $x \in X$ and $\delta > 0$. Then
+  $B(x, \delta) := \{x \in X ~|~ d(x, x) < \delta\}$ iss an open ball of radius $\delta$ centred at
+  $x$.
+\end{definition}
+
+\begin{remark*}
+  Also closed ball, $\leq$. E.g. singleton set.
+\end{remark*}
+
+\begin{lemma}[Ball-based continuity criterion]~\\
+  $f$ is continuous at $x$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that
+  $f\(B(x, \delta)\) \subseteq B(f(x), \epsilon))$.
+
+  Equivalently, $B(x, \delta) \subseteq f^\1\(B(f(x), \epsilon)\)$.
+\end{lemma}
+
+\begin{definition}[Neighbourhood]~\\
+  Let $(X, d)$ be a metric space. $N \subseteq X$ is a neighbourhood of $x \in X$ iff there exists
+  $\delta > 0$ such that $B(x, \delta) \subseteq N$.
+\end{definition}
+
+\begin{remark*}
+  $N$ is a neighbourhood of $x$ if a ball can be placed at $x$ without poking outside $N$.
+\end{remark*}
+
+\begin{definition}[Open and closed subsets of a metric space]~\\
+  Let $(X, d)$ be a metric space. Then $U \subseteq X$ is open iff it is a neighbourhood of all of
+  its elements.
+
+  $V \seq X$ is closed iff its complement in $X$ is open.
+\end{definition}
+
+\begin{definition}[Topology on a metric space]~\\
+  Let $(X, d)$ be a metric space. The collection $\mc T$ of all open sets in the metric space is
+  called the topology of $X$.
+\end{definition}
+
+\begin{remark*}
+  Note that the definitions so far have the following dependency:
+
+  (open set) $\larrow$ (neighbourhood) $\larrow$ (ball) $\larrow$ (metric),
+
+  so they apply to metric spaces only.
+\end{remark*}
+
+\begin{theorem}[Open set-based continuity criterion]~\\
+  Let $X$ and $Y$ be metric spaces and let $f:X \to Y$. Then
+
+  $f$ is continuous at $x$ iff for every neighbourhood $N \subseteq Y$ of $f(x)$, the preimage
+  $f^\1(N)$ is a neighbourhood of $x \in X$.
+
+  $f$ is continuous iff for every open set $U$ of $Y$, $f^\1(U)$ is an open set of $X$.
+\end{theorem}
+
+\begin{remark*}
+  So we have defined continuity in terms of open sets (the topology). This means that the metric is
+  only relevant insofar as it induces the topology; two metric spaces with the same topology have
+  the same notion of continuity.
+\end{remark*}
+
+\begin{proof}~\\
+  Let $f$ be continuous at $x \in X$, and let $N \seq Y$ be a neighbourhood of $f(x)$.
+
+  Then by definition of neighbourhood there exists a ball at $f(x)$ that stays within $N$.
+
+  By continuity of $f$ the preimage of that ball is a superset of a ball at $x$.
+
+  So the preimage of the ball is a neighbourhood of $x$. Therefore the preimage of $N$ is also.
+
+  Conversely, ... similar.
+
+  Let $f$ be continuous on $X$. Now every open set $U$ of $Y$ contains a ball around some point $y$...
+\end{proof}
+
+\begin{definition}[Topology on a set, topological space]
+  A topology on a set $X$ is a collection $\mc T$ of subsets of $X$, which are called the open
+  sets. They must satisfy
+  \begin{enumerate}
+  \item closed under arbitrary unions. In particular, $\emptyset$ is an open set of $X$.
+  \item closed under finite intersections. In particular, $X$ is an open set of $X$.
+  \end{enumerate}
+  A topological space is a pair $(X, \mc T)$.
+\end{definition}
+
+\begin{remark*}
+  Criteria for closed sets follow by applying de Morgan's laws (closure under finite unions and
+  arbitrary intersections).
+
+  $f:X\to Y$ closed iff $f^\1(V)$ is closed for all closed sets $V \seq Y$.
+\end{remark*}
+
+\begin{definition}[Limit point]~\\
+  Let $(X, d)$ be a metric space and $Z \seq X$ be any subset.
+
+  $x \in X$ is a limit point of $Z$ if for all $\delta > 0$ the deleted open ball
+  $B(x, \delta)\setminus\{x\}$ has non-empty intersection with $Z$.
+
+  If $z$ is not a limit point of $Z$, then it is an isolated point.
+
+  The set of limit points of $Z$ is denoted $Z'$, and it is clear that
+  $Z_1 \seq Z_2 \implies Z_1' \seq Z_2'$.
+\end{definition}
+
+\begin{intuition*}[Limit point]~\\
+  $x \notin Z$ is a limit point of $Z$ iff it ``touches'' $Z$.
+
+  $z \in Z$ is a limit point of $Z$ if it ``lies in a contiguous region of $Z$''
+
+  An isolated point of $Z$ is what it sounds like.
+\end{intuition*}
+
+\begin{example*}~\\
+  Let $Z = (0, 1] \cup \{2\}$.
+
+  Intuitively, 0 is a limit point of $Z$ because it ``touches'' $Z$.
+
+  Formally, 0 is a limit point of $Z$ because for all $\delta > 0$ the deleted open ball
+  $B(0, \delta)$ contains a point $z > 0 \in Z$.
+
+  Intuitively, 2 is an isolated point.
+
+  Formally, 2 is not a limit point because $\(B(2, 0.5)\setminus\{2\}\) \cap Z = \emptyset$. And
+  yet $2 \in Z$, therefore 2 is an isolated point.
+\end{example*}
+
+
+
+\section{Exercises}
 
 - \textbf{11.1: 3, 25, 37}
 - \textbf{11.2: (14, 29, 42)}
