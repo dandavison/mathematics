@@ -110,9 +110,20 @@ Therefore $d_1(a, b) = \sum_{i=1}^n\epsilon_{a_ib_i} = d(a, b)$, as required.
   See $\epsilon-\delta$ argument in lecture notes.
 \end{proof}
 
-\begin{claim*}
-  The Euclidean norm is independent of basis.
-\end{claim*}
+% \begin{claim*}
+%   The Euclidean norm is independent of basis.
+% \end{claim*}
+
+% \begin{proof}~\\
+%   Let $B$ and $B'$ be bases of $\R^n$ and let $P$ be a matrix with the elements of $B'$ as its
+%   columns.
+
+%   I.e. if $v$ contains the coordinates of a vector with respect to basis $B$, Then $Pv$...
+
+%   With respect to $B$, we have $\norm{v} = \sqrt{\sumin v_i^2}$.
+
+%   With respect to $B'$, we have $\norm{v} = \sqrt{\sumin (Pv_i)^2}$.
+% \end{proof}
 
 \begin{claim*}
   $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded. \Intuition{the image of the unit sphere is
@@ -120,24 +131,22 @@ Therefore $d_1(a, b) = \sum_{i=1}^n\epsilon_{a_ib_i} = d(a, b)$, as required.
 \end{claim*}
 
 \begin{proof}
-Let $\mc B$ be a basis for $\R^n$.
-
 Note that $\norm{f(x)}^2 := \sum_{i=1}^n f(x)_i^2$, where $f(x)_i$ is the $i$-th coordinate of
-$f(x)$ with respect to basis $\mc B$.
+$f(x)$ with respect to the standard basis.
 
 Therefore it is sufficient to show that $\{|f(x)_i| : \norm{x} \leq 1\}$ is bounded for all
 $1 \leq i \leq n$.
 
-Let $a_i$ be the $i$-th row of the $n \times n$ matrix of $f$ with respect to basis $\mc B$.
+Let $a_i$ be the $i$-th row of the $n \times n$ matrix of $f$.
 
 Then $|f(x)_i| = |\langle a_i, x \rangle| \leq \norm{a_i}\norm{x}$.
 \end{proof}
 
-\begin{intuition*}
-  The proof of the (linear, continuous) $\iff$ (linear, image bounded in norm) lemma uses
-  $\epsilon-\delta$ arguments. Then we use Cauchy-Schwarz to show that the image of the unit sphere
-  is bounded in norm as prescribed.
-\end{intuition*}
+% \begin{intuition*}
+%   The proof of the (linear, continuous) $\iff$ (linear, image bounded in norm) lemma uses
+%   $\epsilon-\delta$ arguments. Then we use Cauchy-Schwarz to show that the image of the unit sphere
+%   is bounded in norm as prescribed.
+% \end{intuition*}
 
 \newpage
 \subsection{}
@@ -145,32 +154,98 @@ Then $|f(x)_i| = |\langle a_i, x \rangle| \leq \norm{a_i}\norm{x}$.
 \includegraphics[width=400pt]{img/oxford-a2-1-4.png}
 \end{mdframed}
 
-Let $B(x, r)$ be an open ball of radius $r$ centered at $x$.
+\begin{proof}~\\
+  Let $B(x, r)$ be an open ball of radius $r$ centered at $x$.
 
-Note that for every $\delta > 0$ there exists $N \in \N$ such that $d(x_n, \ell) < \delta$ for all
-$n > N$.
+  Note that for every $\delta > 0$ there exists $N \in \N$ such that $d(x_n, \ell) < \delta$ for all
+  $n > N$.
 
-Let $y \neq \ell$ and let $N = \min\{n ~|~ d(x_n, \ell) < d(y, \ell)\}$.
+  Let $y \neq \ell$ and let $N = \min\{n ~|~ d(x_n, \ell) < d(y, \ell)\}$.
 
-Let $M = \argmin_{n \in \{1, \ldots, N\}} D(n)$, where $D:\N \to \R$ is defined by
-$D(n) :=
-\begin{cases}
-  d(x_n, y), &x_n \neq y\\
-  \infty, &x_n = y
-\end{cases}$.
+  Let $M = \argmin_{n \in \{1, \ldots, N\}} D(n)$, where $D:\N \to \R$ is defined by
+  $D(n) :=
+  \begin{cases}
+    d(x_n, y), &x_n \neq y\\
+    \infty, &x_n = y
+  \end{cases}$.
 
-Informally, $x_M$ is the element of $S$ that is closest but not equal to $y$.
+  Informally, $x_M$ is the element of $S$ that is closest but not equal to $y$.
 
-Note that $\Big(B(\ell, \frac{x_M - y}{2})\setminus\{\ell\}\Big) \cap S = \emptyset$.
+  Note that $\Big(B(\ell, \frac{x_M - y}{2})\setminus\{\ell\}\Big) \cap S = \emptyset$.
 
-Therefore $y \neq \ell \implies y \notin S'$, or equivalently, $S' \seq \{\ell\}$.
+  Therefore $y \neq \ell \implies y \notin S'$, or equivalently, $S' \seq \{\ell\}$.
 
-Now suppose that $S$ is such that there exists $N \in \N$ such that $x_n = \ell$ for all $n > N$.
+  Now suppose that $S$ is such that there exists $N \in \N$ such that $x_n = \ell$ for all $n > N$.
 
-Let $M = \max\{n ~|~ x_n \neq \ell\}$.
+  Let $M = \max\{n ~|~ x_n \neq \ell\}$.
 
-Note that $\Big(B(\ell, \frac{x_M - \ell}{2})\setminus\{\ell\}\Big) \cap S = \emptyset$.
+  Note that $\Big(B(\ell, \frac{x_M - \ell}{2})\setminus\{\ell\}\Big) \cap S = \emptyset$.
 
-Therefore it is possible that $\ell \notin S'$, or equivalently, $S' = \emptyset$.
+  Therefore it is possible that $\ell \notin S'$, or equivalently, $S' = \emptyset$.
+\end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-5-1.png}
+\end{mdframed}
+
+\begin{lemma*}
+  Let $X$ and $Y$ be metric spaces. $h:X \to Y$ is continuous iff for every open set $U \in Y$, the
+  preimage $h^\1(U)$ is an open set in $X$.
+\end{lemma*}
+
+\begin{claim*}
+  $(g \circ f):R \to T$ is continuous.
+\end{claim*}
+
+\begin{proof}
+Let $U_T$ be an open set of $T$.
+
+Note that $(g \circ f)^\1(t) = f^\1(g^\1(t))$.
+
+By the lemma, since $f$ and $g$ are continuous, $f^\1(g^\1(U_T))$ is an open set in $R$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-5-2.png}
+\end{mdframed}
+
+Where does it fail?
+
+\begin{enumerate}
+\item Positivity?
+\item Symmetry?
+\item Triangle inequality?
+\end{enumerate}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-5-3.png}
+\end{mdframed}
+
+\begin{definition*}
+  A subset $X \seq M$ is open if at every point $x \in X$ there exists a $\delta$ such that
+  $B(x, \delta) \seq X$.
+\end{definition*}
+
+\begin{proof}~\\
+  If $M$ is empty it is vacuously true, so suppose $M$ is not empty.
+
+  $M$ itself is open since there are no points outside $M$, so any ball centred on a point of $M$
+  must be a subset of $M$.
+
+  Suppose that $X \subset (M, d)$ is not open.
+
+  Then there exists $x \in X$ with the following property: there does not exist $\delta > 0$ such
+  that $B(x, \delta) \seq X$.
+
+  However, $M$ is finite. Therefore we may pick the element of $M$ that is closest to $x$, and set
+  $\delta$ to be half this distance.
+
+  This contradiction shows that no such non-open $X$ exists.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-6-1.png}
+\end{mdframed}
 
 \end{document}
