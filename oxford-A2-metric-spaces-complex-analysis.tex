@@ -248,4 +248,68 @@ Where does it fail?
 \includegraphics[width=400pt]{img/oxford-a2-1-6-1.png}
 \end{mdframed}
 
+\begin{enumerate}
+\item $(-5, 1) \cup (0, \infty) = (-5, \infty)$ open, not closed
+\item $(-\infty, 2]$ not open, closed
+\item $\{0\}$ not open, closed
+\item $(0, 2]$ not open, not closed
+\item $\R$ open, closed
+\item $\Q$ not open, not closed (any interval $I \seq \R$ contains both rationals and irrationals)
+\item $\Z$ not open, closed
+\item $\emptyset$ open, closed
+\end{enumerate}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-6-2.png}
+\end{mdframed}
+
+\begin{enumerate}
+\item $[0, 1] \times \{0\}$ not open, closed\\
+  \begin{tiny}
+    A ball at any point will contain points outside, so not open.\\
+    Complement is open, so closed.
+    \par
+  \end{tiny}
+\item $(0, 1) \times \{0\}$ not open, not closed\\
+  \begin{tiny}
+    A ball at any point will contain points outside (by poking out in the y direction), so not open.\\
+    Complement is not open (e.g. contains origin)
+    \par
+  \end{tiny}
+\item $\{(x,y) ~|~ 1 < 4x^2 + y^2 < 4\}$ open, not closed\\
+  {\tiny
+    Region sandwiched between inner and outer ellipse.\\
+    Clearly open, complement not open.
+    \par}
+\item $\{(x,y) ~|~ xy = 1\}$ not open, closed\\
+  {\tiny
+    clearly not open, e.g. ball at $(1,1)$ leaves the set\\
+    complement is open
+    \par}
+\item $\Z \times \R$ not open, closed\\
+  {\tiny
+    Collection of horizontal lines.\\
+    Not open, any ball will poke up/down in the y-direction, leaving the set.\\
+    Complement is $\R^2$ with a collection of horizontal lines deleted.\\
+    So complement is open.
+    \par}
+\item $\{(x,y) ~|~ x \in \Z \text{~and~} y > 0\}$ not open, not closed\\
+  {\tiny
+    Vertical lines, starting just above the y=0 line.\\
+    Clearly not open.\\
+    Complement not open, since it includes the y=0 line.
+    \par}
+\item $\{(x,y) ~|~ \exp(x^2 + y^2) = 1 + (y^3 - x^3)(x^7 + y^7)\}$ not open, closed\\
+  \begin{tiny}
+    One equation in 2D ambient space $\implies$ no solutions or a line of solutions.\\
+    0 is a solution $\implies$ line of solutions $\implies$ not open, closed.\\
+    \par
+  \end{tiny}
+\end{enumerate}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-7.png}
+\end{mdframed}
+
 \end{document}
