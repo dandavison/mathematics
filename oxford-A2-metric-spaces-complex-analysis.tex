@@ -126,26 +126,26 @@ Therefore $d_1(a, b) = \sum_{i=1}^n\epsilon_{a_ib_i} = d(a, b)$, as required.
 % \end{proof}
 
 \begin{claim*}
-  $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded. \Intuition{the image of the unit sphere is
+  $\{\norm{\alpha(x)} : \norm{x} \leq 1\}$ is bounded. \Intuition{the image of the unit sphere is
     bounded in norm}
 \end{claim*}
 
 \begin{proof}
-Note that $\norm{f(x)}^2 := \sum_{i=1}^n f(x)_i^2$, where $f(x)_i$ is the $i$-th coordinate of
-$f(x)$ with respect to the standard basis.
+  Note that $\norm{\alpha(x)}^2 := \sum_{i=1}^n \alpha(x)_i^2$, where $\alpha(x)_i$ is the $i$-th
+  coordinate of $\alpha(x)$ with respect to the standard basis.
 
-Therefore it is sufficient to show that $\{|f(x)_i| : \norm{x} \leq 1\}$ is bounded for all
+Therefore it is sufficient to show that $\{|\alpha(x)_i| : \norm{x} \leq 1\}$ is bounded for all
 $1 \leq i \leq n$.
 
-Let $a_i$ be the $i$-th row of the $n \times n$ matrix of $f$.
+Let $a_i$ be the $i$-th row of the $m \times n$ matrix of $\alpha$.
 
-Then $|f(x)_i| = |\langle a_i, x \rangle| \leq \norm{a_i}\norm{x}$.
+Then $|\alpha(x)_i| = |\langle a_i, x \rangle| \leq \norm{a_i}\norm{x}$.
 \end{proof}
 
 % \begin{intuition*}
 %   The proof of the (linear, continuous) $\iff$ (linear, image bounded in norm) lemma uses
-%   $\epsilon-\delta$ arguments. Then we use Cauchy-Schwarz to show that the image of the unit sphere
-%   is bounded in norm as prescribed.
+%   $\epsilon-\delta$ arguments. Then we use Cauchy-Schwarz to show that the image of the unit
+%   sphere is bounded in norm as prescribed.
 % \end{intuition*}
 
 \newpage
@@ -311,5 +311,85 @@ Where does it fail?
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-1-7.png}
 \end{mdframed}
+
+% \begin{remark*}
+%   Since on a closed interval every continuous function is bounded and attains its bounds, the
+%   supremum metric here is just a max metric.
+% \end{remark*}
+
+\begin{mdframed}
+\begin{lemma*}
+  Let $f:V \to W$ be a linear map between normed vector spaces. Then $f$ is continuous if and only
+  if $\{\norm{f(v)} : \norm{v} \leq 1 \}$ is bounded.
+\end{lemma*}
+
+\begin{proof}
+  See question 3.
+\end{proof}
+\end{mdframed}
+
+% \url{https://math.stackexchange.com/questions/975759/are-differentiation-and-integration-continuous-functions}
+
+\begin{enumerate}[label=\roman*)]
+\item \textbf{Is $C^1[a,b]$ a closed subset of $C[a,b]$?}
+  \red{TODO}
+
+  $C^1[a,b] \seq C[a, b]$ is closed iff its complement is open.
+
+  To answer this question we can either show that its complement is not open (could be done by
+  counter-example), or open (requires positive proof).
+
+  The complement of $C^1[a,b] \seq C[a, b]$ is the set of continuous functions that are not
+  continuously differentiable. An example is $x \mapsto |x|$.
+
+  Counter-example approach: if we could exhibit a pair of functions $f \in (C^1[a,b])^C$ and
+  $g \in C^1[a,b]$, such that the distance between $f$ and $g$ can be made arbitrarily small, then
+  this would prove that $(C^1[a,b])^C$ is not open and hence that $C^1[a,b]$ is not a closed subset
+  of $C[a,b]$.
+
+% \item Let $f,g \in C^1[a,b]$, let $h = f - g$ and fix $\epsilon > 0$.
+
+%   For continuity at $f$ we seek $\delta > 0$ such that
+%   \begin{align*}
+%     & \sup_{x \in [a,b]} |f(x) - g(x)| < \delta \implies \sup_{x \in [a,b]} |f'(x) - g'(x)| < \epsilon\\
+%     \iff & \sup_{x \in [a,b]} |(f - g)(x)| < \delta \implies \sup_{x \in [a,b]} |(f - g)'(x)| < \epsilon\\
+%     \iff & \sup_{x \in [a,b]} |h(x)| < \delta \implies \sup_{x \in [a,b]} |h'(x)| < \epsilon.
+%   \end{align*}
+%   Suppose that such a $\delta$ exists.
+
+\item \textbf{Is differentiation continuous?}\\
+  Note that the differentiation operator $D:C^1[a,b] \to C[a,b]$ is a linear map between vector
+  spaces.
+
+  Define a norm on $C[a,b]$ as $\norm{f} := \sup_{x\in [a,b]}|f(x)|$.
+
+  Then, according to the lemma, $D$ is continuous if and only if
+  $\{\norm{D(f)} : \norm{f} \leq 1 \}$ is bounded.
+
+  Suppose for a contradiction that $M$ is such a bound. But consider the logistic function
+  $f:[a,b] \to (0, 1)$ given by $f(x) := (1 + e^{-4(M+1)(x-a)})^{-1}$. Its derivative is
+  $$f'(x) = 4(M+1)f(x-a)(1-f(x-a)).$$ So we have $f \in C^1[a,b]$ and $\norm{f} \leq 1$ and yet
+  $f'(a) = M+1$.
+
+  Therefore no such bound $M$ exists. Therefore the differentiation operator is not continuous.
+
+\item \textbf{Is integration continuous?}\\
+  Note that the integration operator defined by $F(f) := \int_a^x f$ is a linear map between vector
+  spaces.
+
+  Define a norm on $C[a,b]$ as $\norm{f} := \sup_{x\in [a,b]}|f(x)|$.
+
+  Then, according to the lemma, $F$ is continuous if and only if
+  $\{\norm{F(f)} : \norm{f} \leq 1 \}$ is bounded.
+
+  Note that on a closed interval every continuous function is bounded.
+
+  Let $f \in C[a,b]$ and let $L$ and $M$ be the lower and upper bounds of $f$ respectively.
+
+  Then $(F(f))(x) \leq (M-L)x$, for all $x \in [a,b]$.
+
+  Therefore $F$ is continuous.
+
+\end{enumerate}
 
 \end{document}
