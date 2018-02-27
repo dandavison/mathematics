@@ -163,17 +163,6 @@ A subspace $U$ of $V$ is a subset of $V$ for which
   of $U^*$ is also a subset of $U$.
 \end{enumerate}
 
-\section{Complex numbers}
-When viewed as a real vector space (i.e. with real scalars), $\C$ is
-two-dimensional, e.g. $\{1, i\}$ is a basis.
-
-When viewed as a complex vector space (i.e. with complex scalars), $\C$ has a
-more one-dimensional character: $\{1, i\}$ are no longer linearly independent.
-
-\footnotetext{
-  \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
-}
-
 \section{Span, basis, dimension}
 \begin{theorem}
   Every basis has the same size.
@@ -545,6 +534,130 @@ $A = U\Lambda U^\1 = U\Lambda U^\T$
 (Eigenvalues are uniquely determined by matrix. Eigenvalues can be repeated, in which case any linear combination of their
 eigenvalues is also an eigenvalue.)
 
+\section{Inner Product Spaces}
+
+Note that if $f(\cdot)$ is linear:
+\begin{enumerate}
+\item $f(ax + by) = f(ax) + f(by)$.
+\end{enumerate}
+
+\begin{definition*}[Bilinear form]~\\
+  A bilinear form is a binary function $f(\cdot, \cdot)$ such that:
+  \begin{enumerate}
+  \item $f(ax + by, z) = f(ax, z) + f(by, z)$
+  \item $f(z, ax + by) = f(z, ax) + f(z, by)$.
+  \end{enumerate}
+\end{definition*}
+
+
+\begin{claim*}
+  The dot product in $\F^n$ is bilinear.
+\end{claim*}
+
+\begin{proof}
+  \begin{align*}
+    \langle ax + by , z \rangle :=& \sum_i (ax + by)_iz_i\\
+                                 =& \sum_i (ax_i + by_i)z_i\\
+                                 =& \sum_i ax_iz_i + \sum_i by_iz_i\\
+                                 =& \langle ax, z \rangle + \langle by, z \rangle\\
+    \langle z, ax + by \rangle  :=& \ldots
+  \end{align*}
+\end{proof}
+
+Note that $\langle x, y \rangle = x \cdot y = x^Ty = x^TIy$.
+
+And note that the ``quadratic form'' $ax^2 + 2bxy + cy^2$ can be written as
+\begin{align*}
+\x^\T A \x = \cvec{x}{y}^\T \mat{a}{b}
+                                {b}{c} \cvec{x}{y}.
+\end{align*}
+This is a scalar. In general, a quadratic form for symmetric matric $A$ is
+\begin{align*}
+\x^\T A \y = \sum_{jk}A_{jk}x_jy_k.
+\end{align*}
+
+These quadratic forms are also bilinear forms: the dot product is a quadratic form using the
+identity matrix.
+
+\begin{definition*}[Gram matrix]
+  Take a collection of vectors $v_1, \ldots, v_n$. A Gram matrix is the $n \times n$ matrix
+  $(\langle v_i, v_j \rangle)$.
+\end{definition*}
+
+\begin{theorem*}
+  Every bilinear form is of the form $\langle u, v \rangle = u^TAv$ for some Gram matrix.
+\end{theorem*}
+
+\begin{definition*}
+  A bilinear form is symmetric if $\langle u, v \rangle = \langle v, u \rangle$.
+\end{definition*}
+
+\begin{theorem*}
+  The bilinear form $\langle u, v \rangle := u^TAv$ is symmetric if and only if $A$ is symmetric.
+\end{theorem*}
+
+\begin{definition*}
+  A bilinear form is positive definite if $\langle u, v \rangle > 0$ for all
+  $v \in V \setminus \{0\}$.
+\end{definition*}
+
+\begin{definition*}[Inner product]~\\
+  An inner product is a bilinear form that is symmetric and positive definite.
+
+  An inner product space is a vector space equipped with an inner product.
+
+  In an abstract inner product space we define the angle between $u$ and $v$ to be
+  $\cos^\1\Big(\frac{\langle u, v \rangle}{\norm{u}\norm{v}}\Big)$.
+
+  In a real inner product space we define the norm to be $\norm{u} := \sqrt{\langle u, u \rangle}$.
+\end{definition*}
+
+\begin{theorem*}[Cauchy-Schwartz inequality]~\\
+  Let $V$ be an inner product space and let $u, v \in V$. Then
+  $\langle u, v \rangle \leq \norm{u} \norm{v}$.
+\end{theorem*}
+
+\begin{proof}
+  Define $f(t) := \langle tu + v, tu + v \rangle = \norm{tu +v}^2$.
+
+  Use bilinearity and symmetry to show that
+  $f(t) = t^2 \langle u, u \rangle + 2t \langle u, v \rangle + \langle v, v \rangle$. (How?)
+
+  The Cauchy-Schwartz inequality follows by noting that the determinant of this quadratic must be
+  negative.
+\end{proof}
+
+\section{Complex vector spaces}
+When viewed as a real vector space (i.e. with real scalars), $\C$ is
+two-dimensional, e.g. $\{1, i\}$ is a basis.
+
+When viewed as a complex vector space (i.e. with complex scalars), $\C$ is one-dimensional: $\{1\}$
+is a basis; $\{1, i\}$ are no longer linearly independent.
+
+\footnotetext{
+  \href{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}{Essence of Linear Algebra} video series by \href{http://www.3blue1brown.com/}{Grant Sanderson / 3blue1brown}
+}
+
+\begin{definition*}
+  Let $V$ be a complex vector space.
+
+  $\langle \cdot, \cdot \rangle:V \times V \to \C$ is a sesquilinear form if
+  \begin{enumerate}
+  \item $\langle au + bv, z \rangle = a\langle u, z \rangle + b\langle v, z \rangle$
+  \item $\bar{\langle u, u \rangle} = \langle u, u \rangle$ (therefore
+    $\langle u, u \rangle \in \R$).
+  \end{enumerate}
+\end{definition*}
+
+
+\begin{definition*}[Hermitian space]~\\
+  Let $V$ be a complex vector space (i.e. complex scalars).
+
+  A Hermitian form is a sesquilinear form that is symmetric and positive definite.
+
+  A complex inner product space, or Hermitian space, is a complex space equipped with a Hermitian
+  form as an inner product.
+\end{definition*}
 
 
 \section{Linear and quadratic approximations to a function}
@@ -579,16 +692,6 @@ case is obvious without ``deriving'' the coefficients.)
 
 
 \subsection{Quadratic approximation to a function $f(x, y)$ near $(x_0, y_0)$:}
-
-First note that the ``quadratic form'' $ax^2 + 2bxy + cy^2$ can be written as
-\begin{align*}
-\x^\T A \x = \cvec{x}{y}^\T \mat{a}{b}
-                                {b}{c} \cvec{x}{y}.
-\end{align*}
-This is a scalar. In general, a quadratic form for symmetric matric $A$ is
-\begin{align*}
-\x^\T A \y = \sum_{jk}A_{jk}x_jy_k.
-\end{align*}
 
 The $j$-th component of the gradient of $q(\x) = \x^\T A \x$ is
 $\partiald{q}{x_j} = 2\sum_k A_{jk}x_k$, so
@@ -1238,4 +1341,3 @@ Therefore
   Let $T:V \to V$ with $U$ a subspace of $V$. If $U$ is $T$-invariant, then $T$ induces a linear
   map of quotients $\bar T:V/U \to V/U$ given by $v + U \mapsto T(v) + U$.
 \end{theorem*}
-
