@@ -392,4 +392,72 @@ Where does it fail?
 
 \end{enumerate}
 
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-8-1.png}
+\end{mdframed}
+
+\begin{table}[h!]
+  \begin{tabular}{c|c|l}
+    $S$         &$S'$         &                \\
+    \hline
+    $(0, 1)$    & $[0, 1]$    &                \\
+    $\{0\}$     & $\emptyset$ & 0 is an isolated point \\
+    $\R$        & $\R$        &                \\
+    $\Q$        & $\Q$        & Any ball placed on a rational contains both other rationals and irrationals.\\
+    $\Z$        & $\emptyset$ & All integers are isolated points.               \\
+    $\emptyset$ & $\emptyset$ &
+  \end{tabular}
+\end{table}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-8-2.png}
+\end{mdframed}
+
+\begin{proof}~\\
+  \begin{comment}
+  Let $S \subset \R$.
+
+  Let $u \in (S')'$.
+
+  Then $\Big(B(u, \epsilon) \setminus \{u\}\Big) \cap S' \neq \emptyset$ for all $\epsilon > 0$.
+
+  Therefore there exists $t \in (S')'$ such that $t \in S'$.
+
+  If $t \in S$
+
+  Want: $\Big(B(u, \epsilon) \setminus \{u\}\Big) \cap S \neq \emptyset$ for all $\epsilon > 0$.
+\end{comment}
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-8-3.png}
+\end{mdframed}
+
+\begin{table}[h!]
+  \begin{tabular}{l|c|l|l}
+    $S$                                 &  open          &   closed      &    \\
+    $\{(x, y) \in S ~|~ x \geq 1\}$     &  open          &   closed      &    \\
+    $\{(x, y) \in S ~|~ x > 0\}$        &  not open      &   open        &    \\
+    $\{(1 + 1/n, 1) ~|~ n \in \N\}$     &  not open      &   not closed  & complement contains $(1,1)$   \\
+    $\{(1/n, 1) ~|~ n \in \N\}$         &  not open      &   closed      & unlike previous, complement excludes $(0, 0)$\\
+  \end{tabular}
+\end{table}
+
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-1-9.png}
+\end{mdframed}
+
+\begin{proof}~\\
+  \textbf{Well-defined:}
+
+  \textbf{Positivity:}: by Cauchy-Schwartz we have $1 - \frac{\langle v,w\rangle^2}{\norm{v}^2\norm{w}^2} > 0$
+  therefore $d(L_1, L_2) > 0$ since we take the positive square root.
+
+  \textbf{Symmetry:}
+
+\end{proof}
+
 \end{document}
