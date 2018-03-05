@@ -6,11 +6,11 @@ all: *.pdf
 	ln -sf ../$*.pdf && \
 	rubber -d --shell-escape $*
 
-notes.pdf: *.tex
+mathematics.pdf: *.tex
 
 build:
 	mkdir -p build
 	cd build && ln -sf ../img
 	cd build && ln -sf ../oxford.sty
-	cd build && ln -sf ../notes.sty
+	cd build && ln -sf ../mathematics.sty
 	cd build && for f in ../*.tex; do ln -sf $$f; done
