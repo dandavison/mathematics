@@ -45,3 +45,36 @@ vertices are connected if they are related. There are fewer equivalence
 relations than assignments to labeled buckets, since the equivalence relation
 does not identify the buckets. \blue{How many equivalence relations are there,
   compared to Stirling II number and stars-and-bars count configurations?}
+
+
+\newpage
+\section{Pythagorean triples}
+
+\subsection*{Project Euler question 9}
+
+\begin{mdframed}
+  A Pythagorean triplet is a set of three natural numbers, $a < b < c$, for which
+  $a^2 + b^2 = c^2$.  For example, $3^2 + 4^2 = 9 + 16 = 25 = 5^2$.
+
+  There exists exactly one Pythagorean triplet for which $a + b + c = 1000$.  Find the product
+  $abc$.
+\end{mdframed}
+
+\begin{proof}~\\
+  Let $m, n \in \N$.
+
+  Recall that $|m + ni| := \sqrt{m^2 + n^2}$ and that $|wz| = |w| |z|$ for $w, z \in \C$.
+
+  Note that $|(m + ni)^2| = |(m^2 - n^2) + 2mni| = m^2 + n^2 \in \Z$.
+
+  Therefore $(m^2 - n^2, 2mn, m^2 + n^2)$ is a pythagorean triple for all $m, n \in
+  \N$. (Claim: all pythagorean triples are of this form.)
+
+  Therefore we seek $m, n \in \Z$ such that $m > n$ and
+  \begin{align*}
+    m^2 - n^2 + 2mn + m^2 + n^2 &= 1000\\
+    m^2 + mn                   &= 500\\
+    m(m+n)                     &= 500
+  \end{align*}
+
+\end{proof}
