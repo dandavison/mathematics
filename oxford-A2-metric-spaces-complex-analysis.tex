@@ -357,23 +357,65 @@ Where does it fail?
 %   \end{align*}
 %   Suppose that such a $\delta$ exists.
 
+\newpage
 \item \textbf{Is differentiation continuous?}\\
-  Note that the differentiation operator $D:C^1[a,b] \to C[a,b]$ is a linear map between vector
-  spaces.
 
-  Define a norm on $C[a,b]$ as $\norm{f} := \sup_{x\in [a,b]}|f(x)|$.
+  \begin{proof} (I)~\\
+    Let $C[a,b]$ be the metric space of continuous functions on $[a,b]$ equipped with the supremum
+    metric.
 
-  Then, according to the lemma, $D$ is continuous if and only if
-  $\{\norm{D(f)} : \norm{f} \leq 1 \}$ is bounded.
+    Let $C^1[a,b]$ be the metric space of continuously differentiable functions on $[a,b]$ also
+    equipped with the supremum metric.
 
-  Suppose for a contradiction that $M$ is such a bound. But consider the logistic function
-  $f:[a,b] \to (0, 1)$ given by $f(x) := (1 + e^{-4(M+1)(x-a)})^{-1}$. Its derivative is
-  $$f'(x) = 4(M+1)f(x-a)(1-f(x-a)).$$ So we have $f \in C^1[a,b]$ and $\norm{f} \leq 1$ and yet
-  $f'(a) = M+1$.
+    Note that the differentiation operator $D:C^1[a,b] \to C[a,b]$ is a linear map between vector
+    spaces.
 
-  Therefore no such bound $M$ exists. Therefore the differentiation operator is not continuous.
+    Define a norm on $C[a,b]$ by $\norm{f} := \sup_{x\in [a,b]}|f(x)|$.
 
+    Then, according to the lemma, $D$ is continuous if and only if
+    $\{\norm{D(f)} : \norm{f} \leq 1 \}$ is bounded.
+
+    Suppose for a contradiction that $M$ is such a bound.
+
+    But consider the logistic function $f:[a,b] \to (0, 1)$ given by
+    $f(x) := (1 + e^{-4(M+1)(x-a)})^{-1}$.
+
+    Clearly $\norm{f} < 1$.
+
+    Its derivative is $f'(x) = 4(M+1)f(x-a)(1-f(x-a))$ which (I assert) is continuous.
+
+    So we have $f \in C^1[a,b]$ and $\norm{f} < 1$ and yet $f'(a) = M+1$.
+
+    Therefore no such bound $M$ exists. Therefore the differentiation operator is not continuous.
+  \end{proof}
+
+  \begin{proof} (II Alex Coward)~\\
+    Define $D:C^1[a,b] \to C[a,b]$ to be differentiation.
+
+    We construct a sequence of functions that tend to the zero function, but whose derivatives
+    always have image $[0, 1]$.
+
+    Define $f_n(x) := \frac{1}{n}\sin\(\frac{nb}{2\pi}(x - a)\)$.
+
+    Note that $(D f_n)(x) = \frac{b}{2\pi}\cos\(\frac{nb}{2\pi}(x - a)\)$.
+
+    Note also that $\limn f_n = 0$.
+
+    Suppose for a contradiction that $D$ is continuous.
+
+    Then $\limn D(f_n) = D(\limn f_n) = D(0) = 0$.
+
+
+  \end{proof}
+
+\newpage
 \item \textbf{Is integration continuous?}\\
+  Let $C[a,b]$ be the metric space of continuous functions on $[a,b]$ equipped with the supremum
+  metric.
+
+  Let $C^1[a,b]$ be the metric space of continuously differentiable functions on $[a,b]$ also
+  equipped with the supremum metric.
+
   Note that the integration operator defined by $F(f) := \int_a^x f$ is a linear map between vector
   spaces.
 
@@ -445,7 +487,8 @@ Where does it fail?
 \end{table}
 
 
-\newpage
+% \newpage
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-1-9.png}
 \end{mdframed}
@@ -453,10 +496,15 @@ Where does it fail?
 \begin{proof}~\\
   \textbf{Well-defined:}
 
-  \textbf{Positivity:}: by Cauchy-Schwartz we have $1 - \frac{\langle v,w\rangle^2}{\norm{v}^2\norm{w}^2} > 0$
-  therefore $d(L_1, L_2) > 0$ since we take the positive square root.
+  \textbf{Positivity}: By Cauchy-Schwartz, for non-zero $v, w$, we have
+  \begin{align*}
+    0 < ~&\frac{\langle v, w \rangle}{\norm{v}\norm{w}} \leq 1\\
+    0 \leq~ &1 - \(\frac{\langle v,w\rangle}{\norm{v}\norm{w}}\)^2 < 1\\
+    0 \leq~ &d(L_1, L_2) < 1
+  \end{align*}
+  (since we take the positive square root).
 
-  \textbf{Symmetry:}
+  \textbf{Symmetry}:
 
 \end{proof}
 
