@@ -73,10 +73,72 @@ Commutative.
   d & d &&&&
 \end{tabular}
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-3.png}
 \end{mdframed}
+\begin{proof}~\\
+  It is geometrically plausible that complex conjugation preserves addition, but to confirm that:
+  let $z_1 = u_1 + v_1i$ and $z_2 = u_2 + v_2i$ be complex numbers. Then
+  \begin{align*}
+  \bar{z_1} + \bar{z_2} = (u_1 - v_1i) + (u_2 - v_2i) = (u_1 + u_2) - (v_1 + v_2)i = \bar{z_1 + z_2}.
+  \end{align*}
 
+  Therefore for addition of complex matrices we have
+  $\(\bar{A + B}\)_{ij} = \bar{a_{ij} + b_{ij}} = \bar{a_{ij}} + \bar{b_{ij}}$, proving that
+  $\bar{A + B} = \bar{A} + \bar{B}$.
+
+  For complex multiplication we have
+  \begin{align*}
+  \bar{z_1z_2}
+    &= \bar{(u_1u_2 - v_1v_2) + (u_1v2 + v_1u_2)i}
+    &=      (u_1u_2 - v_1v_2) - (u_1v2 + v_1u_2)i\\
+    \text{and}\\
+    \bar{z_1}~\bar{z_2}
+    &= (u_1 - v_1i)(u_2 - v_2i)
+    &= (u_1u_2 - v_1v_2) - (u_1v2 + v_1u_2)i,
+  \end{align*}
+  so $\bar{z_1z_2} = \bar{z_1}~\bar{z_2}$.
+
+  Therefore for multiplication of complex matrices we have
+  \begin{align*}
+    \(\bar{AB}\)_{ij}
+    = \bar{\sum_k A_{ik}B_{kj}}
+    = \sum_k \bar{A_{ik}B_{kj}}
+    = \sum_k \bar{A_{ik}}~\bar{B_{kj}}
+    = \(\bar{A}~\bar{B}\)_{ij}.
+  \end{align*}
+\end{proof}
+
+\begin{definition*}
+  Let $A$ be a $n\times n$ matrix. If $A^\1 = \bar{A}^T$ then $A$ is \emph{unitary}.
+\end{definition*}
+
+\begin{proof}
+  Let $U(n)$ be the set of unitary $n\times n$ matrices, under matrix multiplication.
+
+  The identity is $I$, and inverses exist by definition of unitary.
+
+  Commutativity and associativity are inherited from the set $M_n(\C)$ of $n \times n$ matrices.
+
+  It remains to show closure.
+
+  Let $A, B$ be unitary matrices. Then
+  \begin{align*}
+    \Big((AB)(\bar{AB})^T\Big)_{ij}
+    &= \sum_k (AB)_{ik}\(\(\bar{AB}\)^T\)_{kj}\\
+    &= \sum_k (AB)_{ik}\(\bar{AB}\)_{jk}\\
+    &= \sum_k (AB)_{ik}\(\bar{A}~\bar{B}\)_{jk}\\
+    &= \sum_k \Big(\sum_lA_{il}B_{lk}\Big)\Big(\sum_l \bar{A}_{jl} \bar{B}_{lk}\Big)\\
+    \vdots\\
+    &= A\bar{A}^TB\bar{B}^T\\
+    &= I
+  \end{align*}
+
+\end{proof}
+
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-4.png}
 \end{mdframed}
