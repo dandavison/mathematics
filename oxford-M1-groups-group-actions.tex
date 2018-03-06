@@ -78,13 +78,15 @@ Commutative.
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-3.png}
 \end{mdframed}
 \begin{proof}~\\
+  Let $A, B \in M_n(\C)$ be complex $n \times n$ matrices.
+
   It is geometrically plausible that complex conjugation preserves addition, but to confirm that:
   let $z_1 = u_1 + v_1i$ and $z_2 = u_2 + v_2i$ be complex numbers. Then
   \begin{align*}
   \bar{z_1} + \bar{z_2} = (u_1 - v_1i) + (u_2 - v_2i) = (u_1 + u_2) - (v_1 + v_2)i = \bar{z_1 + z_2}.
   \end{align*}
 
-  Therefore for addition of complex matrices we have
+  For addition of complex matrices we have
   $\(\bar{A + B}\)_{ij} = \bar{a_{ij} + b_{ij}} = \bar{a_{ij}} + \bar{b_{ij}}$, proving that
   $\bar{A + B} = \bar{A} + \bar{B}$.
 
@@ -106,8 +108,9 @@ Commutative.
     = \bar{\sum_k A_{ik}B_{kj}}
     = \sum_k \bar{A_{ik}B_{kj}}
     = \sum_k \bar{A_{ik}}~\bar{B_{kj}}
-    = \(\bar{A}~\bar{B}\)_{ij}.
+    = \(\bar{A}~\bar{B}\)_{ij},
   \end{align*}
+  proving that $\bar{AB} = \bar{A}~\bar{B}$.
 \end{proof}
 
 \begin{definition*}
@@ -119,25 +122,53 @@ Commutative.
 
   The identity is $I$, and inverses exist by definition of unitary.
 
-  Commutativity and associativity are inherited from the set $M_n(\C)$ of $n \times n$ matrices.
+  Associativity is inherited from the set $M_n(\C)$ of $n \times n$ matrices.
 
-  It remains to show closure.
-
-  Let $A, B$ be unitary matrices. Then
+  It remains to show closure. Let $A, B$ be unitary matrices. Then
   \begin{align*}
-    \Big((AB)(\bar{AB})^T\Big)_{ij}
-    &= \sum_k (AB)_{ik}\(\(\bar{AB}\)^T\)_{kj}\\
-    &= \sum_k (AB)_{ik}\(\bar{AB}\)_{jk}\\
-    &= \sum_k (AB)_{ik}\(\bar{A}~\bar{B}\)_{jk}\\
-    &= \sum_k \Big(\sum_lA_{il}B_{lk}\Big)\Big(\sum_l \bar{A}_{jl} \bar{B}_{lk}\Big)\\
-    \vdots\\
-    &= A\bar{A}^TB\bar{B}^T\\
-    &= I
+    (AB)(\bar{AB})^T
+    = (AB)(\bar{A}~\bar{B})^T
+    = AB\bar{B}^T\bar{A}^T
+    = AI\bar{A}^T
+    = I,
   \end{align*}
-
+  so $AB$ is indeed unitary.
 \end{proof}
 
+\begin{claim*}
+  $U(1)$ is abelian.
+\end{claim*}
 
+\begin{proof}
+  $U(1) \seq \C$, therefore $U(1)$ inherits commutativity from the field $\C$.
+\end{proof}
+
+\begin{claim*}
+  $U(n)$ is non-abelian for $n \geq 2$.
+\end{claim*}
+
+\begin{proof}Let $O_n$ be the set of orthogonal real $n \times n$ matrices. We show that for all
+  $n \geq 2$, a pair of matrices $A, B \in O_n$ exist for which $AB \neq BA$. Since
+  $O_n \subset U_n$ this proves that $U_n$ is non-abelian for $n \geq 2$.
+
+  Let $n \geq 2$ and let $\{e_1, e_2, \ldots, e_n\}$ be the standard basis for $R^n$.
+
+  Let $f_A:\R^n\to\R^n$ be a reflection across the subspace spanned by $\{e_2, e_3, \ldots, e_n\}$,
+  so that its matrix is $A = [-e_1, e_2, e_3, \ldots, e_n]$.
+
+  Let $f_B:\R^n\to\R^n$ be a rotation of the plane spanned by $\{e_1, e_2\}$, so that its matrix is
+  $B = [e_2, -e_1, e_3, \ldots, e_n]$.
+
+  Note that $A$ is diagonal and $A^\1 = A$, hence $A$ is orthogonal.
+
+  Note that $B^T = [-e_2, e_1, e_3, \ldots, e_n]$ and hence $BB^T = [e_1, e_2, e_3, \ldots, e_n]$,
+  hence $B$ is orthogonal.
+
+  We have $BA = [-e_2, -e_1, e_3, \ldots, e_n] \neq AB = [e_2, e_1, e_3, \ldots, e_n]$, proving
+  that $O_n$ is non-abelian for $n \geq 2$.
+
+  Therefore $U_n \supset O_n$ is non-abelian for $n \geq 2$.
+\end{proof}
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-4.png}
