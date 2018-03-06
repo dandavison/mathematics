@@ -253,6 +253,28 @@ $$
 A matrix represents a linear transformation by showing where the basis vector
 are taken to.
 
+\section{Geometric interpretation of matrix operations}
+\url{https://math.stackexchange.com/questions/37398/what-is-the-geometric-interpretation-of-the-transpose}
+\url{https://math.stackexchange.com/questions/598258/determinant-of-transpose/636198#636198}
+
+
+\section{Commutativity}
+\subsection{Examples of transformations that don't commute}
+Let $A$ be reflection around the $y$-axis $\matMMxNN{-1}{0}
+                                                    {0}{1}$
+and let $B$ be $90\deg$ anticlockwise rotation $\matMMxNN{0}{-1}
+                                                         {1}{0}$.
+
+Then $BA = \matMMxNN{0}{-1}
+                    {-1}{0}
+\neq  AB = \matMMxNN{0}{1}
+                    {1}{0}$.
+
+Note that $A^\1 = A = A^T$ and $B^\1 = \matMMxNN{0}{1}
+                                               {-1}{0} = B^T$.
+
+Therefore these are both orthogonal (unitary) matrices.
+
 \section{Eigenvalues, eigenvectors, characteristic polynomial}
 
 Let $V$ be a vector space and let $T:V \to V$ be a linear transformation.
