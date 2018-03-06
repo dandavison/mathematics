@@ -7,9 +7,89 @@
 
 \begin{document}
 \title{Oxford M1 - Groups and Group Actions \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5552}}}
-\author{Dan Davison}
+\author{}
+\date{}
 \maketitle
 
+\section{Sheet 1: Binary Operations. The Group Axioms. Examples.}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-1.png}
+\end{mdframed}
+\begin{enumerate}[label=(\roman*)]
+\item associative, commutative, identity is $e = 0$, only inverse is $e^\1 = e$.
+\item associative, commutative, identity is $e = -1$, inverse is $m^\1 = -m - 2$.
+\item \red{(not) associative?}, commutative, identity is $I_n$, inverse is $A^\1$\\
+  Note that if $AB = BA$ then $A\cdot B = AB$, and $A\cdot(B\cdot C) = A(BC) = (AB)C$. I.e. the
+  operation is associative for commutative matrices.\\
+
+  Let $A$ be a reflection and $B$ a shear:
+  $A = \matMMxNN{-1}{0}
+                {0}{1}$, $B = \matMMxNN{1}{\frac{1}{\sqrt{2}}}
+                                       {0}{\frac{1}{\sqrt{2}}}$.\\
+  Then $AB = \matMMxNN{-1}{-\frac{1}{\sqrt{2}}}
+                      {0}{~~\frac{1}{\sqrt{2}}}$ and
+  and  $BA = \matMMxNN{-1}{\frac{1}{\sqrt{2}}}
+                      {0}{\frac{1}{\sqrt{2}}}$,
+  and $\frac{1}{2}(AB + BA) = \matMMxNN{-1}{0}
+                                       {0}{\frac{1}{\sqrt{2}}}$.\\
+
+  % E.g. let $A = I, B = 2I, C=3I$.\\
+  % Then $A\cdot (B\cdot C) = I\cdot (6I)$ and $(A \cdot B)\cdot C) = 2I \cdot 3I = 6I$.
+\item associative (function composition is associative), not commutative, identity is $I$, inverses
+  only exist for bijections.
+\end{enumerate}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-2.png}
+\end{mdframed}
+These both satisfy existence of identity and inverses because they are Latin squares.
+
+Latin square, group:\\~\\
+\begin{tabular}{c||c|c|c|c|c|}
+    & e & a & b & c & d\\
+  \hline
+  \hline
+  e & e & a & b & c & d\\
+  a & a & b & c & d & e\\
+  b & b & c & d & e & a\\
+  c & c & d & e & a & b\\
+  d & d & e & a & b & c
+\end{tabular}\\
+Group because it's isomorphic to $\Z/5\Z$.\\
+Associative: e.g. $a(bc) = ae = a$ and $(ab)c = cc = a$.
+Commutative.
+
+~\\~\\
+\red{Latin square, not a group:}\\~\\
+\begin{tabular}{c||c|c|c|c|c|}
+    & e & a & b & c & d\\
+  \hline
+  \hline
+  e & e & a & b & c & d\\
+  a & a &&&&\\
+  b & b &&&&\\
+  c & c &&&&\\
+  d & d &&&&
+\end{tabular}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-3.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-4.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-5.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-6.png}
+\end{mdframed}
+
+\newpage
 \section{Sheet 5: Homomorphisms. Conjugacy. Normal Subgroups.}
 
 \begin{mdframed}
