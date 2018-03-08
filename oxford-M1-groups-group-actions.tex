@@ -219,7 +219,7 @@ and
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-6.png}
 \end{mdframed}
 \begin{definition*}
-  Let $G, H$ be groups. $G \times H$ is a group under the following operation:
+  Let $G, H$ be groups. $G \times H$ is a group under the componentwise operation:
   $(g_1, h_1) \cdot (g_2, h_2) = (g_1g_2, h_1h_2)$.
 \end{definition*}
 
@@ -237,21 +237,86 @@ and
 \item
   \begin{proof}
     To show that $\phi$ is an isomorphism, we must show that $\phi$ is injective, surjective, and
-    that it preserves multiplication.
+    that it is a homomorphism (preserves multiplication).
 
-    \textbf{Injective:} Let $z_1, z_2 \in \C^*$. Suppose $\phi(z_1) = \phi(z_2) = (r,
-    \theta)$. Then $|z_1| = |z_2|$ and $z_1/|z_1| = z_2/|z_2|$. Therefore $z_1 = z_2$.
+    \textbf{Injective:} Let $z_1, z_2 \in \C^*$. Suppose $\phi(z_1) = \phi(z_2) = (r, w)$. Then
+    $|z_1| = |z_2|$ and $z_1/|z_1| = z_2/|z_2|$. Therefore $z_1 = z_2$.
 
-    \textbf{Surjective:} Suppose there exists $(r, \theta) \in (0, \infty) \times S^1$ that is not
-    in the image of $\phi$. But $\phi(r\cos\theta + r\sin\theta i) = (r, \theta)$, so no such
-    $(r, \theta)$ exists.
+    \textbf{Surjective:} Suppose there exists $(r, w) \in (0, \infty) \times S^1$ that is not in
+    the image of $\phi$. But $\phi(r\cos(\Arg w) + ir\sin(\Arg w)) = (r, w)$, so no such $(r, w)$
+    exists.
+
+    \textbf{Homomorphism:} Note that the operation on the right-hand side is componentwise
+    multiplication.
+
+    We have
+    \begin{align*}
+     \phi(z_1z_2) &= (|z_1z_2|, z_1z_2/|z_1z_2|)\\
+                  &= \Big(|z_1||z_2|, \cos(\Arg z_1 + \Arg z_2) + i\sin(\Arg z_1 + \Arg z_2)\Big)\\
+      \text{and}\\
+     \phi(z_1)\phi(z_2) &= (|z_1|, z_1/|z_1|)\cdot (|z_2|, z_2/|z_2|)\\
+                  &= \Big(|z_1||z_2|, \cos(\Arg z_1 + \Arg z_2) + i\sin(\Arg z_1 + \Arg z_2)\Big).
+    \end{align*}
   \end{proof}
+\item
+  \newpage
+  \begin{definition*}
+    $O(2)$ is the group of $2\times 2$ real orthogonal matrices under matrix
+    multiplication. $SO(2)$ is the subgroup of $O(2)$ with determinant $1$.
+  \end{definition*}
 
+  \begin{proof}
+    Sketch:
 
+    Since they have determinant 1, $SO(2)$ is the group of rotations of the plane. Each complex
+    number in $S^1$ rotates the plane its argument.  $\phi:SO(2) \to S^1$ given by
+    $\phi(A) := \cos\theta + i\sin\theta$ is a bijection. It preserves multiplication because this
+    is composition of (linear) transformations.
+
+    \red{worth doing}
+  \end{proof}
 \end{enumerate}
 
 
 \newpage
+
+\section{Sheet 2: Permutations of a finite set. Transpositions. Parity. Conjugacy.}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-1.png}
+\end{mdframed}
+\begin{align*}
+\alpha &= (1,12)(2,6,8)(3,5,4,7,11,10,9)\\
+\beta  &= (1,12)(2,11)(3,10)(4,9)(5,8)(6,7)\\
+\gamma &= (1,2,3,4,5,6)(7,9,8,10,12,11)
+\end{align*}
+
+The order of $\alpha$ is 42.\\
+The order of $\beta$ is 2.\\
+The order of $\gamma$ is 6.\\
+
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-2.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-3.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-4.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-5.png}
+\end{mdframed}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-6.png}
+\end{mdframed}
+
 \section{Sheet 5: Homomorphisms. Conjugacy. Normal Subgroups.}
 
 \begin{mdframed}
