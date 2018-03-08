@@ -153,6 +153,8 @@ Commutative.
 
   Let $n \geq 2$ and let $\{e_1, e_2, \ldots, e_n\}$ be the standard basis for $R^n$.
 
+  \red{TODO: correct way to talk about reflections and rotations in $n$-dimensions}
+
   Let $f_A:\R^n\to\R^n$ be a reflection across the subspace spanned by $\{e_2, e_3, \ldots, e_n\}$,
   so that its matrix is $A = [-e_1, e_2, e_3, \ldots, e_n]$.
 
@@ -165,22 +167,89 @@ Commutative.
   hence $B$ is orthogonal.
 
   We have $BA = [-e_2, -e_1, e_3, \ldots, e_n] \neq AB = [e_2, e_1, e_3, \ldots, e_n]$, proving
-  that $O_n$ is non-abelian for $n \geq 2$.
+  that $O_n$ is non-abelian for all $n \geq 2$.
 
-  Therefore $U_n \supset O_n$ is non-abelian for $n \geq 2$.
+  Therefore $U_n \supset O_n$ is non-abelian for all $n \geq 2$.
 \end{proof}
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-4.png}
 \end{mdframed}
 
+Let $v \in \R^2$. We have
+\begin{align*}
+  (g_2 \circ g_1)(v)
+  = g_2(g_1(v))
+  = g_2(Av + b)
+  = A(Av + b) + b
+  = A^2v + Ab + b,
+\end{align*}
+which is an affine transformation.
+
+We have shown closure.
+
+The group identity is the identity transformation, which is affine.
+
+Inverses exist: let $f$ be the affine transformation given by $v \mapsto Av + b$. Then $f^\1$ is
+given by $v \mapsto A^\1(v - b)$, since
+\begin{align*}
+(f^\1f)(v) = A^\1((Av + b) - b) = v,
+\end{align*}
+and
+\begin{align*}
+(ff^\1)(v) = A(A^\1(v - b)) + b = v.
+\end{align*}
+
+\red{We need to show associativity}.
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-5.png}
 \end{mdframed}
-
+\begin{enumerate}[label=(\roman*)]
+\item $e^\1 = e, a^\1 = a, b^\1 = g, c^\1 = c, d^\1 = d, f^\1 = f, g^\1 = b, h^\1 = h$
+\item
+  order of $e$ is 1\\
+  order of $a$ is 2 since $a^2 = e$\\
+  order of $b$ is 4 since $b^4 = d^2 = e$
+\item
+\end{enumerate}
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-1-6.png}
 \end{mdframed}
+\begin{definition*}
+  Let $G, H$ be groups. $G \times H$ is a group under the following operation:
+  $(g_1, h_1) \cdot (g_2, h_2) = (g_1g_2, h_1h_2)$.
+\end{definition*}
+
+\begin{enumerate}
+\item
+  \begin{proof}
+    Let $G, H$ be Abelian groups. Then in $G \times H$, we have
+    $(g_1, h_1) \cdot (g_2, h_2) = (g_1g_2, h_1h_2) = (g_2g_1, h_2h_1) = (g_2, h_2) \cdot (g_1,
+    h_1)$, so $G \times H$ is Abelian.
+
+    Conversely, let $G \times H$ be Abelian. Then
+    $(g_1, h_1) \cdot (g_2, h_2) = (g_2, h_2) \cdot (g_1, h_1)$. Therefore
+    $(g_1g_2, h_1h_2) = (g_2g_1, h_2h_1)$, therefore both $G$ and $H$ are Abelian.
+  \end{proof}
+\item
+  \begin{proof}
+    To show that $\phi$ is an isomorphism, we must show that $\phi$ is injective, surjective, and
+    that it preserves multiplication.
+
+    \textbf{Injective:} Let $z_1, z_2 \in \C^*$. Suppose $\phi(z_1) = \phi(z_2) = (r,
+    \theta)$. Then $|z_1| = |z_2|$ and $z_1/|z_1| = z_2/|z_2|$. Therefore $z_1 = z_2$.
+
+    \textbf{Surjective:} Suppose there exists $(r, \theta) \in (0, \infty) \times S^1$ that is not
+    in the image of $\phi$. But $\phi(r\cos\theta + r\sin\theta i) = (r, \theta)$, so no such
+    $(r, \theta)$ exists.
+  \end{proof}
+
+
+\end{enumerate}
+
 
 \newpage
 \section{Sheet 5: Homomorphisms. Conjugacy. Normal Subgroups.}
