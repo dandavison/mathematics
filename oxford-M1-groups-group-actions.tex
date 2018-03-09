@@ -285,16 +285,48 @@ and
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M1-groups-2-1.png}
 \end{mdframed}
+
 \begin{align*}
-\alpha &= (1,12)(2,6,8)(3,5,4,7,11,10,9)\\
-\beta  &= (1,12)(2,11)(3,10)(4,9)(5,8)(6,7)\\
-\gamma &= (1,2,3,4,5,6)(7,9,8,10,12,11)
+  \alpha &= (1,12)(2,6,8)(3,5,4,7,11,10,9)\\
+  \beta  &= (1,12)(2,11)(3,10)(4,9)(5,8)(6,7)\\
+  \gamma &= (1,2,3,4,5,6)(7,9,8,10,12,11)
 \end{align*}
 
 The order of $\alpha$ is 42.\\
 The order of $\beta$ is 2.\\
 The order of $\gamma$ is 6.\\
 
+\red{even vs odd?}
+
+Using the representation given in the question:
+\begin{align*}
+  \setcounter{MaxMatrixCols}{12}
+  \alpha^2 &=
+  \begin{pmatrix}
+    1 & 2 & 3 & 4  & 5 & 6 & 7  & 8 & 9 & 10 & 11 & 12\\
+    1 & 8 & 4 & 11 & 7 & 2 & 10 & 6 & 5 & 3  & 9  & 12
+  \end{pmatrix}
+                                                    = (2,8,6)(3,4,11,9,5,7,10)\\
+  \alpha\beta &=
+  \begin{pmatrix}
+    1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  & 9  & 10 & 11 & 12\\
+    1 & 7 & 8 & 6 & 9 & 5 & 2 & 11 & 10 & 4  & 3  & 12
+  \end{pmatrix}
+                                                    = (2,7)(3,8,11)(4,6,5,9,10)\\
+  \gamma^\1   &=
+  \begin{pmatrix}
+    1 & 2 & 3 & 4 & 5 & 6 & 7  & 8 & 9 & 10 & 11 & 12\\
+    6 & 1 & 2 & 3 & 4 & 5 & 11 & 9 & 7 & 8  & 12 & 10
+  \end{pmatrix}
+                                                   = (1,6,5,4,3,2)(7,11,12,10,8,9)
+\end{align*}
+
+Using the cycle representation:
+\begin{align*}
+  \alpha^2    &= (2,8,6)(3,4,11,9,5,7,10)\\
+  \alpha\beta &= (2,7)(3,8,11)(4,6,5,9,10)\\
+  \gamma^\1   &= (1,6,5,4,3,2)(7,11,12,10,8,9)\\
+\end{align*}
 
 \newpage
 \begin{mdframed}

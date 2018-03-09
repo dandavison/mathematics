@@ -268,6 +268,61 @@ Consider a set $A$ with $n$ elements.
   $(a_2, a_3, \ldots, a_k, a_1)$ is the same thing.
 \end{definition*}
 
+\begin{example*}
+  Let
+  \begin{align*}
+    \alpha =
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 & 5\\
+      2 & 4 & 3 & 1 & 5
+    \end{pmatrix}
+                      ~~~
+                      \beta =
+                      \begin{pmatrix}
+                        1 & 2 & 3 & 4 & 5\\
+                        3 & 4 & 5 & 1 & 2
+                      \end{pmatrix}
+                                        ~~~
+                                        \gamma =
+                                        \begin{pmatrix}
+                                          1 & 2 & 3 & 4 & 5\\
+                                          2 & 5 & 4 & 3 & 1.
+                                        \end{pmatrix}
+  \end{align*}
+  Determine the product $\alpha\beta\gamma$, the inverse of $\beta$ and the order of $\gamma$.
+
+  In cycle notation,
+  \begin{align*}
+    \alpha = (124) ~~~ \beta = (13524) ~~~ \gamma = (125)(34).
+  \end{align*}
+
+  By following each element in turn through the 3 permutations (using either representation),
+
+  \begin{align*}
+    \alpha\beta\gamma =
+    \begin{pmatrix}
+      1 & 2 & 3 & 4 & 5\\
+      3 & 2 & 1 & 4 & 5
+    \end{pmatrix} = (13).
+  \end{align*}
+
+  \begin{align*}
+    \beta^\1 =
+    \begin{pmatrix}
+      3 & 4 & 5 & 1 & 2\\
+      1 & 2 & 3 & 4 & 5
+    \end{pmatrix}
+                      =
+                      \begin{pmatrix}
+                         1 & 2 & 3 & 4 & 5\\
+                         4 & 5 & 1 & 2 & 3
+                      \end{pmatrix}
+                                         = (14253).
+  \end{align*}
+
+  The order of $\gamma$ is 6.
+\end{example*}
+
 \section{Examples of groups, homomorphisms and quotients}
 
 \subsection{Finite order}
