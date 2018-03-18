@@ -249,7 +249,8 @@ height of the curve\footnote{He actually wrote ``$bc=q$''; $bc$ is a line in
   his diagram with length $q$.}.
 
 \newpage
-\section{Curves and surfaces}
+\section{Berkeley Math 53 (Frenkel)}
+\subsection{Curves and surfaces}
 
 A function is a rule associating input values from one set with output values
 from another; a function is a set of (input, output) pairs in which each input
@@ -263,7 +264,7 @@ A surface is a similar concept to a curve, but is 2-dimensional.
 The dimensionality of an object is equal to the dimensionality of the ambient
 space, minus the number of independent equations.
 
-\section{Specifying a curve or surface}
+\subsection{Specifying a curve or surface}
 
 \textbf{Cartesian equation:} A curve can be specified as the set of points
 satisfying some condition (e.g. $x^2 + y^2 = R^2$) or by specifying that one
@@ -287,7 +288,7 @@ $\vec r = \vec r_0 + \vec v t$. (A surface would require 2 parameters, so they
 are often specified using Cartesian equations.)
 
 
-\section{Area under a curve}
+\subsection{Area under a curve}
 
 What is the area $A$ under the curve from $t=a$ to $t=b$? It's just
 $\int_\alpha^\beta y \dx$ as usual\footnote{$(\alpha, \beta) = (f(a), f(b))$},
@@ -301,7 +302,7 @@ $A = \int_a^b g(t) f'(t) \dt$.
 Thus, if the x-coordinate is increasing rapidly with $t$, then the area is
 larger.
 
-\section{Length of a curve}
+\subsection{Length of a curve}
 
 The length of a curve is $L = \int \sqrt{\dx^2 + \dy^2}$, over some interval.
 
@@ -311,7 +312,7 @@ $L = \int_\alpha^\beta \sqrt{1 + (\frac{\dy}{\dx})^2} \dx$.
 Or it can be expressed as an integral over an interval of $t$ values (parametric form):
 $L = \int_a^b \sqrt{ (\frac{\dx}{\dt})^2 + (\frac{\dy}{\dt})^2} \dt$
 
-\section{Area and volume of revolution of a curve}
+\subsection{Area and volume of revolution of a curve}
 Suppose a curve is revolved around the $x$-axis.
 
 \textbf{Volume}\\
@@ -331,7 +332,7 @@ This is computed as a sum of strips (using the hypotenuse rather than the rectan
 \end{align*}
 
 
-\section{Polar coordinates}
+\subsection{Polar coordinates}
 
 E.g. the curve $r = \cos(\theta)$ is a circle of radius 1 centered at
 $(x, y) = (\frac{1}{2}, 0)$. (?)
@@ -348,7 +349,7 @@ We're considering a curve defined by $r = f(\theta)$. We divide it up into many
 sectors each with angle $\dtheta$. The area is
 $\int_a^b \frac{1}{2}f(\theta)^2\dtheta$.
 
-\section{Surfaces}
+\subsection{Surfaces}
 
 \subsection*{Planes}
 Given a normal vector $\vec n = \cveccc{d}{e}{f}$, and a point in the plane
@@ -376,7 +377,7 @@ so $\cvecc{d}{e}$ is a normal vector to the line.
 Ellipsoids, hyperboloids, paraboloids. Also cylinders (one variable not
 specified, e.g. $x^2 + y^2 = 1$), and cones (e.g. $z^2 = x^2 + y^2$).
 
-\section{Tangent spaces}
+\subsection{Tangent spaces}
 
 \subsection*{Tangent lines}
 E.g. a tangent vector is given by differentiating the parametric equation for a
@@ -396,7 +397,7 @@ And what's the normal vector to that tangent plane? It's
 $\cveccc{f_x(x_0, y_0)}{f_y(x_0, y_0)}{-1}$.
 
 
-\section{Limits (L8)}
+\subsection{Limits (L8)}
 
 $\frac{x^2}{x^2 + y^2}$ has no limit at $(0, 0)$.
 Easy to prove by exhibiting paths with different limits: e.g. along x-axis vs. y-axis.
@@ -413,7 +414,7 @@ Now
 
 so for any desired closeness to the limiting value 0, we can find an $r$ that will do it.
 
-\section{Partial derivatives (L8)}
+\subsection{Partial derivatives (L8)}
 
 Clairot's theorem: equality of mixed partials under certain continuity
 conditions.
@@ -424,7 +425,7 @@ is how many times you have differentiated w.r.t. $x$, and to $y$;
 ``differentiation is in a sense opposite to multiplication''.
 \end{quote}
 
-\section{Differentials (L8)}
+\subsection{Differentials (L8)}
 
 \begin{quote}
   ``The differential is the function whose graph the tangent line (plane) is,
@@ -450,7 +451,7 @@ Not to be confused with $\Delta f$ --- the increment in the \textit{actual
 linear approximation.
 
 
-\section{Directional derivatives (L11)}
+\subsection{Directional derivatives (L11)}
 
 TODO Note: Defining directional derivative as being a function of a \textit{unit}
 vector is controversial; see
@@ -482,7 +483,7 @@ linear in $u$: $dd(u + v) = dd(u) + dd(v)$ etc.
 
 }
 
-\section{Gradient}
+\subsection{Gradient}
 $\nabla f(x_0, y_0)$ is normal to the level curve that cuts $f$ at $z = z_0$.
 
 Recall that $\cveccc{f_x(x_0,y_0)}{f_y(x_0,y_0)}{-1}$ is a normal vector to the
