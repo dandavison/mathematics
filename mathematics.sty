@@ -20,6 +20,11 @@
 \usepackage{parskip}
 \usepackage{verbatim}
 
+\let\originalfootnote\footnote
+\let\footnote\undefined
+\newcommand{\footnote}[1]{\originalfootnote{\red{#1}}}
+
+
 % \excludecomment{proof}
 
 \newtheorem{theorem}{\\Theorem}
