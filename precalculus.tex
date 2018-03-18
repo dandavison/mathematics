@@ -23,3 +23,25 @@ Functions can be neither even nor odd.
 
   A polynomial $p(x)$ is odd if an only if it has only odd powers of $x$.
 \end{claim*}
+
+\section{$\sqrt{2}$ is irrational}
+\begin{claim*}
+  $\sqrt{2}$ is irrational.
+\end{claim*}
+
+\begin{proof}
+  Suppose $\sqrt{2} \in \Q$. Then $\sqrt{2}$ can be written as $\frac{a}{b}$ where $a, b \in \Z$
+  have no common factor (aka coprime, aka mutually prime).
+
+  Then $2 = \frac{a^2}{b^2}$, so $a^2$ is even.
+
+  Therefore $a$ is even.
+
+  Let $a = 2c$. Then $b^2 = \frac{4c^2}{2} = 2c^2$, so $b^2$ is even.
+
+  Therefeore both $a$ and $b$ are even, which is a contradiction.
+
+  Therefore $\sqrt{2} \notin \Q$.
+\end{proof}
+
+
