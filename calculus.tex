@@ -248,6 +248,60 @@ increaseth will bee $q$.'': in his diagram, $y$ is the area, and $q$ is the
 height of the curve\footnote{He actually wrote ``$bc=q$''; $bc$ is a line in
   his diagram with length $q$.}.
 
+\section{Differentiation basics}
+\begin{theorem*}[Quotient rule]
+  $\(\frac{f}{g}\)^\1 = \frac{gf' - fg'}{g^2}$
+\end{theorem*}
+
+\subsection{Derivatives of trigonometric functions}
+
+\begin{claim*}
+  $\tan' = \frac{1}{\cos^2} =: \sec^2$
+\end{claim*}
+
+\begin{proof}
+  $\tan = \frac{\sin}{\cos}$, so by the quotient rule
+  \begin{align*}
+    \tan'
+    = \frac{\cos^2 + \sin^2}{\cos^2}
+    = \frac{1}{\cos^2}
+    = \sec^2.
+  \end{align*}
+\end{proof}
+
+\begin{claim*}
+  What is the derivative of $\sin^\1$?
+\end{claim*}
+
+\begin{proof}
+  \begin{align*}
+    \frac{\d sin^\1 a}{\d a}
+    = \frac{\d \theta}{\d \sin \theta}
+    = \frac{1}{\cos \theta}
+    = \frac{1}{\sqrt{1 - \sin^2 \theta }}
+    = \frac{1}{\sqrt{1 - a^2}}
+  \end{align*}
+\end{proof}
+
+
+\begin{claim*}
+  What is the derivative of $\tan^\1$?
+\end{claim*}
+
+\begin{proof}
+  \begin{align*}
+    \frac{\d \tan^\1(a)}{\d a}
+    = \frac{\d \theta}{\d \tan(\theta)}
+    = \cos^2(\theta)
+    = \cos^2(\tan^\1 a)
+  \end{align*}
+  Note that a right-angle triangle with angle $\tan^\1 a$ has opposite length $a$ relative to
+  adjacent length 1. Therefore $\cos(\tan^\1 a) = \frac{1}{\sqrt{1 + a^2}}$.
+
+  Therefore the derivative of $\tan^\1(a)$ is $\frac{1}{1 + a^2}$.
+\end{proof}
+
+
 \newpage
 \section{Berkeley Math 53 (Frenkel)}
 \subsection{Curves and surfaces}
@@ -488,3 +542,153 @@ $\nabla f(x_0, y_0)$ is normal to the level curve that cuts $f$ at $z = z_0$.
 
 Recall that $\cveccc{f_x(x_0,y_0)}{f_y(x_0,y_0)}{-1}$ is a normal vector to the
 tangent plane at $(x_0,y_0)$.
+
+
+\section{Oxford M5 Multivariable calculus}
+
+\subsection{Integrals in two dimensions}
+
+\begin{example*}[5]
+
+\end{example*}
+
+\begin{proof}
+  \begin{align*}
+    \int \int_R (x + y^2) \dx\dy
+    &= \int_1^3 \int_0^2 (x + y^2) \dx\dy\\
+    &= \int_1^3 \Big(\frac{x^2}{2} + xy^2\Big)\Big|_{x=0}^{x=2} \dy\\
+    &= \int_1^3 2 + 2y^2 \dy\\
+    &= 2y + \frac{2y^3}{3} \Big|_1^3\\
+    &= 6 + 18 - 2 - \frac{2}{3}\\
+    &= \frac{64}{3}
+  \end{align*}
+\end{proof}
+
+
+\begin{example*}[6]
+  Let $R$ be the unit square. Determine $\int\int_R y\cos^2(\pi xy) dA$.
+\end{example*}
+
+\red{TODO}
+
+\begin{proof}
+  \begin{align*}
+    \int\int_R y\cos^2(\pi xy) dA
+    &= \int_0^1\int_0^1 y\cos^2(\pi xy) \dx\dy\\
+    &=
+    &=
+  \end{align*}
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M5-multivariable-calc-ex-7.png}
+\end{mdframed}
+
+
+\begin{proof}(I. sum of two one-dimensional integrals)
+\end{proof}
+
+\begin{proof}(II. sum of two integrals over area)\\
+  The triangle is composed of a piecewise linear function:
+  \begin{align*}
+    \text{height}(x) =
+    \begin{cases}
+      x\frac{H}{X}, ~~~~~~~~~~~~~~~~~~     0 \leq x \leq X\\
+      (x - B)\frac{H}{(X - B)}, ~~~~~~~ X < x \leq B.
+    \end{cases}
+  \end{align*}
+
+  \begin{align*}
+    \text{area} &= \int\int_R dA\\
+                &= \int_0^X \int_0^{xH/X} \dy \dx + \int_X^B\int_0^{(x - B)\frac{H}{(X - B)}}\dy\dx\\
+                &= \int_0^X xH/X \dx + \int_X^B (x - B)\frac{H}{(X - B)} \dx\\
+                &= \frac{H}{X}\int_0^X x \dx + \frac{H}{(X - B)}\int_X^B (x - B) \dx\\
+                &= \frac{HX^2}{2X} + \frac{H}{(X - B)}\Big[\frac{(x - B)^2}{2}\Big]_X^B\\
+                &= \frac{HX}{2} - \frac{H}{(X - B)}\frac{(X - B)^2}{2}\\
+                &= \frac{HX}{2} - \frac{H(X - B)}{2}\\
+                &= \frac{BH}{2}
+  \end{align*}
+\end{proof}
+
+\subsection{Change of variables and Jacobians}
+
+\begin{intuition*}
+  The Jacobian of a map is the factor by which the map stretches space locally.
+\end{intuition*}
+
+\begin{definition*}[Jacobian]
+  Let $f:\R^2 \to \R^2$ be given by $f(x, y) := (u(x, y), v(x, y))$.
+
+  The Jacobian of $f$ is
+  $
+  \frac{\partial(u, v)}{\partial(x, y)} =
+  \det \matMMxNN{\frac{\partial u}{\partial x}} {\frac{\partial u}{\partial y}}
+                {\frac{\partial v}{\partial x}} {\frac{\partial v}{\partial y}}
+  $.
+
+  It is defined analogously in 3D.
+\end{definition*}
+
+\begin{example*}
+  Let $x = r\cos\theta$ and $y = r\sin\theta$, where $r$ and $\theta$ are polar co-ordinates. Then
+  \begin{align*}
+    \frac{\partial(x, y)}{\partial(r, \theta)}
+    &= \det \matMMxNN{\cos\theta}{-r\sin\theta}
+                     {\sin\theta}{r\cos\theta}\\
+    &= r(\cos^2\theta + \sin^2\theta)\\
+    &= r.
+  \end{align*}
+\end{example*}
+
+
+\newpage
+\begin{example*}
+  In reverse, $r(x,y) = \sqrt{x^2 + y^2}$ and $\theta(x,y) = \tan^\1(y/x)$.
+
+  Note that $\partiald{\theta}{x} = \frac{1}{1 + \frac{y^2}{x^2}}\frac{-y}{x^2} = \frac{-y}{x^2 + y^2}$,
+  and $\partiald{\theta}{y} = \frac{1}{1 + \frac{y^2}{x^2}}\frac{1}{x} = \frac{x}{x^2 + y^2}$.
+
+  So
+  \begin{align*}
+    \frac{\partial(r, \theta)}{\partial(x, y)}
+    &= \det \matMMxNN{\frac{x}{\sqrt{x^2 + y^2}}}{\frac{y}{\sqrt{x^2 + y^2}}}
+                     {\frac{-y}{x^2 + y^2}      }{\frac{x}{x^2 + y^2}}\\
+    &= \frac{x^2 + y^2}{(x^2+y^2)^{2/3}}\\
+    &= \frac{1}{r}.
+  \end{align*}
+\end{example*}
+
+
+\newpage
+\begin{theorem*}~\\
+  Let:
+  \begin{enumerate}
+  \item $R, S \seq \R^2$
+  \item $f:R \to S$ given by $f(x,y) = (u(x,y), v(x,y))$
+  \item $\psi(x, y) = \Psi(u, v) = \Psi(u(x,y), v(x, y))$.
+  \end{enumerate}
+  Then
+  \begin{align*}
+    \int\int_{(x,y) \in R} \psi(x,y)\dx \dy
+    &= \int\int_{(u, v) \in S} \Psi(u, v)\Big|\frac{\partial(x, y)}{\partial(u, v)}\Big|\du \dv\\
+    \int\int_{(u,v) \in S} \Psi(u,v)\du \dv
+    &= \int\int_{(x, y) \in R} \psi(x, y)\Big|\frac{\partial(u, v)}{\partial(x, y)}\Big|\dx \dy.
+  \end{align*}
+\end{theorem*}
+
+\begin{mdframed}
+\includegraphics[width=300pt]{img/calculus-jacobian-2D-map.png}
+\end{mdframed}
+
+\begin{intuition*}
+  If $f$ stretches space locally, then a local value $\psi(x,y)$ over $R$ contributes more when
+  accumulating $\Psi$ values over $S$.
+\end{intuition*}
+
+\begin{proof}(sketch)\\
+  Divide $R$ into $N$ square regions. Let $\psi_i$ be the height of the surface (weight) of the
+  $i$-th square.
+
+  Note that $f$ transforms a small square in $R$ into a parallelogram
+\end{proof}
+
