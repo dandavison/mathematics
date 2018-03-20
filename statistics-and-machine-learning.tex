@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+
+\begin{document}
+
+Statistics and Machine Learning have two objectives:
+
+\begin{enumerate}
+\item Make a statement about an unobserved quantity.
+\item Make a statement about the process by which an observed quantity came into existence.
+\end{enumerate}
+
+
+\subsection*{The view from Machine Learning}
+
+\subsubsection*{One-dimensional data}
+
+\subsubsection*{Regression}
+We make $N$ observations. Each observation consists of an input $x$ and an output $y$. Thus the
+data set is $(x_1, y_1), \ldots, (x_N, y_N)$.
+
+We specify a model. A model is a function $M(x, \theta) \mapsto \hat y$. It takes in an observed data value $x$
+and a parameter vector $\theta$, and outputs a predicted value $\hat y$.
+
+We specify a loss function $L(\hat y, y) \mapsto \text{loss}$. If the predicted value $\hat y$ is close to the true
+value $y$, then $L(\hat y, y)$ outputs a small ``loss'' value, otherwise the loss value is large.
+
+The goal is to choose $\theta$ so that the model makes good predictions. We do this by finding
+
+\end{document}
