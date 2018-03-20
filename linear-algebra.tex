@@ -1214,3 +1214,23 @@ Therefore
   Let $T:V \to V$ with $U$ a subspace of $V$. If $U$ is $T$-invariant, then $T$ induces a linear
   map of quotients $\bar T:V/U \to V/U$ given by $v + U \mapsto T(v) + U$.
 \end{theorem*}
+\section{Cross product}
+\begin{definition*}
+  The cross product is defined for 3-dimensional vectors only. It can be written as a formal
+  determinant
+  \begin{align*}
+    u \times v = \Bigg|
+    \detMMMxNNN
+    {\mathbf{i}}{\mathbf{j}}{\mathbf{k}}
+    {u_1}{u_2}{u_3}
+    {v_1}{v_2}{v_3}
+    \Bigg|,
+  \end{align*}
+  which can be computed using the cofactor expansion:
+  \begin{align*}
+    u \times v =
+      (u_2v_3 - u_3v_2)\mathbf{i}
+    - (u_1v_3 - u_3v_1)\mathbf{j}
+    + (u_1v_2 - u_2v_1)\mathbf{k}.
+  \end{align*}
+\end{definition*}
