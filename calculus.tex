@@ -761,10 +761,6 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
 
 \subsection{Change of variables and Jacobians}
 
-\begin{intuition*}
-  The Jacobian of a map is the factor by which the map stretches space locally.
-\end{intuition*}
-
 \begin{definition*}[Jacobian]
   Let $f:\R^2 \to \R^2$ be given by $f(x, y) := (u(x, y), v(x, y))$.
 
@@ -773,10 +769,64 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
   \frac{\partial(u, v)}{\partial(x, y)} =
   \det \matMMxNN{\frac{\partial u}{\partial x}} {\frac{\partial u}{\partial y}}
                 {\frac{\partial v}{\partial x}} {\frac{\partial v}{\partial y}}
-  $.
+  = \det \matMMxNN{u_x}{u_y}
+                  {v_x}{v_y}.
+  $
 
   It is defined analogously in 3D.
 \end{definition*}
+
+\begin{theorem}\label{stretch-factor-is-jacobian}
+  The Jacobian of a map is the factor by which the map stretches space locally.
+\end{theorem}
+
+\begin{proof}(Sketch)\\
+  Let $f: \R^2\to\R^2$ be a differentiable function given by
+  $(x,y) \mapsto \Big(u(x,y), v(x,y)\Big)$.
+
+  Consider a small rectangular area with bottom-left corner $(x, y)$ and top-right corner
+  $(x + \delta x, y + \delta y)$.
+
+  Let $u_x, u_y, v_x, v_y$ be the partial derivatives evaluated at $(x, y)$.
+
+  The linear approximation to $f$ at $(x, y)$ is
+  \begin{align*}
+    f(x, y) \approx  f(x, y) +
+    \cvec
+    {u_x\delta x + u_y\delta y}
+    {v_x\delta x + v_y\delta y}
+  \end{align*}
+
+  So the bottom-right and top-left corners are mapped as follows:
+  \begin{align*}
+    \text{bottom right:~~~}&
+                             (x, y) \mapsto f(x, y) +
+                             \cvec
+                             {u_x\delta x}
+                             {v_x\delta x}
+    \\
+    \text{top left:~~~}&
+                         (x, y) \mapsto f(x, y) +
+                         \cvec
+                         {u_y\delta y}
+                         {v_y\delta y}
+  \end{align*}
+
+  Thus the image of the original rectangular area is a parallelogram spanned by the vectors
+  $\delta x\cvec{u_x}{v_x}$ and $\delta y\cvec{u_y}{v_y}$. The area of this parallelogram is given by
+  the cross product:
+  \begin{align*}
+    \text{area}
+    = \Bigg|\delta x\cvec{u_x}{v_x} \times
+    \delta y\cvec{u_y}{v_y}\Bigg|
+    = |(u_xv_y - u_yv_x)\mathbf{k}|\delta x \delta y
+    = \det \matMMxNN{u_x}{u_y}
+    {v_x}{v_y} \delta x \delta y.
+  \end{align*}
+
+
+\end{proof}
+
 
 \begin{example*}
   Let $x = r\cos\theta$ and $y = r\sin\theta$, where $r$ and $\theta$ are polar co-ordinates. Then
@@ -805,7 +855,6 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
   \end{align*}
 \end{example*}
 
-
 \begin{theorem*}~\\
   Let:
   \begin{enumerate}
@@ -831,10 +880,24 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
   accumulating $\Psi$ values over $S$.
 \end{intuition*}
 
-\begin{proof}(sketch)\\
-  Divide $R$ into $N$ square regions. Let $\psi_i$ be the height of the surface (weight) of the
-  $i$-th square.
+\begin{proof}(Sketch)\\
+  Divide $R$ into $N$ small squares.
 
-  Note that $f$ transforms a small square in $R$ into a parallelogram
+  Let $u_x, u_u, v_x, v_y$ be the partial derivatives evaluated at the center of the $i$-th square.
+
+  Note from theorem (\ref{stretch-factor-is-jacobian}) above that the image of the $i$-th square is
+  a parallelogram with area $\det \matMMxNN {u_x}{u_y} {v_x}{v_y} \delta x \delta y$.
+
+  An approximation for the integral over $S$ is
+  \begin{align*}
+    \int\int_{(u,v) \in S} \Psi(u,v)\du \dv
+    &\approx \sum_i \Psi_i \text{Area(Parallelogram$_i$)}\\
+    &= \sum_i \psi_i \det \matMMxNN
+      {u_x}{u_y}
+      {v_x}{v_y} \delta x \delta y,
+  \end{align*}
+  which on taking the limit $N \to \infty$ gives
+  \begin{align*}
+    \int\int_{(u,v) \in S} \Psi(u,v)\du \dv = \int\int_{(x,y) \in R} \psi(x,y)\frac{\partial(u, v)}{\partial(x, y)}\dx \dy.
+  \end{align*}
 \end{proof}
-
