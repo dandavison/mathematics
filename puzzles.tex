@@ -3,6 +3,32 @@
 
 \begin{document}
 
+\section*{Tower struts}
+
+\begin{mdframed}
+  A tower of base width $w$ and height $h$ is composed of two sides inclined towards each other at
+  the same angle $\beta$. A series of diagonal struts at angle $\alpha < \beta$ join the two
+  sides. The two sides of the tower do not meet at the top.
+
+  \includegraphics[width=200pt]{img/puzzles-tower-struts.png}
+
+  There are $n$ diagonal struts, with the first strut starting at height 0 and the last strut
+  ending at height $h$.
+
+  $w, h, \beta$ and $n$ are given. What must $\alpha$ be?
+\end{mdframed}
+Let the origin be the bottom left hand corner of the tower.
+
+Let $p = \frac{\tan\alpha}{\tan\alpha + \tan\beta}$ be the ratio of the two angles.
+
+The first strut intersects the right side at a horizontal distance $pw$ from the origin.
+
+Therefore the height of the intersection of the first strut is $pw\tan\alpha$.
+
+Note that since the left and right sides are inclined at the same angle, the width of the tower at
+the height of intersection of the first strut is $w - 2(1 - pw)$.
+
+
 \section{n-omino}
 \begin{mdframed}
   You have a $n$-omino. (Like a tetris piece but with arbitrarily many pieces.)
@@ -98,4 +124,5 @@ line is internal is equal to the
 
   Therefore it is sokmetimes 10.
 \end{proof}
+
 \end{document}
