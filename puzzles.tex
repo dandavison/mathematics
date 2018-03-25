@@ -35,65 +35,30 @@ storey is $p(1 - 2p)^{i-1}w\tan\beta$.
 \newpage
 Therefore we need to find the $\alpha$ that solves $h = pw\tan\beta\sum_{i=0}^{n-1}(1 - 2p)^i$.
 
-Note that
+$n = 1$
 \begin{align*}
-  1 - 2p
-  &= 1 - 2\frac{\tan\beta}{\tan\alpha + \tan\beta}
-  = \frac{\tan\alpha - \tan\beta}{\tan\alpha + \tan\beta}\\
-  (1 - 2p)^2
-  &= \frac{(\tan\alpha - \tan\beta)^2}{(\tan\alpha + \tan\beta)^2}
+  p
 \end{align*}
-Therefore
+
+$n = 2$
 \begin{align*}
-  (1 - 2p) + (1 - 2p)^2
-  &=
-    \frac{\tan\alpha - \tan\beta}{\tan\alpha + \tan\beta} +
-    \frac{(\tan\alpha - \tan\beta)^2}{(\tan\alpha + \tan\beta)^2}\\
-  &=
-    \frac
-    {(\tan\alpha - \tan\beta)^2 + (\tan\alpha + \tan\beta)(\tan\alpha - \tan\beta)}
-    {(\tan\alpha + \tan\beta)^2}\\
-  &=
-    \frac
-    {(\tan\alpha - \tan\beta)(\tan\alpha - \tan\beta + \tan\alpha + \tan\beta)}
-    {(\tan\alpha + \tan\beta)^2}\\
-  &=
-    \frac
-    {2\tan\alpha(\tan\alpha - \tan\beta)}
-    {(\tan\alpha + \tan\beta)^2},
+  p(1 - 2p)
 \end{align*}
-and
+
+$n = 3$
 \begin{align*}
-  &(1 - 2p) + (1 - 2p)^2 + (1 - 2p)^3
-  =
-    \frac
-    {2\tan\alpha(\tan\alpha - \tan\beta)}
-    {(\tan\alpha + \tan\beta)^2} +
-    \frac{(\tan\alpha - \tan\beta)^3}{(\tan\alpha + \tan\beta)^3}\\
-  &= \frac
-    {(\tan\alpha - \tan\beta)^3 + 2\tan\alpha(\tan\alpha - \tan\beta)(\tan\alpha + \tan\beta)}
-    {(\tan\alpha + \tan\beta)^3}\\
-  &= \frac
-    {(\tan\alpha - \tan\beta)\Big((\tan\alpha - \tan\beta)^2 + 2\tan\alpha(\tan\alpha + \tan\beta)\Big)}
-    {(\tan\alpha + \tan\beta)^3}\\
-  &= \frac
-    {(\tan\alpha - \tan\beta)(\tan^2\alpha - 2\tan\alpha\tan\beta + \tan^2\beta + 2\tan^2\alpha + 2\tan\alpha\tan\beta)}
-    {(\tan\alpha + \tan\beta)^3}\\
-  &= \frac
-    {(\tan\alpha - \tan\beta)(3\tan^2\alpha + \tan^2\beta)}
-    {(\tan\alpha + \tan\beta)^3}\\
+  p\Big((1 - 2p) + (1 - 2p)^2\Big)
+  &= p(1 - 2p)(2 - 2p)
+\end{align*}
+
+$n = 4$
+\begin{align*}
+  p\Big((1 - 2p) + (1 - 2p)^2 + (1 - 2p)^3\Big)
+  &= p\Big((1 - 2p)(2 - 2p) + (1 - 2p)^3\Big)\\
+  &= p(1 - 2p)((2 - 2p) + (1 - 2p)^2)
 \end{align*}
 
 
-\begin{tabular}{c|c}
-  $n = 1$& $h = pw\tan\beta = w\frac{\tan^2\beta}{\tan\alpha + \tan\beta}$\\
-  $n = 2$& $h = pw\tan\beta(1 - 2p) = w\frac{\tan^2\beta}{\tan\alpha + \tan\beta}\frac{\tan\alpha - \tan\beta}{\tan\alpha + \tan\beta}$\\ \\
-  $n = 3$& $h = pw\tan\beta(1 - 2p) = w\frac{\tan^2\beta}{\tan\alpha + \tan\beta}\frac{\tan\alpha - \tan\beta}{\tan\alpha + \tan\beta}$\\ \\
-\end{tabular}
-
-\begin{align*}
-
-\end{align*}
 
 \section{n-omino}
 \begin{mdframed}
