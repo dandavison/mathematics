@@ -6,6 +6,7 @@
 \usepackage{caption}
 \usepackage{centernot}
 \usepackage{color}
+\usepackage{commath}
 \usepackage{comment}
 \usepackage[shortlabels]{enumitem}
 % \usepackage[T1]{fontenc}
@@ -42,21 +43,21 @@
 \newtheorem{claim}[theorem]{\\Claim}
 \newtheorem*{claim*}{\\Claim}
 
-\theoremstyle{definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{\\Remark}
 \newtheorem*{remark*}{\\Remark}
 
-\theoremstyle{definition}
+\theoremstyle{remark}
 \newtheorem{example}[theorem]{\\Example}
 \newtheorem*{example*}{\\Example}
 
-\theoremstyle{definition}
+\theoremstyle{remark}
 \newtheorem{intuition}[theorem]{\\Intuition}
 \newtheorem*{intuition*}{\\Intuition}
 
 % https://tex.stackexchange.com/questions/8089/changing-style-of-proof
-\let\oldproofname=\proofname
-\renewcommand{\proofname}{\rm\bf{\oldproofname}}
+% \let\oldproofname=\proofname
+% \renewcommand{\proofname}{\rm\bf{\oldproofname}}
 
 % \usepackage[left=2cm,top=2cm,right=2cm,bottom=2cm,head=2cm,foot=1cm]{geometry}
 
@@ -77,14 +78,15 @@
 \DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
 \DeclareMathOperator{\dldmu}{\frac{\partial \l}{\partial \mu}}
 \DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
-\DeclareMathOperator{\dtheta}{\text{d}\theta}
-\DeclareMathOperator{\dt}{\text{dt}}
-\DeclareMathOperator{\ds}{\text{ds}}
-\DeclareMathOperator{\du}{\text{du}}
-\DeclareMathOperator{\dv}{\text{dv}}
-\DeclareMathOperator{\dx}{\text{dx}}
-\DeclareMathOperator{\dy}{\text{dy}}
-\DeclareMathOperator{\dz}{\text{dz}}
+\newcommand{\dtheta}{\dif \theta}
+\newcommand{\dt}{\dif t}
+\newcommand{\ds}{\dif s}
+\newcommand{\du}{\dif u}
+\newcommand{\dv}{\dif v}
+\newcommand{\dx}{\dif x}
+\newcommand{\dy}{\dif y}
+\newcommand{\dz}{\dif z}
+\newcommand{\dA}{\dif A}
 \DeclareMathOperator{\ealign}{\end{align*}}
 \DeclareMathOperator{\grad}{\nabla}
 \DeclareMathOperator{\hess}{\nabla^2}
@@ -208,7 +210,6 @@
 \newcommand{\mattxtttt}[8]{\begin{bmatrix}#1 & #2 \\ #3 & #4 \\ #5 & #6\\ #7 & #8\\ \end{bmatrix}}
 \newcommand{\matt}{\matMMMxNNN}
 \newcommand{\ninfty}{n \rightarrow \infty}
-\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
 \newcommand{\otherwise}{\text{otherwise}}
 \newcommand{\partialdd}[2]{\frac{\partial^2 #1}{\partial {#2}^2}}
 \newcommand{\partiald}[2]{\frac{\partial #1}{\partial #2}}
