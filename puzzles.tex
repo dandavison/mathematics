@@ -17,6 +17,13 @@
 
   $w, h, \beta$ and $n$ are given. What must $\alpha$ be?
 \end{mdframed}
+Note that the width of the base of the second storey is $w_2 = w - 2pw = (1 - 2p)w$.
+
+Similarly, $w_3 = (1 - 2p)w_2 = (1 - 2p)^2w$.
+
+So the final width is $w_{n+1} = (1 - 2p)^nw$.
+
+
 Define the $n$-th storey to be the section of the tower containing the $n$-th strut.
 
 Let $p = \frac{\tan\beta}{\tan\alpha + \tan\beta}$ be the ratio of the two angles.
@@ -33,29 +40,50 @@ Therefore the height of the second storey is $p(1 - 2p)w\tan\beta$, and the heig
 storey is $p(1 - 2p)^{i-1}w\tan\beta$.
 
 \newpage
-Therefore we need to find the $\alpha$ that solves $h = pw\tan\beta\sum_{i=0}^{n-1}(1 - 2p)^i$.
+% Therefore we need to find the $\alpha$ that solves $h = pw\tan\beta\sum_{i=0}^{n-1}(1 - 2p)^i$.
+
+\begin{tabular}{l|l}
+  $n$&$\frac{h}{w\tan\beta}$\\
+  \hline\\
+  $1$& $p$\\
+  $2$& $p - 2p^2$\\
+  $3$& $2p - 6p^2 + 4p^3$\\
+  $4$& $3p - 12p^2 + 16p^3 - 8p^4$\\ \\
+  $n$& $?$
+\end{tabular}
+
 
 $n = 1$
 \begin{align*}
-  p
+  \frac{h}{w\tan\beta}
+  &= p
 \end{align*}
 
 $n = 2$
 \begin{align*}
-  p(1 - 2p)
+  \frac{h}{w\tan\beta}
+  &= p(1 - 2p)\\
+        &= p - 2p^2
 \end{align*}
 
 $n = 3$
 \begin{align*}
-  p\Big((1 - 2p) + (1 - 2p)^2\Big)
-  &= p(1 - 2p)(2 - 2p)
+  \frac{h}{w\tan\beta}
+  &= p\Big((1 - 2p) + (1 - 2p)^2\Big)\\
+  &= p(1 - 2p)(2 - 2p)\\
+  &= (p - 2p^2)(2 - 2p)\\
+  &= 2p - 6p^2 + 4p^3
 \end{align*}
 
 $n = 4$
 \begin{align*}
-  p\Big((1 - 2p) + (1 - 2p)^2 + (1 - 2p)^3\Big)
+  \frac{h}{w\tan\beta}
+  &= p\Big((1 - 2p) + (1 - 2p)^2 + (1 - 2p)^3\Big)\\
   &= p\Big((1 - 2p)(2 - 2p) + (1 - 2p)^3\Big)\\
-  &= p(1 - 2p)((2 - 2p) + (1 - 2p)^2)
+  &= p(1 - 2p)((2 - 2p) + (1 - 2p)^2)\\
+  &= p(1 - 2p + 1 - 4p + 4p^2 + (1 - 2p)(1 - 4p + 4p^2))\\
+  &= p(1 - 2p + 1 - 4p + 4p^2 + 1 - 4p + 4p^2 - 2p + 8p^2 - 8p^3)\\
+  &= 3p - 12p^2 + 16p^3 - 8p^4\\
 \end{align*}
 
 
