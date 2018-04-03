@@ -1,34 +1,125 @@
 \section{Combinatorics}
-The number of $k$-tuples that can be chosen from $n$ items without
-replacement is
-\begin{align*}
-  (n)_k = n \cdot (n-1) \cdots (n - k + 1) = \frac{n!}{(n-k)!}
-\end{align*}
 
-The number of sets of size $k$ that can be chosen from $n$ items is
-\begin{align*}
-  {n \choose k} = \frac{(n)_k}{k!} = \frac{n!}{k!(n-k)!}.
-\end{align*}
+\begin{theorem*}[Subtuples]~\\
+  The number of $k$-tuples that can be formed from a set of size $n$ without replacement is
+  \begin{align*}
+    (n)_k := n \cdot (n-1) \cdots (n - k + 1) = \frac{n!}{(n-k)!}.
+  \end{align*}
+\end{theorem*}
 
-The number of ways that $n$ items can be put into $k$ buckets, with no empty
-buckets, recording only the counts in each bucket (not the identities of the
-items), is
-\begin{align*}
-  {n-1 \choose k -1}.
-\end{align*}
-\textit{Proof}: Represent this as $n$ unlabeled stars, and $k-1$ bars
-representing the partition of the stars into different buckets. There are $n-1$
-gaps where the bars can be placed, hence ${n-1 \choose k -1}$ ways of dividing
-up the items.
+\begin{remark*}
+  As a special case, the number of $n$-tuples (i.e. permutations/arrangements) is $n!$. (This is also
+  the number of $n-1$ tuples.)
+\end{remark*}
 
-The number of ways that $n$ items can be put into $k$ buckets, with no empty
-buckets, recording the identities of the items in each bucket, is the number of
-\textit{partitions} of size $k$ of a set of size $n$. It is equal to the
-Stirling number of the second kind:
-\begin{align*}
-  S(n, k) = \frac{1}{k!} \sum_{i=0}^k(-1)^i{k \choose i}(k-i)^n. ~~ \blue{\text{(check this)}}
-\end{align*}
-\textit{Proof}:
+\begin{theorem*}[Subsets]~\\
+  The number of subsets of size $k$ that can be formed from a set of size $n$ is
+  \begin{align*}
+    {n \choose k} := \frac{(n)_k}{k!} = \frac{n!}{k!(n-k)!}.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  Each distinct $k$-subset gives rise to $k!$ $k$-tuples by assigning position labels. Therefore
+  $(n)_k = {n \choose k}k!$.
+\end{proof}
+
+\begin{theorem*}[Multiset arrangements]~\\
+  Consider a multiset comprising $n$ distinct elements, with $r_i \geq 1$ repeats of the $i$-th
+  element. The number of $n$-tuples that can be formed from such a multiset is
+  \begin{align*}
+    {n \choose r_1}{n - r_1 \choose r_2}\cdots{n - r_1 - \cdots - r_{n-1} \choose r_n}.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  The $r_1$ copies of the first element must all go somewhere. ${n \choose r_1}$ counts the number
+  of distinct positions they can occupy. Then there are $n - r_1$ empty positions left. Etc.
+\end{proof}
+
+\begin{remark*}
+  The number $n!$ of permutations of a set is a special case of this with $r_i = 1$ for all $i$.
+\end{remark*}
+
+\begin{theorem*}
+  How many $k$-tuples for $k \leq n$ can be formed from such a multiset?
+\end{theorem*}
+\red{TODO}
+
+\begin{theorem*}[Stars and bars]~\\
+  The number of ways that $n$ items can be put into $k$ buckets, with no empty
+  buckets, recording only the counts in each bucket (not the identities of the
+  items), is
+  \begin{align*}
+    {n-1 \choose k -1}.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  Represent this as $n$ unlabeled stars, and $k-1$ bars representing the partition of the stars into
+  different buckets. There are $n-1$ gaps where the bars can be placed, hence ${n-1 \choose k -1}$
+  ways of dividing up the items.
+\end{proof}
+
+\begin{theorem*}[Partitions]~\\
+  The number of ways that $n$ items can be put into $k$ buckets, with no empty
+  buckets, recording the identities of the items in each bucket, is the number of
+  \textit{partitions} of size $k$ of a set of size $n$. It is equal to the
+  Stirling number of the second kind:
+  \begin{align*}
+    S(n, k) = \frac{1}{k!} \sum_{i=0}^k(-1)^i{k \choose i}(k-i)^n. ~~ \blue{\text{(check this)}}
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  \red{TODO}
+\end{proof}
+
+
+\subsection{Tucker - Applied Combinatorics - Exercises}
+
+\begin{enumerate}
+\item[(5.1)] {\bf General Counting Method for Arrangements and Selections}
+  \begin{enumerate}
+  \item[(37)] {\bf If three distinct dice are rolled, what is the probability that the highest
+      value is
+      twice the smallest value?}\\~\\
+    $\frac{(3 \times 2 \times 3) + (3 \times 3!)}{6^3}$\\~\\
+    An outcome is a 3-tuple such as $(1,1,1)$. Outcomes that match the criterion belong to two
+    disjoint subsets:
+    \begin{enumerate}
+    \item Outcomes with two distinct values, such as $(1,1,2)$. There are $3 \times 2 \times 3$
+      such outcomes ($3$ choices of unordered pairs of numbers, each with two alternative labelings
+      and $3$ distinct permutations).
+    \item Outcomes with three distinct values, such as $(2,3,4)$. There are $3 \times 3!$ such
+      outcomes ($1 + 2$ unordered triples of numbers, each with $3!$ distinct permutations)
+    \end{enumerate}
+  \end{enumerate}
+  \newpage
+\item[(5.2)] {\bf Simple arrangements and selections}
+  \begin{enumerate}
+  \item[(Example 2)] {\bf How many ways are there to arrange the 7 letters of the word SYSTEMS...}
+    \begin{enumerate}
+    \item {\bf ...?}\\
+      \begin{align*}
+        7_{(7 - 3)} = 7\cdot 6\cdot 5\cdot 4 ~~~~~~~\text{(Choose positions of the other 4 letters, then Ss determined.)}
+      \end{align*}
+    \item {\bf ...with the 3 Ss consecutive?}
+      \begin{align*}
+        5_{(5)} = 5! ~~~~~~~\text{(Consider as 5-letter word S$^3$YTEM.)}
+      \end{align*}
+    \item {\bf ...with E before M?}
+      \begin{align*}
+        {7 \choose 2}5_{(5 - 3)} = {7 \choose 2}5\cdot 4 ~~~~~~~\text{(Choose position of E,M, then choose position of non-Ss.)}
+      \end{align*}
+    \item {\bf ...with E before M and 3 Ss consecutive?}
+      \begin{align*}
+        {5 \choose 2} 3! ~~~~~~~\text{(Consider as 5-letter word S$^3$YTEM, choose position of E,M, then choose positions for remaining letters.)}
+      \end{align*}
+    \end{enumerate}
+  \item[(Example 6)] How
+  \end{enumerate}
+\end{enumerate}
 
 \section{Relations and partitions}
 A relation on a set $A$ is a subset of $A^2$. Thus for a pair
@@ -44,7 +135,7 @@ there: the groups are the connected components in the graph in which two
 vertices are connected if they are related. There are fewer equivalence
 relations than assignments to labeled buckets, since the equivalence relation
 does not identify the buckets. \blue{How many equivalence relations are there,
-  compared to Stirling II number and stars-and-bars count configurations?}
+compared to Stirling II number and stars-and-bars count configurations?}
 
 
 \newpage
