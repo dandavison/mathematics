@@ -15,7 +15,7 @@
 \begin{theorem*}[Subsets]~\\
   The number of subsets of size $k$ that can be formed from a set of size $n$ is
   \begin{align*}
-    {n \choose k} := \frac{(n)_k}{k!} = \frac{n!}{k!(n-k)!}.
+    C(n, k) = {n \choose k} := \frac{(n)_k}{k!} = \frac{n!}{(n-k)!~k!}.
   \end{align*}
 \end{theorem*}
 
@@ -28,7 +28,13 @@
   Consider a multiset comprising $n$ distinct elements, with $r_i \geq 1$ repeats of the $i$-th
   element. The number of $n$-tuples that can be formed from such a multiset is
   \begin{align*}
-    {n \choose r_1}{n - r_1 \choose r_2}\cdots{n - r_1 - \cdots - r_{n-1} \choose r_n}.
+    P(n; r_1, \ldots, r_k)
+    :=& {n \choose r_1}{n - r_1 \choose r_2}\cdots{n - r_1 \cdots - r_{n-1} \choose r_n}\\
+    % &=\frac{n!}{(n - r_1)!r_1!}
+    %   \frac{(n - r_1)!}{(n - r_1 - r_2)!r_2!}
+    %   \cdots
+    %   \frac{(n - r_1 \cdots - r_{n-1})!}{r_n!}
+     =& \frac{n!}{r_1!r_2!\cdots r_n!}.
   \end{align*}
 \end{theorem*}
 
@@ -47,19 +53,51 @@
 \red{TODO}
 
 \begin{theorem*}[Stars and bars]~\\
-  The number of ways that $n$ items can be put into $k$ buckets, with no empty
-  buckets, recording only the counts in each bucket (not the identities of the
-  items), is
+  Consider the number of ways that $n$ items can be put into $k$ buckets, recording only the counts
+  in each bucket (not the identities of the items).
+
+  With no empty buckets, the answer is
   \begin{align*}
-    {n-1 \choose k -1}.
+    {n - 1 \choose k - 1} ~~~~~~~\text{($k-1$ bars to be placed in $n-1$ gaps between $n$ stars)}.
+  \end{align*}
+
+  With empty buckets allowed, the answer is
+  \begin{align*}
+    {n + k - 1 \choose k - 1} = P(n + k - 1; n, k - 1)~~~~~~~\text{(number of arrangements of $n$ stars and $k-1$ bars)}.
   \end{align*}
 \end{theorem*}
 
 \begin{proof}
-  Represent this as $n$ unlabeled stars, and $k-1$ bars representing the partition of the stars into
-  different buckets. There are $n-1$ gaps where the bars can be placed, hence ${n-1 \choose k -1}$
-  ways of dividing up the items.
+  Represent this as $n$ unlabeled stars, and $k-1$ bars representing the partition of the stars
+  into different buckets.
+
+  With no empty buckets allowed, there are $n-1$ gaps where the bars can be placed, hence
+  ${n - 1 \choose k - 1}$ ways of dividing up the items.
+
+  With empty buckets allowed, there could be multiple bars in the same position. The number of
+  $(n + k - 1)$-tuples that can be formed from the star and bar symbols is
+  \begin{align*}
+    P(n + k - 1; n, k - 1) &= C(n + k - 1, k - 1)C(n, n)\\
+                           &= C(n + k - 1, k - 1)\\
+                           &= C(n + k - 1, n)C(k - 1, k - 1)\\
+                           &= C(n + k - 1, n).
+  \end{align*}
+
+  Note that ${n - 1 \choose k - 1}$ for the no-empty-buckets version can also be derived as
+  follows:
+  \begin{enumerate}
+  \item Place one item into each bucket.
+  \item Now there are $n - k$ items into $k$ buckets and empty buckets are allowed for the
+    subsequent allocations. So the answer is
+    ${(n - k) + k - 1 \choose k - 1} = {n - 1 \choose k - 1}$ by the empty-buckets-allowed theorem.
+  \end{enumerate}
 \end{proof}
+
+\begin{theorem*}[Stars and bars]~\\
+  The number of ways that $n$ items can be put into $k$ buckets, with empty buckets allowed,
+  recording only the counts in each bucket (not the identities of the items), is
+
+\end{theorem*}
 
 \begin{theorem*}[Partitions]~\\
   The number of ways that $n$ items can be put into $k$ buckets, with no empty
@@ -75,6 +113,12 @@
   \red{TODO}
 \end{proof}
 
+
+\begin{theorem*}[Identities]~\\
+  \begin{align*}
+    {m + n \choose r} = \sum_{i=0}^r {m \choose i}{n \choose r - i}
+  \end{align*}
+\end{theorem*}
 
 \subsection{Tucker - Applied Combinatorics - Exercises}
 
