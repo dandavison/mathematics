@@ -1,5 +1,9 @@
 \section{Combinatorics}
 
+\begin{mdframed}
+\includegraphics[width=300pt]{img/discrete-mathematics-tucker-combinatorics-summary.png}
+\end{mdframed}
+
 \begin{theorem*}[Subtuples]~\\
   The number of $k$-tuples that can be formed from a set of size $n$ without replacement is
   \begin{align*}
@@ -47,14 +51,30 @@
   The number $n!$ of permutations of a set is a special case of this with $r_i = 1$ for all $i$.
 \end{remark*}
 
+\begin{example*}~\\
+  \begin{enumerate}
+  \item {\bf How many ways are there to assign 100 different diplomats to five different
+      continents?}\\
+    $5^{100}$
+  \item {\bf How many ways if 20 diplomats must be assigned to each continent?}\\
+    $P(100; 20, 20, 20, 20, 20)$. Arrange the 100 diplomats in an arbitrary order. Now we have a
+    multiset of country labels with 20 repeats of each label. Given the fixed ordering of the
+    diplomats, there's a one-to-one correspondence between distinct permutations of the multiset
+    and assignments of diplomats to countries.
+  \item {\bf How many ways are there to distribute 20 (identical) sticks of red licorice and 15
+    (identical) sticks of black licorice among five children?}\\
+  ${20 + 5 -1 \choose 5 - 1}$${15 + 5 -1 \choose 5 - 1}$.
+  \end{enumerate}
+\end{example*}
+
 \begin{theorem*}
   How many $k$-tuples for $k \leq n$ can be formed from such a multiset?
 \end{theorem*}
 \red{TODO}
 
 \begin{theorem*}[Stars and bars]~\\
-  Consider the number of ways that $n$ items can be put into $k$ buckets, recording only the counts
-  in each bucket (not the identities of the items).
+  Consider the number of ways that $n$ identical objects can be put into $k$ buckets, recording
+  only the counts in each bucket (not the identities of the objects).
 
   With no empty buckets, the answer is
   \begin{align*}
@@ -165,6 +185,26 @@
   \end{enumerate}
 \end{enumerate}
 
+
+\subsection{Generating functions}
+
+\begin{definition*}[Generating function]
+  Let $a_r$ be the number of ways to select $r$ objects in some counting procedure. Then $g(x)$ is
+  a generating function for $a_r$ if $g(x)$ has the polynomial expansion
+  \begin{align*}
+    a_0 + a_1x + \ldots + a_nx^n.
+  \end{align*}
+\end{definition*}
+
+
+\begin{example*}
+  Find the generating function for $a_r$, the number of ways to select $r$ balls from $3$ green,
+  $3$ white, $3$ blue, and $3$ gold balls.
+
+
+\end{example*}
+
+\newpage
 \section{Relations and partitions}
 A relation on a set $A$ is a subset of $A^2$. Thus for a pair
 $(a_1, a_2) \in A^2$ the relation says whether $a_1$ is related to $a_2$.
