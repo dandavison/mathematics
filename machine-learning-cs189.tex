@@ -124,18 +124,18 @@ and $\grad_W L$. We derive the gradients with respect to one row of these
 matrices at a time, and give code fragments showing how to compute the matrix
 of derivatives efficiently.
 
-Recall that $\sigma' = \sigma (1 - \sigma)$, and $\tanh' = 1 - \tanh^2$\footnote{
-The definition of $\tanh$ is $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$, so
-the derivative is
+% Recall that $\sigma' = \sigma (1 - \sigma)$, and $\tanh' = 1 - \tanh^2$\footnote{
+% The definition of $\tanh$ is $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$, so
+% the derivative is
 
-\begin{align*}
-  \frac{d}{dx} \tanh(x)
-  = \frac{(e^x + e^{-x})^2 - (e^x - e^{-x})^2}{(e^x + e^{-x})^2}
-  = 1 - \frac{(e^x - e^{-x})^2}{(e^x + e^{-x})^2}
-  = 1 - \tanh^2(x)
-  = \sech^2(x).
-\end{align*}
-}
+% \begin{align*}
+%   \frac{d}{dx} \tanh(x)
+%   = \frac{(e^x + e^{-x})^2 - (e^x - e^{-x})^2}{(e^x + e^{-x})^2}
+%   = 1 - \frac{(e^x - e^{-x})^2}{(e^x + e^{-x})^2}
+%   = 1 - \tanh^2(x)
+%   = \sech^2(x).
+% \end{align*}
+% }
 
 
 \subsubsection{Gradient with respect to weight matrix $\W$}
