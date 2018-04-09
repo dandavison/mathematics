@@ -759,7 +759,72 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
   \end{align*}
 \end{proof}
 
+
+\newpage
 \subsection{Change of variables and Jacobians}
+Let $R, S \subset \R$ and $u:R \to S$.
+
+Define $\psi: R \to \R$ and $\Psi: S \to \R$, such that $\Psi(f(x)) = \psi(x)$ for all $x \in R$.
+
+One definition of the integral is to divide $R$ into segments of length $\delta x$, let $\psi_i$ be
+the value of $\psi$ at the start of the $i$-th segment, and define
+\begin{align*}
+  \int_{x \in R} \psi(x) \dx = \lim_{\delta x \to 0} \sum_i \psi_i\delta x.
+\end{align*}
+
+Now let $u'_i$ be the value of the derivative at the start of the $i$-th line segment.
+
+Then the length of the $i$-th segment of $S$ is $u'_i ~\delta x$.
+
+Therefore the integral over $S$ is
+\begin{align*}
+  \int_{u \in S} \Psi(u) \du &= \lim_{\delta x \to 0} \sum_i \psi_iu'_i~\delta x\\
+                            &= \int_{x \in R} \psi(x)\frac{\du}{\dx}\dx.
+\end{align*}
+
+\newpage
+\begin{theorem*}[Integration by substitution]~\\
+  Let $u = h(x)$. Then
+  \begin{align*}
+    \int g(h(x))h'(x) \dx = \int g(u) \du.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  Let $G' = g$, i.e. $G$ is an antiderivative of $g$.
+
+  Recall the chain rule:
+  \begin{align*}
+    (G \circ h)' = G' h'
+  \end{align*}
+  Integrating both sides with respect to $x$ gives
+  \begin{align*}
+    G \circ h + C = \int G' h' \dx = \int g h' \dx.
+  \end{align*}
+  Let $u = h(x)$. Then
+  \begin{align*}
+    G(u) + C &= \int g(u) \du
+              = \int \frac{\dG}{\dh} \frac{\du}{\dx} \dx.
+  \end{align*}
+\end{proof}
+
+\begin{proof}
+  Let $G' = g$, i.e. $G$ is an antiderivative of $g$.
+
+  Recall the chain rule:
+  \begin{align*}
+    \ddx G(h(x)) = \frac{\dG}{\dh} \frac{\dh}{\dx}.
+  \end{align*}
+  Integrating both sides with respect to $x$ gives
+  \begin{align*}
+    G(h(x)) + C = \int \frac{\dG}{\dh} \frac{\dh}{\dx} \dx.
+  \end{align*}
+  Let $u = h(x)$. Then
+  \begin{align*}
+    G(u) + C &= \int g(u) \du
+              = \int \frac{\dG}{\dh} \frac{\du}{\dx} \dx.
+  \end{align*}
+\end{proof}
 
 \begin{definition*}[Jacobian]
   Let $f:\R^2 \to \R^2$ be given by $f(x, y) := (u(x, y), v(x, y))$.
@@ -886,19 +951,20 @@ f_{xy}(\vec x_0)(x - x_0)(y - y_0) +
   Let $u_x, u_u, v_x, v_y$ be the partial derivatives evaluated at the center of the $i$-th square.
 
   Note from theorem (\ref{stretch-factor-is-jacobian}) above that the image of the $i$-th square is
-  a parallelogram with area $\det \matMMxNN {u_x}{u_y} {v_x}{v_y} \delta x \delta y$.
+  a parallelogram with area $\vmatMMxNN {u_x}{u_y} {v_x}{v_y} \delta x \delta y$.
 
   An approximation for the integral over $S$ is
   \begin{align*}
     \int\int_{(u,v) \in S} \Psi(u,v)\du \dv
     &\approx \sum_i \Psi_i \text{Area(Parallelogram$_i$)}\\
-    &= \sum_i \psi_i \det \matMMxNN
+    &= \sum_i \psi_i \vmatMMxNN
       {u_x}{u_y}
       {v_x}{v_y} \delta x \delta y,
   \end{align*}
   which on taking the limit $N \to \infty$ gives
   \begin{align*}
-    \int\int_{(u,v) \in S} \Psi(u,v)\du \dv = \int\int_{(x,y) \in R} \psi(x,y)\frac{\partial(u, v)}{\partial(x, y)}\dx \dy.
+    \int\int_{(u,v) \in S} \Psi(u,v)\du \dv =
+    \int\int_{(x,y) \in R} \psi(x,y) \Big|\frac{\partial(u, v)}{\partial(x, y)}\Big| \dx \dy.
   \end{align*}
 \end{proof}
 
