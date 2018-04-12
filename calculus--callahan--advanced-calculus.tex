@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+\usepackage{enumerate}
+\usepackage{mathematics}
+
+\begin{document}
+
+\title{Callahan - Advanced calculus: a geometric view}
+\author{}
+\date{}
+\maketitle
+
+
+\begin{enumerate}
+\item
+  Recall that $\dds \tan s = \sec^2 s = 1 + \tan^2 s$.
+
+  Let $x = \tan s$. Then $\dx = \sec^2 s \ds$, and
+  \begin{align*}
+      \int \frac{\dx}{1 + x^2}
+    = \int \frac{\sec^2 s \ds}{\sec^2 s}
+    = \int \ds
+    = s
+    = \arctan x.
+  \end{align*}
+  This is an example of using a pullback substitution to find an antiderivative.
+
+  We can use the antiderivative to evaluate some definite integrals:
+  \begin{align*}
+      \int_0^\infty \frac{\dx}{1 + x^2}
+    &= \lim_{b\to\infty}\Big[\arctan x\Big]_0^b
+    = \frac{\pi}{2},\\
+      \int_{-\infty}^1 \frac{\dx}{1 + x^2}
+    &= \lim_{a\to-\infty}\Big[\arctan x\Big]_a^1
+    = -\frac{\pi}{2} - \frac{\pi}{4} = -\frac{3}{4}.
+  \end{align*}
+
+\end{enumerate}
+
+\end{document}
