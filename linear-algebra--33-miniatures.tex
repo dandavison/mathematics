@@ -56,8 +56,6 @@ $n \geq 0$.
   \end{proof}
 \end{comment}
 
-% Note that every sequence $u \in W$ is determined by the first two values $(u_0, u_1)$.
-
 \begin{claim*}
   A basis for $W$ is
   \begin{align*}
@@ -65,23 +63,62 @@ $n \geq 0$.
     e_2 &= 1, 0, 1, 1, 2, 3, 5, \ldots.
   \end{align*}
 \end{claim*}
-
 \begin{proof} We need to show that $e_1$ and $e_2$ are linearly independent and spanning.
-
   Note that every sequence $u \in W$ is determined by the first two values $(u_0, u_1)$.
-
   Define the projection $P: W \to \R^2$ by $p(u) := (u_0, u_1)$. Note that $P$ is linear \footnote{
     \begin{align*}
       P(\lambda u) &= (\lambda u_0, \lambda u_1) = \lambda P(u)\\
       P(u + v)     &= (u_0 + v_0, u_1 + v_1) = (u_0, u_1) + (v_0, v_1) = P(u) + P(v).
     \end{align*}
-  }.
-  Furthermore, $P$ is injective and invertible (TODO)
-
+  }, injective and invertible.
   Let $i = (0, 1) \in \R^2$ and $j = (1, 0) \in \R^2$.
-
-  Therefore $P^\1(i), P^\1(j) = e_1, e_2$ is a basis for $W$, by theorem
-  (\ref{transformed-basis-is-a-basis}).
-
+  Therefore $P^\1(i), P^\1(j) = e_1, e_2$ is a basis for $W$, by theorem (\ref{transformed-basis-is-a-basis}).
 \end{proof}
 
+Now we look for a different basis of $W$. Specifically, we have an inspiration: we seek sequences
+$u \in W$ of the form $u_n = \tau^n$ for some $\tau$. Thus $\tau$ must satisfy
+$\tau^{n+2} = \tau^{n+1} + \tau^n$ for all $n \geq 0$. We solve this for $n=0$.  We have
+$\tau^2 = \tau + 1$, therefore $\tau_1 = \frac{1 + \sqrt{5}}{2}$ and
+$\tau_2 = \frac{1 - \sqrt{5}}{2}$.
+
+Define two new sequences $e'_1 = \tau_1^0, \tau_1^1, \ldots$ and
+$e'_2 = \tau_2^0, \tau_2^1, \ldots$.
+
+\begin{claim*}
+  $e'_1, e'_2$ is another basis for $W$.
+\end{claim*}
+
+\begin{proof}
+  We need only they are linearly independent. If they are, then they span $W$ since $W$ is
+  2-dimensional.
+  So suppose $\lambda_1e'_1 + \lambda_2e'_2 = 0$. Then, from considering the first two elements, we
+  have
+  $\begin{cases}
+    \lambda_1 + \lambda_2 = 0\\
+    \lambda_1\tau_1 + \lambda_2\tau_2 = 0.
+  \end{cases}$
+  Therefore $\lambda_1(\tau_1 - \tau_2) = 0$, so $\lambda_1 = \lambda_2 = 0$, as required.
+\end{proof}
+
+Therefore for all $u \in W$ there exist $\lambda_1, \lambda_2$ such that
+$u = \lambda_1e'_1 + \lambda_2e'_2$.
+
+In particular, there exist $\lambda_1, \lambda_2$ such that
+$e_1 = 0, 1, 1, 2, 3, 5, 8, \ldots = \lambda_1e'_1 + \lambda_2e'_2$.
+
+We can use the first two elements of the sequence to solve for $\lambda_1$ and $\lambda_2$. We have
+$\begin{cases}
+  0 = \lambda_1 + \lambda_2\\
+  1 = \lambda_1\tau_1 + \lambda_2\tau_2
+\end{cases}$, therefore $\lambda_1 = \frac{1}{\tau_1 - \tau_2} = \frac{1}{\sqrt{5}}$ and
+$\lambda_2 = \frac{-1}{\sqrt{5}}$.
+
+The $n$-th element of the Fibonacci sequence is therefore
+\begin{align*}
+  \lambda_1\tau_1^n + \lambda_2\tau_2^n =
+  \frac{1}{\sqrt{5}}
+  \(
+  \(\frac{1 + \sqrt{5}}{2}\)^n -
+  \(\frac{1 - \sqrt{5}}{2}\)^n
+  \).
+\end{align*}
