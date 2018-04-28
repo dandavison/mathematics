@@ -193,6 +193,38 @@ A subspace $U$ of $V$ is a subset of $V$ for which
   contradiction proves that the $u_i$ are linearly independent.
 \end{proof}
 
+\begin{theorem}\label{transformed-basis-is-a-basis}
+  Let $U, V$ be vector spaces, let $f:U \to V$ be a linear map, and let $e_1, \ldots, e_n$ be a
+  basis for $U$. Then $f(e_1), \ldots, f(e_n)$ is a basis for $V$.
+
+  TODO: only if $f$ is an isomorphism? (i.e. injective, in which case it's surjective since any
+  injective linear map is surjective (proof?)).
+\end{theorem}
+
+\begin{proof}We need to show that the $f(e_i)$ are linearly independent and spanning.
+
+  \begin{enumerate}
+  \item {\bf Linear independence}\\
+    Suppose $\sumin \lambda_1f(e_i) = 0$.
+
+    Then $f\(\sumin \lambda_1e_i\) = 0$ since $f$ is linear.
+
+    Therefore $\sumin \lambda_1e_i = 0$ since the preimage of 0 is $\{0\}$ under a linear map.
+
+    But the $e_i$ are linearly independent, therefore $\lambda_i = 0$ for all $i = 1, \ldots n$, as
+    required.
+
+  \item {\bf Spanning}\\
+    Let $v \in V$.
+
+    Then $v = f(u)$ for some $u \in U$, since $f$ is surjective.
+
+    Therefore $v = f\(\sumin \lambda_ie_i\) = \sumin \lambda_if(e_i)$ for some
+    $\lambda_1, \ldots, \lambda_n$, as required.
+
+  \end{enumerate}
+\end{proof}
+
 \section{Linear transformations and matrices}
 
 A linear transformation is completely specified by
