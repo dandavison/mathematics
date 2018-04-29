@@ -132,29 +132,72 @@ Recall from (\ref{fibonacci-matrix-multiplication}) that the Fibonacci sequence 
 taking $\vecMM{1}{0}$ as the initial state and multiplying repeatedly by
 $A = \matMMxNN{1}{1} {1}{0}$. Thus $\vecMM{x_{n+1}}{x_n} = A^n\vecMM{1}{0}$.
 
+We can compute the matrix power via ``diagonalization'': i.e., in a basis defined by two
+eigenvectors the matrix of the linear transformation is diagonal and thus the matrix power can be
+computed trivially.
+
+$|A| \neq 0$ therefore $A$ is full rank and has two linearly independent eigenvectors. Let these be
+$\vecMM{v_{11}}{v_{21}}$ and $\vecMM{v_{12}}{v_{22}}$ and let $\tau_1, \tau_2$ be associated
+eigenvectors. Define $V := \matMMxNN{v_{11}}{v_{12}}{v_{21}}{v_{22}}$ and
+$T := \matMMxNN{\tau_1}{0}{0}{\tau_2}$. Then
+\begin{align*}
+  A^n = V^\1T^nV.
+\end{align*}
+
 The characteristic polynomial of $A$ is $\tau^2 - \tau - 1 = 0$, therefore the eigenvalues are
 $\tau_1 = \frac{1 + \sqrt{5}}{2}$ and $\tau_2 = \frac{1 - \sqrt{5}}{2}$.
 
-Note that $\tau^2 = \frac{3 \pm \sqrt{5}}{2}$.
+Let $v(\tau) = \vecMM{v_1}{1}$ be an eigenvector associated with eigenvalue $\tau$. (Since there is
+a line of eigenvectors for each eigenvalue, we make an arbitrary choice of $v_2 = 1$ to find
+particular eigenvectors.)
 
+We have
 \begin{align*}
   \(A - \tau I\)v &= 0\\
   \matMMxNN{1 - \tau}{1}
            {1}       {-\tau} \vecMM{v_1}{v_2} &= 0\\
   &\begin{cases}
     v_1(1 - \tau) + v_2 = 0~~~~~&(1)\\
-    v_1 - \tau v_2 = 0~~~~~&(2)\\
-    \sqrt{v_1^2 + v_2^2} = 1 ~~~~~&(3)~~~\text{(choose arbitrary length for eigenvectors)}
-  \end{cases}\\
-  (2, 3):~~~~~~~ \sqrt{1 - v_2^2} &= \tau v_2\\
-  1 &= v_2^2(\tau^2 + 1)\\
-  v_2 &= \sqrt{\frac{1}{\tau^2 + 1}}\\
-  v_2 &= \sqrt{\frac{2}{5 \pm \sqrt 5}}\\
-  (2): ~~~~~~~v_1 = \tau v_2 &= \frac{1 \pm \sqrt 5}{2}\sqrt{\frac{2}{5 \pm \sqrt 5}}\\
-  v_1 &= \frac{1 \pm \sqrt 5}{\sqrt 2 \sqrt{5 \pm \sqrt 5}}\\
-  (1): ~~~~~~~v_1\(\frac{-1 \mp \sqrt{5}}{2}\) &= -\sqrt{\frac{2}{5 \pm \sqrt 5}}\\
-              v_1 &= \frac{-2}{-1 \mp \sqrt{5}}\sqrt{\frac{2}{5 \pm \sqrt 5}}\\
+    v_1 - \tau v_2 = 0~~~~~&(2)
+  \end{cases}
 \end{align*}
+From (2) therefore $v(\tau) = \vecMM{\tau}{1}$ and the eigenvectors are the columns of
+$V := \matMMxNN{\tau_1}{\tau_2}{1}{1}$.
+
+Note that $\tau_1\tau_2 = -4$ therefore $\tau_2 = \frac{-4}{\tau_1}$.
+% $\frac{\tau_1}{\tau_2} = \frac{\tau_1^2}{\tau_1\tau_2} = -\frac{\tau_1^2}{4}$.
+
+Therefore
+\begin{align*}
+  A^n &= V^\1T^nV\\
+      &= \frac{1}{\tau_1 - \tau_2}
+        \matMMxNN{1}{-\tau_2}
+                 {-1}{\tau_1}
+        \matMMxNN{\tau_1^n}{0}
+                 {0}{\tau_2^n}
+        \matMMxNN{\tau_1}{\tau_2}
+                 {1}{1}\\
+      &= \frac{1}{\tau_1 - \tau_2}
+        \matMMxNN{1}{-\tau_2}
+                 {-1}{\tau_1}
+        \matMMxNN{\tau_1^{n+1}}{\tau_1^n\tau_2}
+                 {\tau_2^n}{\tau_2^n}\\
+      &= \frac{1}{\tau_1 - \tau_2}
+        \matMMxNN{\tau_1^{n+1} - \tau_2^{n+1}}{\tau_1^n\tau_2 - \tau_2^{n+1}}
+                 {-\tau_1^{n+1} + \tau_1\tau_2^n}{-\tau_1^n\tau_2 + \tau_1\tau_2^n}
+\end{align*}
+
+
+% \begin{align*}
+%   (2, 3):~~~~~~~ \sqrt{1 - v_2^2} &= \tau v_2\\
+%   1 &= v_2^2(\tau^2 + 1)\\
+%   v_2 &= \sqrt{\frac{1}{\tau^2 + 1}}\\
+%   v_2 &= \sqrt{\frac{2}{5 \pm \sqrt 5}}\\
+%   (2): ~~~~~~~v_1 = \tau v_2 &= \frac{1 \pm \sqrt 5}{2}\sqrt{\frac{2}{5 \pm \sqrt 5}}\\
+%   v_1 &= \frac{1 \pm \sqrt 5}{\sqrt 2 \sqrt{5 \pm \sqrt 5}}\\
+%   (1): ~~~~~~~v_1\(\frac{-1 \mp \sqrt{5}}{2}\) &= -\sqrt{\frac{2}{5 \pm \sqrt 5}}\\
+%               v_1 &= \frac{-2}{-1 \mp \sqrt{5}}\sqrt{\frac{2}{5 \pm \sqrt 5}}\\
+% \end{align*}
 
 %   \tau v_2(1 - \tau) + v_2 &= 0\\
 %   v_2(\tau - \tau^2 + 1) &= 0
