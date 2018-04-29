@@ -122,3 +122,35 @@ The $n$-th element of the Fibonacci sequence is therefore
   \(\frac{1 - \sqrt{5}}{2}\)^n
   \).
 \end{align*}
+
+
+\subsection{The Clubs of Oddtown}
+
+Oddtown has two rules about clubs:
+\begin{itemize}
+\item Every club must have an {\it odd} number of members.
+\item The number of members in the intersection of any two distinct clubs must be {\it even}.
+\end{itemize}
+
+\begin{theorem}
+  Under these rules, the number of clubs is less than the number of members.
+\end{theorem}
+
+\begin{proof}
+  Let $m$ be the number of clubs and $n$ be the number of members.
+
+  Let $A = (a_{ij})$ be a matrix over the finite field $F_2$, where $a_{ij} =
+  \begin{cases}
+    1 ~~~~ \text{if person $j$ is a member of club $i$},\\
+    0 ~~~~ \text{otherwise}.
+  \end{cases}
+$
+
+Thus rows correspond to clubs, and the $(i,j)$-th entry of $AA^T$ is 1 if the intersection of club
+$i$ and club $j$ is odd, and 0 if even.
+
+Therefore the rules imply that $AA^T = I_m$. I.e. the rank of $AA^T$ is $m$.
+
+But the rank of a product of matrices cannot be larger than the minimum rank of any one factor, so
+$m \leq n$.
+\end{proof}
