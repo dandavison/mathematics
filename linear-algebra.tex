@@ -194,22 +194,20 @@ A subspace $U$ of $V$ is a subset of $V$ for which
 \end{proof}
 
 \begin{theorem}\label{transformed-basis-is-a-basis}
-  Let $U, V$ be vector spaces, let $f:U \to V$ be a linear map, and let $e_1, \ldots, e_n$ be a
-  basis for $U$. Then $f(e_1), \ldots, f(e_n)$ is a basis for $V$.
-
-  TODO: only if $f$ is an isomorphism? (i.e. injective, in which case it's surjective since any
-  injective linear map is surjective (proof?)).
+  Let $U, V$ be vector spaces, let $f:U \to V$ be an invertible linear map, and let
+  $e_1, \ldots, e_n$ be a basis for $U$. Then $f(e_1), \ldots, f(e_n)$ is a basis for $V$.
 \end{theorem}
 
 \begin{proof}We need to show that the $f(e_i)$ are linearly independent and spanning.
 
   \begin{enumerate}
   \item {\bf Linear independence}\\
-    Suppose $\sumin \lambda_1f(e_i) = 0$.
+    Suppose $\sumin \lambda_if(e_i) = 0$.
 
-    Then $f\(\sumin \lambda_1e_i\) = 0$ since $f$ is linear.
+    Therefore $f\(\sumin \lambda_ie_i\) = 0$ since $f$ is linear.
 
-    Therefore $\sumin \lambda_1e_i = 0$ since the preimage of 0 is $\{0\}$ under a linear map.
+    Therefore $\sumin \lambda_ie_i = f^\1(0) = 0$, since the preimage of $0$ is $\{0\}$ for an
+    invertible linear map.
 
     But the $e_i$ are linearly independent, therefore $\lambda_i = 0$ for all $i = 1, \ldots n$, as
     required.
@@ -758,19 +756,17 @@ The Fibonacci sequence is the sequence you get by starting with $0,
 $F_0, F_1, F_2, F_3, F_4, F_5, F_6, F_7, ...$ = $0, 1, 1, 2, 3, 5, 8, 13, ...$.
 
 The matrix powers are generating the Fibonacci sequence:
-
-$$
-A^{n} = \mat{F_{n-1} }{F_n      }
-            {F_n     }{F_{n+1} }
-$$
-
-So if there were a way to compute the $\nth$ power of that matrix "directly",
-that would also be a way to compute the $\nth$ Fibonacci number "directly",
+\begin{align*}
+  A^{n} = \mat{F_{n-1} }{F_n      }
+  {F_n     }{F_{n+1} }
+\end{align*}
+So if there were a way to compute the $\nth$ power of that matrix ``directly'',
+that would also be a way to compute the $\nth$ Fibonacci number ``directly'',
 i.e. without computing all the preceding Fibonacci numbers \textit{en route}.
 
 How can we do this? To state the problem in a different way, we need to
 construct a new matrix that performs exactly the same transformation as $A^n$,
-but which somehow does the exponentiation step "in one go" rather than by
+but which somehow does the exponentiation step ``in one go'' rather than by
 multiplying $A$ with itself $n$ times.
 
 \subsection*{Solution outline}
@@ -779,22 +775,21 @@ Matrices represent transformations, so we can talk about them as taking in some
 vector and producing some other vector. The approach we're going to take is to
 re-express the $A^n$ transformation as follows:
 
-1. Convert the input vector to its representation in an alternative basis which
-   uses the eigenvectors as the basis vectors (it's called an "eigenbasis").
-2. In this alternative basis, compute the new position of the vector after
-   carrying out the $A^n$ transformation.
-3. Convert the resulting vector back to its representation in our original
-   basis.
+\begin{enumerate}
+\item Convert the input vector to its representation in an alternative basis which uses the
+  eigenvectors as the basis vectors (it's called an ``eigenbasis'').
+\item In this alternative basis, compute the new position of the vector after carrying out the
+  $A^n$ transformation.
+\item Convert the resulting vector back to its representation in our original basis.
+\end{enumerate}
 
 I.e., we're going to compute the overall transformation as this product of
 matrices (remember that one reads these things right-to-left):
-
-$$
-\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
-\begin{pmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{pmatrix}^n
-\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
-$$
-
+\begin{align*}
+  \begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
+  \begin{pmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{pmatrix}^n
+  \begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
+\end{align*}
 The crux of all this is that the exponentiation is efficient in the
 eigenbasis. That's because, in the eigenbasis, the transformation is just
 stretching space in the directions of the two basis vectors. So to do the
@@ -813,62 +808,50 @@ outputs its representation in our basis.
 
 So, step (3) is done by $V$, and step (1) is done by $V^{-1}$, and the matrix
 performing all three steps is going to look like
-
-$$
-V
-\begin{pmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{pmatrix}^n
-V^{-1}
-$$
-
-OK, so what is the matrix in the middle? The
-[change of basis](\url{./linear-algebra.html#change-of-basis}) notes tell us that we
-can compute it as
-
-$$
-\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
-A
-\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
-$$
-
+\begin{align*}
+  V
+  \begin{pmatrix}\text{matrix that does the A transformation}\\\text{in the alternative basis} \\ \end{pmatrix}^n
+  V^{-1}
+\end{align*}
+OK, so what is the matrix in the middle? The [change of
+basis](\url{./linear-algebra.html#change-of-basis}) notes tell us that we can compute it as
+\begin{align*}
+  \begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
+  A
+  \begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
+\end{align*}
 In other words the matrix in the middle is
-
-$$
-V^{-1}AV
-$$
-
+\begin{align*}
+  V^{-1}AV
+\end{align*}
 and the entire transformation is
-
-$$
-V
-\Big(V^{-1}AV\Big)^n
-V^{-1}
-$$
-
+\begin{align*}
+  V
+  \Big(V^{-1}AV\Big)^n
+  V^{-1}
+\end{align*}
 Put back into words, that's
-
-$$
-\begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
-\Bigg(
-    \begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
-    A
-    \begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
-\Bigg)^n
-\begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
-$$
-
-
-
+\begin{align*}
+  \begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
+  \Bigg(
+  \begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
+  A
+  \begin{pmatrix}\text{matrix converting their}\\\text{representation to ours} \\ \end{pmatrix}
+  \Bigg)^n
+  \begin{pmatrix}\text{matrix converting our}\\\text{representation to theirs} \\ \end{pmatrix}
+\end{align*}
 
 Recall that above we observed that the $\nth$ power of $A$ is a matrix with the
 nth Fibonacci number in its bottom left and top right entries. So the following
 tasks remain:
-
-1. Find the eigenvectors and put them in a matrix $V$.
-2. Find the inverse of $V$.
-3. Compute the matrix product $V^{-1}AV$.
-4. Compute the result of raising that to the $\nth$ power.
-5. Plug the result of that into the overall expression.
-6. Take the entry in the bottom left or top right (they should be the same!).
+\begin{enumerate}
+\item Find the eigenvectors and put them in a matrix $V$.
+\item Find the inverse of $V$.
+\item Compute the matrix product $V^{-1}AV$.
+\item Compute the result of raising that to the $\nth$ power.
+\item Plug the result of that into the overall expression.
+\item Take the entry in the bottom left or top right (they should be the same!).
+\end{enumerate}
 
 The result should be an expression giving the $\nth$ Fibonacci number as a
 function of $n$. It should be possible to give as input to that function the
@@ -912,11 +895,12 @@ numbers.
              {2^n    \sqrt 5}
 \end{align*}
 
+\newpage
 \subsection*{Does this actually work?}
 
 Yes.
 
-    :::python
+\begin{minted}{python3}
     from math import sqrt
 
     def fib(n):
@@ -926,7 +910,7 @@ Yes.
             float(2**n * sqrt(5)))
 
     for i in range(10):
-        print i, fib(i)
+        print(i, fib(i))
 
     0 0.0
     1 1.0
@@ -938,6 +922,7 @@ Yes.
     7 13.0
     8 21.0
     9 34.0
+\end{minted}
 
 \subsection*{History}
 
@@ -977,8 +962,8 @@ A\vec v - \lambda I\vec v &= \vec 0
 \end{align*}
 
 which means that the matrix $A - \lambda I$ is a transformation that takes some
-non-zero vector $\vec v$ to the zero vector (i.e. it has a non-empty "null
-space"). This means that the transformation cannot be reversed, i.e. the matrix
+non-zero vector $\vec v$ to the zero vector (i.e. it has a non-empty ``null
+space''). This means that the transformation cannot be reversed, i.e. the matrix
 has no inverse, i.e. its determinant is zero. So, use that last fact to find
 the eigenvectors $\lambda$:
 
@@ -1000,8 +985,8 @@ Using the quadratic formula we have $a=1, b=-1, c=-1$ and
 
 \begin{align*}
 \lambda
-= \frac{-b ± \sqrt{b^2 - 4ac}}{2a}
-= \frac{1 ± \sqrt{5}}{2}
+= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+= \frac{1 \pm \sqrt{5}}{2}
 \end{align*}
 
 which are the two eigenvalues.
@@ -1167,6 +1152,7 @@ V \Big(V^{-1}AV\Big)^n V^{-1}
     {\frac{\big((1 + \sqrt 5)^n     - (1 - \sqrt 5)^n    \big)}{2^n    \sqrt 5}}{\frac{\big((1 + \sqrt 5)^{n+1} - (1 - \sqrt 5)^{n+1}\big)}{2^{n+1}\sqrt 5}}
 \end{align*}
 
+\newpage
 \section{Polynomials, rings, minimal and characteristic polynomials}
 
 Let $f(x) \in \F[x]$ be a polynomial: $f(x) = a_kx^k + \ldots + a_0$.
