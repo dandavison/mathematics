@@ -171,21 +171,89 @@ Therefore
 \begin{align*}
   A^n &= V^\1T^nV\\
       &= \frac{1}{\tau_1 - \tau_2}
-        \matMMxNN{1}{-\tau_2}
-                 {-1}{\tau_1}
-        \matMMxNN{\tau_1^n}{0}
-                 {0}{\tau_2^n}
-        \matMMxNN{\tau_1}{\tau_2}
-                 {1}{1}\\
-      &= \frac{1}{\tau_1 - \tau_2}
-        \matMMxNN{1}{-\tau_2}
-                 {-1}{\tau_1}
-        \matMMxNN{\tau_1^{n+1}}{\tau_1^n\tau_2}
-                 {\tau_2^n}{\tau_2^n}\\
-      &= \frac{1}{\tau_1 - \tau_2}
-        \matMMxNN{\tau_1^{n+1} - \tau_2^{n+1}}{\tau_1^n\tau_2 - \tau_2^{n+1}}
-                 {-\tau_1^{n+1} + \tau_1\tau_2^n}{-\tau_1^n\tau_2 + \tau_1\tau_2^n}
+        \matMMxNN
+        {1}
+        {-\tau_2}
+        {-1}
+        {\tau_1}
+        \matMMxNN
+        {\tau_1^n}
+        {0}
+        {0}
+        {\tau_2^n}
+        \matMMxNN
+        {\tau_1}
+        {\tau_2}
+        {1}
+        {1}\\
+      &= \frac{1}{\tau_1 + \frac{2^2}{\tau_1}}
+        \matMMxNN
+        {1}
+        {\frac{2^2}{\tau_1}}
+        {-1}
+        {\tau_1}
+        \matMMxNN
+        {\tau_1^n}
+        {0}
+        {0}
+        {\frac{-2^{2n}}{\tau_1^n}}
+        \matMMxNN
+        {\tau_1}
+        {\frac{-2^2}
+        {\tau_1}}
+        {1}
+        {1}\\
+      &= \frac{1}{\tau_1 + \frac{2^2}{\tau_1}}
+        \matMMxNN
+        {1}
+        {\frac{2^2}{\tau_1}}
+        {-1}
+        {\tau_1}
+        \matMMxNN
+        {\tau_1^{n+1}}
+        {-2^2\tau_1^{n-1}}
+        {\frac{-2^{2n}}{\tau_1^n}}
+        {\frac{-2^{2n}}{\tau_1^n}}\\
+      &= \frac{1}{\tau_1 + \frac{2^2}{\tau_1}}
+        \matMMxNN
+        {\tau_1^{n+1} -\frac{2^{2(n+1)}}{\tau_1^{n+1}}}
+        {-2^2\tau_1^{n-1} - \frac{2^{2(n+1)}}{\tau_1^{n+1}}}
+        {-\tau_1^{n+1} - \frac{2^{2n}}{\tau_1^{n-1}}}
+        {2^2\tau_1^{n-1} - \frac{2^{2n}}{\tau_1^{n-1}}}\\
+      &= \frac{1}{\tau_1^{n+2} + 2^2\tau_1^n}
+        \matMMxNN
+        {\tau_1^{2(n+1)} - 2^{2(n+1)}}
+        {-2^2\tau_1^{2n} - 2^{2(n+1)}}
+        {-\tau_1^{2(n+1)} - 2^{2n}\tau_1^2}
+        {2^2\tau_1^{2n} - 2^{2n}\tau_1^2}\\
 \end{align*}
+
+Recall that $\vecMM{x_{n+1}}{x_n} = A^n\vecMM{1}{0}$. Therefore
+\begin{align*}
+  x_n = \frac
+  {-\tau_1^{2(n+1)} - 2^{2n}\tau_1^2}
+  {\tau_1^{n+2} + 2^2\tau_1^n}
+\end{align*}
+
+
+% \begin{align*}
+%   A^n &= V^\1T^nV\\
+%       &= \frac{1}{\tau_1 - \tau_2}
+%         \matMMxNN{1}{-\tau_2}
+%                  {-1}{\tau_1}
+%         \matMMxNN{\tau_1^n}{0}
+%                  {0}{\tau_2^n}
+%         \matMMxNN{\tau_1}{\tau_2}
+%                  {1}{1}\\
+%       &= \frac{1}{\tau_1 - \tau_2}
+%         \matMMxNN{1}{-\tau_2}
+%                  {-1}{\tau_1}
+%         \matMMxNN{\tau_1^{n+1}}{\tau_1^n\tau_2}
+%                  {\tau_2^n}{\tau_2^n}\\
+%       &= \frac{1}{\tau_1 - \tau_2}
+%         \matMMxNN{\tau_1^{n+1} - \tau_2^{n+1}}{\tau_1^n\tau_2 - \tau_2^{n+1}}
+%                  {-\tau_1^{n+1} + \tau_1\tau_2^n}{-\tau_1^n\tau_2 + \tau_1\tau_2^n}
+% \end{align*}
 
 
 % \begin{align*}
