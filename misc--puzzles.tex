@@ -181,7 +181,69 @@ line is internal is equal to the
 
   Therefore the expected number of points covered by exceeds 9.
 
-  Therefore it is sokmetimes 10.
+  Therefore it is sometimes 10.
 \end{proof}
+
+\newpage
+\section{Prisoners}
+\begin{mdframed}
+  There are 100 prisoners numbered 1 to 100. In a room there are 100 closed boxes. In each box
+  there is a number between 1 and 100. Every box contains a different number. The prisoners enter
+  the room one at a time. Once inside the room, the prisoner opens 50 boxes. If all prisoners
+  encounter their own number then they all go free; otherwise they remain prisoners.
+\end{mdframed}
+
+Let $b_{ij}$ be the number of the $j$-th box chosen by prisoner $i$.
+
+Represent the 50 boxes as 50 bits.
+
+Thus $b_{ij} \in \{2^0, 2^1, 2^2, \ldots, 2^{99}\}$.
+
+A selection of 50 boxes corresponds to an integer in $\{0, 1, 2, 3, \ldots, 2^{100} - 1\}$ which
+has 50 bits set.
+
+A selection $s$ contains box number $i$ if the binary representation of $s$ has the $i$-th bit set.
+
+The prisoners are freed if and only if $s_1$
+
+Does an optimal strategy have the property that every box is looked at by exactly 50 prisoners?
+
+Divide prisoners into an odd and an even group. Then probability of being freed is $(1/2)^{50}$,
+the same as each prisoner choosing a subset of boxes independently from all others.
+
+\newpage
+\section{Gas stations}
+
+\begin{mdframed}
+  There are $n$ gas stations at points $x_1, \ldots, x_n \in [0, 2\pi)$ of a circle.
+
+  $2\pi$ units of gas are required to drive around the circle.
+
+  The $i$-th gas station has $g_i$ units of gas, where $\sumin g_i = 2\pi$.
+
+  Prove that there exists a gas station at which you can start, and make it around the circle
+  without running out of gas.
+\end{mdframed}
+
+We assume, without loss of generality, that the $x_i$ are sorted in ascending order.
+
+Any valid $\vec x$, $\vec g$ can be constructed as described below.
+
+Make a cut in the circle at points $0, g_1, g_1 + g_2, \ldots, \sum_i^{n-1}g_i$.
+
+The arcs thus defined represent the $g_i$, and their left endpoints represent the $x_i$.
+
+Note that in this initial configuration the claim is true, since the arcs lie end-to-end with no
+overlaps and cover the entire circle.
+
+Take the left endpoint of the $g_1$ arc and drag it around the circle anticlockwise until it lies
+at $x_1$. Shift the other arcs around to remove the overlap created.
+
+Take the left endpoint of the $g_2$ arc and drag it around the circle anticlockwise until it lies
+at $x_2$.
+
+If this overlaps with $g_1$ then set $g_1 \leftarrow x_2, g_2 \leftarrow g_2 + (g_1 - x_2)$.
+
+If this does not overlap with $g_1$... no not sure this leads to a proof.
 
 \end{document}

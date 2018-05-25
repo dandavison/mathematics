@@ -27,4 +27,26 @@ value $y$, then $L(\hat y, y)$ outputs a small ``loss'' value, otherwise the los
 
 The goal is to choose $\theta$ so that the model makes good predictions. We do this by finding
 
+
+\newpage
+\section*{Bias - Variance Decomposition}
+
+Let $X$ and $y$ be data draw from some random data-generating process.
+
+Let $\hat\theta$ be the value of the parameter vector estimated from data $X, y$.
+
+Let $f_{\hat\theta}(z)$ be the output value predicted by the model for input value $z$ (where the
+model uses the estimated parameter vector $\hat\theta$).
+
+Notice that $X$ and $y$ are random variables, so $\hat\theta$ is also a random variable, and so,
+for fixed $z$, the model prediction $f_{\hat\theta}(z)$ is also a random variable.
+
+The loss function for linear regression is $\(f_{\hat\theta}(z) - \gamma\)^2$.
+
+In general the loss function is $\ell(z, \gamma, X, y)$.
+
+\begin{definition*}[True Risk]~\\
+  The true risk of the model is the expected value of the loss for a new (input, output)
+  observation: $\E_{X, y}$
+\end{definition*}
 \end{document}
