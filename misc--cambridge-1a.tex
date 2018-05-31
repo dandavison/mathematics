@@ -126,24 +126,51 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 
   We now show that $s_n \leq a_n$ for all $n$. It is true for $n = 1$; assume for induction that
   it's true for $n = k$. Then we have
-  $s_{k+1} &= \frac{k}{k+1}s_k + \frac{1}{k+1}a_{k+1} \leq \frac{k}{k+1}a_k + \frac{1}{k+1}a_{k+1}
+  $s_{k+1} = \frac{k}{k+1}s_k + \frac{1}{k+1}a_{k+1} \leq \frac{k}{k+1}a_k + \frac{1}{k+1}a_{k+1}
   \leq a_{k+1}$, as required.
 
   Finally we show that $a_n \leq x$ for all $n$. Seeking a contradiction, assume that there exists
-  $M$ such that $a_M > x$. Let $\epsilon = a_M - x > 0$. Then $a_n - x \geq \epsilon$ for all
-  $n \geq M$.
+  $M$ such that $a_M > x$. Let $\epsilon = a_M - x > 0$.
 
-  Now, since each $a_n$ contributes more than $x + \epsilon$ to the running average $s_n$, there
-  must exist a point at which $s_n$ is sufficiently close to $x$ that $s_{n+1}$ will exceed
-  $x$. This will be the contradiction we seek.
+  % Since $(a_n)$ is increasing, we have $a_n - x \geq \epsilon$ for all $n \geq M$.
 
+  Define
+  $\Delta_n := s_{n+1} - s_n
+             = \frac{n}{n+1}s_n + \frac{1}{n+1}a_{n+1} - s_n
+             = \frac{1}{n+1}(a_{n+1} - s_n)
+             > \frac{1}{n+1}(x + \epsilon - s_n)
+             $.
+
+  Now, we seek $N \geq M$ such that $x - s_N < \Delta_N$, since then we will have $s_{N+1} > x$, a
+  contradiction. Solving for such an $N$, we have
   \begin{align*}
-    S_{N+1} &> x\\
-    \frac{N}{N+1}s_N + \frac{1}{N+1}a_{N+1} &> x\\
-    \frac{N}{N+1}s_N + \frac{1}{N+1}(x + \epsilon) &> x\\
-    Ns_N + \epsilon   &> Nx\\
-    s_N + \frac{\epsilon}{N}   &> x\\
+    x - s_N &< \frac{1}{N+1}(x + \epsilon - s_N)\\
+    s_N\frac{N}{N+1} &> x\frac{N}{N+1} - \frac{\epsilon}{N+1}\\
+    s_N &> x  - \epsilon/N.
   \end{align*}
+  Hm, but we require an expression for $s_N$ that does not depend on $N$. Let's try $\epsilon/M$.
+
+  Let $N$ be such that $x - s_N < \epsilon/M$. Then
+  \begin{align*}
+   \Delta_N &> \frac{1}{N+1}(\epsilon + \epsilon/M)\\
+            &=\epsilon/M - \frac{N}{N+1}\epsilon/M + \frac{1}{N+1}\epsilon\\
+            &= \epsilon/M - \epsilon\(\frac{N}{M(N+1)} - \frac{1}{N+1}\),
+  \end{align*}
+  which fails to prove the desired $\Delta_N > \epsilon/M$.
+
+  % Now let $N \geq M$ be such that $x - s_N < \epsilon$
+
+  % Now, since each $a_n$ contributes more than $x + \epsilon$ to the running average $s_n$, there
+  % must exist a point at which $s_n$ is sufficiently close to $x$ that $s_{n+1}$ will exceed
+  % $x$. This will be the contradiction we seek.
+
+  % \begin{align*}
+  %   S_{N+1} &> x\\
+  %   \frac{N}{N+1}s_N + \frac{1}{N+1}a_{N+1} &> x\\
+  %   \frac{N}{N+1}s_N + \frac{1}{N+1}(x + \epsilon) &> x\\
+  %   Ns_N + \epsilon   &> Nx\\
+  %   s_N + \frac{\epsilon}{N}   &> x\\
+  % \end{align*}
 
 
 
