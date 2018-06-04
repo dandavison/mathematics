@@ -12,7 +12,7 @@ Note that
 $\cos\theta = \cos^2\frac{1}{2}\theta - \sin^2\frac{1}{2}\theta = 2\cos^2\frac{1}{2}\theta - 1$.
 
 We have $z = \cos\theta + i\sin\theta$ and therefore
-\begin{align}
+\begin{align*}
   |1 + z|  &= \sqrt{(1 + \cos\theta)^2 + \sin^2\theta}
              = \sqrt{2(1 + \cos\theta)}
              = \sqrt{2\Big(1 + 2\cos^2\frac{1}{2}\theta - 1\Big)}
@@ -21,7 +21,7 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
             = \sqrt{2(1 - \cos\theta)}
             = \sqrt{2(1 - (2\cos^2\frac{1}{2}\theta - 1))}
             = 2\sin\frac{1}{2}\theta.
-\end{align}
+\end{align*}
 \end{proof}
 
 \begin{proof}(Geometric)\\
@@ -48,12 +48,12 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 
 \begin{proof}
   Let $i, j \in \{1, \ldots, n\}$. Then
-  \begin{align}
+  \begin{align*}
     \((AB)^T\)_{ij} = (AB)_{ji}
                    = \sum_{l=1}^n A_{jl}B_{li}
                    = \sum_{l=1}^n (A^T)_{lj}(B^T)_{il}
                    = (B^TA^T)_{ij}
-  \end{align}
+  \end{align*}
 \end{proof}
 
 \begin{lemma*}
@@ -73,11 +73,11 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \begin{proof}
   Note that $(e^A)_{ij} := \sum_{k=0}^\infty \frac{(A^k)_{ij}}{k!}$, where $A^0 := I$ and
   $0! := 1$.  Therefore
-  \begin{align}
+  \begin{align*}
     \((e^A)^T\)_{ij} = \sum_{k=0}^\infty \frac{((A^k)^T)_{ij}}{k!}
                     = \sum_{k=0}^\infty \frac{((A^T)^k)_{ij}}{k!}
                     = \(e^{(A^T)}\)_{ij} .
-  \end{align}
+  \end{align*}
 \end{proof}
 
 \begin{problem*}
@@ -86,29 +86,33 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \end{problem*}
 
 \begin{proof}[Solution]~\\
-  We switch notation, so that $Q_k$ becomes $Q^{(k)}$. We have
-  \begin{align}
-    \(e^{tA}e^{tA^T}\)_{ij}
+  Note that
+  $$\begin{align*}
+    e^{tA}e^{tA^T}
     &=
-      \(\sum_{k=0}^\infty\frac{((tA)^k)_{ij}}{k!}\)
-      \(\sum_{k=0}^\infty \frac{((tA^T)^k)_{ij}}{k!}\)\\
+      \(\sum_{k=0}^\infty\frac{(tA)^k}{k!}\)
+      \(\sum_{k=0}^\infty \frac{(tA^T)^k}{k!}\)\\
     &=
-      \(\sum_{k=0}^\infty\frac{t^k}{k!}(A^k)_{ij}\)
-      \(\sum_{k=0}^\infty \frac{t^k}{k!}(A^k)_{ji}\)\\
-    &= \delta_{ij}\delta_{ji}t^0
-      + (A_{ij}\delta_{ji} + \delta_{ij}A_{ji})t
-      + \(A_{ij}A_{ji} + \frac{1}{2}\delta_{ij}A^2_{ji} + \frac{1}{2}A^2_{ij}\delta_{ji}\)t^2 + \ldots\\
-    &= Q^{(0)}_{ij}t^0 + Q^{(1)}_{ij}t + Q^{(2)}_{ij}t^2 + \ldots.
-  \end{align}
-  Therefore
-  \begin{align}
+      \(\sum_{k=0}^\infty\frac{t^k}{k!}A^k\)
+      \(\sum_{k=0}^\infty \frac{t^k}{k!}(A^k)^T\).
+  \end{align*}$$
+  Therefore, by considering the coefficients of $t^0, t^1$ and $t^2$ in the expansion,
+  $$\begin{align*}
     Q_0 &= I\\
-    Q_1 &= 2\diag(A)\\
-    Q_2 &= A \times A^T + \diag(A^2) ~~~~~~\text{(where $\times$ is elementwise)}.
-  \end{align}
+    Q_1 &= A + A^T\\
+    Q_2 &= AA^T + \frac{1}{2}(A^2 + (A^2)^T).
+  \end{align*}$$
 
   If $e^{tA}$ is orthogonal, then
-  $e^{tA}e^{tA^T} = e^{tA}(e^{tA})^\1 = I = \sum_{k=0}^\infty Q_kt^k$.
+  $e^{tA}e^{tA^T} = e^{tA}e^{((tA)^T)} = e^{tA}(e^{tA})^T = e^{tA}(e^{tA})^\1 = I = \sum_{k=0}^\infty Q_kt^k$.
+
+  Therefore $\sum_{k=1}^\infty Q_kt^k = 0$ for all $t$.
+
+  Therefore $Q_k = 0$ for $k \in \{1, 2, \ldots\}$ \red{TODO: proof}.
+
+  In particular, $Q_1 = 0$, therefore $A^T = -A$.
+
+  As a check, we have $Q_2 = -A^2 + \frac{1}{2}(A^2 + (-A)^2) = 0$, as required.
 \end{proof}
 
 \newpage
@@ -130,111 +134,17 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
   \leq a_{k+1}$, as required.
 
   Finally we show that $a_n \leq x$ for all $n$. Seeking a contradiction, assume that there exists
-  $M$ such that $a_M > x$. Let $\epsilon = a_M - x > 0$ (see diagram below).
-
-  % Since $(a_n)$ is increasing, we have $a_n - x \geq \epsilon$ for all $n \geq M$.
-
-  Define
-  $\Delta_n := s_{n+1} - s_n
-             = \frac{n}{n+1}s_n + \frac{1}{n+1}a_{n+1} - s_n
-             = \frac{1}{n+1}(a_{n+1} - s_n)
-             > \frac{1}{n+1}(x + \epsilon - s_n)
-             $.
-
-  Now, we seek $N \geq M$ such that $x - s_N < \Delta_N$, since then we will have $s_{N+1} > x$, a
-  contradiction. Supposing that such an $N$ exists and solving for it, we have
-  \begin{align}
-    x - s_N &< \frac{1}{N+1}(x + \epsilon - s_N)\\
-    s_N\frac{N}{N+1} &> x\frac{N}{N+1} - \frac{\epsilon}{N+1}\\
-    s_N &> x  - \epsilon/N.
-  \end{align}
-  Hm, but we require an expression for $s_N$ that does not depend on $N$! Let's try $\epsilon/M$.
-
-  Let $N$ be such that $x - s_N < \epsilon/M$. Then
-  \begin{align}
-   \Delta_N &> \frac{1}{N+1}(\epsilon + \epsilon/M)\\
-            &=\epsilon/M - \frac{N}{N+1}\epsilon/M + \frac{1}{N+1}\epsilon\\
-            &= \epsilon/M - \epsilon\(\frac{N}{M(N+1)} - \frac{1}{N+1}\),
-  \end{align}
-  which fails to prove the desired $\Delta_N > \epsilon/M$.
-
+  $M$ such that $a_M > x$. Let $\epsilon = a_M - x > 0$, so that $a_n > x + \epsilon$ for $n > M$
+  (see diagram). Then for $n > M$ we have
+  \begin{align*}
+    s_n &= \frac{1}{n}\sum_{k=1}^M a_k + \frac{1}{n}\sum_{k=M+1}^n a_k\\
+        &> \frac{1}{n}\sum_{k=1}^M a_k + \frac{n - M}{n}(x + \epsilon).
+  \end{align*}
+  Therefore $\lim_{n\to\infty}s_n > x + \epsilon$ which is a contradiction, proving that
+  $a_n \leq x$ for all $n$.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/misc--cambridge-1a-2017-1-3f-diagram.png}
 \end{mdframed}
-
-  % Alternatively, suppose $N$ is such that $x - s_N < \epsilon/N$. Then
-  % $\Delta_N > \frac{1}{N+1}(\epsilon + \epsilon/N) = \epsilon/N$, as required.
-
-  % But, how do we prove that such an $N$ exists?
-
-  % Now let $N \geq M$ be such that $x - s_N < \epsilon$
-
-  % Now, since each $a_n$ contributes more than $x + \epsilon$ to the running average $s_n$, there
-  % must exist a point at which $s_n$ is sufficiently close to $x$ that $s_{n+1}$ will exceed
-  % $x$. This will be the contradiction we seek.
-
-  % \begin{align}
-  %   S_{N+1} &> x\\
-  %   \frac{N}{N+1}s_N + \frac{1}{N+1}a_{N+1} &> x\\
-  %   \frac{N}{N+1}s_N + \frac{1}{N+1}(x + \epsilon) &> x\\
-  %   Ns_N + \epsilon   &> Nx\\
-  %   s_N + \frac{\epsilon}{N}   &> x\\
-  % \end{align}
-
-
-
-  % Now, let $N \geq M$ be such that $x - s_N < \epsilon/M$ (such an $N$ must exist since
-  % $s_n \to x$, and $s_n$ is increasing therefore it approaches this limit from below). Then we have
-  % \begin{align}
-  %   s_{N+1}      &= \frac{N}{N+1}s_N + \frac{1}{N+1}a_{N+1}\\
-  %                &> \frac{N}{N+1}(x - \epsilon/M) + \frac{1}{N+1}(x + \epsilon)\\
-  %                &= x + \frac{\epsilon}{N+1}\(1 - \frac{N}{M}\).
-  % \end{align}
-
-
-
-  % \begin{align}
-  %   s_{k+1} &= \frac{k}{k+1}s_k + \frac{1}{k+1}a_{k+1}\\
-  %           &\leq \frac{k}{k+1}a_k + \frac{1}{k+1}a_{k+1}\\
-  %           &\leq a_{k+1},
-  % \end{align}
-  % as required.
-
-
-  % Fix $\epsilon > 0$ and let $N$ be such that $|x - s_n| < \epsilon$ for all $n \geq N$. (Such an
-  % $N$ exists by the definition of limit.) We show below that the same $N$ works for $(a_n)$. That
-  % is $|x - a_n| < \epsilon$ for all $n \geq N$. Therefore $a_n \to x$ as $n \to \infty$, as
-  % required.
-
-  % Suppose that $a_n \geq x$ for some $n$.
-
-
-
-  % \textbf{Proof that $|x - a_n| < \epsilon$ for all $n \geq N$}\\
-  % Note that, since the sequence $(a_n)$ is increasing:
-  % \begin{enumerate}
-  % \item The sequence $(s_n)$ is also increasing (since $s_n$ is the average of $a_1, \ldots, a_n$).
-  % \item $s_n < x$ for all $n$ (since $(s_n)$ approaches its limit from below).
-  % \item $s_n \leq a_n$ for all $n$ (since $s_n$ is an average of numbers not greater than $a_n$).
-  % \item $a_n < x$ for all $n$ (since if any $a_n \geq x$ then ...)
-  % \end{enumerate}
-
-
-
-  % Recall that we have $|x - s_n| < \epsilon$ for all $n \geq N$.
-
-  % Therefore $x - s_n < \epsilon$ for all $n \geq N$, since $s_n < x$.
-
-  % Therefore $x - a_n < \epsilon$ for all $n \geq N$, since $s_n \leq a_n < x$.
 \end{proof}
-
-% Since $s_n \to x$ as $n \to \infty$ we have
-% \begin{enumerate}
-% \item $\forall \epsilon > 0 ~ \exists N: \forall n > N: |s_n - x| < \epsilon$
-% \end{enumerate}
-% \begin{align}
-%   |s_n - x| < \epsilon\\
-%   \Big|\frac{1}{n}\sum_{k=1}^na_k - x\Big| < \epsilon\\
-% \end{align}
 
 \end{document}
