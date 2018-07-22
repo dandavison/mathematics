@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eu
+
+name="${1%%.*}"
+for suffix in tex pdf; do
+    file="$name".$suffix
+    touch "$file" && git add "$file"
+    (cd build && ln -s ../"$file")
+done
