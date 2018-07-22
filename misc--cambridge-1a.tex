@@ -87,7 +87,7 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 
 \begin{proof}[Solution]~\\
   Note that
-  $$\begin{align*}
+  \begin{align*}
     e^{tA}e^{tA^T}
     &=
       \(\sum_{k=0}^\infty\frac{(tA)^k}{k!}\)
@@ -95,13 +95,13 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
     &=
       \(\sum_{k=0}^\infty\frac{t^k}{k!}A^k\)
       \(\sum_{k=0}^\infty \frac{t^k}{k!}(A^k)^T\).
-  \end{align*}$$
+  \end{align*}
   Therefore, by considering the coefficients of $t^0, t^1$ and $t^2$ in the expansion,
-  $$\begin{align*}
+  \begin{align*}
     Q_0 &= I\\
     Q_1 &= A + A^T\\
     Q_2 &= AA^T + \frac{1}{2}(A^2 + (A^2)^T).
-  \end{align*}$$
+  \end{align*}
 
   If $e^{tA}$ is orthogonal, then
   $e^{tA}e^{tA^T} = e^{tA}e^{((tA)^T)} = e^{tA}(e^{tA})^T = e^{tA}(e^{tA})^\1 = I = \sum_{k=0}^\infty Q_kt^k$.
