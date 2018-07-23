@@ -147,4 +147,143 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \end{mdframed}
 \end{proof}
 
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/misc--cambridge-1a-2017-1-9D-1.png}
+\end{mdframed}
+
+
+\begin{theorem*}[Intermediate Value Theorem]~\\
+  Let $a, b \in \R$, and $f:[a, b] \to \R$ be continuous. Let $y$ lie strictly between $f(a)$ and
+  $f(b)$. Then there exists $x \in (a, b)$ such that $f(x) = y$.
+\end{theorem*}
+
+\begin{proof}
+  % Use continuity of $f$ and completeness of $\R$ (every non-empty subset with upper bound has
+  % supremum).
+
+  Define $S = \{x \in [a, b] ~|~ f(x) < y\}$.
+
+  Note that $a \in S$ so $S \neq \emptyset$, and $S$ bounded above by $b$ so $\sup S$ exists, by
+  completeness of the reals.
+
+  Put $t = \sup S$.
+
+  Claim: $f(t) = u$.
+
+  % Since $f$ is continuous, we have $\lim_{x \to t}f(x) = f(t)$.
+
+  % So claim: $\lim_{x \to t}f(x) = u$.
+
+  % Proof:
+
+  Claim: for all $\epsilon > 0$, we have $u - \epsilon < f(t) < u + \epsilon$.
+
+  Proof:
+
+  Let $\epsilon > 0$.
+
+  Since $f$ is continuous at $t$, we have that there exists $\delta$ such that
+  \begin{align} \label{1}
+    |x - t| < \delta \implies |f(x) - f(t)| < \epsilon.
+  \end{align}
+
+  I.e.
+  \begin{align*}
+    t - \delta < x < t + \delta \implies f(t) - \epsilon < f(x) < f(t) + \epsilon.
+  \end{align*}
+
+  Note that $t - \delta$ is not an upper bound for $S$.
+
+  Therefore there exists $a^* > t - \delta$ such that $a^* \in S$.
+
+  As $a^* \in S$, we have $a^* \leq t$.
+
+  Therefore $a^* \in (t - \delta, t] \subseteq (t - \delta, t + \delta)$.
+
+  By \eqref{1} we have $f(t) - \epsilon < f(a^*) < f(t) + \epsilon$.
+
+  Since $a^* \in S$ we have $f(a^*) < u$.
+
+  Therefore $f(t) - \epsilon < f(a^*) < u$.
+
+  Therefore $f(t) < u + \epsilon$.
+
+  Let $a^{**} \in (t, t + \delta)$.
+
+  Since $a^{**} > t$, we have $a^{**} \notin S$.
+
+  Therefore $f(a^{**}) \geq u$, i.e. $u < f(a^{**})$.
+
+  Also by \eqref{1} we have $f(t) - \epsilon < f(a^{**}) < f(t) + \epsilon$, since
+  $a^{**} \in (t - \delta, t + \delta)$.
+
+  Therefore $u < f(t) + \epsilon$, i.e. $f(t) > u - \epsilon$.
+
+  So we have $f(t) < u + \epsilon$ and $f(t) > u - \epsilon$, so
+
+  $u - \epsilon < f(t) < u + \epsilon$ for all $\epsilon > 0$, therefore $f(t) = u$.
+\end{proof}
+
+
+% \begin{proof}
+%   Use continuity of $f$ and completeness of $\R$ (every non-empty subset with upper bound has
+%   supremum).
+
+%   Define $S = \{x \in [a, b] ~|~ f(x) < a\}$.
+
+%   Note $a \in S$, $S$ bounded above by $b$ so $\sup S$ exists.
+
+%   Put $t = \sup S$.
+
+%   Claim: $f(t) = u$.
+
+%   Claim: $\lim_{x\to t} f(x) = u$.
+
+%   Let $\epsilon > 0$.
+
+%   Since $f$ is continuous at $t$, $\lim_{x \to t} f(x) = f(t)$.
+
+%   Therefore there exists $\delta > 0$ such that
+%   $|x - t| < \delta \implies |f(x) - f(t)| < \epsilon$.
+
+%   (Including $x = t$.)
+
+%   Recall that $t$ is an upper bound for $S$.
+
+%   Hence $x > t \implies f(x) \geq u$.
+
+%   Claim 1: $x < t \implies f(x) \leq u$.
+
+%   Proof 1: $x < t \implies x \in S \implies f(x) < u$.
+
+%   ~\\
+
+%   Claim 2: $x > t \implies f(x) \geq u$.
+
+%   Proof 2:
+
+
+
+% \end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/misc--cambridge-1a-2017-1-9D-2.png}
+\end{mdframed}
+
+\begin{definition*}
+  Let $f: \R \to \R$ and $a \in \R$. If the limits
+  \begin{align*}
+    \lim_{x \to a^+} \frac{f(x) - f(a)}{x - a}\\
+    \lim_{x \to a^-} \frac{f(x) - f(a)}{x - a}
+  \end{align*}
+  both exist and are equal then $f$ is differentiable at $a$.
+\end{definition*}
+
+We seek a counterexample: a function that is differentiable everywhere on $\R$ but $f'$ is not
+continuous everywhere.
+
+
+
 \end{document}
