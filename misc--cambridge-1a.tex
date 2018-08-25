@@ -153,6 +153,17 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \includegraphics[width=400pt]{img/misc--cambridge-1a-2017-1-9D-1.png}
 \end{mdframed}
 
+\begin{definition*}[Completeness of reals I]
+  For an ordered set: every non-empty subset that's bounded above has a least upper bound.
+\end{definition*}
+
+
+\begin{definition*}[Completeness of reals II]
+  Every Cauchy sequence converges (to a value in the set).
+\end{definition*}
+
+
+
 
 \begin{theorem*}[Intermediate Value Theorem]~\\
   Let $a, b \in \R$, and $f:[a, b] \to \R$ be continuous. Let $y$ lie strictly between $f(a)$ and
@@ -227,46 +238,46 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \end{proof}
 
 
-% \begin{proof}
-%   Use continuity of $f$ and completeness of $\R$ (every non-empty subset with upper bound has
-%   supremum).
+\begin{proof}
+  Use continuity of $f$ and completeness of $\R$ (every non-empty subset with upper bound has
+  supremum).
 
-%   Define $S = \{x \in [a, b] ~|~ f(x) < a\}$.
+  Define $S = \{x \in [a, b] ~|~ f(x) < a\}$.
 
-%   Note $a \in S$, $S$ bounded above by $b$ so $\sup S$ exists.
+  Note $a \in S$, $S$ bounded above by $b$ so $\sup S$ exists.
 
-%   Put $t = \sup S$.
+  Put $t = \sup S$.
 
-%   Claim: $f(t) = u$.
+  Claim: $f(t) = u$.
 
-%   Claim: $\lim_{x\to t} f(x) = u$.
+  Claim: $\lim_{x\to t} f(x) = u$.
 
-%   Let $\epsilon > 0$.
+  Let $\epsilon > 0$.
 
-%   Since $f$ is continuous at $t$, $\lim_{x \to t} f(x) = f(t)$.
+  Since $f$ is continuous at $t$, $\lim_{x \to t} f(x) = f(t)$.
 
-%   Therefore there exists $\delta > 0$ such that
-%   $|x - t| < \delta \implies |f(x) - f(t)| < \epsilon$.
+  Therefore there exists $\delta > 0$ such that
+  $|x - t| < \delta \implies |f(x) - f(t)| < \epsilon$.
 
-%   (Including $x = t$.)
+  (Including $x = t$.)
 
-%   Recall that $t$ is an upper bound for $S$.
+  Recall that $t$ is an upper bound for $S$.
 
-%   Hence $x > t \implies f(x) \geq u$.
+  Hence $x > t \implies f(x) \geq u$.
 
-%   Claim 1: $x < t \implies f(x) \leq u$.
+  Claim 1: $x < t \implies f(x) \leq u$.
 
-%   Proof 1: $x < t \implies x \in S \implies f(x) < u$.
+  Proof 1: $x < t \implies x \in S \implies f(x) < u$.
 
-%   ~\\
+  ~\\
 
-%   Claim 2: $x > t \implies f(x) \geq u$.
+  Claim 2: $x > t \implies f(x) \geq u$.
 
-%   Proof 2:
+  Proof 2:
 
 
 
-% \end{proof}
+\end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/misc--cambridge-1a-2017-1-9D-2.png}
@@ -281,9 +292,87 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
   both exist and are equal then $f$ is differentiable at $a$.
 \end{definition*}
 
+
+\begin{definition*}
+  Let $f: \R \to \R$ and $a \in \R$. If the limit
+  \begin{align*}
+    \lim_{x \to a} \frac{f(x) - f(a)}{x - a}
+  \end{align*}
+  exists then $f$ is differentiable at $a$.
+\end{definition*}
+
+
+
+
+\begin{theorem*}
+  $f$ differentiable everywhere on $\R$ does not imply $f'$ continuous everywhere on $\R$.
+\end{theorem*}
+
+\begin{proof}
 We seek a counterexample: a function that is differentiable everywhere on $\R$ but $f'$ is not
 continuous everywhere.
 
+Consider
 
+\begin{align*}
+  f(x) :=
+  \begin{cases}
+    x^2\sin(\frac{1}{x})
+  \end{cases}
+
+\end{align*}
+
+ $f(x) := $. \red{But this is not defined at $0 \in \R$}.
+
+Then $f'(x) = -\cos(\frac{1}{x}) + 2x\sin(\frac{1}{x})$.
+\end{proof}
+
+
+\begin{theorem*}[Mean Value Theorem]~\\
+  Let $a, b \in \R$ with $a < b$, and let $f:[a, b] \to \R$ be differentiable. Then there exists
+  $c \in (a, b)$ such that $f'(c)(b - a) = f(b) - f(a)$.
+\end{theorem*}
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/misc--cambridge-1a-2017-1-9D-3.png}
+\end{mdframed}
+
+
+\begin{theorem*}
+  Let $f: \R \to \R$ be differentiable everywhere. Let $a, b \in \R$ with $a < b$. If
+  $f'(a) \leq y \leq f'(b)$, then there exists $c \in [a, b]$ such that $f'(c) = y$.
+\end{theorem*}
+
+\begin{remark*}
+  This does not follow from the Intermediate Value Theorem, since that theorem requires continuity:
+  the derivative of a continuous function may not itself be continuous.
+\end{remark*}
+
+\begin{proof}
+  Define
+  \begin{align*}
+    g(x) :=
+    \begin{cases}
+      \frac{f(x) - f(a)}{x - a} ~~~~~~~ &x \neq a\\
+      f'(a) ~~~~~~~ &x = a.
+    \end{cases}
+  \end{align*}
+
+  {\bf Scratch}\\
+  Is $g$ continuous? Suppose it is.
+
+  We know $f'(a) \in \Im g$.
+
+
+
+  Note that, by the Mean Value Theorem, there exists $x \in (a, b)$ such that $f'(x) = g(b)$.
+
+
+\end{proof}
+
+\begin{align*}
+  \int
+\end{align*}
 
 \end{document}
