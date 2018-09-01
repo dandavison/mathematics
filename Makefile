@@ -1,16 +1,13 @@
 BUILD_DIR:=.build
-LATEXRUN:=latexrun --latex-args="-shell-escape" --max-iterations 1 -O $(BUILD_DIR)
+LATEXRUN:=latexrun --latex-args="-shell-escape" -W no-all --max-iterations 2 -O $(BUILD_DIR)
 PDFLATEX:=pdflatex -shell-escape -file-line-error
 
 
 all: *.pdf
 
 
-%.pdf: %.tex build
-	cd $(BUILD_DIR) && \
-	ln -sf ../$*.tex && \
-	ln -sf ../$*.pdf && \
-	$(PDFLATEX) $*
+%.pdf: %.tex
+	$(LATEXRUN) $*
 
 
 mathematics.pdf: *.tex
