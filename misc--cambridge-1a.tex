@@ -163,78 +163,64 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \end{definition*}
 
 
-
-
 \begin{theorem*}[Intermediate Value Theorem]~\\
-  Let $a, b \in \R$, and $f:[a, b] \to \R$ be continuous. Let $y$ lie strictly between $f(a)$ and
-  $f(b)$. Then there exists $x \in (a, b)$ such that $f(x) = y$.
+  Let $a, b \in \R$, and $f:[a, b] \to \R$ be continuous. Let $u$ lie strictly between $f(a)$ and
+  $f(b)$. Then there exists $c \in (a, b)$ such that $f(c) = u$.
 \end{theorem*}
 
-\begin{proof}
-  % Use continuity of $f$ and completeness of $\R$ (every non-empty subset with upper bound has
-  % supremum).
+\begin{remark*}
+  The proof first uses completeness of $\R$ (every non-empty subset with an upper bound has a least
+  upper bound / supremum) to establish that a supremum $c$ exists. Then it uses continuity of $f$
+  at that supremum to show $f(c) = u$.
+\end{remark*}
 
-  Define $S = \{x \in [a, b] ~|~ f(x) < y\}$.
+\begin{proof}
+  Define $S = \{x \in [a, b] ~|~ f(x) < u\}$.
 
   Note that $a \in S$ so $S \neq \emptyset$, and $S$ bounded above by $b$ so $\sup S$ exists, by
-  completeness of the reals.
+  completeness of the reals. Let $c = \sup S$. We claim that $f(c) = u$.
 
-  Put $t = \sup S$.
-
-  Claim: $f(t) = u$.
-
-  % Since $f$ is continuous, we have $\lim_{x \to t}f(x) = f(t)$.
-
-  % So claim: $\lim_{x \to t}f(x) = u$.
-
-  % Proof:
-
-  Claim: for all $\epsilon > 0$, we have $u - \epsilon < f(t) < u + \epsilon$.
-
-  Proof:
+  To prove this, we will show that for all $\epsilon > 0$, we have
+  $u - \epsilon < f(c) < u + \epsilon$.
 
   Let $\epsilon > 0$.
 
-  Since $f$ is continuous at $t$, we have that there exists $\delta$ such that
+  Since $f$ is continuous at $c$, we have that there exists $\delta > 0$ such that
   \begin{align} \label{1}
-    |x - t| < \delta \implies |f(x) - f(t)| < \epsilon.
+    |x - c| < \delta \implies |f(x) - f(c)| < \epsilon
   \end{align}
-
-  I.e.
+  for all $x \in [a, b]$. I.e.
   \begin{align*}
-    t - \delta < x < t + \delta \implies f(t) - \epsilon < f(x) < f(t) + \epsilon.
+    c - \delta < x < c + \delta \implies f(c) - \epsilon < f(x) < f(c) + \epsilon.
   \end{align*}
 
-  Note that $t - \delta$ is not an upper bound for $S$.
+  Note that $c - \delta$ is not an upper bound for $S$. Therefore there exists $a^* > c - \delta$
+  such that $a^* \in S$. Since $a^* \in S$, we have $a^* \leq c$.
 
-  Therefore there exists $a^* > t - \delta$ such that $a^* \in S$.
+  Therefore $a^* \in (c - \delta, c] \subseteq (c - \delta, c + \delta)$.
 
-  As $a^* \in S$, we have $a^* \leq t$.
-
-  Therefore $a^* \in (t - \delta, t] \subseteq (t - \delta, t + \delta)$.
-
-  By \eqref{1} we have $f(t) - \epsilon < f(a^*) < f(t) + \epsilon$.
+  By \eqref{1} we have $f(c) - \epsilon < f(a^*) < f(c) + \epsilon$.
 
   Since $a^* \in S$ we have $f(a^*) < u$.
 
-  Therefore $f(t) - \epsilon < f(a^*) < u$.
+  Therefore $f(c) - \epsilon < f(a^*) < u$.
 
-  Therefore $f(t) < u + \epsilon$.
+  Therefore $f(c) < u + \epsilon$.
 
-  Let $a^{**} \in (t, t + \delta)$.
+  Let $a^{**} \in (c, c + \delta)$.
 
-  Since $a^{**} > t$, we have $a^{**} \notin S$.
+  Since $a^{**} > c$, we have $a^{**} \notin S$.
 
   Therefore $f(a^{**}) \geq u$, i.e. $u < f(a^{**})$.
 
-  Also by \eqref{1} we have $f(t) - \epsilon < f(a^{**}) < f(t) + \epsilon$, since
-  $a^{**} \in (t - \delta, t + \delta)$.
+  Also by \eqref{1} we have $f(c) - \epsilon < f(a^{**}) < f(c) + \epsilon$, since
+  $a^{**} \in (c - \delta, c + \delta)$.
 
-  Therefore $u < f(t) + \epsilon$, i.e. $f(t) > u - \epsilon$.
+  Therefore $u < f(c) + \epsilon$, i.e. $f(c) > u - \epsilon$.
 
-  So we have $f(t) < u + \epsilon$ and $f(t) > u - \epsilon$, so
+  So we have $f(c) < u + \epsilon$ and $f(c) > u - \epsilon$, so
 
-  $u - \epsilon < f(t) < u + \epsilon$ for all $\epsilon > 0$, therefore $f(t) = u$.
+  $u - \epsilon < f(c) < u + \epsilon$ for all $\epsilon > 0$, therefore $f(c) = u$.
 \end{proof}
 
 
@@ -317,12 +303,10 @@ Consider
 \begin{align*}
   f(x) :=
   \begin{cases}
-    x^2\sin(\frac{1}{x})
+    x^2\sin(\frac{1}{x}),~~~~~~~&x \neq 0\\
+    0                    ~~~~~~~&x = 0
   \end{cases}
-
 \end{align*}
-
- $f(x) := $. \red{But this is not defined at $0 \in \R$}.
 
 Then $f'(x) = -\cos(\frac{1}{x}) + 2x\sin(\frac{1}{x})$.
 \end{proof}
@@ -370,9 +354,5 @@ Then $f'(x) = -\cos(\frac{1}{x}) + 2x\sin(\frac{1}{x})$.
 
 
 \end{proof}
-
-\begin{align*}
-  \int
-\end{align*}
 
 \end{document}
