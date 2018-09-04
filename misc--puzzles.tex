@@ -1,5 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{mathematics}
+\newcommand{\Tl}{T_{\text{L}}}
+\newcommand{\Tr}{T_{\text{R}}}
 
 \begin{document}
 
@@ -245,5 +247,105 @@ at $x_2$.
 If this overlaps with $g_1$ then set $g_1 \leftarrow x_2, g_2 \leftarrow g_2 + (g_1 - x_2)$.
 
 If this does not overlap with $g_1$... no not sure this leads to a proof.
+
+\section{Hanging cable}
+
+\begin{mdframed}
+  A cable of length $L=80$m and uniform density hangs between two vertical poles of height
+  $50$m. The lowest point of the cable is $20$m above the ground. How far apart are the poles?
+\end{mdframed}
+
+Consider the following approximation: the cable is divided into many straight line segments each of
+length $\Delta L$. Segment $i$ is inclined at angle $\theta_i$ to the horizontal.
+
+Let $\Delta x$ and $\Delta y$ be the horizontal and vertical displacements of segment $i$, so that
+$\Delta L = \sqrt{(\Delta x)^2 + (\Delta y)^2}$. Cable density, and gravity, are constant and we
+can ignore them by setting them equal to unity.
+
+Restrict attention to segment $i$, and suppose that $\theta_i > 0$, i.e. this segment lies in the
+right half of the curve.
+
+\begin{mdframed}
+\includegraphics[width=300pt]{img/misc--puzzles--hanging-cable.png}
+\end{mdframed}
+
+
+Segment $i$ is subject to the following forces:
+\begin{enumerate}
+\item Weight $\Delta L$ acting vertically downwards.
+\item Tension $\Tl$ exerted by segment $i-1$ acting leftwards at angle $\theta_{i-1}$.
+\item Tension $\Tr$ exerted by segment $i+1$ acting rightwards at angle $\theta_{i+1}$.
+\end{enumerate}
+Consider the point where segment $i-1$ is attached to segment $i$. There are the following turning
+moments around that point:
+\begin{enumerate}
+\item Clockwise $\frac{(\Delta L)^2}{2}\cos\theta_i$ due to the weight of segment $i$.
+\item Clockwise $\Tr\cos\theta_{i+1}\Delta y$ due to the horizontal component of the tension force
+  in segment $i+1$.
+\item Anticlockwise $\Tr\sin\theta_{i+1}\Delta x$ due to the vertical component of the tension
+  force in segment $i+1$.
+\end{enumerate}
+
+The segment is in equilibrium with respect to translational and rotational forces, giving the
+following system of equations:
+
+\begin{align*}
+  \begin{cases}
+    \Tl\cos\theta_{i-1} = \Tr\cos\theta_{i+1} ~~~~~~~&\text{no horizontal acceleration}\\
+    \Tr\sin\theta_{i+1} = \Tl\sin\theta_{i-1} + \Delta L ~~~~~~~&\text{no vertical acceleration}\\
+    \Tr\sin\theta_{i+1}\Delta x = \Tr\cos\theta_{i+1}\Delta y + \frac{(\Delta L)^2}{2}\cos\theta_i ~~~~~~~&\text{no turning moment.}\\
+  \end{cases}
+\end{align*}
+
+\newpage
+
+Number the segments starting with segment 0 being the rightmost segment, attached to the right
+pole. We have the following system of equations:
+
+\begin{align*}
+  \begin{cases}
+    T_0\cos\theta_0 = T_1\cos\theta_1                               ~~~~~~~&\text{no horizontal acceleration}\\
+    T_1\sin\theta_1 + \Delta L = \frac{L}{2}                        ~~~~~~~&\text{no vertical acceleration}\\
+    T_0\cos\theta_0\Delta y_0 +
+    \frac{(\Delta L)^2}{2} \cos\theta_0 = T_0\sin\theta_0 \Delta x_0 ~~~~~~~&\text{no turning moment.}\\
+  \end{cases}
+\end{align*}
+
+
+Let $H := T_i\cos\theta_i$, constant for all segments $i$.
+
+Also, we have $T_i\sin\theta_i + i\Delta L = \frac{L}{2}$ for all $i$.
+
+Therefore, substituting these into the turning moment equation, we have
+
+\begin{align*}
+  H\Delta y_0 + \frac{H(\Delta L)^2}{2T_0} &= \frac{L}{2} \Delta x_0 \\
+  \Delta y_0 + \frac{(\Delta x_0)^2 + (\Delta y_0)^2}{2T_0} &= \frac{L}{2H} \Delta x_0.
+\end{align*}
+
+
+\newpage
+
+Consider turning moments around the right attachment point:
+
+\begin{align*}
+  \frac{1}{2}(\Delta L)^2\cos\theta_0 + T_1\sin\theta_1\Delta L \cos\theta_0 &= T_1\cos\theta_1\Delta L \sin\theta_0\\
+  \frac{1}{2}\Delta L + T_1\sin\theta_1 &= T_1\cos\theta_1 \tan\theta_0\\
+  \frac{\Delta L}{2T_1\cos\theta_1} + \tan\theta_1 &= \tan\theta_0\\
+  \tan\theta_1 &= \tan\theta_0 - \frac{\Delta L}{2H}\\
+\end{align*}
+
+Consider turning moments around the first articulation point:
+\begin{align*}
+  T_2\sin\theta_2\Delta L\cos\theta_1 + \frac{1}{2}(\Delta L)^2\cos\theta_1 &=
+  T_2\cos\theta_2\Delta L\sin\theta_1 + \frac{1}{2}(\Delta L)^2\cos\theta_0\\
+  T_2\sin\theta_2\cos\theta_1 + \frac{1}{2}\Delta L\cos\theta_1 &=
+  T_2\cos\theta_2\sin\theta_1 + \frac{1}{2}\Delta L\cos\theta_0\\
+  T_2\sin\theta_2 + \frac{1}{2}\Delta L &=
+  H\tan\theta_1 + \frac{\Delta L\cos\theta_0}{2\cos\theta_1}\\
+  \frac{L}{2} - 2\Delta L + \frac{1}{2}\Delta L &=
+  H\tan\theta_1 + \frac{\Delta L\cos\theta_0}{2\cos\theta_1}\\
+\end{align*}
+
 
 \end{document}
