@@ -27,21 +27,24 @@ small, a $\delta$ exists such that for all $x_0 \in U$, if $x$ is within
 $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \section{Theorems}
-\begin{theorem*}[Limit of product is product of limits]~\\
-  Let $\lim_{x\to a}f(x) = L_f$ and $\lim_{x\to a}g(x) = L_g$. Then
-  $\lim_{x\to a}f(x)g(x) = L_fL_g$.
-\end{theorem*}
+\begin{theorem}[Limit of product is product of limits]\label{limit-of-product}~\\
+  Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g$. Then
+  $\limxa f(x)g(x) = L_fL_g$.
+\end{theorem}
 
 \begin{proof}
   Note that
   \begin{align*}
-    \lim_{x\to a} f(x)g(x) &= \lim_{x\to a} \Big((f(x) - L_f)(g(x) - L_g) + L_fg(x) + L_gf(x) - L_fL_g\Big)\\
-                          &= L_fL_g + \lim_{x\to a} (f(x) - L_f)(g(x) - L_g),
+    \limxa f(x)g(x) &= \limxa \Big((f(x) - L_f)(g(x) - L_g) + L_fg(x) + L_gf(x) - L_fL_g\Big)\\
+                          &= L_fL_g + \limxa (f(x) - L_f)(g(x) - L_g),
   \end{align*}
-  so we need to show that $\lim_{x\to a} (f(x) - L_f)(g(x) - L_g) = 0$.
-
-  Since $\lim_{x\to a}$
-
+  so we need to show that $\limxa (f(x) - L_f)(g(x) - L_g) = 0$. Fix $\epsilon > 0$. Since
+  $\limxa (f(x) - L_f) = \limxa (g(x) - L_g) = 0$, there exists $\delta$ such that whenever
+  $|x - a| < \delta$
+  \begin{align*}
+    |(f(x) - L_f)| < \sqrt \epsilon ~~~\text{and}~~~|(g(x) - L_g)| < \sqrt \epsilon,
+  \end{align*}
+  therefore $|(f(x) - L_f)(g(x) - L_g) - 0| < \epsilon$ as required.
 \end{proof}
 
 \begin{proof}
@@ -58,21 +61,22 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \end{proof}
 
 \begin{theorem*}[Limit of quotient is quotient of limits]~\\
-  Let $\lim_{x\to a}f(x) = L_f$ and $\lim_{x\to a}g(x) = L_g \neq 0$. Then
+  Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g \neq 0$. Then
   \begin{align*}
-    \lim_{x\to a}\frac{f(x)}{g(x)} = \frac{L_f}{L_g}.
+    \limxa \frac{f(x)}{g(x)} = \frac{L_f}{L_g}.
   \end{align*}
 \end{theorem*}
 
 \begin{proof}
+  \red{TODO}
   \begin{align*}
-    \lim_{x\to a}\frac{f(x)}{g(x)} - \frac{L}{M}
-    = \lim_{x\to a}\frac{f(x)}{g(x)} - \frac{1}{g(x)} + \frac{1}{g(x)} - \frac{L}{M}
+    \limxa \frac{f(x)}{g(x)} - \frac{L}{M}
+    = \limxa \frac{f(x)}{g(x)} - \frac{1}{g(x)} + \frac{1}{g(x)} - \frac{L}{M}
   \end{align*}
 \end{proof}
 
 \begin{proof}~\\
-  Let $L_f = \lim_{x\to a}f(x)$ and $L_g = \lim_{x\to a}g(x) \neq 0$.
+  Let $L_f = \limxa f(x)$ and $L_g = \limxa g(x) \neq 0$.
 
   Fix $\epsilon > 0$ and let $\delta_f$ and $\delta_g$ be such that
   \begin{align*}
@@ -109,16 +113,21 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \end{theorem*}
 
 \begin{proof}~\\
-  Let $a \in \R$. The claim is that $\lim_{x\to a} f(x) - f(a) = 0$. Since $f$ is differentiable,
+  Let $a \in \R$. The claim is that $\limxa f(x) - f(a) = 0$. Since $f$ is differentiable,
   \begin{align*}
     f'(a) &= \lim_{x \to a} \frac{f(x) - f(a)}{x - a}
-%          = \frac{\lim_{x \to a} f(x) - f(a)}{\lim_{x \to a} x - a}.
   \end{align*}
-  exists. Therefore
+  exists. Therefore by \eqref{limit-of-product}
   \begin{align*}
-    \lim_{x \to a} f(x) - f(a) = f'(a)\(\lim_{x \to a} x - a\) = 0.
+    \lim_{x \to a} f(x) - f(a) = \lim_{x \to a} (x - a)\frac{f(x) - f(a)}{x - a} = 0\cdot f'(a) = 0.
   \end{align*}
 \end{proof}
+
+\begin{remark*}
+  Intuitively it seems that differentiability implies continuity because, for the derivative to
+  exist, the numerator $f(x) - f(a)$ must get small as $x\to a$, as the denominator $x - a$ does.
+\end{remark*}
+
 
 
 
