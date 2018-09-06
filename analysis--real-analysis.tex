@@ -1,13 +1,12 @@
 \section{Definitions}
-\subsection{Convergence, Limit}
-A sequence has a limit $L$ iff for any distance $\epsilon$, no matter how
-small, there is a point in the sequence beyond which all values are within
-$\epsilon$ of $L$.
-
+\subsection{Limit}
 A sequence $(x_n)$ has limit $L$ iff for all $\epsilon > 0$ there exists an
 $m \in \N$ such that $|x_n - L| < \epsilon$ for all $n > m$.
 
-\subsubsection{Uniform convergence, sequence of functions}
+The limit of a function $f$ as $x$ approaches $a$ is defined to be $L$ if for every $\epsilon > 0$
+there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - L| < \epsilon$.
+
+\subsubsection{Uniform convergence}
 A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
 $x$ in the input set the sequence $\{f_n(x)\}_{n\geq 0}$ has limit $f(x)$.
 
@@ -15,14 +14,10 @@ They \textit{converge uniformly} to $f$ iff the same $m$ works for all input
 values.
 
 \subsection{Continuity}
-A function $f$ is continuous at a point $x_0$ iff for any distance $\epsilon$,
-no matter how small, a $\delta$ exists such that all input values within
-$\delta$ of $x_0$ are mapped to within $\epsilon$ of $f(x_0)$.
+$f:\R\to\R$ is continuous at $x_0$ iff $\lim_{x\to x_0} f(x) = f(x_0)$.
 
-Let $U \subseteq \R$. A function $f:U \to \R$ is continuous at $x_0$ if and
-only if for every distance $\epsilon$ in the output space, a distance $\delta$
-in the input space can be found such that
-$|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$.
+Therefore, using the definition of limit, $f$ is continuous at $x_0$ iff for all $\epsilon > 0$
+there exists $\delta > 0$ such that $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$.
 
 \subsubsection{Uniform continuity}
 A function $f$ is uniformly continuous iff the same $\delta$ works for all $x_0$.
@@ -32,11 +27,99 @@ small, a $\delta$ exists such that for all $x_0 \in U$, if $x$ is within
 $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \section{Theorems}
+\begin{theorem*}[Limit of product is product of limits]~\\
+  Let $\lim_{x\to a}f(x) = L_f$ and $\lim_{x\to a}g(x) = L_g$. Then
+  $\lim_{x\to a}f(x)g(x) = L_fL_g$.
+\end{theorem*}
+
+\begin{proof}
+  Note that
+  \begin{align*}
+    \lim_{x\to a} f(x)g(x) &= \lim_{x\to a} \Big((f(x) - L_f)(g(x) - L_g) + L_fg(x) + L_gf(x) - L_fL_g\Big)\\
+                          &= L_fL_g + \lim_{x\to a} (f(x) - L_f)(g(x) - L_g),
+  \end{align*}
+  so we need to show that $\lim_{x\to a} (f(x) - L_f)(g(x) - L_g) = 0$.
+
+  Since $\lim_{x\to a}$
+
+\end{proof}
+
+\begin{proof}
+  Fix $\epsilon > 0$ and let $\delta$ be such that
+  \begin{align*}
+    |x - a| < \delta &\implies |f(x) - L_f| < \frac{\epsilon}{L_f + L_g}\\
+    |x - a| < \delta &\implies |g(x) - L_g| < \frac{\epsilon}{L_f + L_g}.
+  \end{align*}
+  Then whenever $|x - a| < \delta$ we have
+  \begin{align*}
+     \(L_f - \frac{\epsilon}{L_f + L_g}\)\(L_g - \frac{\epsilon}{L_f + L_g}\) &< f(x)g(x) < \(L_f + \frac{\epsilon}{L_f + L_g}\)\(L_g + \frac{\epsilon}{L_f + L_g}\)\\
+    L_fL_g - \epsilon + \frac{\epsilon^2}{(L_f + L_g)^2} &< f(x)g(x) < L_fL_g + \epsilon + \frac{\epsilon^2}{(L_f + L_g)^2}
+  \end{align*}
+\end{proof}
+
+\begin{theorem*}[Limit of quotient is quotient of limits]~\\
+  Let $\lim_{x\to a}f(x) = L_f$ and $\lim_{x\to a}g(x) = L_g \neq 0$. Then
+  \begin{align*}
+    \lim_{x\to a}\frac{f(x)}{g(x)} = \frac{L_f}{L_g}.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  \begin{align*}
+    \lim_{x\to a}\frac{f(x)}{g(x)} - \frac{L}{M}
+    = \lim_{x\to a}\frac{f(x)}{g(x)} - \frac{1}{g(x)} + \frac{1}{g(x)} - \frac{L}{M}
+  \end{align*}
+\end{proof}
+
+\begin{proof}~\\
+  Let $L_f = \lim_{x\to a}f(x)$ and $L_g = \lim_{x\to a}g(x) \neq 0$.
+
+  Fix $\epsilon > 0$ and let $\delta_f$ and $\delta_g$ be such that
+  \begin{align*}
+    |x - a| < \delta_f \implies |f(x) - L_f| < \epsilon\\
+    |x - a| < \delta_g \implies |g(x) - L_g| < \epsilon.
+  \end{align*}
+  Let $\delta = \min(\delta_f, \delta_g)$. Then
+  \begin{align*}
+    \frac{|f(x) - L_f|}{|g(x) - L_f|}
+  \end{align*}
+\end{proof}
+
+
+\begin{theorem*}[Intermediate value theorem]
+  Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous. Let $u$ lie strictly between
+  $f(a)$ and $f(b)$. Then there exists $c \in (a, b)$ such that $f(c) = u$.
+\end{theorem*}
+
+\begin{proof}
+  Define $S := \{x \in [a, b] ~|~ f(x) < u\}$. Since $a \in S$, $S$ is non-empty. By completeness
+  of reals $c := \sup S$ exists. The theorem now follows from continuity of $f$ at $c$. (Fix
+  $\epsilon > 0$ and consider points $a^* \in (c - \delta, c)$ and $a^{**} \in (c, c + \delta)$,
+  noting whether they are in $S$ and the $\epsilon-\delta$ continuity criterion.)
+\end{proof}
 
 \begin{theorem*}[Mean-value theorem]
   Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous on $[a, b]$ and differentiable
   on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x)(b - a) = f(b) - f(a)$.
 \end{theorem*}
+
+
+\begin{theorem*}[Differentiability implies continuity]
+  Let $f:\R\to\R$ be differentiable. Then $f$ is continuous.
+\end{theorem*}
+
+\begin{proof}~\\
+  Let $a \in \R$. The claim is that $\lim_{x\to a} f(x) - f(a) = 0$. Since $f$ is differentiable,
+  \begin{align*}
+    f'(a) &= \lim_{x \to a} \frac{f(x) - f(a)}{x - a}
+%          = \frac{\lim_{x \to a} f(x) - f(a)}{\lim_{x \to a} x - a}.
+  \end{align*}
+  exists. Therefore
+  \begin{align*}
+    \lim_{x \to a} f(x) - f(a) = f'(a)\(\lim_{x \to a} x - a\) = 0.
+  \end{align*}
+\end{proof}
+
 
 
 \section{Sequences and Series}
