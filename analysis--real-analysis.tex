@@ -47,19 +47,6 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   therefore $|(f(x) - L_f)(g(x) - L_g) - 0| < \epsilon$ as required.
 \end{proof}
 
-\begin{proof}
-  Fix $\epsilon > 0$ and let $\delta$ be such that
-  \begin{align*}
-    |x - a| < \delta &\implies |f(x) - L_f| < \frac{\epsilon}{L_f + L_g}\\
-    |x - a| < \delta &\implies |g(x) - L_g| < \frac{\epsilon}{L_f + L_g}.
-  \end{align*}
-  Then whenever $|x - a| < \delta$ we have
-  \begin{align*}
-     \(L_f - \frac{\epsilon}{L_f + L_g}\)\(L_g - \frac{\epsilon}{L_f + L_g}\) &< f(x)g(x) < \(L_f + \frac{\epsilon}{L_f + L_g}\)\(L_g + \frac{\epsilon}{L_f + L_g}\)\\
-    L_fL_g - \epsilon + \frac{\epsilon^2}{(L_f + L_g)^2} &< f(x)g(x) < L_fL_g + \epsilon + \frac{\epsilon^2}{(L_f + L_g)^2}
-  \end{align*}
-\end{proof}
-
 \begin{theorem*}[Limit of quotient is quotient of limits]~\\
   Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g \neq 0$. Then
   \begin{align*}
