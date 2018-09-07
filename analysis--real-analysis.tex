@@ -1,10 +1,19 @@
 \section{Definitions}
-\subsection{Limit}
-A sequence $(x_n)$ has limit $L$ iff for all $\epsilon > 0$ there exists an
-$m \in \N$ such that $|x_n - L| < \epsilon$ for all $n > m$.
 
-The limit of a function $f$ as $x$ approaches $a$ is defined to be $L$ if for every $\epsilon > 0$
-there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - L| < \epsilon$.
+\subsection{Limit point}
+Let $E \subset \R$. A point $p \in \R$ is a limit point of $E$ iff for all $\delta > 0$ there
+exists $x \in E$ such that $0 < |x - p| < \delta$.
+
+Intuition: a deleted ball, of arbitrarily small radius, can be placed over $p$ and will capture a
+point of $E$.
+
+\subsection{Limit, Convergence}
+A sequence $(x_n)$ has limit $L$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
+$n > m \implies |x_n - L| < \epsilon$. When this is true the sequence is said to \textit{converge}
+to $L$.
+
+A function $f$ has limit $L$ as $x$ approaches $a$ iff for all $\epsilon > 0$ there exists
+$\delta > 0$ such that $0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
 
 \subsubsection{Uniform convergence}
 A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
@@ -60,9 +69,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
     \limxa \frac{f(x)}{g(x)} - \frac{L}{M}
     = \limxa \frac{f(x)}{g(x)} - \frac{1}{g(x)} + \frac{1}{g(x)} - \frac{L}{M}
   \end{align*}
-\end{proof}
 
-\begin{proof}~\\
   Let $L_f = \limxa f(x)$ and $L_g = \limxa g(x) \neq 0$.
 
   Fix $\epsilon > 0$ and let $\delta_f$ and $\delta_g$ be such that
@@ -91,7 +98,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \begin{theorem*}[Mean-value theorem]
   Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous on $[a, b]$ and differentiable
-  on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x)(b - a) = f(b) - f(a)$.
+  on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x) = \frac{f(b) - f(a)}{(b - a)}$.
 \end{theorem*}
 
 
@@ -399,9 +406,26 @@ $$
 e^x = 1 + \frac{x}{1} + \frac{x^2}{2!} + \frac{x^3}{3!} + ... = \sum_{i=0}^\infty \frac{x^i}{i!}
 $$
 
+\newpage
+\section{Oxford - M2 - Continuity and Differentiability}
+
+\subsection{Limits of functions - Examples}
+
+\begin{example}
+  Let $E = \R\setminus \{0\}$ and define $f:E \to \R$ by $f(x) = L$. Then 0 is a limit point of
+  $E$ and $f(x) \to L$ as $x \to 0$.
+\end{example}
+
+\begin{proof}
+  Fix $\delta > 0$. Then $\exists x ~ 0 < |x - 0| < \delta$ is true since we can choose
+  $x = \frac{\delta}{2}$. Therefore 0 is a limit point of $E$.
+
+  Fix $\epsilon > 0$. Let $\delta = 1$. Then
+  $0 < |x - 0| < \delta \implies |f(x) - L| = 0 < \epsilon$.
+\end{proof}
 
 
-
+\newpage
 \section{Oxford - A2 - Metric Spaces}
 
 \subsection{Open sets theorems}

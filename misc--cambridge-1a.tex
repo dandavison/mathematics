@@ -183,86 +183,28 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
   To prove this, we will show that for all $\epsilon > 0$, we have
   $u - \epsilon < f(c) < u + \epsilon$.
 
-  Let $\epsilon > 0$.
+  Fix an $\epsilon > 0$.
 
   Since $f$ is continuous at $c$, we have that there exists $\delta > 0$ such that
-  \begin{align} \label{1}
-    |x - c| < \delta \implies |f(x) - f(c)| < \epsilon
-  \end{align}
-  for all $x \in [a, b]$. I.e.
   \begin{align*}
-    c - \delta < x < c + \delta \implies f(c) - \epsilon < f(x) < f(c) + \epsilon.
+    |x - c| < \delta \implies |f(x) - f(c)| < \epsilon.
   \end{align*}
 
-  Note that $c - \delta$ is not an upper bound for $S$. Therefore there exists $a^* > c - \delta$
-  such that $a^* \in S$. Since $a^* \in S$, we have $a^* \leq c$.
+  First consider a point $a^* \in (c - \delta, c)$. We have
+  \begin{align*}
+    f(a^*) < u                                    ~~~~~~~&\text{since $a^* \in S$}\\
+    f(c) - \epsilon < f(a^*) < f(c) + \epsilon    ~~~~~~~&\text{by continuity of $f$ at $c$},
+  \end{align*}
+  therefore $f(c) < u + \epsilon$.
 
-  Therefore $a^* \in (c - \delta, c] \subseteq (c - \delta, c + \delta)$.
+  Next consider a point $a^{**} \in (c, c + \delta)$. We have
+  \begin{align*}
+    f(a^{**}) > u                                  ~~~~~~~&\text{since $a^{**} \notin S$}\\
+    f(c) - \epsilon < f(a^{**}) < f(c) + \epsilon  ~~~~~~~&\text{by continuity of $f$ at $c$},
+  \end{align*}
+  therefore $f(c) > u - \epsilon$.
 
-  By \eqref{1} we have $f(c) - \epsilon < f(a^*) < f(c) + \epsilon$.
-
-  Since $a^* \in S$ we have $f(a^*) < u$.
-
-  Therefore $f(c) - \epsilon < f(a^*) < u$.
-
-  Therefore $f(c) < u + \epsilon$.
-
-  Let $a^{**} \in (c, c + \delta)$.
-
-  Since $a^{**} > c$, we have $a^{**} \notin S$.
-
-  Therefore $f(a^{**}) \geq u$, i.e. $u < f(a^{**})$.
-
-  Also by \eqref{1} we have $f(c) - \epsilon < f(a^{**}) < f(c) + \epsilon$, since
-  $a^{**} \in (c - \delta, c + \delta)$.
-
-  Therefore $u < f(c) + \epsilon$, i.e. $f(c) > u - \epsilon$.
-
-  So we have $f(c) < u + \epsilon$ and $f(c) > u - \epsilon$, so
-
-  $u - \epsilon < f(c) < u + \epsilon$ for all $\epsilon > 0$, therefore $f(c) = u$.
-\end{proof}
-
-
-\begin{proof}
-  Use continuity of $f$ and completeness of $\R$ (every non-empty subset with upper bound has
-  supremum).
-
-  Define $S = \{x \in [a, b] ~|~ f(x) < a\}$.
-
-  Note $a \in S$, $S$ bounded above by $b$ so $\sup S$ exists.
-
-  Put $t = \sup S$.
-
-  Claim: $f(t) = u$.
-
-  Claim: $\lim_{x\to t} f(x) = u$.
-
-  Let $\epsilon > 0$.
-
-  Since $f$ is continuous at $t$, $\lim_{x \to t} f(x) = f(t)$.
-
-  Therefore there exists $\delta > 0$ such that
-  $|x - t| < \delta \implies |f(x) - f(t)| < \epsilon$.
-
-  (Including $x = t$.)
-
-  Recall that $t$ is an upper bound for $S$.
-
-  Hence $x > t \implies f(x) \geq u$.
-
-  Claim 1: $x < t \implies f(x) \leq u$.
-
-  Proof 1: $x < t \implies x \in S \implies f(x) < u$.
-
-  ~\\
-
-  Claim 2: $x > t \implies f(x) \geq u$.
-
-  Proof 2:
-
-
-
+  Therefore $u - \epsilon < f(c) < u + \epsilon$ as required.
 \end{proof}
 
 \begin{mdframed}
@@ -295,26 +237,47 @@ We have $z = \cos\theta + i\sin\theta$ and therefore
 \end{theorem*}
 
 \begin{proof}
-We seek a counterexample: a function that is differentiable everywhere on $\R$ but $f'$ is not
+We exhibit a counterexample: a function that is differentiable everywhere on $\R$ but $f'$ is not
 continuous everywhere.
 
 Consider
-
 \begin{align*}
   f(x) :=
   \begin{cases}
     x^2\sin(\frac{1}{x}),~~~~~~~&x \neq 0\\
-    0                    ~~~~~~~&x = 0
+    0                    ~~~~~~~&x = 0,
+  \end{cases}
+\end{align*}
+the derivative of which is\footnote{The derivative at $x = 0$ is
+  $\lim_{x\to 0}\frac{x^2\sin\(\frac{1}{x}\) - 0}{x - 0} = \lim_{x\to 0}x\sin\(\frac{1}{x}\)$. Note
+  that $x\sin\(\frac{1}{x}\)$ is bounded above and below by $x$ and $-x$. Since these both have a
+  limit of 0 at $x=0$, then so must $x\sin\(\frac{1}{x}\)$.  }
+\begin{align*}
+  f'(x) =
+  \begin{cases}
+    2x\sin(\frac{1}{x}) -\cos(\frac{1}{x}) ~~~~~~~ &x \neq 0\\
+    0                                      ~~~~~~~ &x = 0.
   \end{cases}
 \end{align*}
 
-Then $f'(x) = -\cos(\frac{1}{x}) + 2x\sin(\frac{1}{x})$.
+Note that $f(x)$ is continuous since it is differentiable. But $f'(x)$ is not continuous at 0,
+since close to 0, arbitrarily small changes to $x$ will cause $\cos\(\frac{1}{x}\)$ to vary between
+-1 and 1. To prove this, note that
+\begin{align*}
+  \lim_{x\to 0} f'(x) = 2\lim_{x\to 0} x\sin\(\frac{1}{x}\) - \lim_{x\to 0}\cos\(\frac{1}{x}\)
+                     = - \lim_{x\to 0}\cos\(\frac{1}{x}\).
+\end{align*}
+Fix $0 < \epsilon \leq 1$ and suppose that there exists $\delta > 0$ such that
+$|x| < \delta \implies |\cos\(\frac{1}{x}\)| < \epsilon$. But now define
+$k = \lceil\frac{1}{\delta}\rceil$ and consider $x = \frac{1}{2k\pi}$. We have $|x| < \delta$ but
+$\cos\(\frac{1}{x}\) = 1 \geq \epsilon$, a contradiction proving that
+$\lim_{x\to 0}\cos\(\frac{1}{x}\)$ does not exist.
 \end{proof}
 
 
-\begin{theorem*}[Mean Value Theorem]~\\
-  Let $a, b \in \R$ with $a < b$, and let $f:[a, b] \to \R$ be differentiable. Then there exists
-  $c \in (a, b)$ such that $f'(c)(b - a) = f(b) - f(a)$.
+\begin{theorem*}[Mean-value theorem]
+  Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous on $[a, b]$ and differentiable
+  on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x) = \frac{f(b) - f(a)}{(b - a)}$.
 \end{theorem*}
 
 
@@ -324,7 +287,7 @@ Then $f'(x) = -\cos(\frac{1}{x}) + 2x\sin(\frac{1}{x})$.
 
 
 \begin{theorem*}
-  Let $f: \R \to \R$ be differentiable everywhere. Let $a, b \in \R$ with $a < b$. If
+  Let $f: \R \to \R$ be differentiable. Let $a, b \in \R$ with $a < b$. If
   $f'(a) \leq y \leq f'(b)$, then there exists $c \in [a, b]$ such that $f'(c) = y$.
 \end{theorem*}
 
@@ -348,11 +311,38 @@ Then $f'(x) = -\cos(\frac{1}{x}) + 2x\sin(\frac{1}{x})$.
 
   We know $f'(a) \in \Im g$.
 
-
-
   Note that, by the Mean Value Theorem, there exists $x \in (a, b)$ such that $f'(x) = g(b)$.
 
 
 \end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/misc--cambridge-1a-10D-a.png}
+\end{mdframed}
+
+$f$ is continuous at $x_0 \in (a, b)$ iff $\lim_{x\to x_0} f(x) = f(x_0)$.
+
+We know:
+
+\begin{enumerate}
+\item The limit $L = f'(c) := \lim_{x\to c} \frac{f(x) - f(c)}{x - c}$ exists.
+\item For every $\epsilon > 0$ there exists $\delta > 0$ such that
+  $|x - c| < \delta \implies \Big|\frac{f(x) - f(c)}{x - c} - L\Big| < \epsilon$.
+\item $f$ is continuous at $c$: $\lim_{x\to c}f(x) = f(c)$.
+\item There exists $\delta > 0$ such that $|x - c| < \delta \implies f(c) \leq f(x)$.
+\end{enumerate}
+
+We want:
+\begin{align*}
+  L = 0.
+\end{align*}
+
+
+\newpage
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/misc--cambridge-1a-10D-b.png}
+\end{mdframed}
 
 \end{document}
