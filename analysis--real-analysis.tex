@@ -4,16 +4,36 @@
 Let $E \subset \R$. A point $p \in \R$ is a limit point of $E$ iff for all $\delta > 0$ there
 exists $x \in E$ such that $0 < |x - p| < \delta$.
 
-Intuition: a deleted ball, of arbitrarily small radius, can be placed over $p$ and will capture a
+\begin{intuition*}
+A deleted ball, of arbitrarily small radius, can be placed over $p$ and will capture at least one
 point of $E$.
+\end{intuition*}
 
 \subsection{Limit, Convergence}
-A sequence $(x_n)$ has limit $L$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
+
+\subsubsection{Limit of a sequence $(x_n)$}
+$\limn x_n = L$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
 $n > m \implies |x_n - L| < \epsilon$. When this is true the sequence is said to \textit{converge}
 to $L$.
 
-A function $f$ has limit $L$ as $x$ approaches $a$ iff for all $\epsilon > 0$ there exists
-$\delta > 0$ such that $0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
+\subsubsection{Limit of a function $f:\R\to\R$}
+
+$f(x) \to L$ as $x \to a$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
+$0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
+
+Equivalent notation: $\limxa f(x) = L$.
+
+\begin{remark*}
+  The value of $f$ at $a$ is irrelevant ($f$ need not be defined at $a$).
+\end{remark*}
+
+\subsection{Continuity of a function $f$}
+$f$ is continuous at $a$ means: $f(x) \to f(a)$ as $x \to a$.
+
+Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$
+there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+
+\subsection{Uniform convergence and uniform continuity}
 
 \subsubsection{Uniform convergence}
 A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
@@ -21,12 +41,6 @@ $x$ in the input set the sequence $\{f_n(x)\}_{n\geq 0}$ has limit $f(x)$.
 
 They \textit{converge uniformly} to $f$ iff the same $m$ works for all input
 values.
-
-\subsection{Continuity}
-$f:\R\to\R$ is continuous at $x_0$ iff $\lim_{x\to x_0} f(x) = f(x_0)$.
-
-Therefore, using the definition of limit, $f$ is continuous at $x_0$ iff for all $\epsilon > 0$
-there exists $\delta > 0$ such that $|x - x_0| < \delta \implies |f(x) - f(x_0)| < \epsilon$.
 
 \subsubsection{Uniform continuity}
 A function $f$ is uniformly continuous iff the same $\delta$ works for all $x_0$.
@@ -36,10 +50,22 @@ small, a $\delta$ exists such that for all $x_0 \in U$, if $x$ is within
 $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \section{Theorems}
-\begin{theorem}[Limit of product is product of limits]\label{limit-of-product}~\\
+
+\begin{theorem*}[Connection between sequences and functions]
+  The following two statements are equivalent:
+  \begin{enumerate}
+  \item $f(x) \to L$ as $x \to a$.
+  \item For every sequence $(x_n)$ such that $x_n \neq a$
+    \begin{align*}
+      \(\limn x_n = a\) \implies \(\limn f(x_n) = f(a)\).
+    \end{align*}
+  \end{enumerate}
+\end{theorem*}
+
+\begin{theorem*}[Limit of product is product of limits]\label{limit-of-product}~\\
   Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g$. Then
   $\limxa f(x)g(x) = L_fL_g$.
-\end{theorem}
+\end{theorem*}
 
 \begin{proof}
   Note that
