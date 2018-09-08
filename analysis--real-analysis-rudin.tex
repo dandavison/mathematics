@@ -1,0 +1,192 @@
+\section{Exercises - Rudin - Principles of Mathematical Analysis}
+
+~\\\hrule
+\textbf{1.1 If $r$ is rational ($r \neq 0$) and $x$ is irrational, prove that $r + x$
+and $rx$ are irrational.}
+
+Let $r = \frac{i}{j}$, where $i, j \in \Z$.
+
+Take $rx$ first. Suppose that $rx$ is rational, so $rx = \frac{i}{j}x =
+\frac{k}{l}$ for some $k, l \in \Z$. This implies $x = \frac{jk}{il}$, which is
+rational. This is a contradiction, since $x$ is irrational by
+definition. Therefore $rx$ is irrational.
+
+Now take $r + x$. Again suppose it's rational, so $r + x = \frac{i}{j} +
+\frac{k}{l}$ for some $k, l \in \Z$. This implies $x = \frac{k}{l} -
+\frac{i}{j} = \frac{jk - il}{lj}$ which is rational. This is a contradiction
+again, since $x$ is irrational by definition. Therefore $r + x$ is irrational.
+
+\textit{Better proof} If $rx$ is rational then $rx/r = x$ must be rational, since $\Q$
+is closed under division. That's a contradiction, therefore $rx$ is not
+rational. Similarly, if $r + x$ is rational then $x = r + x - r$ must be
+rational, since $\Q$ is closed under addition and additive inverses. Again a
+contradiction, showing that $r+x$ is irrational.
+
+~\\\hrule
+\textbf{1.2 Prove that there is no rational number whose square is 12.}
+
+\textit{Lemma: The square root of a prime is irrational.}
+
+\textit{Proof}: Let $p$ be prime and suppose $\sqrt{p}$ is rational. Then $\sqrt{p} =
+i/j$ for some $i, j \in \Z$ with $i,j$ sharing no common factor. So $i^2 =
+pj^2$. But $p$ is prime, so if $p$ is a factor of $i^2$ then $p$ must be a
+factor of $i$ also. Therefore $i^2$ is divisible by $p^2$ and so $j^2$ must be
+divisible by $p$ and so $j$ must be divisible by $p$. But $i,j$ share no common
+factor by construction. This contradiction proves that $\sqrt{p}$ is
+irrational.
+
+Suppose $(i/j)^2 = 12$ for some $i,j \in \Z$. Then $i/j = 2\sqrt{3}$. But $3$
+is prime and therefore $\sqrt{3}$ is irrational and we know that the product of
+a rational and an irrational number is irrational. Therefore $i/j$ is
+irrational, which is a contradiction proving that there is no rational number
+whose square is 12.
+
+
+~\\\hrule
+\textbf{3. Prove Proposition 1.15 (implications of multiplication axioms)}
+
+~\\\hrule
+\textbf{4. Let $E$ be a nonempty subset of an ordered set ; suppose $\alpha$ is a
+lower bound of E and that $\beta$ is an upper bound of $E$. Prove that $\alpha
+\leq \beta$.}
+
+Intuitively: it's non-empty, so the smallest it can be is one element. That
+element could be $\alpha = \beta$ or else $\alpha < \beta$.
+
+$\alpha$ is a lower bound for $E$, therefore $\alpha \leq e$ for every $e \in
+E$. Similarly $\beta \geq e$ for every $e \in E$. Suppose that $\alpha >
+\beta$. Then $\alpha > e$ for every $e \in E$. This contradicts the premise
+that $\alpha$ is a lower bound for $E$, therefore $\alpha \leq \beta$.
+
+
+~\\\hrule
+\textbf{5. Let $A$ be a nonempty set of real numbers which is bounded below. Let $-A$
+be the set of all numbers $-x$, where $x \in A$. Prove that
+$$
+\inf A = - \sup(-A)
+$$
+}
+
+$A$ is bounded below, therefore $\inf A$ exists. Let $\alpha = \inf A$, i.e. $x
+\geq \alpha$ for every $x \in A$, and $\alpha$ is the largest number for which
+this is true. Therefore $-x \leq -\alpha$ for every $x \in A$ and $-\alpha$ is
+the smallest number for which this is true. Therefore $-\alpha=\sup(-A)$ and
+$\alpha=-\sup(-A)$.
+
+
+~\\\hrule
+\textbf{Definitions:}
+
+\textbf{lower bound of $A$}: a number $\alpha$ such that $x \geq \alpha$ for every $x \in A$.
+
+\textbf{$\inf A$}: the greatest lower bound (or $-\infty$ if there is no lower bound)
+
+\textbf{upper bound of $A$}: a number $\alpha$ such that $x \leq \alpha$ for every $x \in A$.
+
+\textbf{$\sup(-A)$}: the least upper bound of $-A$ (or $+\infty$ if there is no upper bound)
+
+~\\\hrule
+\textbf{6 Fix $b > 1$.}
+
+\textbf{
+(a) If $m,n,p,q$ are integers, $n>0$, $q>0$, and $r=\frac{m}{n}=\frac{p}{q}$,
+prove that $(b^m)^{1/n} = (b^p)^{1/q}$. Hence it makes sense to define $b^r =
+(b^m)^{1/n}$·}
+
+Consider raising these quantities to the power of the integer $mq = np$:
+
+$$
+((b^m)^{1/n})^{np} = (((b^m)^{1/n})^{n})^p = (b^m)^p = b^{mp},
+$$
+and similarly
+$$
+((b^p)^{1/q})^{mq} = (((b^p)^{1/q})^{q})^m = (b^p)^m = b^{mp}.
+$$
+
+So both give the same result, but there is just one positive real number $r$
+with the property that $r^{mq} = b^{mp}$. Therefore $(b^m)^{1/n} =
+(b^p)^{1/q}$.
+
+\textbf{
+(b) Prove that $b^{r+s} = b^rb^s$ if $r$ and $s$ are rational.
+}
+
+Let $r=\frac{i}{j}$ and $s=\frac{k}{l}$. Then
+
+$$
+b^{r+s} =
+b^\frac{iL + jk}{jl} =
+(b^{iL + jk})^\frac{1}{jl} =
+(b^{iL}b^{jk})^\frac{1}{jl} =
+b^\frac{il}{jl}b^\frac{jk}{jl} =
+b^{r}b^{s}
+$$
+
+\textbf{(c) If $x$ is real, define $B(x)$ to be the set of all numbers $b^t$, where
+$t$ is rational and $t \leq x$. Prove that $$b^r = \sup B(r)$$ when $r$ is
+rational. Hence it makes sense to define $$b^x = \sup B(x)$$ for every real $x$.
+}
+
+First consider rational $r$. $B(r)$ is the set $\{b^t: t \leq r\}$ for rational
+$t$. It's clear that $b^r$ is an upper bound for this; we need to prove that it
+is the least upper bound. (Transcribed from solutions) The approach we're going
+to take is to show that, for any number $x$ smaller than $b^r$, we can always
+construct a larger number that is in $B(r)$ and hence that $x$ is not the least
+upper bound. Specifically, we're going to prove that for any $0 < x < b^r$
+there exists an integer $n$ such that $x < b^{r - 1/n}$ and $b^{r - 1/n} \in
+B(r)$.
+
+$r$ is rational, so $r - 1/n$ is also rational, hence $b^{r - \frac{1}{n}}> \in B(r)$.
+
+~\\\hrule
+\textbf{Prove that $b^{x+y} = b^xb^y$ for all real $x$ and $y$. }
+
+~\\\hrule
+\textbf{7 Fix $b > 1, y > 0$ and prove that there is a unique real $x$ such that
+$b^x = y$, by completing the following outline. (This is called the logarithm
+of $y$ to the base $b$)}
+
+\textbf{(a) For any positive integer $n$, $b^n - 1 \geq n(b-1)$.}
+
+- \textit{Base case:} It's true for $n=1$, i.e. $b^1 - 1 = 1(b-1)$
+
+- \textit{Induction:} Suppose that it is true for $n=i$, i.e. $b^i - 1 \geq i(b-1)$
+
+    - \textit{Claim:} It is true for $n=i+1$, i.e. $b^{i+1} - 1 \geq (i+1)(b-1)$.
+
+    - \textit{Proof:} The desired inequality can be written as $b^{i+1} \geq i(b-1) +
+      b$, and the assumed inequality can be written as $b^i \geq i(b-1) +
+      1$. Multiplying both sides of the latter by $b$ gives $b^{i+1} \geq
+      bi(b-1) + b$. Now $i \geq 1$ and $b>1$, so $bi(b-1) > i(b-1)$, thus
+      $b^{i+1} \geq i(b-1) + b$ as required.
+
+
+\textbf{(b) Hence $b - 1 \geq n(b^{1/n} - 1)$}
+
+In (a), $b$ was an arbitrary real number greater than 1. For clarity, let's
+rewrite that result as $a^n - 1 \geq n(a-1)$. We can choose $a=b^{1/n}$ for
+some other real number $b$. Thus $b - 1 \geq n(b^{1/n}-1)$.
+
+\textbf{(c) If $t > 1$ and $n > \frac{b-1}{t-1}$, then $b^{1/n} < t$.}
+
+Rearranging, we have $b^{1/n} \leq \frac{b-1}{n} + 1$. If $n > \frac{b-1}{t-1}$
+then $b^{1/n} < \frac{b-1}{(b-1)/(t-1)} + 1 = t$.
+
+\textbf{(d) If $w$ is such that $b^w < y$ then $b^{w + 1/n} < y$ for sufficiently
+large $n$; to see this, apply part (c) with $t = yb^{-w}.$}
+
+Let $t = \frac{y}{b^w}$. Since $b^w < y$, $\frac{y}{b^w} > 1$. Thus $b^{1/n} <
+\frac{y}{b^w}$ and hence $b^{w + 1/n} < y$, iff $n > \frac{b-1}{(y -
+b^w)/b^w}$.
+
+\textbf{(e) If $b^w > y$, then $b^{w - 1/n} > y$ for sufficiently large $n$.}
+
+Let $t = \frac{b^w}{y}$. Since $b^w > y$, $\frac{b^w}{y} > 1$. Thus $b^{1/n} <
+\frac{b^w}{y}$ and hence $b^{w - 1/n} > y$, iff $n > \frac{b-1}{(b^w -
+y)/y}$.
+
+
+\textbf{(f) Let $A$ be the set of all $w$ such that $b^w < y$, and show that $x =
+\sup A$ satisfies $b^x = y.$}
+
+\textbf{(g) Prove that this $x$ is unique.}

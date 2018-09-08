@@ -1,0 +1,49 @@
+\section{Choimet \& Queffélec: Twelve Landmarks of Twentieth-Century Analysis}
+
+\begin{claim*}
+  For real $0 \leq x < 1$ and non-negative integer $n$, the following inequality holds:
+  \begin{align*}
+    1 - x^n \leq n(1 - x)
+  \end{align*}
+\end{claim*}
+
+\begin{proof}[Proof 1 (induction)]~\\
+  It is true for $n=0$. Suppose it is true for $n=k$. Then, after multiplying
+  both sides by $x$, we have
+  \begin{align*}
+    x(1 - x^k)  &\leq kx(1 - x).
+  \end{align*}
+  Multiplying out and rearranging gives
+  \begin{align*}
+    x - x^{k+1}         &\leq kx - kx^2\\
+    1 - 1 + x - x^{k+1} &\leq kx - kx^2\\
+    1 - x^{k+1}         &\leq 1 + (k - 1)x - kx^2.
+  \end{align*}
+  The RHS factorises as $(1 + kx)(1 - x)$ which is less than
+  $(1+k)(1-x)$. Therefore
+   \begin{align*}
+     1 - x^{k+1} &\leq (k + 1)(1 - x),
+  \end{align*}
+  which proves the claim by induction.
+\end{proof}
+
+\begin{proof}[Proof 2]~\\
+  The claim is true for $n=0$, so restrict attention to $n > 0$. We want to show that
+  \begin{align*}
+    \frac{1 - x^n}{n(1 - x)} \leq 1.
+  \end{align*}
+  Note that
+  \begin{align*}
+    (1 - x)\sum_{i=0}^{n-1}x^i &= (1 + x + x^2 + \ldots + x^{n-1}) - (x + x^2 + x^3 + \ldots + x^n)\\
+                              &= 1 - x^n.
+  \end{align*}
+  (This can be arrived at by performing long division of $1-x$ into $1 - x^n$.)
+
+  Therefore the ratio is
+  \begin{align*}
+    \frac{1 - x^n}{n(1 - x)} &= \frac{(1 - x)\sum_{i=0}^{n-1}x^i}{n(1 - x)}\\
+                             &= \frac{1}{n}\sum_{i=0}^{n-1}x^i,
+  \end{align*}
+  which is less than 1, as required.
+
+\end{proof}
