@@ -5,16 +5,15 @@ Let $E \subset \R$. A point $p \in \R$ is a limit point of $E$ iff for all $\del
 exists $x \in E$ such that $0 < |x - p| < \delta$.
 
 \begin{intuition*}
-A deleted ball, of arbitrarily small radius, can be placed over $p$ and will capture at least one
-point of $E$.
+  A deleted ball, of arbitrarily small radius, placed over $p$, will capture at least one point of
+  $E$.
 \end{intuition*}
 
 \subsection{Limit, Convergence}
 
 \subsubsection{Limit of a sequence $(x_n)$}
 $\limn x_n = L$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
-$n > m \implies |x_n - L| < \epsilon$. When this is true the sequence is said to \textit{converge}
-to $L$.
+$n > m \implies |x_n - L| < \epsilon$. The sequence is then said to \textit{converge} to $L$.
 
 \subsubsection{Limit of a function $f:\R\to\R$}
 
@@ -23,8 +22,11 @@ $0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
 
 Equivalent notation: $\limxa f(x) = L$.
 
-\begin{remark*}
-  The value of $f$ at $a$ is irrelevant ($f$ need not be defined at $a$).
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item The value of $f$ at $a$ is irrelevant ($f$ need not be defined at $a$).
+  \item $f$ must tend to $L$ from both sides.
+  \end{enumerate}
 \end{remark*}
 
 \subsection{Continuity of a function $f$}
@@ -57,7 +59,13 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   \item $f(x) \to L$ as $x \to a$.
   \item For every sequence $(x_n)$ such that $x_n \neq a$
     \begin{align*}
+      \(x_n \to a ~\text{as}~ n \to \infty\) \implies \(f(x_n) \to f(a) ~\text{as}~ n \to \infty\).
+    \end{align*}
+    \begin{align*}
       \(\limn x_n = a\) \implies \(\limn f(x_n) = f(a)\).
+    \end{align*}
+    \begin{align*}
+      \Lim{x_n}{a}{n}{\infty} \implies \Lim{f(x_n)}{f(a)}{n}{\infty}
     \end{align*}
   \end{enumerate}
 \end{theorem*}
@@ -176,12 +184,28 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-II-sheet-2-1a.png}
 \end{mdframed}
 
+\begin{theorem*}
+  $f$ is continuous at 1 and -1 only.
+\end{theorem*}
+
+\begin{proof}
+  Let $q \in \Q \cap (0, \infty)$.
+
+  Then there exists a sequence $(q_n)$ such that $q_n \in \Q$, $q_n \neq q$ and
+  $\Lim{q_n}{q}{n}{\infty}$. Therefore $\Limp{f(x)}{x}{q} = $
+
+  Also, there exists a sequence $(p_n)$ such that $p_n \in \R\setminus\Q$, and
+  $\Lim{p_n}{q}{n}{\infty}$.
+
+
+\end{proof}
+
 \begin{definition*}[continuity]
-  $f$ is continuous at $a$ if $f(x) \to f(a)$ as $x \to a$.
+  $f$ is continuous at $a$ if $\Lim{f(x)}{f(a)}{x}{a}$.
 \end{definition*}
 
 \begin{definition*}[limit]
-  $f(x) \to f(a)$ as $x \to a$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that
+  $\Lim{f(x)}{f(a)}{x}{a}$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that
   $0 < |x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
 \end{definition*}
 
@@ -199,7 +223,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \begin{proof}~\\
   Let $x \in (0, \infty)$.
 
-  Let $q \in \Q \cap (0, \infty)$.
+  Let $q \in \Q \cap (0, \infty)$. Then there exists a sequence:
 
 
 
