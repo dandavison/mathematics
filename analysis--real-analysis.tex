@@ -12,15 +12,15 @@ exists $x \in E$ such that $0 < |x - p| < \delta$.
 \subsection{Limit, Convergence}
 
 \subsubsection{Limit of a sequence $(x_n)$}
-$\limn x_n = L$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
+$\LimEq{x_n}{L}{n}{\infty}$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
 $n > m \implies |x_n - L| < \epsilon$. The sequence is then said to \textit{converge} to $L$.
 
 \subsubsection{Limit of a function $f:\R\to\R$}
 
-$f(x) \to L$ as $x \to a$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
+$\LimEq{f(x)}{L}{x}{a}$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
 $0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
 
-Equivalent notation: $\limxa f(x) = L$.
+Equivalent notation: $f(x) \to L$ as $x \to a$
 
 \begin{remark*}\hspace{0pt}
   \begin{enumerate}
@@ -30,7 +30,7 @@ Equivalent notation: $\limxa f(x) = L$.
 \end{remark*}
 
 \subsection{Continuity of a function $f$}
-$f$ is continuous at $a$ means: $f(x) \to f(a)$ as $x \to a$.
+$f$ is continuous at $a$ means: $\LimEq{f(x)}{f(a)}{x}{a}$.
 
 Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$
 there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
@@ -59,13 +59,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   \item $f(x) \to L$ as $x \to a$.
   \item For every sequence $(x_n)$ such that $x_n \neq a$
     \begin{align*}
-      \(x_n \to a ~\text{as}~ n \to \infty\) \implies \(f(x_n) \to f(a) ~\text{as}~ n \to \infty\).
-    \end{align*}
-    \begin{align*}
-      \(\limn x_n = a\) \implies \(\limn f(x_n) = f(a)\).
-    \end{align*}
-    \begin{align*}
-      \Lim{x_n}{a}{n}{\infty} \implies \Lim{f(x_n)}{f(a)}{n}{\infty}
+      \(\LimEq{x_n}{a}{n}{\infty}\) \implies \(\LimEq{f(x_n)}{f(a)}{n}{\infty}\)
     \end{align*}
   \end{enumerate}
 \end{theorem*}
@@ -192,20 +186,20 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   Let $q \in \Q \cap (0, \infty)$.
 
   Then there exists a sequence $(q_n)$ such that $q_n \in \Q$, $q_n \neq q$ and
-  $\Lim{q_n}{q}{n}{\infty}$. Therefore $\Limp{f(x)}{x}{q} = $
+  $\LimEq{q_n}{q}{n}{\infty}$. Therefore $\LimEq{f(q_n)}{1/q}{n}{\infty}$.
 
   Also, there exists a sequence $(p_n)$ such that $p_n \in \R\setminus\Q$, and
-  $\Lim{p_n}{q}{n}{\infty}$.
+  $\LimEq{p_n}{q}{n}{\infty}$.
 
 
 \end{proof}
 
 \begin{definition*}[continuity]
-  $f$ is continuous at $a$ if $\Lim{f(x)}{f(a)}{x}{a}$.
+  $f$ is continuous at $a$ if $\LimEq{f(x)}{f(a)}{x}{a}$.
 \end{definition*}
 
 \begin{definition*}[limit]
-  $\Lim{f(x)}{f(a)}{x}{a}$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that
+  $\LimEq{f(x)}{f(a)}{x}{a}$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that
   $0 < |x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
 \end{definition*}
 
