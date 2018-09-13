@@ -73,7 +73,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   Note that
   \begin{align*}
     \limxa f(x)g(x) &= \limxa \Big((f(x) - L_f)(g(x) - L_g) + L_fg(x) + L_gf(x) - L_fL_g\Big)\\
-                          &= L_fL_g + \limxa (f(x) - L_f)(g(x) - L_g),
+                    &= L_fL_g + \limxa (f(x) - L_f)(g(x) - L_g),
   \end{align*}
   so we need to show that $\limxa (f(x) - L_f)(g(x) - L_g) = 0$. Fix $\epsilon > 0$. Since
   $\limxa (f(x) - L_f) = \limxa (g(x) - L_g) = 0$, there exists $\delta$ such that whenever
@@ -151,8 +151,89 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \end{remark*}
 
 
+\newpage
+\section{Oxford - M1 - Sequences and Series}
 
+\subsection{Sheet 1}
 
+\begin{enumerate}
+
+\item
+  \begin{enumerate}[label=(\alph*)]
+  \item \begin{theorem*} $a(bc) = c(ba)$\end{theorem*}
+    \begin{proof}
+      \begin{align*}
+        a(bc) &= a(cb)  ~~~~~~~ \text{(M1 commutativity of multiplication)}\\
+              &= (ac)b  ~~~~~~~ \text{(M2 associativity of multiplication)}\\
+              &= (ca)b  ~~~~~~~ \text{(M1 commutativity of multiplication)}\\
+              &= c(ab)  ~~~~~~~ \text{(M2 associativity of multiplication)}\\
+              &= c(ba)  ~~~~~~~ \text{(M1 commutativity of multiplication)}
+      \end{align*}
+    \end{proof}
+  \item
+    \begin{theorem*}
+      $-(a + b) = (-a) + (-b)$
+    \end{theorem*}
+    \begin{proof}
+      \begin{align*}
+        (a + b) + (-(a + b))                   &= 0           ~~~~~~~ \text{definition of negative}\\
+        \Big((-a) + (-b)\Big) + \Big((a + b) + (-(a + b))\Big) &= (-a) + (-b) ~~~~~~~ \text{add to both sides what axiom is this?}\\
+        \Big((-b) + (-a)\Big) + \Big((a + b) + (-(a + b))\Big)   &= (-a) + (-b) ~~~~~~~ \text{S1 commutativity of sum}\\
+        \Big(((-b) + (-a)) + (a + b)\Big) + (-(a + b))   &= (-a) + (-b) ~~~~~~~ \text{S2 associativity of sum}\\
+        \Big((-b) + ((-a) + a) + b)\Big) + (-(a + b))    &= (-a) + (-b) ~~~~~~~ \text{S2 associativity of sum}\\
+        \Big((-b) + (0 + b)\Big) + (-(a + b))            &= (-a) + (-b) ~~~~~~~ \text{definition of negative}\\
+        \Big((-b) + b\Big) + (-(a + b))                &= (-a) + (-b) ~~~~~~~ \text{definition of 0}\\
+        0 + (-(a + b))                         &= (-a) + (-b) ~~~~~~~ \text{definition of negative}\\
+        -(a + b)                               &= (-a) + (-b) ~~~~~~~ \text{definition of 0}\\
+      \end{align*}
+    \end{proof}
+  \end{enumerate}
+
+\item
+  \begin{enumerate}[label=(\alph*)]
+  \item
+    \newpage
+    \begin{theorem*}
+      If $a < b$ then $ac > bc$ iff $c < 0$.
+    \end{theorem*}
+    \begin{intuition*}
+      Multiplication by a scalar flips orientation iff the scalar is negative.
+    \end{intuition*}
+    \begin{proof}~\\
+      \red{TODO} Prove carefully being explicit about which axioms are used.\\
+      Let $\P$ be the strictly positive reals. We have $a < b$, i.e. $b - a \in \P$.\\
+      $\implies$:\\
+      We have $ac > bc$ i.e. $ac - bc \in \P$.
+
+      Therefore
+      \begin{align*}
+        (a - b)c &\in \P\\
+        (b - a)(-c) &\in \P\\
+        \frac{1}{b-a}(b - a)(-c) &\in \P\\
+        (-c) &\in \P
+      \end{align*}
+
+      $\impliedby$:\\
+      We have $c < 0$, i.e. $-c \in \P$. Therefore $(-c)(b - a) \in \P$ (by {\bf P2}). Therefore
+      $ac - bc \in \P$, i.e. $ac > bc$.
+    \end{proof}
+  \end{enumerate}~\\
+\item
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-1-5.png}
+\end{mdframed}
+\end{enumerate}
+
+\newpage
+\subsection{Sheet 2}
+
+\begin{enumerate}
+\item~\\
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-2-1.png}
+  \end{mdframed}
+\end{enumerate}
 
 \newpage
 \section{Oxford - M2 - Continuity and Differentiability}
@@ -172,21 +253,27 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   $0 < |x - 0| < \delta \implies |f(x) - L| = 0 < \epsilon$.
 \end{proof}
 
+\newpage
 \subsection{Sheet 2}
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-II-sheet-2-1a.png}
+  \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-II-sheet-2-1a.png}
 \end{mdframed}
 
 \begin{theorem*}
   $f$ is continuous at 1 and -1 only.
 \end{theorem*}
 
-\begin{proof}
-  Let $q \in \Q \cap (0, \infty)$.
+\begin{proof} Let $q \in \Q \cap (0, \infty)$.
 
-  Then there exists a sequence $(q_n)$ such that $q_n \in \Q$, $q_n \neq q$ and
-  $\LimEq{q_n}{q}{n}{\infty}$. Therefore $\LimEq{f(q_n)}{1/q}{n}{\infty}$.
+  Note that there exists a sequence $(q_n)$ such that $q_n \in \Q$, $q_n \neq q$ and
+  $\LimEq{q_n}{q}{n}{\infty}$.
+
+  From Theorem 1.13 (Algebra of Limits) we have $\Lim{x^\1}{x}{q} = q^\1$.
+
+  Therefore from Theorem 1.10 we have
+
+  % Therefore $\LimEq{f(q_n)}{1/q}{n}{\infty}$.
 
   Also, there exists a sequence $(p_n)$ such that $p_n \in \R\setminus\Q$, and
   $\LimEq{p_n}{q}{n}{\infty}$.
