@@ -398,8 +398,38 @@ Notes from Oxford - M1 - Sequences and Series.
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-a.png}
   \end{mdframed}
+  \begin{definition*}[Countable]
+    A set $S$ is countable if $S \preceq N$. I.e. there exists an injection $f:S \to \N$.
+  \end{definition*}
+  \begin{definition*}[Uncountable]
+    A set $S$ is uncountable if it is not countable.
+  \end{definition*}
+  \begin{definition*}[Injection]
+    A function $A \to B$ is an injection if $f(a_1) = f(a_2) \implies a_1 = a_2$.
+  \end{definition*}
   \begin{proof}
-    $\R$ is uncountable. Since $\Q$ is countable, the irrationals $\R \setminus \Q$ must be
+    Suppose for a contradiction that $\R \setminus \Q$ is countable. Then an injection
+    $f:\R \setminus \Q \to \N$ exists. Since $\Q$ is countable, an injection $g:\Q \to \N$
+    exists. Consider the function $h:\R \to \N$ defined by
+    \begin{align*}
+      h(x) =
+      \begin{cases}
+        2f(x) &x \not\in\Q\\
+        2g(x) + 1 &x \in \Q.
+      \end{cases}
+    \end{align*}
+    We claim that $h:\R \to \N$ is an injection. Note that
+    \begin{enumerate}[label=(\roman*)]
+    \item $h(\R\setminus\Q) \cap h(\Q) = \emptyset$
+    \item The doubling function $x \mapsto 2x$ and the double-plus-one function $x \mapsto 2x + 1$
+      are both injections $\R \to \R$ when their domain is $\R$.
+    \item The composition of two injections is an injection.
+    \end{enumerate}
+    Suppose $h(x_1) = h(x_2)$. Then either $x_1, x_2 \in \Q$ or $x_1, x_2 \in \R\setminus\Q$ by
+    (i). In both cases we have $x_1 = x_2$ by (ii) and (iii). Therefore $h:\R \to \N$ is an
+    injection, hence $\R$ is countable.
+
+    But $\R$ is not countable. Therefore no such injection $f$ exists, i.e. $\R\setminus\Q$ is
     uncountable.
   \end{proof}
   \begin{mdframed}
