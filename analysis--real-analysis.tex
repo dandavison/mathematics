@@ -1,3 +1,6 @@
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-axioms-for-real-numbers.png}
+\end{mdframed}
 \section{Definitions}
 
 \subsection{Limit point}
@@ -53,7 +56,8 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \section{Theorems}
 
-\begin{theorem*}[Approximation property of supremum]
+\subsection{Approximation property of supremum}
+\begin{theorem*}
   Let $S \subset \R$ be non-empty and bounded above (so $\sup S$ exists). For all $\delta > 0$,
   there exists $s_\delta \in S$ such that
   \begin{align*}
@@ -73,7 +77,30 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   \end{proof}
 \end{theorem*}
 
-\begin{theorem*}[Existence of $\sqrt 2$]
+\subsection{Well-ordered property of $\N$}
+\begin{theorem*}\hspace{0pt}
+  Every nonempty subset of $\N$ has a minimum.
+\end{theorem*}
+
+\begin{remark*}
+  Similarly:
+  \begin{enumerate}
+    \item Every nonsubset of $\Z$ that is bounded below has a minimum.
+    \item Every nonsubset of $\Z$ that is bounded above has a maximum.
+  \end{enumerate}
+\end{remark*}
+
+\begin{proof}
+  This can be proved by considering $\N$ as a subset of $\R$, using completeness of $\R$ and
+  applying the Approximation Property.
+\end{proof}
+
+\begin{intuition*}
+  Because of the ``gappiness'' of $\N$ and $\Z$, bounded subsets must contain their suprema/infima.
+\end{intuition*}
+
+\subsection{Existence of $\sqrt 2$}
+\begin{theorem*}
   There exists a unique $a \in \R$ such that $a^2 = 2$.
 \end{theorem*}
 
@@ -108,7 +135,9 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   Finally to show that $a$ is unique, suppose that there exists $b \in \R$ with $b^2 = 2$. Then
   $0 = a^2 - b^2 = (a + b)(a - b)$ therefore $a = b$.
 \end{proof}
-\begin{theorem*}[Connection between sequences and functions]
+
+\subsection{Connection between sequences and functions}
+\begin{theorem*}
   The following two statements are equivalent:
   \begin{enumerate}
   \item $f(x) \to L$ as $x \to a$.
@@ -119,7 +148,8 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   \end{enumerate}
 \end{theorem*}
 
-\begin{theorem*}[Limit of product is product of limits]\label{limit-of-product}~\\
+\subsection{Limit of product is product of limits}
+\begin{theorem*}\label{limit-of-product}~\\
   Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g$. Then
   $\limxa f(x)g(x) = L_fL_g$.
 \end{theorem*}
@@ -139,7 +169,8 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   therefore $|(f(x) - L_f)(g(x) - L_g) - 0| < \epsilon$ as required.
 \end{proof}
 
-\begin{theorem*}[Limit of quotient is quotient of limits]~\\
+\subsection{Limit of quotient is quotient of limits}
+\begin{theorem*}~\\
   Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g \neq 0$. Then
   \begin{align*}
     \limxa \frac{f(x)}{g(x)} = \frac{L_f}{L_g}.
@@ -167,7 +198,8 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \end{proof}
 
 
-\begin{theorem*}[Intermediate value theorem]
+\subsection{Intermediate value theorem}
+\begin{theorem*}
   Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous. Let $u$ lie strictly between
   $f(a)$ and $f(b)$. Then there exists $c \in (a, b)$ such that $f(c) = u$.
 \end{theorem*}
@@ -179,13 +211,16 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   noting whether they are in $S$ and the $\epsilon-\delta$ continuity criterion.)
 \end{proof}
 
-\begin{theorem*}[Mean-value theorem]
+
+\subsection{Mean-value theorem}
+\begin{theorem*}
   Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous on $[a, b]$ and differentiable
   on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x) = \frac{f(b) - f(a)}{(b - a)}$.
 \end{theorem*}
 
 
-\begin{theorem*}[Differentiability implies continuity]
+\subsection{Differentiability implies continuity}
+\begin{theorem*}
   Let $f:\R\to\R$ be differentiable. Then $f$ is continuous.
 \end{theorem*}
 
