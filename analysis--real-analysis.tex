@@ -72,9 +72,15 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
     $S$ and $\sup S - \delta < \sup S$, a contradiction.
   \end{proof}
 \end{theorem*}
+
 \begin{theorem*}[Existence of $\sqrt 2$]
   There exists a unique $a \in \R$ such that $a^2 = 2$.
 \end{theorem*}
+
+\begin{remark*}
+  The only thing that ties the proof to the reals is that it relies on completeness ($\sup$
+  exists). We know that $\sqrt 2 \not\in \Q$, therefore $\Q$ is not complete.
+\end{remark*}
 
 \begin{proof}
   Let $S = \{s \in \R ~|~ s^2 < 2\}$. Since $S$ is bounded above, $a := \sup S$ exists. We show
@@ -269,9 +275,9 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   \end{enumerate}~\\
 \item
 
-\begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-1-5.png}
-\end{mdframed}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-1-5.png}
+  \end{mdframed}
 \end{enumerate}
 
 \newpage
@@ -410,7 +416,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
     lower bound for $S + T$, a contradiction. Therefore $a = \inf S + T$ as claimed.
   \end{proof}
 
-\newpage
+  \newpage
 \item~\\
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-6.png}
@@ -418,14 +424,50 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
   \begin{proof}
     Let $S = \{x \in \R ~|~ x^3 < 2\}$. Since $S$ is bounded above, $\sup S$ exists. Let
-    $a = \sup S$. We prove that $a^3 = 2$ by trichotomy.
+    $a = \sup S$. By trichotomy it suffices to show that $a^3 < 2$ and $a^3 > 2$ lead to
+    contradictions.
 
-    % First suppose $a^3 < 2$. Let $\delta = 2 - a^3$. By {\bf 4.9} (Approximation Property of the
-    % supremum) there exists $x \in S$ such that $a - \delta/2 < x < a$.
-    % \red{TODO}
+    First suppose $a^3 < 2$. We seek $h > 0$ such that $(a + h)^3 < 2$ since then $a + h \in S$,
+    which would contradict the definition $a := \sup S$. Note that
+    \begin{align*}
+      (a + h)^3 &= a^3 + 3a^2h + 3ah^2 + h^3 - 2\\
+                &< a^3 + 7a^2h - 2 ~~~~~~~~~~~~~~~~~~~~~~~~\text{if $h < a$}\\
+                &< 0              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{if $h < \frac{2 - a^3}{7a^2}$},
+    \end{align*}
+    therefore if we take $h < \min\(a, \frac{2 - a^3}{7a^2}\)$ then we have the desired
+    contradiction.
 
-    Alternatively suppose that $a^3 > 2$. By the Approximation Property
-  \end{proof}\end{enumerate}
+    Alternatively suppose that $a^3 > 2$. By the Approximation Property for all $0 < h < a$ we can
+    find $s \in S$ such that $a - h < s$, therefore $(a - h)^3 < s^3$. We seek an $h$ for which
+    $(a - h)^3 > 2$ since then we would have $s^3 > 2$ which would contradict the definition of
+    $S$. Note that
+    \begin{align*}
+      (a - h)^3 - 2 &= a^3 - 3a^2h + 3ah^2 - h^3 - 2\\
+                    &> 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{if $3ah^2 > 3a^2h + h^3$}.
+    \end{align*}
+    So we require $3ah > 3a^2 + h^2 \iff 3a^2 - 3ah + h^2 < 0$.
+
+    \red{incomplete}
+  \end{proof}
+
+  \newpage
+\item~\\
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-a.png}
+  \end{mdframed}
+  \begin{proof}
+    $\R$ is uncountable. Since $\Q$ is countable, the irrationals $\R \setminus \Q$ must be
+    uncountable.
+  \end{proof}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-b.png}
+  \end{mdframed}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-c.png}
+  \end{mdframed}
+
+\end{enumerate}
+
 
 \newpage
 \section{Oxford - M2 - Continuity and Differentiability}
