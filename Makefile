@@ -11,6 +11,10 @@ all: *.pdf
 %.pdf: %.tex
 	$(MAKE_PDF) $*
 	osascript -e 'tell application "Preview" to activate'
+	osascript -e 'tell application "System Events" to key down command'
+	osascript -e 'tell application "System Events" to key down "+"'
+	osascript -e 'tell application "System Events" to key up "+"'
+	osascript -e 'tell application "System Events" to key up command'
 	osascript -e 'tell application "Emacs" to activate'
 
 
