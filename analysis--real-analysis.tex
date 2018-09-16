@@ -1,60 +1,11 @@
+\section{Sequences and Series}
+
+Notes from Oxford - M1 - Sequences and Series.
+
+\subsection{Axioms for the real numbers}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-axioms-for-real-numbers.png}
 \end{mdframed}
-\section{Definitions}
-
-\subsection{Limit point}
-Let $E \subset \R$. A point $p \in \R$ is a limit point of $E$ iff for all $\delta > 0$ there
-exists $x \in E$ such that $0 < |x - p| < \delta$.
-
-\begin{intuition*}
-  A deleted ball, of arbitrarily small radius, placed over $p$, will capture at least one point of
-  $E$.
-\end{intuition*}
-
-\subsection{Limit, Convergence}
-
-\subsubsection{Limit of a sequence $(x_n)$}
-$\LimEq{x_n}{L}{n}{\infty}$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
-$n > m \implies |x_n - L| < \epsilon$. The sequence is then said to \textit{converge} to $L$.
-
-\subsubsection{Limit of a function $f:\R\to\R$}
-
-$\LimEq{f(x)}{L}{x}{a}$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
-$0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
-
-Equivalent notation: $f(x) \to L$ as $x \to a$
-
-\begin{remark*}\hspace{0pt}
-  \begin{enumerate}
-  \item The value of $f$ at $a$ is irrelevant ($f$ need not be defined at $a$).
-  \item $f$ must tend to $L$ from both sides.
-  \end{enumerate}
-\end{remark*}
-
-\subsection{Continuity of a function $f$}
-$f$ is continuous at $a$ means: $\LimEq{f(x)}{f(a)}{x}{a}$.
-
-Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$
-there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
-
-\subsection{Uniform convergence and uniform continuity}
-
-\subsubsection{Uniform convergence}
-A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
-$x$ in the input set the sequence $\{f_n(x)\}_{n\geq 0}$ has limit $f(x)$.
-
-They \textit{converge uniformly} to $f$ iff the same $m$ works for all input
-values.
-
-\subsubsection{Uniform continuity}
-A function $f$ is uniformly continuous iff the same $\delta$ works for all $x_0$.
-
-A function $f$ is uniformly continuous iff for all $\epsilon$, no matter how
-small, a $\delta$ exists such that for all $x_0 \in U$, if $x$ is within
-$\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
-
-\section{Theorems}
 
 \subsection{Approximation property of supremum}
 \begin{theorem*}
@@ -198,51 +149,8 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \end{proof}
 
 
-\subsection{Intermediate value theorem}
-\begin{theorem*}
-  Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous. Let $u$ lie strictly between
-  $f(a)$ and $f(b)$. Then there exists $c \in (a, b)$ such that $f(c) = u$.
-\end{theorem*}
 
-\begin{proof}
-  Define $S := \{x \in [a, b] ~|~ f(x) < u\}$. Since $a \in S$, $S$ is non-empty. By completeness
-  of reals $c := \sup S$ exists. The theorem now follows from continuity of $f$ at $c$. (Fix
-  $\epsilon > 0$ and consider points $a^* \in (c - \delta, c)$ and $a^{**} \in (c, c + \delta)$,
-  noting whether they are in $S$ and the $\epsilon-\delta$ continuity criterion.)
-\end{proof}
-
-
-\subsection{Mean-value theorem}
-\begin{theorem*}
-  Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous on $[a, b]$ and differentiable
-  on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x) = \frac{f(b) - f(a)}{(b - a)}$.
-\end{theorem*}
-
-
-\subsection{Differentiability implies continuity}
-\begin{theorem*}
-  Let $f:\R\to\R$ be differentiable. Then $f$ is continuous.
-\end{theorem*}
-
-\begin{proof}~\\
-  Let $a \in \R$. The claim is that $\limxa f(x) - f(a) = 0$. Since $f$ is differentiable,
-  \begin{align*}
-    f'(a) &= \lim_{x \to a} \frac{f(x) - f(a)}{x - a}
-  \end{align*}
-  exists. Therefore by \eqref{limit-of-product}
-  \begin{align*}
-    \lim_{x \to a} f(x) - f(a) = \lim_{x \to a} (x - a)\frac{f(x) - f(a)}{x - a} = 0\cdot f'(a) = 0.
-  \end{align*}
-\end{proof}
-
-\begin{remark*}
-  Intuitively it seems that differentiability implies continuity because, for the derivative to
-  exist, the numerator $f(x) - f(a)$ must get small as $x\to a$, as the denominator $x - a$ does.
-\end{remark*}
-
-
-\newpage
-\section{Oxford - M1 - Sequences and Series}
+\section{Exercises}
 
 \subsection{Sheet 1}
 
@@ -505,7 +413,113 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 
 \newpage
-\section{Oxford - M2 - Continuity and Differentiability}
+
+\section{Continuity and Differentiability}
+Note from Oxford - M2 - Continuity and Differentiability.
+
+\subsection{Limit point}
+\begin{definition*}
+Let $E \subset \R$. A point $p \in \R$ is a limit point of $E$ iff for all $\delta > 0$ there
+exists $x \in E$ such that $0 < |x - p| < \delta$.
+\end{definition*}
+\begin{intuition*}
+  A deleted ball, of arbitrarily small radius, placed over $p$, will capture at least one point of
+  $E$.
+\end{intuition*}
+
+\subsection{Limit, Convergence}
+
+\begin{definition*}[Limit of a sequence $(x_n)$]~\\
+$\LimEq{x_n}{L}{n}{\infty}$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
+$n > m \implies |x_n - L| < \epsilon$. The sequence is then said to \textit{converge} to $L$.
+\end{definition*}
+
+\begin{definition*}[Limit of a function $f:\R\to\R$]~\\
+$\LimEq{f(x)}{L}{x}{a}$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
+$0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
+\end{definition*}
+
+Equivalent notation: $f(x) \to L$ as $x \to a$
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item The value of $f$ at $a$ is irrelevant ($f$ need not be defined at $a$).
+  \item $f$ must tend to $L$ from both sides.
+  \end{enumerate}
+\end{remark*}
+
+\subsection{Continuity of a function $f$}
+
+\begin{definition*}
+$f$ is continuous at $a$ if $\LimEq{f(x)}{f(a)}{x}{a}$.
+\end{definition*}
+
+Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$
+there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+
+\subsection{Uniform convergence and uniform continuity}
+
+\begin{definition*}[Uniform convergence]
+A sequence of functions $\{f_n\}_{n\geq 0}$ has a limit $f$ iff for every point
+$x$ in the input set the sequence $\{f_n(x)\}_{n\geq 0}$ has limit $f(x)$.
+
+They \textit{converge uniformly} to $f$ iff the same $m$ works for all input
+values.
+\end{definition*}
+
+\begin{definition*}[Uniform continuity]
+A function $f$ is uniformly continuous iff the same $\delta$ works for all $x_0$.
+
+A function $f$ is uniformly continuous iff for all $\epsilon$, no matter how
+small, a $\delta$ exists such that for all $x_0 \in U$, if $x$ is within
+$\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
+\end{definition*}
+
+\subsection{Intermediate value theorem}
+\begin{theorem*}
+  Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous. Let $u$ lie strictly between
+  $f(a)$ and $f(b)$. Then there exists $c \in (a, b)$ such that $f(c) = u$.
+\end{theorem*}
+
+\begin{proof}
+  Define $S := \{x \in [a, b] ~|~ f(x) < u\}$. Since $a \in S$, $S$ is non-empty. By completeness
+  of reals $c := \sup S$ exists. The theorem now follows from continuity of $f$ at $c$. (Fix
+  $\epsilon > 0$ and consider points $a^* \in (c - \delta, c)$ and $a^{**} \in (c, c + \delta)$,
+  noting whether they are in $S$ and the $\epsilon-\delta$ continuity criterion.)
+\end{proof}
+
+
+\subsection{Mean-value theorem}
+\begin{theorem*}
+  Let $a, b \in \R$ with $b > a$, and $f:[a,b] \to \R$ be continuous on $[a, b]$ and differentiable
+  on $(a, b)$. Then there exists $x \in (a, b)$ such that $f'(x) = \frac{f(b) - f(a)}{(b - a)}$.
+\end{theorem*}
+
+
+\subsection{Differentiability implies continuity}
+\begin{theorem*}
+  Let $f:\R\to\R$ be differentiable. Then $f$ is continuous.
+\end{theorem*}
+
+\begin{proof}~\\
+  Let $a \in \R$. The claim is that $\limxa f(x) - f(a) = 0$. Since $f$ is differentiable,
+  \begin{align*}
+    f'(a) &= \lim_{x \to a} \frac{f(x) - f(a)}{x - a}
+  \end{align*}
+  exists. Therefore by \eqref{limit-of-product}
+  \begin{align*}
+    \lim_{x \to a} f(x) - f(a) = \lim_{x \to a} (x - a)\frac{f(x) - f(a)}{x - a} = 0\cdot f'(a) = 0.
+  \end{align*}
+\end{proof}
+
+\begin{remark*}
+  Intuitively it seems that differentiability implies continuity because, for the derivative to
+  exist, the numerator $f(x) - f(a)$ must get small as $x\to a$, as the denominator $x - a$ does.
+\end{remark*}
+
+
+\newpage
+\section{Exercises}
 
 \subsection{Limits of functions - Examples}
 
@@ -591,14 +605,16 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
 
 
 \newpage
-\section{Oxford - A2 - Metric Spaces}
+\section{Metric Spaces}
 
-\begin{definition}[Metric space]~\\
+\subsection{Metric space}
+\begin{definition}
   Let $X$ be a set. Suppose $d:X \times X \to \R$ satisfies positivity, symmetry and the triangle
   equality. Then $d$ is a metric and $(X, d)$ is a metric space.
 \end{definition}
 
-\begin{definition}[Open ball]~\\
+\subsection{Open ball}
+\begin{definition}
   Let $(X, d)$ be a metric space, $x \in X$ and $\delta > 0$. Then
   $B(x, \delta) := \{x \in X ~|~ d(x, x) < \delta\}$ iss an open ball of radius $\delta$ centred at
   $x$.
@@ -608,14 +624,16 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   Also closed ball, $\leq$. E.g. singleton set.
 \end{remark*}
 
-\begin{lemma}[Ball-based continuity criterion]~\\
+\subsection{Ball-based continuity criterion}
+\begin{lemma}
   $f$ is continuous at $x$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that
   $f\(B(x, \delta)\) \subseteq B(f(x), \epsilon))$.
 
   Equivalently, $B(x, \delta) \subseteq f^\1\(B(f(x), \epsilon)\)$.
 \end{lemma}
 
-\begin{definition}[Neighbourhood]~\\
+\subsection{Neighbourhood}
+\begin{definition}
   Let $(X, d)$ be a metric space. $N \subseteq X$ is a neighbourhood of $x \in X$ iff there exists
   $\delta > 0$ such that $B(x, \delta) \subseteq N$.
 \end{definition}
@@ -624,14 +642,16 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   $N$ is a neighbourhood of $x$ if a ball can be placed at $x$ without poking outside $N$.
 \end{remark*}
 
-\begin{definition}[Open and closed subsets of a metric space]~\\
+\subsection{Open and closed subsets of a metric space}
+\begin{definition}
   Let $(X, d)$ be a metric space. Then $U \subseteq X$ is open iff it is a neighbourhood of all of
   its elements.
 
   $V \seq X$ is closed iff its complement in $X$ is open.
 \end{definition}
 
-\begin{definition}[Topology on a metric space]~\\
+\subsection{Topology on a metric space}
+\begin{definition}
   Let $(X, d)$ be a metric space. The collection $\mc T$ of all open sets in the metric space is
   called the topology of $X$.
 \end{definition}
@@ -644,7 +664,8 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   so they apply to metric spaces only.
 \end{remark*}
 
-\begin{theorem}[Open set-based continuity criterion]~\\
+\subsection{Open set-based continuity criterion}
+\begin{theorem}
   Let $X$ and $Y$ be metric spaces and let $f:X \to Y$. Then
 
   $f$ is continuous at $x$ iff for every neighbourhood $N \subseteq Y$ of $f(x)$, the preimage
@@ -673,7 +694,8 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   Let $f$ be continuous on $X$. Now every open set $U$ of $Y$ contains a ball around some point $y$...
 \end{proof}
 
-\begin{definition}[Topology on a set, topological space]
+\subsection{Topology on a set, topological space}
+\begin{definition}
   A topology on a set $X$ is a collection $\mc T$ of subsets of $X$, which are called the open
   sets. They must satisfy
   \begin{enumerate}
@@ -690,7 +712,8 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   $f:X\to Y$ closed iff $f^\1(V)$ is closed for all closed sets $V \seq Y$.
 \end{remark*}
 
-\begin{definition}[Limit point]~\\
+\subsection{Limit point}
+\begin{definition}
   Let $(X, d)$ be a metric space and $Z \seq X$ be any subset.
 
   $x \in X$ is a limit point of $Z$ if for all $\delta > 0$ the deleted open ball
@@ -702,7 +725,7 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   $Z_1 \seq Z_2 \implies Z_1' \seq Z_2'$.
 \end{definition}
 
-\begin{intuition*}[Limit point]~\\
+\begin{intuition*}
   $x \notin Z$ is a limit point of $Z$ iff it ``touches'' $Z$.
 
   $z \in Z$ is a limit point of $Z$ if it ``lies in a contiguous region of $Z$''
@@ -747,7 +770,7 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
 \end{enumerate}
 
 
-
+\subsection{Continuity of a linear map}
 \begin{theorem}
   Let $f:V \to W$ be a linear map between normed vector spaces. Then $f$ is continuous if and only
   if $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded.
@@ -784,6 +807,7 @@ Let $p, q \in (0, \infty)$ with $p \notin \Q$ and $q \in \Q$.
   as required.
 \end{proof}
 
+\subsection{Norm of linear map is bounded}
 \begin{theorem}
   $\{\norm{f(x)} : \norm{x} \leq 1\}$ is bounded for linear map $f$, under the Euclidean norm
   $\norm{}_2$.
