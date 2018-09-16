@@ -15,7 +15,7 @@ Notes from Oxford - M1 - Sequences and Series.
     \sup S - \delta < s_\delta \leq \sup S.
   \end{align*}
   \begin{intuition*}
-    The supremum is either a member of $S$ or it is ``touching'' $S$ so that there is no gap.
+    The supremum is either a member of $S$ or it is ``touching'' an element of $S$ with ``no gap''.
   \end{intuition*}
   \begin{proof}
     If $\sup S \in S$ then we can take $s_\delta = \sup S$ for all $\delta$ and we are done.
@@ -27,6 +27,24 @@ Notes from Oxford - M1 - Sequences and Series.
     $S$ and $\sup S - \delta < \sup S$, a contradiction.
   \end{proof}
 \end{theorem*}
+
+\subsection{Archimedean Property of $\N$}
+\begin{theorem*}
+  \begin{enumerate}
+  \item $\N$ has no upper bound.
+  \item For all $\epsilon > 0$ there exists $n \in \N$ such that $\frac{1}{n} < \epsilon$.
+  \end{enumerate}
+\end{theorem*}
+\begin{proof}\hspace{0pt}
+  \begin{enumerate}
+  \item Suppose $\N$ has an upper bound. Then $\sup \N$ exists. By the Approximation Property
+    there exists $n \in \N$ such that $\sup \N - \frac{1}{2} < n \leq \sup \N$. But then
+    $n + 1 \in \N$ and $n + 1 > \sup N$, a contradiction. Therefore $\sup \N$ does not exist,
+    therefore $\N$ has no upper bound.
+  \item Since $\N$ has no upper bound, there exists $n \in \N$ such that $n > 1/\epsilon$,
+    i.e. $1/n < \epsilon$.
+  \end{enumerate}
+\end{proof}
 
 \subsection{Well-ordered property of $\N$}
 \begin{theorem*}\hspace{0pt}
@@ -432,9 +450,17 @@ Notes from Oxford - M1 - Sequences and Series.
     But $\R$ is not countable. Therefore no such injection $f$ exists, i.e. $\R\setminus\Q$ is
     uncountable.
   \end{proof}
+
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-b.png}
   \end{mdframed}
+
+  \begin{proof}
+    Let $a, b$ be real numbers with $a < b$. Let $b - a > 0$. Since $\N$ is not bounded above
+    (Archimedean property) there exists $n \in \N$ such that $n > 1/(b - a)$, therefore
+    $1/n < b - a$.
+  \end{proof}
+
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-c.png}
   \end{mdframed}
