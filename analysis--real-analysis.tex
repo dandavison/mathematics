@@ -315,14 +315,14 @@ Notes from Oxford - M1 - Sequences and Series.
       \min S ~&\text{does not exist since $\inf S \not\in S$}\\
       \inf S &= -1
     \end{align*}
-  \item $\{3^n ~|~ n \in \Z\}$
+  \item $S = \{3^n ~|~ n \in \Z\}$
     \begin{align*}
       \sup S ~&\text{does not exist, $S$ has no upper bound}\\
       \max S ~&\text{does not exist, $S$ has no upper bound}\\
       \min S ~&\text{does not exist, $S$ has no lower bound}\\
       \inf S &= 0
     \end{align*}
-  \item $\cup_{n=1}^\infty [\frac{1}{2n}, \frac{1}{2n - 1}]$
+  \item $S = \cup_{n=1}^\infty [\frac{1}{2n}, \frac{1}{2n - 1}]$
     \begin{align*}
       \sup S ~&= 1\\
       \max S ~&= 1\\
@@ -331,7 +331,7 @@ Notes from Oxford - M1 - Sequences and Series.
     \end{align*}
   \end{enumerate}
 
-\item~\\
+\item~
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-5-a.png}
   \end{mdframed}
@@ -378,7 +378,7 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{proof}
 
   \newpage
-\item~\\
+\item~
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-6.png}
   \end{mdframed}
@@ -408,11 +408,11 @@ Notes from Oxford - M1 - Sequences and Series.
     \end{align*}
     So we require $3ah > 3a^2 + h^2 \iff 3a^2 - 3ah + h^2 < 0$.
 
-    \red{incomplete}
+    \red{Incomplete}
   \end{proof}
 
   \newpage
-\item~\\
+\item~
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-a.png}
   \end{mdframed}
@@ -432,23 +432,23 @@ Notes from Oxford - M1 - Sequences and Series.
     \begin{align*}
       h(x) =
       \begin{cases}
-        2f(x) &x \not\in\Q\\
+        2f(x) &x \in \R \setminus \Q\\
         2g(x) + 1 &x \in \Q.
       \end{cases}
     \end{align*}
     We claim that $h:\R \to \N$ is an injection. Note that
     \begin{enumerate}[label=(\roman*)]
     \item $h(\R\setminus\Q) \cap h(\Q) = \emptyset$
-    \item The doubling function $x \mapsto 2x$ and the double-plus-one function $x \mapsto 2x + 1$
-      are both injections $\R \to \R$ when their domain is $\R$.
+    \item The $\R \to \R$ functions defined by $x \mapsto 2x$ and $x \mapsto 2x + 1$ are both
+      injections.
     \item The composition of two injections is an injection.
     \end{enumerate}
     Suppose $h(x_1) = h(x_2)$. Then either $x_1, x_2 \in \Q$ or $x_1, x_2 \in \R\setminus\Q$ by
     (i). In both cases we have $x_1 = x_2$ by (ii) and (iii). Therefore $h:\R \to \N$ is an
     injection, hence $\R$ is countable.
 
-    But $\R$ is not countable. Therefore no such injection $f$ exists, i.e. $\R\setminus\Q$ is
-    uncountable.
+    But $\R$ is not countable, so we have a contradiction. Therefore no such injection $f$ exists,
+    i.e. $\R\setminus\Q$ is uncountable.
   \end{proof}
 
   \begin{mdframed}
@@ -456,15 +456,62 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{mdframed}
 
   \begin{proof}
-    Let $a, b$ be real numbers with $a < b$. Let $b - a > 0$. Since $\N$ is not bounded above
+    Let $a, b$ be real numbers with $a < b$. Then $b - a > 0$. Since $\N$ is not bounded above
     (Archimedean property) there exists $n \in \N$ such that $n > 1/(b - a)$, therefore
     $1/n < b - a$.
+
+    Suppose $a$ is rational. Then $a + 1/n \in (a, b)$ is rational. Similarly, if $b$ is rational
+    then $b - 1/n \in (a, b)$ is rational.
+
+    Finally, suppose neither $a$ nor $b$ are rational. \red{How to prove this case?}
   \end{proof}
 
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-7-c.png}
   \end{mdframed}
 
+  Let $a, b$ be real numbers with $a < b$.
+
+\newpage
+\item~
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-8-a.png}
+  \end{mdframed}
+
+  \begin{proof}
+    The cardinality of the set of cubic polynomials with integer coefficients is equal to the
+    cardinality of the set
+    $A := \{(a, b, c, d) ~|~ a, b, c, d \in \Z, a \neq 0\} = \(\Z\setminus\{0\}\) \times \Z^3$.
+
+    Let $f:(\Z\setminus\{0\} \times \Z^3) \to \N$ be given by $f(a, b, c, d) = 2^a3^b5^c7^d$. Then
+    $f$ is an injection by uniqueness of prime factorization of the integers. Therefore $A$ is
+    countable.
+  \end{proof}
+
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-8-b.png}
+  \end{mdframed}
+
+  \begin{proof}
+    Note that a cubic polynomial has at most 3 distinct roots. Let $U$ be the set of complex
+    numbers that are roots of some integer-coefficient cubic polynomial. For each such polynomial,
+    assign a distinct label from $\{0, 1, 2\}$ to each of the distinct roots. Then the cardinality
+    of $U$ is equal(*) to the cardinality of $B := \Z\setminus\{0\} \times \Z^3 \times \{0, 1,
+    2\}$. The set $B$ is countable since $f:T \to \N$ given by
+    $f(a, b, c, d, e) = 2^a3^b5^c7^d11^e$ is an injection. (\red{* How to properly deal with the fact
+      that $U$ is smaller than $B$ due to some polynomials having fewer than 3 distinct roots?})
+  \end{proof}
+
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-8-c.png}
+  \end{mdframed}
+
+  \begin{proof}
+    (This differs because whereas previously we were restricted to cubics, now the polynomials can
+    be of any degree $n \in \N$.)
+
+    The cardinality of the set of algebraic numbers is \red{Incomplete}.
+  \end{proof}
 \end{enumerate}
 
 
