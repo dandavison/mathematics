@@ -1,3 +1,5 @@
 .build/
 *.pdf
+!analysis--oxford-M2-real-analysis-I.pdf
+!analysis--oxford-M2-real-analysis-II.pdf
 _region_.tex
