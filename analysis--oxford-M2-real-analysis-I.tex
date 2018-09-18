@@ -97,6 +97,24 @@
   \includegraphics[width=400pt]{img/oxford-M2-analysis-I-1-5.png}
 \end{mdframed}
 
+\begin{definition*}
+  Let $a, b \in \R$ with $a \neq b$.
+  \begin{align*}
+    \max(a, b) =
+    \begin{cases}
+      b ~~~~~~~&\text{if $a < b$}\\
+      a ~~~~~~~&\text{if $b < a$}.
+    \end{cases}
+  \end{align*}
+  This is well-defined (a valid function) by trichotomy of order properties.
+\end{definition*}
+
+\begin{theorem*}
+  \begin{align*}
+    \max(a, b) = \frac{1}{2}(a + b) + \frac{1}{2}|a - b|.
+  \end{align*}
+\end{theorem*}
+
 \newpage
 \section{Sheet 2}
 
@@ -298,13 +316,18 @@
 
 \begin{proof}
   Let $a, b$ be real numbers with $a < b$. Then $b - a > 0$. Since $\N$ is not bounded above
-  (Archimedean property) there exists $n \in \N$ such that $n > 1/(b - a)$, therefore
-  $1/n < b - a$.
+  (Archimedean property) there exists $n \in \N$ such that $n > \frac{1}{b - a}$, therefore
+  $\frac{1}{n} < b - a$.
 
-  Suppose $a$ is rational. Then $a + 1/n \in (a, b)$ is rational. Similarly, if $b$ is rational
-  then $b - 1/n \in (a, b)$ is rational.
+  Let $S = \{\frac{m}{n} ~|~ \frac{m}{n} < b\}$. Note that $\frac{1}{n} \in S$. Therefore $S$ is
+  non-empty, bounded above, and finite, hence $\max S$ exists.
 
-  Finally, suppose neither $a$ nor $b$ are rational. \red{How to prove this case?}
+  Let $\frac{M}{n} = \max S$. We have $\frac{M}{n} < b$. Recall that $\frac{1}{n} < b - a$. Suppose
+  for a contradiction that $\frac{M}{n} \leq a$. Then
+  $\frac{M}{n} + \frac{1}{n} = \frac{M + 1}{n} < b - a + a = b$. But then $\frac{M}{n} \neq \max S$
+  since $\frac{M + 1}{n} > \frac{M}{n}$ and $\frac{M + 1}{n} \in S$. This is a contradiction,
+  therefore $\frac{M}{n} \in (a, b)$.
+
 \end{proof}
 
 \begin{mdframed}
