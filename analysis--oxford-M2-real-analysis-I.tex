@@ -310,32 +310,41 @@
   i.e. $\R\setminus\Q$ is uncountable.
 \end{proof}
 
+\begin{lemma*}
+  Let $a, b$ be real numbers with $a < b$. Let $\delta \in \R$ with $0 < \delta < b - a$. Then
+  there exists $m \in \N$ such that $m\delta \in (a, b)$.
+\end{lemma*}
+
+\begin{proof}
+  Let $m \in \N$, $\delta \in \R$ with $0 < \delta < b - a$, and define
+  $S = \{m\delta ~|~ m\delta < b\}$. Note that $\delta \in S$. Therefore $S$ is non-empty, bounded
+  above, and finite, hence $\max S$ exists.
+
+  Let $M\delta = \max S$. We have $M\delta < b$. Suppose for a contradiction that $M\delta \leq
+  a$. Recall that $\delta < b - a$. Summing these inequalities gives $(M + 1)\delta < b$. But then
+  $M\delta \neq \max S$ since $(M + 1)\delta > M\delta$ and $(M + 1)\delta \in S$. This is a
+  contradiction, therefore $M\delta \in (a, b)$.
+\end{proof}
+
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-M2-analysis-I-2-7-b.png}
 \end{mdframed}
 
 \begin{proof}
-  Let $a, b$ be real numbers with $a < b$. Then $b - a > 0$. Since $\N$ is not bounded above
-  (Archimedean property) there exists $n \in \N$ such that $n > \frac{1}{b - a}$, therefore
-  $\frac{1}{n} < b - a$.
-
-  Let $S = \{\frac{m}{n} ~|~ \frac{m}{n} < b\}$. Note that $\frac{1}{n} \in S$. Therefore $S$ is
-  non-empty, bounded above, and finite, hence $\max S$ exists.
-
-  Let $\frac{M}{n} = \max S$. We have $\frac{M}{n} < b$. Recall that $\frac{1}{n} < b - a$. Suppose
-  for a contradiction that $\frac{M}{n} \leq a$. Then
-  $\frac{M}{n} + \frac{1}{n} = \frac{M + 1}{n} < b - a + a = b$. But then $\frac{M}{n} \neq \max S$
-  since $\frac{M + 1}{n} > \frac{M}{n}$ and $\frac{M + 1}{n} \in S$. This is a contradiction,
-  therefore $\frac{M}{n} \in (a, b)$.
-
+  Let $a, b \in \R$ with $a < b$. Then $b - a > 0$. Since $\N$ is not bounded above (Archimedean
+  property) there exists $n \in \N$ such that $n > 1/(b - a)$, therefore $1/n < b - a$. Therefore,
+  by the lemma with $\delta = 1/n$, there exists $m \in \N$ such that $m/n \in (a, b) \cap \Q$.
 \end{proof}
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-M2-analysis-I-2-7-c.png}
 \end{mdframed}
 
-Let $a, b$ be real numbers with $a < b$.
-
+\begin{proof}
+  Let $a, b \in \R$ with $a < b$. By the Archimedean property of $\N$, there exists $n \in \N$ be
+  such that $1/n < (b - a)/\pi$, therefore $\pi/n < (b - a)$. Therefore, by the lemma with
+  $\delta = \pi/n$, there exists $m \in \N$ such that $m\pi/n \in (a, b) \cap (\R\setminus\Q)$.
+\end{proof}
 \newpage
 \subsection{}
 \begin{mdframed}
@@ -375,6 +384,79 @@ Let $a, b$ be real numbers with $a < b$.
   be of any degree $n \in \N$.)
 
   The cardinality of the set of algebraic numbers is \red{Incomplete}.
+\end{proof}
+\newpage
+\section{Sheet 3}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-1.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-2.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-3.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-5.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-6.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-7.png}
+\end{mdframed}
+
+
+
+\newpage
+\section{Misc}
+\newpage
+\begin{mdframed}
+  (Question from Alex Coward)\\
+
+  Define $f:\R\to\R$ by
+  \begin{align*}
+    f(x) =
+    \begin{cases}
+      0 ~~~~~~~~~~  & x \in (\R\setminus\Q)\cup\{0\}\\
+     \frac{1}{q}    & x = \frac{p}{q} \in \Q, \gcd(p, q) = 1, q > 0.
+    \end{cases}
+  \end{align*}
+  Where is $f$ continuous?
+\end{mdframed}
+
+\begin{claim*}
+  $f$ is continuous at $0$, i.e. $\lim_{x \to 0}f(x) = 0$.
+\end{claim*}
+
+\begin{proof}
+  Fix $\epsilon > 0$ and take $\delta = \epsilon$. We claim that
+  $0 < |x| < \delta \implies |f(x)| < \epsilon$.
+
+  At irrational values $0 < |x| < \delta$, we have $|f(x)| = 0 < \epsilon$.
+
+  At rational values $0 < |x| < \delta$, we have $x = \frac{p}{q} \in \Q, \gcd(p, q) = 1$ for some
+  $p \in \Z, q \in \N$ with $p, q \neq 0$. Therefore
+  \begin{align*}
+    |f(x)| = \Big|\frac{1}{q}\Big| \leq \Big|\frac{p}{q}\Big| = |x| < \delta = \epsilon.
+  \end{align*}
 \end{proof}
 
 \end{document}
