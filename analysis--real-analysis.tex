@@ -51,18 +51,21 @@ Notes from Oxford - M1 - Sequences and Series.
   Every nonempty subset of $\N$ has a minimum.
 \end{theorem*}
 
+\begin{proof}
+  Let $\emptyset \neq S \subseteq \N \subset \R$. Note that $S$ is bounded below by 0, therefore
+  $\inf S$ exists. Suppose $\inf S \not\in S$. Let $\delta = \lceil S \rceil - \inf S$. By the
+  Approximation Property, there exists $s \in S$ such that
+  $\inf S < s < \inf S + \delta = \lceil S \rceil$. But then $s \not\in \N$, a
+  contradiction. Therefore $\min S = \inf S \in S$.
+\end{proof}
+
 \begin{remark*}
   Similarly:
   \begin{enumerate}
-    \item Every nonsubset of $\Z$ that is bounded below has a minimum.
-    \item Every nonsubset of $\Z$ that is bounded above has a maximum.
+    \item Every nonempty subset of $\Z$ that is bounded below has a minimum.
+    \item Every nonempty subset of $\Z$ that is bounded above has a maximum.
   \end{enumerate}
 \end{remark*}
-
-\begin{proof}
-  This can be proved by considering $\N$ as a subset of $\R$, using completeness of $\R$ and
-  applying the Approximation Property.
-\end{proof}
 
 \begin{intuition*}
   Because of the ``gappiness'' of $\N$ and $\Z$, bounded subsets must contain their suprema/infima.
