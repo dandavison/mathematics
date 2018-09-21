@@ -347,32 +347,68 @@
 \end{proof}
 \newpage
 \subsection{}
+\begin{lemma*}
+  The set of polynomials of degree $n$ with integer coefficients is countable.
+\end{lemma*}
+\begin{proof}
+  Let $\{\alpha_1, \alpha_2, \ldots\}$ be the positive prime numbers and let
+  $$P_n := \Big\{\sum_{i=0}^n a_iz^i ~|~ a_0, \ldots, a_n \in \Z, a_n \neq 0\Big\}$$ be the set of
+  polynomials with integer coefficients of degree $n$. Note that
+  $|P_n| = \big|\(\Z\setminus\{0\}\) \times \Z^{n-1}\big|$ and that
+  $f:\(\Z\setminus\{0\}\) \times \Z^{n-1} \to \N$ given by
+  \begin{align*}
+    f(a_0, a_1, \ldots, a_n) = \prod_{i=0}^n\alpha_i^{a_i}\
+  \end{align*}
+  is a bijection by uniqueness of prime factorization of the natural numbers. Therefore $P_n$ is
+  countable.
+\end{proof}
+
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-M2-analysis-I-2-8-a.png}
 \end{mdframed}
 
 \begin{proof}
-  The cardinality of the set of cubic polynomials with integer coefficients is equal to the
-  cardinality of the set
-  $A := \{(a, b, c, d) ~|~ a, b, c, d \in \Z, a \neq 0\} = \(\Z\setminus\{0\}\) \times \Z^3$.
+  This follows from the lemma with $n=3$.
+\end{proof}
 
-  Let $f:(\Z\setminus\{0\} \times \Z^3) \to \N$ be given by $f(a, b, c, d) = 2^a3^b5^c7^d$. Then
-  $f$ is an injection by uniqueness of prime factorization of the integers. Therefore $A$ is
-  countable.
+\begin{lemma*}[Countable union of countable sets is countable]~\\
+  Let $I \subseteq \N$ and let $S_i$ be a countable set for all $i \in I$. Then
+  $\bigcup_{i\in I}S_i$ is countable.
+\end{lemma*}
+\begin{proof}
+  Let $s_{ij}$ be the $j$-th element of $S_i$. The $f:\bigcup_{i\in I}S_i \to \N$ given by
+  \begin{align*}
+    f(s_{ij}) = 2^i3^j
+  \end{align*}
+  is a bijection, proving that $\bigcup_{i\in I}S_i$ is countable.
+  \red{But what about repeated elements?}
 \end{proof}
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-M2-analysis-I-2-8-b.png}
 \end{mdframed}
 
+\begin{lemma*}
+  Let $P_n$ be the set of polynomials with integer coefficients of degree $n$. Then the set of
+  complex numbers that are roots of a polynomial in $P_n$ is countable.
+\end{lemma*}
 \begin{proof}
-  Note that a cubic polynomial has at most 3 distinct roots. Let $U$ be the set of complex
-  numbers that are roots of some integer-coefficient cubic polynomial. For each such polynomial,
-  assign a distinct label from $\{0, 1, 2\}$ to each of the distinct roots. Then the cardinality
-  of $U$ is equal(*) to the cardinality of $B := \Z\setminus\{0\} \times \Z^3 \times \{0, 1,
-  2\}$. The set $B$ is countable since $f:T \to \N$ given by
-  $f(a, b, c, d, e) = 2^a3^b5^c7^d11^e$ is an injection. (\red{* How to properly deal with the fact
-    that $U$ is smaller than $B$ due to some polynomials having fewer than 3 distinct roots?})
+  Let $P_{n,k}$ be the set of polynomials of degree $n$ that have $k \leq n$ distinct roots. Since
+  $P_{n,k} \subseteq P_n$, we have that $P_{n,k}$ is countable. Therefore For each polynomial in
+  $P_{n,k}$ order the $k$ distinct roots and label them $1, \ldots, k$. Then $P_{n,k}$ is countable
+  since...
+\end{proof}
+
+\begin{proof}
+  Note that a cubic polynomial has at most 3 distinct roots.
+
+  Let $U$ be the set of complex numbers that are roots of some integer-coefficient cubic
+  polynomial. For each such polynomial, assign a distinct label from $\{0, 1, 2\}$ to each of the
+  distinct roots. Then the cardinality of $U$ is equal(*) to the cardinality of
+  $B := \Z\setminus\{0\} \times \Z^3 \times \{0, 1, 2\}$. The set $B$ is countable since
+  $f:T \to \N$ given by $f(a, b, c, d, e) = 2^a3^b5^c7^d11^e$ is an injection. (\red{* How to
+    properly deal with the fact that $U$ is smaller than $B$ due to some polynomials having fewer
+    than 3 distinct roots?})
 \end{proof}
 
 \begin{mdframed}
@@ -380,6 +416,14 @@
 \end{mdframed}
 
 \begin{proof}
+  Let $A_n$ be the set of complex numbers which are roots of a polynomial of degree $n$.
+
+  Claim: $A_n$ is countable for all $n \in \N$, since there are countably many polynomials of
+  degree $n$ and each has a finite number of roots.
+
+  The set of algebraic numbers is $A := \cup_{n\in\N} A_n$. Let $a_{ijk}$ be the $k$-th distinct
+  root of the $j$-th polynomial of degree $i$. Then $f:$
+
   (This differs because whereas previously we were restricted to cubics, now the polynomials can
   be of any degree $n \in \N$.)
 
@@ -442,6 +486,17 @@
   Where is $f$ continuous?
 \end{mdframed}
 
+\begin{definition*}[Stride]
+  Let $S = \big\{\frac{1}{q} ~|~ q \in \N\big\}$. For $x = \frac{p}{q} \in \Q$, where
+  $\gcd(p, q) = 1$, $q > 0$, define the stride function $s:\Q\to S$ by $x \mapsto \frac{1}{q}$. We
+  say that the stride of $x$ is $s(x)$.
+\end{definition*}
+
+% \begin{intuition*}
+%   At rational $x$, $f(x)$ returns the largest stride that hits $x$ when starting from zero. At
+%   irrational $x$ (and zero), $f(x) = 0$.
+% \end{intuition*}
+
 \begin{claim*}
   $f$ is continuous at $0$, i.e. $\lim_{x \to 0}f(x) = 0$.
 \end{claim*}
@@ -459,4 +514,36 @@
   \end{align*}
 \end{proof}
 
+\begin{claim*}
+  $f$ is continuous on $\R\setminus\Q$.
+\end{claim*}
+
+\begin{proof}
+  Let $a \in \R\setminus\Q$ and fix $0 < \epsilon < 1$. Note that $f(a) = 0$. We now construct an
+  interval centered at $a$ that excludes rational numbers with stride greater than or equal to
+  $\epsilon$.
+
+  Formally, we claim that there exists $\delta > 0$ such that
+  $0 < |x - a| < \delta \implies |f(x)| < \epsilon$.
+
+  Define $T = \{\frac{1}{n} ~|~ n \in \N, \frac{1}{n} > \epsilon\}$. Note that $T$ is non-empty
+  since $\epsilon < 1$ therefore $1 \in T$. Since $T$ is non-empty, finite, and bounded below,
+  $\min T$ exists. Let $\frac{1}{m} = \min T$.
+
+  Define $R \subset \R$ by $R = \{x \in \Q ~|~ x > a, s(x) \geq \epsilon\}$. Note that
+  $\frac{1}{m} \in R$ therefore $R$ is non-empty. Also $R$ is bounded below, therefore $\inf R$
+  exists. We claim that $\inf R \in R$. By the Approximation theorem, for all $\gamma > 0$ there
+  exists $r \in R$ such that $\inf R \leq r < \inf R + \gamma$. Suppose
+
+  % and $L = \{x \in \Q ~|~ x < a, s(x) \geq \epsilon\}$.
+
+  % Define $U = \{\frac{1}{n} ~|~ n \in \{m, m+1, \ldots, 1\}\}$.
+
+
+
+  % For each $u \in U$, define $R_u = \{x \in \Q ~|~ s(x)\}$
+
+  % Informally, $\frac{1}{m}$ is the smallest stride larger than $\epsilon$.
+
+\end{proof}
 \end{document}
