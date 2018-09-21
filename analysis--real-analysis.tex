@@ -71,6 +71,20 @@ Notes from Oxford - M1 - Sequences and Series.
   Because of the ``gappiness'' of $\N$ and $\Z$, bounded subsets must contain their suprema/infima.
 \end{intuition*}
 
+\subsection{Existence of ceil and floor}
+\begin{definition*}
+  Let $x \in \R$. Then floor of $x$ is $\lfloor x \rfloor = \max\{n \in \Z ~|~ n \leq x\}$ and ceil
+  of $x$ is $\lceil x \rceil = \min\{n \in \Z ~|~ n \geq x\}$.
+\end{definition*}
+
+\begin{theorem*}[$\lfloor x \rfloor$ and $\lceil x \rceil$ exist]~\\
+  Let $x \in \R$. Define $S = \{n \in \Z ~|~ n \geq x\} \subset \R$. Note that $S$ is bounded below
+  by $x$. Also $S$ is non-empty by the Archimedean Property of $\N$, since otherwise $x$ would be
+  an upper bound for $\N$. Therefore $\lceil x \rceil = \min S$ exists by Well-Ordering.
+
+  Similarly, $\lfloor x \rfloor$ exists.
+\end{theorem*}
+
 \subsection{Existence of $\sqrt 2$}
 \begin{theorem*}
   There exists a unique $a \in \R$ such that $a^2 = 2$.
