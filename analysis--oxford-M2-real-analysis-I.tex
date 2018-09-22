@@ -472,6 +472,19 @@
 \newpage
 \section{Misc}
 \newpage
+\begin{definition*}[floor and ceil]
+  Let $x \in \R$. Then floor of $x$ is $\floor{x} = \max\{n \in \Z ~|~ n \leq x\}$ and ceil of $x$
+  is $\ceil{x} = \min\{n \in \Z ~|~ n \geq x\}$.
+\end{definition*}
+
+\begin{theorem*}[$\floor{x}$ and $\ceil{x}$ exist]~\\
+  Let $x \in \R$. Define $S = \{n \in \Z ~|~ n \geq x\} \subset \R$. Note that $S$ is bounded below
+  by $x$. Also $S$ is non-empty by the Archimedean Property of $\N$, since otherwise $x$ would be
+  an upper bound for $\N$. Therefore $\ceil{x} = \min S$ exists by Well-Ordering.
+
+  Similarly, $\floor{x}$ exists.
+\end{theorem*}
+
 \begin{mdframed}
   (Question from Alex Coward)\\
 
@@ -530,20 +543,26 @@
   since $\epsilon < 1$ therefore $1 \in T$. Since $T$ is non-empty, finite, and bounded below,
   $\min T$ exists. Let $\frac{1}{m} = \min T$.
 
-  Define $R \subset \R$ by $R = \{x \in \Q ~|~ x > a, s(x) \geq \epsilon\}$. Note that
-  $\frac{1}{m} \in R$ therefore $R$ is non-empty. Also $R$ is bounded below, therefore $\inf R$
-  exists. We claim that $\inf R \in R$. By the Approximation theorem, for all $\gamma > 0$ there
-  exists $r \in R$ such that $\inf R \leq r < \inf R + \gamma$. Suppose
+  Let $K = \{k \in \N ~|~ k < m\}$, so that $\frac{1}{k} \geq \epsilon$ for all $k \in K$.
 
-  % and $L = \{x \in \Q ~|~ x < a, s(x) \geq \epsilon\}$.
+  For each $k \in K$ define $U_k \subset \R$ by
+  $U_k = \{\frac{n}{k} ~|~ \frac{n}{k} > a, n \in \N\}$.
 
-  % Define $U = \{\frac{1}{n} ~|~ n \in \{m, m+1, \ldots, 1\}\}$.
+  Let $j = \min \{n ~|~ n > a, n \in \N\}$. Note that $j$ exists by the Well Ordering property of
+  $\N$. Then $\min U_k = \frac{j}{k}$. (Proof: $\frac{j}{k} \in U_k$ and if $\frac{i}{k} \in U_k$,
+  $\frac{i}{k} \neq \frac{j}{k}$ then $i > j$).
 
 
+  ~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\
 
-  % For each $u \in U$, define $R_u = \{x \in \Q ~|~ s(x)\}$
+  \red{Alternatively}
 
-  % Informally, $\frac{1}{m}$ is the smallest stride larger than $\epsilon$.
+  Define $U \subset \R$ by $U = \{x \in \Q ~|~ x > a, s(x) \geq \epsilon\}$. Note that
+  $\ceil{a}\in U$ therefore $U$ is non-empty. Also $U$ is bounded below, therefore $\inf U$
+  exists. We claim that $\inf U \in U$.
 
+  By the Approximation Property, there exists $u \in U$ such that
+  $\inf U \leq u < \inf U + \frac{1}{m}$. We claim that $\inf U = u$. Suppose for a contradiction
+  that $\inf U \neq u$. Then $u = \inf U + \gamma$ for some $0 < \gamma < \frac{1}{m}$.
 \end{proof}
 \end{document}
