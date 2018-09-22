@@ -53,10 +53,17 @@ Notes from Oxford - M1 - Sequences and Series.
 
 \begin{proof}
   Let $\emptyset \neq S \subseteq \N \subset \R$. Note that $S$ is bounded below by 0, therefore
-  $\inf S$ exists. Suppose $\inf S \not\in S$. Let $\delta = \lceil S \rceil - \inf S$. By the
-  Approximation Property, there exists $s \in S$ such that
-  $\inf S < s < \inf S + \delta = \lceil S \rceil$. But then $s \not\in \N$, a
-  contradiction. Therefore $\min S = \inf S \in S$.
+  $\inf S$ exists. Suppose $\inf S \not\in S$. By the Approximation Property, there exists
+  $n_1 \in S$ such that $\inf S \leq n_1 < \inf S + 1$.
+
+  We claim that $\inf S = n_1$. Suppose for a contradiction that $\inf S \neq n_1$. Then
+  $n_1 = \inf S + \delta$ for some $0 < \delta < 1$. By the Approximation property again, there
+  exists $n_2 \in S$ such that $\inf S \leq n_2 < n_1 < \inf S + 1$.
+
+  But since $n_1 > n_2$ we have $n_1 \geq n_2 + 1$, therefore $n_1 \geq \inf S + 1$ which
+  contradicts $n_1 < \inf S + 1$. Therefore $\inf S = n_1 \in S$ and $\min S$ exists.
+
+  % Therefore
 \end{proof}
 
 \begin{remark*}
@@ -72,17 +79,17 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{intuition*}
 
 \subsection{Existence of ceil and floor}
-\begin{definition*}
-  Let $x \in \R$. Then floor of $x$ is $\lfloor x \rfloor = \max\{n \in \Z ~|~ n \leq x\}$ and ceil
-  of $x$ is $\lceil x \rceil = \min\{n \in \Z ~|~ n \geq x\}$.
+\begin{definition*}[floor and ceil]
+  Let $x \in \R$. Then floor of $x$ is $\floor{x} = \max\{n \in \Z ~|~ n \leq x\}$ and ceil of $x$
+  is $\ceil{x} = \min\{n \in \Z ~|~ n \geq x\}$.
 \end{definition*}
 
-\begin{theorem*}[$\lfloor x \rfloor$ and $\lceil x \rceil$ exist]~\\
+\begin{theorem*}[$\floor{x}$ and $\ceil{x}$ exist]~\\
   Let $x \in \R$. Define $S = \{n \in \Z ~|~ n \geq x\} \subset \R$. Note that $S$ is bounded below
   by $x$. Also $S$ is non-empty by the Archimedean Property of $\N$, since otherwise $x$ would be
-  an upper bound for $\N$. Therefore $\lceil x \rceil = \min S$ exists by Well-Ordering.
+  an upper bound for $\N$. Therefore $\ceil{x} = \min S$ exists by Well-Ordering.
 
-  Similarly, $\lfloor x \rfloor$ exists.
+  Similarly, $\floor{x}$ exists.
 \end{theorem*}
 
 \subsection{Existence of $\sqrt 2$}

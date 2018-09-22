@@ -28,22 +28,21 @@
             &= c(ba)  ~~~~~~~ \text{(M1 commutativity of multiplication)}
     \end{align*}
   \end{proof}
+\newpage
 \item
   \begin{theorem*}
     $-(a + b) = (-a) + (-b)$
   \end{theorem*}
   \begin{proof}
     \begin{align*}
-      (a + b) + (-(a + b))                   &= 0           ~~~~~~~ \text{definition of negative}\\
-      \Big((-a) + (-b)\Big) + \Big((a + b) + (-(a + b))\Big) &= (-a) + (-b) ~~~~~~~ \text{add to both sides what axiom is this?}\\
-      \Big((-b) + (-a)\Big) + \Big((a + b) + (-(a + b))\Big)   &= (-a) + (-b) ~~~~~~~ \text{S1 commutativity of sum}\\
-      \Big(((-b) + (-a)) + (a + b)\Big) + (-(a + b))   &= (-a) + (-b) ~~~~~~~ \text{S2 associativity of sum}\\
-      \Big((-b) + ((-a) + a) + b)\Big) + (-(a + b))    &= (-a) + (-b) ~~~~~~~ \text{S2 associativity of sum}\\
-      \Big((-b) + (0 + b)\Big) + (-(a + b))            &= (-a) + (-b) ~~~~~~~ \text{definition of negative}\\
-      \Big((-b) + b\Big) + (-(a + b))                &= (-a) + (-b) ~~~~~~~ \text{definition of 0}\\
-      0 + (-(a + b))                         &= (-a) + (-b) ~~~~~~~ \text{definition of negative}\\
-      -(a + b)                               &= (-a) + (-b) ~~~~~~~ \text{definition of 0}\\
+      (a + b) + ((-a) + (-b)) &= (a + b) + ((-b) + (-a)) ~~~~~~~ \text{S1 commutativity of sum}\\
+                              &=  a + (b + ((-b) + (-a))) ~~~~~~~ \text{S2 associativity of sum}\\
+                              &=  a + ((b + (-b)) + (-a)) ~~~~~~~ \text{S2 associativity of sum}\\
+                              &=  a + ((-a)) ~~~~~~~ \text{definition of negative}\\
+                              &=  0 ~~~~~~~ \text{definition of negative}\\
     \end{align*}
+    Therefore $(-a) + (-b)$ is an additive inverse of $a + b$, as claimed. The additive inverse is
+    unique by definition.
   \end{proof}
 \end{enumerate}
 
@@ -91,6 +90,7 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M2-analysis-I-sheet-1-4.png}
 \end{mdframed}
+
 \newpage
 \subsection{}
 \begin{mdframed}
@@ -103,10 +103,11 @@
     \max(a, b) =
     \begin{cases}
       b ~~~~~~~&\text{if $a < b$}\\
-      a ~~~~~~~&\text{if $b < a$}.
+      a ~~~~~~~&\text{if $b \leq a$}.
     \end{cases}
   \end{align*}
-  This is well-defined (a valid function) by trichotomy of order properties.
+  This is well-defined by trichotomy of the order relation ($\max(a, b)$ has a unique value for
+  alll $a, b \in \R$ since either $a < b$ or $a = b$ or $a > b$).
 \end{definition*}
 
 \begin{theorem*}
@@ -114,6 +115,24 @@
     \max(a, b) = \frac{1}{2}(a + b) + \frac{1}{2}|a - b|.
   \end{align*}
 \end{theorem*}
+
+\begin{proof}
+  Suppose $a = b$. Then
+  \begin{align*}
+    \frac{1}{2}(a + b) + \frac{1}{2}|a - b|
+    = \frac{1}{2}\cdot 2a + \frac{1}{2}\cdot 0
+    = a
+    = \max(a, b).
+  \end{align*}
+  Since $(a + b) = (b + a)$ and $|a - b| = |b - a|$, we need only consider $a < b$ as the remaining
+  alternative. Then $|a - b| = b - a$ and
+  \begin{align*}
+    \frac{1}{2}(a + b) + \frac{1}{2}|a - b|
+    = \frac{1}{2}(a + b) + \frac{1}{2}(b - a)
+    = b
+    = \max(a, b).
+  \end{align*}
+\end{proof}
 
 \newpage
 \section{Sheet 2}
@@ -437,10 +456,31 @@
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-1.png}
 \end{mdframed}
 
+\begin{enumerate}[label=(\roman*)]
+\item Take $n = \ceil{\frac{1}{\sqrt{\epsilon}}}$. Then
+  $
+    |a_n| < \frac{1}{\ceil{\frac{1}{\sqrt{\epsilon}}}^2}
+          \leq \frac{1}{\frac{1}{\epsilon}}
+          = \epsilon.
+  $
+  Therefore $N = \ceil{\frac{1}{\sqrt{\epsilon}}}$ works.
+\item Note that $|n(n - \pi)| = n|n - \pi| > n$ for $n \geq 4$. Therefore
+  \begin{align*}
+    |a_n| = \frac{1}{|n(n - \pi)|} &< \frac{1}{n} ~~~~~~~\text{if $n \geq 4$}\\
+                                   &< \epsilon    ~~~~~~~\text{if $n > \Bigceil{\frac{1}{\epsilon}}$}.
+  \end{align*}
+  Therefore $N = \max\(1 + \Bigceil{\frac{1}{\epsilon}}, 4\)$ works.
+\item Take $n = \Bigceil{\frac{1}{5\epsilon^2} + \frac{1}{5}}$. Then $|a_n| \leq
+  \epsilon$. Therefore $N = \Bigceil{\frac{1}{5\epsilon^2}} + 1$ works.
+\end{enumerate}
+
+\newpage
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-2.png}
 \end{mdframed}
+
+
 
 \subsection{}
 \begin{mdframed}
@@ -466,8 +506,6 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-7.png}
 \end{mdframed}
-
-
 
 \newpage
 \section{Misc}
@@ -564,5 +602,5 @@
   By the Approximation Property, there exists $u \in U$ such that
   $\inf U \leq u < \inf U + \frac{1}{m}$. We claim that $\inf U = u$. Suppose for a contradiction
   that $\inf U \neq u$. Then $u = \inf U + \gamma$ for some $0 < \gamma < \frac{1}{m}$.
-\end{proof}
+   \end{proof}
 \end{document}
