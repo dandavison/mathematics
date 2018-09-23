@@ -561,6 +561,21 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4.png}
 \end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{definition*}\hspace{0pt}
+    \begin{enumerate}[label=(\roman*)]
+    \item
+      $(a_n)$ is convergent if there exists $L$ such that for all $\epsilon > 0$ there exists
+      $N \in \N$ such that $|a_n - L| < \epsilon$ for all $n \geq N$.
+    \item
+      $(a_n)$ is bounded if there exists $M$ such that $|a_n| < M$ for all $n \in \N$.
+    \item $(a_n)$ tends to infinity if $(a_n)$ is not bounded.
+    \end{enumerate}
+  \end{definition*}
+
+\item
+\end{enumerate}
 
 \newpage
 \subsection{}
@@ -597,6 +612,20 @@
 
   Similarly, $\floor{x}$ exists.
 \end{theorem*}
+
+\begin{theorem*}[well-order isomorphism]
+  Let $S$ be a set with a well-ordering. I.e. every non-empty subset of $S$ has a least
+  element. Let $T$ be a set and let $f:S \to T$ be a bijection with the property that
+  \begin{align*}
+    s_1 \leq s_2 \iff f(s_1) \leq f(s_2).
+  \end{align*}
+  Then $<$ is a well-ordering on $T$.
+\end{theorem*}
+\begin{proof}
+  Let $\emptyset \neq U \subseteq T$. We claim that $\min T$ exists and is given by
+  $\min T = f(\min S)$. Indeed suppose that there exists $t \in T$ such that $t < f(\min S)$. But
+  then $f^\1(t) < \min S$, a contradiction. Therefore $\min T = f(\min S)$ as claimed.
+\end{proof}
 
 \begin{mdframed}
   (Question from Alex Coward)\\
@@ -641,7 +670,7 @@
 \end{proof}
 
 \begin{claim*}
-  $f$ is continuous on $\R\setminus\Q$.
+  $f$ is continuous on $\R\setminus\Q \cup \{0\}$.
 \end{claim*}
 
 \begin{proof}
@@ -658,24 +687,15 @@
 
   Let $K = \{k \in \N ~|~ k < m\}$, so that $\frac{1}{k} \geq \epsilon$ for all $k \in K$.
 
-  For each $k \in K$ define $U_k \subset \R$ by
-  $U_k = \{\frac{n}{k} ~|~ \frac{n}{k} > a, n \in \N\}$.
+  For each $k \in K$ define $U_k$ by $U_k = \{\frac{n}{k} ~|~ \frac{n}{k} < a, n \in \N\}$. Note
+  that $\max U_k$ exists and is equal to $\frac{\floor{ak}}{k}$ (\red{Proof needed?}). Let
+  $u^* = \max ~ \{\max U_K ~|~ k \in K\}$.
 
-  Let $j = \min \{n ~|~ n > a, n \in \N\}$. Note that $j$ exists by the Well Ordering property of
-  $\N$. Then $\min U_k = \frac{j}{k}$. (Proof: $\frac{j}{k} \in U_k$ and if $\frac{i}{k} \in U_k$,
-  $\frac{i}{k} \neq \frac{j}{k}$ then $i > j$).
+  Now perform the analogous procedure for values greater than $a$. For each $k \in K$ define $V_k$
+  by $V_k = \{\frac{n}{k} ~|~ \frac{n}{k} > a, n \in \N\}$. Note that $\min V_k$ exists and is
+  equal to $\frac{\ceil{ak}}{k}$. Let $v^* = \min ~ \{\min V_K ~|~ k \in K\}$.
 
-
-  ~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\
-
-  \red{Alternatively}
-
-  Define $U \subset \R$ by $U = \{x \in \Q ~|~ x > a, s(x) \geq \epsilon\}$. Note that
-  $\ceil{a}\in U$ therefore $U$ is non-empty. Also $U$ is bounded below, therefore $\inf U$
-  exists. We claim that $\inf U \in U$.
-
-  By the Approximation Property, there exists $u \in U$ such that
-  $\inf U \leq u < \inf U + \frac{1}{m}$. We claim that $\inf U = u$. Suppose for a contradiction
-  that $\inf U \neq u$. Then $u = \inf U + \gamma$ for some $0 < \gamma < \frac{1}{m}$.
-   \end{proof}
+  Set $\delta = \min(|a - u^*|, |a - v^*|)$. Then
+  $0 < |x - a| < \delta \implies |f(x)| < \epsilon$.
+\end{proof}
 \end{document}
