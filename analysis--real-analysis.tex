@@ -62,8 +62,6 @@ Notes from Oxford - M1 - Sequences and Series.
 
   But since $n_1 > n_2$ we have $n_1 \geq n_2 + 1$, therefore $n_1 \geq \inf S + 1$ which
   contradicts $n_1 < \inf S + 1$. Therefore $\inf S = n_1 \in S$ and $\min S$ exists.
-
-  % Therefore
 \end{proof}
 
 \begin{remark*}
@@ -154,8 +152,8 @@ Notes from Oxford - M1 - Sequences and Series.
                     &= L_fL_g + \limxa (f(x) - L_f)(g(x) - L_g),
   \end{align*}
   so we need to show that $\limxa (f(x) - L_f)(g(x) - L_g) = 0$. Fix $\epsilon > 0$. Since
-  $\limxa (f(x) - L_f) = \limxa (g(x) - L_g) = 0$, there exists $\delta$ such that whenever
-  $|x - a| < \delta$
+  $\limxa (f(x) - L_f) = \limxa (g(x) - L_g) = 0$, there exists $\delta$ (pick the minimum of the
+  two $\delta$s) such that whenever $|x - a| < \delta$
   \begin{align*}
     |(f(x) - L_f)| < \sqrt \epsilon ~~~\text{and}~~~|(g(x) - L_g)| < \sqrt \epsilon,
   \end{align*}
