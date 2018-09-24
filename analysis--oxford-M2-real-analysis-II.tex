@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+
+\begin{document}
+
+\title{Oxford M2 - Real Analysis II - Continuity and Differentiability
+  \footnotetext{\url{https://courses.maths.ox.ac.uk/node/37497}}} \author{Dan Davison}
+\author{}
+\date{}
+\maketitle
+
+
+\section{Misc}
+\newpage
+\begin{definition*}[floor and ceil]
+  Let $x \in \R$. Then floor of $x$ is $\floor{x} = \max\{n \in \Z ~|~ n \leq x\}$ and ceil of $x$
+  is $\ceil{x} = \min\{n \in \Z ~|~ n \geq x\}$.
+\end{definition*}
+
+\begin{theorem*}[$\floor{x}$ and $\ceil{x}$ exist]~\\
+  Let $x \in \R$. Define $S = \{n \in \Z ~|~ n \geq x\} \subset \R$. Note that $S$ is bounded below
+  by $x$. Also $S$ is non-empty by the Archimedean Property of $\N$, since otherwise $x$ would be
+  an upper bound for $\N$. Therefore $\ceil{x} = \min S$ exists by Well-Ordering.
+
+  Similarly, $\floor{x}$ exists.
+\end{theorem*}
+
+\begin{mdframed}
+  (Question from Alex Coward)\\
+
+  Define $f:\R\to\R$ by
+  \begin{align*}
+    f(x) =
+    \begin{cases}
+      0 ~~~~~~~~~~  & x \in (\R\setminus\Q)\cup\{0\}\\
+     \frac{1}{q}    & x = \frac{p}{q} \in \Q, \gcd(p, q) = 1, q > 0.
+    \end{cases}
+  \end{align*}
+  Where is $f$ continuous?
+\end{mdframed}
+
+\begin{definition*}[Stride]
+  Let $S = \big\{\frac{1}{q} ~|~ q \in \N\big\}$. For $x = \frac{p}{q} \in \Q$, where
+  $\gcd(p, q) = 1$, $q > 0$, define the stride function $s:\Q\to S$ by $x \mapsto \frac{1}{q}$. We
+  say that the stride of $x$ is $s(x)$.
+\end{definition*}
+
+% \begin{intuition*}
+%   At rational $x$, $f(x)$ returns the largest stride that hits $x$ when starting from zero. At
+%   irrational $x$ (and zero), $f(x) = 0$.
+% \end{intuition*}
+
+\begin{claim*}
+  $f$ is continuous at $0$, i.e. $\lim_{x \to 0}f(x) = 0$.
+\end{claim*}
+
+\begin{proof}
+  Fix $\epsilon > 0$ and take $\delta = \epsilon$. We claim that
+  $0 < |x| < \delta \implies |f(x)| < \epsilon$.
+
+  At irrational values $0 < |x| < \delta$, we have $|f(x)| = 0 < \epsilon$.
+
+  At rational values $0 < |x| < \delta$, we have $x = \frac{p}{q} \in \Q, \gcd(p, q) = 1$ for some
+  $p \in \Z, q \in \N$ with $p, q \neq 0$. Therefore
+  \begin{align*}
+    |f(x)| = \Big|\frac{1}{q}\Big| \leq \Big|\frac{p}{q}\Big| = |x| < \delta = \epsilon.
+  \end{align*}
+\end{proof}
+
+\begin{claim*}
+  $f$ is continuous on $\R\setminus\Q$.
+\end{claim*}
+
+\begin{proof}
+  Let $a \in \R\setminus\Q$ and fix $0 < \epsilon < 1$. Note that $f(a) = 0$. We now construct an
+  interval centered at $a$ that excludes rational numbers with stride greater than or equal to
+  $\epsilon$.
+
+  Formally, we claim that there exists $\delta > 0$ such that
+  $0 < |x - a| < \delta \implies |f(x)| < \epsilon$.
+
+  Define $T = \{\frac{1}{n} ~|~ n \in \N, \frac{1}{n} > \epsilon\}$. Note that $T$ is non-empty
+  since $\epsilon < 1$ therefore $1 \in T$. Since $T$ is non-empty, finite, and bounded below,
+  $\min T$ exists. Let $\frac{1}{m} = \min T$.
+
+  Let $K = \{k \in \N ~|~ k < m\}$, so that $\frac{1}{k} \geq \epsilon$ for all $k \in K$.
+
+  For each $k \in K$ define $U_k$ by $U_k = \{\frac{n}{k} ~|~ \frac{n}{k} < a, n \in \N\}$. Note
+  that $\max U_k$ exists and is equal to $\frac{\floor{ak}}{k}$ (\red{Proof needed?}). Let
+  $u^* = \max ~ \{\max U_K ~|~ k \in K\}$.
+
+  Now perform the analogous procedure for values greater than $a$. For each $k \in K$ define $V_k$
+  by $V_k = \{\frac{n}{k} ~|~ \frac{n}{k} > a, n \in \N\}$. Note that $\min V_k$ exists and is
+  equal to $\frac{\ceil{ak}}{k}$. Let $v^* = \min ~ \{\min V_K ~|~ k \in K\}$.
+
+  Set $\delta = \min(|a - u^*|, |a - v^*|)$. Then
+  $0 < |x - a| < \delta \implies |f(x)| < \epsilon$.
+\end{proof}
+
+\begin{claim*}
+  $f$ is not continuous on $\Q$.
+\end{claim*}
+
+\begin{proof}
+  Let $a \in \Q\setminus\{0\}$. Then $f(a) = s(a)$, the stride of $a$. Suppose for a contradiction
+  that $f$ is continuous at $a$. Let $\epsilon = s(a)/2$. Then there exists $\delta > 0$ such that
+  $|x - a| < \delta \implies |f(x) - s(a)| < \epsilon$. Note that there exists
+  $b \in (a, a + \delta) \cap \R\setminus\Q$, since there is an irrational number between any two
+  real numbers. But $|f(b) - s(a)| = s(a) > \epsilon$, a contradiction. Therefore $f$ is not
+  continuous at $a$.
+\end{proof}
+
+(I thought I would need the following as a lemma to prove that minima of $U_k$ and $V_k$ above
+exist, but I have not used it.)
+\begin{theorem*}[well-order isomorphism]
+  Let $S$ be a set with a well-ordering. I.e. every non-empty subset of $S$ has a least
+  element. Let $T$ be a set and let $f:S \to T$ be a bijection with the property that
+  \begin{align*}
+    s_1 \leq s_2 \iff f(s_1) \leq f(s_2).
+  \end{align*}
+  Then $<$ is a well-ordering on $T$.
+\end{theorem*}
+\begin{proof}
+  Let $\emptyset \neq U \subseteq T$. We claim that $\min T$ exists and is given by
+  $\min T = f(\min S)$. Indeed suppose that there exists $t \in T$ such that $t < f(\min S)$. But
+  then $f^\1(t) < \min S$, a contradiction. Therefore $\min T = f(\min S)$ as claimed.
+\end{proof}
+
+
+\end{document}
