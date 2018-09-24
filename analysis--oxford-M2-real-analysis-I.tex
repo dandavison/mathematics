@@ -558,36 +558,112 @@
 
 \newpage
 \subsection{}
-\begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4.png}
-\end{mdframed}
 \begin{enumerate}[label=(\alph*)]
-\item
+\item\hspace{0pt}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4-a.png}
+  \end{mdframed}
   \begin{definition*}\hspace{0pt}
     \begin{enumerate}[label=(\roman*)]
-    \item
-      $(a_n)$ is convergent if there exists $L$ such that for all $\epsilon > 0$ there exists
-      $N \in \N$ such that $|a_n - L| < \epsilon$ for all $n \geq N$.
-    \item
-      $(a_n)$ is bounded if there exists $M$ such that $|a_n| < M$ for all $n \in \N$.
-    \item $(a_n)$ tends to infinity if $(a_n)$ is not bounded.
+    \item $(a_n)$ is convergent if there exists $L \in \R$ such that for all $\epsilon > 0$ there
+      exists $N \in \N$ such that $|a_n - L| < \epsilon$ for all $n \geq N$:
+      \begin{align*}
+        \exists L \in \R ~~ \forall \epsilon > 0 ~~ \exists N \in \N ~~ \forall n \geq N ~~ |a_n - L| < \epsilon.
+      \end{align*}
+      $(a_n)$ is not convergent if for all $L \in \R$ there exists $\epsilon > 0$ such that ``no
+      $N$ works'':
+      \begin{align*}
+        \forall L \in \R ~~ \exists \epsilon > 0 ~~ \forall N \in \N ~~ \exists n \geq N ~~ |a_n - L| \geq \epsilon.
+      \end{align*}
+    \item $(a_n)$ is bounded if there exists $M \in \R$ such that $|a_n| < M$ for all $n \in \N$:
+      \begin{align*}
+        \exists M \in \R ~~ \forall n \in \N ~~ |a_n| < M.
+      \end{align*}
+      $(a_n)$ is not bounded if no $M \in \R$ is a bound:
+      \begin{align*}
+        \forall M \in \R ~~ \exists n \in \N ~~ |a_n| \geq M.
+      \end{align*}
+    \item $(a_n)$ tends to infinity if for all $M \in \R$ there exists $N \in \N$ such that $a_n > M$ for
+      all $n \geq N$:
+      \begin{align*}
+        \forall M \in \R ~~ \exists N \in \N ~~ \forall n \geq N ~~ a_n > M.
+      \end{align*}
+      $(a_n)$ does not tend to infinity if there exists $M \in \R$ such that ``no $N$ works'':
+      \begin{align*}
+        \exists M \in \R ~~ \forall N \in \N ~~ \exists n \geq N ~~ a_n \leq M.
+      \end{align*}
     \end{enumerate}
   \end{definition*}
-
-\item
+\item\hspace{0pt}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4-b.png}
+  \end{mdframed}
+  \begin{theorem*}
+    Let $(a_n) \in \R^\N$ and let $(b_n) \in \R^\N$ tend to infinity. If $a_n \geq b_n$ for all
+    $n \in \N$ then $a_n$ tends to infinity.
+  \end{theorem*}
+  \begin{proof}
+    Let $(a_n) \in \R^\N$ and let $(b_n) \in \R^\N$ tend to infinity. Suppose $a_n \geq b_n$ for
+    all $n \in \N$. Let $M \in \R$ be such that $\exists N \in \N ~~ \forall n \geq N ~~ b_n >
+    M$. Then $\forall n \geq N ~~ a_n > M$, therefore $a_n$ tends to infinity.
+  \end{proof}
+\newpage
+\item\hspace{0pt}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4-c.png}
+  \end{mdframed}
+  \begin{enumerate}[label=(\roman*)]
+  \item
+    \begin{align*}
+      \frac{n^2 + n + 1}{n + 1} > \frac{n^2}{n + 1} = \frac{n}{1 + 1/n}.
+    \end{align*}
+    This tends to infinity \red{TODO: proof}
+  \item $n^2\sin n$
+  \end{enumerate}
 \end{enumerate}
 
 \newpage
 \subsection{}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-5.png}
+  \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-5-1.png}
 \end{mdframed}
+\begin{claim*}
+  Let $(a^n)$ be a sequence such that $a_n \to 0$. Let $(b_n)$ be a bounded sequence. Then
+  $a_nb_n \to 0$.
+
+  % I.e. $(\forall \epsilon > 0) ~~ (\exists N \in \N) ~~ (\forall n \geq N) ~~ (|a_nb_n| < \epsilon)$
+\end{claim*}
+\begin{proof}
+  Let $(a^n)$ be a sequence such that $a_n \to 0$. Let $(b_n)$ be a bounded sequence.
+
+  Let $M$ be a bound for $(b_n)$ so that $|b_n| \leq M$ for all $n$.
+
+  Fix $\epsilon > 0$ and let $N$ be such that $|a_n| < \frac{\epsilon}{M}$ for all $n \geq N$.
+
+  Then $|a_nb_n| = |a_n||b_n| < \epsilon$ for all $n \geq N$.
+\end{proof}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-5-2.png}
+\end{mdframed}
+
+\begin{enumerate}[label=(\roman*)]
+\item Let $(c_n)$ be unbounded and let $a_n = 0$ for all $n$. Then $a_nc_n \to 0$.
+\item Let $c_n = \frac{n}{a_n}$. Then $a_nc_n = n \to \infty$.
+\item Let $L \neq 0$ and $c_n = \frac{L}{a_n}$. Then $a_nc_n = L$.
+\item Let $c_n = \frac{\sin n}{a_n}$. Then $(a_nc_n) = (\sin n)$ which is bounded and divergent.
+\item Let $c_n = \frac{-n}{a_n}$. Then $a_nc_n = n \to -\infty$.
+\end{enumerate}
 
 \newpage
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-6.png}
 \end{mdframed}
+
+\begin{enumerate}[label=(\roman*)]
+\item
+\end{enumerate}
 
 \newpage
 \subsection{}
@@ -612,20 +688,6 @@
 
   Similarly, $\floor{x}$ exists.
 \end{theorem*}
-
-\begin{theorem*}[well-order isomorphism]
-  Let $S$ be a set with a well-ordering. I.e. every non-empty subset of $S$ has a least
-  element. Let $T$ be a set and let $f:S \to T$ be a bijection with the property that
-  \begin{align*}
-    s_1 \leq s_2 \iff f(s_1) \leq f(s_2).
-  \end{align*}
-  Then $<$ is a well-ordering on $T$.
-\end{theorem*}
-\begin{proof}
-  Let $\emptyset \neq U \subseteq T$. We claim that $\min T$ exists and is given by
-  $\min T = f(\min S)$. Indeed suppose that there exists $t \in T$ such that $t < f(\min S)$. But
-  then $f^\1(t) < \min S$, a contradiction. Therefore $\min T = f(\min S)$ as claimed.
-\end{proof}
 
 \begin{mdframed}
   (Question from Alex Coward)\\
@@ -670,7 +732,7 @@
 \end{proof}
 
 \begin{claim*}
-  $f$ is continuous on $\R\setminus\Q \cup \{0\}$.
+  $f$ is continuous on $\R\setminus\Q$.
 \end{claim*}
 
 \begin{proof}
@@ -698,4 +760,34 @@
   Set $\delta = \min(|a - u^*|, |a - v^*|)$. Then
   $0 < |x - a| < \delta \implies |f(x)| < \epsilon$.
 \end{proof}
+
+\begin{claim*}
+  $f$ is not continuous on $\Q$.
+\end{claim*}
+
+\begin{proof}
+  Let $a \in \Q\setminus\{0\}$. Then $f(a) = s(a)$, the stride of $a$. Suppose for a contradiction
+  that $f$ is continuous at $a$. Let $\epsilon = s(a)/2$. Then there exists $\delta > 0$ such that
+  $|x - a| < \delta \implies |f(x) - s(a)| < \epsilon$. Note that there exists
+  $b \in (a, a + \delta) \cap \R\setminus\Q$, since there is an irrational number between any two
+  real numbers. But $|f(b) - s(a)| = s(a) > \epsilon$, a contradiction. Therefore $f$ is not
+  continuous at $a$.
+\end{proof}
+
+(I thought I would need the following as a lemma to prove that minima of $U_k$ and $V_k$ above
+exist, but I have not used it.)
+\begin{theorem*}[well-order isomorphism]
+  Let $S$ be a set with a well-ordering. I.e. every non-empty subset of $S$ has a least
+  element. Let $T$ be a set and let $f:S \to T$ be a bijection with the property that
+  \begin{align*}
+    s_1 \leq s_2 \iff f(s_1) \leq f(s_2).
+  \end{align*}
+  Then $<$ is a well-ordering on $T$.
+\end{theorem*}
+\begin{proof}
+  Let $\emptyset \neq U \subseteq T$. We claim that $\min T$ exists and is given by
+  $\min T = f(\min S)$. Indeed suppose that there exists $t \in T$ such that $t < f(\min S)$. But
+  then $f^\1(t) < \min S$, a contradiction. Therefore $\min T = f(\min S)$ as claimed.
+\end{proof}
+
 \end{document}
