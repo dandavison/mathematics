@@ -18,7 +18,7 @@
 \end{mdframed}
 
 \begin{enumerate}[label=(\alph*)]
-\item \begin{theorem*} $a(bc) = c(ba)$\end{theorem*}
+\item \begin{claim*} $a(bc) = c(ba)$\end{claim*}
   \begin{proof}
     \begin{align*}
       a(bc) &= a(cb)  ~~~~~~~ \text{(M1 commutativity of multiplication)}\\
@@ -30,9 +30,9 @@
   \end{proof}
 \newpage
 \item
-  \begin{theorem*}
+  \begin{claim*}
     $-(a + b) = (-a) + (-b)$
-  \end{theorem*}
+  \end{claim*}
   \begin{proof}
     \begin{align*}
       (a + b) + ((-a) + (-b)) &= (a + b) + ((-b) + (-a)) ~~~~~~~ \text{S1 commutativity of sum}\\
@@ -54,9 +54,9 @@
 
 \begin{enumerate}[label=(\alph*)]
 \item
-  \begin{theorem*}
+  \begin{claim*}
     If $a < b$ then $ac > bc$ iff $c < 0$.
-  \end{theorem*}
+  \end{claim*}
   \begin{intuition*}
     Multiplication by a scalar flips orientation iff the scalar is negative.
   \end{intuition*}
@@ -110,11 +110,11 @@
   alll $a, b \in \R$ since either $a < b$ or $a = b$ or $a > b$).
 \end{definition*}
 
-\begin{theorem*}
+\begin{claim*}
   \begin{align*}
     \max(a, b) = \frac{1}{2}(a + b) + \frac{1}{2}|a - b|.
   \end{align*}
-\end{theorem*}
+\end{claim*}
 
 \begin{proof}
   Suppose $a = b$. Then
@@ -492,8 +492,8 @@
 \item Note that $\cos n^2$ is bounded and that $2^{-n} \to 0$. Therefore
   $a_n = 2^{-n}\cos n^2 \to 0$.
 \item Note that $0 \leq \sin x \leq x$ for all $0 \leq x \leq \pi$. Therefore
-  $0 \leq a_n = \sin \frac{1}{n} \leq \frac{1}{n}$ for all $n \geq 4$. We have $\frac{1}{n} \to 0$,
-  therefore $a_n \to 0$ by the Sandwiching Lemma and the Tails Lemma.
+  $0 \leq a_n = \sin \frac{1}{n} \leq \frac{1}{n}$. We have $\frac{1}{n} \to 0$, therefore
+  $a_n \to 0$ by the Sandwiching Lemma and the Tails Lemma.
 \item Note that $-\frac{1}{3^n} \leq a_n \leq \frac{1}{2^n}$. Therefore by $a_n \to 0$ by the
   Sandwiching Lemma since $-\frac{1}{3^n} \to 0$ and $\frac{1}{2^n} \to 0$.
 \end{enumerate}
@@ -506,9 +506,9 @@
 
 \begin{enumerate}[label=(\alph*)]
 \item
-  \begin{theorem*}
+  \begin{claim*}
     $\sqrt{n+1} - \sqrt{n} \to 0$.
-  \end{theorem*}
+  \end{claim*}
 
   \begin{proof}
     Note that for $n \geq 1$
@@ -526,9 +526,9 @@
     Therefore $\sqrt{n+1} - \sqrt{n} \to 0 + 0 = 0$ by Algebra of Limits.
   \end{proof}
 \item
-  \begin{theorem*}
+  \begin{claim*}
     $n^{1/n} \geq 1$ for $n = 1, 2, \ldots$.
-  \end{theorem*}
+  \end{claim*}
   \begin{proof}
     Suppose there exists $n \in \N$ such that $n^{1/n} < 1$. Let $\alpha = n^{1/n} < 1$. Then
     $\alpha^n \geq 1$ since $\(n^{1/n}\)^n = n \in \N$. But we can prove by induction that
@@ -537,16 +537,16 @@
     induction. This contradiction proves that $n^{1/n} \geq 1$ for $n = 1, 2, \ldots$.
   \end{proof}
 
-  \begin{theorem*}
+  \begin{claim*}
     Let $a_n = n^{1/n} - 1$. Then $a_n \leq \sqrt{\frac{2}{n - 1}}$ for $n > 1$.
-  \end{theorem*}
+  \end{claim*}
   \begin{proof}
-    Note that $n = (1 + a_n)^n > 1 + na_n + \frac{n(n-1)}{2}a_n^2$, therefore for $n > 1$ we have
-    $\frac{n(n-1)}{2}a_n^2 < n$, therefore $a_n < \sqrt{\frac{2}{n - 1}}$.
+    Note that $n = (1 + a_n)^n \geq 1 + na_n + \frac{n(n-1)}{2}a_n^2$. Therefore for $n > 1$ we
+    have $\frac{n(n-1)}{2}a_n^2 \leq n$, therefore $a_n \leq \sqrt{\frac{2}{n - 1}}$.
   \end{proof}
-  \begin{theorem*}
+  \begin{claim*}
     $n^{1/n} \to 1$.
-  \end{theorem*}
+  \end{claim*}
   \begin{proof}
     Fix $\epsilon > 0$. Note that if $n = \ceil{\frac{1}{2\epsilon^2}} + 1$ then
     $0 < \sqrt{\frac{2}{n - 1}} \leq \epsilon$. Let $N = \ceil{\frac{1}{2\epsilon^2}} + 2$. Then
@@ -598,10 +598,10 @@
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4-b.png}
   \end{mdframed}
-  \begin{theorem*}
+  \begin{claim*}
     Let $(a_n) \in \R^\N$ and let $(b_n) \in \R^\N$ tend to infinity. If $a_n \geq b_n$ for all
     $n \in \N$ then $a_n$ tends to infinity.
-  \end{theorem*}
+  \end{claim*}
   \begin{proof}
     Let $(a_n) \in \R^\N$ and let $(b_n) \in \R^\N$ tend to infinity. Suppose $a_n \geq b_n$ for
     all $n \in \N$. Let $M \in \R$ be such that $\exists N \in \N ~~ \forall n \geq N ~~ b_n >
@@ -612,13 +612,26 @@
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-M2-analysis-I-3-4-c.png}
   \end{mdframed}
-  \begin{enumerate}[label=(\roman*)]
-  \item
+  \begin{definition*}~\\
+    $(a_n)$ tends to infinity if
     \begin{align*}
-      \frac{n^2 + n + 1}{n + 1} > \frac{n^2}{n + 1} = \frac{n}{1 + 1/n}.
+      (\forall M \in \R) ~~ (\exists N \in \N) ~~ (\forall n \geq N) ~~ (a_n > M)
     \end{align*}
-    This tends to infinity \red{TODO: proof}
-  \item $n^2\sin n$
+    $(a_n)$ does not tend to infinity if
+    \begin{align*}
+      (\exists M \in \R) ~~ (\forall N \in \N) ~~ (\exists n \geq N) ~~ (a_n \leq M)
+    \end{align*}
+  \end{definition*}
+  \begin{enumerate}[label=(\roman*)]
+  \item We have $a_n = \frac{n^2 + n + 1}{n + 1} > \frac{n^2}{n + 1} = \frac{n}{1 + 1/n}$.
+
+    Let $b_n = \frac{n}{1 + 1/n}$. Then $\frac{1}{b_n} = \frac{1}{n} + \frac{1}{n^2} \to
+    0$. Therefore (theorem) $b_n \to \infty$, therefore $a_n \to \infty$.
+    \red{Is there a better way to show this?}
+
+  \item We have $a_n = n^2\sin n$.
+    This does not tend to infinity since $\{n ~|~ n^2\sin n < 0\}$ has no upper bound.
+  \item
   \end{enumerate}
 \end{enumerate}
 
@@ -783,7 +796,7 @@ exist, but I have not used it.)
     s_1 \leq s_2 \iff f(s_1) \leq f(s_2).
   \end{align*}
   Then $<$ is a well-ordering on $T$.
-\end{theorem*}
+\end{theorem}
 \begin{proof}
   Let $\emptyset \neq U \subseteq T$. We claim that $\min T$ exists and is given by
   $\min T = f(\min S)$. Indeed suppose that there exists $t \in T$ such that $t < f(\min S)$. But
