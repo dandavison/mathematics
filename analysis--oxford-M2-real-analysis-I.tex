@@ -736,6 +736,198 @@
 \end{enumerate}
 
 
+\newpage
+\section{Sheet 4}
+\subsection{}
+\begin{enumerate}[label=(\alph*)]
+\item~\\
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-1-a.png}
+  \end{mdframed}
+
+  Note that:
+  \begin{enumerate}[label=(\arabic*)]
+  \item $\frac{n^2 - 1}{n^2 + 1} = \frac{1 - n^{-2}}{1 + n^{-2}} \to 1$
+  \item $\cos(\frac{2\pi n}{3}) = 1$ for $n = 0, 3, 6, 9, \ldots$
+  \item $\cos(\frac{2\pi n}{3}) = -1$ for $n = \frac{3}{2}, \frac{9}{2}, \frac{15}{2}, \ldots$
+  \end{enumerate}
+
+  Therefore, the subsequence indicated in (2) has limit 1 whereas that in (3) has limit -1.
+
+  Therefore $(a_n)$ diverges, since a sequence diverges if it contains two subsequences converging
+  to different limits.
+
+  \newpage
+\item~\\
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-1-b.png}
+  \end{mdframed}
+
+  \begin{proof}
+    Let $K = \sqrt{\frac{1}{2}}$, let $n \in \N$ and let $x \in \R^{>0}$.
+
+    Note that $|x - 2n\pi| < \frac{\pi}{4} \implies \cos(x) > K$. Let $f(n)$ be the smallest integer
+    in $\(2n\pi - \frac{\pi}{4}, 2n\pi + \frac{\pi}{4}\)$ (the interval exceeds 1 in width therefore
+    it contains at least one integer). Define $b_r = a_{f(r)}$. Then $b_r > K$ for all $r \in \N$.
+
+    Similarly, note that $|x - (2n + 1)\pi| < \frac{\pi}{4} \implies \cos(x) < -K$. Let $g(n)$ be the
+    smallest integer in $\((2n + 1)\pi - \frac{\pi}{4}, (2n + 1)\pi + \frac{\pi}{4}\)$ (the interval
+    exceeds 1 in width therefore it contains at least one integer). Define $c_s = a_{g(s)}$. Then
+    $c_s < -K$ for all $r \in \N$.
+
+    Define
+    \begin{align*}
+      d_n =
+      \begin{cases}
+        b_n ~~~~\text{n odd}\\
+        c_n ~~~~\text{n even}.
+      \end{cases}
+    \end{align*}
+    Then $(d_n)$ does not converge since it is not Cauchy. But $(d_n)$ is a subsequence of $(a_n)$
+    therefore $(a_n)$ does not converge.
+  \end{proof}
+\end{enumerate}
+
 
 \newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-2-a.png}
+\end{mdframed}
+
+\begin{proof}
+  Let $(a_n)$ be such that $(a_{2n})$ and $(a_{2n + 1})$ both converge to $L \in \R$.
+
+  Fix $\epsilon > 0$. Let $N_1 \in \N$ be such that $|a_{2n} - L| < \epsilon$ for all $n \geq N_1$
+  and let $N_2 \in \N$ be such that $|a_{2n + 1} - L| < \epsilon$ for all $n \geq N_2$.
+
+  Let $N = 2\max(N_1, N_2)$. Then $|a_n - L| < \epsilon$ for all $n \geq N$, therefore $a_n \to L$.
+\end{proof}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-2-b.png}
+\end{mdframed}
+
+Let $(b_{3n})$ converge to $L$. Therefore $(b_{6n})$ and $(b_{6n + 3})$ converge to $L$. Note that
+$(b_{6n})$ is a subsequence of $(b_{2n})$, and $(b_{6n + 3})$ is a subsequence of $(b_{2n +
+  1})$. It is given that $(b_{2n})$ and $(b_{2n + 1})$ converge, therefore they converge to $L$
+also.
+
+Therefore $(b_n)$ converges to $L$ by the result in part (a).
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-2-c.png}
+\end{mdframed}
+
+\begin{proof}
+  $c_n$ need not converge. As a counterexample define
+  \begin{align*}
+    c_n =
+    \begin{cases}
+      0 ~~~~~~~\text{$n$ prime}\\
+      1 ~~~~~~~\text{otherwise}.
+    \end{cases}
+  \end{align*}
+  This satisfies the description given of $(c_n)$ but is not Cauchy since the set of primes has no
+  upper bound and the primes are interspersed with non-primes.
+\end{proof}
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-3.png}
+\end{mdframed}
+
+\begin{enumerate}[label=(\roman*)]
+\item
+  \begin{align*}
+    \frac{n^2}{n!} = \frac{n}{(n-1)!}
+                   = \prod_{k=1}^{n - 1} \frac{1}{1 - \frac{1}{k}}
+                   \to \prod_{k=1}^{n - 1} \frac{1}{1 - 0}
+                   = 1.
+  \end{align*}
+\item
+  \begin{align*}
+    \frac{2^nn^2 + 3^n}{3^n(n + 1) + n^7}
+  \end{align*}
+\end{enumerate}
+
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-4-a.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item Let $a_n \geq 0$ and $a_n \to L$.
+  \begin{proof}
+    Suppose for a contradiction that $L < 0$. Put $\epsilon = -\frac{L}{2} > 0$. Then there exists
+    $N \in \N$ such that $|a_n - L| < \epsilon$ for all $n \geq N$. Let $n \geq N$. Then
+    $a_n < L + \epsilon = L - \frac{L}{2} = \frac{L}{2} < 0$. But $a_n \geq 0$, a
+    contradiction. Therefore $L \geq 0$.
+  \end{proof}
+\end{enumerate}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-4-b.png}
+\end{mdframed}
+\begin{proof}
+  Let $(a_n)$, $(b_n)$, $(c_n)$ be real sequences with $(a_n) \to L_1$, $(b_n) \to L_2$,
+  $(c_n) \to L_3$, and let $d_n = \max ~ \{a_n, b_n, c_n\}$.
+
+  First suppose $L_1 = L_2 = L_3 = L$. Fix $\epsilon > 0$. Put $N = \max\{N_1, N_2, N_3\}$ where
+  $N_1$, $N_2$, $N_3$ ``work'' for $(a_n)$, $(b_n)$, $(c_n)$ respectively, for this choice of
+  $\epsilon$. Then $|d_n - L| < \epsilon$ for $n \geq N$, so $d_n \to L = \max\{L_1, L_2, L_3\}$.
+
+  Finally, WLOG, suppose $L_1 > L_2 \geq L_3$. Let $\epsilon = L_1 - L_2$. Put
+  $N = \max\{N_1, N_2, N_3\}$ where $N_1, N_2, N_3$ ``work'' for $(a_n), (b_n), (c_n)$
+  respectively, for this choice of $\epsilon$. Then $a_n > b_n$ and $a_n > c_n$ for $n \geq
+  N$. Therefore $d_n = a_n$ for $n \geq N$. Therefore $d_n \to L_1 = \max\{L_1, L_2, L_3\}$.
+
+  \red{Right? But why does the question suggest AOL is needed?}
+\end{proof}
+
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-a.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-b.png}
+\end{mdframed}
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-a.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-b.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-c.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-d.png}
+\end{mdframed}
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-7-a.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-7-b.png}
+\end{mdframed}
+
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-extra-A.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-M2-analysis-I-extra-B.png}
+\end{mdframed}
+
 \end{document}
