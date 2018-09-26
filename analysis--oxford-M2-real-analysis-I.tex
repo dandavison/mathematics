@@ -891,11 +891,73 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \newpage
 \subsection{}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-a.png}
+  \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-a.png}
 \end{mdframed}
+
+\begin{proof}
+  Let $r > 0$ and let $a_n = \frac{r^n}{n!}$. Then
+  \begin{align*}
+    \frac{a_{n+1}}{a_n} = \frac{r^{n+1}}{(n+1)!}\frac{n!}{r^n} = \frac{r}{n+1}.
+  \end{align*}
+  Therefore $(a_n)_{n \geq N}$ is monotonic decreasing for $N = \ceil{r}$.
+\end{proof}
+
 \begin{mdframed}
-\includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-b.png}
+  \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-b.png}
 \end{mdframed}
+
+\begin{proof}
+  Note that $a_n > 0$. Since $(a_n)$ is bounded below by zero and the tail $(a_n)_{n \geq N}$ is
+  monotonic decreasing for $N = \ceil{r}$, we have that $a_n$ converges to a limit $L > 0$ by the
+  Monotonic Sequence Theorem.
+\end{proof}
+
+\begin{claim*}
+  $a_n \to 0$.
+\end{claim*}
+
+\begin{proof}
+  If $r \leq 1$ then $a_n \leq \frac{1}{n!} \to 0$.
+
+  So let $r > 1$. Note that for $n > r$
+  \begin{align*}
+    a_n
+    = \prod_{k=1}^{n}\frac{r}{k}
+    = \(\prod_{k=1}^{\ceil{r} - 1}\frac{r}{k}\)\(\prod_{k=\ceil{r}}^n\frac{r}{k}\).
+  \end{align*}
+
+  The first factor is a product of terms each of which is greater than 1, and we have
+  \begin{align*}
+    \(\prod_{k=1}^{\ceil{r} - 1}\frac{r}{k}\) < r^{\ceil{r} - 1}.
+  \end{align*}
+  The second factor is a product of terms each of which is not greater than 1, and we have
+  \begin{align*}
+    \(\prod_{k=\ceil{r}}^n\frac{r}{k}\) < \(\frac{r}{\ceil{r}}\)^{n - \ceil{r} + 1}.
+  \end{align*}
+  \red{What about if $r = \ceil{r}$?}
+
+  Therefore
+  \begin{align*}
+    a_n
+    < r^{\ceil{r} - 1} \(\frac{r}{\ceil{r}}\)^{n - \ceil{r} + 1}
+    = \(\frac{r}{\ceil{r}}\)^n\ceil{r}^{\ceil{r} - 1}
+  \end{align*}
+
+  \begin{mdframed}
+    Scratch work:
+    \begin{align*}
+      \(\frac{r}{\ceil{r}}\)^n\ceil{r}^{\ceil{r} - 1} &< \epsilon\\
+      \(\frac{r}{\ceil{r}}\)^n &< \epsilon \ceil{r}^{1 - \ceil{r}}\\
+      n\log \frac{r}{\ceil{r}} &< \log \epsilon + (1 - \ceil{r})\ceil{r}\\
+      n                        &> \frac{\log \epsilon + (1 - \ceil{r})\ceil{r}}
+                                 {\log r - \log \ceil{r}}.
+    \end{align*}
+  \end{mdframed}
+
+  Fix $\epsilon > 0$. Let
+  $N = \Bigceil{\frac{\log \epsilon + (1 - \ceil{r})\log \ceil{r}} {\log r - \log \ceil{r}}}$.
+  Then $a_n < \epsilon$ for $n \geq N$. Therefore $a_n \to 0$.
+\end{proof}
 
 \newpage
 \subsection{}
