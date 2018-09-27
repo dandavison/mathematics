@@ -134,7 +134,7 @@ Notes from Oxford - M1 - Sequences and Series.
   \item $f(x) \to L$ as $x \to a$.
   \item For every sequence $(x_n)$ such that $x_n \neq a$
     \begin{align*}
-      \(\LimEq{x_n}{a}{n}{\infty}\) \implies \(\LimEq{f(x_n)}{f(a)}{n}{\infty}\)
+      \(\lim_{n \to \infty} x_n = a\) \implies \(\lim_{n \to \infty} f(x_n) = f(a)\)
     \end{align*}
   \end{enumerate}
 \end{theorem*}
@@ -206,13 +206,13 @@ exists $x \in E$ such that $0 < |x - p| < \delta$.
 \subsection{Limit, Convergence}
 
 \begin{definition*}[Limit of a sequence $(x_n)$]~\\
-$\LimEq{x_n}{L}{n}{\infty}$ iff for all $\epsilon > 0$ there exists an $m \in \N$ such that
-$n > m \implies |x_n - L| < \epsilon$. The sequence is then said to \textit{converge} to $L$.
+  $\lim_{n \to \infty} x_n = L$ iff for all $\epsilon > 0$ there exists $N \in \N$ such that
+  $n > N \implies |x_n - L| < \epsilon$. The sequence is then said to \textit{converge} to $L$.
 \end{definition*}
 
 \begin{definition*}[Limit of a function $f:\R\to\R$]~\\
-$\LimEq{f(x)}{L}{x}{a}$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
-$0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
+  $\lim_{x \to a} f(x) = L$ means: for all $\epsilon > 0$ there exists $\delta > 0$ such that
+  $0 < |x - a| < \delta \implies |f(x) - L| < \epsilon$.
 \end{definition*}
 
 Equivalent notation: $f(x) \to L$ as $x \to a$
@@ -242,7 +242,7 @@ Equivalent notation: $f(x) \to L$ as $x \to a$
 \subsection{Continuity of a function $f$}
 
 \begin{definition*}
-$f$ is continuous at $a$ if $\LimEq{f(x)}{f(a)}{x}{a}$.
+$f$ is continuous at $a$ if $\lim_{x \to a} f(x) = f(a)$.
 \end{definition*}
 
 Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$
