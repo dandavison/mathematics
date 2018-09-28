@@ -45,11 +45,22 @@ If we allow $a = b$ including $a = b = 0$ then
 
 The quadratic equation $ax^2 + bx + c = 0$ can be solved as follows:
 \begin{align*}
-  ax^2 + bx + c                             &= 0\\
-  \(\sqrt{a}x + \frac{b}{2\sqrt{a}}\)^2 - \frac{b^2}{4a} + c &= 0\\
-  \sqrt{a}x &= \sqrt{\frac{b^2 - 4ac}{4a}} - \frac{b}{2\sqrt{a}}\\
-  x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+  x^2 + \frac{b}{a}x + \frac{c}{a}                        &= 0\\
+  \(x + \frac{b}{2a}\)^2 - \frac{b^2}{4a^2} + \frac{c}{a} &= 0\\
+  x &= -\frac{b}{2a} \pm \sqrt{\frac{b^2}{4a^2} - \frac{4ac}{4a^2}}\\
+    &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
 \end{align*}
+
+\subsection{Geometric series}
+\begin{proof}
+  \begin{align*}
+    S(n)          &= \sum_{k=0}^nr^n = 1 + r + r^2 + \ldots + r^n\\
+    S(n) - rS(n)  &= 1 - r^{n+1}\\
+    S(n)          &= \frac{1 - r^{n+1}}{1 - r}
+  \end{align*}
+  If $r < 1$ then $\lim_{n \to \infty} S(n) = \frac{1}{1 - r}$.
+\end{proof}
+
 
 \subsection{Partial fractions}
 
