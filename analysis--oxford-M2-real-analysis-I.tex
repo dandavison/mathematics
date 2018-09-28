@@ -1029,17 +1029,65 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \section{Sheet 5}
 
 \newpage
-\subsection
+\subsection{}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-1.png}
 \end{mdframed}
+
+\begin{proof}
+  \begin{align*}
+    |a_m - a_n| &=    \Big| \int_1^m \frac{\cos x}{x^2} \dx - \int_1^n \frac{\cos x}{x^2} \dx \Big|\\
+                &=    \Big| \int_n^m \frac{\cos x}{x^2} \dx \Big|\\
+                &\leq \int_n^m \Big| \frac{\cos x}{x^2} \Big| \dx \\
+                &\leq \int_n^m \frac{1}{x^2} \dx \\
+                &= \frac{1}{n} - \frac{1}{m}
+                < \frac{1}{n}. ~~~~\text{\red{why does question give $\leq$}?}
+  \end{align*}
+\end{proof}
+\begin{claim*}
+  $(a_n)$ converges.
+\end{claim*}
+\begin{proof}
+  Note that $a_1 = 0$ and $a_n = \sum_{k=1}^n (a_{k} - a_{k-1})$ for $n \geq 2$.
+
+  The series $\sum_{k=1}^n (a_{k} - a_{k-1})$ converges absolutely... confused.
+
+  Note that $a_n = \sum_{k=1}^n b_k$, where
+  \begin{align*}
+    b_k =
+    \begin{cases}
+      0,     ~~~~~~~~~~~~~~&k = 1\\
+      \int_{k-1}^k \frac{\cos x}{x^2} \dx = a_{k} - a_{k-1},   ~~~~~~~&k \geq 2.
+    \end{cases}
+  \end{align*}
+  Thus $(a_n)$ is a sequence of partial sums, which converges
+
+  Note that $(a_n)$ is a sequence of partial sums. To see this, define
+  \begin{align*}
+    b_n =
+    \begin{cases}
+      0,     ~~~~~~~&n = 1\\
+      a_n - a_{n-1}  &n \geq 2,
+    \end{cases}
+  \end{align*}
+  and observe that $a_n = \sum_{k=1}^n b_k = 0 + (a_2 - 0) + (a_3 - a_2) + \ldots + (a_n - a_{n - 1})$.
+
+\end{proof}
 
 \newpage
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-a.png}
 \end{mdframed}
+
+\begin{claim*}
+  $\sum \frac{1}{k(k+p)}$ converges.
+\end{claim*}
+
+\begin{proof}
+  Let $a_k = \frac{1}{k(k+p)}$
+\end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-b.png}
@@ -1049,7 +1097,6 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-c.png}
 \end{mdframed}
 
-\newpage
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-3.png}
