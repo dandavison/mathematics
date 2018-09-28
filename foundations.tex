@@ -1,66 +1,78 @@
 \subsection{Triangle inequalities}
 
-Let $a, b \in \R$ with $a \neq b$ and $a, b \neq 0$. Using $+$, $-$ and $|\cdot|$ we can generate the
-following 4 real numbers:
-\begin{align*}
-  -\big(|a| + |b|\big) ~~~ < ~~~
-  -\big||a| - |b|\big| ~~~ < ~~~
-  0                    ~~~ < ~~~
-  \big||a| - |b|\big|  ~~~ < ~~~
-  |a| + |b|.
-\end{align*}
-\begin{itemize}
-\item $a + b$ and $a - b$ can equal any of them.
-\item $|a + b|$ and $|a - b|$ can equal either of the two positive numbers.
-\item $|a| - |b|$ can equal either of the two ``inner'' numbers.
-\end{itemize}
-~\\~\\
-If we allow $a = b$ with $ a \neq 0, b \neq 0$ then
-\begin{align*}
-  -\big(|a| + |b|\big) ~~~ < ~~~
-  -\big||a| - |b|\big| ~~~ \red{\leq} ~~~
-  0                    ~~~ \red{\leq} ~~~
-  \big||a| - |b|\big|  ~~~ < ~~~
-  |a| + |b|.
-\end{align*}
-If we allow $a = 0$ and $b = 0$ with $a \neq b$ then
-\begin{align*}
-  -\big(|a| + |b|\big) ~~~ \red{\leq} ~~~
-  -\big||a| - |b|\big| ~~~ < ~~~
-  0                    ~~~ < ~~~
-  \big||a| - |b|\big|  ~~~ \red{\leq} ~~~
-  |a| + |b|;
-\end{align*}
-If we allow $a = b$ including $a = b = 0$ then
-\begin{align*}
-  -\big(|a| + |b|\big) ~~~ \red{\leq} ~~~
-  -\big||a| - |b|\big| ~~~ \red{\leq} ~~~
-  0                    ~~~ \red{\leq} ~~~
-  \big||a| - |b|\big|  ~~~ \red{\leq} ~~~
-  |a| + |b|;
-\end{align*}
+\begin{theorem*}
+  Let $a, b \in \R$ with $a \neq b$ and $a, b \neq 0$. Using $+$, $-$ and $|\cdot|$ we can generate the
+  following 4 real numbers:
+  \begin{align*}
+    -\big(|a| + |b|\big) ~~~ < ~~~
+    -\big||a| - |b|\big| ~~~ < ~~~
+    0                    ~~~ < ~~~
+    \big||a| - |b|\big|  ~~~ < ~~~
+    |a| + |b|.
+  \end{align*}
+  \begin{itemize}
+  \item $a + b$ and $a - b$ can equal any of them.
+  \item $|a + b|$ and $|a - b|$ can equal either of the two positive numbers.
+  \item $|a| - |b|$ can equal either of the two ``inner'' numbers.
+  \end{itemize}
+  ~\\~\\
+  If we allow $a = b$ with $ a \neq 0, b \neq 0$ then
+  \begin{align*}
+    -\big(|a| + |b|\big) ~~~ < ~~~
+    -\big||a| - |b|\big| ~~~ \red{\leq} ~~~
+    0                    ~~~ \red{\leq} ~~~
+    \big||a| - |b|\big|  ~~~ < ~~~
+    |a| + |b|.
+  \end{align*}
+  If we allow $a = 0$ and $b = 0$ with $a \neq b$ then
+  \begin{align*}
+    -\big(|a| + |b|\big) ~~~ \red{\leq} ~~~
+    -\big||a| - |b|\big| ~~~ < ~~~
+    0                    ~~~ < ~~~
+    \big||a| - |b|\big|  ~~~ \red{\leq} ~~~
+    |a| + |b|;
+  \end{align*}
+  If we allow $a = b$ including $a = b = 0$ then
+  \begin{align*}
+    -\big(|a| + |b|\big) ~~~ \red{\leq} ~~~
+    -\big||a| - |b|\big| ~~~ \red{\leq} ~~~
+    0                    ~~~ \red{\leq} ~~~
+    \big||a| - |b|\big|  ~~~ \red{\leq} ~~~
+    |a| + |b|;
+  \end{align*}
+\end{theorem*}
 
+\subsection{The quadratic formula}
 
-\subsection{Completing the square and the quadratic formula}
+\begin{theorem*}
+  The roots of $ax^2 + bx + c = 0$ are $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
+\end{theorem*}
 
-The quadratic equation $ax^2 + bx + c = 0$ can be solved as follows:
-\begin{align*}
-  x^2 + \frac{b}{a}x + \frac{c}{a}                        &= 0\\
-  \(x + \frac{b}{2a}\)^2 - \frac{b^2}{4a^2} + \frac{c}{a} &= 0\\
-  x &= -\frac{b}{2a} \pm \sqrt{\frac{b^2}{4a^2} - \frac{4ac}{4a^2}}\\
-    &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
-\end{align*}
-
-\subsection{Geometric series}
 \begin{proof}
   \begin{align*}
-    S(n)          &= \sum_{k=0}^nr^n = 1 + r + r^2 + \ldots + r^n\\
-    S(n) - rS(n)  &= 1 - r^{n+1}\\
-    S(n)          &= \frac{1 - r^{n+1}}{1 - r}
+    x^2 + \frac{b}{a}x + \frac{c}{a}                        &= 0\\
+    \(x + \frac{b}{2a}\)^2 - \frac{b^2}{4a^2} + \frac{c}{a} &= 0 ~~~~~~~~~~~~~~~~~~~~~\text{``completing the square"}\\
+    x &= -\frac{b}{2a} \pm \sqrt{\frac{b^2}{4a^2} - \frac{4ac}{4a^2}}\\
+                                                            &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
   \end{align*}
-  If $r < 1$ then $\lim_{n \to \infty} S(n) = \frac{1}{1 - r}$.
 \end{proof}
 
+\subsection{Geometric series}
+\begin{theorem*}
+  $a_n := \sum_{k=0}^nr^n = \frac{~~~~1 - r^{n+1}}{1 - r}$.
+
+  Therefore if $r < 1$ then $\lim_{n \to \infty} a_n = \frac{1}{1 - r}$.
+\end{theorem*}
+\begin{proof}
+  \begin{align*}
+    a_n          &= \sum_{k=0}^nr^n = 1 + r + r^2 + \ldots + r^n\\
+    a_n - ra_n  &= 1 - r^{n+1}\\
+    a_n          &= \frac{~~~~1 - r^{n+1}}{1 - r}
+  \end{align*}
+\end{proof}
+\begin{remark*}
+  Note that $a_{n+1} = 1 + ra_n$.
+\end{remark*}
 
 \subsection{Partial fractions}
 
@@ -83,9 +95,9 @@ Functions can be neither even nor odd.
 \end{claim*}
 
 \subsection{$\sqrt{2}$ is irrational}
-\begin{claim*}
+\begin{theorem*}
   $\sqrt{2}$ is irrational.
-\end{claim*}
+\end{theorem*}
 
 \begin{proof}
   Suppose $\sqrt{2} \in \Q$. Then $\sqrt{2}$ can be written as $\frac{a}{b}$ where $a, b \in \Z$
@@ -108,11 +120,11 @@ Functions can be neither even nor odd.
 
 \subsection{Misc}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/misc--cambridge-1a-vectors-and-matrices-revision-1.png}
+  \includegraphics[width=400pt]{img/misc--cambridge-1a-vectors-and-matrices-revision-1.png}
 \end{mdframed}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/misc--cambridge-1a-vectors-and-matrices-revision-2.png}
+  \includegraphics[width=400pt]{img/misc--cambridge-1a-vectors-and-matrices-revision-2.png}
 \end{mdframed}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/misc--cambridge-1a-vectors-and-matrices-revision-3.png}
+  \includegraphics[width=400pt]{img/misc--cambridge-1a-vectors-and-matrices-revision-3.png}
 \end{mdframed}
