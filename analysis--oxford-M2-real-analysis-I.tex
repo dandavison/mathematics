@@ -1086,8 +1086,51 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{claim*}
 
 \begin{proof}
-  Let $a_k = \frac{1}{k(k+p)}$
+  Let $p \in \N^+$, define
+  \begin{align*}
+    a_k &:= \frac{1}{k(k + p)}\\
+    b_k &:= \frac{1}{k^2}.
+  \end{align*}
+  Note that $\sum b_k$ converges and that $0 < a_k < b_k$. Therefore $\sum a_k$ converges.
 \end{proof}
+
+\begin{mdframed}
+  Partial fractions:
+\begin{align*}
+  \frac{1}{k(k+p)} &= \frac{A}{k} + \frac{B}{k + p}\\
+  (A + B)k + Ap &= 1\\
+  A &= \frac{1}{p}, B = \frac{-1}{p}
+\end{align*}
+\end{mdframed}
+
+\begin{claim*}
+  $\sum_{k=1}^\infty \frac{1}{k(k+p)} = \sum_{k=1}^p\frac{1}{pk}$.
+\end{claim*}
+\begin{proof}
+  \begin{align*}
+    \sum_{k=1}^\infty \frac{1}{k(k+p)} &= \sum_{k=1}^\infty \frac{1}{pk} - \frac{1}{p(k + p)}\\
+                                       &= \sum_{k=1}^\infty \frac{1}{pk} - \sum_{k=p+1}^\infty  \frac{1}{pk}\\
+                                       &= \sum_{k=1}^p\frac{1}{pk}.
+  \end{align*}
+\end{proof}
+
+\begin{minted}{python3}
+  def approx(p, n):
+      return sum((1 / (k * (k + p))) for k in range(1, n + 1))
+
+  def exact(p):
+      return sum((1 / (p * k)) for k in range(1, p + 1))
+
+  In [1]: exact(p=7)
+  Out[1]: 0.3704081632653061
+
+  In [2]: [approx(p=7, n=10**k) for k in [1, 2, 3, 7]]
+  Out[2]:
+  [0.2974675534549484,
+   0.3607892203613656,
+   0.36941214337664163,
+   0.3704080632652916]
+\end{minted}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-b.png}
