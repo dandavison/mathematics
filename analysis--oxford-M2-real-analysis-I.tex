@@ -1086,13 +1086,18 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{claim*}
 
 \begin{proof}
-  Let $p \in \N^+$, define
+  Let $p \in \N^+$ and define
   \begin{align*}
-    a_k &:= \frac{1}{k(k + p)}\\
-    b_k &:= \frac{1}{k^2}.
+    a_k &= \frac{1}{k(k + p)}\\
+    b_k &= \frac{1}{k^2}.
   \end{align*}
   Note that $\sum b_k$ converges and that $0 < a_k < b_k$. Therefore $\sum a_k$ converges.
 \end{proof}
+
+\newpage
+\begin{claim*}
+  $\sum_{k=1}^\infty \frac{1}{k(k+p)} = \sum_{k=1}^p\frac{1}{pk}$.
+\end{claim*}
 
 \begin{mdframed}
   Partial fractions:
@@ -1103,9 +1108,6 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{align*}
 \end{mdframed}
 
-\begin{claim*}
-  $\sum_{k=1}^\infty \frac{1}{k(k+p)} = \sum_{k=1}^p\frac{1}{pk}$.
-\end{claim*}
 \begin{proof}
   \begin{align*}
     \sum_{k=1}^\infty \frac{1}{k(k+p)} &= \sum_{k=1}^\infty \frac{1}{pk} - \frac{1}{p(k + p)}\\
@@ -1132,18 +1134,78 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
    0.3704080632652916]
 \end{minted}
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-b.png}
 \end{mdframed}
 
+\red{INCOMPLETE}
+
+\begin{minted}{python3}
+  In [19]: sum(cos(k) / 2**k for k in range(1, 10 + 1))
+  Out[19]: 0.0281023042150256
+
+  In [20]: sum(cos(k) / 2**k for k in range(1, 100 + 1))
+  Out[20]: 0.028393995218935916
+
+  In [21]: sum(cos(k) / 2**k for k in range(1, 1000 + 1))
+  Out[21]: 0.028393995218935916
+\end{minted}
+
+\begin{proof}
+  \begin{align*}
+    \sum_{k=1}^\infty \frac{\cos k}{2^k} = \frac{\cos 1}{2^1} + \frac{\cos 2}{2^2} + \frac{\cos 3}{2^3} + \dots\\
+  \end{align*}
+\end{proof}
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-c.png}
 \end{mdframed}
 
+\begin{proof}
+  Define $a_k = \frac{2k + 1}{(k + 1)(k + 2)^2}$ and $b_k = \frac{1}{k(k + 1)}$. Note that
+  \begin{align*}
+    a_k
+    &= \frac{2k}{(k + 2)^2(k + 1)} + \frac{1}{(k + 2)^2(k + 1)}\\
+    &< \frac{2}{k(k + 1)} + \frac{1}{k(k + 1)}\\
+    &= 3b_k
+  \end{align*}
+  We showed in part (a) that $\sum b_k$ converges. Therefore $\sum a_k$ converges.
+\end{proof}
+
+\newpage
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-3.png}
 \end{mdframed}
+\begin{claim*}
+  $\Big|\sum\limits_{k=1}^\infty a_k\Big| \leq \sum\limits_{k=1}^\infty |a_k|$.
+\end{claim*}
+
+\begin{proof}
+  Let $(a_n)$ be a complex sequence and assume that $\sum_{k=1}^n |a_k|$ converges.
+
+  Define
+  \begin{align*}
+    s_n = a_1 + \ldots + a_n ~~~~~~~\text{and}~~~~~~~ S_n = |a_1| + \ldots + |a_n|.
+  \end{align*}
+
+  Consider the sequences $(|s_n|)$ and $(S_n)$.
+
+  Note that $|s_n| \leq S_n$ for all $n$ by the Triangle Law.
+
+  Note also that $(S_n)$ converges, say to $L$, by hypothesis, and therefore that $(|s_n|)$
+  converges, say to $M$.
+
+  We have $L \leq M$ by Preservation of Weak Inequalities.
+\end{proof}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/analysis--oxford-M2-I-preservation-weak-inequalities.png}
+\end{mdframed}
+
+
 
 \newpage
 \subsection{}

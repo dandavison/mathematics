@@ -190,6 +190,57 @@ Notes from Oxford - M1 - Sequences and Series.
 
 
 
+\subsection{Series}
+\begin{definition*}~\\
+
+  {\bf Note}: The following definition of ``series'' is non-standard and only half serious. In
+  particular, note that by ``the 5-th term of a series'' one usually means $a_5$, not $s_5$. The
+  word ``series'' tends to be used in a way that makes a formal definition difficult or impossible:
+  roughly speaking, a series is a ``summation of a sequence''; the limit in question may or may not
+  exist.
+
+  Let $(a_n)$ be a real or complex sequence.
+
+  $s_n := \sum_{k=1}^na_k$ is the $n$-th {\bf partial sum}.
+
+  The sequence of partial sums $(s_n)_{n \geq 1}$ is the {\bf series}.
+
+  If $\lim_{n \to \infty} s_n$ exists then the {\bf series converges}.
+
+  The notation $\sum_{k \geq 1} a_k$ is used to mean the series $(s_n)_{n \geq 1}$.
+\end{definition*}
+
+\begin{intuition*}~\\
+  A sequence is a sequence of ``steps''.
+
+  A series is the sequence of locations.
+\end{intuition*}
+
+\begin{theorem*}\hspace{0pt}
+  \begin{enumerate}[label=(\roman*)]
+  \item $a_n = s_n - s_{n-1}$ for $n \geq 2$.
+  \item If the series converges then $a_n \to 0$.
+  \item If $a_k \geq 0$ then the series is monotonic increasing (and therefore converges iff it is bounded above).
+  \item {\bf Comparison test; simple form}: If $0 \leq a_k \leq Cb_k$ and the $\sum b_k$ converges
+    then $\sum a_k$ converges.
+  \item {\bf Cauchy convergence criterion}: series converges iff sequence of partial sums is
+    Cauchy. Note that $s_n - s_m = a_{m+1} + \ldots + a_n$.
+  \item {\bf Absolute convergence}: if the $\sum |a_k|$ series converges then the series converges.
+  \item $\frac{1}{p^n}$ series converges iff $p > 1$.
+  \end{enumerate}
+\end{theorem*}
+
+\begin{remark*}
+  $a_n \to 0$ does not imply that the series converges. Counterexample: the harmonic series
+  $a_n = \frac{1}{n}$.
+\end{remark*}
+
+\begin{proof}\hspace{0pt}
+  \begin{enumerate}[label=(\roman*)]
+  \item Assume $s_n \to L$. We have $a_n = s_{n} - s_{n-1} \to L - L = 0$.
+  \end{enumerate}
+\end{proof}
+
 \section{Continuity and Differentiability}
 Note from Oxford - M2 - Continuity and Differentiability.
 
