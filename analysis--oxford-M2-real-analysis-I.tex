@@ -1026,56 +1026,56 @@
 % \includegraphics[width=400pt]{img/oxford-M2-analysis-I-extra-B.png}
 % \end{mdframed}
 
-% \section{Sheet 5}
+\section{Sheet 5}
 
-% \newpage
-% \subsection{}
+\newpage
+\subsection{}
 
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-1.png}
-% \end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-1.png}
+\end{mdframed}
 
-% \red{INCOMPLETE}
+\red{INCOMPLETE}
 
-% \begin{proof}
-%   \begin{align*}
-%     |a_m - a_n| &=    \Big| \int_1^m \frac{\cos x}{x^2} \dx - \int_1^n \frac{\cos x}{x^2} \dx \Big|\\
-%                 &=    \Big| \int_n^m \frac{\cos x}{x^2} \dx \Big|\\
-%                 &\leq \int_n^m \Big| \frac{\cos x}{x^2} \Big| \dx \\
-%                 &\leq \int_n^m \frac{1}{x^2} \dx \\
-%                 &= \frac{1}{n} - \frac{1}{m}
-%                 < \frac{1}{n}. ~~~~\text{\red{why does question give $\leq$}?}
-%   \end{align*}
-% \end{proof}
-% \begin{claim*}
-%   $(a_n)$ converges.
-% \end{claim*}
-% \begin{proof}
-%   Note that $a_1 = 0$ and $a_n = \sum_{k=1}^n (a_{k} - a_{k-1})$ for $n \geq 2$.
+\begin{proof}
+  \begin{align*}
+    |a_m - a_n| &=    \Big| \int_1^m \frac{\cos x}{x^2} \dx - \int_1^n \frac{\cos x}{x^2} \dx \Big|\\
+                &=    \Big| \int_n^m \frac{\cos x}{x^2} \dx \Big|\\
+                &\leq \int_n^m \Big| \frac{\cos x}{x^2} \Big| \dx \\
+                &\leq \int_n^m \frac{1}{x^2} \dx \\
+                &= \frac{1}{n} - \frac{1}{m}
+                < \frac{1}{n}. ~~~~\text{\red{why does question give $\leq$}?}
+  \end{align*}
+\end{proof}
+\begin{claim*}
+  $(a_n)$ converges.
+\end{claim*}
+\begin{proof}
+  Note that $a_1 = 0$ and $a_n = \sum_{k=1}^n (a_{k} - a_{k-1})$ for $n \geq 2$.
 
-%   The series $\sum_{k=1}^n (a_{k} - a_{k-1})$ converges absolutely... confused.
+  The series $\sum_{k=1}^n (a_{k} - a_{k-1})$ converges absolutely... confused.
 
-%   Note that $a_n = \sum_{k=1}^n b_k$, where
-%   \begin{align*}
-%     b_k =
-%     \begin{cases}
-%       0,     ~~~~~~~~~~~~~~&k = 1\\
-%       \int_{k-1}^k \frac{\cos x}{x^2} \dx = a_{k} - a_{k-1},   ~~~~~~~&k \geq 2.
-%     \end{cases}
-%   \end{align*}
-%   Thus $(a_n)$ is a sequence of partial sums, which converges
+  Note that $a_n = \sum_{k=1}^n b_k$, where
+  \begin{align*}
+    b_k =
+    \begin{cases}
+      0,     ~~~~~~~~~~~~~~&k = 1\\
+      \int_{k-1}^k \frac{\cos x}{x^2} \dx = a_{k} - a_{k-1},   ~~~~~~~&k \geq 2.
+    \end{cases}
+  \end{align*}
+  Thus $(a_n)$ is a sequence of partial sums, which converges
 
-%   Note that $(a_n)$ is a sequence of partial sums. To see this, define
-%   \begin{align*}
-%     b_n =
-%     \begin{cases}
-%       0,     ~~~~~~~&n = 1\\
-%       a_n - a_{n-1}  &n \geq 2,
-%     \end{cases}
-%   \end{align*}
-%   and observe that $a_n = \sum_{k=1}^n b_k = 0 + (a_2 - 0) + (a_3 - a_2) + \ldots + (a_n - a_{n - 1})$.
+  Note that $(a_n)$ is a sequence of partial sums. To see this, define
+  \begin{align*}
+    b_n =
+    \begin{cases}
+      0,     ~~~~~~~&n = 1\\
+      a_n - a_{n-1}  &n \geq 2,
+    \end{cases}
+  \end{align*}
+  and observe that $a_n = \sum_{k=1}^n b_k = 0 + (a_2 - 0) + (a_3 - a_2) + \ldots + (a_n - a_{n - 1})$.
 
-% \end{proof}
+\end{proof}
 
 \newpage
 \subsection{}
@@ -1117,6 +1117,9 @@
                                        &= \sum_{k=1}^\infty \frac{1}{pk} - \sum_{k=p+1}^\infty  \frac{1}{pk}\\
                                        &= \sum_{k=1}^p\frac{1}{pk}.
   \end{align*}
+
+  \red{Explicit formula for this sum?}
+
 \end{proof}
 
 \begin{minted}{python3}
@@ -1141,24 +1144,37 @@
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-b.png}
 \end{mdframed}
 
-\red{NO SOLUTION YET}
+\begin{align*}
+  \sum_{k=1}^\infty \frac{\cos k}{2k}
+  &= \Re \sum_{k=1}^\infty \frac{e^{ik}}{2^k}\\
+  &= \Re \sum_{k=1}^\infty \(\frac{e^{i}}{2}\)^k\\
+  &= \Re \frac{e^{i}/2}{1 - e^{i}/2}\\
+  &= \Re \frac{\cos 1 + i\sin 1}{2 - \cos 1 - i\sin 1}\\
+  &= \Re \frac{(\cos 1 + i\sin 1)(2 - \cos 1 + i\sin 1)}{(2 - \cos 1)^2 + \sin^2 1}\\
+  &= \Re \frac{2\cos 1 - \cos^2 1 - 1 + \cos^2 1}{4 - 4\cos 1 + \cos^2 1 + 1 - \cos^2 1}\\
+  &= \Re \frac{~~2\cos 1 - 1}{- 4\cos 1 + 5}
+\end{align*}
 
-% \begin{minted}{python3}
-%   In [19]: sum(cos(k) / 2**k for k in range(1, 10 + 1))
-%   Out[19]: 0.0281023042150256
 
-%   In [20]: sum(cos(k) / 2**k for k in range(1, 100 + 1))
-%   Out[20]: 0.028393995218935916
+\begin{minted}{python3}
+  In [1]: sum(cos(k) / 2**k for k in range(1, 10 + 1))
+  Out[1]: 0.0281023042150256
 
-%   In [21]: sum(cos(k) / 2**k for k in range(1, 1000 + 1))
-%   Out[21]: 0.028393995218935916
-% \end{minted}
+  In [2]: sum(cos(k) / 2**k for k in range(1, 100 + 1))
+  Out[2]: 0.028393995218935916
 
-% \begin{proof}
-%   \begin{align*}
-%     \sum_{k=1}^\infty \frac{\cos k}{2^k} = \frac{\cos 1}{2^1} + \frac{\cos 2}{2^2} + \frac{\cos 3}{2^3} + \dots\\
-%   \end{align*}
-% \end{proof}
+  In [3]: sum(cos(k) / 2**k for k in range(1, 1000 + 1))
+  Out[3]: 0.028393995218935916
+
+  In [4]: (2*cos(1) - 1) / (-4*cos(1) + 5)
+  Out[4]: 0.028393995218935913
+\end{minted}
+
+\begin{proof}
+  \begin{align*}
+    \sum_{k=1}^\infty \frac{\cos k}{2^k} = \frac{\cos 1}{2^1} + \frac{\cos 2}{2^2} + \frac{\cos 3}{2^3} + \dots\\
+  \end{align*}
+\end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-2-c.png}
@@ -1208,45 +1224,45 @@
 
 
 
-% \newpage
-% \subsection{}
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-4-a.png}
-% \end{mdframed}
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-4-a.png}
+\end{mdframed}
 
-% \begin{proof}
-%   Let $s_n = \sum_{k=0}^n \frac{1}{k!}$.
+\begin{proof}
+  Let $s_n = \sum_{k=0}^n \frac{1}{k!}$.
 
-%   \red{INCOMPLETE}
+  \red{INCOMPLETE}
 
-%   Note that $s_n > \sum_{k=0}^n \frac{1}{n^k} = \frac{n}{n-1} \to 1$, but that's not helpful.
-% \end{proof}
+  Note that $s_n > \sum_{k=0}^n \frac{1}{n^k} = \frac{n}{n-1} \to 1$, but that's not helpful.
+\end{proof}
 
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-4-b.png}
-% \end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-4-b.png}
+\end{mdframed}
 
-% \begin{proof}
+\begin{proof}
 
-% \end{proof}
+\end{proof}
 
-% \newpage
-% \subsection{}
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-5.png}
-% \end{mdframed}
-% \begin{proof}
-%   \red{INCOMPLETE}
-%   \begin{align*}
-%     \(1 - \frac{1}{n}\)^n
-%     &= \sum_{k=0}^n(-1)^k\frac{{n \choose k}}{n^k}\\
-%     &= \sum_{k=0}^n(-1)^k\frac{n(n-1)\cdots(n-k+1)}{k!n^k}\\
-% %    &= \sum_{k=0}^n\Big((-1)^k\frac{1}{k!} + O\(\frac{1}{n}\)\Big)\\
-%     &= 1 - \frac{n}{n} + \frac{n(n-1)}{2\cdot n^2} - \frac{n(n-1)(n-2)}{3\cdot 2\cdot n^3} + \ldots + (-1)^n\frac{1}{n^n}\\ % \frac{n(n-1)(n-2)(n-3)}{4\cdot 3\cdot 2\cdot n^4} -
-%     &= \frac{n - 1}{2!n} - \frac{(n-1)(n-2)}{3!n^2} + \ldots + (-1)^n\\ % \frac{(n-1)(n-2)(n-3)}{4!n^3} -
-%     &= \frac{1 -\frac{1}{n}}{2!} - \frac{1 - 3\frac{1}{n} + 3\frac{1}{n^2}}{3!} + \ldots\\
-%   \end{align*}
-% \end{proof}
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-5.png}
+\end{mdframed}
+\begin{proof}
+  \red{INCOMPLETE}
+  \begin{align*}
+    \(1 - \frac{1}{n}\)^n
+    &= \sum_{k=0}^n(-1)^k\frac{{n \choose k}}{n^k}\\
+    &= \sum_{k=0}^n(-1)^k\frac{n(n-1)\cdots(n-k+1)}{k!n^k}\\
+%    &= \sum_{k=0}^n\Big((-1)^k\frac{1}{k!} + O\(\frac{1}{n}\)\Big)\\
+    &= 1 - \frac{n}{n} + \frac{n(n-1)}{2\cdot n^2} - \frac{n(n-1)(n-2)}{3\cdot 2\cdot n^3} + \ldots + (-1)^n\frac{1}{n^n}\\ % \frac{n(n-1)(n-2)(n-3)}{4\cdot 3\cdot 2\cdot n^4} -
+    &= \frac{n - 1}{2!n} - \frac{(n-1)(n-2)}{3!n^2} + \ldots + (-1)^n\\ % \frac{(n-1)(n-2)(n-3)}{4!n^3} -
+    &= \frac{1 -\frac{1}{n}}{2!} - \frac{1 - 3\frac{1}{n} + 3\frac{1}{n^2}}{3!} + \ldots\\
+  \end{align*}
+\end{proof}
 
 \newpage
 \subsection{}
@@ -1273,35 +1289,36 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-6-b.png}
 \end{mdframed}
+\begin{align*}
+  s_n = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \ldots + \frac{(-1)^{n+1}}{2n - 1}
+\end{align*}
 
-\red{NOT ATTEMPTED YET}
 
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-7.png}
+\end{mdframed}
 
-% \newpage
-% \subsection{}
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-7.png}
-% \end{mdframed}
+\begin{proof}\hspace{0pt}
+  \begin{enumerate}[label=(\alph*)]
+  \item False. A counterexample is $a_k = \frac{1}{k^3}$ since then $k^2a_k = \frac{1}{k} \to 0$
+    yet $\sum \frac{1}{k}$ is divergent.
+  \item False. A counterexample is $a_k = (-1)^k\frac{1}{\sqrt{k}}$ since then $\sum a_k$ converges
+    but $\sum a_k^2$ diverges.
+  \item I think this is true. Proof? Suppose $\sum |a_k|$ converges to $L$...
+  \item ?
+  \end{enumerate}
+\end{proof}
 
-% \begin{proof}\hspace{0pt}
-%   \begin{enumerate}[label=(\alph*)]
-%   \item False. A counterexample is $a_k = \frac{1}{k^3}$ since then $k^2a_k = \frac{1}{k} \to 0$
-%     yet $\sum \frac{1}{k}$ is divergent.
-%   \item False. A counterexample is $a_k = (-1)^k\frac{1}{\sqrt{k}}$ since then $\sum a_k$ converges
-%     but $\sum a_k^2$ diverges.
-%   \item I think this is true. Proof? Suppose $\sum |a_k|$ converges to $L$...
-%   \item ?
-%   \end{enumerate}
-% \end{proof}
+\newpage
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-8-a.png}
+\end{mdframed}
 
-% \newpage
-% \subsection{}
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-8-a.png}
-% \end{mdframed}
-
-% \begin{mdframed}
-% \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-8-b.png}
-% \end{mdframed}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-8-b.png}
+\end{mdframed}
 
 \end{document}

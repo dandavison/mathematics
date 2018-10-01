@@ -188,8 +188,6 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{align*}
 \end{proof}
 
-
-
 \subsection{Series}
 \begin{definition*}~\\
 
@@ -239,6 +237,29 @@ Notes from Oxford - M1 - Sequences and Series.
   \begin{enumerate}[label=(\roman*)]
   \item Assume $s_n \to L$. We have $a_n = s_{n} - s_{n-1} \to L - L = 0$.
   \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Alternating Series Test]
+  The series $\sum_{k\geq 1}(-1)^{k-1}a_k$ converges if
+  \begin{enumerate}[label=(\roman*)]
+  \item $a_k \geq 0$
+  \item $a_{k+1} \leq a_k$
+  \item $a_k \to 0$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Let $(s_n)$ be the sequence of partial sums. Consider the subsequence $(s_{2n})$, i.e. the
+  sequence of partial sums $s_2, s_4, \ldots$. We have
+  \begin{align*}
+    s_{2n}   &= a_1 - a_2 + a_3 - a_4 + \ldots + a_{2n - 1} - a_{2n}\\
+             &= a_1 - (a_2 + a_3) - \ldots - (a_{2n - 1} + a_{2n})\\
+            &\leq a_1
+  \end{align*}
+  \begin{align*}
+    s_{2n+1} &= a_1 - a_2 + a_3 - a_4 + \ldots  + a_{2n - 1} - a_{2n} + a_{2n+1}\\
+            &= a_1
+  \end{align*}
 \end{proof}
 
 \section{Continuity and Differentiability}
