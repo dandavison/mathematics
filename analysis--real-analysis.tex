@@ -239,6 +239,18 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{enumerate}
 \end{proof}
 
+\begin{lemma}\label{even-and-odd-subsequences-lemma}
+  Let $(a_n)$ be such that $(a_{2n})$ and $(a_{2n + 1})$ both converge to $L \in \R$. Then
+  $a_n \to L$.
+\end{lemma}
+
+\begin{proof}
+  Fix $\epsilon > 0$. Let $N_1 \in \N$ be such that $|a_{2n} - L| < \epsilon$ for all $n \geq N_1$
+  and let $N_2 \in \N$ be such that $|a_{2n + 1} - L| < \epsilon$ for all $n \geq N_2$.
+
+  Let $N = 2\max(N_1, N_2)$. Then $|a_n - L| < \epsilon$ for all $n \geq N$, therefore $a_n \to L$.
+\end{proof}
+
 \begin{theorem}[Alternating Series Test]
   The series $\sum_{k\geq 1}(-1)^{k-1}a_k$ converges if
   \begin{enumerate}[label=(\roman*)]
@@ -249,17 +261,29 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{theorem}
 
 \begin{proof}
+  \begin{intuition*}
+    The steps alternate in direction and each one is smaller than the last in magnitude, so they
+    always remain ``inside the previous steps''. The sequence of even-numbered locations form the
+    ``lower edge'' -- a monotone increasing sequence bounded above by the first location. The proof
+    demonstrates that the sequence of odd-numbered locations converges to the same location as the
+    even-numbered, and therefore that the full sequence converges.
+  \end{intuition*}
+
   Let $(s_n)$ be the sequence of partial sums. Consider the subsequence $(s_{2n})$, i.e. the
-  sequence of partial sums $s_2, s_4, \ldots$. We have
+  sequence of partial sums $s_2, s_4, \ldots$. From (i) and (ii) we have
   \begin{align*}
     s_{2n}   &= a_1 - a_2 + a_3 - a_4 + \ldots + a_{2n - 1} - a_{2n}\\
-             &= a_1 - (a_2 + a_3) - \ldots - (a_{2n - 1} + a_{2n})\\
-            &\leq a_1
+             &= a_1 - (a_2 + a_3) - \ldots - (a_{2n - 2} + a_{2n - 1}) - a_{2n}\\
+            &\leq a_1.
   \end{align*}
+  Note that $s_{2(n+1)} - s_{2n} = a_{2n+1} - a_{2n + 2} \geq 0$, therefore $(s_{2n})$is monotone
+  increasing. Also it is bounded above by $a_1$. Therefore it converges. Let $s_{2n} \to L \geq 0$.
+
+  Note also that
   \begin{align*}
-    s_{2n+1} &= a_1 - a_2 + a_3 - a_4 + \ldots  + a_{2n - 1} - a_{2n} + a_{2n+1}\\
-            &= a_1
+    s_{2n-1} &= s_{2n} + a_{2n} \leq a_1.
   \end{align*}
+  But by (iii) we have $a_{2n} \to 0$, therefore $s_{2n-1} \to L$ also. Therefore $s_n \to L$ by lemma \ref{even-and-odd-subsequences-lemma}.
 \end{proof}
 
 \section{Continuity and Differentiability}
