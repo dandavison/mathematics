@@ -188,6 +188,23 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{align*}
 \end{proof}
 
+\subsection{Exponential versus polynomial}
+\begin{theorem*}
+  $\frac{n^k}{c^n} \to 0$ as $n \to \infinity$ for $k > 1$, $c > 1$.
+\end{theorem*}
+\begin{proof}
+  Let $c = 1 + b$. Then
+  \begin{align*}
+    0
+    < \frac{n^k}{c^n}
+    &= \frac{n^k}{(1 + b)^n}\\
+    &= \frac{n^k}{\sum_{i=1}^n\frac{n(n-1)\cdots(n-i+1)}{i!}b^i}\\
+    &< \frac{n^k}{n(n-1)\cdots(n-k)}\frac{(k+1)!}{b^{k+1}} ~~~~~~~~\text{by retaining only the $i = k+1$ term, assuming $k+1 < n$}\\
+    &< \frac{n^k}{n^{k+1}}\frac{(k+1)!}{b^{k+1}}\\
+    &\to 0.
+  \end{align*}
+\end{proof}
+
 \subsection{Series}
 \begin{definition*}~\\
 
