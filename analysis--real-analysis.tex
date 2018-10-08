@@ -319,13 +319,13 @@ Notes from Oxford - M1 - Sequences and Series.
 
 \end{proof}
 
-Note that for $-1 < x < 1$ the series $\sum_{n=0}^\infty x^n$ converges to
-$\frac{1}{1-x}$. Therefore, using the term-by-term integration theorem for power series,
+Note that for $-1 < x < 1$ the series $\sum_{n=0}^\infty (-x)^n$ converges to
+$\frac{1}{1+x}$. Therefore, using the term-by-term integration theorem for power series,
 \begin{align*}
-  \int\(\sum_{n=0}^\infty x^n\) \dx
-  = \sum_{n=0}^\infty \frac{x^{n+1}}{n+1}
-  = \sum_{n=1}^\infty \frac{x^n}{n}
-  = C - \log(1 - x),
+  \int\(\sum_{n=0}^\infty (-x)^n\) \dx
+  = \sum_{n=0}^\infty \frac{(-x)^{n+1}}{n+1}
+  = \sum_{n=1}^\infty \frac{(-x)^n}{n}
+  = C + \log(1 + x),
 \end{align*}
 and taking $x=0$ shows that $C = 0$.
 
@@ -339,10 +339,10 @@ and taking $x=0$ shows that $C = 0$.
   \end{enumerate}
 \end{remark*}
 
-So what we want is to show that $f(x) = \sum_{n=1}^\infty \frac{x^{n+1}}{n+1} = -\log(1 - x)$ is
-continuous at the boundary point $x = -1$. I.e. we want to show that
+Let $f$ be given by $f(x) = \sum_{n=1}^\infty \frac{(-x)^{n}}{n} = \log(1 + x)$. By Abel's theorem,
+$f$ is continuous at the boundary point $x = 1$. I.e.
 \begin{align*}
-  \lim_{x\to -1} \sum_{n=1}^\infty \frac{x^n}{n} = -\log(2).
+  \lim_{x\uparrow 1} \sum_{n=1}^\infty \frac{x^n}{n} = \log(2).
 \end{align*}
 
 

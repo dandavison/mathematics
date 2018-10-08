@@ -11,9 +11,10 @@
 \maketitle
 \tableofcontents
 
-\section{Sheet 1}
 
 \newpage
+\section{Sheet 1}
+
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-1-1.png}
@@ -740,7 +741,7 @@
 
 \newpage
 \section{Sheet 4}
-\subsection{}
+\subsection{(COMPLETE)}
 \begin{enumerate}[label=(\alph*)]
 \item~\\
   \begin{mdframed}
@@ -788,7 +789,7 @@
 
 
 \newpage
-\subsection{}
+\subsection{(COMPLETE)}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-2-a.png}
 \end{mdframed}
@@ -831,7 +832,7 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{proof}
 
 \newpage
-\subsection{}
+\subsection{(COMPLETE)}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-3.png}
 \end{mdframed}
@@ -841,15 +842,42 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
   \begin{align*}
     \frac{n^2}{n!} = \frac{n^2}{n(n-1)}\frac{1}{(n - 2)!} \to 1\cdot 0 = 0
   \end{align*}
-% \item
-%   \begin{align*}
-%     \frac{2^nn^2 + 3^n}{3^n(n + 1) + n^7}
-%   \end{align*}
+\item
+  \begin{align*}
+         \frac{2^nn^2 + 3^n}{3^n(n + 1) + n^7}
+    &=   \frac{2^nn^2}{3^n(n + 1) + n^7} + \frac{3^n}{3^n(n + 1) + n^7}\\
+    &=   \frac{1}{(3/2)^n(n + 1)/n^2 + n^5/2^n} + \frac{1}{n + 1 + n^7/3^n}\\
+    &<   \frac{1}{(3/2)^n/n^2} + \frac{1}{n}\\
+    &=   \frac{n^2}{(3/2)^n} + \frac{1}{n}\\
+    &\to 0 + 0.
+  \end{align*}
+\item
+  \begin{align*}
+       \frac{(n!)^2}{(2n)!}
+    &= \frac{n!}{(2n)(2n - 1)\cdots (n + 1))}\\
+    &= \frac{n(n-1)\cdots 1}{(2n)(2n - 1)\cdots (n + 1))}\\
+    &< \frac{1}{n + 1}\\
+    &\to 0.
+  \end{align*}
+\item
+  \begin{align*}
+    \frac{n^4 + n^3\sin n + 1}{5n^4 - n\log n}
+    &= \frac{n^4}{5n^4 - n\log n}
+    + \frac{n^3\sin n}{5n^4 - n\log n}
+    + \frac{1}{5n^4 - n\log n}\\
+    &= \frac{1}{5 - (\log n)/n^3}
+    + \frac{\sin n}{5n - (\log n)/n^2}
+    + \frac{1}{5n^4 - n\log n}\\
+    &\to \frac{1}{5 - 0}
+    + 0
+    + 0\\
+    &= \frac{1}{5}.
+  \end{align*}
 \end{enumerate}
 
 
 \newpage
-\subsection{}
+\subsection{(COMPLETE)}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-4-a.png}
 \end{mdframed}
@@ -898,7 +926,7 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 
 
 \newpage
-\subsection{}
+\subsection{(COMPLETISH)}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-5-a.png}
 \end{mdframed}
@@ -945,32 +973,14 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
   \end{align*}
   \red{What about if $r = \ceil{r}$?}
 
-  Therefore
-  \begin{align*}
-    a_n
-    < r^{\ceil{r} - 1} \(\frac{r}{\ceil{r}}\)^{n - \ceil{r} + 1}
-    = \(\frac{r}{\ceil{r}}\)^n\ceil{r}^{\ceil{r} - 1}
-  \end{align*}
-
-  \begin{mdframed}
-    Scratch work:
-    \begin{align*}
-      \(\frac{r}{\ceil{r}}\)^n\ceil{r}^{\ceil{r} - 1} &< \epsilon\\
-      \(\frac{r}{\ceil{r}}\)^n &< \epsilon \ceil{r}^{1 - \ceil{r}}\\
-      n\log \frac{r}{\ceil{r}} &< \log \epsilon + (1 - \ceil{r})\ceil{r}\\
-      n                        &> \frac{\log \epsilon + (1 - \ceil{r})\ceil{r}}
-                                 {\log r - \log \ceil{r}}.
-    \end{align*}
-  \end{mdframed}
-
-  Fix $\epsilon > 0$. Let
-  $N = \Bigceil{\frac{\log \epsilon + (1 - \ceil{r})\log \ceil{r}} {\log r - \log \ceil{r}}}$.
-  Then $a_n < \epsilon$ for $n \geq N$. Therefore $a_n \to 0$.
+  \red{I think basically at this point we've got, or we want to show that we've got, $a_n = Cx^N$
+    where $x < 1$, $C$ is constant and $N > 1$ so it's going to converge to 0. Presumably adding 1
+    or something takes care of the worry that $r = \ceil{r}$}.
 \end{proof}
 
 
 \newpage
-\subsection{}
+\subsection{(INCOMPLETE)}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-a.png}
 \end{mdframed}
@@ -992,29 +1002,80 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{mdframed}
 
 \begin{proof}
-  Consider
+  Note that if $a_n > 0$ then
   \begin{align*}
-    (a_{n+1} - \gamma)(a_n - \gamma) = \frac{}{}
+    a_{n+1} = \frac{a_n^2 + \alpha\beta}{\alpha + \beta} > 0.
   \end{align*}
-
-  Suppose $a_n < \alpha$. Then
+  We have $a_1 = c > 0$, therefore $a_n > 0$ by induction.
+  WLOG, let $\gamma = \alpha$. Then
   \begin{align*}
-    a_{n+1} - \alpha = \frac{\alpha a_n^2 + \alpha^2\beta - \alpha(\alpha + )}{\alpha + \beta} =
+    (a_{n+1} - \gamma)(a_n - \gamma)
+    &= \frac{(a_n^2 + \alpha\beta - \gamma(\alpha + \beta))(a_n - \gamma)}{\alpha + \beta}\\
+    &= \frac{\(a_n^2 + \gamma\beta - \gamma(\gamma + \beta)\)(a_n - \gamma)}{\gamma + \beta}\\
+    &= \frac{(a_n^2 - \gamma^2)(a_n - \gamma)}{\gamma + \beta}\\
+    &= \frac{(a_n + \gamma)(a_n - \gamma)^2}{\gamma + \beta} > 0,
   \end{align*}
+  therefore $(a_{n+1} - \gamma)$ and $(a_n - \gamma)$ have the same sign, for $\gamma=\alpha$ and
+  $\gamma=\beta$.
 \end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-c.png}
 \end{mdframed}
+
+\begin{proof}
+  Suppose $a_n < \beta$. Then
+  \begin{align*}
+    a_{n+1} - a_n
+    &= \frac{a_n^2 + \alpha\beta}{\alpha + \beta} - \frac{a_n(\alpha + \beta)}{\alpha + \beta}\\
+    &= \frac{a_n^2 - (\alpha + \beta)a_n + \alpha\beta}{\alpha + \beta}\\
+    &= \frac{(a_n - \alpha)(a_n - \beta)}{\alpha + \beta} < 0.
+    % &< \frac{\beta^2 + \alpha\beta}{\alpha + \beta} - \frac{a_n(\alpha + \beta)}{\alpha + \beta}\\
+    % &= \frac{\beta(\alpha + \beta)}{\alpha + \beta} - \frac{a_n(\alpha + \beta)}{\alpha + \beta}\\
+    % &= \beta - a_n > 0,
+  \end{align*}
+  Since $a_1 = c > \alpha$, and from the previous question, we know that ...
+  ... basically the previous question shows that if it starts inbetween $\alpha$ and $\beta$ is stays inbetween.
+
+  \red{so $a_n$ is monotone increasing, BUT IT IS SAID TO BE MONOTONE DECREASING!}
+\end{proof}
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-6-d.png}
 \end{mdframed}
 
 \newpage
-\subsection{}
+\subsection{(NOT ATTEMPTED)}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-7-a.png}
 \end{mdframed}
+Note that
+\begin{align*}
+  a_{2n + 1} &= \frac{2}{a_{2n} + 1}\\
+  a_{2n + 2} &= \frac{2}{\frac{2}{a_{2n} + 1} + 1}
+             = \frac{2(a_{2n} + 1)}{a_{2n} + 3}\\
+  a_{2n + 3} &= \frac{2}{\frac{2(a_{2n} + 1)}{a_{2n} + 3} + 1}
+             = \frac{2(a_{2n} + 3)}{3a_{2n} + 4}
+\end{align*}
+Therefore
+\begin{align*}
+  a_{2(n+1)} - a_{2n}
+  & = a_{2n + 2} - a_{2n}\\
+  & = \frac{2(a_{2n} + 1) - a_{2n}(a_{2n} + 3)}{a_{2n} + 3}\\
+  &= -\frac{a_{2n}^2 + a_{2n} - 2}{a_{2n} + 3}\\
+  &= -\frac{(a_{2n} - 1)(a_{2n} + 2)}{a_{2n} + 3}.
+\end{align*}
+This expression is negative for $2n > 1$, so $(a_{2n})$ is monotonic decreasing.
+
+Similarly,
+\begin{align*}
+  a_{2(n+1) + 1} - a_{2n + 1}
+  &= a_{2n + 3} - a_{2n + 1}\\
+  &=
+\end{align*}
+
+
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-7-b.png}
 \end{mdframed}
@@ -1053,11 +1114,7 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
   $(a_n)$ converges.
 \end{claim*}
 \begin{proof}
-  Note that $a_1 = 0$ and $a_n = \sum_{k=1}^n (a_{k} - a_{k-1})$ for $n \geq 2$.
-
-  The series $\sum_{k=1}^n (a_{k} - a_{k-1})$ converges absolutely... confused.
-
-  Note that $a_n = \sum_{k=1}^n b_k$, where
+  Define
   \begin{align*}
     b_k =
     \begin{cases}
@@ -1065,18 +1122,9 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
       \int_{k-1}^k \frac{\cos x}{x^2} \dx = a_{k} - a_{k-1},   ~~~~~~~&k \geq 2.
     \end{cases}
   \end{align*}
-  Thus $(a_n)$ is a sequence of partial sums, which converges
+  Then $a_n$ is the $n$-th partial sum of the series $\sum_{k=1}^\infty b_k$.
 
-  Note that $(a_n)$ is a sequence of partial sums. To see this, define
-  \begin{align*}
-    b_n =
-    \begin{cases}
-      0,     ~~~~~~~&n = 1\\
-      a_n - a_{n-1}  &n \geq 2,
-    \end{cases}
-  \end{align*}
-  and observe that $a_n = \sum_{k=1}^n b_k = 0 + (a_2 - 0) + (a_3 - a_2) + \ldots + (a_n - a_{n - 1})$.
-
+  \red{INCOMPLETE}
 \end{proof}
 
 \newpage
@@ -1117,12 +1165,14 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
   \begin{align*}
     \sum_{k=1}^\infty \frac{1}{k(k+p)} &= \sum_{k=1}^\infty \frac{1}{pk} - \frac{1}{p(k + p)}\\
                                        &= \sum_{k=1}^\infty \frac{1}{pk} - \sum_{k=p+1}^\infty  \frac{1}{pk}\\
-                                       &= \sum_{k=1}^p\frac{1}{pk}.
+                                       &= \frac{1}{p}.\sum_{k=1}^p\frac{1}{k}.
   \end{align*}
-
-  \red{Explicit formula for this sum?}
-
 \end{proof}
+\begin{remark*}
+  This is $1/p$ times the $p$-th partial sum of the harmonic series. There is no known closed form
+  expression known for this partial sum.
+\end{remark*}
+
 
 \begin{minted}{python3}
   def approx(p, n):
@@ -1233,11 +1283,20 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{mdframed}
 
 \begin{proof}
-  Let $s_n = \sum_{k=0}^n \frac{1}{k!}$.
-
-  \red{INCOMPLETE}
-
-  Note that $s_n > \sum_{k=0}^n \frac{1}{n^k} = \frac{n}{n-1} \to 1$, but that's not helpful.
+  Let $s_n = \sum_{k=0}^n \frac{1}{k!}$. We have
+  \begin{align*}
+    s_{n+1} - s_n &= \sum_{k=0}^{n+1} \frac{1}{k!} - \sum_{k=0}^n \frac{1}{k!}
+                  = \frac{1}{(n+1)!} > 0,\\
+  \end{align*}
+  and
+  \begin{align*}
+    s_n &= 1 + 1 + \frac{1}{2} + \frac{1}{3}\cdot\frac{1}{2} + \frac{1}{4\cdot 3}\cdot\frac{1}{2} + \ldots + \frac{2}{n!}\cdot\frac{1}{2}\\
+        &< 1 + \sum_{k=0}^{n-1}\(\frac{1}{2}\)^k
+         = 1 + \frac{1}{1 -\frac{1}{2}}
+         = 3,
+  \end{align*}
+  therefore $(s_n)$ is monotonic increasing and bounded above by $3$. Therefore
+  $e := \lim_{n\to\infty}s_n$ exists.
 \end{proof}
 
 \begin{mdframed}
@@ -1245,7 +1304,14 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{mdframed}
 
 \begin{proof}
-
+  \begin{align*}
+    e - \sum_{k=0}^n\frac{1}{k!}
+    &= \sum_{k=n+1}^\infty\frac{1}{k!}\\
+    &= \sum_{k=0}^\infty\frac{1}{(k+n+1)!}\\
+    &= \frac{1}{n!}\sum_{k=0}^\infty\frac{1}{n+1}\cdot\frac{1}{n+2}\cdots\frac{1}{n + k + 1}\\
+    &= \frac{1}{n!}\frac{1}{n+1}\sum_{k=0}^\infty\frac{1}{n+2}\cdot\frac{1}{n+3}\cdots\frac{1}{n + k + 1}\\
+    &< \frac{1}{nn!}\sum_{k=0}^\infty\frac{1}{n^2}\red{...INCOMPLETE}
+  \end{align*}
 \end{proof}
 
 \newpage
@@ -1405,6 +1471,10 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-7-1-a.png}
 \end{mdframed}
+
+(This looks like a + + - + + - pattern with odd-numbered harmonic series terms in the + positions
+and power-of-two, or even-numbered, harmonic terms in the - positions).
+
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-7-1-b.png}
