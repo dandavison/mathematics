@@ -832,7 +832,7 @@ Therefore $(b_n)$ converges to $L$ by the result in part (a).
 \end{proof}
 
 \newpage
-\subsection{(COMPLETE)}
+\subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-4-3.png}
 \end{mdframed}
@@ -1089,6 +1089,7 @@ Similarly,
 \includegraphics[width=400pt]{img/oxford-M2-analysis-I-extra-B.png}
 \end{mdframed}
 
+\newpage
 \section{Sheet 5}
 
 \newpage
@@ -1254,7 +1255,6 @@ Similarly,
 
 \begin{proof}
   Let $(a_n)$ be a complex sequence and assume that $\sum_{k=1}^n |a_k|$ converges.
-
   Define
   \begin{align*}
     s_n = a_1 + \ldots + a_n ~~~~~~~\text{and}~~~~~~~ S_n = |a_1| + \ldots + |a_n|.
@@ -1286,7 +1286,7 @@ Similarly,
   Let $s_n = \sum_{k=0}^n \frac{1}{k!}$. We have
   \begin{align*}
     s_{n+1} - s_n &= \sum_{k=0}^{n+1} \frac{1}{k!} - \sum_{k=0}^n \frac{1}{k!}
-                  = \frac{1}{(n+1)!} > 0,\\
+                  = \frac{1}{(n+1)!} > 0,
   \end{align*}
   and
   \begin{align*}
@@ -1299,19 +1299,42 @@ Similarly,
   $e := \lim_{n\to\infty}s_n$ exists.
 \end{proof}
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-4-b.png}
 \end{mdframed}
 
+\begin{claim*}
+  Let $s_n = \sum_{k=0}^n \frac{1}{k!}$. Then $0 < e - s_n < \frac{1}{n!n}$
+\end{claim*}
 \begin{proof}
+  Let $s_n = \sum_{k=0}^n \frac{1}{k!}$.
+
+  For the lower bound, note that since $(s_n)$ is monotonic increasing, we have
+  $e := \lim_{n\to\infty} s_n > s_n$ for all $n \in \N$. Therefore $e - s_n > 0$. For the upper
+  bound, note that
   \begin{align*}
     e - \sum_{k=0}^n\frac{1}{k!}
     &= \sum_{k=n+1}^\infty\frac{1}{k!}\\
     &= \sum_{k=0}^\infty\frac{1}{(k+n+1)!}\\
-    &= \frac{1}{n!}\sum_{k=0}^\infty\frac{1}{n+1}\cdot\frac{1}{n+2}\cdots\frac{1}{n + k + 1}\\
-    &= \frac{1}{n!}\frac{1}{n+1}\sum_{k=0}^\infty\frac{1}{n+2}\cdot\frac{1}{n+3}\cdots\frac{1}{n + k + 1}\\
-    &< \frac{1}{nn!}\sum_{k=0}^\infty\frac{1}{n^2}\red{...INCOMPLETE}
+    &= \frac{1}{n!}\(\frac{1}{n+1} + \frac{1}{(n+1)(n + 2)} + \ldots\)\\
+    &< \frac{1}{n!}\frac{1/(n+1)}{1 - 1/(n+1)} ~~~~~~~~~~~~~~\text{(sum of Geometric Series, assuming $n > 0$)}\\
+    &= \frac{1}{n!n}.
   \end{align*}
+\end{proof}
+
+\begin{claim*}
+  $e$ is irrational.
+\end{claim*}
+\begin{proof}
+  From the previous result, we have
+  \begin{align*}
+    0 < n!ne - n!ns_n < 1
+  \end{align*}
+  for all $n \in \N$. Note that $n!ns_n = \sum_{k=0}^n\frac{n!n}{k!} \in \N$. Suppose $e$ is
+  rational, i.e. $e = \frac{p}{q}$ where $p, q \in \N$ are coprime. But then for $n \geq q$ we have
+  $n!ne \in \N$. This is a contradiction, since the difference of two natural numbers is another
+  natural number and therefore does not lie in $(0, 1)$. Therefore $e$ is irrational.
 \end{proof}
 
 \newpage
@@ -1347,9 +1370,9 @@ Similarly,
     $a_k - a_{k+1} = \frac{1}{\sqrt{k+1} + \sqrt{k}} - \frac{1}{\sqrt{k+2} + \sqrt{k + 1}} >
     \frac{1}{2\sqrt{k+1}} - \frac{1}{2\sqrt{k+1}}$, by making the first term bigger and the second
     smaller. Therefore $a_{k+1} < a_k$.
-  \item $0 < a_k < \frac{1}{\sqrt{k}}$. Fix $\epsilon > 0$ and note that
-    $n \geq \ceil{\frac{1}{\epsilon^2}} + 1 \implies \frac{1}{\sqrt{n}} < \epsilon$. Therefore
-    $\frac{1}{\sqrt{k}} \to 0$. Therefore $a_k \to 0$.
+  \item $a_k \to 0$ ({\bf Proof}: Note that $0 < a_k < \frac{1}{\sqrt{k}}$. Fix $\epsilon > 0$ and
+    note that $n \geq \ceil{\frac{1}{\epsilon^2}} + 1 \implies \frac{1}{\sqrt{n}} <
+    \epsilon$. Therefore $\frac{1}{\sqrt{k}} \to 0$. Therefore $a_k \to 0$ by the Squeeze Theorem).
   \end{enumerate}
   Therefore $\sum (-1)^{k-1}a_k$ converges by the Alternating Series Test.
 \end{proof}
@@ -1370,7 +1393,14 @@ Similarly,
     s_n &= \frac{13}{15} - \(\frac{1}{7} - \frac{1}{9}\) - \(\frac{1}{11} - \frac{1}{13}\) - \ldots
           < \frac{13}{15}.
   \end{align*}
-  ...therefore $\frac{2}{3} < \lim_{n \to \infty} s_n < \frac{13}{15}$.
+  Extending the same argument, note that
+  \begin{align*}
+    \frac{2}{3} + \frac{2}{35} < s_n < \frac{13}{15} - \frac{2}{63}.
+  \end{align*}
+  Let $c_n = L_c = \frac{2}{3} + \frac{2}{35}$ and $d_n = L_d = \frac{13}{15} - \frac{2}{63}$, so
+  that $(c_n)$ and $(d_n)$ are constant sequences converging to $L_c$ and $L_d$ respectively. We
+  have $c_n < s_n < d_n$ for all $n$, therefore $L_c \leq L \leq L_d$, therefore
+  $\frac{2}{3} \leq L < \frac{13}{15}$.
 \end{proof}
 
 \newpage
@@ -1379,16 +1409,36 @@ Similarly,
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-5-7.png}
 \end{mdframed}
 
-\begin{proof}\hspace{0pt}
-  \begin{enumerate}[label=(\alph*)]
-  \item False. A counterexample is $a_k = \frac{1}{k^3}$ since then $k^2a_k = \frac{1}{k} \to 0$
-    yet $\sum \frac{1}{k}$ is divergent.
-  \item False. A counterexample is $a_k = (-1)^k\frac{1}{\sqrt{k}}$ since then $\sum a_k$ converges
-    but $\sum a_k^2$ diverges.
-  \item I think this is true. Proof? Suppose $\sum |a_k|$ converges to $L$...
-  \item ?
-  \end{enumerate}
-\end{proof}
+\begin{enumerate}[label=(\alph*)]
+\item True.
+  \begin{proof} Suppose $k^2a_k \to 0$. Then
+    $(\forall \epsilon > 0) ~~ (\exists N \in \N) ~~ (\forall n \geq N) ~~ (|n^2a_n| < \epsilon)$.
+
+    Let $N$ be such that $|n^2a_n| < 1$ for all $n \geq N$. Then $|a_n| < \frac{1}{n^2}$ for all
+    $n \geq N$. But note that $\sum \frac{1}{n^2}$ converges. Therefore a tail of $\sum |a_k|$
+    converges, by the Comparison Test. Therefore $\sum a_k$ converges.
+  \end{proof}
+\item False. A counterexample is $a_k = (-1)^k\frac{1}{\sqrt{k}}$ since then $\sum a_k$ converges
+  but $\sum a_k^2$ diverges.
+\item True.
+  \begin{proof}
+    Suppose $\sum |a_k|$ converges. Then $|a_k| \to 0$.
+
+    Let $N$ be such that $|a_n| < 1$ for all $n \geq N$. Then $0 \leq a_n^2 < |a_n|$ for all
+    $n \geq N$.
+
+    Therefore a tail of $\sum a_k^2$ converges, by the Comparison Test. Therefore $\sum a_k^2$
+    converges.
+  \end{proof}
+\item True.
+  \begin{proof}
+    Suppose $\sum a_k^2$ converges.
+
+    Let $N$ be such that $a_n^2 < 1$ for all $n \geq N$. Let $n \geq N$ Then $|a_n|$ < 1. Therefore
+    $0 \leq |a_n^3| = |a_n|a_n^2 < a_n^2$. Therefore a tail of $\sum a_k^3$ converges, by the
+    Comparison Test. Therefore $\sum a_k^3$ converges.
+  \end{proof}
+\end{enumerate}
 
 \newpage
 \subsection{}
@@ -1408,6 +1458,129 @@ Similarly,
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-1.png}
 \end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{claim*}
+    Let $a_k = \frac{(2k+1)(3k-1)}{(k+1)(k+2)^2}$. Then $\sum a_k$ diverges.
+  \end{claim*}
+
+  \begin{proof}
+    Let $b_k = \frac{1}{k+1}$. Then
+    \begin{align*}
+      \frac{a_k}{b_k} &= \frac{(2k+1)(3k-1)}{(k+2)^2}
+                        = \frac{6k^2 + k - 1}{k^2 + 4k + 4}
+                        = \frac{6 + k^{-1} - k^{-2}}{1 + 4k^{-1} + 4k^{-2}}\\
+                      &\to 6.
+    \end{align*}
+    We have $b_k > 0$ and $a_k > 0$ for $k > 0$. By the Comparison Test (limit form) $\sum a_k$
+    diverges, since $\sum b_k$ diverges.
+
+    To show that $\sum b_k$ diverges, define $c_k = \frac{1}{k}$ and note that
+    $\frac{b_k}{c_k} = \frac{k}{k + 1} \to 1$. We know that the harmonic series $\sum c_k$
+    diverges, so $\sum b_k$ diverges by the Comparison Test (limit form).
+  \end{proof}
+
+\item
+  \begin{claim*}
+    Let $a_k = \frac{1}{k^{1/k}k}$. Then $\sum a_k$ diverges.
+  \end{claim*}
+
+  \begin{remark*}
+    We know that $\sum \frac{1}{k\log k}$ diverges. Also $k^{1/k} < \log k$ for large
+    $k$. Therefore $\frac{1}{k\log k} < \frac{1}{k^{1/k}k}$ for large $k$. Therefore we expect
+    $\sum \frac{1}{k^{1/k}k}$ to diverge also. So we expect to be able to exhibit a divergent
+    series $\sum b_k$ such that $\frac{a_k}{b_k} \to L$.
+  \end{remark*}
+
+  \begin{proof}
+    Let $a_k = \frac{1}{k^{1/k}k}$ and let $b_k = \frac{1}{k}$. Then
+    \begin{align*}
+      \frac{a_k}{b_k} = \frac{1}{k^{1/k}} = \(\frac{1}{k}\)^{1/k}.
+    \end{align*}
+    Note that $0 < \(\frac{1}{k}\)^{1/k} < 1$ for $k > 1$.
+
+    Note that $\log \frac{a_k}{b_k} = -\frac{\log k}{k} \to 0$ as $k \to \infty$. \red{TODO: proof
+      (l'Hopital's rule?)}
+
+
+
+
+    \red{Want to show that $\(\frac{1}{k}\)^{1/k} \to L$ where $0 \leq L \leq 1$}.
+
+    % $\sum b_k$ is divergent, therefore $\sum a_k$ is divergent by the Comparison Test (limit form).
+  \end{proof}
+
+
+  \begin{theorem*}
+    Let $f$ be continuous. $(x_n)$ converges iff $(f(x_n))$ converges.
+  \end{theorem*}
+
+\item
+  \begin{claim*}
+    Let $a_k = \frac{k!}{k^k}$. Then $\sum a_k$ converges.
+  \end{claim*}
+  \begin{proof}
+    Let $a_k = \frac{k!}{k^k}$. We have
+    \begin{align*}
+      \lim_{k\to\infty} \frac{a_{k+1}}{a_k}
+      &= \lim_{k\to\infty}  \frac{(k+1)!}{~~~(k+1)^{k+1}}\frac{k^k}{k!}\\
+      &= \lim_{k\to\infty}  \(\frac{k}{k+1}\)^k\\
+      &= \lim_{k\to\infty}  \(1 + \frac{1}{k}\)^{-k}\\
+      &= e^{-1} < 1,
+    \end{align*}
+    therefore $\sum a_k$ converges by the Ratio Test.
+  \end{proof}
+
+\item
+  \begin{claim*}
+    Let $a_k = {2k \choose k}^{-1}(4 - 10^{-23})^k$. Then $\sum a_k$ diverges.
+  \end{claim*}
+  \begin{proof}
+    Let $c = 4 - 10^{-23} > 1$ so that
+    \begin{align*}
+      a_k
+      = {2k \choose k}^{-1}c^k
+      = \frac{c^k(k!)^2}{(2k)!}.
+    \end{align*}
+    Then
+    \begin{align*}
+      \frac{a_{k+1}}{a_k}
+      &=
+        \frac{c^{k+1}\((k+1)!\)^2}{\(2(k+1)\)!}
+        \frac{(2k)!}{c^k(k!)^2}\\
+      &=
+        c^k\frac{(k+1)^2}{(2k + 2)(2k + 1)}\\
+      &= c^k\frac{1 + 2k^{-1} + k^{-2}}{4 + 5k^{-1} + 2k^{-2}}.
+    \end{align*}
+    Therefore $\frac{a_{k+1}}{a_k} \to \infty$, therefore $\sum a_k$ diverges by the Ratio Test.
+  \end{proof}
+
+\item
+  \begin{claim*}
+    Let $a_k =
+    \begin{cases}
+      2^{-k}k ~~~ &\text{if $k$ is of the form $2^m$ for integer $m$}\\
+      0      ~~~ &\text{otherwise}
+    \end{cases}$.
+  \end{claim*}
+
+  \begin{proof}
+    Define $b_m = a_{2^m}$ for $m = 1, 2, \ldots$. We have
+    \begin{align*}
+      \frac{b_{m+1}}{b_m}
+      &= \frac{2^{-2^{m+1}}2^{m+1}}
+              {2^{-2^m}2^m}\\
+      &= 2^{2^m-2^{m+1} + 1}\\
+      &= 2^{2^m(1 - 2) + 1}\\
+      &= 2^{1 - 2^m}\\
+      &= \frac{2}{2^m} \to 0.
+    \end{align*}
+    Therefore $\sum b_m$ converges. But
+    $\sum_{k=1}^\infty a_k = \sum_{m=1}^\infty \sum_{k=2^{m-1}}^{2^m - 1} a_k = \sum_{m=1}^\infty
+    b_m$. Therefore $\sum b_m$ converges.
+  \end{proof}
+\end{enumerate}
+
 
 \newpage
 \subsection{}
@@ -1415,15 +1588,198 @@ Similarly,
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-2.png}
 \end{mdframed}
 
+\begin{claim*}
+  $\sum_{k\geq3} \frac{1}{k(\log k)^p}$ converges if $p > 1$ and diverges otherwise, for
+  $p \in \R$.
+\end{claim*}
+
+\begin{proof}
+  Note that $\ddx (1 - p)(\log x)^{1 - p} = \frac{1}{x(\log x)^p}$. Therefore
+  \begin{align*}
+    \int_3^\infty \frac{1}{x(\log x)^p} \dx
+    & = \Big[(1 - p)(\log x)^{1 - p}\Big]_3^\infty.
+  \end{align*}
+  For $p > 1$ this integral converges to $(p - 1)(\log 3)$ and for $p < 1$ it diverges. For $p = 1$
+  it converges also, since
+  \begin{align*}
+    \lim_{t \to \infty} \Big[0\cdot(\log x)^0\Big]_3^t = \lim_{t \to \infty} \Big[0\cdot 1\Big]_3^t = 0.
+  \end{align*}
+
+  Therefore by the Integral Test, the series converges for $p \geq 1$ and diverges otherwise.
+\end{proof}
+
+\red{WRONG: it diverges at $p = 1$ according to the question, and to Mathematica:}
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[1/((k+2) Log[k+2]^p),k]
+#+end_src
+
+#+RESULTS:
+: p > 1
+
+\end{verbatim}
+
+\begin{verbatim}
+#+begin_src mathematica
+Limit[0 Log[x]^0, x -> Infinity]
+#+end_src
+
+#+RESULTS:
+: 0
+
+
+\end{verbatim}
+
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-2-b.png}
 \end{mdframed}
 
+\begin{remark*}
+  $\alpha^{-k}$ becomes small faster than $k^{-\alpha}$, so we expect this to behave similarly to
+  $\sum \frac{1}{k^\alpha}$. That suggests that it will converge iff $\alpha > 1$.
+\end{remark*}
+
+\begin{proof}
+  Note that
+  \begin{align*}
+    \sum \frac{k^{-\alpha}}{1 + \alpha^{-k}} =
+    \sum \frac{e^{-\alpha \log k}}{1 + e^{-k \log \alpha}}.
+  \end{align*}
+  Note that
+  \begin{align*}
+    \ddx \log(1 + e^{-k \log \alpha}) =
+    \frac{-(\log\alpha) e^{-k\log\alpha}}{1 + e^{-k \log \alpha}}.
+  \end{align*}
+\end{proof}
+
+Apparently Mathematica can't solve this:
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[k^(-a)/(1 + a^(-k)), k]
+#+end_src
+
+#+RESULTS:
+: SumConvergence[1/((1 + a^(-k))*k^a), k]
+
+
+\end{verbatim}
+
+
 \newpage
 \subsection{}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-3.png}
+  \includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-3.png}
 \end{mdframed}
+
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{claim*}
+    Let $a_k = \frac{k + 2^k}{2^kk}$. Then $\sum a_k$ diverges.
+  \end{claim*}
+  \begin{proof}
+    Note that
+    \begin{enumerate}
+    \item $a_k = \frac{1}{2^k} + \frac{1}{k} > \frac{1}{k}$, and
+    \item $\sum \frac{1}{k}$ diverges.
+    \end{enumerate}
+    Therefore $\sum a_k$ is divergent by the Comparison Test (simple form).
+  \end{proof}
+\item
+  \begin{claim*}
+    Let $a_k = \frac{1}{k}\sin\frac{1}{k}$. Then $\sum a_k$ converges.
+  \end{claim*}
+  \begin{proof}
+    Note that $\sin x < x$ for $x > 0$. Therefore $a_k < \frac{1}{k^2}$. Therefore $\sum a_k$
+    converges by the Comparison Test (simple form).
+  \end{proof}
+\item \red{TODO: don't know anything about $\sinh$ or $\cosh$}.
+  \begin{claim*}
+    Let $a_k = \frac{\sinh k}{2^k}$. Then $\sum a_k$ converges/diverges?
+  \end{claim*}
+  \begin{proof}
+    By definition, $\sinh k = \sum_{n=0}^\infty \frac{k^{2n+1}}{(2n+1)!}$. Therefore
+    \begin{align*}
+      a_k = \frac{1}{2^k}\sum_{n=0}^\infty \frac{k^{2n+1}}{(2n+1)!}
+    \end{align*}
+  \end{proof}
+\newpage
+\item
+  \begin{claim*}
+    Let $a_k = (-1)^{k-1}\frac{\log k}{\sqrt k}$. Then $\sum a_k$ converges.
+  \end{claim*}
+  \begin{proof}
+    Note that $a_k = (-1)^{k-1}ke^{-k/2}$. Consider
+    \begin{align*}
+      \frac{|a_{k+1}|}{|a_k|}
+      = \frac{(k+1)e^{-(k+1)/2}}{ke^{-k/2}}
+      = \frac{k+1}{k\sqrt{e}}
+      = \frac{1}{\sqrt{e}} + \frac{1}{k\sqrt{e}}.
+    \end{align*}
+    Note that $1 < \frac{1}{\sqrt{e} - 1} < 2$ and therefore that if $k \geq 2$ then
+    \begin{align*}
+      \frac{|a_{k+1}|}{|a_k|}
+      < \frac{1}{\sqrt{e}} + \frac{\sqrt{e} - 1}{\sqrt{e}}
+      = 1.
+    \end{align*}
+    Therefore $\sum a_k$ converges by the Alternating Series Test.
+
+    % \begin{align*}
+    %   \frac{k+1}{k} &> \sqrt{e}\\
+    %   k+1 &> k\sqrt{e}\\
+    %   k &> \frac{-1}{1 - \sqrt{e}}\\
+    %   k &> \frac{1}{\sqrt{e} - 1}
+    % \end{align*}
+
+
+
+    % Note that $a_k = (-1)^{k-1}\frac{2\log \sqrt{k}}{\sqrt{k}} = (-1)^{k-1}ke^{-k/2}$.
+
+    % Let $u = \sqrt{k}$. Then $\frac{|a_k|}{2} = \frac{\log u}{u} = ue^{-u}$.
+
+    % Note that $|a_k| = ke^{-k^{1/2}}$, and that
+    % \begin{align*}
+    %   \int_1^\infty xe^{-x^{1/2}} \dx = x
+    % \end{align*}
+  \end{proof}
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[(-1)^(k-1)(Log[k])/(Sqrt[k]), k]
+#+end_src
+
+#+RESULTS:
+: True
+
+\end{verbatim}
+
+\begin{verbatim}
+#+begin_src mathematica
+Log[k]/Sqrt[k] === k E[-k/2]
+#+end_src
+
+#+RESULTS:
+: False
+
+\end{verbatim}
+
+
+\begin{verbatim}
+#+begin_src mathematica
+Evaluate[(E^x + 1) === (E^x + 1/2 + 1/2)]
+#+end_src
+
+#+RESULTS:
+: True
+
+\end{verbatim}
+
+
+
+\end{enumerate}
 
 \newpage
 \subsection{}
@@ -1539,5 +1895,6 @@ and power-of-two, or even-numbered, harmonic terms in the - positions).
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-7-8-b.png}
 \end{mdframed}
+
 
 \end{document}

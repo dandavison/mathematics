@@ -128,10 +128,11 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{proof}
 
 \subsection{Connection between sequences and functions}
+
 \begin{theorem*}
   The following two statements are equivalent:
   \begin{enumerate}
-  \item $f(x) \to L$ as $x \to a$.
+  \item $\lim_{x \to a} f(x) = L$
   \item For every sequence $(x_n)$ such that $x_n \neq a$
     \begin{align*}
       \(\lim_{n \to \infty} x_n = a\) \implies \(\lim_{n \to \infty} f(x_n) = f(a)\)
@@ -139,7 +140,20 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{enumerate}
 \end{theorem*}
 
+\begin{intuition*}
+  In other words:
+
+  $\lim_{x \to a} f(x) = L$ if and only if the following is true:
+
+  If $x_n \to a$ and $x_n \neq a$ then $f(x_n) \to f(a)$. I.e. $f$ is continuous.
+\end{intuition*}
+
+\begin{proof}
+
+\end{proof}
+
 \subsection{Limit of product is product of limits}
+\red{TODO:check these proofs}
 \begin{theorem*}\label{limit-of-product}~\\
   Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g$. Then
   $\limxa f(x)g(x) = L_fL_g$.
@@ -161,6 +175,7 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{proof}
 
 \subsection{Limit of quotient is quotient of limits}
+\red{TODO:check these proofs}
 \begin{theorem*}~\\
   Let $\limxa f(x) = L_f$ and $\limxa g(x) = L_g \neq 0$. Then
   \begin{align*}
@@ -190,7 +205,7 @@ Notes from Oxford - M1 - Sequences and Series.
 
 \subsection{Exponential versus polynomial}
 \begin{theorem*}
-  $\frac{n^k}{c^n} \to 0$ as $n \to \infinity$ for $k > 1$, $c > 1$.
+  $\frac{n^k}{c^n} \to 0$ as $n \to \infty$ for $k > 1$, $c > 1$.
 \end{theorem*}
 \begin{proof}
   Let $c = 1 + b$. Then
@@ -205,39 +220,89 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{align*}
 \end{proof}
 
+\subsection{$O$ and $o$ notation}
+\begin{definition*}~\\
+  We write $a_n = O(b_n)$ if there exists $N \in \N$ and a constant $c > 0$ such that for all
+  $n \geq N$
+  \begin{align*}
+    |a_n| \leq c|b_n|.
+  \end{align*}
+  We write $a_n = o(b_n)$ if $a_n/b_n$ is defined and $a_n/b_n \to 0$ as
+  $n \to \infty$.
+\end{definition*}
+
+\begin{claim*}
+  Let $a_k = \frac{(2k+1)(3k-1)}{(k+1)(k+2)^2}$. Then $a_k = O(k^{-1})$.
+\end{claim*}
+
+\begin{proof}
+  \begin{align*}
+    a_n &= \frac{(2n+1)(3n-1)}{(n+1)(n+2)^2}
+         = \frac{6n^2 + n - 1}{n^3 + 5n^2 + 8n + 4}\\
+        &=
+          \frac{6}{n + 5 + 8n^{-1} + 4n^{-2}} +
+          \frac{1}{n^2 + 5n + 8 + 4n^{-1}} -
+          \frac{1}{n^3 + 5n^2 + 8n + 4}
+  \end{align*}
+\end{proof}
+
+
 \subsection{Series}
 \begin{definition*}~\\
 
-  {\bf Note}: The following definition of ``series'' is non-standard and only half serious. In
+   The following definition of ``series'' is non-standard and only half serious. In
   particular, note that by ``the 5-th term of a series'' one usually means $a_5$, not $s_5$. The
   word ``series'' tends to be used in a way that makes a formal definition difficult or impossible:
-  roughly speaking, a series is a ``summation of a sequence''; the limit in question may or may not
-  exist.
+
 
   Let $(a_n)$ be a real or complex sequence.
 
-  $s_n := \sum_{k=1}^na_k$ is the $n$-th {\bf partial sum}.
+  $s_n := \sum_{k=1}^na_k$ is the $n$th {\bf partial sum}.
 
-  The sequence of partial sums $(s_n)_{n \geq 1}$ is the {\bf series}.
+  The formal summation $\sum a_n := \sum_{n=1}^\infty a_n$ is the {\bf series}.
 
-  If $\lim_{n \to \infty} s_n$ exists then the {\bf series converges}.
+  {\bf Note}: The word ``series'' is not always clearly defined. Roughly speaking, a series is a
+  ``summation of a sequence''; the limit in question may or may not exist.
 
-  The notation $\sum_{k \geq 1} a_k$ is used to mean the series $(s_n)_{n \geq 1}$.
+  The series $\sum a_n$ converges iff $\lim_{n \to \infty} s_n$ exists.
 \end{definition*}
 
 \begin{intuition*}~\\
-  A sequence is a sequence of ``steps''.
+  The sequence $(a_n)$ is the sequence of ``steps''.
 
-  A series is the sequence of locations.
+  The partial sum sequence $(s_n)$ is the sequence of locations visited.
+
+  The series $\sum a_n$ converges if the sequence of locations converges.
 \end{intuition*}
 
+\subsection{Examples of series and power series}
+
+\begin{tabular}{l|l|l}
+  $n$th term             & Behaviour                                   & Name          \\[5pt]
+  \hline&&\\
+  $x^n$                  & Converges to $\frac{1}{1 - x}$ on $(-1, 1)$ & Geometric Series\\[5pt]
+  $\frac{1}{n}$          & Diverges                                    & Harmonic Series \\[5pt]
+  $\frac{1}{n\log n}$    & Diverges                                    &                 \\[5pt]
+  $(-1)^{n+1}\frac{1}{n}$ & Converges to $\log 2$              & Alternating Harmonic Series \\[5pt]
+  $\frac{x^n}{n}$        & Converges on $[-1, 1)$                      & Harmonic Series at $x=1$, Alternating Harmonic Series at $x=-1$\\[5pt]
+\end{tabular}
+
+\subsection{Series convergence theorems}
 \begin{theorem*}\hspace{0pt}
   \begin{enumerate}[label=(\roman*)]
   \item $a_n = s_n - s_{n-1}$ for $n \geq 2$.
   \item If the series converges then $a_n \to 0$.
   \item If $a_k \geq 0$ then the series is monotonic increasing (and therefore converges iff it is bounded above).
-  \item {\bf Comparison test; simple form}: If $0 \leq a_k \leq Cb_k$ and the $\sum b_k$ converges
-    then $\sum a_k$ converges.
+  \item {\bf Comparison test; simple form}: If $0 \leq a_k \leq Cb_k$ then:
+    \begin{itemize}
+    \item $\sum b_k$ converges $\implies \sum a_k$ converges.
+    \item Therefore also the contrapositive: $\sum a_k$ diverges $\implies \sum b_k$ diverges.
+    \end{itemize}
+  \item {\bf Comparison test; limit form}: If $a_k, b_k > 0$ for all $k$ and
+    $\frac{a_k}{b_k} \to L$ then
+    \begin{itemize}
+    \item $\sum b_k$ converges $\iff \sum a_k$ converges.
+    \end{itemize}
   \item {\bf Cauchy convergence criterion}: series converges iff sequence of partial sums is
     Cauchy. Note that $s_n - s_m = a_{m+1} + \ldots + a_n$.
   \item {\bf Absolute convergence}: if the $\sum |a_k|$ series converges then the series converges.
@@ -268,7 +333,45 @@ Notes from Oxford - M1 - Sequences and Series.
   Let $N = 2\max(N_1, N_2)$. Then $|a_n - L| < \epsilon$ for all $n \geq N$, therefore $a_n \to L$.
 \end{proof}
 
-\begin{theorem}[Alternating Series Test]
+\subsection{The Harmonic Series diverges}
+
+\begin{theorem*}
+  Let $a_n = \frac{1}{n}$. Then $\sum a_n$ diverges.
+\end{theorem*}
+
+\begin{intuition*}
+  In the 14th Century, Nicole d'Oresme argued that the harmonic series diverges by grouping the
+  terms, after the first two, into groups of size $2, 4, 8, \ldots$.
+  \begin{align*}
+    \sum_{k=1}^\infty \frac{1}{k}
+    &= 1 + \frac{1}{2} +
+    \(\frac{1}{3} + \frac{1}{4}\) +
+    \(\frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8}\) +
+    \ldots\\
+    &> 1 + \frac{1}{2} + \frac{1}{2} + \frac{1}{2} + \ldots.
+  \end{align*}
+  The following proof formalizes the argument.
+\end{intuition*}
+
+\begin{proof}
+  Let $s_n = \sum_{k=1}^\infty a_k$. Consider
+  \begin{align*}
+    |s_{2^{n + 1}} - s_{2^n}|
+    &= \frac{1}{2^n + 1} + \frac{1}{2^n + 2} + \ldots + \frac{1}{2^{n+1}}\\
+    &\geq \frac{1}{2^{n+1}}2^n ~~~~~~~~~~~~~~\text{(smallest term) x (number of terms)}\\
+    &= \frac{1}{2}.
+  \end{align*}
+  Therefore $(s_n)$ is not Cauchy, so $(s_n)$ diverges, i.e. $\sum a_n$ diverges.
+\end{proof}
+
+\begin{proof}
+  An alternative proof uses the Integral Test. Note that $\int \frac{1}{x} \dx = \log x +
+  C$. Therefore $\int_1^\infty \frac{1}{x} \dx$ does not exist (divergent). \red{incomplete}
+\end{proof}
+
+
+\subsection{The Alternating Series Test converges to $\log 2$}
+\begin{theorem}
   The series $\sum_{k\geq 1}(-1)^{k-1}a_k$ converges if
   \begin{enumerate}[label=(\roman*)]
   \item $a_k \geq 0$
@@ -302,6 +405,47 @@ Notes from Oxford - M1 - Sequences and Series.
   \end{align*}
   But by (iii) we have $a_{2n} \to 0$, therefore $s_{2n-1} \to L$ also. Therefore $s_n \to L$ by lemma \ref{even-and-odd-subsequences-lemma}.
 \end{proof}
+
+
+\subsection{Integral Test}
+
+\begin{intuition*}
+  Basically, if $f$ is continuous and monotone decreasing for $x > N$, then
+  \begin{align*}
+    \int_N^\infty f(x) \dx \leq \sum_{n=N}^\infty f(n) \leq f(N) + \int_N^\infty f(x) \dx. ~~~~~~~\text{(see diagram below)}
+  \end{align*}
+\end{intuition*}
+
+\begin{theorem*}[Integral Test Theorem]
+  Let $f:[1,\infty] \to [0, \infty]$ be decreasing and non-negative. Define
+  \begin{align*}
+    s_n = \sum_{k=1}^nf(k) ~~~~~~~~~~~~~ I_n = \int_1^n f(x) \dx ~~~~~~~~~~~~~ \sigma_n = s_n - I_n.
+  \end{align*}
+  Then $\sigma_n \to \sigma$, where $0 \leq \sigma \leq f(1)$.
+\end{theorem*}
+
+\begin{corollary*}[Integral Test]
+  $(s_n)$ converges if and only if $(I_n)$ converges.
+\end{corollary*}
+
+\begin{intuition*}\hspace{0pt}
+  \begin{mdframed}
+    \includegraphics[width=200pt]{img/analysis--integral-test-theorem.png}
+
+    The combined area of the 3 blue rectangles ($s_3 = f(1) + f(2) + f(3)$) exceeds the area
+    $\int_1^3 f(x) \dx$. But the difference is less than $f(1)$. I.e.
+    \begin{align*}
+      f(1) + f(2) + f(3) \leq f(1) + \int_1^3 f(x) \dx
+    \end{align*}
+
+
+  \end{mdframed}
+\end{intuition*}
+
+\begin{proof}
+  See notes.
+\end{proof}
+
 
 
 \subsection{Abel's theorem}
@@ -345,10 +489,8 @@ $f$ is continuous at the boundary point $x = 1$. I.e.
   \lim_{x\uparrow 1} \sum_{n=1}^\infty \frac{x^n}{n} = \log(2).
 \end{align*}
 
-
-
 \section{Continuity and Differentiability}
-Note from Oxford - M2 - Continuity and Differentiability.
+Notes from Oxford - M2 - Continuity and Differentiability.
 
 \subsection{Limit point}
 \begin{definition*}
@@ -380,6 +522,23 @@ Equivalent notation: $f(x) \to L$ as $x \to a$
   \item $f$ must tend to $L$ from both sides.
   \end{enumerate}
 \end{remark*}
+
+\subsection{Limits involving $\infty$}
+
+\begin{definition*}
+  $\lim_{n \to \infty} x_n = \infty$ if for all $X \in \R$ there exists $N \in \N$ such that
+  $n \geq N \implies x_n > X$.
+\end{definition*}
+
+\begin{definition*}
+  $\lim_{x \to \infty} f(x) = L$ if for all $\epsilon > 0$ there exists $X \in \R$ such that
+  $x > X \implies |f(x) - L| < \epsilon$.
+\end{definition*}
+
+\begin{theorem*}[I assume. Have not proved this.]
+  $\lim_{x \to \infty} f(x) = L$ iff for all sequences $(x_n)$ such that
+  $\lim_{n \to \infty}x_n = \infty$ we have $\lim_{n \to \infty} f(x_n) = L$.
+\end{theorem*}
 
 \subsection{Limits of functions - Examples}
 
