@@ -1594,21 +1594,13 @@ Similarly,
 \end{claim*}
 
 \begin{proof}
-  Note that $\ddx (1 - p)(\log x)^{1 - p} = \frac{1}{x(\log x)^p}$. Therefore
+  Note that $\ddx \frac{1}{1 - p}(\log x)^{1 - p} = \frac{1}{x(\log x)^p}$. Therefore
   \begin{align*}
     \int_3^\infty \frac{1}{x(\log x)^p} \dx
-    & = \Big[(1 - p)(\log x)^{1 - p}\Big]_3^\infty.
+    & = \Big[\frac{1}{1 - p}(\log x)^{1 - p}\Big]_3^\infty.
   \end{align*}
-  For $p > 1$ this integral converges to $(p - 1)(\log 3)$ and for $p < 1$ it diverges. For $p = 1$
-  it converges also, since
-  \begin{align*}
-    \lim_{t \to \infty} \Big[0\cdot(\log x)^0\Big]_3^t = \lim_{t \to \infty} \Big[0\cdot 1\Big]_3^t = 0.
-  \end{align*}
-
-  Therefore by the Integral Test, the series converges for $p \geq 1$ and diverges otherwise.
+  For $p > 1$ this integral converges to $\frac{\log 3}{p - 1}$ and for $p \leq 1$ it diverges.
 \end{proof}
-
-\red{WRONG: it diverges at $p = 1$ according to the question, and to Mathematica:}
 
 \begin{verbatim}
 #+begin_src mathematica
@@ -1619,18 +1611,6 @@ SumConvergence[1/((k+2) Log[k+2]^p),k]
 : p > 1
 
 \end{verbatim}
-
-\begin{verbatim}
-#+begin_src mathematica
-Limit[0 Log[x]^0, x -> Infinity]
-#+end_src
-
-#+RESULTS:
-: 0
-
-
-\end{verbatim}
-
 
 \newpage
 \begin{mdframed}
@@ -1664,8 +1644,6 @@ SumConvergence[k^(-a)/(1 + a^(-k)), k]
 
 #+RESULTS:
 : SumConvergence[1/((1 + a^(-k))*k^a), k]
-
-
 \end{verbatim}
 
 
@@ -1706,44 +1684,24 @@ SumConvergence[k^(-a)/(1 + a^(-k)), k]
       a_k = \frac{1}{2^k}\sum_{n=0}^\infty \frac{k^{2n+1}}{(2n+1)!}
     \end{align*}
   \end{proof}
-\newpage
+  \newpage
 \item
   \begin{claim*}
     Let $a_k = (-1)^{k-1}\frac{\log k}{\sqrt k}$. Then $\sum a_k$ converges.
   \end{claim*}
+
   \begin{proof}
-    Note that $a_k = (-1)^{k-1}ke^{-k/2}$. Consider
+    Note that
     \begin{align*}
-      \frac{|a_{k+1}|}{|a_k|}
-      = \frac{(k+1)e^{-(k+1)/2}}{ke^{-k/2}}
-      = \frac{k+1}{k\sqrt{e}}
-      = \frac{1}{\sqrt{e}} + \frac{1}{k\sqrt{e}}.
+      \ddx \frac{\log x}{\sqrt{x}}
+      = \frac{1}{x}\cdot x^{-1/2} + (\log x)(-1/2)x^{-3/2}
+      = \frac{2 - \log x}{2x^{3/2}}.
     \end{align*}
-    Note that $1 < \frac{1}{\sqrt{e} - 1} < 2$ and therefore that if $k \geq 2$ then
-    \begin{align*}
-      \frac{|a_{k+1}|}{|a_k|}
-      < \frac{1}{\sqrt{e}} + \frac{\sqrt{e} - 1}{\sqrt{e}}
-      = 1.
-    \end{align*}
-    Therefore $\sum a_k$ converges by the Alternating Series Test.
+    Therefore $\ddx \frac{\log x}{\sqrt{x}} < 0$ for $x > e^2 = 7.38906...$.
 
-    % \begin{align*}
-    %   \frac{k+1}{k} &> \sqrt{e}\\
-    %   k+1 &> k\sqrt{e}\\
-    %   k &> \frac{-1}{1 - \sqrt{e}}\\
-    %   k &> \frac{1}{\sqrt{e} - 1}
-    % \end{align*}
+    Note also that $2 < \log 9 < 3$, therefore $\frac{\log 9}{\sqrt{9}} < 1$.
 
-
-
-    % Note that $a_k = (-1)^{k-1}\frac{2\log \sqrt{k}}{\sqrt{k}} = (-1)^{k-1}ke^{-k/2}$.
-
-    % Let $u = \sqrt{k}$. Then $\frac{|a_k|}{2} = \frac{\log u}{u} = ue^{-u}$.
-
-    % Note that $|a_k| = ke^{-k^{1/2}}$, and that
-    % \begin{align*}
-    %   \int_1^\infty xe^{-x^{1/2}} \dx = x
-    % \end{align*}
+    Therefore $0 < \frac{\log k}{\sqrt{k}} < 1$ for $k \in \{9, 10, 11, \ldots\}$.
   \end{proof}
 
 \begin{verbatim}
@@ -1755,29 +1713,6 @@ SumConvergence[(-1)^(k-1)(Log[k])/(Sqrt[k]), k]
 : True
 
 \end{verbatim}
-
-\begin{verbatim}
-#+begin_src mathematica
-Log[k]/Sqrt[k] === k E[-k/2]
-#+end_src
-
-#+RESULTS:
-: False
-
-\end{verbatim}
-
-
-\begin{verbatim}
-#+begin_src mathematica
-Evaluate[(E^x + 1) === (E^x + 1/2 + 1/2)]
-#+end_src
-
-#+RESULTS:
-: True
-
-\end{verbatim}
-
-
 
 \end{enumerate}
 

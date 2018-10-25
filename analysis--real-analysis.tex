@@ -370,7 +370,7 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{proof}
 
 
-\subsection{The Alternating Series Test converges to $\log 2$}
+\subsection{The Alternating Series Test}
 \begin{theorem}
   The series $\sum_{k\geq 1}(-1)^{k-1}a_k$ converges if
   \begin{enumerate}[label=(\roman*)]
@@ -637,7 +637,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \subsection{Open ball}
 \begin{definition}
   Let $(X, d)$ be a metric space, $x \in X$ and $\delta > 0$. Then
-  $B(x, \delta) := \{x \in X ~|~ d(x, x) < \delta\}$ iss an open ball of radius $\delta$ centred at
+  $B(x, \delta) := \{x \in X ~|~ d(x, x) < \delta\}$ is an open ball of radius $\delta$ centred at
   $x$.
 \end{definition}
 
@@ -655,7 +655,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 \subsection{Neighbourhood}
 \begin{definition}
-  Let $(X, d)$ be a metric space. $N \subseteq X$ is a neighbourhood of $x \in X$ iff there exists
+  Let $(X, d)$ be a metric space. $N \subseteq X$ is a neighbourhood of $x \in X$ if there exists
   $\delta > 0$ such that $B(x, \delta) \subseteq N$.
 \end{definition}
 
@@ -663,9 +663,32 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   $N$ is a neighbourhood of $x$ if a ball can be placed at $x$ without poking outside $N$.
 \end{remark*}
 
+\begin{theorem*}[Neighbourhoods are open]
+  Let $(X, d)$ be a metric space and let $N \subseteq X$ be a neighbourhood of $x \in X$. Then $N$
+  is open.
+
+  \red{I don't think they are under the definitions here.}
+\end{theorem*}
+
+\begin{proof}
+  Let $N = \{x' \in X ~|~ d(x, x') \leq 1\}$. Then $N$ is a neighbourhood of $x$ since
+  $B(x, 0.5) \subset N$. But $N$ is not open.
+\end{proof}
+
+
+% \begin{proof}
+%   Let $N \subseteq X$ be a neighbourhood of $x \in X$ and let $n \in N$. We wish to show that there
+%   exists $\delta$ such that $B(n, \delta) \subseteq N$.
+
+%   Since $N$ is a neighbourhood of $x$ there exists $\epsilon$ such that
+%   $B(x, \epsilon) \subseteq N$.
+
+%   Suppose $n \in B$.
+% \end{proof}
+
 \subsection{Open and closed subsets of a metric space}
 \begin{definition}
-  Let $(X, d)$ be a metric space. Then $U \subseteq X$ is open iff it is a neighbourhood of all of
+  Let $(X, d)$ be a metric space. Then $U \subseteq X$ is open if it is a neighbourhood of all of
   its elements.
 
   $V \seq X$ is closed iff its complement in $X$ is open.
