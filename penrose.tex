@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+
+\begin{document}
+
+\section{Languages}
+\begin{definition*}[dsll]
+  A dsll file declares
+  \begin{itemize}
+  \item Type constructors
+  \item Operators
+  \item Predicates
+  \end{itemize}
+\end{definition*}
+
+\newpage
+\section{Linear algebra domain}
+
+Suppose we have the following {\tt .sub} file
+\begin{verbatim}
+VectorSpace U,V
+
+LinearMap f
+From(f, U, V)
+
+Vector p, q, x, y, z1, z2
+In(p, U)
+In(q, U)
+In(x, V)
+In(y, V)
+In(z1, V)
+In(z2, V)
+x := Apply(f, p)
+y := Apply(f, q)
+z1 := x + y
+z2 := Apply(f, u1 + u2)
+\end{verbatim}
+
+In the visualization it must be the case that $z_1 = z_2$, because $f$ is linear. How do we
+implement the {\tt .sty} so that this is true?
+
+We could declare that one of the outputs of $f$, say $x$, is a parameter to be optimized, and then
+solve for $f$ such that $f(p) = x$.
+
+Note that in this example, $U = V = \R^2$.
+
+\begin{problem*}
+  Let $p, x \in \R^2$. Find, under the standard basis, the set of matrices $A$ such that $Ap = x$.
+\end{problem*}
+
+\begin{proof}
+  Suppose that $p$ and $x$ are linearly independent. Let $p = \bvecc{p_1}{p_2}$,
+  $x = \bvecc{x_1}{x_2}$ under the standard basis.
+
+  Note that under the basis $(p, x)$ the matrix $A = \bmatt{0}{a}
+                                                           {1}{b}$ takes $p \mapsto x$ for
+  all $a, b \in \R$.
+
+  Let's further constrain the solution by demanding that the determinant is 1, which implies that $a = -1$.
+
+  And let's take $b = 0$ because it seems like a choice that will result in simpler calculations/results.
+
+  Thus we have $A_{(p,x)} = \bmatt{0}{-1}
+                                 {1}{0}$ under the basis $(p, x)$.
+
+  Under the standard basis this becomes
+  \begin{align*}
+    A_{\text{standard}}
+    &=
+      \bmatt{p_1}{x_1}
+            {p_2}{x_2}
+      \bmatt{0}{-1}
+            {1}{0}
+      \bmatt{p_1}{x_1}
+            {p_2}{x_2}^{-1}\\
+    &=
+      \bmatt{x_1}{-p_1}
+            {x_2}{-p_2}
+      \bmatt{x_2}{-x_1}
+            {-p_2}{p_1}
+      \frac{1}{p_1x_2 - p_2x_1}\\
+    &=
+      \bmatt{x_2x_1 + p_2p_1}{-x_1^2 -p_1^2}
+            {x_2^2 + p_2^2}{-x_1x_2 - p_1p_2}
+      \frac{1}{p_1x_2 - p_2x_1}\\
+  \end{align*}
+
+
+
+
+\begin{verbatim}
+#+begin_src mathematica
+getMatrix[p_, x_] := Module[
+    {p1, p2, x1, x2},
+    p1 = p[[1]]; p2 = p[[2]]; x1 = x[[1]]; x2 = x[[2]];
+    (1 / (p1 x2 - p2 x1)) {{x2 x1 + p2 p1, -x1^2  - p1^2},
+                           {x2^2  + p2^2,  -x1 x2 - p1 p2}}
+];
+getMatrix[{i1, i2}, {j1, j2}]. {i1, i2} // Simplify
+#+end_src
+
+#+RESULTS:
+| j1 | j2 |
+\end{verbatim}
+
+
+  % Under the standard basis, this is
+  % \begin{align*}
+  %   A
+  %   &=
+  %     \bmatt{p_1}{x_1}
+  %           {p_2}{x_2}^{-1}
+  %     \bmatt{0}{a}
+  %           {1}{b}
+  %     \bmatt{p_1}{x_1}
+  %           {p_2}{x_2}\\
+  %   &=
+  %     \frac{1}{p_1x_2 - p_2x_1}
+  %     \bmatt{x_2}{-x_1}
+  %           {-p_2}{p_1}
+  %     \bmatt{p_2a}{x_2a}
+  %           {p_1 + p_2b}{x_1 + x_2b}
+  % \end{align*}
+\end{proof}
+
+\end{document}
