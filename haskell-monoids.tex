@@ -1,0 +1,158 @@
+\newcommand{\map}{\text{{\tt map}}}
+\newcommand{\foldr}{\text{{\tt foldr}}}
+\newcommand{\op}{\oplus}
+\newcommand{\id}{\epsilon}
+
+\begin{definition*}
+  A monoid is a set $S$ with an associative binary operation $\op$ and an identity element $\id$.
+\end{definition*}
+
+\begin{remark*}
+  A group is a monoid in which each element has an inverse.
+\end{remark*}
+
+\begin{definition*}
+  A {\bf type} is a set.
+\end{definition*}
+
+\begin{definition*}
+  A {\bf list} containing items of type $a$ is a sequence $a_1, a_2, \ldots$ where $a_i \in a$ for
+  all $i \in \N$.
+\end{definition*}
+
+\begin{example*}\hspace{0pt}
+  The set of lists of type \mintinline{haskell}{[a]} is a monoid (the binary operation is
+  concatenation and the identity is the empty list).
+\end{example*}
+
+\begin{definition*}
+  $f:S \to T$ is a homomorphism if $f(x \op y) = f(x) \op f(y)$ for all $x, y \in S$.\footnote{Note that $\op$ is used here for two potentially distinct operators: one in $S$ and one
+    in $T$.}
+\end{definition*}
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item Equivalent notation: $(f \circ \op)(x, y) = \op(f(x), f(y))$.
+  \item In some sense this is saying that for a homomorphism $f$, it doesn't matter in what order
+    we perform $f$ and $\op$.
+  \end{enumerate}
+
+\end{remark*}
+
+\begin{definition*}[$\map$, $\foldr$]\hspace{0pt}\\
+  $\map$ takes a function of one argument and a list of input values and returns a list of output
+  values:
+  \begin{align*}
+    \map(g, [x, y, z, ...]) = [g(x), g(y), g(z), ...]
+  \end{align*}
+
+  $\foldr$ takes a function of two arguments, an initial value, and a sequence of input values, and
+  performs a right-associative ``reduce'' operation:
+  \begin{align*}
+    \foldr(g, \alpha, [x, y, z]) = g(x, f(y, f(z, \alpha))).
+  \end{align*}
+\end{definition*}
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item When $\alpha$ is an identity element for $g$ and the input is a length-2 list, {\tt foldr}
+    is just function application:
+  \begin{align*}
+    \foldr(g, \id, [x, y]) = g(x, g(y, \id)) = g(x, y).
+  \end{align*}
+\item   Here are type definitions and implementations of {\tt map} and {\tt foldr} in Haskell:
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      map :: (a `$\to$` b) `$\to$` [a] `$\to$` [b]
+      map g (x:xs) = g x : map g xs
+      map g [] = []
+
+      foldr :: (a `$\to$` b `$\to$` b) `$\to$` b `$\to$` [a] `$\to$` b
+      foldr g `$\alpha$` (x:xs) = g x (foldr f `$\alpha$` xs)
+      foldr g `$\alpha$` [] = `$\alpha$`
+    \end{minted}
+  \end{normalfont}
+  \end{enumerate}
+\end{remark*}
+
+\newpage
+Instances of the {\tt Monoid} typeclass are defined to have an identity element and a closed binary
+operation:
+\begin{minted}[escapeinside=\\`\\`]{haskell}
+  class Monoid a where
+    `$\id$` :: a
+    `$\op$` :: a `$\to$` a `$\to$` a
+\end{minted}
+
+In addition a function {\tt mconcat} is defined for Monoid instances. This ``reduces'' a list of elements:
+\begin{minted}[escapeinside=\\`\\`]{haskell}
+  mconcat :: Monoid a => [a] `$\to$` a
+  mconcat = foldr `$\op$` `$\id$`
+\end{minted}
+
+\begin{theorem*}
+  Let $S$ be a monoid with identity $\id$. Let $x, y \in S$ and let $f:S \to T$ be a
+  homomorphism. Then
+  \begin{align*}
+    f(x \op y) = \foldr(\op, f(\id), \map(f, [x, y])).
+  \end{align*}
+  I.e.
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+               f (x `$\op$` y) = foldr `$\op$` f(`$\id$`) (map f [x, y])
+      `$\iff$`  (f . `$\op$`) x y = (foldr `$\op$` f(`$\id$`) . (map f)) [x, y]
+      `$\iff$`  (f . `$\op$`) x y = (mconcat . (map f)) [x, y]
+      `$\iff$`  (f . `$\op$`) = mconcat . map f                      -- well, not exactly, but similar
+    \end{minted}
+  \end{normalfont}
+\end{theorem*}
+
+\begin{proof}
+  From the definition of $\map$ and $\foldr$ we have:
+  \begin{align*}
+    \foldr(\op, f(\id), \map(f, [x, y]))
+    &= \foldr(\op, f(\id), [f(x), f(y)])\\
+    &= f(x) \op (f(y) \op f(\id))\\
+    &= f(x) \op f(y),
+  \end{align*}
+  which is equal to $f(x \op y)$ since $f$ is a homomorphism.
+\end{proof}
+
+\begin{remark*}
+  What is this saying?
+
+
+\end{remark*}
+
+Yorgey (2012) gives the following:
+
+\begin{definition*}\hspace{0pt}
+  \begin{normalfont}
+    \begin{minted}{haskell}
+      hom :: Monoid m => (a -> m) -> ([a] -> m)
+    \end{minted}
+  \end{normalfont}
+\end{definition*}
+
+\begin{theorem*}\hspace{0pt}
+  \begin{normalfont}
+    \begin{minted}{haskell}
+      hom f = mconcat . map f
+    \end{minted}
+  \end{normalfont}
+\end{theorem*}
+
+\subsection*{Are these saying the same thing?}
+Let's look at the types of the different components:
+\begin{normalfont}
+  \begin{minted}[escapeinside=\\`\\`]{haskell}
+    map f :: [a] `$\to$` [f a]
+    mconcat . map f :: Monoid f a => [a] `$\to$` f a
+  \end{minted}
+  So \mih{f a} is a monoid, i.e.
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      f :: Monoid m => a `$\to$` m
+    \end{minted}
+  \end{normalfont}
+\end{normalfont}

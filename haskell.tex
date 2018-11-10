@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+\begin{document}
+
+\title{Haskell basics}
+\date{}
+\author{Dan Davison}
+\maketitle
+
+\section*{Function}
+\begin{notation*}
+  Function application is written without parentheses; parentheses are used for grouping
+  only. Functions of two arguments can be written as infix binary operators. Here
+  are some examples of traditional mathematical notation and Haskell equivalents:\\~\\
+  \begin{tabular}{|l|l|l|l|}
+    $f(x, y)$         &                     & \mih{f x y}     &\\
+    $f(g(x))$         &                     & \mih{f (g x)}       & \mih{f $ g x} \\  % $
+    $f(x + y)$        & \mih{f (+ x y)}     & \mih{f (x + y)} & \mih{f $ x + y}\\ % $
+    $f(x) + f(y)$     & \mih{+ (f x) (f y)} & \mih{f x + f y} &\\
+    $(f \circ g)(x)$  &                     & \mih{(f . g) x} &\\
+  \end{tabular}
+
+  The following syntax has no standard equivalent in traditional mathematical notation:\\~\\
+  \begin{tabular}{|l|l|l|}
+    list concatenation           & \mih{list1 ++ list2} & E.g. \mih{[1,2] ++ [3,4] == [1, 2, 3, 4]}\\
+    prepend (``cons'') to a list &\mih{x:list1}         & E.g. \mih{1:[2,3,4] == [1, 2, 3, 4]}\\
+  \end{tabular}
+
+\end{notation*}
+
+\section*{Type}
+\begin{definition*}
+  A {\bf type} is a set.
+\end{definition*}
+
+\begin{comment}
+  \begin{remark*}
+    The type is defined at compile time. The elements of the set are data values (including functions) that exist at run time.
+  \end{remark*}
+\end{comment}
+
+\begin{notation*}\hspace{0pt}\\
+  The type definition syntax \mih{x :: A} means $x \in A$, i.e. value {\tt x} has type {\tt A}.
+
+  The type definition syntax \mih{f :: A -> B} means $f:A \to B$, i.e. $f$ is an element of the set
+  of functions with domain $A$ and codomain $B$.
+\end{notation*}
+
+\begin{remark*}
+  It follows that the type definition syntax \mih{f :: A -> (B -> C)} means $f$ is a function with
+  domain $A$ and codomain the set of functions $B \to C$. Note that:
+  \begin{enumerate}
+  \item $f$ can also be thought of as a function with domain $A \times B$ and codomain
+    $C$.\footnote{\mih{A -> B -> C} is known as the ``curried'' version and \mih{(A X B) -> C} is
+      known as the ``uncurried'' version.}
+  \item By convention the parentheses are ommitted and \mih{->} is right-associative. Thus in real
+    Haskell code this would always be written \mih{f :: A -> B -> C}.
+  \end{enumerate}
+
+\end{remark*}
+
+\begin{example*}
+  An example of a type is the set of lists containing items of type $a$.
+
+  Here we declare that variable {\tt x} is of type list-of-integers and assign a value to
+  {\tt x}:
+  \begin{minted}{haskell}
+    x :: [Int]
+    x = [1, 1]
+  \end{minted}
+
+  And here we define a new type which contains a list of integers, and create a variable of
+  that type:
+  \begin{minted}{haskell}
+    data IntList = MakeIntList [Int]
+
+    y :: IntList
+    y = MakeIntList [2, 2]
+  \end{minted}
+
+  We can extract the native list and {\tt Int} values from the {\tt IntList} value by pattern-matching:
+  \begin{minted}{haskell}
+    IntList myList = y
+    IntList [i, j] = y
+  \end{minted}
+  Now {\tt myList} is {\tt  [2, 2]} and {\tt i} and {\tt j} are both {\tt 2}.
+
+\end{example*}
+
+\section*{Type class}
+\begin{definition*}
+  A {\bf typeclass} is a set of types.
+\end{definition*}
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item A type class is defined using the \mih{class} keyword followed by some methods that all
+    instances of the type class must have. For example
+    \begin{normalfont}
+      \begin{minted}[escapeinside=\\`\\`]{haskell}
+        class Monoid a where
+            mempty :: a
+            mappend :: a `$\to$` a `$\to$` a
+      \end{minted}
+    \end{normalfont}
+  \item We can declare that type \mih{A} is an instance of type class \mih{X} in two ways:
+    \begin{enumerate}
+    \item At type-definition time. The class method implementations will be derived
+      automatically. E.g. \mih{data A = MakeA deriving X}
+    \item After type-definition time. Here we can provide implementations of class methods. E.g.
+      \begin{normalfont}
+        \begin{minted}[escapeinside=\\`\\`]{haskell}
+          instance A Monoid
+              where mappend x y = x ++ y
+        \end{minted}
+      \end{normalfont}
+    \end{enumerate}
+  \item A type signature can have a type class constraint: \mih{f :: X a => a -> B} means: let
+    \mih{a} be any type that is\footnote{In fact, in Haskell one says ``has an instance of'', not
+      ``is an instance of''.} an instance of type class \mih{X}; then \mih{f :: a -> B}. This is an
+    example of a polymorphic function definition.
+  \end{enumerate}
+\end{remark*}
+
+
+\section*{Functor}
+\begin{definition*}\hspace{0pt}
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      class Functor f where
+          (<>) :: (a `$\to$` b) `$\to$` f a `$\to$` f b
+    \end{minted}
+  \end{normalfont}
+\end{definition*}
+
+%           (<$) :: a `$\to$` [b] `$\to$` [a]
+%           (<$) = fmap . const
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item \mih{(<>)}, also called \mih{fmap}, operates on a function \mih{g :: a -> b}, ``lifting''
+    it to operate on objects of type \mih{f a}.
+  \item The functor \mih{f} can be viewed as a ``container'' or a ``context'' for objects of type
+    \mih{a}.
+  \end{enumerate}
+\end{remark*}
+
+
+\begin{example*}\hspace{0pt}
+  \begin{enumerate}
+  \item An example of a functor is the list constructor \mih{[]}. In this case \mih{fmap} is just
+    \mih{map}:
+    \begin{normalfont}
+      \begin{minted}[escapeinside=\\`\\`]{haskell}
+        instance Functor [] where
+            (<>) g (x:xs) = g x : (g <> xs)
+      \end{minted}
+    \end{normalfont}
+  \end{enumerate}
+\end{example*}
+
+
+\section*{Applicative}
+
+\begin{definition*}\hspace{0pt}
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      class Applicative f where
+          <*> :: f (a `$\to$` b) `$\to$` f a `$\to$` f b
+    \end{minted}
+    % $
+  \end{normalfont}
+\end{definition*}
+
+\end{document}
