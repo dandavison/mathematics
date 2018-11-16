@@ -2,12 +2,13 @@
 \usepackage{mathematics}
 \begin{document}
 
-\title{Haskell basics}
+\title{Haskell}
 \date{}
 \author{Dan Davison}
 \maketitle
+\tableofcontents
 
-\section*{Function}
+\section{Function}
 \begin{notation*}
   Function application is written without parentheses; parentheses are used for grouping
   only. Functions of two arguments can be written as infix binary operators. Here
@@ -28,7 +29,7 @@
 
 \end{notation*}
 
-\section*{Type}
+\section{Type}
 \begin{definition*}
   A {\bf type} is a set.
 \end{definition*}
@@ -87,7 +88,7 @@
 
 \end{example*}
 
-\section*{Type class}
+\section{Type class}
 \begin{definition*}
   A {\bf typeclass} is a set of types.
 \end{definition*}
@@ -123,7 +124,7 @@
 \end{remark*}
 
 
-\section*{Functor}
+\section{Functor}
 \begin{definition*}\hspace{0pt}
   \begin{normalfont}
     \begin{minted}[escapeinside=\\`\\`]{haskell}
@@ -138,38 +139,256 @@
 
 \begin{remark*}\hspace{0pt}
   \begin{enumerate}
+  \item Note that the functor \mih{f} is an operator on types. It maps a type to a new type.
+  \item The new type can be viewed as a ``container'' or a ``context'' for objects of type \mih{a}.
   \item \mih{(<>)}, also called \mih{fmap}, operates on a function \mih{g :: a -> b}, ``lifting''
     it to operate on objects of type \mih{f a}.
-  \item The functor \mih{f} can be viewed as a ``container'' or a ``context'' for objects of type
-    \mih{a}.
   \end{enumerate}
 \end{remark*}
 
 
 \begin{example*}\hspace{0pt}
   \begin{enumerate}
+
   \item An example of a functor is the list constructor \mih{[]}. In this case \mih{fmap} is just
     \mih{map}:
-    \begin{normalfont}
-      \begin{minted}[escapeinside=\\`\\`]{haskell}
-        instance Functor [] where
-            (<>) g (x:xs) = g x : (g <> xs)
-      \end{minted}
-    \end{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      instance Functor [] where
+          (<>) g (x:xs) = g x : (g <> xs)
+    \end{minted}
+
+  \item A second example of a functor is \mih{((->) e)}. It takes a type \mih{a} and maps it to the
+    function type \mih{e -> a}. An example is discussed below under Applicative.
+
   \end{enumerate}
 \end{example*}
 
 
-\section*{Applicative}
+\section{Applicative}
 
 \begin{definition*}\hspace{0pt}
   \begin{normalfont}
     \begin{minted}[escapeinside=\\`\\`]{haskell}
       class Applicative f where
-          <*> :: f (a `$\to$` b) `$\to$` f a `$\to$` f b
+          <*> :: f (a `$\to$` b) `$\to$` (f a `$\to$` f b)
     \end{minted}
     % $
   \end{normalfont}
 \end{definition*}
+
+\begin{example*}\hspace{0pt}
+  \begin{enumerate}
+
+  \item An example of a functor is \mih{((->) e)}. It takes a type \mih{a} and maps it to the
+    function type \mih{e -> a}. Let's look into this in more detail.
+
+    Suppose we have the predicate functions
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+    isAlpha :: Char `$\to$` Bool
+    isDigit :: Char `$\to$` Bool
+    \end{minted}
+    and what we want is a nicer version of
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+    eitherPredicate :: (Char `$\to$` Bool) -> (Char `$\to$` Bool) -> (Char -> Bool)
+    eitherPredicate p1 p2 c = p1 c || p2 c
+    \end{minted}
+
+    \begin{mdframed}
+    From {\tt ghc/libraries/base/GHC/Base.hs}:
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+    instance Functor ((->) r) where
+        fmap = (.)
+
+    instance Applicative ((->) a) where
+        pure = const
+        (<*>) f g x = f x (g x)
+        liftA2 q f g x = q (f x) (g x)
+    \end{minted}
+    \end{mdframed}
+
+    Consider the type of \mih{liftA2}:
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+    liftA2 :: Applicative f => (a `$\to$` b `$\to$` c) `$\to$` (f a `$\to$` f b `$\to$` f c)
+    \end{minted}
+    In the instance where \mih{f} is \mih{((->) e)} this is
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+    liftA2 :: (a `$\to$` b `$\to$` c) `$\to$` ((e `$\to$` a) `$\to$` (e `$\to$` b) `$\to$` (e `$\to$` c))
+    \end{minted}
+    So in this Applicative instance, what \mih{liftA2} does is lift a binary operator so that it
+    operates on the {\it outputs} of two functions.
+
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+    liftA2 (||) isAlpha isDigit :: Char `$\to$` Bool
+    \end{minted}
+
+    So \mih{liftA2} has taken \mih{||} and lifted it to operate on \mih{Char -> Bool} functions.
+
+  \end{enumerate}
+\end{example*}
+
+
+\section{Monoid}
+\newcommand{\map}{\text{{\tt map}}}
+\newcommand{\foldr}{\text{{\tt foldr}}}
+\newcommand{\op}{\oplus}
+\newcommand{\id}{\epsilon}
+
+\begin{definition*}
+  A monoid is a set $S$ with an associative binary operation $\op$ and an identity element $\id$.
+\end{definition*}
+
+\begin{remark*}
+  A group is a monoid in which each element has an inverse.
+\end{remark*}
+
+\begin{definition*}
+  A {\bf type} is a set.
+\end{definition*}
+
+\begin{definition*}
+  A {\bf list} containing items of type $a$ is a sequence $a_1, a_2, \ldots$ where $a_i \in a$ for
+  all $i \in \N$.
+\end{definition*}
+
+\begin{example*}\hspace{0pt}
+  The set of lists of type \mintinline{haskell}{[a]} is a monoid (the binary operation is
+  concatenation and the identity is the empty list).
+\end{example*}
+
+\begin{definition*}
+  $f:S \to T$ is a homomorphism if $f(x \op y) = f(x) \op f(y)$ for all $x, y \in S$.\footnote{Note that $\op$ is used here for two potentially distinct operators: one in $S$ and one
+    in $T$.}
+\end{definition*}
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item Equivalent notation: $(f \circ \op)(x, y) = \op(f(x), f(y))$.
+  \item In some sense this is saying that for a homomorphism $f$, it doesn't matter in what order
+    we perform $f$ and $\op$.
+  \end{enumerate}
+
+\end{remark*}
+
+\begin{definition*}[$\map$, $\foldr$]\hspace{0pt}\\
+  $\map$ takes a function of one argument and a list of input values and returns a list of output
+  values:
+  \begin{align*}
+    \map(g, [x, y, z, ...]) = [g(x), g(y), g(z), ...]
+  \end{align*}
+
+  $\foldr$ takes a function of two arguments, an initial value, and a sequence of input values, and
+  performs a right-associative ``reduce'' operation:
+  \begin{align*}
+    \foldr(g, \alpha, [x, y, z]) = g(x, f(y, f(z, \alpha))).
+  \end{align*}
+\end{definition*}
+
+\begin{remark*}\hspace{0pt}
+  \begin{enumerate}
+  \item When $\alpha$ is an identity element for $g$ and the input is a length-2 list, {\tt foldr}
+    is just function application:
+  \begin{align*}
+    \foldr(g, \id, [x, y]) = g(x, g(y, \id)) = g(x, y).
+  \end{align*}
+\item   Here are type definitions and implementations of {\tt map} and {\tt foldr} in Haskell:
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      map :: (a `$\to$` b) `$\to$` [a] `$\to$` [b]
+      map g (x:xs) = g x : map g xs
+      map g [] = []
+
+      foldr :: (a `$\to$` b `$\to$` b) `$\to$` b `$\to$` [a] `$\to$` b
+      foldr g `$\alpha$` (x:xs) = g x (foldr f `$\alpha$` xs)
+      foldr g `$\alpha$` [] = `$\alpha$`
+    \end{minted}
+  \end{normalfont}
+  \end{enumerate}
+\end{remark*}
+
+Instances of the {\tt Monoid} typeclass are defined to have an identity element and a closed binary
+operation:
+\begin{minted}[escapeinside=\\`\\`]{haskell}
+  class Monoid a where
+    `$\id$` :: a
+    `$\op$` :: a `$\to$` a `$\to$` a
+\end{minted}
+
+In addition a function {\tt mconcat} is defined for Monoid instances. This ``reduces'' a list of elements:
+\begin{minted}[escapeinside=\\`\\`]{haskell}
+  mconcat :: Monoid a => [a] `$\to$` a
+  mconcat = foldr `$\op$` `$\id$`
+\end{minted}
+
+\subsection{Free Monoid Homomorphism theorem}
+
+
+\newpage
+\begin{theorem*}
+  Let $S$ be a monoid with identity $\id$. Let $x, y \in S$ and let $f:S \to T$ be a
+  homomorphism. Then
+  \begin{align*}
+    f(x \op y) = \foldr(\op, f(\id), \map(f, [x, y])).
+  \end{align*}
+  I.e.
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+               f (x `$\op$` y) = foldr `$\op$` f(`$\id$`) (map f [x, y])
+      `$\iff$`  (f . `$\op$`) x y = (foldr `$\op$` f(`$\id$`) . (map f)) [x, y]
+      `$\iff$`  (f . `$\op$`) x y = (mconcat . (map f)) [x, y]
+      `$\iff$`  (f . `$\op$`) = mconcat . map f                      -- well, not exactly, but similar
+    \end{minted}
+  \end{normalfont}
+\end{theorem*}
+
+\begin{proof}
+  From the definition of $\map$ and $\foldr$ we have:
+  \begin{align*}
+    \foldr(\op, f(\id), \map(f, [x, y]))
+    &= \foldr(\op, f(\id), [f(x), f(y)])\\
+    &= f(x) \op (f(y) \op f(\id))\\
+    &= f(x) \op f(y),
+  \end{align*}
+  which is equal to $f(x \op y)$ since $f$ is a homomorphism.
+\end{proof}
+
+\begin{remark*}
+  What is this saying?
+
+
+\end{remark*}
+
+Yorgey (2012) gives the following:
+
+\begin{definition*}\hspace{0pt}
+  \begin{normalfont}
+    \begin{minted}{haskell}
+      hom :: Monoid m => (a -> m) -> ([a] -> m)
+    \end{minted}
+  \end{normalfont}
+\end{definition*}
+
+\begin{theorem*}\hspace{0pt}
+  \begin{normalfont}
+    \begin{minted}{haskell}
+      hom f = mconcat . map f
+    \end{minted}
+  \end{normalfont}
+\end{theorem*}
+
+{\bf Are these saying the same thing?}\\
+Let's look at the types of the different components:
+\begin{normalfont}
+  \begin{minted}[escapeinside=\\`\\`]{haskell}
+    map f :: [a] `$\to$` [f a]
+    mconcat . map f :: Monoid f a => [a] `$\to$` f a
+  \end{minted}
+  So \mih{f a} is a monoid, i.e.
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      f :: Monoid m => a `$\to$` m
+    \end{minted}
+  \end{normalfont}
+\end{normalfont}
+
 
 \end{document}
