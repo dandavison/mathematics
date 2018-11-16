@@ -1,5 +1,11 @@
 \documentclass[12pt]{article}
 \usepackage{mathematics}
+
+\newcommand{\map}{\text{{\tt map}}}
+\newcommand{\foldr}{\text{{\tt foldr}}}
+\newcommand{\op}{\oplus}
+\newcommand{\id}{\epsilon}
+
 \begin{document}
 
 \title{Haskell}
@@ -8,57 +14,19 @@
 \maketitle
 \tableofcontents
 
-\section{Function}
-\begin{notation*}
-  Function application is written without parentheses; parentheses are used for grouping
-  only. Functions of two arguments can be written as infix binary operators. Here
-  are some examples of traditional mathematical notation and Haskell equivalents:\\~\\
-  \begin{tabular}{|l|l|l|l|}
-    $f(x, y)$         &                     & \mih{f x y}     &\\
-    $f(g(x))$         &                     & \mih{f (g x)}       & \mih{f $ g x} \\  % $
-    $f(x + y)$        & \mih{f (+ x y)}     & \mih{f (x + y)} & \mih{f $ x + y}\\ % $
-    $f(x) + f(y)$     & \mih{+ (f x) (f y)} & \mih{f x + f y} &\\
-    $(f \circ g)(x)$  &                     & \mih{(f . g) x} &\\
-  \end{tabular}
-
-  The following syntax has no standard equivalent in traditional mathematical notation:\\~\\
-  \begin{tabular}{|l|l|l|}
-    list concatenation           & \mih{list1 ++ list2} & E.g. \mih{[1,2] ++ [3,4] == [1, 2, 3, 4]}\\
-    prepend (``cons'') to a list &\mih{x:list1}         & E.g. \mih{1:[2,3,4] == [1, 2, 3, 4]}\\
-  \end{tabular}
-
-\end{notation*}
-
 \section{Type}
+
 \begin{definition*}
   A {\bf type} is a set.
 \end{definition*}
 
-\begin{comment}
-  \begin{remark*}
-    The type is defined at compile time. The elements of the set are data values (including functions) that exist at run time.
-  \end{remark*}
-\end{comment}
+% \begin{remark*}
+%   The type is defined at compile time. The elements of the set are data values (including functions) that exist at run time.
+% \end{remark*}
 
 \begin{notation*}\hspace{0pt}\\
   The type definition syntax \mih{x :: A} means $x \in A$, i.e. value {\tt x} has type {\tt A}.
-
-  The type definition syntax \mih{f :: A -> B} means $f:A \to B$, i.e. $f$ is an element of the set
-  of functions with domain $A$ and codomain $B$.
 \end{notation*}
-
-\begin{remark*}
-  It follows that the type definition syntax \mih{f :: A -> (B -> C)} means $f$ is a function with
-  domain $A$ and codomain the set of functions $B \to C$. Note that:
-  \begin{enumerate}
-  \item $f$ can also be thought of as a function with domain $A \times B$ and codomain
-    $C$.\footnote{\mih{A -> B -> C} is known as the ``curried'' version and \mih{(A X B) -> C} is
-      known as the ``uncurried'' version.}
-  \item By convention the parentheses are ommitted and \mih{->} is right-associative. Thus in real
-    Haskell code this would always be written \mih{f :: A -> B -> C}.
-  \end{enumerate}
-
-\end{remark*}
 
 \begin{example*}
   An example of a type is the set of lists containing items of type $a$.
@@ -88,6 +56,46 @@
 
 \end{example*}
 
+\section{Function}
+
+\begin{notation*}\hspace{0pt}\\
+  The type definition syntax \mih{f :: A -> B} means $f:A \to B$, i.e. $f$ is an element of the set
+  of functions with domain $A$ and codomain $B$.
+\end{notation*}
+
+\begin{remark*}
+  It follows that the type definition syntax \mih{f :: A -> (B -> C)} means $f$ is a function with
+  domain $A$ and codomain the set of functions $B \to C$. Note that:
+  \begin{enumerate}
+  \item $f$ can also be thought of as a function with domain $A \times B$ and codomain
+    $C$.\footnote{\mih{A -> B -> C} is known as the ``curried'' version and \mih{(A X B) -> C} is
+      known as the ``uncurried'' version.}
+  \item By convention the parentheses are ommitted and \mih{->} is right-associative. Thus in real
+    Haskell code this would always be written \mih{f :: A -> B -> C}.
+  \end{enumerate}
+
+\end{remark*}
+
+
+\begin{notation*}
+  Function application is written without parentheses; parentheses are used for grouping
+  only. Functions of two arguments can be written as infix binary operators. Here
+  are some examples of traditional mathematical notation and Haskell equivalents:\\~\\
+  \begin{tabular}{|l|l|l|l|}
+    $f(x, y)$         &                     & \mih{f x y}     &\\
+    $f(g(x))$         &                     & \mih{f (g x)}       & \mih{f $ g x} \\  % $
+    $f(x + y)$        & \mih{f (+ x y)}     & \mih{f (x + y)} & \mih{f $ x + y}\\ % $
+    $f(x) + f(y)$     & \mih{+ (f x) (f y)} & \mih{f x + f y} &\\
+    $(f \circ g)(x)$  &                     & \mih{(f . g) x} &\\
+  \end{tabular}
+
+  The following syntax has no standard equivalent in traditional mathematical notation:\\~\\
+  \begin{tabular}{|l|l|l|}
+    list concatenation           & \mih{list1 ++ list2} & E.g. \mih{[1,2] ++ [3,4] == [1, 2, 3, 4]}\\
+    prepend (``cons'') to a list &\mih{x:list1}         & E.g. \mih{1:[2,3,4] == [1, 2, 3, 4]}\\
+  \end{tabular}
+\end{notation*}
+
 \section{Type class}
 \begin{definition*}
   A {\bf typeclass} is a set of types.
@@ -108,7 +116,8 @@
     \begin{enumerate}
     \item At type-definition time. The class method implementations will be derived
       automatically. E.g. \mih{data A = MakeA deriving X}
-    \item After type-definition time. Here we can provide implementations of class methods. E.g.
+    \item After type-definition time. Here we can provide our own implementations of class
+      methods. E.g.
       \begin{normalfont}
         \begin{minted}[escapeinside=\\`\\`]{haskell}
           instance A Monoid
@@ -228,10 +237,6 @@
 
 
 \section{Monoid}
-\newcommand{\map}{\text{{\tt map}}}
-\newcommand{\foldr}{\text{{\tt foldr}}}
-\newcommand{\op}{\oplus}
-\newcommand{\id}{\epsilon}
 
 \begin{definition*}
   A monoid is a set $S$ with an associative binary operation $\op$ and an identity element $\id$.
@@ -319,8 +324,43 @@ In addition a function {\tt mconcat} is defined for Monoid instances. This ``red
   mconcat = foldr `$\op$` `$\id$`
 \end{minted}
 
+
 \subsection{Free Monoid Homomorphism theorem}
 
+\begin{theorem*}~\\
+  Let $b = (b, \op, \id)$ be a monoid, and let $f:a \to b$. Then there exists a unique
+  homomorphism $f':[a] \to b$.
+
+  I.e. let
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      instance Monoid b where
+          `$\id$` :: b
+          `$\op$` :: b `$\to$` b `$\to$` b
+    \end{minted}
+  \end{normalfont}
+  and let \mih{f :: a -> b}. Then there exists a unique homomorphism \mih{f' :: [a] -> b}.
+\end{theorem*}
+
+\begin{proof}~\\
+  We claim that the homomorphism is \mih{f' :: ([a], ++, [])} $\to$ \mih{(b, }$\op, \id$\mih{)}.
+
+  Suppose
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      f' [] = `$\id$`
+      f' [x] = b x
+    \end{minted}
+  \end{normalfont}
+
+  Is this a homomorphism? We have
+  \begin{normalfont}
+    \begin{minted}[escapeinside=\\`\\`]{haskell}
+      f' ([x] ++ [y]) = f' [x, y] =
+    \end{minted}
+  \end{normalfont}
+
+\end{proof}
 
 \newpage
 \begin{theorem*}
