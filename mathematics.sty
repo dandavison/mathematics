@@ -1,3 +1,4 @@
+
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -54,6 +55,10 @@
 \theoremstyle{remark}
 \newtheorem{example}[theorem]{\\Example}
 \newtheorem*{example*}{\\Example}
+
+\theoremstyle{remark}
+\newtheorem{notation}[theorem]{\\Notation}
+\newtheorem*{notation*}{\\Notation}
 
 \theoremstyle{remark}
 \newtheorem{intuition}[theorem]{\\Intuition}
@@ -143,9 +148,13 @@
 \newcommand{\ceil}[1]{\lceil#1\rceil}
 \newcommand{\Bigceil}[1]{\Big\lceil#1\Big\rceil}
 \newcommand{\constant}{\text{constant}}
+% TODO use prefix letter \in {b, p} deprecate c as prefix
 \newcommand{\cvecccc}[4]{\begin{bmatrix}#1\\#2\\#3\\#4\end{bmatrix}}
 \newcommand{\cveccc}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
 \newcommand{\cvecc}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
+\newcommand{\bvecccc}[4]{\begin{bmatrix}#1\\#2\\#3\\#4\end{bmatrix}}
+\newcommand{\bveccc}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
+\newcommand{\bvecc}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
 \let\origlim\lim
 \renewcommand{\lim}{\origlim\limits}
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}  % TODO: delete
@@ -207,8 +216,11 @@
 \newcommand{\hlinee}{\\\rule{400pt}{0.1pt}\\}
 \newcommand{\limn}{\lim_{n \to \infty}}
 \newcommand{\limxa}{\lim_{x \to a}}
+\newcommand{\mih}[1]{\mintinline{haskell}{#1}}
 \newcommand{\vecMM}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
 \newcommand{\vecMMM}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\newcommand{\bmatMMxNN}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
+\newcommand{\bmatt}{\bmatMMxNN}
 \newcommand{\matMMxNN}[4]{\begin{pmatrix}#1 & #2\\#3 & #4\\ \end{pmatrix}}
 \newcommand{\matMMMxNN}[6]{\begin{pmatrix}#1 & #2\\#3 & #4\\#5 & #6\\ \end{pmatrix}}
 \newcommand{\matMMMxNNN}[9]{\begin{pmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{pmatrix}}

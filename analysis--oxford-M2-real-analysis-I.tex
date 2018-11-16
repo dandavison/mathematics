@@ -1702,7 +1702,27 @@ SumConvergence[k^(-a)/(1 + a^(-k)), k]
     Note also that $2 < \log 9 < 3$, therefore $\frac{\log 9}{\sqrt{9}} < 1$.
 
     Therefore $0 < \frac{\log k}{\sqrt{k}} < 1$ for $k \in \{9, 10, 11, \ldots\}$.
+
+    For the AST we need to show that $\frac{\log k}{\sqrt{k}} \to 0$. So let $\epsilon > 0$. We
+    require $K \in \N$ such that $\frac{\log k}{\sqrt{k}} < \epsilon$ whenever $k \geq K$.
+    \begin{align*}
+      \frac{\log k}{\sqrt{k}} &< \epsilon \\
+      \log k &< \sqrt{k}\epsilon
+    \end{align*}
+
+
   \end{proof}
+
+\begin{verbatim}
+#+begin_src mathematica
+Log[n, 2]/Sqrt[n] === n/(Sqrt[2]^n)
+#+end_src
+
+#+RESULTS:
+: False
+
+\end{verbatim}
+
 
 \begin{verbatim}
 #+begin_src mathematica

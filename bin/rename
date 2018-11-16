@@ -2,4 +2,4 @@
 
 set -eu
 
-rename $@ "$1" * build/*
+rename $@ "$1" * .build/*
