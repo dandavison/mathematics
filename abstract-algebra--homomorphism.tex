@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+\newcommand{\op}{\otimes}
+\newcommand{\id}{\text{id}}
+
+\title{Structure-preserving maps}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition*}
+  Let $S$ be a set equipped with a binary operation $\op$. Then $f:S \to S$ is a
+  structure-preserving map if $f(a \op b) = f(a) \op f(b)$.
+\end{definition*}
+
+\begin{examples*}\hspace{0pt}
+  \begin{enumerate}
+
+  \item The identity map is always structure-preserving since
+    $\id(a \op b) = a \op b = \id(a) \op \id(b)$.
+
+  \item Consider the reals under addition and let $f(x) = 2x$. Then
+    $f(a + b) = 2(a + b) = f(a) + f(b)$.
+
+  \item Let $V$ be a vector space and let $f:V \to V$ be a linear map. Then $f$ preserves additive
+    structure since $f(u + v) = f(u) + f(v)$ for all $u, v \in V$.
+
+  \item {\bf Non-example} (not a linear map): Consider the reals under addition and let $f(x) = x + 1$. Then $f(a + b) = a + b + 1 \neq (a + 1) + (b + 1)$.
+
+  \end{enumerate}
+\end{examples*}
+
+\begin{claim*}
+  Let $V$ be a vector space and let $f: V \to V$. Then $f$ preserves additive structure if and only
+  if $f$ is a linear map.
+\end{claim*}
+
+\begin{proof}
+  Let $V$ be a vector space and let $f:V \to V$.
+
+  Clearly if $f$ is a linear map then it preserves additive structure.
+
+
+  Suppose $f$ preserves the additive structure, i.e.  $f(u + v) = f(u) + f(v)$ for all
+  $u, v \in V$.
+
+  Then for $a \in \Z$ we have $f(au) = f(u + u + \ldots + u) = af(u)$.
+
+  Also $f(0) = 0$ since $f(0) = f(0 + 0) = f(0) + f(0) = 2f(0)$.
+
+  But what about $a \in \R \setminus \Z$?
+\end{proof}
+
+
+\end{document}
