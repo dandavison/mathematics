@@ -5,6 +5,24 @@
 
 \begin{document}
 
+
+\section{Repeated partial sum values}
+
+\begin{mdframed}
+  Let $a_1, a_2, \ldots, a_n$ be a finite real sequence, and define an infinite partial sum
+  sequence, ``recycling'' the $a_i$:
+  \begin{align*}
+    (s_i) = a_1, a_1 + a_2, \ldots, \sum_{i=1}^na_i, \sum_{i=1}^na_i + a_1, \ldots.
+  \end{align*}
+  Does the partial sum sequence visit the same value twice and if so what is the first such value?
+\end{mdframed}
+
+
+\begin{proof}~\\
+  First consider $n = 1$. Then $(s_i) = a_1, 2a_1, \ldots$ and there are repeats iff $a_1 = 0$.
+
+  Next consider $n = 2$. Then $(s_i) = a_1, a_1 + a_2, 2a_1 + a_2, 2a_1 + 2a_2, \ldots$.
+\end{proof}
 \section*{Tower struts}
 
 \begin{mdframed}
