@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+
+
+\begin{document}
+
+\section*{The relational model}
+Consider a database table with $d$ columns.
+
+In relational algebra, a column corresponds to a \emph{type} (aka \emph{domain}). A type is a set
+of possible values.
+
+A \emph{relation} (aka \emph{table}) is a subset of the Cartesian product of the $d$ domains.
+
+Each element of a relation is a \emph{tuple} (aka \emph{row}).
+
+Which tuples are in the relation is determined by a \emph{predicate} on the
+relation (aka a constraint).
+
+A \emph{database} is a collection of relations.
+
+
+\section*{Rules Engine}
+
+Let $X$ be a table of interest.
+
+\begin{definition*}[value field]~\\
+  Let $A$ be a type. In practice, a \textbf{value field} is the name of a
+  column of type $A$ in a {\tt Rule} table. Conceptually, a \textbf{value
+    field} is a function $X \to A$.
+
+  Note that the value field is not a column of $X$.
+\end{definition*}
+
+
+\begin{example*}
+  If the objective is to compute price for each row of $X$ according to a
+  collection of rules, then the {\tt value\_field} might be {\tt "price"} where
+  {\tt price} is a column of type Decimal in a {\tt Rule} table.
+\end{example*}
+
+
+\begin{example*}
+  If the objective is to determine the subset of rows of $X$ that are flagged
+  by a rule, then the {\tt value\_field} might be {\tt "flag"}, where {\tt
+    flag} is a column of type Boolean in a {\tt Rule} table.
+\end{example*}
+
+
+\begin{definition*}[{\tt get\_value\_for\_instance}]~\\
+  {\tt get\_value\_for\_instance} is a function\\
+  $(x, \tt{value\_field}) \mapsto$ (the computed value for $x$ according to the
+  rules).
+\end{definition*}
+
+
+\begin{definition*}[{\tt get\_preimage\_queryset}]~\\
+  Let $k$ be a value field of type $A$ and let $v \in A$.
+
+  Define $V:X \to A$ by $V(x) := {\tt get\_value\_for\_instance}(x, k)$.
+
+  Then ${\tt get\_preimage\_queryset}$ is a function $A \to {\tt powerset}(X)$ defined by\\
+  \begin{align*}
+  {\tt get\_preimage\_queryset}(k, v) := V^\1(v).
+  \end{align*}
+
+
+  In other words, ${\tt get\_preimage\_queryset}(k, v)$ is the set of rows of $X$ for which the
+  rules compute the value $v$ for value field $k$.
+\end{definition*}
+
+
+
+Our initial objective is to describe a rule selecting a subset of the rows of
+$X$.
+
+
+
+\end{document}
