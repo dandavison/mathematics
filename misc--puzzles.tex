@@ -6,6 +6,54 @@
 \begin{document}
 
 
+
+\section{Points moving with constant velocity}
+
+\let\x\undefined
+\let\v\undefined
+\let\A\undefined
+\let\B\undefined
+\let\|\undefined
+\newcommand{\|}{\Big|\Big|}
+\newcommand{\x}{\vec x}
+\newcommand{\v}{\vec v}
+\newcommand{\A}{\vec A}
+\newcommand{\B}{\vec B}
+
+\begin{mdframed}
+  Let $\x_1(0), \ldots, \x_n(0) \in \R^2$ be known initial positions of $n$ particles. Each particle
+  $\x_i$ is moving at constant velocity $\v_i$ so that $\x_i(t) = \x_i(0) + t\v_i$. For an unknown
+  integer value $t^*$ the position of the particles spells a message in upper-case characters from
+  the Latin alphabet. What is $t^*$? (And what is the message??)
+\end{mdframed}
+
+We hypothesize that the variance of the positions is at its minimum when $t=t^*$.
+
+Let $\bar \v$ be the mean velocity and let $\bar \x(t)$ be the mean position of the points at time
+$t$. Choose a coordinate system such that $\bar \x(0) = \0$. Therefore we have
+\begin{align*}
+  \bar \x(t) = \frac{1}{n}\sum_{\x=1}^n \x_i(t)
+             = \bar \x(0) + t\bar \v
+             = t\bar \v.
+\end{align*}
+
+Let $\sigma(t)$ be the variance of the points at time $t$:
+\begin{align*}
+  \sigma(t) &= \frac{1}{n}\sum_{i=1}^n\|\x_i(t) - \bar \x(t)\|^2\\
+            &= \frac{1}{n}\sum_{i=1}^n\|\x_i(0) + t(\v_i - \bar \v)\|^2\\
+            &= \frac{1}{n}\sum_{i=1}^n\sum_{j=1}^2\Big(x_{ij}(0) + t(v_{ij} - \bar v_j)\Big)^2.
+\end{align*}
+Therefore
+\begin{align*}
+  \sigma'(t) = \Bigg(\frac{1}{n}\sum_{i=1}^n\sum_{j=1}^22x_{ij}(0)(v_{ij} - \bar v_j)\Bigg) +
+              2t\Bigg(\frac{1}{n}\sum_{i=1}^n\sum_{j=1}^2(v_{ij} - \bar v_j)^2\Bigg).
+\end{align*}
+Solving for $\sigma'(t) = 0$ gives
+\begin{align*}
+  t^* = \frac{-\sum_{i=1}^n\sum_{j=1}^2x_{ij}(0)(v_{ij} - \bar v_j)}
+             {\sum_{i=1}^n\sum_{j=1}^2(v_{ij} - \bar v_j)^2}.
+\end{align*}
+
 \section{Repeated partial sum values}
 
 \begin{mdframed}
