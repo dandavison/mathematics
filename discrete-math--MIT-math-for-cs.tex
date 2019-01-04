@@ -94,17 +94,27 @@ First we define the $>$ relation:
 
 \end{enumerate}
 
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/MIT-math-for-cs-2005-set-1-4.png}
 \end{mdframed}
 
-\begin{proof}~\\ \red{TODO}
-  Let $A$ be infinite and suppose that $f:A \to \mc P(A)$ is a surjection from $A$ to its powerset.
+
+\begin{mdframed}
+  {\it Russell's Paradox}. Let $S$ range over all sets. Consider $T = \{S~|~S \not \in S\}$. But
+  then $T \in T$ iff $T \not \in T$, a contradiction.
+\end{mdframed}
+
+\begin{proof}~\\
+  Let $A$ be infinite and suppose that there exists a surjection $f:A \to \mc P(A)$ from $A$ to its
+  powerset.
 
   Then $f(x) \seq A$ for all $x \in A$.
 
-  Consider $\{x \in A ~|~ x \notin f(x)\}$, the subset of $A$ containing precisely those elements
-  $x$ which are not in their corresponding subset $f(x)$.
+  Furthermore, there exists an $x$ such that $f(x) = \{x \in A ~|~ x \notin f(x)\}$, a
+  contradiction.
+
+  Therefore no such surjection exists.
 \end{proof}
 
 \begin{mdframed}
