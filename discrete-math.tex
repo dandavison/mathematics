@@ -1,3 +1,43 @@
+
+\section{Logic}
+\subsection{Propositional logic}
+
+\begin{definition*}
+  An atom is a logical proposition which cannot be decomposed. A formula is a tree in which each
+  node is either
+  \begin{enumerate}
+  \item an atom, or
+  \item a logical operator with one child node for each argument.
+  \end{enumerate}
+  The logical operators are:
+  \begin{itemize}
+  \item $\lnot p$ negation
+  \item $p \lor q$ disjunction
+  \item $p \land q$ conjunction
+  \item $p \limplies q$ implication
+  \item $p \lequiv q$ equivalence
+  \end{itemize}
+  An interpretation is an assignment of true/false values to the atoms in a formula (well, except
+  for logical constants, those are atoms but are constant true or constant false).
+
+  A truth table is a list of all interpretations together with the resulting values of the formula.
+
+  A model for a formula is an interpretation (row of truth table) for which the formula evaluates
+  to true.
+
+  A formula is satisfiable if there exists a model for it.
+
+  A formula is valid (aka a tautology) if every interpretation is a model.
+
+  The negation of a valid formula is not satisfiable.
+\end{definition*}
+
+
+\begin{theorem*}
+  All other logical
+\end{theorem*}
+
+\newpage
 \section{Combinatorics}
 
 \begin{mdframed}
