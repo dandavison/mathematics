@@ -1478,8 +1478,18 @@ Similarly,
     To show that $\sum b_k$ diverges, define $c_k = \frac{1}{k}$ and note that
     $\frac{b_k}{c_k} = \frac{k}{k + 1} \to 1$. We know that the harmonic series $\sum c_k$
     diverges, so $\sum b_k$ diverges by the Comparison Test (limit form).
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[(2 k + 1) (3 k - 1)/((k + 1) (k + 2)^2), k]
+#+end_src
+
+#+RESULTS:
+: False
+
+\end{verbatim}
   \end{proof}
 
+\newpage
 \item
   \begin{claim*}
     Let $a_k = \frac{1}{k^{1/k}k}$. Then $\sum a_k$ diverges.
@@ -1502,12 +1512,22 @@ Similarly,
     Note that $\log \frac{a_k}{b_k} = -\frac{\log k}{k} \to 0$ as $k \to \infty$. \red{TODO: proof
       (l'Hopital's rule?)}
 
-
-
-
     \red{Want to show that $\(\frac{1}{k}\)^{1/k} \to L$ where $0 \leq L \leq 1$}.
 
     % $\sum b_k$ is divergent, therefore $\sum a_k$ is divergent by the Comparison Test (limit form).
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[1/(k(k^(1/k))), k]
+#+end_src
+
+#+RESULTS:
+: False
+
+\end{verbatim}
+
+
+
   \end{proof}
 
 
@@ -1515,6 +1535,7 @@ Similarly,
     Let $f$ be continuous. $(x_n)$ converges iff $(f(x_n))$ converges.
   \end{theorem*}
 
+\newpage
 \item
   \begin{claim*}
     Let $a_k = \frac{k!}{k^k}$. Then $\sum a_k$ converges.
@@ -1529,8 +1550,19 @@ Similarly,
       &= e^{-1} < 1,
     \end{align*}
     therefore $\sum a_k$ converges by the Ratio Test.
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[(k!)/(k^k), k]
+#+end_src
+
+#+RESULTS:
+: True
+
+\end{verbatim}
+
   \end{proof}
 
+\newpage
 \item
   \begin{claim*}
     Let $a_k = {2k \choose k}^{-1}(4 - 10^{-23})^k$. Then $\sum a_k$ diverges.
@@ -1549,10 +1581,34 @@ Similarly,
         \frac{c^{k+1}\((k+1)!\)^2}{\(2(k+1)\)!}
         \frac{(2k)!}{c^k(k!)^2}\\
       &=
-        c^k\frac{(k+1)^2}{(2k + 2)(2k + 1)}\\
-      &= c^k\frac{1 + 2k^{-1} + k^{-2}}{4 + 5k^{-1} + 2k^{-2}}.
+        c\frac{(k+1)^2}{(2k + 2)(2k + 1)}\\
+      &= c\frac{1 + 2k^{-1} + k^{-2}}{4 + 5k^{-1} + 2k^{-2}}.
     \end{align*}
-    Therefore $\frac{a_{k+1}}{a_k} \to \infty$, therefore $\sum a_k$ diverges by the Ratio Test.
+    Therefore $\frac{a_{k+1}}{a_k} \to \frac{c}{4} < 1$, therefore $\sum a_k$ converges by the
+    Ratio Test.
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[Binomial[2k, k]^(-1) * (4 - 10^(-23))^k, k]
+#+end_src
+
+#+RESULTS:
+: True
+
+\end{verbatim}
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[Binomial[2k, k]^(-1) * (4 + 10^(-23))^k, k]
+#+end_src
+
+#+RESULTS:
+: False
+
+\end{verbatim}
+
+
+
   \end{proof}
 
 \item
@@ -1612,27 +1668,30 @@ SumConvergence[1/((k+2) Log[k+2]^p),k]
 
 \end{verbatim}
 
-\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-2-b.png}
 \end{mdframed}
 
-\begin{remark*}
-  $\alpha^{-k}$ becomes small faster than $k^{-\alpha}$, so we expect this to behave similarly to
-  $\sum \frac{1}{k^\alpha}$. That suggests that it will converge iff $\alpha > 1$.
-\end{remark*}
-
 \begin{proof}
-  Note that
-  \begin{align*}
-    \sum \frac{k^{-\alpha}}{1 + \alpha^{-k}} =
-    \sum \frac{e^{-\alpha \log k}}{1 + e^{-k \log \alpha}}.
-  \end{align*}
-  Note that
-  \begin{align*}
-    \ddx \log(1 + e^{-k \log \alpha}) =
-    \frac{-(\log\alpha) e^{-k\log\alpha}}{1 + e^{-k \log \alpha}}.
-  \end{align*}
+  Let $a_k = \frac{k^{-\alpha}}{1 + \alpha^{-k}}$ and note that
+  $a_k = \frac{1}{k^\alpha}\frac{\alpha^k}{1 + \alpha^k} < \frac{1}{k^\alpha}$.
+
+  Therefore $\sum a_k$ converges for $\alpha > 1$, since $\sum \frac{1}{k^\alpha}$ converges for
+  $\alpha > 1$ \red{[proof]}.
+
+  For $\alpha=1$ we have $a_k = \frac{1}{2k}$, which diverges \red{[proof]}.
+
+  For $\alpha < 1$ we have...
+  % Note that
+  % \begin{align*}
+  %   \sum \frac{k^{-\alpha}}{1 + \alpha^{-k}} =
+  %   \sum \frac{e^{-\alpha \log k}}{1 + e^{-k \log \alpha}}.
+  % \end{align*}
+  % Note that
+  % \begin{align*}
+  %   \ddx \log(1 + e^{-k \log \alpha}) =
+  %   \frac{-(\log\alpha) e^{-k\log\alpha}}{1 + e^{-k \log \alpha}}.
+  % \end{align*}
 \end{proof}
 
 Apparently Mathematica can't solve this:
