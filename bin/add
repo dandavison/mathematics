@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -u
 
 name="${1%%.*}"
 for suffix in tex pdf; do
