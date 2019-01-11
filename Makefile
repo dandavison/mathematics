@@ -10,8 +10,6 @@ all: *.pdf
 
 %.pdf: %.tex
 	$(MAKE_PDF) $*
-	osascript -e 'tell application "Skim" to activate'
-	osascript -e 'tell application "Emacs" to activate'
 
 
 mathematics.pdf: *.tex
