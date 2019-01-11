@@ -854,5 +854,35 @@ $\S_{ii} = \s(\x_i^\T\w)(1 - \s(\x_i^\T\w))$. Now by the chain rule,
             &= \X^\T\S\X.
 \end{align*}
 
+\subsection{Simulating from linear regression models}
+
+Each observation is $(\x, \y)$, where the input $\x$ is a list of $d$ feature values (dependent
+variable) and $\y$ is the output (dependent variable).
+
+(For convenience we append a 1 to the input data $\x$ to represent the intercept term.)
+
+In classical regression analysis, we consider $\x$ to be fixed and learn a model $p(\y|\x)$. The
+model is specified by parameters $\w \in \R^d$:
+
+\begin{itemize}
+\item Linear Regression: $\y|\x \sim \Norm(\x \cdot \w, \sigma^2)$, where $\sigma^2$ is a variance
+  parameter.
+\item Logistic Regression: $\y|\x \sim \Bern(f(\x \cdot \w))$, where $f: \R \to [0,1]$ is the logistic
+  function.
+\end{itemize}
+
+Now consider both $\x$ and $\y$ to be random variables. Given $\x$ we can simulate $\y$ from the
+above model.
+
+How can we simulate $\x$ given $\y$?
+
+If $\x$ were one-dimensional we...could simulate by picking a random uniform and inverting the CDF.
+
+What's the equivalent of that for multidimensional $\x$?
+
+\begin{align*}
+  p(x|y) &= \frac{p(x, y)}{p(y)}
+\end{align*}
+
 % \section{11 More Regression; Newton’s Method; ROC Curves}
 % \section{Decision Trees}
