@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}
+\usepackage{mathematics}
+
+\newcommand{\true}{\texttt{true}}
+\newcommand{\false}{\texttt{false}}
+
+\begin{document}
+
+\section*{The problem}
+There are $m$ members of a club. Member $i$ has $f_i$ friends who are not yet in the club. There
+are two relevant actions:
+\begin{enumerate}
+\item A member may {\it message} a friend to suggest joining the club.
+\item Once messaged, the friend may {\it accept} the suggestion (join the club).
+\end{enumerate}
+The problem is to maximize the number of club members by suggesting friends to
+message. Specifically, for each member we suggest $r$ of their friends for them to message.
+
+\section*{Training data}
+
+The training data contains a total of $n$ friends of $m$ members, i.e. $n = \sum_{i=1}^m f_i$.
+
+For each friend we have $d$ features, so the training data $X$ is an $n \times d$ table.
+
+There are two $y$ columns:
+\begin{enumerate}
+\item $y_1$ is $\true$ if friend $i$ was {\it messaged} by their associated member, else $\false$.
+\item $y_2$ is $\true$ if friend $i$ was {\it messaged} by their associated member {\it and
+    accepted}, else $\false$.
+\end{enumerate}
+
+\end{document}
