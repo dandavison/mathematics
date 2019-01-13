@@ -1565,7 +1565,7 @@ SumConvergence[(k!)/(k^k), k]
 \newpage
 \item
   \begin{claim*}
-    Let $a_k = {2k \choose k}^{-1}(4 - 10^{-23})^k$. Then $\sum a_k$ diverges.
+    Let $a_k = {2k \choose k}^{-1}(4 - 10^{-23})^k$. Then $\sum a_k$ converges.
   \end{claim*}
   \begin{proof}
     Let $c = 4 - 10^{-23} > 1$ so that
@@ -1607,10 +1607,9 @@ SumConvergence[Binomial[2k, k]^(-1) * (4 + 10^(-23))^k, k]
 
 \end{verbatim}
 
-
-
   \end{proof}
 
+\newpage
 \item
   \begin{claim*}
     Let $a_k =
@@ -1633,7 +1632,7 @@ SumConvergence[Binomial[2k, k]^(-1) * (4 + 10^(-23))^k, k]
     \end{align*}
     Therefore $\sum b_m$ converges. But
     $\sum_{k=1}^\infty a_k = \sum_{m=1}^\infty \sum_{k=2^{m-1}}^{2^m - 1} a_k = \sum_{m=1}^\infty
-    b_m$. Therefore $\sum b_m$ converges.
+    b_m$. Therefore $\sum a_m$ converges.
   \end{proof}
 \end{enumerate}
 
@@ -1681,7 +1680,9 @@ SumConvergence[1/((k+2) Log[k+2]^p),k]
 
   For $\alpha=1$ we have $a_k = \frac{1}{2k}$, which diverges \red{[proof]}.
 
-  For $\alpha < 1$ we have...
+  For $\alpha < 1$ we know that $\frac{1}{k^\alpha}$ diverges, but
+  $\frac{\alpha^k}{1 + \alpha^k} \to 0$, so it's possible that the product converges for some
+  values of $\alpha < 1$.
   % Note that
   % \begin{align*}
   %   \sum \frac{k^{-\alpha}}{1 + \alpha^{-k}} =
@@ -1724,7 +1725,19 @@ SumConvergence[k^(-a)/(1 + a^(-k)), k]
     \item $\sum \frac{1}{k}$ diverges.
     \end{enumerate}
     Therefore $\sum a_k$ is divergent by the Comparison Test (simple form).
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[(k + 2^k)/(k * 2^k), k]
+#+end_src
+
+#+RESULTS:
+: False
+\end{verbatim}
+\checkmark
   \end{proof}
+
+\newpage
 \item
   \begin{claim*}
     Let $a_k = \frac{1}{k}\sin\frac{1}{k}$. Then $\sum a_k$ converges.
@@ -1732,7 +1745,22 @@ SumConvergence[k^(-a)/(1 + a^(-k)), k]
   \begin{proof}
     Note that $\sin x < x$ for $x > 0$. Therefore $a_k < \frac{1}{k^2}$. Therefore $\sum a_k$
     converges by the Comparison Test (simple form).
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[Sin[1/k]/k, k]
+#+end_src
+
+#+RESULTS:
+: SumConvergence[Sin[k^(-1)]/k, k]
+
+\end{verbatim}
+
+
   \end{proof}
+
+
+\newpage
 \item \red{TODO: don't know anything about $\sinh$ or $\cosh$}.
   \begin{claim*}
     Let $a_k = \frac{\sinh k}{2^k}$. Then $\sum a_k$ converges/diverges?
@@ -1743,7 +1771,9 @@ SumConvergence[k^(-a)/(1 + a^(-k)), k]
       a_k = \frac{1}{2^k}\sum_{n=0}^\infty \frac{k^{2n+1}}{(2n+1)!}
     \end{align*}
   \end{proof}
-  \newpage
+
+
+\newpage
 \item
   \begin{claim*}
     Let $a_k = (-1)^{k-1}\frac{\log k}{\sqrt k}$. Then $\sum a_k$ converges.
