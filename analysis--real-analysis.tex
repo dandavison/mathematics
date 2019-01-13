@@ -288,11 +288,23 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{tabular}
 
 \subsection{Series convergence theorems}
+
+\red{These apply to complex sequences except where they involve an order relation. In that case it
+  may still be useful to apply them to $|z_k|$ to establish convergence of a complex series
+  $\sum z_k$ via convergence in absolute value.}
+
 \begin{theorem*}\hspace{0pt}
+  Let $a_k = s_k - s_{k-1}$ for $n \geq 2$.
   \begin{enumerate}[label=(\roman*)]
-  \item $a_n = s_n - s_{n-1}$ for $n \geq 2$.
-  \item If the series converges then $a_n \to 0$.
-  \item If $a_k \geq 0$ then the series is monotonic increasing (and therefore converges iff it is bounded above).
+  \item $a_k \to 0$
+    \begin{itemize}
+    \item $\sum a_k$ converges $\implies a_k \to 0$.
+    \item $a_k \to 0 \nimplies$ $\sum a_k$ converges. ($\sum \frac{1}{k}$, $\sum \frac{1}{k\log k}$
+      do not converge)
+    \end{itemize}
+  \item {\bf Monotonic}: $a_k \geq 0$, bounded above $\implies \sum a_k$ converges.\\
+  \item {\bf Cauchy convergence criterion}: series converges iff sequence of partial sums is
+    Cauchy. Note that $s_k - s_j = a_{j+1} + \ldots + a_k$.
   \item {\bf Comparison test; simple form}: If $0 \leq a_k \leq Cb_k$ then:
     \begin{itemize}
     \item $\sum b_k$ converges $\implies \sum a_k$ converges.
@@ -303,10 +315,25 @@ Notes from Oxford - M1 - Sequences and Series.
     \begin{itemize}
     \item $\sum b_k$ converges $\iff \sum a_k$ converges.
     \end{itemize}
-  \item {\bf Cauchy convergence criterion}: series converges iff sequence of partial sums is
-    Cauchy. Note that $s_n - s_m = a_{m+1} + \ldots + a_n$.
-  \item {\bf Absolute convergence}: if the $\sum |a_k|$ series converges then the series converges.
-  \item $\frac{1}{p^n}$ series converges iff $p > 1$.
+  \item {\bf Absolute convergence}:
+    \begin{itemize}
+    \item $\sum |a_k|$ converges $\implies$ $\sum a_k$ converges.
+    \item $\sum a_k$ converges $\nimplies \sum |a_k|$ converges (alternating harmonic series
+      converges to $\log 2$).
+    \end{itemize}
+  \item $\sum k^{-p}$ converges iff $p > 1$.
+  \item {\bf Geometric series}: $\sum p^k$ series converges iff $|p| < 1$.
+  \item {\bf Alternating Series Test}: $\sum (-1)^{k-1}a_k$ converges if $a_k \geq 0$ and $a_k \to 0$
+    monotonically.
+  \item {\bf Ratio Test}\\
+    Let $L = \limk |\frac{a_{k+1}}{a_k}|$ or $L = \infty > 1$ if the limit does not exist.
+    \begin{itemize}
+    \item $L < 1 \implies \sum a_k$ converges.
+    \item $L = 1 \implies$ inconclusive.
+    \item $L > 1 \implies \sum a_k$ diverges.
+    \end{itemize}
+  \item {\bf Integral test}: $\sum_k f(k)$ converges iff $(I_n)$ converges, where
+    $I_n = \int_1^n f(x) \dx$.
   \end{enumerate}
 \end{theorem*}
 
