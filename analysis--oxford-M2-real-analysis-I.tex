@@ -1831,6 +1831,152 @@ SumConvergence[(-1)^(k-1)(Log[k])/(Sqrt[k]), k]
 \includegraphics[width=400pt]{img/analysis--oxford-M2-I-6-4.png}
 \end{mdframed}
 
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{proof}~\\
+    Let $f_k(x) = k^{2015}x^k$. Note that
+    \begin{align*}
+      \limk |\frac{f_{k+1}(x)}{f_k(x)}|
+      &= \limk |x| \frac{(k+1)^{2015}}{k^{2015}}\\
+      &= \limk |x| (1 + k^{-1} + \ldots + k^{-2015})\\
+      &= |x|.
+    \end{align*}
+    Note also that if $|x| = 1$ then $f_k(x) = k^{2015} \centernot\to 0$.
+
+    Therefore $\sum_k f_k(x)$ converges iff $|x| < 1$.
+\begin{verbatim}
+
+#+begin_src mathematica
+SumConvergence[k^{2015}x^k, k]
+#+end_src
+
+#+RESULTS:
+Abs (x) < 1
+\end{verbatim}
+\checkmark
+
+  \end{proof}
+
+\item
+  \begin{proof}
+    Let $f_k(x) = \frac{x^k}{2^kk^4}$. Note that
+    \begin{align*}
+      \limk \Big|\frac{f_{k+1}(x)}{f_k(x)}\Big|
+      &= \limk \Big|\frac{x^{k+1}}{x^k}\Big|\frac{2^kk^4}{2^{k+1}(k+1)^4}\\
+      &= \limk \frac{|x|}{2} \frac{k^4}{(k+1)^4}\\
+      &= \frac{|x|}{2}.
+    \end{align*}
+    Further, if $|x| = 2$ then $f_k(x) = \pm \frac{1}{k^4}$.
+
+    Therefore $\sum f_k(x)$ converges for $|x| \leq 2$.
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[x^k / (2^k k^4), k]
+#+end_src
+
+#+RESULTS:
+: Abs[x] < 2
+
+\end{verbatim}
+
+\red{TODO: Mathematica wrong?? Surely this converges for $|x| = 2$?}
+
+ \end{proof}
+
+\item
+  \begin{proof}
+    Let $f_k(x) = 2^kx^{k!}$. Note that
+    \begin{align*}
+      \limk \Big|\frac{f_{k+1}(x)}{f_k(x)}\Big|
+      &= \limk \frac{2^{k+1}}{2^k} \Big|\frac{x^{(k+1)!}}{x^{k!}}\Big|\\
+      &= 2 \limk |x^{kk!}|.
+    \end{align*}
+    Therefore $\sum f_k(x)$ converges iff $|x| < 1$.
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[2^k x^(k!), k]
+#+end_src
+
+#+RESULTS:
+: SumConvergence[2^k*x^k!, k]
+
+\end{verbatim}
+
+\red{Why can't Mathematica solve this?}
+  \end{proof}
+
+\item
+  \begin{proof}
+    \begin{align*}
+      \limk \frac{(k+1)^{k+1}}{k^k} \Big|\frac{x^{k+1}}{x^k}\Big|
+      &= \limk |x| (k^1 + k^0 + k^{-1} + \ldots + k^{-k}),
+    \end{align*}
+    so this converges for $x=0$ only.
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[k^k x^k, k]
+#+end_src
+
+#+RESULTS:
+: False
+
+\end{verbatim}
+
+
+\red{Why does Mathematica say this doesn't converge for $x=0$?}
+
+  \end{proof}
+
+\item
+  \begin{proof}
+    Let $f_k(x) = \frac{1}{(4k)!}x^{2k}$. Note that
+    \begin{align*}
+      \limk \Big|\frac{f_{k+1}(x)}{f_k(x)}\Big|
+      &= \limk \Big| \frac{x^{2(k+1)}}{x^{2k}}\Big|\frac{(4k)!}{(4(k+1))!}\\
+      &= \limk x^2 \frac{1}{(4k+4)(4k+3)(4k+2)}\\
+      &= 0
+    \end{align*}
+    Therefore the series $\sum_k f_k(x)$ converges for all $x \in \R$.
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[x^(2k) / (4k)!, k]
+#+end_src
+
+#+RESULTS:
+: True
+
+\end{verbatim}
+\checkmark
+
+  \end{proof}
+
+\item
+  \begin{proof}
+    Let $f_k(x) = \sin(k)x^k$. Note that for $|x| \geq 1$ we have $f_k(x) \centernot\to 0$
+    therefore $\sum f_k(x)$ does not converge.
+
+    For $|x| < 1$ we have $|f_k(x)| \leq |x|^k$ which converges by the Comparison Test since
+    $\sum |x|^k$ is a Geometric Series with ratio less than unity.
+
+\begin{verbatim}
+#+begin_src mathematica
+SumConvergence[Sin[k] x^k, k]
+#+end_src
+
+#+RESULTS:
+: Abs[x] < 1
+
+\end{verbatim}
+\checkmark
+  \end{proof}
+
+\end{enumerate}
+
+
 \newpage
 \subsection{}
 \begin{mdframed}
