@@ -7,6 +7,98 @@
 
 
 
+\section{Urn}
+
+
+\begin{mdframed}
+  An urn contains a finite number of black and white balls. Balls are removed from the urn in a
+  sequence of ``runs''. A run consists of selecting (uniformly at random) and removing from the urn
+  one ball at a time until the first consecutive pair of same-colored balls is encountered. When
+  this occurs, the second ball of the pair is replaced, and a new run is started.
+
+  If the initial proportion of black balls is $p$, what is the probability that the final remaining
+  ball is black?
+\end{mdframed}
+
+
+% \begin{tabular}{|l|l|l|}
+%   \hline
+%   sequence & end configuration & probability\\
+%   \hline
+%            &                   &\\
+%   B        & $b - 1, w$        & $\frac{b}{b + w}$\\
+%            &                   &\\
+%   BB       & $b - 1, w$        & $\frac{b}{b + w}\frac{b - 1}{b - 1 + w}$\\
+%            &                   &\\
+%            &                   &\\
+%   BBB      & $b - 2, w$        & $\frac{b}{b + w}\Big(\frac{b - 1}{b - 1 + w}\Big)^2$\\
+
+% \end{tabular}
+
+
+
+\subsection*{Ideas}
+\begin{enumerate}
+\item The final color is black iff black goes to fixation before the final generation.
+
+\item Define a {\it configuration} to be (last-color-picked, (current-n-black, current-n-white)).\\
+  The initial configuration is $\emptyset, (b, w)$.\\
+  We can write transition probabilities like this:\\
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+                         & $\emptyset, (b, w)$ & $B, (b-1, w)$      & $W, (b, w-1)$ \\
+    \hline
+                         &                     &                    &\\
+     $\emptyset, (b, w)$ & $0$                 & $\frac{b}{b + w}$  & $\frac{w}{b + w}$\\
+                         &                     &                    &\\
+    \hline
+                         &                     &                    &\\
+     $B,         (b, w)$ & $\frac{b}{b + w}$   & $0$                & $\frac{w}{b + w}$\\
+                         &                     &                    &\\
+    \hline
+                         &                     &                    &\\
+     $W,         (b, w)$ & $\frac{w}{b + w}$   & $\frac{w}{b + w}$  & $0$\\
+                         &                     &                    &\\
+    \hline
+  \end{tabular}
+\newpage
+\item We can calculate the probabilities via a recursive algorithm with memoization (``dynamic
+  programming''):
+
+\begin{minted}{python3}
+@memoized
+def P_last_is_black(b, w, prev=None):
+    """
+    Calculate probability that last removed ball is black.
+
+    b:    number of black balls
+    w:    number of white balls
+    prev: color of previously removed ball
+    """
+    if b == 0:
+        return 0.0
+    elif w == 0:
+        return 1.0
+    else:
+        # Probability conditional on removing black next
+        if prev == BLACK:
+            P_last_is_black_given_remove_black = P_last_is_black(b,     w, None)
+        else:
+            P_last_is_black_given_remove_black = P_last_is_black(b - 1, w, BLACK)
+
+        # Probability conditional on removing white next
+        if prev == WHITE:
+            P_last_is_black_given_remove_white = P_last_is_black(b,     w, None)
+        else:
+            P_last_is_black_given_remove_white = P_last_is_black(b, w - 1, WHITE)
+
+        P_remove_black = b / (b + w)
+        P_remove_white = 1 - P_remove_black
+
+        return (P_remove_black * P_last_is_black_given_remove_black +
+                P_remove_white * P_last_is_black_given_remove_white)
+\end{minted}
+\end{enumerate}
 \section{Points moving with constant velocity}
 
 \let\x\undefined
@@ -71,7 +163,7 @@ Solving for $\sigma'(t) = 0$ gives
 
   Next consider $n = 2$. Then $(s_i) = a_1, a_1 + a_2, 2a_1 + a_2, 2a_1 + 2a_2, \ldots$.
 \end{proof}
-\section*{Tower struts}
+\section{Tower struts}
 
 \begin{mdframed}
   A tower of base width $w$ and height $h$ is composed of two sides inclined towards each other at
