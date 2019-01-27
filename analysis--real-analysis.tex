@@ -247,22 +247,17 @@ Notes from Oxford - M1 - Sequences and Series.
 \end{proof}
 
 
+
 \subsection{Series}
 \begin{definition*}~\\
-
-   The following definition of ``series'' is non-standard and only half serious. In
-  particular, note that by ``the 5-th term of a series'' one usually means $a_5$, not $s_5$. The
-  word ``series'' tends to be used in a way that makes a formal definition difficult or impossible:
-
-
   Let $(a_n)$ be a real or complex sequence.
 
   $s_n := \sum_{k=1}^na_k$ is the $n$th {\bf partial sum}.
 
-  The formal summation $\sum a_n := \sum_{n=1}^\infty a_n$ is the {\bf series}.
-
-  {\bf Note}: The word ``series'' is not always clearly defined. Roughly speaking, a series is a
-  ``summation of a sequence''; the limit in question may or may not exist.
+  The formal summation $\sum a_n := \sum_{n=1}^\infty a_n$ is the {\bf series}\footnote{The word
+    ``series'' is not always clearly defined; in particular the limit of the sum may not
+    exist. Defining it as a {\it formal} (i.e. purely syntactic) summation seems to be the closest
+    to a good definition.}.
 
   The series $\sum a_n$ converges iff $\lim_{n \to \infty} s_n$ exists.
 \end{definition*}
@@ -287,6 +282,7 @@ Notes from Oxford - M1 - Sequences and Series.
   $\frac{x^n}{n}$        & Converges on $[-1, 1)$                      & Harmonic Series at $x=1$, Alternating Harmonic Series at $x=-1$\\[5pt]
 \end{tabular}
 
+
 \subsection{Series convergence theorems}
 
 \red{These apply to complex sequences except where they involve an order relation. In that case it
@@ -298,11 +294,26 @@ Notes from Oxford - M1 - Sequences and Series.
   \begin{enumerate}[label=(\roman*)]
   \item $a_k \to 0$
     \begin{itemize}
-    \item $\sum a_k$ converges $\implies a_k \to 0$.
-    \item $a_k \to 0 \nimplies$ $\sum a_k$ converges. ($\sum \frac{1}{k}$, $\sum \frac{1}{k\log k}$
+    \item $\sum a_k$ converges $\implies a_k \to 0$. ({\bf Proof}: If $s_k \to L$ then $a_k = s_k - s_{k-1} \to 0$.)
+    \item $a_k \to 0 \nimplies$ $\sum a_k$ converges. ({\bf Proof}: $\sum \frac{1}{k}$, $\sum \frac{1}{k\log k}$
       do not converge)
     \end{itemize}
-  \item {\bf Monotonic}: $a_k \geq 0$, bounded above $\implies \sum a_k$ converges.\\
+  \item {\bf Monotonic}: $a_k \geq 0$ and $(s_k)$ bounded above $\implies \sum a_k$ converges.
+    \begin{proof}
+      $\sup \{s_k\}$ exists and must be the limit.
+    \end{proof}
+    % \begin{proof}~\\
+    %   Recall that $\sum a_k$ converges to $L$ means that for all $\epsilon > 0$ there exists
+    %   $K > 0$ such that for all $k > K$ we have $|s_k - L| < \epsilon$.
+
+    %   Let $L$ be the least upper bound for $\{s_k\}$. Fix $\epsilon > 0$.
+
+    %   Let $K$ be such that $L - \epsilon < s_k \leq L$ (such a $K$ exists because if it did not,
+    %   $L$ would not be the least upper bound).
+
+    %   Then for all $k > K$ we have $|s_k - L| < \epsilon$.
+    % \end{proof}
+
   \item {\bf Cauchy convergence criterion}: series converges iff sequence of partial sums is
     Cauchy. Note that $s_k - s_j = a_{j+1} + \ldots + a_k$.
   \item {\bf Comparison test; simple form}: If $0 \leq a_k \leq Cb_k$ then:
@@ -336,6 +347,8 @@ Notes from Oxford - M1 - Sequences and Series.
     $I_n = \int_1^n f(x) \dx$.
   \end{enumerate}
 \end{theorem*}
+
+
 
 \begin{remark*}
   $a_n \to 0$ does not imply that the series converges. Counterexample: the harmonic series
@@ -516,6 +529,101 @@ $f$ is continuous at the boundary point $x = 1$. I.e.
   \lim_{x\uparrow 1} \sum_{n=1}^\infty \frac{x^n}{n} = \log(2).
 \end{align*}
 
+
+
+
+\subsection{Power series}
+
+\begin{definition*}
+  A complex power series is a series of the form $\sum c_kz^k$, where $c_k, z \in \C$.
+
+  The series defines a function with domain equal to the region of convergence and codomain $\C$.
+
+  If $c_k, z \in \R$ then it is a real power series.
+\end{definition*}
+
+\begin{example*}
+  We {\bf define}
+  \begin{align*}
+    e^z     &= \sum_{k=0}^\infty \frac{1}{k!}z^k\\
+    \\
+              \sin z  &= \sum_{k=0}^\infty (-1)^k\frac{1}{(2k+1)!}z^{2k + 1}\\
+    \cos z  &= \sum_{k=0}^\infty (-1)^k\frac{1}{(2k)!}z^{2k}\\
+    \\
+    \sinh z &= \sum_{k=0}^\infty \frac{1}{(2k+1)!}z^{2k + 1}\\
+    \cosh z &= \sum_{k=0}^\infty \frac{1}{(2k)!}z^{2k}
+  \end{align*}
+  In all cases the Ratio Test proves convergence in absolute value for all $z \in \C$.
+
+  Identities:
+  \begin{align*}
+    \cos z  &= \frac{1}{2}(...)\\
+    \cosh z &= \frac{1}{2}(...)\\
+    \sin z  &= \frac{1}{2}(...)\\
+    \sinh z &= \frac{1}{2}(...)\\
+    e^{iz} &= ...
+  \end{align*}
+\end{example*}
+
+\begin{definition*}
+  The radius of convergence is
+  \begin{align*}
+    R =
+    \begin{cases}
+      \sup \Big\{|z| ~\Big|~ \sum|c_kz^k| ~\textup{converges}\Big\}, &\textup{if the supremum exists}\\
+      \infty, &\textup{otherwise}.
+    \end{cases}
+  \end{align*}
+\end{definition*}
+
+\begin{remark*}
+  So the radius of convergence is (informally) the furthest distance from the origin at which the
+  series still converges. One might think that the set of values $z$ where the series converges
+  would not define a region with a simple shape. However, the next theorem shows that the region is
+  in fact a disc:
+\end{remark*}
+
+\begin{theorem*}
+  Let $\sum c_kz^k$ be a power series with radius of convergence $R > 0$. Then
+  \begin{enumerate}
+  \item $\sum |c_kz^k|$ converges for all $|z| < R$, and hence $\sum c_kz^k$ converges.
+  \item $\sum c_kz^k$ diverges for $|z| > R$.
+  \end{enumerate}
+  At $|z| = R$ it may converge or diverge.
+\end{theorem*}
+
+\begin{proof}~\\~\\
+  {\bf Informal proof of (1):} The key here is
+  \begin{enumerate}
+  \item convergence in absolute value implies convergence, and
+  \item the Comparison Test (Simple Form), which is used to show that a series of smaller absolute
+    values converges if a series of larger absolute values does.
+  \end{enumerate}
+  The theorem is fairly obvious for a real power series: if the radius of convergence is $R$ then
+  the series must converge at a value arbitrarily close to either $-R$ or $R$. Call this value
+  $x$. So $\sum |c_kx^k| = \sum |c_k||x_k|$ converges. Now consider some other value $t$ with
+  $|t| < |x|$. We have that $\sum |c_kt_k|$ converges by the Comparison Test (Simple Form) and
+  hence $\sum c_kt_k$ converges.
+
+  The thing is that this works similarly for a complex power series, since convergence in absolute
+  value implies convergence for complex series also:
+
+  Fix $R > 0$ and consider the circle with radius $R$ centered on the origin. Fix $z \in \C$ such
+  that $|z| < R$. Note that there must be some $\rho \in \C$ such that $|z| < |\rho| \leq R$ and
+  $\sum |c_k\rho^k|$ converges, otherwise $R$ would not be the supremum. But
+  $|c_kz^k| < |c_k\rho^k|$ for all $k$ and so $\sum |c_kz^k|$ converges by the Comparison Test
+  (Simple Form), and hence $\sum c_kz^k$ converges.
+
+  {\bf Informal proof of (2):} Fix $z$ such that $|z| > R$.
+
+  (Then $\sum |c_kz^k|$ does not converge, since otherwise $R$ would not be the supremum. But lack
+  of convergence in absolute value doesn't prove divergence: e.g. the alternating harmonic series
+  converges.)
+
+  \red{TODO}
+
+\end{proof}
+
 \section{Continuity and Differentiability}
 Notes from Oxford - M2 - Continuity and Differentiability.
 
@@ -525,8 +633,8 @@ Let $E \subset \R$. A point $p \in \R$ is a limit point of $E$ iff for all $\del
 exists $x \in E$ such that $0 < |x - p| < \delta$.
 \end{definition*}
 \begin{intuition*}
-  A deleted ball, of arbitrarily small radius, placed over $p$, will capture at least one point of
-  $E$.
+  A deleted ball (segment), of arbitrarily small radius (length), placed over $p$, will capture at
+  least one point of $E$.
 \end{intuition*}
 
 \subsection{Limit, Convergence}

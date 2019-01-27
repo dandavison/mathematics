@@ -13,92 +13,179 @@
 \begin{mdframed}
   An urn contains a finite number of black and white balls. Balls are removed from the urn in a
   sequence of ``runs''. A run consists of selecting (uniformly at random) and removing from the urn
-  one ball at a time until the first consecutive pair of same-colored balls is encountered. When
-  this occurs, the second ball of the pair is replaced, and a new run is started.
+  one ball at a time until the first consecutive pair of different-colored balls is
+  encountered. When this occurs, the second ball of the pair is replaced, and a new run is started.
 
-  If the initial proportion of black balls is $p$, what is the probability that the final remaining
-  ball is black?
+  If the initial number of black and white balls are $(b, w)$, what is the probability that the
+  final remaining ball is black?
 \end{mdframed}
 
 
-% \begin{tabular}{|l|l|l|}
-%   \hline
-%   sequence & end configuration & probability\\
-%   \hline
-%            &                   &\\
-%   B        & $b - 1, w$        & $\frac{b}{b + w}$\\
-%            &                   &\\
-%   BB       & $b - 1, w$        & $\frac{b}{b + w}\frac{b - 1}{b - 1 + w}$\\
-%            &                   &\\
-%            &                   &\\
-%   BBB      & $b - 2, w$        & $\frac{b}{b + w}\Big(\frac{b - 1}{b - 1 + w}\Big)^2$\\
-
-% \end{tabular}
+% \begin{claim*}
+%   The probability if 50\% for all starting configurations in which there is at least one of
+%   each. (This is consistent with the output of the recursive algorithm given below.)
+% \end{claim*}
 
 
+\begin{proof}~\\~\\
+  Let $P_{b,w}$ be the probability that the last ball is black, starting with $b > 0$ black and
+  $w > 0$ white balls.
 
-\subsection*{Ideas}
-\begin{enumerate}
-\item The final color is black iff black goes to fixation before the final generation.
+  By direct enumeration of the possible sequences of events we know that
+  \begin{align*}
+    P_{1,1} &= 0.5\\
+    P_{2,1} = P_{1,2} &= 0.5.
+  \end{align*}
 
-\item Define a {\it configuration} to be (last-color-picked, (current-n-black, current-n-white)).\\
-  The initial configuration is $\emptyset, (b, w)$.\\
-  We can write transition probabilities like this:\\
-  \begin{tabular}{|c|c|c|c|}
+  Let the starting configuration be $(b, w)$ where $b, w > 0$.
+
+  Let $X_i \in \{B, W\}$ be the color of the $i-th$ ball chosen.
+
+  Suppose the first run consists of removing $b$ consecutive black balls. These are necessarily
+  followed by a white ball (which is replaced), and then $w - 1$ more white balls, until one white
+  ball remains. Thus the run looks like\\
+
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    $X_1$& $X_2$& $\ldots$& $X_b$& $X_{b+1}$& $X_{b+2}$& $\ldots$& $X_{b+w}$\\
     \hline
-                         & $\emptyset, (b, w)$ & $B, (b-1, w)$      & $W, (b, w-1)$ \\
-    \hline
-                         &                     &                    &\\
-     $\emptyset, (b, w)$ & $0$                 & $\frac{b}{b + w}$  & $\frac{w}{b + w}$\\
-                         &                     &                    &\\
-    \hline
-                         &                     &                    &\\
-     $B,         (b, w)$ & $\frac{b}{b + w}$   & $0$                & $\frac{w}{b + w}$\\
-                         &                     &                    &\\
-    \hline
-                         &                     &                    &\\
-     $W,         (b, w)$ & $\frac{w}{b + w}$   & $\frac{w}{b + w}$  & $0$\\
-                         &                     &                    &\\
-    \hline
+    $B$  & $B$  & $\ldots$& $B$  & $W$     & $W$     & $\ldots$& $W$\\
+    $\frac{b}{b+w}$  & $$  & $\ldots$& $B$  & $W$     & $W$     & $\ldots$& $W$\\
   \end{tabular}
-\newpage
-\item We can calculate the probabilities via a recursive algorithm with memoization (``dynamic
-  programming''):
 
-\begin{minted}{python3}
-@memoized
-def P_last_is_black(b, w, prev=None):
-    """
-    Calculate probability that last removed ball is black.
+  The probability of this sequence of events is the product of
 
-    b:    number of black balls
-    w:    number of white balls
-    prev: color of previously removed ball
-    """
-    if b == 0:
-        return 0.0
-    elif w == 0:
-        return 1.0
-    else:
-        # Probability conditional on removing black next
-        if prev == BLACK:
-            P_last_is_black_given_remove_black = P_last_is_black(b,     w, None)
-        else:
-            P_last_is_black_given_remove_black = P_last_is_black(b - 1, w, BLACK)
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    $X_1$& $X_2$    &                        $\ldots$& $X_b$              & $X_{b+1}$& $X_{b+2}$& $\ldots$& $X_{b+w}$\\
+    \hline
+    $B$             & $B$                  & $\ldots$& $B$                & $W$     & $W$     & $\ldots$& $W$\\
+    $\frac{b}{b+w}$ & $\frac{b-1}{b-1+w}$  & $\ldots$& $\frac{1}{1 + w}$  & $1$     & $1$     & $\ldots$& $1$.
+  \end{tabular}
 
-        # Probability conditional on removing white next
-        if prev == WHITE:
-            P_last_is_black_given_remove_white = P_last_is_black(b,     w, None)
-        else:
-            P_last_is_black_given_remove_white = P_last_is_black(b, w - 1, WHITE)
+  Alternatively, suppose the first run consists of removing $w$ consecutive white balls. These are
+  necessarily followed by a black ball (which is replaced), and then $b - 1$ more black balls,
+  until one black ball remains.
 
-        P_remove_black = b / (b + w)
-        P_remove_white = 1 - P_remove_black
+  The probability of this sequence of events is the product of
 
-        return (P_remove_black * P_last_is_black_given_remove_black +
-                P_remove_white * P_last_is_black_given_remove_white)
-\end{minted}
-\end{enumerate}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    $X_1$& $X_2$    &                        $\ldots$& $X_w$              & $X_{1+w}$& $X_{2+w}$& $\ldots$& $X_{b+w}$\\
+    \hline
+    $W$             & $W$                  & $\ldots$& $W$                & $B$     & $B$     & $\ldots$& $B$\\
+    $\frac{w}{b+w}$ & $\frac{w-1}{b+w-1}$  & $\ldots$& $\frac{1}{b + 1}$  & $1$     & $1$     & $\ldots$& $1$.
+  \end{tabular}
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \subsection*{Ideas}
+% \begin{enumerate}
+% \item Note that $\Pr(\textup{last is black}) = \Pr(\textup{white goes extinct at some point})$.
+% \item Work backwards from a minimal configuration. E.g. starting with $(\emptyset,1,1)$ we know the
+%   probability is 50\%. This configuration could have been reached from two $n=2$ configurations:
+%   \begin{enumerate}
+%   \item $(W, 1, 1)$
+%   \item $(B, 1, 1)$
+%   \end{enumerate}
+
+% \item Define a {\it configuration} to be (last-color-picked, current-n-black, current-n-white).\\
+%   The initial configuration is $(\emptyset, b, w)$.\\
+%   We can write transition probabilities like this:\\
+%   \begin{tabular}{|c|c|c|c|}
+%     \hline
+%                          & $\emptyset, b, w$   & $B, b-1, w$        & $W, b, w-1$ \\
+%     \hline
+%                          &                     &                    &\\
+%      $\emptyset, b, w$   & $0$                 & $\frac{b}{b + w}$  & $\frac{w}{b + w}$\\
+%                          &                     &                    &\\
+%     \hline
+%                          &                     &                    &\\
+%      $B,         b, w$   & $\frac{w}{b + w}$   & $0$                & $\frac{b}{b + w}$\\
+%                          &                     &                    &\\
+%     \hline
+%                          &                     &                    &\\
+%      $W,         b, w$   & $\frac{b}{b + w}$   & $\frac{w}{b + w}$  & $0$\\
+%                          &                     &                    &\\
+%     \hline
+%   \end{tabular}
+% \newpage
+% \item We can calculate the probabilities via a recursive algorithm with memoization (``dynamic
+%   programming''):
+
+% \begin{minted}{python3}
+% @memoized
+% def P_last_is_black(b, w, prev=None):
+%     """
+%     Calculate probability that last removed ball is black.
+
+%     b:    number of black balls
+%     w:    number of white balls
+%     prev: color of previously removed ball
+%     """
+%     if b == 0:
+%         return 0.0
+%     elif w == 0:
+%         return 1.0
+%     else:
+%         # Probability conditional on removing black next
+%         if prev == WHITE:
+%             P_last_is_black_given_remove_black = P_last_is_black(b,     w, None)
+%         else:
+%             P_last_is_black_given_remove_black = P_last_is_black(b - 1, w, BLACK)
+
+%         # Probability conditional on removing white next
+%         if prev == BLACK:
+%             P_last_is_black_given_remove_white = P_last_is_black(b,     w, None)
+%         else:
+%             P_last_is_black_given_remove_white = P_last_is_black(b, w - 1, WHITE)
+
+%         P_remove_black = b / (b + w)
+%         P_remove_white = 1 - P_remove_black
+
+%         return (P_remove_black * P_last_is_black_given_remove_black +
+%                 P_remove_white * P_last_is_black_given_remove_white)
+% \end{minted}
+% \end{enumerate}
+
+
 \section{Points moving with constant velocity}
 
 \let\x\undefined

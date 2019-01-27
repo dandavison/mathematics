@@ -29,4 +29,42 @@ There are two $y$ columns:
     accepted}, else $\false$.
 \end{enumerate}
 
+
+\newpage
+\section*{Model comparison}
+
+\begin{tabular}{c|c|c|c|}
+  &             &Predict invited  &Predict not invited\\
+  \hline
+  &Invited      &TP               &FN\\
+  &Not invited  &FP               &TN
+\end{tabular}
+
+\begin{itemize}
+\item TN rate = 1 - FP rate
+\item TP rate = 1 - FN rate
+\end{itemize}
+
+We can compare alternative models by examining their performance on labeled test data:
+
+\begin{enumerate}
+\item Compare {\tt model.predict()} output to the target column:
+  \begin{enumerate}
+  \item Proportion of predictions that agree.
+  \item {\bf True Positive Rate}: out of the people that {\it were} in fact invited, what
+    proportion {\it were} predicted to be invited.
+  \item True negative rate: out of the people that were {\it not} in fact invited, what proportion
+    were {\it not} predicted to be invited.
+  \end{enumerate}
+\item Compare {\tt model.predict\_proba()} output to the target column:
+  \begin{enumerate}
+  \item {\bf ``Soft'' True Positive Rate}: out of the people that {\it were} in fact invited, what
+    is their mean probability?
+  \item Sort by probabilities; verify that highest probabilities were in fact invited.
+  \item What is the probability threshold above which predictions are ``accurate''?
+  \end{enumerate}
+\end{enumerate}
+
+
+
 \end{document}
