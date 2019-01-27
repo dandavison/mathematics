@@ -1,3 +1,5 @@
+
+\begin{comment}  % latex-focus
 \section{Examples of vector spaces}
 \begin{enumerate}
 \item The set $\R^n$ of $n-$tuples of real numbers, under componentwise addition and componentwise
@@ -1258,3 +1260,122 @@ Therefore
     + (u_1v_2 - u_2v_1)\mathbf{k}.
   \end{align*}
 \end{definition*}
+
+\end{comment}  % latex-focus
+
+\section{Singular Value Decomposition}
+\footnotetext{Notes from Kun (2018) A Programmer's Introduction to Mathematics}
+
+There is a problem when learning to study university-level mathematics. Away from the world of
+technical literature, we are familiar with ``reading'': it involves reading one sentence after
+another until you've finished the page, and then turning the page. However in mathematics, books
+and lecture notes are written as definition-theorem-proof, interspersed with fairly terse
+discussion, and the material progresses much too rapidly to be read that way.
+
+In fact, this stuff cannot be read purely in passive mode.  What you need to do is read the
+definition a few times, and then stop and write down a list of concrete examples of the thing being
+defined. Then read the theorem a few times, and convince yourself that it holds for each of your
+examples. And then find a time at which you have the mental energy and disposition to study and
+fully understand the proof.
+
+However. There {\it is} an important part of studying mathematics that doesn't require actually
+being at a table with writing material or computer at hand. That part involves thinking hard about
+important bits. Looking at it from different perspectives, gradually eliminating remaining areas of
+muddled thinking.
+
+Unlike the standard mathematical literature we're going to state things without proof, and
+partially repeat ourselves over and over again. The purpose is not to explore a theory
+comprehensively; the purpose is to become good at thinking about certain small but important areas.
+
+We'll start with an area that no-one is going to dispute is important: vector spaces and linear
+transformations.
+
+
+3 people review 8 films. We write the data as a matrix:
+
+\begin{align*}
+\bordermatrix{
+                 &\text{Person 1} & \text{Person 2} &\text{Person 3} \cr
+  \text{Film 1} &3               &  2              &  5             \cr
+  \text{Film 2} &3               &  4              &  3             \cr
+  \text{Film 3} &2               &  3              &  1             \cr
+  \text{Film 4} &4               &  5              &  4             \cr
+  \text{Film 5} &1               &  2              &  3             \cr
+  \text{Film 6} &3               &  1              &  5             \cr
+  \text{Film 7} &1               &  3              &  5             \cr
+  \text{Film 8} &2               &  5              &  1             \cr
+}
+\end{align*}
+
+
+%  That might have involved reading 10-20 lines of text, and it probably took an hour,
+% maybe multiple hours.
+
+% What one should do is read the definition a few times, and then stop and write down a list of
+% concrete examples of the thing being defined. Then read the theorem a few times, and start
+% convincing yourself that it holds for each of your examples. That might have involved reading 10-20
+% lines of text, and it probably took an hour, maybe multiple hours.
+
+% And that's without even getting to the proof. Let's assume we're relatively new to university-level
+% maths, and we possess enthusiasm but are not abnormally gifted. Reading and fully understanding a
+% proof is not trivial: obviously the difficulty of these things varies but at our level it's more on
+% the scale of going for an hour-long run, or cooking a somewhat complex meal for guests that you
+% want to turn out well: you need to have taken a deep breath and be more or less in the mood.
+
+% In particular, even if one is taken with the desire, you can rarely get far through this stuff in
+% bed or at the beach.
+
+
+
+\subsection*{The row view}
+
+
+\subsection*{The column view}
+
+\begin{enumerate}
+\item We think of this matrix as 3 columns.
+\item Focus on column 1.
+\item The column is a vector in $\R^8$.
+\item The column is a linear combination of films.
+\item This is despite the fact that the column header says ``Person 1'': the column represents a film, not a person.
+\item The column represents Person 1's ratings of 8 films, and as a vector these ratings represent
+  an imaginary film which is a linear combination of the 8 actual films.
+\item By writing down this matrix we implicitly specified the coordinate axes (the basis) for
+  $\R^8$. It is a ``standard basis'' with one vector for each actual film.
+\item Each coordinate axis (basis vector) in $\R^8$ corresponds to a real film, for example, the
+  second coordinate axis is a line in the direction of $(0, 1, 0, 0, 0, 0, 0, 0)$. This is the
+  vector representation of Film 2.
+\item The matrix is 3 vectors in $\R^8$. Each vector is a linear combination of the 8 real films
+\item
+\end{enumerate}
+
+\subsection*{Linear map}
+
+As an $8 \times 3$ matrix, this represents a linear map $\R^3 \to \R^8$.
+
+This map is (person-space) $\to$ (film space).
+
+The domain (person-space) is a 3-dimensional vector space. The 3 vectors in the basis for this
+space are the 3 people: $\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$. Points in the space represent linear
+combinations of people.
+
+The codomain (film-space) is an 8-dimensional vector space. The 8 vectors in the basis for this
+space are the 8 films. Points in the space represent linear combinations of films.
+
+Thus writing the data in a matrix implies that we are specifying a {\it linear model} that
+describes the {\it process} of rating a film: the model specifies a linear map that takes a person
+as input and outputs their ratings.
+
+(We could also view the model as being the transpose: taking a vector of ratings as input and
+outputting a person who would give those ratings.)
+
+Thus we assume
+\begin{enumerate}
+\item The model is the same for all people.
+\item $f(\alpha p_1 + \beta p_2) = \alpha f(p_1) + \beta f(p_2)$: the ratings for a
+  linear-combination person are given by forming the same linear combination of ratings of the
+ combination.
+\end{enumerate}
+
+\begin{comment}  % latex-focus
+\end{comment}  % latex-focus
