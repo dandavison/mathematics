@@ -1261,10 +1261,10 @@ Therefore
   \end{align*}
 \end{definition*}
 
-\end{comment}  % latex-focus
 
 \section{Singular Value Decomposition}
 \footnotetext{Notes from Kun (2018) A Programmer's Introduction to Mathematics}
+\end{comment}  % latex-focus
 
 There is a problem when learning to study university-level mathematics. Away from the world of
 technical literature, we are familiar with ``reading'': it involves reading one sentence after
@@ -1290,12 +1290,27 @@ comprehensively; the purpose is to become good at thinking about certain small b
 We'll start with an area that no-one is going to dispute is important: vector spaces and linear
 transformations.
 
+% This section makes use of the following concepts.
+% \begin{enumerate}
+% \item {\it Vector space}: A vector space is a set of vectors. Key basic examples are
+%   \begin{enumerate}
+%   \item An infinite straight line passing through an origin point. Every point on the line is a
+%     one-dimensional vector.
+%   \item 3-dimensional Euclidean space with an origin point. This is referred to as $\R^3$.
+%   \end{enumerate}
+% \item {\it basis}: A basis is a minimal set of vectors that span a vector space. In $\R^3$ it is
+%   essentially the same as the concept of ``coordinate axes''. Note however that someone could force
+%   you to use coordinate axes that are not orthogonal to each other. That would still work for
+%   specifying locations unambiguously, although it might be a bit inconvenient. The same things
+%   holds for the set of vectors making up a basis: they just have to span the space; they need not
+%   be orthogonal to each other.
+% \end{enumerate}
 
 3 people review 8 films. We write the data as a matrix:
 
 \begin{align*}
 \bordermatrix{
-                 &\text{Person 1} & \text{Person 2} &\text{Person 3} \cr
+                &\text{Person 1} & \text{Person 2} &\text{Person 3} \cr
   \text{Film 1} &3               &  2              &  5             \cr
   \text{Film 2} &3               &  4              &  3             \cr
   \text{Film 3} &2               &  3              &  1             \cr
@@ -1309,7 +1324,24 @@ transformations.
 
 
 \subsection*{The row view}
-
+\begin{enumerate}
+\item We think of this matrix as 8 rows.
+\item Focus on row 1: it contains the 3 peoples' ratings for one film.
+\item The row is a vector in $\R^3$: it is $(3, 2, 5)$ with respect to the basis. What is the
+  basis?
+\item Writing the data with one column per person implicitly specified the basis.
+\item The basis consists of 3 vectors, each corresponding to a single one of the 3 people.
+\item The basis is $\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$. For example, $(0, 1, 0)$ is the vector
+  representation of Person 2.
+\item Row 1 is a linear combination of the 3 people: it is
+  $(3 \times \text{Person 1}) + (2 \times \text{Person 2}) + (5 \times \text{Person 3})$
+\item Indeed, whenever we specify the coordinates of a vector in any vector space, we are specifying
+  a linear combination of the basis vectors.
+\item The row represents a person: an imaginary person that is a linear combination of the 3 real
+  people.
+\item This is despite the fact that the row is labeled ``Film 1'': it contains the 3 real peoples'
+  ratings of Film 1, and these ratings specify a new, imaginary, linear-combination person.
+\end{enumerate}
 
 \subsection*{The column view}
 
@@ -1359,4 +1391,5 @@ Thus we assume
 \end{enumerate}
 
 \begin{comment}  % latex-focus
+
 \end{comment}  % latex-focus
