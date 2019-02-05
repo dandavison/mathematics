@@ -1801,6 +1801,7 @@ SumConvergence[Sinh[k]/2^k, k]
   \end{claim*}
 
   \begin{proof}
+    \red{INCOMPLETE}
     For the AST we need to show that $\frac{\log k}{\sqrt{k}} \to 0$ monotonically.
 
     Note that
@@ -1855,6 +1856,9 @@ SumConvergence[(-1)^(k-1)(Log[k])/(Sqrt[k]), k]
 
 \begin{enumerate}[label=(\alph*)]
 \item
+  \begin{problem*}
+    For what values of $x$ does $\sum k^{2015}x^k$ converge?
+  \end{problem*}
   \begin{proof}~\\
     Let $f_k(x) = k^{2015}x^k$. Note that
     \begin{align*}
@@ -1879,7 +1883,11 @@ Abs (x) < 1
 
   \end{proof}
 
+\newpage
 \item
+  \begin{problem*}
+    For what values of $x$ does $\sum \frac{x^k}{2^kk^4}$ converge?
+  \end{problem*}
   \begin{proof}
     Let $f_k(x) = \frac{x^k}{2^kk^4}$. Note that
     \begin{align*}
@@ -1906,7 +1914,11 @@ SumConvergence[x^k / (2^k k^4), k]
 
  \end{proof}
 
+\newpage
 \item
+  \begin{problem*}
+    For what values of $x$ does $\sum 2^kx^{k!}$ converge?
+  \end{problem*}
   \begin{proof}
     Let $f_k(x) = 2^kx^{k!}$. Note that
     \begin{align*}
@@ -1929,7 +1941,11 @@ SumConvergence[2^k x^(k!), k]
 \red{Why can't Mathematica solve this?}
   \end{proof}
 
+\newpage
 \item
+  \begin{problem*}
+    For what values of $x$ does $\sum k^kx^k$ converge?
+  \end{problem*}
   \begin{proof}
     \begin{align*}
       \limk \frac{(k+1)^{k+1}}{k^k} \Big|\frac{x^{k+1}}{x^k}\Big|
@@ -1952,7 +1968,11 @@ SumConvergence[k^k x^k, k]
 
   \end{proof}
 
+\newpage
 \item
+  \begin{problem*}
+    For what values of $x$ does $\sum \frac{1}{(4k)!}x^{2k}$ converge?
+  \end{problem*}
   \begin{proof}
     Let $f_k(x) = \frac{1}{(4k)!}x^{2k}$. Note that
     \begin{align*}
@@ -1976,7 +1996,11 @@ SumConvergence[x^(2k) / (4k)!, k]
 
   \end{proof}
 
+\newpage
 \item
+  \begin{problem*}
+    For what values of $x$ does $\sum \sin(k)x^k$ converge?
+  \end{problem*}
   \begin{proof}
     Let $f_k(x) = \sin(k)x^k$. Note that for $|x| \geq 1$ we have $f_k(x) \centernot\to 0$
     therefore $\sum f_k(x)$ does not converge.
