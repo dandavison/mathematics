@@ -1266,29 +1266,71 @@ Therefore
 \footnotetext{Notes from Kun (2018) A Programmer's Introduction to Mathematics}
 \end{comment}  % latex-focus
 
+% https://news.ycombinator.com/item?id=19014932
+
+% After teaching Linear Algebra, here's my litmus test for a good book. At a glance, it should make the following clear first and foremost:
+
+% 1. A matrix of a linear map F is simply writing down the image of the standard basis F(e_1),
+% F(e_2), ... F(e_n). These vectors are the columns of the matrix. If you know them, you can compute
+% F(v) for any v by linearity. That's called "multiplying a vector by matrix"; we write Mv = F(v).
+
+% 2. The product of matrices is simply the matrix of composition of linear maps that they
+% represent. The student can figure out what that matrix should be (or should be able to do so);
+% here's how. If M is the matrix of F, and N is the matrix of G (where F and G are linear maps), then
+% the first column of MN is F(G(e_1)) = M x (first column of N). Same for other columns. Ta-dah.
+
+% 3. The determinant of v_1, .. v_n is simply the volume of the lopsided box formed by these vectors
+% (mathematicians call the box "parallelepiped"). In particular, in a plane, the area of the triangle
+% formed by vectors A and B is half the determinant. This are can have a minus sign; switching any
+% pair of vectors flips the sign.
+
+% 4. Eigenvectors and eigenvalues are fancy words that allow us to describe linear maps like this:
+% "Stretch this picture along these directions by this much". Directions are eigenvectors, by how
+% much - eigenvalues.
+
+% Bonus:
+
+% 5. Rotation and scaling are linear maps. That's all any linear map does: rotates and
+% stretches. Writing a map down in this way is called singular value decomposition.
+
+% 6. Shears are linear maps that don't change the volume. Any box can be made rectangular by applying
+% a bunch of shears to it. That's called Gaussian elimination or row reduction when you look at what
+% happens to matrices (and apply scaling as the last step). This is also an explanation of why the
+% determinant gives volume (if you define it as an alternating n-linear form).
+
+
+
 There is a problem when learning to study university-level mathematics. Away from the world of
-technical literature, we are familiar with ``reading'': it involves reading one sentence after
-another until you've finished the page, and then turning the page. However in mathematics, books
-and lecture notes are written as definition-theorem-proof, interspersed with fairly terse
-discussion, and the material progresses much too rapidly to be read that way.
+technical literature, we are familiar with ``reading'': it involves quickly looking at and
+comprehending one sentence after another until you've finished the page, and then turning the
+page. However in mathematics, books and lecture notes are written as a large collection of
+definition-theorem-proof sequences, interspersed with fairly terse discussion, and the material
+progresses much too rapidly to be read in the usual way.
 
 In fact, this stuff cannot be read purely in passive mode.  What you need to do is read the
 definition a few times, and then stop and write down a list of concrete examples of the thing being
-defined. Then read the theorem a few times, and convince yourself that it holds for each of your
-examples. And then find a time at which you have the mental energy and disposition to study and
-fully understand the proof.
+defined. Then read the theorem a few times, and try to convince yourself that it holds for each of
+your examples. And then find a time at which you have the mental energy and disposition to study
+and fully understand the proof.
 
 However. There {\it is} an important part of studying mathematics that doesn't require actually
-being at a table with writing material or computer at hand. That part involves thinking hard about
-important bits. Looking at it from different perspectives, gradually eliminating remaining areas of
-muddled thinking.
+being at a table for hours with writing materials or computer at hand. That part involves thinking
+hard about important bits. It can be done on public transport. It can be done in bed. It involves
+thinking the thing over until it becomes genuinely familiar; confronting and reconciling different
+perspectives, confronting and eliminating remaining areas of muddled thinking.
 
-Unlike the standard mathematical literature we're going to state things without proof, and
-partially repeat ourselves over and over again. The purpose is not to explore a theory
-comprehensively; the purpose is to become good at thinking about certain small but important areas.
+What is needed is a helping hand in the form of suitable reading material. Books of prayer and
+meditation have been around for a while.  The purpose here is not to develop an entire area of
+mathematical theory in a logical, organised fashion; the purpose is to become good at thinking
+about certain small but important areas. While we will define things carefully, unlike the standard
+mathematical literature we're going to state theorems informally without proof, and partially
+repeat ourselves again and again while retreading the same ground in a slightly different
+direction.
 
-We'll start with an area that no-one is going to dispute is important: vector spaces and linear
-transformations.
+We'll start with an area that we will keep small and that no-one is going to dispute is important:
+...
+
+% the basic ideas of vector space, basis, linear transformation, and matrix multiplication.
 
 % This section makes use of the following concepts.
 % \begin{enumerate}
@@ -1306,8 +1348,10 @@ transformations.
 %   be orthogonal to each other.
 % \end{enumerate}
 
-3 people review 8 films. We write the data as a matrix:
+\newpage
+\subsection*{The data, viewed as vectors}
 
+3 people rate 8 films. We write the data as a matrix:
 \begin{align*}
 \bordermatrix{
                 &\text{Person 1} & \text{Person 2} &\text{Person 3} \cr
@@ -1322,45 +1366,122 @@ transformations.
 }
 \end{align*}
 
+\begin{tabular}{|p{8cm}|p{8 cm}|}
+  {\bf The column view}
+  &{\bf The row view}\\
 
-\subsection*{The row view}
-\begin{enumerate}
-\item We think of this matrix as 8 rows.
-\item Focus on row 1: it contains the 3 peoples' ratings for one film.
-\item The row is a vector in $\R^3$: it is $(3, 2, 5)$ with respect to the basis. What is the
+  \hline
+  &\\
+  We think of this matrix as 3 columns.
+  &We think of this matrix as 8 rows.\\
+  &\\
+
+  Focus on column 1: it contains ratings for all the films, from Person 1.
+  &Focus on row 1: it contains ratings from all the people, for Film 1.\\
+  &\\
+
+  The column is a vector in $\R^8$: its coordinates are $(3,3,2,4,1,3,1,2)$ with respect to the basis. What is the
   basis?
-\item Writing the data with one column per person implicitly specified the basis.
-\item The basis consists of 3 vectors, each corresponding to a single one of the 3 people.
-\item The basis is $\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$. For example, $(0, 1, 0)$ is the vector
-  representation of Person 2.
-\item Row 1 is a linear combination of the 3 people: it is
-  $(3 \times \text{Person 1}) + (2 \times \text{Person 2}) + (5 \times \text{Person 3})$
-\item Indeed, whenever we specify the coordinates of a vector in any vector space, we are specifying
-  a linear combination of the basis vectors.
-\item The row represents a person: an imaginary person that is a linear combination of the 3 real
-  people.
-\item This is despite the fact that the row is labeled ``Film 1'': it contains the 3 real peoples'
-  ratings of Film 1, and these ratings specify a new, imaginary, linear-combination person.
-\end{enumerate}
+  &The row is a vector in $\R^3$: its coordinates are $(3, 2, 5)$ with respect to the basis. What is the
+    basis?\\
+  &\\
 
-\subsection*{The column view}
+  Writing the data with one row per film implicitly specified the basis for $\R^8$:
+  it consists of 8 orthogonal vectors, each corresponding to a single one of the 8 films.
+  &Writing the data with one column per person implicitly specified the basis for $\R^3$:
+    it consists of 3 orthogonal vectors, each corresponding to a single one of the 3 people.\\
+  &\\
 
-\begin{enumerate}
-\item We think of this matrix as 3 columns.
-\item Focus on column 1.
-\item The column is a vector in $\R^8$.
-\item The column is a linear combination of films.
-\item This is despite the fact that the column header says ``Person 1'': the column represents a film, not a person.
-\item The column represents Person 1's ratings of 8 films, and as a vector these ratings represent
-  an imaginary film which is a linear combination of the 8 actual films.
-\item By writing down this matrix we implicitly specified the coordinate axes (the basis) for
-  $\R^8$. It is a ``standard basis'' with one vector for each actual film.
-\item Each coordinate axis (basis vector) in $\R^8$ corresponds to a real film, for example, the
-  second coordinate axis is a line in the direction of $(0, 1, 0, 0, 0, 0, 0, 0)$. This is the
+  For example, one of the basis vectors is $(0, 1, 0, 0, 0, 0, 0, 0)$. This is the
   vector representation of Film 2.
-\item The matrix is 3 vectors in $\R^8$. Each vector is a linear combination of the 8 real films
-\item
-\end{enumerate}
+  &For example, one of the basis vectors is $(0, 1, 0)$. This is the vector
+    representation of Person 2.\\
+  &\\
+
+  The basis is\\ $\{(1, 0, 0, 0, 0, 0, 0, 0), (0, 1, 0, 0, 0, 0, 0, 0), \ldots\}$.
+  &The basis is $\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$.\\
+  &\\
+
+  Column 1 is a vector with coordinates $(3,3,2,4,1,3,1,2)$.
+  It represents a film: an imaginary film that is a linear combination of the 8 real
+  films represented by the 8 basis vectors.
+  &Row 1 is a vector with coordinates $(3, 2, 5)$.
+    It represents a person: an imaginary person that is a linear combination of the 3 real
+    people represented by the 3 basis vectors.\\
+  &\\
+
+  This is despite the fact that the column is labeled ``Person 1'': the column vector represents a film, not a person.
+  &This is despite the fact that the row is labeled ``Film 1'': the row vector represents a person, not a film.\\
+  &\\
+
+  Column 1 is a linear combination of the 8 films: it is
+  $(3 \times \text{Film 1}) + (3 \times \text{Film 2}) + \ldots$
+  &Row 1 is a linear combination of the 3 people: it is
+    $(3 \times \text{Person 1}) + (2 \times \text{Person 2}) + (5 \times \text{Person 3})$\\
+  &\\
+
+  The data are 3 vectors (aka points) in $\R^8$.
+  &The data are 8 vectors (aka points) in $\R^3$.
+\end{tabular}
+
+Whenever we specify the coordinates of a vector in any vector space, we are specifying a linear
+combination of the basis vectors.
+
+\newpage
+\subsection*{The data, viewed as a linear transformation}
+
+3 people rate 8 films. We write the data as a matrix:
+\begin{align*}
+\bordermatrix{
+                &\text{Person 1} & \text{Person 2} &\text{Person 3} \cr
+  \text{Film 1} &3               &  2              &  5             \cr
+  \text{Film 2} &3               &  4              &  3             \cr
+  \text{Film 3} &2               &  3              &  1             \cr
+  \text{Film 4} &4               &  5              &  4             \cr
+  \text{Film 5} &1               &  2              &  3             \cr
+  \text{Film 6} &3               &  1              &  5             \cr
+  \text{Film 7} &1               &  3              &  5             \cr
+  \text{Film 8} &2               &  5              &  1             \cr
+}
+\end{align*}
+\begin{tabular}{|p{8cm}|p{8 cm}|}
+  {\bf The column view}
+  &{\bf The row view}\\
+
+  \hline
+  &\\
+  The data matrix represents a function $f: \R^3 \to \R^8$.
+  &The data matrix represents a function $g: \R^8 \to \R^3$.\\
+  &\\
+
+  $f$ is a function from person-space (3-dimensional) to film-space (8-dimensional).
+  &$g$ is a function from film-space (8-dimensional) to person-space (3-dimensional).\\
+  &\\
+
+  Focus on Person 1, who is represented by $(1, 0, 0)$.
+  &Focus on Film 1, which is represented by $(1, 0, 0, 0, 0, 0, 0, 0)$.\\
+  &\\
+
+  $f$ maps Person 1 to an imaginary film in film-space.
+  &$g$ maps Film 1 to an imaginary person in person-space.\\
+  &\\
+
+  $f$ maps Person 1 to the vector of film ratings made by Person 1.
+  &$g$ maps Film 1 to the vector of ratings of Film 1 made by the 3 people.\\
+  &\\
+
+  $f$ is a linear model for the data-generation process. It says that to generate the film ratings for a new person $x$:
+  \begin{enumerate}
+  \item First determine $x$'s coordinates in person-space as a combination of the original 3 people.
+  \item Then
+  \end{enumerate}
+
+  To where does $f$ map row 1? \red{nowhere interesting?}
+  &To where does $g$ map column 1? \red{nowhere interesting?}
+\end{tabular}
+
+\newpage
+The matrix is 3 vectors in $\R^8$. Each vector is a linear combination of the 8 real films
 
 \subsection*{Linear map}
 
