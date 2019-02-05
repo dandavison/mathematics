@@ -1,4 +1,7 @@
-\section{Sequences and Series}
+\let\T\undefined
+\newcommand{\T}{\mathcal T}
+
+\section{Sequences and Series\\(Oxford Prelims Real Analysis I)}
 
 Notes from Oxford - M1 - Sequences and Series.
 
@@ -624,7 +627,8 @@ $f$ is continuous at the boundary point $x = 1$. I.e.
 
 \end{proof}
 
-\section{Continuity and Differentiability}
+
+\section{Continuity and Differentiability\\(Oxford Prelims Real Analysis II)}
 Notes from Oxford - M2 - Continuity and Differentiability.
 
 \subsection{Limit point}
@@ -761,7 +765,36 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 
 
 \newpage
-\section{Metric Spaces}
+\section{Integration\\(Oxford Prelims Real Analysis III)}
+\red{(not studied)}
+\section{Metric Spaces\\(Oxford Part A 2)}
+
+\subsection{Norms, distance metrics}
+\begin{enumerate}
+\item A norm on a vector space $V$ is a function $\|\cdot\|:V \to \R_{>0}$ which satisfies
+  positivity, compatibility with scalar multiplication and the triangle inequality.
+\item In a vector space, the distance between vectors $u$ and $v$ is given by the {\it norm} of the
+  vector $u-v$, so that $d(u, v) = ||u - v||$.
+\item In an inner product space, the norm is given by the inner product of a vector with itself, so
+  that $d(u, v) = \sqrt{\langle u-v, u-v \rangle}$.
+\item Distance metrics must satisfy positivity, symmetry and triangle inequality.
+\item In $\R^n$ we have distance metrics
+  \begin{align*}
+  d_1(u, v)     &= \sum |u_i - v_i|            &\\
+  d_2(u, v)     &= \sqrt{\sum_i |u_i - v_i|^2} &= \sqrt{(u-v)\cdot(u-v)}\\
+  d_\infty(u, v) &= \max_i |u_i - v_i|          &\\
+  \end{align*}
+  \red{Is it technically true that $\limn d_n(u, v) = d_\infty(u, v)$?}
+\item These correspond to the norms $\|\cdot\|_1, \|\cdot\|_2, \|\cdot\|_\infty$. For functions the
+  analogous norms on sets of bounded functions use integration instead of sums and sup instead of
+  max \red{(make a table)}
+\item Only $d_2$ involves an inner product (?)
+\item Cauchy-Schwartz inequality holds in any inner product space: $|\inner{u}{v}| \leq \|u\| ~ \|v\|$.
+\item Cauchy-Schwartz implies the triangle inequality: $\|u + v\| \leq \|u\| + \|v\|$.
+\item On any set $X$ the set of real-valued functions is a vector space. To make it into a normed
+  vector space we can restrict to the set $\mathcal{B}(X)$ of bounded $X \to \R$ functions. Then we
+  can use the norm $\|f\|_\infty = \sup_{x \in X} |f(x)|$.
+\end{enumerate}
 
 \subsection{Metric space}
 \begin{definition}
@@ -777,6 +810,9 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \end{definition}
 
 \begin{remark*}
+  Note that a ball in $X$ might ``push up against'' the boundary of $X$, in which case it will be
+  ``flattened'' on that side, and thus not ``spherical''.
+
   Also closed ball, $\leq$. E.g. singleton set.
 \end{remark*}
 
@@ -995,3 +1031,275 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \begin{proof}
   See Oxford A2 Sheet 1 exercises.
 \end{proof}
+
+\newcommand{\defn}[1]{\blue{\bf #1}}
+
+\begin{enumerate}
+\item The definitions of {\it convergence} of a sequence and {\it continuity} of a function require
+  only that we have a definition of {\it distance} between any two elements of the set. Thus, they
+  apply in any metric space.
+\item Examples of metric spaces are: $\R^n$ with the $d_1$, $d_2$, or $d_\infty$ metrics; or any
+  inner product space.
+\item {\bf Theorem}: As in the $\R \to \R$ case, a function between metric spaces is continuous at
+  $a$ iff for every sequence $(x_n)$ that converges to $a$, the sequence $(f(x_n))$ converges to
+  $f(a)$.
+\item {\bf Theorem}: In $\R^n$:\\
+  (sequence converges with respect to $d_1$) $\iff$\\
+  (sequence converges with respect to $d_2$) $\iff$\\
+  (sequence converges with respect to $d_\infty$)
+  % ~\\
+  % \red{What about convergence in $\mathcal{C}[a, b]$, the set of continuous real-valued functions
+  %   on $[a,b]$?\\ (Exercise)}
+\item Thus the different metrics identify {\it the same} sets of convergent sequences and
+  continuous functions.
+\item {\bf Definition}: In a metric space $(X, d)$ we define the \defn{open ball} at $a$ of radius
+  $r$ to be $\{x \in X ~|~ d(x, a) < r\}$.
+\item {\bf Theorem}: The following definition of continuity in terms of open balls is equivalent to
+  the $\epsilon-\delta$ and image-of-convergent-sequence definitions: $f$ is continuous at $a$ iff
+  for all $\epsilon > 0$ there exists a $\delta > 0$ such that the image of the ball of radius
+  $\delta$ in the domain is contained within the ball of radius $\epsilon$ in the codomain.
+\item {\bf Definition}: More generally, we define an \defn{open set} in a metric space to be a set
+  which is a {\it neighbourhood} of each of its points. This means that at every point, an open
+  ball can be placed over the point without extruding beyond the set.
+\item {\bf Definition}: The \defn{topology} on $X$ {\it associated with the metric space $(X, d)$},
+  is defined to be the collection of open sets in the metric space.
+\item Note that this definition of the topology of the set $X$ {\it depends on the metric $d$}, since
+  this is used to define the open sets.
+\item {\bf Theorem}: The open sets of a metric space are closed under finite intersections and arbitrary
+  unions.
+\item {\bf Theorem}: Another equivalent definition of continuity {\it on metric spaces}:
+  \begin{enumerate}[label=(\roman*)]
+  \item $f:X \to Y$ is continuous at $a$ iff for every neighbourhood of $f(a)$, the preimage is a
+    neighbourhood of $a$.
+  \item $f:X \to Y$ is continuous iff for every open set in $Y$ its preimage is open in $X$.
+  \end{enumerate}
+\item Note that with this definition, identifying the continuous functions requires knowing only
+  the open sets (i.e. the topology induced by the metric): any two metrics which induce the same
+  topology identify the same set of continuous functions.
+\item {\bf Theorem}: The following topologies on $R^n$ coincide: $\T_1$, $\T_2$, $\T_\infty$,
+  i.e. the topologies induced by the metrics $d_1$, $d_2$, $d_\infty$.
+\item {\bf Definition}: A \defn{topology} on a set $X$ is any collection of subsets of $X$ that are
+  closed under finite intersections and arbitrary unions. These are called the {\it open subsets}
+  of $X$. (It follows from the definition that they include $\emptyset$ and $X$.)
+\item {\bf Definition}: An \defn{open subset} is a neighborhood of all of its points.
+\item {\bf Definition}: A \defn{closed subset} is the complement of an open subset.
+\item Whether a set is closed or open depends on what metric space it is {\it in}. E.g. $[0, 1]$ is
+  closed as a subset of $\R$ but open as a subset of itself.
+\item {\bf Theorem}:
+  \begin{enumerate}[label=(\roman*)]
+  \item A collection of closed subsets of $X$ is closed under finite unions and arbitrary
+    intersection (therefore it contains $X$ and $\emptyset$).
+  \item $f:X \to Y$ is continuous iff the preimage of every closed subset in $Y$ is closed in $X$.
+  \item Closed balls with radius $r \geq 0$ are closed (and therefore singleton sets are closed).
+  \end{enumerate}
+\item {\bf Definition}: A point (whether in the subset or not) is a \defn{limit point} if a ball can
+  be placed over it and capture a different point of the subset, no matter how small the ball's
+  radius. A point in the subset that is not a limit point is an \defn{isolated point}.
+\item {\bf Theorem}: A point $x \in Z$ is a limit point\footnote{No sequence can converge to an
+    isolated point since there will be an $\epsilon$ for which no $N$ works.} iff there is a
+  sequence in $Z \setminus \{x\}$ converging to $x$.
+\item $Z'$ denotes the set of limit points of a subset $Z$.
+\item {\bf Theorem}: A subset $Z$ is closed iff $Z' \subseteq Z$.
+\item {\bf Definition}:
+  \begin{enumerate}[label=(\roman*)]
+  \item The \defn{interior} of $Z$ is the largest open set contained within $Z$, i.e.
+    $\interior Z = \bigcup_{W \subseteq Z,\\W \text{open}} W$.
+  \item The \defn{closure} of $Z$ is the smallest closed set containing $Z$, i.e.
+    $\bar Z = \bigcap_{W \supseteq Z,\\W \text{closed}} W$.
+  \item The \defn{boundary} of $Z$ is $\bar Z \setminus \interior Z$.
+  \end{enumerate}
+\item {\bf Theorem}: Unique $\bar Z$ and $\interior Z$ exist. \red{(proof?)}
+\item Note that $\bar Z$ is the union of the isolated points and the limit points of $Z$.
+\item {\bf Theorem}: $\bar Z = Z \cup Z'$
+\item {\bf Definition}: $Z$ is \defn{dense} in $X$ if every point in $X$ is a limit point of $Z$.
+\item {\bf Theorem}: under a continuous map:
+  \begin{enumerate}[label=(\roman*)]
+  \item The preimage of an open / closed set is open / closed respectively.
+  \item The image of a connected / compact set is connected / compact respectively.
+  \item That's it.
+  \end{enumerate}
+\end{enumerate}
+
+\begin{mdframed}
+\includegraphics[width=200pt]{img/metric-space-closure-limit-points.png}
+\end{mdframed}
+
+
+\newpage
+\subsection{Isometries and Homeomorphisms}
+\begin{enumerate}
+\item {\bf Definition}: An \defn{isometry} is a map between metric spaces that preserves pairwise distances. It is
+  necessarily continuous and injective.
+\item {\bf Definition}: A \defn{homeomorphism} is a continuous map between metric spaces that has a
+  continuous inverse.
+\item {\bf Definition}: Metric spaces $X$ and $Y$ are \defn{isometric} if there is a {\it
+    bijective} isometry between them, and they are \defn{homeomorphic} if there is a homeomorphism
+  between them.
+\item {\bf Example}:
+  \begin{mdframed}
+    \includegraphics[width=300pt]{img/oxford-a2-isometry-group.png}
+  \end{mdframed}
+\end{enumerate}
+
+\subsection{Completeness}
+\begin{enumerate}
+\item {\bf Definition}: A sequence is \defn{Cauchy} if for every $\epsilon > 0$ there is an $N$
+  beyond which all pairs of sequence values lie within $\epsilon$ of each other.
+\item {\bf Theorem}:
+  \begin{enumerate}[label=(\roman*)]
+  \item Cauchy $\implies$ bounded.
+  \item Convergent $\implies$ Cauchy.
+  \end{enumerate}
+\item {\bf Definition}: A metric space is \defn{complete} if convergent $\iff$ Cauchy (e.g. $\R^n$
+  and $\C$).
+\item {\bf Theorem}: For a {\it subset of a complete metric space}: closed $\iff$ complete.
+\item {\bf Theorem}: Consider a nested sequence of closed sets in a metric space. There is a unique
+  point that is in every nested subset no matter how far the sequence is taken.
+\item {\bf Theorem}: Completeness is not preserved by homeomorphism: homeomorphism does not take
+  Cauchy sequences to Cauchy sequences.
+\item {\bf Example}: Although $\R$ and $(0, 1)$ are homeomorphic, the former is complete while the
+  latter is not. (For a homeomorphism define $f: \R \to (0, 1) $ by
+  $x \mapsto \frac{e^x}{1 + e^x}$; the inverse is $p \mapsto \log(\frac{p}{1-p})$.)
+\item {\bf Example}:
+  \begin{mdframed}
+    \includegraphics[width=300pt]{img/oxford-a2-completion.png}
+  \end{mdframed}
+\item {\bf Theorem}: Let $X$ be a set. The set $\mathcal{B}(X)$ of bounded $X \to \R$ functions
+  with the $\|.\|_\infty$ norm is a complete normed vector space.
+\item {\bf Theorem}: Let $(X, d)$ be a metric space. The set $\mathcal{C}_b(X)$ of bounded
+  continuous functions on $X$ is a complete normed vector space.
+\item {\bf Theorem} (Weierstrass M-test) The series $\sumn f_n$ of functions in $\mathcal{C}_b(X)$
+  converges if there exists a sequence of real numbers $(M_n)$ such that $\|f_n\|_\infty \leq M_n$
+  and $\sumn M_n$ converges. (The proof involves showing that the sequence of partial sums is
+  Cauchy.)
+\item {\bf Definition}: A function from a metric space to itself is a \defn{contraction} if all
+  pairwise distances are reduced by at least a constant factor:
+  $d(f(x_1), f(x_2)) \leq Kd(x_1, x_2)$ for all $x_1, x_2 \in X$.
+\item {\bf Theorem} A contraction on a complete metric space has a unique fixed point. (The proof
+  involves constructing a sequence by $x_n = f(x_{n-1})$ for some initial value $x_0 = a$.)
+\end{enumerate}
+
+\newpage
+\subsection{Connectedness}
+\begin{enumerate}
+\item {\bf Definition}: A set is \defn{disconnected} if it can be written as the union of {\it two
+    nonempty open subsets with empty intersection}. Note that, since they are the complement of
+  each other, the two subsets are also closed.  A set is \defn{connected} if it is not
+  disconnected.
+\item {\bf Example}:
+  \begin{enumerate}[label=(\roman*)]
+  \item $[0, 1) \cup (1, 2]$ is disconnected (despite the square brackets, both subsets are open in
+    $[0, 2]$.)
+  \item $[0, 1] \cup (1, 2]$ is connected.
+  \end{enumerate}
+\item {\bf Definition}: a metric space is \defn{discrete} if every point is the sole member of a
+  singleton open set.
+\item {\bf Theorem}:
+  \begin{enumerate}[label=(\roman*)]
+  \item
+    ($X$ connected) $\iff$\\
+    ($f:X \to$ (discrete space) continuous $\implies$ $f$ constant) $\iff$\\
+    ($X$ and $\emptyset$ are the only open and closed subsets)
+  \item If a collection of connected subsets have non-empty intersection, then their union is
+    connected.
+  \item If $A$ is connected and $B \subseteq \bar A$, then $B$ is connected.
+  \item The image of a connected set under a continuous map is connected. (Therefore if two metric
+    spaces are homeomorphic then they are either both connected or both disconnected.)
+  \end{enumerate}
+\item {\bf Definition}: The \defn{connected component} containing $x_0$ is the union of all connected sets
+\item {\bf Theorem} (Intermediate Value Theorem): If $f: [a, b] \to \R$ is continuous, then its
+  image is the connected set $[f(a), f(b)]$, and therefore $f$ hits every value in that interval.
+\item {\bf Definition}: A \defn{path} is a continuous function $[0, 1] \to X$. A subset is
+  \defn{path connected} if there is a path between every pair of points.
+\item {\bf Theorem}:
+  \begin{enumerate}[label=(\roman*)]
+  \item (path connected) $\implies$ (connected)
+  \item (path connected) $\impliedby$ (connected) for an open subset of a normed vector space.
+  \end{enumerate}
+\item {\bf Example} of a subset that is {\it connected but not path connected}: let
+  $A = \{(t, \sin(1/t))~|~t \in (0, 1)\}$. The closure is $\bar A = A \cup \{0\} \times [-1,
+  1]$.\\
+  \includegraphics[width=100pt]{img/oxford-a2-connected-not-path-connected.png}\\
+  This is connected (since it's the image of a connected set under a continuous map), but
+  (claim) it is not path connected.
+
+\subsection{Compactness}
+\item {\bf Definition}: An \defn{open cover} of a set is a collection of open sets whose union
+  equals the set. A \defn{subcover} is a subset of a cover that still covers. Covers and subcovers
+  may be finite or non-finite.
+\item Suppose $\{U_1, U_2, \ldots\}$ is an open cover. A property $P$ of a function $f$ is \defn{local} if\\
+  ($P$ is true for all $f_{|U_i}$) $\iff$ ($P$ is true everywhere)\\~\\
+  {\bf Local properties}: continuity, differentiability\\
+  {\bf Global properties}: boundedness (e.g. $x \mapsto 1/x$: local restrictions are bounded while
+  the function is not.)
+\item {\bf Definition}: A set is \defn{compact} if every open cover has a finite subcover.
+\item Equivalently, $A \subseteq X$ is compact if, whenever $A$ is a subset of a union of open sets
+  in $X$, it is also a subset of some {\it finite} union of those open sets.
+\item {\bf Theorem}
+  \begin{enumerate}[label=(\roman*)]
+  \item $(0, 1)$ is not compact: an open cover is $\bigcup_{n \geq 2} (1/n, 1)$ but this has no
+    finite subcover.
+  \item Heine-Borel: $[a, b]$ is compact. (A proof is by contradiction: suppose there is an open
+    cover with no finite subcover. It involves constructing a sequence of nested closed
+    subintervals that would similarly have an open cover with no finite subcover. But since we are
+    working in a complete metric space, there is a unique point that remains in such an
+    indefinitely long sequence of nested closed subsets; this results in an interval that
+    necessarily would have a finite subcover - contradiction.)
+  \end{enumerate}
+\item {\bf Theorem}: Under a continuous map:
+  \begin{enumerate}[label=(\roman*)]
+  \item The preimage of an open / closed set is open / closed respectively.
+  \item The image of a connected / compact set is connected / compact respectively.
+  \item Therefore connectedness and compactness are preserved by homeomorphism.
+  \end{enumerate}
+\item {\bf Theorem}
+  \begin{enumerate}[label=(\roman*)]
+  \item (compact) $\implies$ (closed and bounded)
+  \item For a subset of a compact set (closed) $\iff$ (compact)
+  \item The image of a compact set under a continuous function is bounded, and the function attains
+    its bounds (equivalent to saying the image is closed and bounded?).
+  \end{enumerate}
+\item {\bf Theorem} A continuous bijection from a compact metric space to another metric space is
+  automatically a homeomorphism.
+  \begin{proof}
+    Let $f: X \to Y$ be a continuous bijection between compact metric spaces. We will show that
+    $f^\1$ is continuous by showing that the preimage under $f^\1$ of a closed set is closed.
+    Consider closed $Z \subseteq X$. Note that $f(Z)$ is the preimage of $Z$ under $f^\1$ . $Z$ is
+    compact since it is a closed subspace of a compact space. Therefore $f(Z)$ is compact since $f$
+    is continuous. Therefore $f(Z)$ is closed since it is a compact subspace of a compact space.
+  \end{proof}
+\item {\bf Theorem}: The product of two compact spaces is compact.
+\item {\bf Theorem} (Heine-Borel): $X \subset \R^n$ is compact iff it is closed and bounded.
+  \begin{proof}
+    We've already shown that (compact) $\implies$ (closed and bounded); we need to show (closed and
+    bounded) $\implies$ (compact). Let $X \subset \R^n$ be closed and bounded. We've already shown
+    that $[a, b]$ is compact. Note that there exists $r > 0$ such that $X \subseteq [-r, r]^n$. But
+    then since the product of compact spaces is compact, we have $X$ a closed and bounded subset of
+    a compact space and therefore compact.
+  \end{proof}
+\item {\bf Theorem} Every continuous function on a compact metric space is uniformly continuous.
+\item {\bf Definition}: A \defn{sequentially compact} space is a metric space in which every
+  sequence has a convergent subsequence.
+\item {\bf Theorem} (compact) $\iff$ (sequentially compact). Note
+  \begin{enumerate}[label=(\roman*)]
+  \item Bolzano-Weierstrass shows that a closed interval in $\R$ is sequentially compact.
+  \item This course proves the forward implication only.
+  \end{enumerate}
+\item (compact) $\implies$ (complete)
+\item {\bf Definition}: a metric space is \defn{totally bounded} if it can be formed as a union of
+  a finite number of open balls of radius $\epsilon$, for all $\epsilon > 0$.
+\item {\bf Theorem}: (compact) $\iff$ (sequentially compact) $\iff$ (closed and totally bounded)
+\item {\bf Theorem}: consider a compact subset of an open subset of a metric space. There exists an
+  $\epsilon > 0$ such that at every point of the compact subset an open ball can be placed that
+  remains within the enclosing open subset.
+\item~\\
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-a2-compactness-counterexample.png}
+  \end{mdframed}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/oxford-a2-compactness-counterexample-2.png}
+  \end{mdframed}
+\end{enumerate}
+
+\newpage
+\section{Topology\\(Oxford Part A 5)}

@@ -30,7 +30,14 @@
 
   We must show that
   \begin{enumerate}
-  \item $\Tleft$ is closed under finite intersections.
+  \item {\bf $\R \in \Tleft$}
+
+    This is obviously true: $\R \subseteq \R$ and for all $x \in \R$ there exists $\epsilon > 0$
+    such that $(x - \epsilon, x] \subseteq \R$
+
+
+
+  \item {\bf $\Tleft$ is closed under finite intersections.}
 
     Let $U_1, U_2 \in \Tleft$ and let $\epsilon_i:U_i \to \R^{>0}$ be such that
     $(x - \epsilon_i(x), x] \subseteq U_i$ for all $x$ in $U_i$, $i = 1, 2$.
@@ -46,7 +53,7 @@
     that this intersection can be constructed by iterating the above argument, leading to the
     conclusion that $\bigcap_{i \in I} U_i \in \Tleft$ as required.
 
-  \item $\Tleft$ is closed under arbitrary unions.
+  \item {\bf $\Tleft$ is closed under arbitrary unions.}
 
     We must show that $\bigcup_{i \in I} U_i \in \Tleft$ for any choice of index set $I$, whether
     finite, or countably infinite, or uncountably infinite.

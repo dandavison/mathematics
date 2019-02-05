@@ -455,21 +455,19 @@ Where does it fail?
 \includegraphics[width=400pt]{img/oxford-a2-1-8-2.png}
 \end{mdframed}
 
-\begin{proof}~\\
-  \begin{comment}
-  Let $S \subset \R$.
+% \begin{proof}~\\
+%   Let $S \subset \R$.
 
-  Let $u \in (S')'$.
+%   Let $u \in (S')'$.
 
-  Then $\Big(B(u, \epsilon) \setminus \{u\}\Big) \cap S' \neq \emptyset$ for all $\epsilon > 0$.
+%   Then $\Big(B(u, \epsilon) \setminus \{u\}\Big) \cap S' \neq \emptyset$ for all $\epsilon > 0$.
 
-  Therefore there exists $t \in (S')'$ such that $t \in S'$.
+%   Therefore there exists $t \in (S')'$ such that $t \in S'$.
 
-  If $t \in S$
+%   If $t \in S$
 
-  Want: $\Big(B(u, \epsilon) \setminus \{u\}\Big) \cap S \neq \emptyset$ for all $\epsilon > 0$.
-\end{comment}
-\end{proof}
+%   Want: $\Big(B(u, \epsilon) \setminus \{u\}\Big) \cap S \neq \emptyset$ for all $\epsilon > 0$.
+% \end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-1-8-3.png}
@@ -506,5 +504,116 @@ Where does it fail?
   \textbf{Symmetry}:
 
 \end{proof}
+
+
+\section{Sheet 2}
+
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-1.png}
+\end{mdframed}
+
+Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
+
+\red{Incomplete}
+
+\begin{claim*}
+  $\bar{A \cup B} = \bar A \cup \bar B$.
+\end{claim*}
+\begin{proof}
+  Let $x \in \bar{A \cup B}$. First suppose $x \in (A \cup B)'$ ... show that
+  $x \in \bar A \cup \bar B$.
+
+  Alternatively suppose that $x$ is an isolated point of $A \cup B$. WLOG suppose $x \in A$. Then
+  $x \in \bar A$.
+\end{proof}
+
+\begin{claim*}
+  $\bar{A \cap B} \neq \bar A \cap \bar B$.
+\end{claim*}
+\begin{proof}
+  ?
+\end{proof}
+
+\newpage
+\subsection{}
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-2.png}
+\end{mdframed}
+
+% \begin{remark*}
+%   Intuitively, does it seem like this should be true?
+% \end{remark*}
+
+% \begin{proof}
+%   Let $f:\R \to \R$, and let $A \subseteq \R$.
+
+%   $\implies$\\
+
+%   $\impliedby$\\
+% \end{proof}
+
+\begin{proof}
+  Let $f:M \to N$ be a map between metric spaces.
+
+  Let $B \subseteq M$. Recall that $B'$ denotes the set of limit points of $B$ and that
+  $\bar B = B \cup B'$.
+
+  Note that $f(\bar B) \subseteq \bar{f(B)} \iff f(B' \setminus B) \subseteq \bar{f(B)}$.
+
+  (This is true because $\bar B = B \cup (B' \setminus B)$ and, since $f(B) \subseteq \bar{f(B)}$
+  is true by definition, we only have to consider whether
+  $f(B' \setminus B) \subseteq \bar{f(B)}$.)
+
+  $\implies$\\
+  Suppose $f$ is continuous and let $A \subseteq M$.
+
+  By the above argument, for the forward implication it suffices to show that $f(m) \in \bar{f(A)}$
+  where $m \in A' \setminus A$.
+
+  Let $(x_n)$ be a sequence in $A$ that converges to $m$.
+
+  Note that, since $f$ is continuous, $(f(x_n))$ converges to $f(m)$.
+
+  Therefore $f(m)$ is a limit point of $f(A)$, as required.
+
+  $\impliedby$\\
+
+  \red{(Incomplete)}
+
+  Suppose that for every $A \subseteq M$ we have $f(\bar A) \subseteq \bar{f(A)}$.
+
+  Note that this implies that $f(A' \setminus A) \subseteq \bar{f(A)}$.
+
+  We need to show that $f$ is continuous. We will show this using the convergent sequences
+  definition of continuity.
+
+  Let $m \in M$ and let $(x_n)$ be a sequence in $M$ that converges to $m$.
+
+  We need to show that the sequence $(f(x_n))$ converges to $f(m)$.
+
+  % We will show this by showing that, for every $m \in M$ and for every sequence in $M$ that
+  % converges to $m$,
+
+  % We need to show that the closure of $A$ is mapped into the closure of the image of $A$, i.e. that
+  % $f(\bar A) \subseteq \bar{f(A)}$.
+
+  % Let $a \in A$.
+
+  % We know:
+  % \begin{enumerate}
+  % \item For any ball in $N$ there exists a ball in $M$ which is mapped into it.
+  % \item The preimage of every open set is open.
+  % \item For every sequence $(x_n)$ in $M$ that converges to $a$ we have $f(x_n) \to f(a)$.
+  % \end{enumerate}
+
+\end{proof}
+
+
+
 
 \end{document}
