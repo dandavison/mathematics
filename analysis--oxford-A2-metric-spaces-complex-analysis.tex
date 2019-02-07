@@ -803,16 +803,22 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     Since $(f_n)$ is Cauchy in $\C(X, Y)$ there exists an $N$ such that for all $m,n > N$ we have
     $\delta(f_m, f_n) = \sup_{w\in X} d_Y(f_m(w), f_n(w)) < \epsilon$. Therefore for that same $N$
     we have $d_Y(f_m(x), f_n(x)) < \epsilon$ for all $m,n > N$. Therefore $(f_n(x))$ is Cauchy and,
-    since $Y$ is complete, we have that $(f_n(x))$ converges in $Y$ for all $x \in X$.
+    since $Y$ is complete, we have that $(f_n(x))$ converges, say to $L(x) \in Y$, for all
+    $x \in X$.
 
-    For part (c), we need to show that for any $\epsilon > 0$ there exists an $N$ such that for all
-    $m,n > N$ we have $\delta(f_m, f_n) < \epsilon$.
+    For part (c), we need to show that there exists a limiting function $f \in \C(X, Y)$ such that
+    for all $\epsilon > 0$ there exists an $N$ such that for all $n > N$ we have
+    $\delta(f_n, f) < \epsilon$.
 
-    So fix $\epsilon > 0$ and define $M(x, \gamma) \in \N$ to be the smallest natural number such
-    that $d_Y(f_m(x), f_n(x)) < \gamma$ for all $m, n > M(x, \gamma)$, where $x \in X, \gamma > 0$.
+    We claim that $f(x) = L(x)$ is such a function.
 
-    Set $N = \sup_{x \in X} M(x, \epsilon)$. Note that for all $m, n > N$ we have that
-    $\delta(f_m, f_n) = \sup_{x\in X} d_Y(f_m(x), f_n(x)) < \epsilon$.
+    To prove that $(f_n) \to f$, fix $\epsilon > 0$ and for all $x \in X$ define $M(x) \in \N$ to
+    be the smallest natural number such that $d_Y(f_n(x), f(x)) < \epsilon$ for all $n > M(x)$.
+
+    Set $N = \sup_{x \in X} M(x)$. Note that for all $n > N$ we have that
+    $$\delta(f_n, f) = \sup_{x\in X} d_Y(f_n(x), f(x)) < \epsilon.$$
+
+    \red{It's a limit, but is it continuous?}
 
     Therefore if $(f_n)$ is Cauchy then it converges in $\C(X, Y)$, proving that $\C(X, Y)$ is
     complete.
