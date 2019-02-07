@@ -6,6 +6,7 @@
 
 
 \begin{document}
+\begin{comment}  % latex-focus
 
 \title{Oxford A2 - Metric Spaces and Complex Analysis
   \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5378}}} \author{Dan Davison}
@@ -521,19 +522,38 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \begin{claim*}
   $\bar{A \cup B} = \bar A \cup \bar B$.
 \end{claim*}
-\begin{proof}
-  Let $x \in \bar{A \cup B}$. First suppose $x \in (A \cup B)'$ ... show that
-  $x \in \bar A \cup \bar B$.
+\begin{proof}~\\
+  {\bf Forward inclusion}\\
+  Let $x \in \bar{A \cup B}$. Then either $x \in A \cup B$ or $x$ is a limit point, but not a
+  member, of $A \cup B$.
 
-  Alternatively suppose that $x$ is an isolated point of $A \cup B$. WLOG suppose $x \in A$. Then
-  $x \in \bar A$.
+  If $x \in A \cup B$ then either $x \in A$ (in which case $x \in \bar A$) or $x \in B$ (in which
+  case $x \in \bar B$): in both cases we have $x \in \bar A \cup \bar B$.
+
+  Alternatively, suppose $x \in (A \cup B)'$ and $x \notin A \cup B$. Then for all $\epsilon > 0$
+  we have that either $B(x, \epsilon) \cap A \neq \emptyset$ or
+  $B(x, \epsilon) \cap B \neq \emptyset$. Therefore $x$ is a limit point of either $A$ or $B$. (To
+  see this, WLOG suppose there exists $\phi > 0$ such that for all $0 < \epsilon < \phi$ we have
+  $B(x, \epsilon) \cap A = \emptyset$. Then for all $0 < \epsilon < \phi$ we have
+  $B(x, \epsilon) \cap B \neq \emptyset$ and $x$ is a limit point of $B$. Alternatively, $x$ is a
+  limit point of both $A$ and $B$.) Therefore either $x \in \bar A$ or $x \in \bar B$ as required.
+
+  {\bf Reverse inclusion}\\
+  Let $x \in \bar A \cup \bar B$. WLOG let $x \in \bar A$. Then either $x \in A$ or $x$ is a limit
+  point, but not a member, of $A$.
+
+  If $x \in A$ then $x \in \bar A \subseteq \bar{A \cup B}$, and so $x \in \bar{A \cup B}$ as
+  required.
+
+  Alternatively, suppose $x$ is a limit point, but not a member, of $A$. Then $x$ is a limit point
+  of $A \cup B$ and so $x \in \bar{A \cup B}$ as required.
 \end{proof}
 
 \begin{claim*}
   $\bar{A \cap B} \neq \bar A \cap \bar B$.
 \end{claim*}
 \begin{proof}
-  ?
+  \red{TODO}
 \end{proof}
 
 \newpage
@@ -545,41 +565,87 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \includegraphics[width=400pt]{img/oxford-a2-2-2.png}
 \end{mdframed}
 
-% \begin{remark*}
-%   Intuitively, does it seem like this should be true?
-% \end{remark*}
+\begin{mdframed}
+\begin{intuition*}
+  This claim is saying that $f$ is continuous iff for all subsets $A \subseteq M$, the external
+  limit points of $A$ remain close to points of $A$ when forming the image under $f$.
 
-% \begin{proof}
-%   Let $f:\R \to \R$, and let $A \subseteq \R$.
+  So the forward implication is unsurprising: continuity keeps them close.
 
-%   $\implies$\\
+  Regarding the reverse implication, if they remain close for all subsets $A$ then this ``remaining
+  close'' is occurring across the whole of $M$, so it is plausible that this means $f$ is
+  continuous.
+\end{intuition*}
+\end{mdframed}
 
-%   $\impliedby$\\
-% \end{proof}
+\begin{claim*}
+  Let $f:M \to N$ be a map between metric spaces. Then $f$ is continuous if and only if for every
+  $A \subseteq M$ we have $f(\bar A) \subseteq \bar{f(A)}$.
+\end{claim*}
 
 \begin{proof}
   Let $f:M \to N$ be a map between metric spaces.
 
-  Let $B \subseteq M$. Recall that $B'$ denotes the set of limit points of $B$ and that
-  $\bar B = B \cup B'$.
+  $\implies$\\
+  Suppose $f$ is continuous and let $A \subseteq M$. Note that $f^\1(\bar{f(A)})$ is closed (by
+  continuity of $f$) and contains $A$. Therefore\footnote{Let $X, Y$ be subsets of a metric
+    space. If $Y$ is closed and $X \subseteq Y$ then $\bar X \subseteq Y$.}
+  $\bar A \in f^\1(\bar{f(A)})$. Therefore $f(\bar A) \in \bar{f(A)}$.
 
-  Note that $f(\bar B) \subseteq \bar{f(B)} \iff f(B' \setminus B) \subseteq \bar{f(B)}$.
+  $\impliedby$\\
+  Suppose that for every $A \subseteq M$ we have $f(\bar A) \subseteq \bar{f(A)}$.
 
-  (This is true because $\bar B = B \cup (B' \setminus B)$ and, since $f(B) \subseteq \bar{f(B)}$
-  is true by definition, we only have to consider whether
-  $f(B' \setminus B) \subseteq \bar{f(B)}$.)
+  We will show that for every closed $B \subseteq N$ we have that $f^\1(B)$ is closed.
+
+  So let $B \subseteq N$ be closed and let $A = f^\1(B)$.
+
+  Then $f(A) \subseteq B$ and since $B$ is closed, $\bar{f(A)} \subseteq B$ and therefore
+  $f(\bar A) \subseteq \bar{f(A)} \subseteq B$.
+
+  So we have $f(\bar A) \subseteq B$ or equivalently $\bar A \subseteq f^\1(B) = A$.
+
+  Therefore $\bar A = A$ and so $A$ is closed.
+\end{proof}
+
+\blue{Alternative proof of forward implication using convergent sequences (can reverse implication
+  be done in a related way?)}
+
+{\bf Notation.} $A'$ denotes the set of limit points of $A$.
+
+\begin{lemma}\label{external-limit-points-suffice}
+  Let $f:M \to N$ be a map between metric spaces and let $A \subseteq M$. Then
+  \begin{align*}
+    f(\bar A) \subseteq \bar{f(A)} \iff f(A' \setminus A) \subseteq \bar{f(A)}.
+  \end{align*}
+\end{lemma}
+\begin{proof}~\\
+  Note that $\bar A = A \cup (A' \setminus A)$, therefore
+  $f(\bar A) = f(A \cup (A' \setminus A)) = f(A) \cup f(A' \setminus A)$.
+
+  Therefore
+  $f(\bar A) \subseteq \bar{f(A)} \iff f(A) \subseteq \bar{f(A)} ~\land~ f(A' \setminus A)
+  \subseteq \bar{f(A)}$.
+
+  But $f(A) \subseteq \bar{f(A)}$ is true by definition of closure.
+\end{proof}
+
+\begin{claim*}
+  Let $f:M \to N$ be a map between metric spaces. Then $f$ is continuous if and only if for every
+  $A \subseteq M$ we have $f(\bar A) \subseteq \bar{f(A)}$.
+\end{claim*}
+
+\begin{proof}
+  Let $f:M \to N$ be a map between metric spaces.
 
   $\implies$\\
-  Suppose $f$ is continuous and let $A \subseteq M$.
+  Suppose $f$ is continuous.
 
-  By the above argument, for the forward implication it suffices to show that $f(m) \in \bar{f(A)}$
-  where $m \in A' \setminus A$.
+  Let $A \subseteq M$. Note that by (\ref{external-limit-points-suffice}) it suffices to show that
+  $f(m) \in \bar{f(A)}$ for all $m \in A' \setminus A$.
 
-  Let $(x_n)$ be a sequence in $A$ that converges to $m$.
-
-  Note that, since $f$ is continuous, $(f(x_n))$ converges to $f(m)$.
-
-  Therefore $f(m)$ is a limit point of $f(A)$, as required.
+  So let $m \in A' \setminus A$ and let $(x_n)$ be a sequence in $A$ that converges to $m$. Since
+  $f$ is continuous, $(f(x_n))$ is a sequence in $f(A)$ that converges to $f(m)$. Therefore $f(m)$
+  is a limit point of $f(A)$, and so $f(m) \in \bar{f(A)}$ as required.
 
   $\impliedby$\\
 
@@ -587,14 +653,18 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
   Suppose that for every $A \subseteq M$ we have $f(\bar A) \subseteq \bar{f(A)}$.
 
-  Note that this implies that $f(A' \setminus A) \subseteq \bar{f(A)}$.
+  % By (\ref{external-limit-points-suffice}) this is equivalent to the hypothesis that for every
+  % $A \subseteq M$ we have $f(A' \setminus A) \subseteq \bar{f(A)}$.
 
-  We need to show that $f$ is continuous. We will show this using the convergent sequences
-  definition of continuity.
+  We need to show that $f$ is continuous.
+
+  % We will show this using the convergent sequences definition of continuity.
 
   Let $m \in M$ and let $(x_n)$ be a sequence in $M$ that converges to $m$.
 
   We need to show that the sequence $(f(x_n))$ converges to $f(m)$.
+
+  By hypothesis, we know that $f(m) \in \bar{f(A)}$.
 
   % We will show this by showing that, for every $m \in M$ and for every sequence in $M$ that
   % converges to $m$,
@@ -615,5 +685,101 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 
 
+
+\subsection{}
+\let\T\undefined
+\newcommand{\T}{\mathcal T}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-3.png}
+\end{mdframed}
+
+\begin{proof}
+  Let $X = \{0, 1\}$ and $\T = \{\emptyset, \{0\}, \{0, 1\}\}$.
+  \begin{enumerate}
+  \item $\emptyset \in \T$ and $X \in \T$ \checkmark
+  \item {\bf Finite intersections}: \checkmark
+    \begin{align*}
+      \emptyset \cap \{0\}    &= \emptyset \in \T \\
+      \emptyset \cap \{0, 1\} &= \emptyset \in \T \\
+      \{0\}     \cap \{0, 1\} &= \{0\} \in \T
+    \end{align*}
+    Yes, it is closed under pairwise intersections so it must be closed under higher-order
+    intersections. \red{hang on...why not just demand closure
+      under pairwise intersections then?}
+  \item {\bf Arbitrary unions}: \checkmark
+    \begin{align*}
+      \emptyset \cup \{0\}    &= \{0\}    \in \T \\
+      \emptyset \cup \{0, 1\} &= \{0, 1\} \in \T \\
+      \{0\}     \cup \{0, 1\} &= \{0, 1\} \in \T
+    \end{align*}
+    Yes, it is closed under pairwise unions so it must be closed under higher-order
+    unions.
+  \end{enumerate}
+\end{proof}
+
+\begin{proof}
+  Suppose for a contradiction that $d$ is a metric on $X$ whose open sets are equal to $\T$.
+
+  Then $\{0\} \in X$ is an open set under $d$.
+
+  Therefore there exists $\epsilon > 0$ such that $B_d(0, \epsilon) = \{0\}$. Therefore
+  $d(0, 1) = d(1, 0) > 0$.
+
+  But then $\{1\}$ is an open set, since using the same $\epsilon$ we have
+  $B_d(1, \epsilon) = \{1\}$. This contradicts the definition of $\T$.
+\end{proof}
+
+\red{So a singleton set containing an isolated point embedded in a metric space is open?}
+
+
+\subsection{}
+\end{comment}  % latex-focus
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-4.png}
+\end{mdframed}
+
+\let\C\undefined
+\newcommand{\C}{\mathcal{C}}
+
+\begin{enumerate}[label=(\roman*)]
+\item
+  \begin{proof}~\\
+    \begin{enumerate}
+    \item {\bf Symmetry} \checkmark\\
+      $d_Y$ is symmetric since it is a metric and therefore
+      \begin{align*}
+        \delta(f, g)
+        = \sup_{x \in X} d_Y(f(x), g(x))
+        = \sup_{x \in X} d_Y(g(x), f(x))
+        = \delta(g, f).
+      \end{align*}
+    \item {\bf Positivity} \checkmark\\
+      The codomain of $d_Y$ is $R_{\geq 0}$ since it is a metric and therefore
+      $\sup_{a \in A} d_Y(a) \geq 0$ for all $A \subseteq Y^2$.
+    \item {\bf Triangle inequality}\\
+      Let $f, g, h \in \C(X, Y)$.
+
+      We want
+      \begin{align*}
+        \delta(f, g) + \delta(g, h) &\leq \delta(f, h)\\
+        \sup_{x \in X} d_Y(f(x), g(x)) +
+        \sup_{x \in X} d_Y(g(x), h(x)) &\leq
+        \sup_{x \in X} d_Y(f(x), h(x))
+      \end{align*}
+
+      We have
+      \begin{align*}
+        \delta(f, g) + \delta(g, h)
+        &= \sup_{x \in X} d_Y(f(x), g(x)) +
+           \sup_{x \in X} d_Y(g(x), h(x))
+      \end{align*}
+    \end{enumerate}
+  \end{proof}
+\end{enumerate}\begin{comment}  % latex-focus
+\end{comment}  % latex-focus
 
 \end{document}
