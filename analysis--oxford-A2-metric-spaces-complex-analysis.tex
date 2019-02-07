@@ -734,9 +734,9 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 
 \subsection{}
+
+
 \end{comment}  % latex-focus
-
-
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-4.png}
@@ -747,6 +747,9 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 \begin{enumerate}[label=(\roman*)]
 \item
+  \begin{claim*}
+    $\delta$ is a metric.
+  \end{claim*}
   \begin{proof}~\\
     \begin{enumerate}
     \item {\bf Symmetry} \checkmark\\
@@ -779,7 +782,45 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       \end{align*}
     \end{enumerate}
   \end{proof}
-\end{enumerate}\begin{comment}  % latex-focus
+\item
+  \begin{claim*}
+    If $Y$ is complete then $(\C(X, Y), \delta)$ is complete.
+  \end{claim*}
+  \begin{proof}~\\
+    Let $(f_n)$ be a Cauchy sequence in $\C(X, Y)$ under the metric $\delta$.
+
+    We want to show that $(f_n)$ converges in $\C(X, Y)$, and therefore that $(\C(X, Y), \delta)$
+    is complete. We will do so by showing that:
+    \begin{enumerate}
+    \item for all $x \in X$ the sequence $(f_n(x))$ in $Y$ is Cauchy;
+    \item therefore such sequences converge in $Y$, since $Y$ is complete;
+    \item therefore $(f_n)$ converges in $\C(X, Y)$.
+    \end{enumerate}
+
+    For part (a), fix $\epsilon > 0$ and $x \in X$. We require an $N$ such that for all $m,n > N$
+    we have $d_Y(f_m(x), f_n(x)) < \epsilon$.
+
+    Since $(f_n)$ is Cauchy in $\C(X, Y)$ there exists an $N$ such that for all $m,n > N$ we have
+    $\delta(f_m, f_n) = \sup_{w\in X} d_Y(f_m(w), f_n(w)) < \epsilon$. Therefore for that same $N$
+    we have $d_Y(f_m(x), f_n(x)) < \epsilon$ for all $m,n > N$. Therefore $(f_n(x))$ is Cauchy and,
+    since $Y$ is complete, we have that $(f_n(x))$ converges in $Y$ for all $x \in X$.
+
+    For part (c), we need to show that for any $\epsilon > 0$ there exists an $N$ such that for all
+    $m,n > N$ we have $\delta(f_m, f_n) < \epsilon$.
+
+    So fix $\epsilon > 0$ and define $M(x, \gamma) \in \N$ to be the smallest natural number such
+    that $d_Y(f_m(x), f_n(x)) < \gamma$ for all $m, n > M(x, \gamma)$, where $x \in X, \gamma > 0$.
+
+    Set $N = \sup_{x \in X} M(x, \epsilon)$. Note that for all $m, n > N$ we have that
+    $\delta(f_m, f_n) = \sup_{x\in X} d_Y(f_m(x), f_n(x)) < \epsilon$.
+
+    Therefore if $(f_n)$ is Cauchy then it converges in $\C(X, Y)$, proving that $\C(X, Y)$ is
+    complete.
+  \end{proof}
+\end{enumerate}
+
+\begin{comment}  % latex-focus
+
 \end{comment}  % latex-focus
 
 \end{document}
