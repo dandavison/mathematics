@@ -1147,11 +1147,13 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   beyond which all pairs of sequence values lie within $\epsilon$ of each other.
 \item {\bf Theorem}:
   \begin{enumerate}[label=(\roman*)]
-  \item Cauchy $\implies$ bounded.
   \item Convergent $\implies$ Cauchy.
+  \item Cauchy $\implies$ bounded.
   \end{enumerate}
-\item {\bf Definition}: A metric space is \defn{complete} if convergent $\iff$ Cauchy (e.g. $\R^n$
-  and $\C$).
+\item {\bf Definition}: A metric space is \defn{complete} if (Cauchy) $\implies$ (convergent)
+\item {\bf Example}: $\R^n$ and $\C$ are complete.
+\item {\bf Example}: $(0, 1]$ is not complete because $(1/n)$ is Cauchy yet converges to a point
+  outside the metric space.
 \item {\bf Theorem}: For a {\it subset of a complete metric space}: closed $\iff$ complete.
 \item {\bf Theorem}: Consider a nested sequence of closed sets in a metric space. There is a unique
   point that is in every nested subset no matter how far the sequence is taken.
@@ -1177,6 +1179,42 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   $d(f(x_1), f(x_2)) \leq Kd(x_1, x_2)$ for all $x_1, x_2 \in X$.
 \item {\bf Theorem} A contraction on a complete metric space has a unique fixed point. (The proof
   involves constructing a sequence by $x_n = f(x_{n-1})$ for some initial value $x_0 = a$.)
+\item {\bf Definition}: Let $X$ be a set and $Y$ be a metric space. A function $X \to Y$ is
+  \defn{bounded} if there exists $K \in \R$ such that $d(f(x_1), f(x_2)) < K$ for all
+  $x_1, x_2 \in X$.
+\item {\bf Definition}: Let $X$ be a set. A function $X \to \R$ is \defn{bounded} if there exists
+  $K \in \R$ such that $|f(x)| < K$ for all $x \in X$. \red{are these definitions consistent?} The
+  set of all bounded $X \to \R$ functions is denoted $\B(X)$.
+  \begin{theorem*}
+    Let $X$ be a set. The normed vector space $(\B(X), \|.\|_\infty)$ is complete.
+  \end{theorem*}
+  \begin{remark*}
+    The key in this proof is that the $d_\infty$ metric implies
+    $|f_m(x) - f_n(x)| \leq \|f_m - f_n\|$ for all $x \in X$. This allows a single $\epsilon$
+    obtained in $\B(X)$ under $d_\infty$ to apply for all values of $x \in X$ under the $|.|$
+    metric in $\R$, in a manner reminiscent of uniform convergence.
+  \end{remark*}
+  \begin{proof}~\\
+    Let $(f_n)$ be a Cauchy sequence in $\B(X)$. We want to show that $(f_n)$ converges in $\B(X)$.
+
+    For all $x \in X$ we have
+    $|f_m(x) - f_n(x)| \leq \|f_m - f_n\|_\infty \to 0 ~\text{as}~ m, n \to \infty$.
+
+    Therefore $(f_n(x))$ is Cauchy in $\R$, and therefore converges in $\R$.
+
+    Define $f(x) = \limn f_n(x)$ for all $x \in X$. We claim that $f_n \to f$ and that
+    $f \in \B(X)$.
+
+    Fix $\epsilon > 0$. Let $N$ be such that
+    $|f_m(x) - f_n(x)| \leq \|f_m - f_n\|_\infty < \epsilon$ for all $x \in X$ and for all
+    $m, n > N$.
+
+    Letting $m \to \infty$ we have $|f(x) - f_n(x)| \leq \|f - f_n\|_\infty < \epsilon$ for all
+    $x \in X$ and for all $n > N$. Therefore $f_n \to f$ as claimed, and also $f - f_n \in
+    \B(X)$. But $\B(X)$ is a vector space, so $f = f_n + (f - f_n) \in \B(X)$.
+  \end{proof}
+
+
 \end{enumerate}
 
 \newpage
