@@ -606,6 +606,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   Therefore $\bar A = A$ and so $A$ is closed.
 \end{proof}
 
+\newpage
 \blue{Alternative proof of forward implication using convergent sequences (can reverse implication
   be done in a related way?)}
 
@@ -684,7 +685,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 
 
-
+\newpage
 \subsection{}
 \let\T\undefined
 \newcommand{\T}{\mathcal T}
@@ -732,9 +733,8 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \red{So a singleton set containing an isolated point embedded in a metric space is open?}
 
 
+\newpage
 \subsection{}
-
-
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-4.png}
@@ -780,8 +780,8 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       \end{align*}
     \end{enumerate}
   \end{proof}
+\newpage
 \item
-  \newpage
   \begin{claim*}
     If $Y$ is complete then $\C(X, Y)$ is complete.
   \end{claim*}
@@ -790,6 +790,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     \begin{align*}
       d_Y(f(x), g(x)) \leq \delta(f, g).
     \end{align*}
+
     Suppose $Y$ is complete and let $(f_n)$ be a Cauchy sequence in $\C(X, Y)$.
 
     We want to show that $(f_n)$ converges in $\C(X, Y)$, and therefore that $\C(X, Y)$ is
@@ -800,20 +801,11 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     \item therefore $(f_n)$ converges in $\C(X, Y)$, proving that $\C(X, Y)$ is complete.
     \end{enumerate}
 
-    % For part (a), fix $\epsilon > 0$ and $x \in X$. We require an $N$ such that for all $m,n > N$
-    % we have $d_Y(f_m(x), f_n(x)) < \epsilon$.
-
     For part (a), since $(f_n)$ is Cauchy in $\C(X, Y)$, we have for all $x \in X$
     \begin{align*}
       d_Y\(f_m(x), f_n(x)\) \leq \delta(f_m, f_n) \to 0 ~\text{as}~ m, n \to \infty.
     \end{align*}
     Therefore $(f_n(x))$ in $Y$ is Cauchy for all $x \in X$.
-
-    % Since $(f_n)$ is Cauchy in $\C(X, Y)$ there exists an $N$ such that for all $m,n > N$ we have
-    % $\delta(f_m, f_n) = \sup_{w\in X} d_Y(f_m(w), f_n(w)) < \epsilon$. Therefore for that same $N$
-    % we have $d_Y(f_m(x), f_n(x)) < \epsilon$ for all $m,n > N$. Therefore $(f_n(x))$ is Cauchy and,
-    % since $Y$ is complete, we have that $(f_n(x))$ converges, say to $L(x) \in Y$, for all
-    % $x \in X$.
 
     For part (c), we need to show that there exists $f \in \C(X, Y)$ such that $f_n \to f$. We
     claim that $f(x) = \limn f_n(x)$ is such a function.
@@ -834,37 +826,9 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     $d_Y\(f_n(x), f(x)\) \leq \delta(f_n, f) < \epsilon$ for all $x \in X$. Therefore since the
     $f_n$ are continuous, we have that their limit $f$ is continuous.
 
-  % % for all $\epsilon > 0$ there exists an $N$ such that for all $n > N$ we have
-  % %   $\delta(f_n, f) < \epsilon$.
-
-
-
-  %   To prove that $(f_n) \to f$, fix $\epsilon > 0$ and for all $x \in X$ define $M(x) \in \N$ to
-  %   be the smallest natural number such that $d_Y(f_n(x), f(x)) < \epsilon$ for all $n > M(x)$.
-
-  %   Set $N = \sup_{x \in X} M(x)$. Note that for all $n > N$ we have that
-  %   \begin{align*}
-  %     \delta(f_n, f) = \sup_{x\in X} d_Y(f_n(x), f(x)) < \epsilon,
-  %   \end{align*}
-  %   proving that $(f_n) \to f$.
-
-  %   \newpage
-  %   \red{Finally, we need to show that $f$ is continuous and bounded.}
-
-  %   {\bf Continuity}:\\
-  %   By definition, $f$ is continuous if $\lim_{x\to x_0} f(x) = f(x_0)$ for all $x_0 \in X$.
-
-  %   {\bf Boundedness}:\\
-  %   By definition, $f$ is bounded if there exists $r \geq 0$ such that $d_Y(f(x_1), f(x_2)) < r$
-  %   for all $x_1, x_2 \in X$.
-
-  %   So $f$ will be bounded if the set of pointwise limits $\{f(x)~|~x \in X\} \subseteq Y$ is
-  %   bounded.
     Therefore if $(f_n)$ is Cauchy then it converges in $\C(X, Y)$, proving that $\C(X, Y)$ is
     complete.
   \end{proof}
 \end{enumerate}
-
-
 
 \end{document}
