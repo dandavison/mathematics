@@ -761,23 +761,36 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     \item {\bf Positivity} \checkmark\\
       The codomain of $d_Y$ is $R_{\geq 0}$ since it is a metric and therefore
       $\sup_{a \in A} d_Y(a) \geq 0$ for all $A \subseteq Y^2$.
-    \item {\bf Triangle inequality}\\
-      Let $f, g, h \in \C(X, Y)$.
+    \newpage
+    \item {\bf Triangle inequality}
+      \begin{claim*}
+        Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces and let $(\C(X, Y), \delta)$ be the metric
+        space of continuous bounded functions $X \to Y$ with metric $\delta$ defined by
+        $$\delta(f, g) = \sup_{x \in X} d_Y\(f(x), g(x)\).$$ Then
+        $\delta(f, g) + \delta(g, h) \geq \delta(f, h)$ for all $f, g, h \in \C(X, Y)$.
+      \end{claim*}
 
-      We want
-      \begin{align*}
-        \delta(f, g) + \delta(g, h) &\leq \delta(f, h)\\
-        \sup_{x \in X} d_Y(f(x), g(x)) +
-        \sup_{x \in X} d_Y(g(x), h(x)) &\leq
-        \sup_{x \in X} d_Y(f(x), h(x))
-      \end{align*}
+      \begin{proof}~\\
+        Let $f, g, h \in \C(X, Y)$ Then there exists a sequence $(x_n)_{n \geq 1}$ in $X$ such that
+        $$\(d_Y\(f(x_n), h(x_n)\)\) \to \delta(f, h).$$
 
-      We have
-      \begin{align*}
-        \delta(f, g) + \delta(g, h)
-        &= \sup_{x \in X} d_Y(f(x), g(x)) +
-           \sup_{x \in X} d_Y(g(x), h(x))
-      \end{align*}
+        Note that since $d_Y$ is a metric, we have for all $x \in X$
+        \begin{align*}
+          d_Y\(f(x), g(x)\) + d_Y\(g(x), h(x)\) \geq d_Y\(f(x), h(x)\).
+        \end{align*}
+        Therefore
+        \begin{align*}
+          \limn \Big(d_Y\(f(x_n), g(x_n)\) + d_Y\(g(x_n), h(x_n)\)\Big) \geq \delta(f, h).
+        \end{align*}
+        But
+        \begin{align*}
+          & \limn \Big(d_Y\(f(x_n), g(x_n)\) + d_Y\(g(x_n), h(x_n)\)\Big) \\
+          =& \limn d_Y\(f(x_n), g(x_n)\) + \limn  d_Y\(g(x_n), h(x_n)\) \\
+          \leq& \sup_{x\in X} d_Y\(f(x), g(x)\) + \sup_{x\in X} d_Y\(g(x), h(x)\) \\
+          =& ~\delta(f, g) + \delta(g, h).
+        \end{align*}
+        Therefore $\delta(f, g) + \delta(g, h) \geq \delta(f, h)$.
+      \end{proof}
     \end{enumerate}
   \end{proof}
 \newpage
@@ -813,13 +826,24 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     Fix $\epsilon > 0$ and let $N$ be such that
     $d_Y\(f_m(x), f_n(x)\) \leq \delta(f_m, f_n) < \epsilon$ for all $x \in X$ and all $m, n > N$.
 
-    Letting $m \to \infty$ we have $d_Y\(f(x), f_n(x)\) \leq \delta(f, f_n) < \epsilon$ for all
-    $x \in X$ and all $m, n > N$. Thus we conclude $f_n \to f$, and also that $f - f_n$ is bounded.
+    To prove that $(f_n) \to f$, fix $\epsilon > 0$ and for all $x \in X$ define $M(x) \in \N$ to
+    be the smallest natural number such that $d_Y(f_n(x), f(x)) < \epsilon$ for all $n > M(x)$.
 
-    But the set of bounded functions $X \to Y$ is a vector space, and $f_n$ is bounded, so
-    $f = f_n + (f - f_n)$ is bounded.
+    Set $N = \sup_{x \in X} M(x)$. Note that for all $n > N$ we have that
+    \begin{align*}
+      \delta(f_n, f) = \sup_{x\in X} d_Y(f_n(x), f(x)) < \epsilon,
+    \end{align*}
+    proving that $(f_n) \to f$.
 
-    Finally we must show $f$ is continuous.
+    \red{The bounded functions $X \to Y$ are not a vector space; we have no addition in $Y$. So
+      unlike the proof that the normed vector space of bounded real-valued functions is complete,
+      we cannot argue that $f_n$ is bounded, therefore $f = f_n + (f - f_n)$ is bounded.}
+
+    Finally we must show $f$ is continuous and bounded.
+
+
+
+    Continuity:
 
     Note that the sequence $(f_n)$ (considered pointwise) converges uniformly to $f$ since for all
     $\epsilon > 0$ there exists $N$ such that for all $n > N$ we have
