@@ -1,3 +1,5 @@
+\let\B\undefined
+\newcommand{\B}{\mathcal B}
 \let\T\undefined
 \newcommand{\T}{\mathcal T}
 
@@ -769,15 +771,47 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \red{(not studied)}
 \section{Metric Spaces\\(Oxford Part A 2)}
 
-\subsection{Norms, distance metrics}
+
+\subsection{Distance metrics and norms}
+
 \begin{enumerate}
-\item A norm on a vector space $V$ is a function $\|\cdot\|:V \to \R_{>0}$ which satisfies
-  positivity, compatibility with scalar multiplication and the triangle inequality.
-\item In a vector space, the distance between vectors $u$ and $v$ is given by the {\it norm} of the
-  vector $u-v$, so that $d(u, v) = ||u - v||$.
-\item In an inner product space, the norm is given by the inner product of a vector with itself, so
-  that $d(u, v) = \sqrt{\langle u-v, u-v \rangle}$.
-\item Distance metrics must satisfy positivity, symmetry and triangle inequality.
+\item A \defn{metric space} is a set of objects with a \defn{distance metric}.
+\item A distance metric is a function that assigns a non-negative real number to every pair of
+  elements.
+\item Note that addition is not necessarily defined on the metric space but is, of course, defined
+  on the distances.
+\item Some metric spaces are \defn{vector spaces}. In a vector space, addition is defined and there
+  is an additive identity (the ``origin'').
+\item Some vector spaces possess a \defn{norm}. A norm $\|.\|$ is a function that assigns a
+  non-negative real number to every vector.
+\item If a vector space has a norm, this gives a natural distance metric: $d(x, y) = \|x -
+  y\|$. Therefore we can think of the norm of a vector as its distance from the origin.
+\item Some vector spaces possess an \defn{inner product}.
+\item If a vector space has a {\it real} inner product, this gives a natural norm:
+  $\|u\| = \< u, u\>$, and thus a natural distance metric:
+  $d(x, y) = \|x - y\| = \< x - y, x - y \>$.
+\item Requirements
+
+  \begin{comment}
+    #+ORGTBL: SEND metric-norm-inner-product orgtbl-to-latex :splice nil :skip 0 :raw t
+    |                       | distance metric                  | norm                                    | real inner product                              |
+    |-----------------------+----------------------------------+-----------------------------------------+-------------------------------------------------|
+    | positive definiteness | $d(x, y) = 0 \iff x = y$         | $\norm{u} = 0 \iff u = 0$               | $\< v, v\> = 0 \iff v = 0$                      |
+    | triangle inequality   | $d(x, z) \leq d(x, y) + d(y, z)$ | $\norm{u + v} \leq \norm{u} + \norm{v}$ | definition $\implies$ C-S $\implies$ tri. ineq. |
+    | symmetry              | $d(x, y) = d(y, x)$              | N/A                                     | $\< u, v\> = \< v, u\>$                         |
+    | scalar multiplication | mult may not be defined          | $\norm{\lambda u} = \lambda \norm{u}$   | bilinear                                        |
+  \end{comment}
+  % BEGIN RECEIVE ORGTBL metric-norm-inner-product
+\begin{tabular}{l|l|l|l}
+ & distance metric & norm & real inner product\\
+\hline
+positive definiteness & $d(x, y) = 0 \iff x = y$ & $\norm{u} = 0 \iff u = 0$ & $\< v, v\> = 0 \iff v = 0$\\
+triangle inequality & $d(x, z) \leq d(x, y) + d(y, z)$ & $\norm{u + v} \leq \norm{u} + \norm{v}$ & definition $\implies$  C-S $\implies$  tri. ineq.\\
+symmetry & $d(x, y) = d(y, x)$ & N/A & $\< u, v\> = \< v, u\>$\\
+scalar multiplication & mult may not be defined & $\norm{\lambda u} = \lambda \norm{u}$ & bilinear\\
+\end{tabular}
+  % END RECEIVE ORGTBL metric-norm-inner-product
+
 \item In $\R^n$ we have distance metrics
   \begin{align*}
   d_1(u, v)     &= \sum |u_i - v_i|            &\\
@@ -858,9 +892,10 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
 \item {\bf Definition}: A point (whether in the subset or not) is a \defn{limit point} if a ball can
   be placed over it and capture a different point of the subset, no matter how small the ball's
   radius. A point in the subset that is not a limit point is an \defn{isolated point}.
-\item {\bf Theorem}: A point $x \in Z$ is a limit point\footnote{No sequence can converge to an
-    isolated point since there will be an $\epsilon$ for which no $N$ works.} iff there is a
-  sequence in $Z \setminus \{x\}$ converging to $x$.
+\item {\bf Theorem}: A point $x \in Z$ is a limit point\footnote{The only sequences that can
+    converge to an isolated point are those with a constant tail on the isolated point; otherwise
+    there will be an $\epsilon$ for which no $N$ works.} iff there is a sequence in
+  $Z \setminus \{x\}$ converging to $x$.
 \item $Z'$ denotes the set of limit points of a subset $Z$.
 \item {\bf Theorem}: A subset $Z$ is closed iff $Z' \subseteq Z$.
 \item {\bf Definition}:
@@ -913,7 +948,7 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   \item Convergent $\implies$ Cauchy.
   \item Cauchy $\implies$ bounded.
   \end{enumerate}
-\item {\bf Definition}: A metric space is \defn{complete} if (Cauchy) $\implies$ (convergent)
+\item {\bf Definition}: A metric space $X$ is \defn{complete} if (Cauchy) $\implies$ (convergent in $X$)
 \item {\bf Example}: $\R^n$ and $\C$ are complete.
 \item {\bf Example}: $(0, 1]$ is not complete because $(1/n)$ is Cauchy yet converges to a point
   outside the metric space.
