@@ -48,6 +48,9 @@
 \newtheorem{problem}[theorem]{\\Problem}
 \newtheorem*{problem*}{\\Problem}
 
+\newtheorem{question}[theorem]{\\Question}
+\newtheorem*{question*}{\\Question}
+
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{\\Remark}
 \newtheorem*{remark*}{\\Remark}
@@ -63,6 +66,11 @@
 \theoremstyle{remark}
 \newtheorem{intuition}[theorem]{\\Intuition}
 \newtheorem*{intuition*}{\\Intuition}
+
+\newcommand{\defn}[1]{\blue{\bf #1}}
+\newcommand{\todo}[1]{\red{TODO #1}}
+
+
 
 % https://tex.stackexchange.com/questions/8089/changing-style-of-proof
 % \let\oldproofname=\proofname
@@ -216,6 +224,8 @@
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
 \newcommand{\hessian}{\mathbf{H}}
 \newcommand{\inner}[2]{\langle #1, #2 \rangle}
+\let\<\undefined\newcommand{\<}{\langle}
+\let\>\undefined\newcommand{\>}{\rangle}
 \newcommand{\Intuition}[1]{}
 \newcommand{\hlinee}{\\\rule{400pt}{0.1pt}\\}
 \newcommand{\limk}{\lim_{k \to \infty}}
@@ -295,6 +305,7 @@
 \newcommand{\larrow}{\leftarrow}
 \newcommand{\rarrow}{\rightarrow}
 \newcommand{\seq}{\subseteq}
+% \newcommand{\norm}[1]{\|#1\|}
 
 % deprecated
 \newcommand{\mat}{\matMMxNN}
