@@ -925,6 +925,8 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \end{enumerate}
 
 
+
+
 \subsection{}
 
 
@@ -1067,18 +1069,48 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     We want to show that there exists $\delta > 0$ such that if $d(x, y) < \delta$ then
     $|f(x) - f(y)| < \epsilon$.
 
-    Set $\delta = \epsilon/2$.
+    First, note that
+    \begin{align*}
+      |f(x) - f(y)|
+      =    \Big|\sum_{n \geq 0} \frac{x_n - y_n}{2^n}\Big|
+      \leq \sum_{n \geq 0} \frac{|x_n - y_n|}{2^n}
+      = d(x, y).
+    \end{align*}
 
-    As above, let $n \geq 2$ be the smallest integer greater than $1 + \log_2 \epsilon^\1$, so that
-    $2^{-n} < \frac{\epsilon}{2}$.
+    \begin{mdframed}
+      \includegraphics[width=300pt]{img/oxford-a2-2-5-diagram.png}
+    \end{mdframed}
 
-    Note that $\sum_{i=n}^m \frac{1}{2^i} < \frac{1}{2^{n-1}}$ for all $m \geq n$.
 
-    OK, the details are annoying, but basically the set of sequences that are within $\epsilon/2$
-    of $x$ are those that agree with $x$ over the first $n$ bit positions. Furthermore, the image
-    under $f$ of that set of sequences is contained within $(f(x) - \epsilon, f(x) +
-    \epsilon)$. Therefore for all $\epsilon > 0$ we have that $\delta=\epsilon/2$ works and hence
-    $f$ is continuous.
+    Let $N = \ceil{\log_2 \epsilon^{-1}}$ and let
+    $B = \{(y_n) \in M ~|~ y_n = x_n ~ \forall n \leq N\}$ be a set of sequences that are initially
+    identical to $x$.
+
+    Note that $y \in B \implies d(x, y) \leq \epsilon$, since
+    $
+      \max_{y \in B} d(x, y)
+      = \sum_{i=N+1}^\infty \frac{1}{2^i}
+      = \frac{1}{2^N}
+      \leq \epsilon.
+    $
+
+    \todo{The $\leq$ is worrrying, but worse than that we can have $y \notin B$ differing from $x$
+      at position $N$ only, which will yield $d(x, y) \leq \epsilon$.}
+
+    % Note that $y \in B \implies d(x, y) < \epsilon$, since
+    % \begin{align*}
+    %   \max_{y \in B} d(x, y)
+    %   = \sum_{i=N+1}^\infty \frac{1}{2^i}
+    %   = \frac{1}{2^N}
+    %   \leq \frac{1}{2 \cdot \frac{1}{\epsilon}}
+    %   = \frac{\epsilon}{2}.
+    % \end{align*}
+
+    % Also if $y \notin B$ then there is a term in $d(x, y)$ at least as big as
+    % $\frac{1}{2^{\ceil{\log_2 \epsilon^{-1}}}}$.
+
+    % $d(x, y) > \epsilon$ since  Therefore $y \in B \implies d(x, y) < \epsilon$
+    % Note that $\sum_{i=n+1}^m \frac{1}{2^i} < \frac{1}{2^n}$ for all $m \geq n$.
   \end{proof}
 \end{enumerate}
 
@@ -1177,7 +1209,6 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     such that $AC = C$. Therefore $(A - I)C = 0$
     \begin{align*}
       AC - C   &= 0\\
-
     \end{align*}
 
   \end{proof}
@@ -1215,7 +1246,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     is non empty there exists $X \subseteq M$ and $n \in \Z$ such that $f(X) = n$.
 
   \end{proof}
-
+\end{enumerate}
 
 \subsection{}
 \begin{mdframed}
