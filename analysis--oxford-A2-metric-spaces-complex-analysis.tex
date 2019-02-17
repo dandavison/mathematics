@@ -792,10 +792,43 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
         Therefore $\delta(f, g) + \delta(g, h) \geq \delta(f, h)$.
       \end{proof}
     \end{enumerate}
+    \newpage
+    \item {\bf Triangle inequality}
+      \begin{claim*}
+        Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces and let $(\C(X, Y), \delta)$ be the metric
+        space of continuous bounded functions $X \to Y$ with metric $\delta$ defined by
+        $$\delta(f, g) = \sup_{x \in X} d_Y\(f(x), g(x)\).$$ Then
+        $\delta(f, g) + \delta(g, h) \geq \delta(f, h)$ for all $f, g, h \in \C(X, Y)$.
+      \end{claim*}
+
+      \begin{proof}~\\
+        Let $f, g, h \in \C(X, Y)$.
+
+        Note that since $d_Y$ is a metric, we have for all $x \in X$
+        \begin{align*}
+          d_Y\(f(x), g(x)\) + d_Y\(g(x), h(x)\) \geq d_Y\(f(x), h(x)\).
+        \end{align*}
+        Therefore the suprema satisfy the inequality
+        \begin{align*}
+          \sup_{x\in X} \Big(d_Y\(f(x), g(x)\) + d_Y\(g(x), h(x)\)\Big) \geq \delta(f, h).
+        \end{align*}
+        Therefore we have
+        \begin{align}
+          \delta(f, g) + \delta(g, h)
+          &= \sup_{x\in X} d_Y\(f(x), g(x)\) + \sup_{x\in X} d_Y\(g(x), h(x)\) \\
+          &\geq \sup_{x\in X} \Big(d_Y\(f(x), g(x)\) + d_Y\(g(x), h(x)\)\Big) \\
+          &\geq \delta(f, h).
+        \end{align}
+        \red{TODO: proof of triangle inequality for $\sup$ used to arrive at (2).}
+      \end{proof}
   \end{proof}
 \newpage
 \item
   \begin{claim*}
+    Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces and let $(\C(X, Y), \delta)$ be the metric
+    space of continuous bounded functions $X \to Y$ with metric $\delta$ defined by
+    $$\delta(f, g) = \sup_{x \in X} d_Y\(f(x), g(x)\).$$
+
     If $Y$ is complete then $\C(X, Y)$ is complete.
   \end{claim*}
   \begin{proof}~\\
@@ -835,24 +868,363 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     \end{align*}
     proving that $(f_n) \to f$.
 
-    \red{The bounded functions $X \to Y$ are not a vector space; we have no addition in $Y$. So
-      unlike the proof that the normed vector space of bounded real-valued functions is complete,
-      we cannot argue that $f_n$ is bounded, therefore $f = f_n + (f - f_n)$ is bounded.}
-
     Finally we must show $f$ is continuous and bounded.
 
-
-
-    Continuity:
-
+    {\bf Continuity}:\\
     Note that the sequence $(f_n)$ (considered pointwise) converges uniformly to $f$ since for all
     $\epsilon > 0$ there exists $N$ such that for all $n > N$ we have
     $d_Y\(f_n(x), f(x)\) \leq \delta(f_n, f) < \epsilon$ for all $x \in X$. Therefore since the
     $f_n$ are continuous, we have that their limit $f$ is continuous.
 
+    {\bf Boundedness}:\\
+    To show\footnote{The bounded functions $X \to Y$ are not a vector space; we have no addition in
+      $Y$. So unlike the proof that the normed vector space of bounded real-valued functions is
+      complete, we cannot argue that $f_n$ is bounded, therefore $f = f_n + (f - f_n)$ is bounded.}
+    that $f$ is bounded we must show that there exists $K \in \R$ such that for all
+    $x_1, x_2 \in X$ we have $d_Y\(f(x_1), f(x_2)\) < K$.
+
+    \red{TODO this isn't quite right yet, it shouldn't depend on $\epsilon$, indeed $\epsilon$ can
+      be made arbitrarily small.}
+
+    Fix $x_1, x_2 \in X$, $\epsilon \in \R$, let $n \in \N$ be such that for all $x \in X$ we have
+    $d_Y\(f_n(x), f(x)\) < \epsilon$ and let $J \in \R$ be such that for all $u_1, u_2 \in X$ we
+    have $d_Y\(f_n(u_1), f_n(u_2)\) < K$. Then
+    \begin{align*}
+      d_Y\(f(x_1), f(x_2)\)
+      &\leq
+        d_Y\(f(x_1),   f_n(x_1)\) +
+        d_Y\(f_n(x_1), f_n(x_2)\) +
+        d_Y\(f_n(x_2), f(x_2)\) \\
+      &\leq
+        2\epsilon + J.
+    \end{align*}
+    Therefore $f$ is bounded.
+
     Therefore if $(f_n)$ is Cauchy then it converges in $\C(X, Y)$, proving that $\C(X, Y)$ is
     complete.
   \end{proof}
+  \newpage
+\item
+  \begin{problem*}
+    Consider the map $R: \C\([0, 1], \R\) \to \C\((0, 1), \R\)$ which takes a continuous (bounded?)
+    function on $[0, 1]$ to its restriction to $(0, 1)$. Is the image of $R$ closed?
+  \end{problem*}
+  \begin{proof}
+    By definition, the image of $R$ is $R\big(\C\([0, 1], \R\)\big) \subseteq \C((0, 1),
+    \R)$.
+
+    Note that $\R$ is complete, so by (ii) we have that $\C((0, 1), \R)$ is complete.
+
+
+    We would like to show that $R\big(\C\([0, 1], \R\)\big)$ is complete, since then it would be
+    closed.
+
+    I.e. we would like to show that if $(f_n)$ is a convergent sequence in
+    $R\big(\C\([0, 1], \R\)\big)$ then it converges to a limit in $R\big(\C\([0, 1], \R\)\big)$.
+  \end{proof}
 \end{enumerate}
+
+
+\subsection{}
+
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-5.png}
+\end{mdframed}
+
+\begin{remark*}
+  We have a population $M$ of infinite binary sequences. The distance between any two sequences is
+  obtained by XORing them and interpreting the result $(x_n)_{n\geq0}$ as a binary decimal
+  $x_0 + \frac{x_1}{2} + \frac{x_2}{4} + \ldots \in [0, 2]$.
+
+  $M$ is (claim) homeomorphic to the metric space $[0, 2) \subset \R$, since we have
+  $f:M \to [0, 2)$ defined by
+  \begin{align*}
+    f\((x_n)\) = \sum_{n=0}^\infty \frac{x_n}{2^n},
+  \end{align*}
+  which (claim) is bijective and continuous (part (iv) of this exercise). Its inverse $g = f^\1$
+  maps the real number to its binary expansion (e.g. via a division and remainder algorithm) and
+  (claim) is also continuous.
+
+  On might think that one could prove that $M$ is disconnected (part (ii)) and complete (part
+  (iii)) by establishing this homeomorphism with $[0, 2)$ and appealing to the properties of
+  $[0, 2)$. This would work for connectedness, since that property of a metric space {\it is}
+  preserved by homeomorphism. However, completeness is {\it not} in general preserved by
+  homeomorphism (e.g. $(0, 1)$ is not complete yet homeomorphic to $\R$).
+\end{remark*}
+
+\begin{question*}
+  Let $X$ be a set and let $d:X^2 \to \R$ be a function not necessarily satisying the definition of
+  a metric. Let $M$ be a metric space and let $(X, d)$ be homeomorphic to $M$. Does it follow that
+  $d$ satisfies the definition of a metric?
+\end{question*}
+
+\begin{enumerate}[label=(\roman*)]
+\item
+  \begin{enumerate}
+  \item {\bf Symmetry}: \checkmark This follows from the fact that $|x_n - y_n| = |y_n - x_n|$, or
+    equivalently from the fact that XOR is commutative.
+  \item {\bf Positivite definiteness}: \checkmark If $(x_n) \neq (y_n)$ then there exists $n$ such that
+    $x_n \neq y_n$, contributing a non-zero term to the sum. Conversely if the distance is non-zero
+    then such an $n$ must exist and we have $x_n \neq y_n$.
+  \item {\bf Triangle inequality}: \checkmark\\
+    We want to show $d\((x_n, y_n)\) + d\((y_n, z_n)\) \geq d\((x_n, z_n)\)$.
+
+    Let $(x_n), (y_n), (z_n) \in M$. Define the following partition of $\N$:
+    \begin{align*}
+      A &= \{n \in \N ~|~ x_n = z_n\}\\
+      B &= \{n \in \N ~|~ x_n \neq z_n\},
+    \end{align*}
+    and for every $(v_n), (w_n) \in M$ write
+    $d_\chi\((v_n), (w_n)\) = \sum_{n \in \chi}\frac{|v_n - w_n|}{2^n}$ for $\chi \in \{A, B\}$, so
+    that $d = d_A + d_B$. Then
+    \begin{align}
+      d\((x_n), (y_n)\) + d\((y_n), (z_n)\)
+      &\geq d_B\((x_n), (y_n)\) + d_B\((y_n), (z_n)\) \nonumber\\
+      &= d_B\((x_n), (z_n)\) \label{eq-2-5-1}\\
+      &= d\((x_n), (z_n)\) \nonumber,
+    \end{align}
+    where \eqref{eq-2-5-1} is true because for every $n \in B$ we have that exactly one of
+    $x_n \neq y_n$ or $y_n \neq z_n$ is true.
+  \end{enumerate}
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-5.png}
+\end{mdframed}
+\item
+  \begin{claim*}
+    Let $U_0 = \{(x_n) \in M ~|~ x_0 = 0\}$. Then $U_0$ is open, and $M$ is disconnected.
+  \end{claim*}
+  \begin{remark*}
+    So $f: M \to [0, 2)$ is not a homeomorphism, since $[0, 2)$ is connected yet $M$ (apparently)
+    is not.
+  \end{remark*}
+  \begin{proof}~\\
+    Let $u \in U_0$, fix $\epsilon > 0$, and consider the ``punctured'' open ball
+    $\mathring{B}(u, \epsilon) = B(u, \epsilon) \setminus \{u\}$.
+
+    We want to show that $\mathring{B}(u, \epsilon) \cap U_0 \neq \emptyset$.
+
+    Let $n \geq 2$ be the smallest integer greater than $1 + \log_2 \epsilon^\1$, so that
+    $2^n > \frac{2}{\epsilon}$. Let $v \in M$ be such that $v_m =
+    \begin{cases}
+      u_m & m \neq n\\
+      1 - u_m & m = n.
+    \end{cases}$.  Then we have $v \in \mathring{B}(u, \epsilon)$, since
+    $d(u, v) = 2^{-n} < \frac{\epsilon}{2}$. Therefore $U_0$ is open.
+
+    Now consider $U_0^C = \{(x_n) \in M ~|~ x_0 = 1\}$. Note that the sequence
+    $a = (1, 0, 0, \ldots) \in U_0^C$. Therefore $U_0^C$ is not open, since for all $\epsilon > 0$
+    we have that $(0, 1, 1, \ldots) \in \mathring{B}(a, \epsilon) \cap U_0$.  \todo{Hmm. So one
+      would think that $M$ is connected?}
+  \end{proof}
+
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-5.png}
+\end{mdframed}
+\item
+  \begin{claim*}
+    $M$ is not complete.
+  \end{claim*}
+  \begin{proof}
+    Let $((x_n))_m \in M$ be the following sequence of sequences:
+    \begin{align*}
+      (1, 0, 0, \ldots), (1, 1, 0, 0, \ldots), (1, 1, 1, 0, 0, \ldots), \ldots.
+    \end{align*}
+    We claim that this is Cauchy and yet does not converge in $M$.
+
+    To see that it is Cauchy, fix $\epsilon > 0$.  \todo{Exhibit an $N$ beyond which all sequences
+      are within $\epsilon$, I think probably similar to the $\log_2 \epsilon^\1$ argument above.}
+
+    To see that this does not converge within $M$, suppose for a contradiction that it converges to
+    $L \in M$. Then for all $\epsilon > 0$ there exists $N$ such that $d(x, L) < \epsilon$ for all
+    $n > N$. But
+
+    \todo{Confused. Feels like it is not complete since in some sense that sequence converges to $2 \notin M$?}
+  \end{proof}
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-5.png}
+\end{mdframed}
+\item
+  \begin{claim*}
+    Let $f:M \to \R$ be defined by $f\((x_n)\) = \sum_{n=0}^\infty \frac{x_n}{2^n}$. Then $f$ is
+    continuous.
+  \end{claim*}
+
+  % \begin{remark*}
+  %   Note that $U_0 = f^\1\([0, 1)\)$. Hence if $f$ is continuous then $U_0$ is the preimage of an
+  %   open set under a continuous map and therefore $U_0$ is open.
+  % \end{remark*}
+
+  \begin{proof}
+    Let $x = (x_n) \in M$ and fix $\epsilon > 0$.
+
+    We want to show that there exists $\delta > 0$ such that if $d(x, y) < \delta$ then
+    $|f(x) - f(y)| < \epsilon$.
+
+    Set $\delta = \epsilon/2$.
+
+    As above, let $n \geq 2$ be the smallest integer greater than $1 + \log_2 \epsilon^\1$, so that
+    $2^{-n} < \frac{\epsilon}{2}$.
+
+    Note that $\sum_{i=n}^m \frac{1}{2^i} < \frac{1}{2^{n-1}}$ for all $m \geq n$.
+
+    OK, the details are annoying, but basically the set of sequences that are within $\epsilon/2$
+    of $x$ are those that agree with $x$ over the first $n$ bit positions. Furthermore, the image
+    under $f$ of that set of sequences is contained within $(f(x) - \epsilon, f(x) +
+    \epsilon)$. Therefore for all $\epsilon > 0$ we have that $\delta=\epsilon/2$ works and hence
+    $f$ is continuous.
+  \end{proof}
+\end{enumerate}
+
+
+\newpage
+\subsection{}
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-6.png}
+\end{mdframed}
+
+\begin{enumerate}
+\item
+  \begin{claim*}
+    Let $M$ be the space of real $n \times n$ matrices and let $\|A\|_S = \sup_{v \in U} \|A(v)\|$
+    where $U = \{x \in \R^n : \|x\| = 1\}$. Then $\|.\|_S$ is a norm on $M$.
+  \end{claim*}
+  \begin{proof}
+    Informally, $\|.\|_S$ assigns a value to a matrix $A$ as follows: consider the image under $A$ of
+    the unit circle centred at the origin. $\|A\|_S$ is the furthest distance from the origin of any
+    of the vectors in that image set.
+    \begin{enumerate}
+    \item {\bf Positivity}:\\
+      We have $\|0\|_S = 0$. If $A \neq 0$ then every vector in the image of the unit circle is
+      sent to a non-zero vector hence $\|A\|_S > 0$.
+    \item {\bf Preserves scalar multiplication}:\\
+      We want to show that $\|\lambda A\|_S = \lambda \|A\|_S$. Informally, we want to show that the
+      greatest distance that the matrix $\lambda A$ takes a vector in the unit circle differs from
+      that distance for $A$ by a factor of $\lambda$.
+      \begin{align*}
+        \|\lambda A\|_S = \sup_{v \in U} \|\lambda A(v)\|
+      \end{align*}
+        \todo{}
+      \item {\bf Triangle inequality}:\\
+        Let $A, B \in M$ be real $n \times n$ matrices. We want to show that
+      \begin{align*}
+        \|A + B\|_S \leq \|A\|_S + \|B\|_S.
+      \end{align*}
+      Well, what is the geometrical meaning of $A + B$? It's a matrix which does the same thing to
+      a vector as transforming it by $A$, and also transforming it by $B$, and then adding the two
+      resulting vectors.
+
+      So yeah, the triangle inequality has to hold. On the left the {\it same} vector is
+      transformed by $A$ and $B$, and we take the sup over all possible choices of that vector. On
+      the right we get to choose different vectors for the $A$ and $B$ transformation, so we can't
+      possibly do worse.
+
+      \todo{proof}
+    \end{enumerate}
+  \end{proof}
+\item
+  \begin{lemma*}
+    Let $X$ be a normed vector space and let $f:X \to X$ be a linear transformation. The following
+    statements are are equivalent:
+    \begin{enumerate}[label=(\roman*)]
+    \item $\|f(x) - f(y)\| < \|x - y\|$ for all $x, y \in X$.
+    \item $\|f(x)\| < \|x\|$ for all $x \in X$.
+    \end{enumerate}
+  \end{lemma*}
+  \begin{proof}~\\
+    Suppose that (i) is true. Then (ii) follows on taking $y = 0$ since $f(0) = 0$.
+
+    Suppose that (ii) is true. Then we have $\|f(x) - f(y)\| = \|f(x - y)\| < \|x - y\|$.
+  \end{proof}
+  \begin{remark*}
+    The definition of a contraction mapping is slightly different: it requires that there exists
+    $0 < \rho < 1$ such that $\|f(x) - f(y)\| < \rho\|x - y\|$ for all $x, y \in X$.
+  \end{remark*}
+
+
+  \begin{claim*}
+    Suppose that $A \in M$ has $\|A\|_S < 1$. Show that the map $B \mapsto AB$ is a
+    contraction. Deduce that $I - A$ is invertible.
+  \end{claim*}
+  \begin{proof}
+    $\|A\|_S < 1$ means that $A$ maps every vector in the unit circle to somewhere inside the unit
+    circle.
+
+    Let $f$ be the map $B \mapsto AB$. Then $f$ sends a linear transformation $B$ to a linear
+    transformation which does $B$ first and then $A$.
+
+    $M$ with norm $\|.\|_S$ is a normed vector space. Hence $M$ is a metric space with metric
+    $d(X, Y) = \|X - Y\|_S$.
+
+    By definition $f$ is a contraction if for some $0 < \rho < 1$ we have
+    $\|AB - AC\|_S < \rho\|B - C\|_S$ for all $B, C \in M$.
+
+    Equivalently, $f$ is a contraction if for some $0 < \rho < 1$ we have $\|AB\|_S < \rho\|B\|_S$
+    for all $B \in M$.
+
+    ...
+
+    Since the map $B \mapsto AB$ is a contraction, there must exist a unique non-zero $C \in M$
+    such that $AC = C$. Therefore $(A - I)C = 0$
+    \begin{align*}
+      AC - C   &= 0\\
+
+    \end{align*}
+
+  \end{proof}
+\end{enumerate}
+
+\subsection{}
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-7.png}
+\end{mdframed}
+
+\begin{definition*}
+  A metric space $M$ is \defn{connected} if and only if it cannot be written as the union of two
+  non-empty disjoint open sets.
+\end{definition*}
+
+\begin{enumerate}[label=(\roman*)]
+\item
+  \begin{claim*}
+    A metric space $M$ is \defn{connected} if and only if every integer-valued continuous function
+    on $M$ is constant.
+  \end{claim*}
+  \begin{proof}~\\
+    \todo{Claim is unsurprising but I should finish the proof.}
+
+    \red{Suppose $M$ is connected and empty. Then every integer-valued continuous function on $M$
+      is constant and the claim is false. So we will suppose $M$ to be non-empty.}
+
+    Let $M \neq \emptyset$ be a metric space and let $f:M \to \Z$.\\
+
+    $\implies$
+
+    Suppose $M$ is connected, and suppose for a contradiction that $f$ is not constant. Since $M$
+    is non empty there exists $X \subseteq M$ and $n \in \Z$ such that $f(X) = n$.
+
+  \end{proof}
+
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-8.png}
+\end{mdframed}
+
+\subsection{}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-9.png}
+\end{mdframed}
 
 \end{document}
