@@ -5,13 +5,15 @@
 \DeclareMathOperator{\diam}{\mathrm{diam}}
 
 
-\begin{document}
-
 \title{Oxford A2 - Metric Spaces and Complex Analysis
   \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5378}}} \author{Dan Davison}
 \author{}
 \date{}
+
+\begin{document}
+
 \maketitle
+\tableofcontents
 
 \section{Sheet 1}
 
@@ -1253,19 +1255,43 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     A metric space $M$ is \defn{connected} if and only if every integer-valued continuous function
     on $M$ is constant.
   \end{claim*}
-  \begin{proof}~\\
-    \todo{Claim is unsurprising but I should finish the proof.}
+  \begin{remark*}
+    Suppose $M$ is connected and empty. Then every integer-valued continuous function on $M$ is
+    constant and the claim is false. So we will suppose $M$ to be non-empty.
+  \end{remark*}
+  \begin{proof}
+    % \begin{mdframed}
+    %   {\bf Intuition}: The only way you can have a jump in values in the codomain without violating
+    %   continuity would be if, in the domain, one set ended and another set started at that point,
+    %   with the two sets not ``touching''. But if $M$ is connected, then no such partition into open
+    %   sets exists. Conversely, if there exists a non-constant integer-valued continuous function,
+    %   then $M$ must be disconnected.
+    % \end{mdframed}
 
-    \red{Suppose $M$ is connected and empty. Then every integer-valued continuous function on $M$
-      is constant and the claim is false. So we will suppose $M$ to be non-empty.}
-
-    Let $M \neq \emptyset$ be a metric space and let $f:M \to \Z$.\\
+    We will prove the contrapositive in both directions. I.e. that $M$ is disconnected if and only
+    if there exists a non-constant continuous map $f:M \to \Z$
 
     $\implies$
 
-    Suppose $M$ is connected, and suppose for a contradiction that $f$ is not constant. Since $M$
-    is non empty there exists $X \subseteq M$ and $n \in \Z$ such that $f(X) = n$.
+    Suppose $M$ is disconnected. Let $A$ and $B$ be two disjoint, non-empty open sets such that
+    $A \cup B = M$. Let $f:M \to Z$ be defined by $f(m) =
+    \begin{cases}
+      0, & m \in A\\
+      1, & m \in B.
+    \end{cases}$ Then clearly $f$ is continuous on $M$, since $f$ is constant on $A$ and constant
+    on $B$, and there are no other points in $M$.
 
+    $\impliedby$
+
+    Suppose $f:M \to \Z$ is continuous and non-constant. We shall show that $M$ can be partitioned
+    into two disjoint non-empty open sets.
+
+    Fix $k \in f(M)$, an arbitrary integer in the image of $M$, and let $J = f(M) \setminus
+    \{k\}$. Note that $J$ is non-empty, since $f$ is non-constant, and note that $\{k\}$ and $J$
+    are open in $\Z$.
+
+    But then the preimages $f^\1(\{k\})$ and $f^\1(J)$ partition $M$ and are non-empty, disjoint,
+    and open, since $f$ is continuous. Therefore $M$ is disconnected.
   \end{proof}
 \end{enumerate}
 
