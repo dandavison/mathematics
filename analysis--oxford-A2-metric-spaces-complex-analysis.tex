@@ -1293,6 +1293,38 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     But then the preimages $f^\1(\{k\})$ and $f^\1(J)$ partition $M$ and are non-empty, disjoint,
     and open, since $f$ is continuous. Therefore $M$ is disconnected.
   \end{proof}
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/oxford-a2-2-7.png}
+\end{mdframed}
+\item
+  \begin{claim*}
+    $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ is connected.
+  \end{claim*}
+  \begin{proof}
+    Let $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ and suppose for a contradiction that there exists a
+    continuous non-constant map $f:H \to \Z$.
+
+    Let $u, v \in H$ be such that $f(u) \neq f(v)$. Let
+    $L = \{u + \rho(v - u) ~|~ \rho \in [0, 1]\}$ be the straight line between $u$ and $v$, and let
+    $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v - l_1|$. Let
+    $S = \{l \in L ~|~ f(l) = f(u)\}$, let $T = \{l \in L ~|~ [u, l] \subseteq S\}$ and let
+    $c = \sup T$.
+
+    We claim that $f$ is not continuous at $c$. Indeed, suppose $c \in T$ so that $f(c) =
+    f(u)$. Let $\epsilon = \frac{1}{2}$ and suppose there exists $\delta > 0$ such that
+    $|l - \delta|$ is such that
+
+    By the Approximation Property of the supremum, $c \notin T$. \todo{This requires that $T$ is
+      open.}
+
+    Specifically, let $\rho:L \to [0, 1]$ be defined by $l = u + \rho(l)(v - u)$.
+
+
+
+    % Fix $j, k \in f(H)$ with $j \neq k$.
+  \end{proof}
+
 \end{enumerate}
 
 
