@@ -1124,7 +1124,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
 \end{mdframed}
 
-\begin{enumerate}
+\begin{enumerate}[label=(\roman*)]
 \item
   \begin{claim*}
     Let $M$ be the space of real $n \times n$ matrices and let $\|A\|_S = \sup_{v \in U} \|A(v)\|$
@@ -1153,7 +1153,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       \end{align*}
       Well, what is the geometrical meaning of $A + B$? It's a matrix which does the same thing to
       a vector as transforming it by $A$, and also transforming it by $B$, and then adding the two
-      resulting vectors.
+      resulting vectors. In other words it's the map $x \mapsto Ax + Bx$.
 
       So yeah, the triangle inequality has to hold. On the left the {\it same} vector is
       transformed by $A$ and $B$, and we take the sup over all possible choices of that vector. On
@@ -1163,26 +1163,28 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       \todo{proof}
     \end{enumerate}
   \end{proof}
+\newpage
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
+\end{mdframed}
+\begin{lemma*}
+  Let $X$ be a normed vector space and let $f:X \to X$ be a linear transformation. The following
+  statements are are equivalent:
+  \begin{enumerate}[label=(\roman*)]
+  \item $\|f(x) - f(y)\| < \|x - y\|$ for all $x, y \in X$.
+  \item $\|f(x)\| < \|x\|$ for all $x \in X$.
+  \end{enumerate}
+\end{lemma*}
+\begin{proof}~\\
+  Suppose that (i) is true. Then (ii) follows on taking $y = 0$ since $f(0) = 0$.
+
+  Suppose that (ii) is true. Then we have $\|f(x) - f(y)\| = \|f(x - y)\| < \|x - y\|$.
+\end{proof}
+\begin{remark*}
+  The definition of a contraction mapping is more stringent: it requires that there exists
+  $0 < \rho < 1$ such that $\|f(x) - f(y)\| < \rho\|x - y\|$ for all $x, y \in X$.
+\end{remark*}
 \item
-  \begin{lemma*}
-    Let $X$ be a normed vector space and let $f:X \to X$ be a linear transformation. The following
-    statements are are equivalent:
-    \begin{enumerate}[label=(\roman*)]
-    \item $\|f(x) - f(y)\| < \|x - y\|$ for all $x, y \in X$.
-    \item $\|f(x)\| < \|x\|$ for all $x \in X$.
-    \end{enumerate}
-  \end{lemma*}
-  \begin{proof}~\\
-    Suppose that (i) is true. Then (ii) follows on taking $y = 0$ since $f(0) = 0$.
-
-    Suppose that (ii) is true. Then we have $\|f(x) - f(y)\| = \|f(x - y)\| < \|x - y\|$.
-  \end{proof}
-  \begin{remark*}
-    The definition of a contraction mapping is slightly different: it requires that there exists
-    $0 < \rho < 1$ such that $\|f(x) - f(y)\| < \rho\|x - y\|$ for all $x, y \in X$.
-  \end{remark*}
-
-
   \begin{claim*}
     Suppose that $A \in M$ has $\|A\|_S < 1$. Show that the map $B \mapsto AB$ is a
     contraction. Deduce that $I - A$ is invertible.
@@ -1204,15 +1206,34 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     for all $B \in M$.
 
     ...
+    What is the geometrical meaning of $I - A$? Well, $I = A + (I - A)$. So
 
-    Since the map $B \mapsto AB$ is a contraction, there must exist a unique non-zero $C \in M$
-    such that $AC = C$. Therefore $(A - I)C = 0$
+
+    It's the linear map $B \mapsto B - AB$.
+
+    $I - A$ is a vector pointing away from the origin that points from $AB$ to $B$.
+
     \begin{align*}
-      AC - C   &= 0\\
+      (I - A)B = B - AB
     \end{align*}
 
+
+    $I - A$ invertible means that $(I - A)B = C$ has a solution for all $C$.
   \end{proof}
+  \begin{example*}
+    Let $M$ be 1-dimensional. Let $A = frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
+    $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
+    for every $B$).
+  \end{example*}
+
+  \begin{example*}
+    Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
+    map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
+    unique for every $B$).
+  \end{example*}
+
 \end{enumerate}
+
 
 \subsection{}
 
@@ -1247,6 +1268,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
   \end{proof}
 \end{enumerate}
+
 
 \subsection{}
 \begin{mdframed}
