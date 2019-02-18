@@ -11,6 +11,7 @@
 \date{}
 
 \begin{document}
+\begin{comment}  % latex-focus
 
 \maketitle
 \tableofcontents
@@ -1306,36 +1307,108 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     continuous non-constant map $f:H \to \Z$.
 
     Let $u, v \in H$ be such that $f(u) \neq f(v)$. Let
-    $L = \{u + \rho(v - u) ~|~ \rho \in [0, 1]\}$ be the straight line between $u$ and $v$, and let
-    $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v - l_1|$. Let
-    $S = \{l \in L ~|~ f(l) = f(u)\}$, let $T = \{l \in L ~|~ [u, l] \subseteq S\}$ and let
-    $c = \sup T$.
+    $L = \{u + \rho(v - u) ~|~ \rho \in (0, 1)\}$ be the straight line between $u$ and $v$. But $L$
+    is connected, since $L$ is homeomorphic to $\R$.
 
-    We claim that $f$ is not continuous at $c$. Indeed, suppose $c \in T$ so that $f(c) =
-    f(u)$. Let $\epsilon = \frac{1}{2}$ and suppose there exists $\delta > 0$ such that
-    $|l - \delta|$ is such that
+    \todo{But this doesn't yield a contradiction because we could have $f$ constant on
+      $\rho \in (0, 1)$, with different values at the endpoints $u$ and $v$.}
+
+    Let $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v -
+    l_1|$. Let $S = \{l \in L ~|~ f(l) = f(u)\}$, let $T = \{l \in L ~|~ [u, l] \subseteq S\}$ and
+    let $c = \sup T$.
+
+    We claim that $f$ is not continuous at $c$.
+
+    Indeed, suppose $c \in T$ so that $f(c) = f(u)$. Let $\epsilon = \frac{1}{2}$ and suppose there
+    exists $\delta > 0$ such that $|l - \delta|$ is such that
 
     By the Approximation Property of the supremum, $c \notin T$. \todo{This requires that $T$ is
       open.}
 
     Specifically, let $\rho:L \to [0, 1]$ be defined by $l = u + \rho(l)(v - u)$.
-
-
-
-    % Fix $j, k \in f(H)$ with $j \neq k$.
   \end{proof}
 
+  \begin{claim*}
+    There are precisely two continuous functions $f:H \to \R$ satisfying $f(x, y)^2 = x^2$ for all
+    $(x, y) \in H$.
+  \end{claim*}
+  \begin{proof}
+    Examples are
+    \begin{align*}
+      f(x, y) &= x\\
+      f(x, y) &= -x.
+    \end{align*}
+    \todo{}
+  \end{proof}
+\item
+  \begin{problem*}
+    How many continuous functions $g:\R^2 \to \R$ are there satisfying $g(x, y)^2 = x^2$ for all
+    $(x, y) \in \R^2$?
+  \end{problem*}
+  \begin{proof}
+    \todo{}
+  \end{proof}
 \end{enumerate}
 
-
 \subsection{}
+\end{comment}  % latex-focus
+
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-8.png}
 \end{mdframed}
+\begin{enumerate}[label=(\roman*)]
+\item
+  \begin{claim*}
+    Let $U$ be an open subset of $\R$ and $c \in U$. Then $U \setminus \{c\}$ is disconnected.
+  \end{claim*}
+  \begin{proof}
+    Let $U$ be an open subset of $\R$ and $c \in U$. Let $V = (-\infty, c) \cap U$ and
+    $W = (c, \infty) \cap U$. Note that there exist $b < c$ and $d > c$ with $b, d \in U$, since
+    $U$ is open. Therefore $V$ and $W$ are non-empty, open, disjoint, and we have $V \cup W =
+    U$. Therefore $U$ is disconnected.
+  \end{proof}
+\item
+  \begin{claim*}
+    Let $a \in \R^2$. Then $\R^2 \setminus \{a\}$ is connected.
+  \end{claim*}
+  \begin{proof}
+    Let $U, V \subseteq \R^2$ be disjoint open sets that partition $\R^2 \setminus \{a\}$. We shall
+    show that one of them must be empty.
+
+    Suppose for a contradiction that neither $U$ nor $V$ is empty. Let $u \in U$ and $v \in V$ and
+    let $L = \{u + \rho(v - u) ~|~ \rho \in [0, 1]\}$ be the straight line between $u$ and
+    $v$. Note that, since they are open, neither $U$ nor $V$ are singleton sets. Therefore we may
+    specify that $a \notin L$ (the line ``misses'' $a$).
+
+    Let $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v -
+    l_1|$. Let $T = \{l \in L ~|~ [u, l] \subseteq U\}$ and let $c = \sup T$.
+
+    Suppose $c \in T$. Then $c \in U$. But $U$ is open so we must have $c < d \in U$. \red{and I
+      think it follows that $d \in T$}, contradicting $c$ as $\sup T$.
+
+    Alternatively suppose $c \notin T$. Then $c \in V$. But $V$ is open, so similarly we must have
+    $c > b \in V$. But then $b \in U$ and $b \in V$ contradicting their disjointness.
+
+    These contradictions imply that either $U$ or $V$ is empty and therefore that
+    $\R^2 \setminus \{a\}$ is connected.
+  \end{proof}
+\newpage
+\item
+  \begin{claim*}
+    There is no invertible function $f:[0, 1) \to (0, 1)$.
+  \end{claim*}
+  \begin{proof}
+
+  \end{proof}
+\end{enumerate}
+
+\begin{comment}  % latex-focus
 
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-9.png}
 \end{mdframed}
+\end{comment}  % latex-focus
 
 \end{document}
