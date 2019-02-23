@@ -11,7 +11,6 @@
 \date{}
 
 \begin{document}
-\begin{comment}  % latex-focus
 
 \maketitle
 \tableofcontents
@@ -932,7 +931,6 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 \subsection{}
 
-
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-5.png}
@@ -1011,6 +1009,10 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
     We want to show that $\mathring{B}(u, \epsilon) \cap U_0 \neq \emptyset$.
 
+    \red{WRONG DEFINITION/CRITERION}
+
+    \red{Note that $B(u, 1) \subseteq U_0$ (since they do not differ in the first position)}
+
     Let $n \geq 2$ be the smallest integer greater than $1 + \log_2 \epsilon^\1$, so that
     $2^n > \frac{2}{\epsilon}$. Let $v \in M$ be such that $v_m =
     \begin{cases}
@@ -1034,6 +1036,11 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \begin{claim*}
     $M$ is not complete.
   \end{claim*}
+  \begin{proof}
+    Let $(\phi_i)_{i\geq 0}$ be a Cauchy sequence in $M$, where
+    $\phi_i = (x_{i,n})_{n\geq 0} \in M$.
+  \end{proof}
+
   \begin{proof}
     Let $((x_n))_m \in M$ be the following sequence of sequences:
     \begin{align*}
@@ -1099,6 +1106,8 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
     \todo{The $\leq$ is worrrying, but worse than that we can have $y \notin B$ differing from $x$
       at position $N$ only, which will yield $d(x, y) \leq \epsilon$.}
+
+    \blue{Note that $f$ gives the distance from the zero sequence.}
 
     % Note that $y \in B \implies d(x, y) < \epsilon$, since
     % \begin{align*}
@@ -1250,6 +1259,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   non-empty disjoint open sets.
 \end{definition*}
 
+
 \begin{enumerate}[label=(\roman*)]
 \item
   \begin{claim*}
@@ -1303,6 +1313,12 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ is connected.
   \end{claim*}
   \begin{proof}
+    Let $H = \{(x, y) \in \R^2 ~|~ x > 0\}$. Let $u, v \in H$. Note that there exists a continuous
+    map $\gamma:[0, 1] \to H$ such that $\gamma(0) = u$ and $\gamma(1) = v$. (For example, we can
+    use the straight line $\gamma(t) = u + t(v - u)$. Therefore $H$ is path-connected, and
+    therefore connected.
+  \end{proof}
+  \begin{proof}
     Let $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ and suppose for a contradiction that there exists a
     continuous non-constant map $f:H \to \Z$.
 
@@ -1351,7 +1367,6 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \end{enumerate}
 
 \subsection{}
-\end{comment}  % latex-focus
 
 
 \begin{mdframed}
@@ -1369,14 +1384,27 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     U$. Therefore $U$ is disconnected.
   \end{proof}
 \item
+
   \begin{claim*}
     Let $a \in \R^2$. Then $\R^2 \setminus \{a\}$ is connected.
   \end{claim*}
   \begin{proof}
+    Let $u, v \in \R^2 \setminus \{a\}$. Note that there exists a continuous map
+    $\gamma:[0, 1] \to \R^2$ such that $\gamma(0) = u$ and $\gamma(1) = v$. (For example, we can
+    use the straight line $\gamma(t) = u + t(v - u)$ \red{This is continuous, even if $a$ lies on
+      the line, right?}) Therefore $\R^2 \setminus \{a\}$ is path-connected, and therefore
+    connected.
+  \end{proof}
+  {\bf Fragments}\\
+  \begin{mdframed}
     Let $U, V \subseteq \R^2$ be disjoint open sets that partition $\R^2 \setminus \{a\}$. We shall
     show that one of them must be empty.
 
-    Suppose for a contradiction that neither $U$ nor $V$ is empty. Let $u \in U$ and $v \in V$ and
+    Suppose for a contradiction that neither $U$ nor $V$ is empty. Let $u \in U$ and $v \in V$. Let
+    $\gamma:[0, 1] \to \R^2$ be given by $\gamma(t) = u + t(v - u)$.
+
+
+    and
     let $L = \{u + \rho(v - u) ~|~ \rho \in [0, 1]\}$ be the straight line between $u$ and
     $v$. Note that, since they are open, neither $U$ nor $V$ are singleton sets. Therefore we may
     specify that $a \notin L$ (the line ``misses'' $a$).
@@ -1392,7 +1420,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
     These contradictions imply that either $U$ or $V$ is empty and therefore that
     $\R^2 \setminus \{a\}$ is connected.
-  \end{proof}
+  \end{mdframed}
 \newpage
 \item
   \begin{claim*}
@@ -1403,12 +1431,10 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{proof}
 \end{enumerate}
 
-\begin{comment}  % latex-focus
 
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-9.png}
 \end{mdframed}
-\end{comment}  % latex-focus
 
 \end{document}
