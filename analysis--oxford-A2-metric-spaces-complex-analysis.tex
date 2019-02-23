@@ -1142,29 +1142,29 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \begin{enumerate}[label=(\roman*)]
 \item
   \begin{claim*}
-    Let $M$ be the space of real $n \times n$ matrices and let $\|A\|_S = \sup_{v \in U} \|A(v)\|$
-    where $U = \{x \in \R^n : \|x\| = 1\}$. Then $\|.\|_S$ is a norm on $M$.
+    Let $M$ be the space of real $n \times n$ matrices and let $\|A\| = \sup_{v \in U} \|A(v)\|$
+    where $U = \{x \in \R^n : \|x\| = 1\}$. Then $\|.\|$ is a norm on $M$.
   \end{claim*}
   \begin{proof}
-    Informally, $\|.\|_S$ assigns a value to a matrix $A$ as follows: consider the image under $A$ of
-    the unit circle centred at the origin. $\|A\|_S$ is the furthest distance from the origin of any
+    Informally, $\|.\|$ assigns a value to a matrix $A$ as follows: consider the image under $A$ of
+    the unit circle centred at the origin. $\|A\|$ is the furthest distance from the origin of any
     of the vectors in that image set.
     \begin{enumerate}
     \item {\bf Positivity}:\\
-      We have $\|0\|_S = 0$. If $A \neq 0$ then every vector in the image of the unit circle is
-      sent to a non-zero vector hence $\|A\|_S > 0$.
+      We have $\|0\| = 0$. If $A \neq 0$ then every vector in the image of the unit circle is
+      sent to a non-zero vector hence $\|A\| > 0$.
     \item {\bf Preserves scalar multiplication}:\\
-      We want to show that $\|\lambda A\|_S = \lambda \|A\|_S$. Informally, we want to show that the
+      We want to show that $\|\lambda A\| = \lambda \|A\|$. Informally, we want to show that the
       greatest distance that the matrix $\lambda A$ takes a vector in the unit circle differs from
       that distance for $A$ by a factor of $\lambda$.
       \begin{align*}
-        \|\lambda A\|_S = \sup_{v \in U} \|\lambda A(v)\|
+        \|\lambda A\| = \sup_{v \in U} \|\lambda A(v)\|
       \end{align*}
       \todo{}
     \item {\bf Triangle inequality}:\\
       Let $A, B \in M$ be real $n \times n$ matrices. We want to show that
       \begin{align*}
-        \|A + B\|_S \leq \|A\|_S + \|B\|_S.
+        \|A + B\| \leq \|A\| + \|B\|.
       \end{align*}
       Well, what is the geometrical meaning of $A + B$? It's a matrix which does the same thing to
       a vector as transforming it by $A$, and also transforming it by $B$, and then adding the two
@@ -1209,7 +1209,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{remark*}
 
   \begin{lemma}\label{a2-2-6-lemma-2}
-    For any $v \in \R^n$ we have $\|Av\| \leq \|A\|_S \cdot \|v\|$.
+    For any $v \in \R^n$ we have $\|Av\| \leq \|A\| \cdot \|v\|$.
   \end{lemma}
 
   \begin{proof}
@@ -1218,28 +1218,28 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       \|Av\|
       =    \Bigg|\Bigg|A \frac{v}{\|v\|} \|v\| \Bigg|\Bigg|
       =    \Bigg|\Bigg|A \frac{v}{\|v\|} \Bigg|\Bigg| \cdot \|v\|
-      \leq \|A\|_S \cdot \|v\|,
+      \leq \|A\| \cdot \|v\|,
     \end{align*}
-    since $\|\frac{v}{\|v\|}\| = 1$ and by definition $\|A\|_S = \sup_{u: \|u\| = 1} \|Au\|$.
+    since $\|\frac{v}{\|v\|}\| = 1$ and by definition $\|A\| = \sup_{u: \|u\| = 1} \|Au\|$.
 
   \end{proof}
 
 \item
 
   \begin{claim*}
-    Suppose that $A \in M$ has $\|A\|_S < 1$. Show that the map $B \mapsto AB$ is a
+    Suppose that $A \in M$ has $\|A\| < 1$. Show that the map $B \mapsto AB$ is a
     contraction.
   \end{claim*}
 
   \begin{proof}
-    Let $A, B \in M$ and suppose that $\|A\|_S < 1$. Then
+    Let $A, B \in M$ and suppose that $\|A\| < 1$. Then
     \begin{align*}
-      \|AB\|_S
+      \|AB\|
       &=    \sup_{v: \|v\| = 1} \|(AB)v\| \\
       &=    \sup_{v: \|v\| = 1} \|A(Bv)\| \\
-      &\leq \sup_{v: \|v\| = 1} \|A\|_S \|Bv\| ~~~~~~~~\text{by lemma (\ref{a2-2-6-lemma-2})}\\
+      &\leq \sup_{v: \|v\| = 1} \|A\| \|Bv\| ~~~~~~~~\text{by lemma (\ref{a2-2-6-lemma-2})}\\
       &< \sup_{v: \|v\| = 1} \|Bv\| \\
-      &= \|B\|_S,
+      &= \|B\|,
     \end{align*}
     therefore the map $A \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
   \end{proof}
