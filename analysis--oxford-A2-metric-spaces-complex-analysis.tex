@@ -1189,23 +1189,31 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
   \begin{lemma}\label{a2-2-6-lemma-1}
     Let $X$ be a normed vector space and let $f:X \to X$ be a linear transformation. The following
-    statements are are equivalent:
+    statements are equivalent:
     \begin{enumerate}[label=(\roman*)]
+    \item $f$ is a contraction.
     \item $\|f(x) - f(y)\| < \|x - y\|$ for all $x, y \in X$.
     \item $\|f(x)\| < \|x\|$ for all $x \in X$.
     \end{enumerate}
   \end{lemma}
 
-  \begin{proof}~\\
-    Suppose that (i) is true. Then (ii) follows on taking $y = 0$ since $f(0) = 0$.
-
-    Suppose that (ii) is true. Then we have $\|f(x) - f(y)\| = \|f(x - y)\| < \|x - y\|$.
+  \begin{proof}\hspace{0pt}\\
+    \begin{tabular}{ll}
+      $(i) \iff (ii)$: &This is \todo{not} the definition of contraction on a metric space.\\
+      \\
+      $(ii) \implies (iii)$: &Suppose that (ii) is true. Then (iii) follows on taking $y = 0$ since
+                               $f(0) = 0$.\\
+      \\
+      $(iii) \implies (ii)$: &Suppose that (iii) is true. Then we have\\
+                       & $\|f(x) - f(y)\| = \|f(x - y)\| < \|x - y\|.$
+    \end{tabular}
   \end{proof}
 
   \begin{remark*}
     The definition of a contraction mapping is more stringent: it requires that there exists
-    $0 < \rho < 1$ such that $\|f(x) - f(y)\| < \rho\|x - y\|$ for all $x, y \in X$.
-    \todo{Is this actually different from $<$?}
+    $0 < \rho < 1$ such that $\|f(x) - f(y)\| < \rho\|x - y\|$ for all $x, y \in X$.  \todo{Is this
+      actually different from $<$? I think so: it rules out the possibility that
+      $\sup_{x,y \in X} \|f(x) - f(y)\| = \|x - y\|$.}
   \end{remark*}
 
   \begin{lemma}\label{a2-2-6-lemma-2}
@@ -1239,9 +1247,9 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       &=    \sup_{v: \|v\| = 1} \|A(Bv)\| \\
       &\leq \sup_{v: \|v\| = 1} \|A\| \|Bv\| ~~~~~~~~\text{by lemma (\ref{a2-2-6-lemma-2})}\\
       &< \sup_{v: \|v\| = 1} \|Bv\| \\
-      &= \|B\|,
+      &= \|B\|.
     \end{align*}
-    therefore the map $A \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
+    Therefore the map $A \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
   \end{proof}
 
   \begin{claim*}
@@ -1250,19 +1258,16 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 
   \begin{proof}
-    What is the geometrical meaning of $I - A$? Well, $I = A + (I - A)$. So $B = AB + (I - A)B$.
-
-    It's the linear map $B \mapsto B - AB$.
-
-    $I - A$ maps $B$ to the vector pointing from $AB$ to $B$.
-
-    \begin{align*}
-      (I - A)B = B - AB
-    \end{align*}
-
-
-    $I - A$ invertible means that $(I - A)B = C$ has a solution for all $C$.
+    Suppose $I - A$ is non-invertible. Then there exists $v \neq 0$ such that $(I - A)v =
+    0$. Therefore $Av = v$, therefore $\|Av\| = \|v\|$. However this contradicts lemma
+    \ref{a2-2-6-lemma-2}, since by hypothesis $\|A\| < 1$.
   \end{proof}
+
+  \begin{remark*}
+    Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
+    pointing from $AB$ to $B$. $I - A$ invertible implies that $B$ is the unique matrix that is
+    sent to $B - AB$. It doesn't seem obvious that this is true.
+  \end{remark*}
 
   \begin{example*}
     Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
