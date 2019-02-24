@@ -1132,7 +1132,6 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \newpage
 \subsection{}
 
-\end{comment}  % latex-focus
 
 
 \begin{mdframed}
@@ -1188,33 +1187,26 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{mdframed}
 
   \begin{lemma}\label{a2-2-6-lemma-1}
-    Let $X$ be a normed vector space and let $f:X \to X$ be a linear transformation. The following
-    statements are equivalent:
+    Let $X$ be a normed vector space, let $f:X \to X$ be a linear transformation and let
+    $0 < \sigma < 1$. The following statements are equivalent:
     \begin{enumerate}[label=(\roman*)]
     \item $f$ is a contraction.
-    \item $\|f(x) - f(y)\| < \|x - y\|$ for all $x, y \in X$.
-    \item $\|f(x)\| < \|x\|$ for all $x \in X$.
+    \item $\|f(x) - f(y)\| < \sigma \|x - y\|$ for all $x, y \in X$.
+    \item $\|f(x)\| < \sigma \|x\|$ for all $x \in X$.
     \end{enumerate}
   \end{lemma}
 
   \begin{proof}\hspace{0pt}\\
     \begin{tabular}{ll}
-      $(i) \iff (ii)$: &This is \todo{not} the definition of contraction on a metric space.\\
+      $(i) \iff (ii)$: &This is the definition of a contraction on a normed vector space.\\
       \\
-      $(ii) \implies (iii)$: &Suppose that (ii) is true. Then (iii) follows on taking $y = 0$ since
+      $(ii) \implies (iii)$: &Suppose that (ii) is true. Then (iii) follows on taking $y = 0$, since
                                $f(0) = 0$.\\
       \\
       $(iii) \implies (ii)$: &Suppose that (iii) is true. Then we have\\
-                       & $\|f(x) - f(y)\| = \|f(x - y)\| < \|x - y\|.$
+                       & $\|f(x) - f(y)\| = \|f(x - y)\| < \sigma \|x - y\|.$
     \end{tabular}
   \end{proof}
-
-  \begin{remark*}
-    The definition of a contraction mapping is more stringent: it requires that there exists
-    $0 < \rho < 1$ such that $\|f(x) - f(y)\| < \rho\|x - y\|$ for all $x, y \in X$.  \todo{Is this
-      actually different from $<$? I think so: it rules out the possibility that
-      $\sup_{x,y \in X} \|f(x) - f(y)\| = \|x - y\|$.}
-  \end{remark*}
 
   \begin{lemma}\label{a2-2-6-lemma-2}
     For any $v \in \R^n$ we have $\|Av\| \leq \|A\| \cdot \|v\|$.
@@ -1226,12 +1218,13 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       \|Av\|
       =    \Bigg|\Bigg|A \frac{v}{\|v\|} \|v\| \Bigg|\Bigg|
       =    \Bigg|\Bigg|A \frac{v}{\|v\|} \Bigg|\Bigg| \cdot \|v\|
-      \leq \|A\| \cdot \|v\|,
+      ~\leq~ \|A\| \cdot \|v\|,
     \end{align*}
     since $\|\frac{v}{\|v\|}\| = 1$ and by definition $\|A\| = \sup_{u: \|u\| = 1} \|Au\|$.
 
   \end{proof}
 
+\newpage
 \item
 
   \begin{claim*}
@@ -1240,14 +1233,15 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{claim*}
 
   \begin{proof}
-    Let $A, B \in M$ and suppose that $\|A\| < 1$. Then
+    Let $A, B \in M$ and suppose that $\|A\| = \rho < 1$. Let
+    $\rho < \sigma = \frac{\rho + 1}{2} < 1$. Then
     \begin{align*}
       \|AB\|
       &=    \sup_{v: \|v\| = 1} \|(AB)v\| \\
       &=    \sup_{v: \|v\| = 1} \|A(Bv)\| \\
       &\leq \sup_{v: \|v\| = 1} \|A\| \|Bv\| ~~~~~~~~\text{by lemma (\ref{a2-2-6-lemma-2})}\\
-      &< \sup_{v: \|v\| = 1} \|Bv\| \\
-      &= \|B\|.
+      &< \sigma \sup_{v: \|v\| = 1} \|Bv\| \\
+      &< \sigma \|B\|.
     \end{align*}
     Therefore the map $A \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
   \end{proof}
@@ -1256,30 +1250,29 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     $I - A$ is invertible.
   \end{claim*}
 
-
   \begin{proof}
     Suppose $I - A$ is non-invertible. Then there exists $v \neq 0$ such that $(I - A)v =
     0$. Therefore $Av = v$, therefore $\|Av\| = \|v\|$. However this contradicts lemma
-    \ref{a2-2-6-lemma-2}, since by hypothesis $\|A\| < 1$.
+    (\ref{a2-2-6-lemma-2}), since by hypothesis $\|A\| < 1$.
   \end{proof}
 
-  \begin{remark*}
-    Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
-    pointing from $AB$ to $B$. $I - A$ invertible implies that $B$ is the unique matrix that is
-    sent to $B - AB$. It doesn't seem obvious that this is true.
-  \end{remark*}
+  % \begin{remark*}
+  %   Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
+  %   pointing from $AB$ to $B$. $I - A$ invertible implies that $B$ is the unique matrix that is
+  %   sent to $B - AB$. It doesn't seem obvious that this is true.
+  % \end{remark*}
 
-  \begin{example*}
-    Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
-    $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
-    for every $B$).
-  \end{example*}
+  % \begin{example*}
+  %   Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
+  %   $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
+  %   for every $B$).
+  % \end{example*}
 
-  \begin{example*}
-    Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
-    map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
-    unique for every $B$).
-  \end{example*}
+  % \begin{example*}
+  %   Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
+  %   map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
+  %   unique for every $B$).
+  % \end{example*}
 
 \end{enumerate}
 
