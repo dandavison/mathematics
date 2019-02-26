@@ -11,6 +11,7 @@
 \date{}
 
 \begin{document}
+\begin{comment}  % latex-focus
 
 \maketitle
 \tableofcontents
@@ -1132,56 +1133,98 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \newpage
 \subsection{}
 
-
+\end{comment}  % latex-focus
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
 \end{mdframed}
 
+% \begin{remark*}
+%   Informally, $\|.\|$ assigns a value to a matrix $A$ as follows: consider the image under $A$ of
+%   the unit circle centred at the origin. $\|A\|$ is the furthest distance from the origin of any
+%   of the vectors in that image set.
+% \end{remark*}
+
+
+\begin{lemma}\label{a2-2-6-lemma-0a}
+  Let $X \subseteq R$ and $c \geq 0$. Then $\sup cX = c\sup X$.
+\end{lemma}
+
+\begin{proof}
+  Let $M = \sup cX$ and $c \geq 0$. Note that for all $x \in X$ we have $cx \leq M$ or equivalently
+  $x \leq M/c$.  Therefore $M$ is an upper bound for $cX$ if and only if $M/c$ is an upper bound
+  for $X$. Suppose for a contradiction that $K < M/c$ is also an upper bound for $X$. Then $cK < M$
+  is an upper bound for $cX$, contradicting $M = \sup cX$. Therefore $\sup X = M/c$.
+\end{proof}
+
+\begin{lemma}\label{a2-2-6-lemma-0b}
+  Let $U$ be a set and let $f:U \to \R$ and $g:U\to \R$. Then
+  \begin{align*}
+    \sup_{u\in U} \(f(u) + g(u)\) \leq \sup_{u\in U} f(u) + \sup_{u\in U} g(u).
+  \end{align*}
+\end{lemma}
+
+\begin{proof}
+  Let $F = \sup_{u\in U} f(u)$ and $G = \sup_{u\in U} g(u)$. Then for all $u \in U$ we have
+  $f(u) \leq F$ and $g(u) \leq G$, therefore $f(u) + g(u) \leq F + G$. Therefore
+  $\sup_{u\in U} \(f(u) + g(u)\) \leq F + G$ as required.
+\end{proof}
+
+
+\newpage
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
+\end{mdframed}
 \begin{enumerate}[label=(\roman*)]
 \item
   \begin{claim*}
-    Let $M$ be the space of real $n \times n$ matrices and let $\|A\| = \sup_{v \in U} \|A(v)\|$
-    where $U = \{x \in \R^n : \|x\| = 1\}$. Then $\|.\|$ is a norm on $M$.
+    Let $M$ be the space of real $n \times n$ matrices, let $S = \{x \in \R^n : \|x\| = 1\}$ and
+    let $\|A\| = \sup_{v \in S} \|A(v)\|$. Then $\|.\|$ is a norm on $M$.
   \end{claim*}
+
   \begin{proof}
-    Informally, $\|.\|$ assigns a value to a matrix $A$ as follows: consider the image under $A$ of
-    the unit circle centred at the origin. $\|A\|$ is the furthest distance from the origin of any
-    of the vectors in that image set.
+    Let $S = \{x \in \R^n : \|x\| = 1\}$ be the unit sphere in $\R^n$.
     \begin{enumerate}
-    \item {\bf Positivity}:\\
-      We have $\|0\| = 0$. If $A \neq 0$ then every vector in the image of the unit circle is
-      sent to a non-zero vector hence $\|A\| > 0$.
-    \item {\bf Preserves scalar multiplication}:\\
-      We want to show that $\|\lambda A\| = \lambda \|A\|$. Informally, we want to show that the
-      greatest distance that the matrix $\lambda A$ takes a vector in the unit circle differs from
-      that distance for $A$ by a factor of $\lambda$.
+    \item {\bf Positive definiteness}:\\
+      First, note that $\|A\| = \sup_{v \in S} \|A(v)\| \geq 0$ since $\|v\| \geq 0$ for all
+      $v \in \R^n$. We claim that $\|A\| = 0$ if and only if $A = 0$. Indeed, suppose $A = 0$. Then
+      certainly $\|A\| = 0$. Conversely, suppose $\|A\| = 0$. Then for all $v \in S$ we have
+      $Av = 0$, since otherwise $0$ would not be the supremum, and also $v \neq 0$. Therefore
+      $A = 0$.
+    \item {\bf Preservation of scalar multiplication}:\\
+      Let $\lambda \in \R$. Then
       \begin{align*}
-        \|\lambda A\| = \sup_{v \in U} \|\lambda A(v)\|
+      \|\lambda A\|
+        &= \sup_{v \in S} \|(\lambda A)(v)\| \\
+        &= \sup_{v \in S} \|\lambda (A(v))\| \\
+        &= \lambda  \sup_{v \in S} \|A(v)\| ~~~~~~~ \text{(by lemma (\ref{a2-2-6-lemma-0a}))} \\
+        &= \lambda \|A\|.
       \end{align*}
-      \todo{}
+      % Informally, we want to show that the greatest distance that the matrix $\lambda A$ takes a
+      % vector in the unit circle differs from that distance for $A$ by a factor of $\lambda$.
     \item {\bf Triangle inequality}:\\
-      Let $A, B \in M$ be real $n \times n$ matrices. We want to show that
+      Let $A, B \in M$ be real $n \times n$ matrices. We have
       \begin{align*}
-        \|A + B\| \leq \|A\| + \|B\|.
+        &\|A + B\| \\
+        =& \sup_{v \in S} \|(A + B)v\| \\
+        =& \sup_{v \in S} \|Av + Bv\|                     &\text{(by linearity of matrix multiplication)}\\
+        \leq& \sup_{v \in S} \(\|Av\| + \|Bv\|\)          &\text{(by triangle inequality and preservation of weak inequalities)}\\
+        \leq& \sup_{v \in S} \|Av\| + \sup_{v \in S} \|Bv\| &\text{(by lemma (\ref{a2-2-6-lemma-0b}))}\\
+        =& \|A\| + \|B\|.
       \end{align*}
-      Well, what is the geometrical meaning of $A + B$? It's a matrix which does the same thing to
-      a vector as transforming it by $A$, and also transforming it by $B$, and then adding the two
-      resulting vectors. In other words it's the map $x \mapsto Ax + Bx$.
+      % Well, what is the geometrical meaning of $A + B$? It's a matrix which does the same thing to
+      % a vector as transforming it by $A$, and also transforming it by $B$, and then adding the two
+      % resulting vectors. In other words it's the map $x \mapsto Ax + Bx$.
 
-      So yeah, the triangle inequality has to hold. On the left the {\it same} vector is
-      transformed by $A$ and $B$, and we take the sup over all possible choices of that vector. On
-      the right we get to choose different vectors for the $A$ and $B$ transformation, so we can't
-      possibly do worse.
-
-      \todo{proof}
+      % So yeah, the triangle inequality has to hold. On the left the {\it same} vector is
+      % transformed by $A$ and $B$, and we take the sup over all possible choices of that vector. On
+      % the right we get to choose different vectors for the $A$ and $B$ transformation, so we can't
+      % possibly do worse.
     \end{enumerate}
   \end{proof}
 
 
   \newpage
-
-
   \begin{mdframed}
     \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
   \end{mdframed}
@@ -1225,8 +1268,11 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{proof}
 
 \newpage
-\item
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
+\end{mdframed}
 
+\item
   \begin{claim*}
     Suppose that $A \in M$ has $\|A\| < 1$. Show that the map $B \mapsto AB$ is a
     contraction.
@@ -1276,10 +1322,12 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 \end{enumerate}
 
+\begin{comment}  % latex-focus
 
 \subsection{}
 
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-7.png}
 \end{mdframed}
@@ -1466,5 +1514,6 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-9.png}
 \end{mdframed}
+\end{comment}  % latex-focus
 
 \end{document}
