@@ -213,6 +213,36 @@ So what would be a basis for this vector space?
 
 
 \newpage
+
+
+\section{Isometries and Symmetries}
+
+\begin{example*}
+  Let $S = [-1, 1] \times [-1, 1] \subset \R^2$ under the standard basis and let $d$ be the
+  standard Euclidean metric.
+
+  $S$ is a square. Equipped with the induced metric $d|_{S\times S}$, it is a metric space.
+
+  Let $f:\R^2 \to \R^2$ be rotation anticlockwise by $45\deg$, so that
+  $f(x) = \matMMxNN
+  {\frac{1}{\sqrt{2}}}{\frac{-1}{\sqrt{2}}}
+  {\frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}x$.
+
+  Then $f$ is an isometry.
+
+  We may consider the restriction $f|_S: S \to \R^2$. This is an isometry, but it is not a symmetry
+  because its image is not $S$.
+
+  On the other hand, let $g:\R^2 \to \R^2$ be rotation anticlockwise by $90\deg$, so that
+  $g(x) = \matMMxNN
+  {0}{-1}
+  {1}{0}x$.
+
+  Then $g$ is an isometry and $g|_S: S \to \R^2$ is both an isometry and a symmetry of $S$, since
+  its image is $S$. We could also write it as $g: S \to S$.
+\end{example*}
+
+
 \section{Groups}
 
 Consider a set $A$ with $n$ elements.
