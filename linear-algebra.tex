@@ -1,5 +1,4 @@
 
-\begin{comment}  % latex-focus
 \section{Examples of vector spaces}
 \begin{enumerate}
 \item The set $\R^n$ of $n-$tuples of real numbers, under componentwise addition and componentwise
@@ -315,13 +314,14 @@ Note that $A^\1 = A = A^T$ and $B^\1 = \matMMxNN{0}{1}
 
 Therefore these are both orthogonal (unitary) matrices.
 
+
 \section{Eigenvalues, eigenvectors, characteristic polynomial}
 
 Let $V$ be a vector space and let $T:V \to V$ be a linear transformation.
 
 \begin{definition*}[eigenvalue]
-  $\lambda$ is an \textit{eigenvalue} of $T$ iff there exists $v \in V$ such
-  that $Tv = \lambda v$.
+  $\lambda$ is an \textit{eigenvalue} of $T$ iff there exists \todo{non-zero?} $v \in V$ such that
+  $Tv = \lambda v$.
 \end{definition*}
 
 \begin{definition*}[eigenspace]
@@ -377,6 +377,72 @@ Let $V$ be a vector space and let $T:V \to V$ be a linear transformation.
   $T(v_1 + av_2) = T(v_1) + aT(v_2) = \lambda v_1 + a\lambda v_2 = \lambda(v_1
   + av_2)$.
 \end{proof}
+
+
+
+\begin{example*}
+  $A = \mat
+  {0}{-1}
+  {1}{0}$ is a rotation anticlockwise by $90\deg$. So it should be found to not
+  have any eigenvectors.
+
+  So let's try to find the eigenvectors. The eigenvalues of $A$ are the solutions to
+  $\det (A - \lambda I) = 1 -\lambda^2 = 0$, so $\lambda = 1, -1$.
+
+  If $\lambda = 1$ then we have
+  \begin{align*}
+    \mat{0}{-1}{1}{0}\pvecc{x_1}{x_2} &= \pvecc{x_1}{x_2} \\
+    \pvecc{-x_2}{x_1} &= \pvecc{x_1}{x_2},
+  \end{align*}
+  and if $\lambda = -1$ then we have
+  \begin{align*}
+    \mat{0}{-1}{1}{0}\pvecc{x_1}{x_2} &= \pvecc{-x_1}{-x_2} \\
+    \pvecc{-x_2}{x_1} &= \pvecc{-x_1}{-x_2},
+  \end{align*}
+  so that $\pvecc{x_1}{x_2} = \pvecc{0}{0}$ is the only solution in both cases.
+\end{example*}
+
+\begin{example*}
+  $A = \mat {\cos \theta}{-\sin \theta} {\sin \theta}{\cos \theta}$ is a rotation anticlockwise by
+  $\theta \deg$. So it should be found to not have any eigenvectors.
+
+  So let's try to find the eigenvectors. The eigenvalues of $A$ are the solutions to
+  \begin{align*}
+    \det (A - \lambda I)
+    &= (\cos\theta - \lambda)^2 + \sin^2\theta \\
+    &= \lambda^2 - 2\lambda\cos\theta + 1 \\
+    &= 0,
+  \end{align*}
+  so that
+  \begin{align*}
+    \lambda
+    &= \frac{2\cos\theta \pm \sqrt{4\cos^2\theta - 4}}{2} \\
+    &= \cos\theta \pm \sqrt{\cos^2\theta - 1} \\
+    &= \cos\theta \pm \sin\theta.
+  \end{align*}
+
+  If $\lambda = \cos\theta + \sin\theta$ then we have
+  \begin{align*}
+    \mat
+    {\cos \theta}{-\sin \theta}
+    {\sin \theta}{\cos \theta} \pvecc{x_1}{x_2}
+    &= \pvecc{(\cos\theta + \sin\theta)x_1}{(\cos\theta + \sin\theta)x_2} \\
+    \pvecc{x_1\cos\theta - x_2\sin\theta}{x_1\sin\theta + x_2\cos\theta}
+    &= \pvecc{(\cos\theta + \sin\theta)x_1}{(\cos\theta + \sin\theta)x_2} \\
+    \begin{cases}
+      x_1\sin\theta = -x_2\sin\theta \\
+      x_1\sin\theta = x_2\sin\theta.
+    \end{cases} \\
+    \begin{cases}
+      \sin\theta(x_1 + x_2) = 0 \\
+      \sin\theta(x_1 - x_2) = 0,
+    \end{cases}
+  \end{align*}
+  so either $\theta = 2\pi k$ or $\pvecc{x_1}{x_2} = 0$, as expected.
+
+\end{example*}
+
+
 
 \section{Change of basis}
 
@@ -1265,7 +1331,6 @@ Therefore
 
 \section{Singular Value Decomposition}
 \footnotetext{Notes from Kun (2018) A Programmer's Introduction to Mathematics}
-\end{comment}  % latex-focus
 
 % https://news.ycombinator.com/item?id=19014932
 
@@ -1511,7 +1576,3 @@ Thus we assume
   linear-combination person are given by forming the same linear combination of ratings of the
  combination.
 \end{enumerate}
-
-\begin{comment}  % latex-focus
-
-\end{comment}  % latex-focus
