@@ -1287,36 +1287,93 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       &< \sigma \sup_{v: \|v\| = 1} \|Bv\| \\
       &< \sigma \|B\|.
     \end{align*}
-    Therefore the map $A \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
+    Therefore the map $B \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
   \end{proof}
 
   \begin{claim*}
     $I - A$ is invertible.
   \end{claim*}
 
+  \begin{intuition*}
+    $I - A$ is invertible if and only if $0$ is the only fixed point under transformation by $A$.
+  \end{intuition*}
+
   \begin{proof}
-    Suppose $I - A$ is non-invertible. Then there exists $v \neq 0$ such that $(I - A)v =
-    0$. Therefore $Av = v$, therefore $\|Av\| = \|v\|$. However this contradicts lemma
-    (\ref{a2-2-6-lemma-2}), since by hypothesis $\|A\| < 1$.
+    Suppose for a contradiction that $I - A$ is non-invertible. Then there exists $v \neq 0$ such
+    that $(I - A)v = 0$. Therefore $Av = v$, therefore $\|Av\| = \|v\|$. However, by hypothesis
+    $\|A\| < 1$, therefore from lemma (\ref{a2-2-6-lemma-2}) we have
+    $\|Av\| \leq \|A\| \cdot \|v\| < \|v\|$, a contradiction.
+
+    \todo{This proof depends on the hypothesis that $\|A\| < 1$, but it doesn't use the result that
+      $B \mapsto AB$ is a contraction; was it supposed to?}
   \end{proof}
 
-  % \begin{remark*}
-  %   Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
-  %   pointing from $AB$ to $B$. $I - A$ invertible implies that $B$ is the unique matrix that is
-  %   sent to $B - AB$. It doesn't seem obvious that this is true.
-  % \end{remark*}
+  \begin{proof} {\bf Alternative proof 0}\\
+    The following statements are equivalent:
+    \begin{enumerate}
+    \item $I - A$ is invertible.
+    \item $(I - A)v = 0 \implies v = 0$.
+    \item $0$ is the only fixed point of the map $v \mapsto Av$.
+    \item $1$ is not an eigenvalue of $A$.
+    \end{enumerate}
 
-  % \begin{example*}
-  %   Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
-  %   $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
-  %   for every $B$).
-  % \end{example*}
+  \end{proof}
 
-  % \begin{example*}
-  %   Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
-  %   map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
-  %   unique for every $B$).
-  % \end{example*}
+  \begin{proof} {\bf Alternative proof I}\\
+    Suppose for a contradiction that $I - A$ is non-invertible. Then there exists $v \neq 0$ such
+    that $(I - A)v = 0$, or equivalently $Av = v$. However, the linear map $v \mapsto Av$ is a
+    contraction. Therefore $0$ is the only fixed point, a contradiction.
+  \end{proof}
+
+  \begin{proof} {\bf Alternative proof II}\\
+    Note that $I - A$ is invertible if and only if $I - A$ is bijective. Suppose for a
+    contradiction that there exists $v' \neq v$ such that $(I - A)v' = (I - A)v$, or equivalantly
+    $A(v - v)' = v - v'$. Then $v - v'$ is a fixed point under the linear map $x \to Ax$. But this
+    map is a contraction, so the only fixed point is $0$ and we have $v = v'$, a contradiction.
+  \end{proof}
+
+  \begin{proof} {\bf Alternative proof III}\\
+    Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
+    pointing from $AB$ to $B$. $I - A$ invertible if and only if this map is injective: i.e. there
+    does not exist $B' \neq B$ such that $AB' + (B - AB) = B'$. I.e. the displacement of $B$ caused
+    by the transformation $A$ is unique to $B$; no other matrix $B' \neq B$ is displaced in the
+    same manner.
+  \end{proof}
+
+  \todo{When proving that $I - A$ is invertible, I am free to base my argument on either of the
+    following linear maps, right?
+    \begin{enumerate}
+    \item $f: \R^n \to \R^n$ given by $v \mapsto (I - A)v$
+    \item $f: \R^{n\times n} \to \R^{n\times n}$ given by $B \mapsto (I - A)B$
+    \end{enumerate}
+    However, both maps are contractions under their respective metrics, so the arguments end up
+    being very similar.
+  }
+
+
+
+  \begin{proof}
+    Let $X$ be a vector space, let $u, v \in X$, and let $f: X \to X$ be a linear map.
+
+    Suppose $f(u) - u = f(v) - v$. Then
+    \begin{align*}
+      f(u) - f(v) &= u - v \\
+      f(u - v)    &= u - v,
+    \end{align*}
+    so $u - v$ is a fixed point of $f$.
+  \end{proof}
+
+  \begin{example*}
+    Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
+    $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
+    for every $B$).
+  \end{example*}
+
+  \begin{example*}
+    Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
+    map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
+    unique for every $B$).
+  \end{example*}
 
 \end{enumerate}
 
