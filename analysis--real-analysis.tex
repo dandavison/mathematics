@@ -972,17 +972,22 @@ scalar multiplication & mult may not be defined & $\norm{\lambda u} = \lambda \n
   converges if there exists a sequence of real numbers $(M_n)$ such that $\|f_n\|_\infty \leq M_n$
   and $\sumn M_n$ converges. (The proof involves showing that the sequence of partial sums is
   Cauchy.)
-\item {\bf Definition}: A function from a metric space to itself is a \defn{contraction} if all
-  pairwise distances are reduced by at least a constant factor:
-  $d(f(x_1), f(x_2)) \leq Kd(x_1, x_2)$ for all $x_1, x_2 \in X$.
-\item {\bf Theorem} A contraction on a complete metric space has a unique fixed point. (The proof
-  involves constructing a sequence by $x_n = f(x_{n-1})$ for some initial value $x_0 = a$.)
 \item {\bf Definition}: Let $X$ be a set and $Y$ be a metric space. A function $X \to Y$ is
   \defn{bounded} if there exists $K \in \R$ such that $d(f(x_1), f(x_2)) < K$ for all
   $x_1, x_2 \in X$.
 \item {\bf Definition}: Let $X$ be a set. A function $X \to \R$ is \defn{bounded} if there exists
   $K \in \R$ such that $|f(x)| < K$ for all $x \in X$. \red{are these definitions consistent?} The
   set of all bounded $X \to \R$ functions is denoted $\B(X)$.
+\item {\bf Definition}: A map $f:M \to N$ from one metric space to another is \defn{Lipschitz} if
+  there exists $K > 0$ such that $d_N\((f(x_1), f(x_2)\) \leq K d_M(x_1, x_2)$ for all
+  $x_1, x_2 \in M$.
+\item {\bf Definition}: A map from a metric space to {\it itself} is a \defn{contraction} if it is
+  Lipschitz with $K < 1$. \todo{Why is a contraction not defined for a map between different metric
+    spaces?}
+\item {\bf Theorem} (Banach Fixed Point Theorem): A contraction on a complete metric space has a
+  unique fixed point. (The proof involves constructing a sequence by $x_n = f(x_{n-1})$ for some
+  initial value $x_0 = a$.)
+\item {\bf Theorem}:
   \begin{theorem*}
     Let $X$ be a set. The normed vector space $(\B(X), \|.\|_\infty)$ is complete.
   \end{theorem*}
@@ -1028,6 +1033,18 @@ scalar multiplication & mult may not be defined & $\norm{\lambda u} = \lambda \n
     $[0, 2]$.)
   \item $[0, 1] \cup (1, 2]$ is connected.
   \end{enumerate}
+\item {\bf Theorem}: $\R$ is connected.\\
+  {\it Intuition}: Basically you can't partition $\R$ into two non-empty disjoint open sets because
+  the supremum of one of the sets would be left out.
+  \begin{proof}
+    Let $U, V$ be disjoint open sets such that $U \cup V = \R$. Suppose for a contradiction that
+    neither is empty. Let $x \in U$ and $y \in V$ where WLOG $x < y$. Let
+    $S = \{z ~|~ [x, z] \subseteq U\}$, and let $c = \sup S$. Then $c \notin U$ (since the
+    Approximation Property of the supremum would allow us to exhibit $c < d \in U$, contradicting
+    $c$ as supremum of $S$). Also $c \in V$ leads to a contradiction since we would be able to
+    exhibit $c > d \in V$ so that $d$ would be a lower upper bound of $S$ than $c$. Hence either
+    $U$ or $V$ is empty.
+  \end{proof}
 \item {\bf Definition}: a metric space is \defn{discrete} if every point is the sole member of a
   singleton open set.
 \item {\bf Theorem}:
