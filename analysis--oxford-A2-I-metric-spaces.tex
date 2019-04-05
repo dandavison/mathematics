@@ -1133,6 +1133,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \subsection{}
 
 
+
 \begin{mdframed}
   \includegraphics[width=400pt]{img/oxford-a2-2-6.png}
 \end{mdframed}
@@ -1147,6 +1148,9 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \begin{lemma}\label{a2-2-6-lemma-0a}
   Let $X \subseteq R$ and $c \geq 0$. Then $\sup cX = c\sup X$.
 \end{lemma}
+
+Continuous image of a compact set is compact. The sup here is a sup of a compact set so ... there's
+a topological argument for this supremum being a maximum.
 
 \begin{proof}
   Let $M = \sup cX$ and $c \geq 0$. Note that for all $x \in X$ we have $cx \leq M$ or equivalently
@@ -1164,8 +1168,8 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 
 \begin{proof}
   Let $F = \sup_{u\in U} f(u)$ and $G = \sup_{u\in U} g(u)$. Then for all $u \in U$ we have
-  $f(u) \leq F$ and $g(u) \leq G$, therefore $f(u) + g(u) \leq F + G$. Therefore
-  $\sup_{u\in U} \(f(u) + g(u)\) \leq F + G$ as required.
+  $f(u) \leq F$ and $g(u) \leq G$, therefore for all $u \in U$ we have $f(u) + g(u) \leq F +
+  G$. Therefore $\sup_{u\in U} \(f(u) + g(u)\) \leq F + G$ as required.
 \end{proof}
 
 
@@ -1189,6 +1193,9 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       certainly $\|A\| = 0$. Conversely, suppose $\|A\| = 0$. Then for all $v \in S$ we have
       $Av = 0$, since otherwise $0$ would not be the supremum, and also $v \neq 0$. Therefore
       $A = 0$.
+
+      \red{WRONG! $A$ might have non-empty nullspace. So instead consider whether $A$ has a non-zero entry.}
+
     \item {\bf Preservation of scalar multiplication}:\\
       Let $\lambda \in \R$. Then
       \begin{align*}
@@ -1228,12 +1235,13 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{mdframed}
 
   \begin{lemma}\label{a2-2-6-lemma-1}
-    Let $X$ be a normed vector space, let $f:X \to X$ be a linear transformation and let
-    $0 < \sigma < 1$. The following statements are equivalent:
+    Let $X$ be a normed vector space, let $f:X \to X$ be a linear transformation. The following
+    statements are equivalent:
     \begin{enumerate}[label=(\roman*)]
     \item $f$ is a contraction.
-    \item $\|f(x) - f(y)\| < \sigma \|x - y\|$ for all $x, y \in X$.
-    \item $\|f(x)\| < \sigma \|x\|$ for all $x \in X$.
+    \item There exists $0 < \sigma < 1$ such that $\|f(x) - f(y)\| < \sigma \|x - y\|$ for all
+      $x, y \in X$.
+    \item There exists $0 < \sigma < 1$ such that $\|f(x)\| < \sigma \|x\|$ for all $x \in X$.
     \end{enumerate}
   \end{lemma}
 
@@ -1254,7 +1262,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \end{lemma}
 
   \begin{proof}
-    Let $v \in \R^n$. Then
+    It's obviously true for $v = 0$, so let $v \in \R^n$, $v \neq 0$. Then
     \begin{align*}
       \|Av\|
       =    \Bigg|\Bigg|A \frac{v}{\|v\|} \|v\| \Bigg|\Bigg|
@@ -1285,9 +1293,11 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       &=    \sup_{v: \|v\| = 1} \|A(Bv)\| \\
       &\leq \sup_{v: \|v\| = 1} \|A\| \|Bv\| ~~~~~~~~\text{by lemma (\ref{a2-2-6-lemma-2})}\\
       &< \sigma \sup_{v: \|v\| = 1} \|Bv\| \\
-      &< \sigma \|B\|.
+      &= \sigma \|B\|.
     \end{align*}
     Therefore the map $B \mapsto AB$ is a contraction, by lemma (\ref{a2-2-6-lemma-1}).
+
+    \red{Not sure we need $\sigma$ in this proof.}
   \end{proof}
 
   \begin{claim*}
@@ -1308,7 +1318,7 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
       $B \mapsto AB$ is a contraction; was it supposed to?}
   \end{proof}
 
-  \begin{proof} {\bf Alternative proof 0}\\
+  \begin{remark*}
     The following statements are equivalent:
     \begin{enumerate}
     \item $I - A$ is invertible.
@@ -1316,64 +1326,63 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     \item $0$ is the only fixed point of the map $v \mapsto Av$.
     \item $1$ is not an eigenvalue of $A$.
     \end{enumerate}
+    These equivalences lead to a few different proof variants. In particular (c) and (d) are true
+    since $A$ is a contraction.
+  \end{remark*}
 
-  \end{proof}
+  % \begin{proof} {\bf Alternative proof I}\\
+  %   Suppose for a contradiction that $I - A$ is non-invertible. Then there exists $v \neq 0$ such
+  %   that $(I - A)v = 0$, or equivalently $Av = v$. However, the linear map $v \mapsto Av$ is a
+  %   contraction. Therefore $0$ is the only fixed point, a contradiction.
+  % \end{proof}
 
-  \begin{proof} {\bf Alternative proof I}\\
-    Suppose for a contradiction that $I - A$ is non-invertible. Then there exists $v \neq 0$ such
-    that $(I - A)v = 0$, or equivalently $Av = v$. However, the linear map $v \mapsto Av$ is a
-    contraction. Therefore $0$ is the only fixed point, a contradiction.
-  \end{proof}
+  % \begin{proof} {\bf Alternative proof II}\\
+  %   Note that $I - A$ is invertible if and only if $I - A$ is bijective. Suppose for a
+  %   contradiction that there exists $v' \neq v$ such that $(I - A)v' = (I - A)v$, or equivalantly
+  %   $A(v - v)' = v - v'$. Then $v - v'$ is a fixed point under the linear map $x \to Ax$. But this
+  %   map is a contraction, so the only fixed point is $0$ and we have $v = v'$, a contradiction.
+  % \end{proof}
 
-  \begin{proof} {\bf Alternative proof II}\\
-    Note that $I - A$ is invertible if and only if $I - A$ is bijective. Suppose for a
-    contradiction that there exists $v' \neq v$ such that $(I - A)v' = (I - A)v$, or equivalantly
-    $A(v - v)' = v - v'$. Then $v - v'$ is a fixed point under the linear map $x \to Ax$. But this
-    map is a contraction, so the only fixed point is $0$ and we have $v = v'$, a contradiction.
-  \end{proof}
+  % \begin{proof} {\bf Alternative proof III}\\
+  %   Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
+  %   pointing from $AB$ to $B$. $I - A$ invertible if and only if this map is injective: i.e. there
+  %   does not exist $B' \neq B$ such that $AB' + (B - AB) = B'$. I.e. the displacement of $B$ caused
+  %   by the transformation $A$ is unique to $B$; no other matrix $B' \neq B$ is displaced in the
+  %   same manner.
+  % \end{proof}
 
-  \begin{proof} {\bf Alternative proof III}\\
-    Note that $I - A$ is the linear map $B \mapsto B - AB$. So $I - A$ maps $B$ to the vector
-    pointing from $AB$ to $B$. $I - A$ invertible if and only if this map is injective: i.e. there
-    does not exist $B' \neq B$ such that $AB' + (B - AB) = B'$. I.e. the displacement of $B$ caused
-    by the transformation $A$ is unique to $B$; no other matrix $B' \neq B$ is displaced in the
-    same manner.
-  \end{proof}
-
-  \todo{When proving that $I - A$ is invertible, I am free to base my argument on either of the
-    following linear maps, right?
+  \todo{My main remaining question is this: we have the following two maps:
     \begin{enumerate}
     \item $f: \R^n \to \R^n$ given by $v \mapsto (I - A)v$
     \item $f: \R^{n\times n} \to \R^{n\times n}$ given by $B \mapsto (I - A)B$
     \end{enumerate}
+    When proving that $I - A$ is invertible, I am free to base my argument on either of them,
+    right?
     However, both maps are contractions under their respective metrics, so the arguments end up
     being very similar.
   }
+  % \begin{proof}
+  %   Let $X$ be a vector space, let $u, v \in X$, and let $f: X \to X$ be a linear map.
 
+  %   Suppose $f(u) - u = f(v) - v$. Then
+  %   \begin{align*}
+  %     f(u) - f(v) &= u - v \\
+  %     f(u - v)    &= u - v,
+  %   \end{align*}
+  %   so $u - v$ is a fixed point of $f$.
+  % \end{proof}
 
+  % \begin{example*}
+  %   Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
+  %   $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
+  %   for every $B$).
+  % \end{example*}
 
-  \begin{proof}
-    Let $X$ be a vector space, let $u, v \in X$, and let $f: X \to X$ be a linear map.
-
-    Suppose $f(u) - u = f(v) - v$. Then
-    \begin{align*}
-      f(u) - f(v) &= u - v \\
-      f(u - v)    &= u - v,
-    \end{align*}
-    so $u - v$ is a fixed point of $f$.
-  \end{proof}
-
-  \begin{example*}
-    Let $M$ be 1-dimensional. Let $A = \frac{3}{4}$. Then $I - A = \frac{1}{4}$ is the map
-    $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is unique
-    for every $B$).
-  \end{example*}
-
-  \begin{example*}
-    Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
-    map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
-    unique for every $B$).
-  \end{example*}
+  % \begin{example*}
+  %   Let $M$ be n-dimensional. Let $A = \diag(\frac{3}{4})$. Then $I - A = \diag(\frac{1}{4})$ is the
+  %   map $B \mapsto \frac{B}{4}$. It is invertible (the vector that points from $AB$ to $B$ is
+  %   unique for every $B$).
+  % \end{example*}
 
 \end{enumerate}
 
@@ -1421,8 +1430,8 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
     \begin{cases}
       0, & m \in A\\
       1, & m \in B.
-    \end{cases}$ Then clearly $f$ is continuous on $M$, since $f$ is constant on $A$ and constant
-    on $B$, and there are no other points in $M$.
+    \end{cases}$ Then clearly \red{use the fact that preimages are open?} $f$ is continuous on $M$,
+    since $f$ is constant on $A$ and constant on $B$, and there are no other points in $M$.
 
     $\impliedby$
 
@@ -1444,50 +1453,54 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \begin{claim*}
     $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ is connected.
   \end{claim*}
+
   \begin{proof}
     Let $H = \{(x, y) \in \R^2 ~|~ x > 0\}$. Let $u, v \in H$. Note that there exists a continuous
     map $\gamma:[0, 1] \to H$ such that $\gamma(0) = u$ and $\gamma(1) = v$. (For example, we can
     use the straight line $\gamma(t) = u + t(v - u)$. Therefore $H$ is path-connected, and
     therefore connected.
   \end{proof}
-  \begin{proof}
-    Let $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ and suppose for a contradiction that there exists a
-    continuous non-constant map $f:H \to \Z$.
 
-    Let $u, v \in H$ be such that $f(u) \neq f(v)$. Let
-    $L = \{u + \rho(v - u) ~|~ \rho \in (0, 1)\}$ be the straight line between $u$ and $v$. But $L$
-    is connected, since $L$ is homeomorphic to $\R$.
+  % \begin{proof}
+  %   Let $H = \{(x, y) \in \R^2 ~|~ x > 0\}$ and suppose for a contradiction that there exists a
+  %   continuous non-constant map $f:H \to \Z$.
 
-    \todo{But this doesn't yield a contradiction because we could have $f$ constant on
-      $\rho \in (0, 1)$, with different values at the endpoints $u$ and $v$.}
+  %   Let $u, v \in H$ be such that $f(u) \neq f(v)$. Let
+  %   $L = \{u + \rho(v - u) ~|~ \rho \in (0, 1)\}$ be the straight line between $u$ and $v$. But $L$
+  %   is connected, since $L$ is homeomorphic to $\R$.
 
-    Let $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v -
-    l_1|$. Let $S = \{l \in L ~|~ f(l) = f(u)\}$, let $T = \{l \in L ~|~ [u, l] \subseteq S\}$ and
-    let $c = \sup T$.
+  %   \todo{But this doesn't yield a contradiction because we could have $f$ constant on
+  %     $\rho \in (0, 1)$, with different values at the endpoints $u$ and $v$.}
 
-    We claim that $f$ is not continuous at $c$.
+  %   Let $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v -
+  %   l_1|$. Let $S = \{l \in L ~|~ f(l) = f(u)\}$, let $T = \{l \in L ~|~ [u, l] \subseteq S\}$ and
+  %   let $c = \sup T$.
 
-    Indeed, suppose $c \in T$ so that $f(c) = f(u)$. Let $\epsilon = \frac{1}{2}$ and suppose there
-    exists $\delta > 0$ such that $|l - \delta|$ is such that
+  %   We claim that $f$ is not continuous at $c$.
 
-    By the Approximation Property of the supremum, $c \notin T$. \todo{This requires that $T$ is
-      open.}
+  %   Indeed, suppose $c \in T$ so that $f(c) = f(u)$. Let $\epsilon = \frac{1}{2}$ and suppose there
+  %   exists $\delta > 0$ such that $|l - \delta|$ is such that
 
-    Specifically, let $\rho:L \to [0, 1]$ be defined by $l = u + \rho(l)(v - u)$.
-  \end{proof}
+  %   By the Approximation Property of the supremum, $c \notin T$. \todo{This requires that $T$ is
+  %     open.}
+
+  %   Specifically, let $\rho:L \to [0, 1]$ be defined by $l = u + \rho(l)(v - u)$.
+  % \end{proof}
 
   \begin{claim*}
     There are precisely two continuous functions $f:H \to \R$ satisfying $f(x, y)^2 = x^2$ for all
     $(x, y) \in H$.
   \end{claim*}
+
   \begin{proof}
-    Examples are
-    \begin{align*}
-      f(x, y) &= x\\
-      f(x, y) &= -x.
-    \end{align*}
     \todo{}
+    % Examples are
+    % \begin{align*}
+    %   f(x, y) &= x\\
+    %   f(x, y) &= -x.
+    % \end{align*}
   \end{proof}
+
 \item
   \begin{problem*}
     How many continuous functions $g:\R^2 \to \R$ are there satisfying $g(x, y)^2 = x^2$ for all
@@ -1523,44 +1536,49 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
   \begin{proof}
     Let $u, v \in \R^2 \setminus \{a\}$. Note that there exists a continuous map
     $\gamma:[0, 1] \to \R^2$ such that $\gamma(0) = u$ and $\gamma(1) = v$. (For example, we can
-    use the straight line $\gamma(t) = u + t(v - u)$ \red{This is continuous, even if $a$ lies on
-      the line, right?}) Therefore $\R^2 \setminus \{a\}$ is path-connected, and therefore
-    connected.
+    use the straight line $\gamma(t) = u + t(v - u)$). Therefore $\R^2 \setminus \{a\}$ is
+    path-connected, and therefore connected.
   \end{proof}
-  {\bf Fragments}\\
-  \begin{mdframed}
-    Let $U, V \subseteq \R^2$ be disjoint open sets that partition $\R^2 \setminus \{a\}$. We shall
-    show that one of them must be empty.
+  % {\bf Fragments}\\
+  % \begin{mdframed}
+  %   Let $U, V \subseteq \R^2$ be disjoint open sets that partition $\R^2 \setminus \{a\}$. We shall
+  %   show that one of them must be empty.
 
-    Suppose for a contradiction that neither $U$ nor $V$ is empty. Let $u \in U$ and $v \in V$. Let
-    $\gamma:[0, 1] \to \R^2$ be given by $\gamma(t) = u + t(v - u)$.
+  %   Suppose for a contradiction that neither $U$ nor $V$ is empty. Let $u \in U$ and $v \in V$. Let
+  %   $\gamma:[0, 1] \to \R^2$ be given by $\gamma(t) = u + t(v - u)$.
 
 
-    and
-    let $L = \{u + \rho(v - u) ~|~ \rho \in [0, 1]\}$ be the straight line between $u$ and
-    $v$. Note that, since they are open, neither $U$ nor $V$ are singleton sets. Therefore we may
-    specify that $a \notin L$ (the line ``misses'' $a$).
+  %   and
+  %   let $L = \{u + \rho(v - u) ~|~ \rho \in [0, 1]\}$ be the straight line between $u$ and
+  %   $v$. Note that, since they are open, neither $U$ nor $V$ are singleton sets. Therefore we may
+  %   specify that $a \notin L$ (the line ``misses'' $a$).
 
-    Let $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v -
-    l_1|$. Let $T = \{l \in L ~|~ [u, l] \subseteq U\}$ and let $c = \sup T$.
+  %   Let $<$ be a total ordering relation on $L$ defined by $l_1 < l_2 \iff |v - l_2| < |v -
+  %   l_1|$. Let $T = \{l \in L ~|~ [u, l] \subseteq U\}$ and let $c = \sup T$.
 
-    Suppose $c \in T$. Then $c \in U$. But $U$ is open so we must have $c < d \in U$. \red{and I
-      think it follows that $d \in T$}, contradicting $c$ as $\sup T$.
+  %   Suppose $c \in T$. Then $c \in U$. But $U$ is open so we must have $c < d \in U$. \red{and I
+  %     think it follows that $d \in T$}, contradicting $c$ as $\sup T$.
 
-    Alternatively suppose $c \notin T$. Then $c \in V$. But $V$ is open, so similarly we must have
-    $c > b \in V$. But then $b \in U$ and $b \in V$ contradicting their disjointness.
+  %   Alternatively suppose $c \notin T$. Then $c \in V$. But $V$ is open, so similarly we must have
+  %   $c > b \in V$. But then $b \in U$ and $b \in V$ contradicting their disjointness.
 
-    These contradictions imply that either $U$ or $V$ is empty and therefore that
-    $\R^2 \setminus \{a\}$ is connected.
-  \end{mdframed}
+  %   These contradictions imply that either $U$ or $V$ is empty and therefore that
+  %   $\R^2 \setminus \{a\}$ is connected.
+  % \end{mdframed}
 \newpage
 \item
   \begin{claim*}
     There is no invertible function $f:[0, 1) \to (0, 1)$.
   \end{claim*}
   \begin{proof}
-
+    \todo{}
   \end{proof}
+
+  \red{Hint from Alex: $R^2$ and $R^1$ are not homeomorphic because iof the above difference in how
+    they respond to removal of a point. But why are $R^2$ and $R^3$ not homeomorphic? In general
+    this requires algebraic topology.}
+
+
 \end{enumerate}
 
 
@@ -1568,5 +1586,6 @@ Let $(M, d)$ be a metric space and let $A, B \subseteq M$.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-a2-2-9.png}
 \end{mdframed}
+
 
 \end{document}

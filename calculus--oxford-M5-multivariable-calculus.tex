@@ -6,6 +6,7 @@
 
 
 \begin{document}
+\begin{comment}  % latex-focus
 
 \title{Oxford M5 - Multivariable Calculus
   \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5652}}}
@@ -94,12 +95,13 @@ Let $u = x^2$ so that $\dxdu = \frac{1}{2x}$. Then
     &= -\sin(2a) + \sin(2a)\frac{1}{2} + \sin(a)\\
     &= -\frac{1}{2}\sin(2a) + \sin(a)\\
     &= -\sin(x)\cos(a) + \sin(a)\\
-    &= \sin(a)(1 - \cos(a))
+    &= \sin(a)(1 - \cos(a)) \checkmark
   \end{align*}
 
 \begin{verbatim}
 #+begin_src mathematica
-Integrate[Sin[x + y] Boole[x > y], {x, 0, a}, {y, 0, Infinity},  Assumptions -> {a > 0}]
+Integrate[Sin[x + y] Boole[x > y],
+          {x, 0, a}, {y, 0, Infinity}, Assumptions -> {a > 0}]
 #+end_src
 
 #+RESULTS:
@@ -120,15 +122,26 @@ Integrate[Sin[x + y] Boole[x > y], {x, 0, a}, {y, 0, Infinity},  Assumptions -> 
 \end{enumerate}
 
 \newpage
+\end{comment}  % latex-focus
 \subsection{}
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M5-multivariable-calc-1-4-a.png}
 \end{mdframed}
+
+\begin{align*}
+  I &= \int\int_R y \dx \dy \\
+    &= \int_0^1 y \int_y^{2-y} 1 \dx \dy \\
+    &= \int_0^1 y [x]_y^{2-y} \dy \\
+    &= 2\int_0^1 y \dy \\
+    &= 1.
+\end{align*}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M5-multivariable-calc-1-4-b.png}
 \end{mdframed}
 
+\begin{comment}  % latex-focus
 \subsection{}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M5-multivariable-calc-1-5.png}
@@ -343,5 +356,6 @@ Integrate[Sin[x + y] Boole[x > y], {x, 0, a}, {y, 0, Infinity},  Assumptions -> 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/oxford-prelims-M5-multivariable-calc-8-5.png}
 \end{mdframed}
+\end{comment}  % latex-focus
 
 \end{document}

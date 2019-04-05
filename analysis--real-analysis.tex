@@ -792,15 +792,13 @@ $\delta$ of $x_0$ then $f(x)$ is within $\epsilon$ of $f(x_0)$.
   $d(x, y) = \|x - y\| = \< x - y, x - y \>$.
 \item Requirements
 
-  \begin{comment}
-    #+ORGTBL: SEND metric-norm-inner-product orgtbl-to-latex :splice nil :skip 0 :raw t
-    |                       | distance metric                  | norm                                    | real inner product                              |
-    |-----------------------+----------------------------------+-----------------------------------------+-------------------------------------------------|
-    | positive definiteness | $d(x, y) = 0 \iff x = y$         | $\norm{u} = 0 \iff u = 0$               | $\< v, v\> = 0 \iff v = 0$                      |
-    | triangle inequality   | $d(x, z) \leq d(x, y) + d(y, z)$ | $\norm{u + v} \leq \norm{u} + \norm{v}$ | definition $\implies$ C-S $\implies$ tri. ineq. |
-    | symmetry              | $d(x, y) = d(y, x)$              | N/A                                     | $\< u, v\> = \< v, u\>$                         |
-    | scalar multiplication | mult may not be defined          | $\norm{\lambda u} = \lambda \norm{u}$   | bilinear                                        |
-  \end{comment}
+  % #+ORGTBL: SEND metric-norm-inner-product orgtbl-to-latex :splice nil :skip 0 :raw t
+  % |                       | distance metric                  | norm                                    | real inner product                              |
+  % |-----------------------+----------------------------------+-----------------------------------------+-------------------------------------------------|
+  % | positive definiteness | $d(x, y) = 0 \iff x = y$         | $\norm{u} = 0 \iff u = 0$               | $\< v, v\> = 0 \iff v = 0$                      |
+  % | triangle inequality   | $d(x, z) \leq d(x, y) + d(y, z)$ | $\norm{u + v} \leq \norm{u} + \norm{v}$ | definition $\implies$ C-S $\implies$ tri. ineq. |
+  % | symmetry              | $d(x, y) = d(y, x)$              | N/A                                     | $\< u, v\> = \< v, u\>$                         |
+  % | scalar multiplication | mult may not be defined          | $\norm{\lambda u} = \lambda \norm{u}$   | bilinear                                        |
   % BEGIN RECEIVE ORGTBL metric-norm-inner-product
 \begin{tabular}{l|l|l|l}
  & distance metric & norm & real inner product\\

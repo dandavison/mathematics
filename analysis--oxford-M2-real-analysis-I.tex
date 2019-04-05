@@ -2057,13 +2057,17 @@ SumConvergence[Sin[k] x^k, k]
     If $\sum a_k$ converges and $a_k/b_k \to 1$ then $\sum b_k$ converges.
   \end{claim*}
   \begin{proof}
-    This is true if $a_k, b_k > 0$.
-
-    For a counterexample, we need to exhibit a divergent series $\sum b_k$, and a convergent series
-    $\sum a_k$ such that $a_k/b_k \to 1$.
-
-    \red{INCOMPLETE}
+    $\sum b_k = \sum \frac{b_k}{a_k}a_k$. For large $k$ we have
+    $\frac{1}{2} < \frac{a_k}{b_k} < 2$. Therefore $\sum b_k$ converges iff
   \end{proof}
+  % \begin{proof}
+  %   This is true if $a_k, b_k > 0$.
+
+  %   For a counterexample, we need to exhibit a divergent series $\sum b_k$, and a convergent series
+  %   $\sum a_k$ such that $a_k/b_k \to 1$.
+
+  %   \red{INCOMPLETE}
+  % \end{proof}
 \end{enumerate}
 
 \newpage
