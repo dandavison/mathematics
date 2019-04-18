@@ -1393,3 +1393,59 @@ The following subsections are older notes on metric spaces.
 \end{proof}
 
 \section{Topology\\(Oxford Part A 5)}
+
+
+
+
+\begin{theorem*}
+  Let $f:\R \to \R$. The following are equivalent:
+  \begin{enumerate}
+  \item $f$ is continuous.
+
+  \item For all open $U \subseteq \R$ we have that $f^\1(U)$ is open.
+  \end{enumerate}
+\end{theorem*}
+
+\begin{proof}~\\
+
+  By the definition of continuity we can rewrite (1) as
+  \begin{enumerate}
+  % \item For all $x \in \R$, for all $\epsilon > 0$, there exists $\delta > 0$ such that
+  %   $|x' - x| < \delta \implies |f(x') - f(x)| < \epsilon$.
+  \item For all $x \in \R$, for all $\epsilon > 0$, there exists $\delta > 0$ such that
+    $f(B(x, \delta)) \subseteq B(f(x), \epsilon)$.
+  \end{enumerate}\hspace{0pt}
+
+  $(1) \implies (2)$:
+
+  Suppose $f$ is continuous, and let $U \subseteq \R$ be open.
+
+  If $f^\1(U) = \emptyset$ then $f^\1(U)$ is open.
+
+  Alternatively, let $x \in f^\1(U)$. We must show that there exists $\delta > 0$ such that
+  $B(x, \delta) \subseteq f^\1(U)$.
+
+  We know that $f(x) \in U$. Furthermore, since $U$ is open, there exists $\epsilon > 0$ such that
+  $B(f(x), \epsilon) \subseteq U$. And since $f$ is continuous, there exists $\delta > 0$ such that
+  $f(B(x, \delta)) \subseteq B(f(x), \epsilon)$.
+
+  Therefore $B(x, \delta) \subseteq f^\1(B(f(x), \epsilon)) \subseteq f^\1(U)$ as required.
+
+  $(2) \implies (1)$:
+
+  Suppose that for all open $U \subseteq \R$ we have that $f^\1(U)$ is open.
+
+  We must show that for all $x \in \R$ and for all $\epsilon > 0$ there exists $\delta > 0$ such
+  that $f(B(x, \delta)) \subseteq B(f(x), \epsilon)$.
+
+  So let $x \in \R$ and $\epsilon > 0$. Let $V = f^\1(B(f(x), \epsilon))$.  Note that $x \in V$ and
+  $V$ is open. Therefore there exists $\delta > 0$ such that $B(x, \delta) \subseteq V$. Therefore
+  we have
+  \begin{align*}
+    f(B(x, \delta))
+    \subseteq f(V)
+    = f(f^\1(B(f(x), \epsilon)))
+    \subseteq B(f(x), \epsilon),
+  \end{align*}
+  as required.
+\end{proof}
