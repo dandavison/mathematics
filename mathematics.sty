@@ -21,6 +21,7 @@
 \usepackage{mdframed}
 \usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
 \usepackage{parskip}
+\usepackage{physics}
 \usepackage{verbatim}
 
 \let\originalfootnote\footnote
@@ -100,7 +101,7 @@
 \newcommand{\dt}{\dif t}
 \newcommand{\ds}{\dif s}
 \newcommand{\du}{\dif u}
-\newcommand{\dv}{\dif v}
+\let\dv\undefined\newcommand{\dv}{\dif v}
 \newcommand{\dx}{\dif x}
 \newcommand{\dy}{\dif y}
 \newcommand{\dz}{\dif z}
@@ -108,11 +109,8 @@
 \newcommand{\dG}{\dif G}
 \newcommand{\dxdu}{\frac{\dif x}{\dif u}}
 \DeclareMathOperator{\ealign}{\end{align*}}
-\DeclareMathOperator{\grad}{\nabla}
 \DeclareMathOperator{\hess}{\nabla^2}
 \DeclareMathOperator{\p}{\text{p}}
-\DeclareMathOperator{\sech}{\text{sech}}
-\DeclareMathOperator{\trace}{\text{trace}}
 \let\L\relax\DeclareMathOperator{\L}{\mathcal{L}}
 \let\l\relax\DeclareMathOperator{\l}{\ell}
 \let\d\relax\DeclareMathOperator{\d}{\text{d}}
