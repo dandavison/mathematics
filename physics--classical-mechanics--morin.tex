@@ -234,3 +234,60 @@ LinearSolve[{{0, 1, 1-n}, {1, 0, 1}, {0, -1, n-2}}, {1, 0, 0}]
 \end{enumerate}
 
 \subsection*{Approximations, limiting cases}
+
+\subsubsection*{1.6}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--1-6-1.png}\\
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--1-6-2.png}
+\end{mdframed}
+
+\begin{align*}
+  [\frac{gh^2}{v^2}] &= \frac{L}{T^2} \frac{L^2}{1} \frac{T^2}{L^2} = L \checkmark \\
+  [\frac{v^2}{g}]    &= \frac{L^2}{T^2} \frac{T^2}{L} = L \checkmark
+\end{align*}
+
+...
+
+\subsubsection*{}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--1-7.png}
+\end{mdframed}
+
+\begin{minted}{python3}
+from dataclasses import dataclass
+from math import cos
+from math import pi
+from math import sin
+
+g = 9.8   # acceleration due to gravity (m/s)
+dt = 0.0001  # tick interval (s)
+
+@dataclass
+class World:
+    r: float = 1
+    r_dot: float = 0
+    theta: float = pi / 18
+    theta_dot: float = 0
+    time: float = 0
+
+def r_dot_dot(self):
+    return 0.5 * (self.r * self.theta_dot**2 - g*(1 - cos(self.theta)))
+
+def theta_dot_dot(self):
+    return -2 * self.r_dot * self.theta_dot / self.r - g * sin(self.theta) / self.r
+
+def tick(self):
+    self.r_dot += dt * self.r_dot_dot()
+    self.r += dt * self.r_dot
+    self.theta_dot += dt * self.theta_dot_dot()
+    self.theta += dt * self.theta_dot
+    self.time += dt
+
+
+def main():
+    world = World()
+    while world.r < 2:
+        world.tick()
+
+    print(world.time)
+\end{minted}
