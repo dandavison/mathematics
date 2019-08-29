@@ -291,3 +291,102 @@ def main():
 
     print(world.time)
 \end{minted}
+
+\section{Statics}
+\subsection*{Balancing forces}
+\subsubsection*{}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-1.png}
+\end{mdframed}
+
+Let $h$ be height measured from the free (lower) end. The tension $F$ is due to the weight of the
+section of the rope below:
+\begin{align*}
+  F = \rho hg,
+\end{align*}
+for $0 \leq h \leq L$. \checkmark
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-2.png}
+\end{mdframed}
+
+The normal force (component of weight normal to surface) is $mg\cos\theta$. The horizontal component
+of this is $mg\cos\theta\sin\theta$.
+
+Equivalently, the friction force (component of weight along surface) is $mg\sin\theta$. The
+horizontal component of this is $mg\sin\theta\cos\theta$.
+
+These are presumably maximum at $\theta = \pi/4$. \checkmark
+
+\newpage
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-3.png}
+\end{mdframed}
+
+Focus on an arbitrary point $x$ along the horizontal axis. The height of the chain at this point is
+$y(x)$ with tangent slope $\tan \theta = y'(x)$. Consider a short section of chain of length
+$\dl = \sqrt{\dx^2 + \dy^2} = \sqrt{1 + \tan^2\theta} \dx$. Let the mass per unit length be
+$\rho$. The weight is $\rho (\dl) g$ downwards. This has a component normal to the chain which is
+irrelevant, since it is balanced by the opposing normal force from the fixed tube. The component of
+weight along the chain is $\rho (\dl) g \sin\theta$.
+
+There will be tension and normal (compression) forces acting to oppose this component of weight, but
+we don't need to analyse these. Instead we ask what the net force $F$ is on the system. Let $L$ be
+the total length of the chain. We have
+
+\begin{align*}
+  F &= \int_{l=0}^{l=L} \rho g \sin\theta \dl \\
+    &= \rho g \int_{l=0}^{l=L} \sin\theta \sqrt{1 + \tan^2\theta} \dx.
+\end{align*}
+Note that $\sin\theta = \frac{\tan\theta}{\sqrt{1 + \tan^2\theta}}$, and that $\tan\theta =
+\dydx$. Therefore
+\begin{align*}
+  F &= \rho g \int_{l=0}^{l=L} \dy\\
+    &= \rho g \(y(L) - y(0)\)\\
+    &= 0.
+\end{align*}
+
+\newpage
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-4.png}
+\end{mdframed}
+
+When $F = 0$, the book will fall down freely under the gravity force $Mg$.
+
+The relevant forces are
+\begin{itemize}
+\item the book weight $Mg$,
+\item an upwards supporting force of $S = F\sin\theta$ (which will be negative when $\theta < 0$,
+  i.e. when $F$ is pointing downwards),
+\item a normal force of $N = F\cos\theta$.
+\end{itemize}
+
+So, there is a downwards force of $D = W - S$. And therefore there is also an upwards friction force
+of $\min\(\mu N, D\)$. When this is less than $D$, the book is sliding down.
+
+Suppose $\theta$ is positive and $F$ is initially holding the book in place. This means that
+$\mu N > D$. As $F$ decreases, it causes $S$ to decrease, which means that $D$ increases. At the
+same time, $\mu N$ is decreasing. So $D$ and $\mu N$ are moving towards each other. When they meet,
+the book is about to start sliding down.
+
+\begin{enumerate}[label=(\alph*)]
+\item The minimum $F$ occurs when $D = \mu N$. I.e.
+  \begin{align*}
+    W - S            &= \mu N \\
+    Mg - F\sin\theta &= \mu F\cos\theta \\
+    F &= \frac{Mg}{\sin\theta + \mu\cos\theta}.
+  \end{align*}
+  Makes sense: more force needed if book heavier; less force needed if $\mu$ larger ($\cos$ is
+  positive in $(-\pi/2, \pi/2)$); \todo{change with $\theta$}.
+\item We seek the $\theta \in (-\pi/2, \pi/2)$ which maximizes
+  $g(\theta) = \sin\theta + \mu\cos\theta$. We have $g'(\theta) = \cos\theta - \mu\sin\theta$, and
+  setting this equal to zero gives $\tan\theta = 1/\mu$. So, the minimum $F$ is smallest for
+  $\theta = \tan^{-1}(1/\mu)$. This minimum $F$ is (using $\cos\theta = 1/\sqrt{1 + \tan^2\theta}$)
+  \begin{align*}
+    F
+    &= \frac{Mg/\cos\theta}{\tan\theta + \mu} \\
+    &= \frac{Mg\sqrt{1 + \tan^2\theta}}{\tan\theta + \mu} \\
+    &= \frac{Mg\sqrt{1 + 1/\mu^2}}{1/\mu + \mu}.
+  \end{align*}
+\item As $\theta$ decreases below zero, $D$ increases ($S$ is now negative) and $\mu N$ decreases. The limiting
+\end{enumerate}
