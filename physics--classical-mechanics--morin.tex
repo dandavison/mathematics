@@ -388,5 +388,74 @@ the book is about to start sliding down.
     &= \frac{Mg\sqrt{1 + \tan^2\theta}}{\tan\theta + \mu} \\
     &= \frac{Mg\sqrt{1 + 1/\mu^2}}{1/\mu + \mu}.
   \end{align*}
-\item As $\theta$ decreases below zero, $D$ increases ($S$ is now negative) and $\mu N$ decreases. The limiting
+
+  \todo{Book gives $\frac{Mg}{\sqrt{1 + \mu^2}}$}
+
+\begin{verbatim}
+#+begin_src mathematica :results raw pp
+Simplify[Sqrt[1 + 1/mu^2]/(1/mu + mu)]
+#+end_src
+
+#+RESULTS:
+: (Sqrt[1 + mu^(-2)]*mu)/(1 + mu^2)
+
+\end{verbatim}
+
+\item As $\theta$ decreases below zero, $D$ increases ($S$ is now negative) and $\mu N$
+  decreases. The limiting...\todo{TODO}
 \end{enumerate}
+\newpage
+\section{Using $F = ma$}
+\subsection*{Free-body diagrams}
+\subsubsection*{}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-1.png}
+\end{mdframed}
+Let $a$ be the rightward acceleration of the string, and $T$ be the tension in the string.
+
+To find $a$ is simple: there is a net force of $F = m_2g - m_1g$, therefore
+\begin{align}
+  a = \frac{F}{m} = \frac{m_2g - m_1g}{m_1 + m_2}. \label{morin-3-1-a} \checkmark
+\end{align}
+However, this doesn't give $T$.
+
+Below are two ways to find $T$ by using $F = ma$ at each mass:
+\begin{enumerate}
+\item by substituting the above expression for $a$ into either one of them,
+\item by solving the two jointly as a linear system, without using the above expression for $a$.
+\end{enumerate}
+
+So it seems that the acceleration of the whole system can be found using ``one degree of
+freedom''(?), but that finding the tension requires solving a two-dimensional linear system.
+
+Using $F = ma$ at each mass, we have
+\begin{align}
+  m_1a &= T-m_1g   \label{morin-3-1-Fma1}\\
+  m_2a &= m_2g - T \label{morin-3-1-Fma2}.
+\end{align}
+From \eqref{morin-3-1-a} and \eqref{morin-3-1-Fma1} we have
+\begin{align*}
+  T &= \frac{m_1(m_2g - m_1g)}{m_1 + m_2} + m_1g \\
+    &= \frac{2m_1m_2g}{m_1 + m_2}. \checkmark
+\end{align*}
+And as a check, from \eqref{morin-3-1-a} and \eqref{morin-3-1-Fma2} we have
+\begin{align*}
+  T &= m_2g - \frac{m_2(m_2g - m_1g)}{m_1 + m_2} \\
+    &= \frac{2m_1m_2g}{m_1 + m_2}.
+\end{align*}
+
+Alternatively, we can solve the linear system given by $F = ma$ at each mass:
+\begin{align*}
+  m_1a - T &= -m_1g \\
+  m_2a + T &= m_2g,
+\end{align*}
+i.e.
+\begin{align*}
+  \mat{m_1}{-1}
+      {m_2}{1} \vecMM{a}{T} = \vecMM{-m_1g}{m_2g}.
+\end{align*}
+Solution:
+\begin{align*}
+    T = m_1a + m_1g &= m_2g - m_2a \\
+    a &= \frac{m_2g - m_1g}{m_1 + m_2}.
+\end{align*}
