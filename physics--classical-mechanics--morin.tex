@@ -294,7 +294,7 @@ def main():
 
 \section{Statics}
 \subsection*{Balancing forces}
-\subsubsection*{}
+\subsubsection*{2.1}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-1.png}
 \end{mdframed}
@@ -319,6 +319,7 @@ horizontal component of this is $mg\sin\theta\cos\theta$.
 These are presumably maximum at $\theta = \pi/4$. \checkmark
 
 \newpage
+\subsubsection*{2.3}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-3.png}
 \end{mdframed}
@@ -347,6 +348,7 @@ Note that $\sin\theta = \frac{\tan\theta}{\sqrt{1 + \tan^2\theta}}$, and that $\
 \end{align*}
 
 \newpage
+\subsubsection*{2.4}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-4.png}
 \end{mdframed}
@@ -402,8 +404,15 @@ Simplify[Sqrt[1 + 1/mu^2]/(1/mu + mu)]
 \end{verbatim}
 
 \item As $\theta$ decreases below zero, $D$ increases ($S$ is now negative) and $\mu N$
-  decreases. The limiting...\todo{TODO}
+  decreases. The limiting...\todo{}
 \end{enumerate}
+
+\subsubsection*{2.9}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-9.png}
+\end{mdframed}
+
+
 \newpage
 \section{Using $F = ma$}
 \subsection*{Free-body diagrams}
@@ -459,3 +468,48 @@ Solution:
     T = m_1a + m_1g &= m_2g - m_2a \\
     a &= \frac{m_2g - m_1g}{m_1 + m_2}.
 \end{align*}
+\subsection*{Solving differential equations}
+\subsubsection*{}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-9.png}
+\end{mdframed}
+
+The position $x$ evolves according to the following differential equation:
+\begin{align*}
+  m\ddot{x} = F(t) = ma_0e^{-bt}.
+\end{align*}
+Thus \todo{Don't think these are correct; confused about exponentials}:
+\begin{itemize}
+\item The sign of $a_0$ determines the direction of motion.
+\item If $b < 0$ then the particle is subject to exponentially increasing acceleration and thus
+  super-exponentially increasing velocity without limit.
+\item If $b = 0$ then the particle is subject to constant force, i.e. constant acceleration,
+  i.e. velocity increases exponentially.
+\item If $b > 0$ then the particle is subject to exponentially decreasing acceleration. It will
+  start with close-to exponentially increasing velocity and approach a constant limiting velocity
+  from below.
+\end{itemize}
+
+Note that if $m = 0$ then there is no force and the particle does not move; otherwise, we can divide
+by $m$, removing dependence of the differential equation on $m$. We can then find $x(t)$ by
+integrating twice:
+\begin{align*}
+  \frac{\dv}{\dt}                               &= a_0e^{-bt} \\
+  \int_{v(0) = 0}^{v(t)} \dv = v(t) = \frac{\dx}{\dt} &= a_0 \int_0^t e^{-bt'} \dt'
+                                                 = a_0 \(\frac{-1}{b}e^{-bt} + \frac{1}{b}\) \\
+  \int_{x(0) = 0}^{x(t)}\dx = x(t)                    &= a_0 \int_0^{t}\(\frac{-1}{b}e^{-bt'} + \frac{1}{b}\) \dt'
+                                                 = a_0\(\frac{1}{b^2}e^{-bt} + \frac{t}{b} - \frac{1}{b^2}\). \checkmark
+\end{align*}
+
+\todo{That doesn't handle $b = 0$}.
+
+\begin{verbatim}
+#+begin_src mathematica :results pp
+Integrate[Integrate[m a0 Exp[-b __t], {__t, 0, _t}], {_t, 0, t}]
+#+end_src
+
+#+RESULTS:
+: Integrate[Integrate[(a0*m)/E^(b*__t), {__t, 0, _t}], {_t, 0, t}]
+
+\end{verbatim}
+
