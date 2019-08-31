@@ -99,9 +99,9 @@
 \section{Even and odd functions}
 
 \begin{definition*}
-  A function (over an additive group?) is even if and only if $f(-x) = f(x)$ for all $x$.
+  A function (over an additive group?) is even if $f(-x) = f(x)$ for all $x$.
 
-  A function (over an additive group?) is odd if and only if $f(-x) = -f(x)$ for all $x$.
+  A function (over an additive group?) is odd if $f(-x) = -f(x)$ for all $x$.
 \end{definition*}
 
 Functions can be neither even nor odd.
@@ -111,6 +111,102 @@ Functions can be neither even nor odd.
 
   A polynomial $p(x)$ is odd if an only if it has only odd powers of $x$.
 \end{claim*}
+
+\section{Hyperbolic trigonometric functions}\label{foundations-hyperbolic-trig-functions}
+
+Define
+\begin{align*}
+  \cosh x &= \frac{e^x + e^{-x}}{2} \\
+  \sinh x &= \frac{e^x - e^{-x}}{2}.
+\end{align*}
+Therefore
+\begin{align*}
+  \ddx \cosh x &= \sinh x \\
+  \ddx \sinh x &= \cosh x,
+\end{align*}
+and
+\begin{align*}
+  \cosh^2 x             &= \frac{1}{4}\(e^{2x} + e^{-2x}\) + \frac{1}{2} \\
+  \sinh^2 x             &= \frac{1}{4}\(e^{2x} + e^{-2x}\) - \frac{1}{2} \\
+  1 + \sinh^2 x         &= \cosh^2 x \\
+  \sinh^2 x + \cosh^2 x &= \cosh 2x
+\end{align*}
+
+$\sin$ and $\sinh$ are odd, and $\cos$ and $\cosh$ are even.
+
+Note that these functions equal their own second derivatives. I.e. they provide solutions to
+\begin{align*}
+  \ddot{x} - x = 0.
+\end{align*}
+In contrast, $\sin$ and $\cos$ equal the negative of their own second derivative, so they provide
+solutions to
+\begin{align*}
+  \ddot{x} + x = 0.
+\end{align*}
+
+\subsection*{\url{https://www.reddit.com/r/explainlikeimfive/comments/61siyw/eli5_can_someone_explain_the_hyperbolic_trig/}}
+
+They are a bit mysterious, but not at all scary. It is just a way of grouping the exponential
+functions into even and odd components.
+
+From calculus, you know the relationship between the exponential and the standard trig functions:
+
+\begin{align*}
+e^{ix} = cos x + i sin x
+\end{align*}
+
+That works for imaginary arguments to the exponential and it splits it into a real and even
+component (cosine) and an imaginary and odd component (sine). That is the solution to this
+differential equation
+
+\begin{align*}
+  \ddot{y} + y = 0.
+\end{align*}
+
+Those functions are equal to the opposite sign of the second
+derivative.
+
+What about this differential equation:
+
+\begin{align*}
+  \ddot{y} - y = 0
+\end{align*}
+
+where the function is equal to its second derivative? Those solutions are simply $e^x$ and $e^{-x}$
+. But neither of those solutions are even or odd. You could re-group those two solutions so that you
+have an even solution and an odd solution.
+
+\begin{align*}
+e^x + e^{-x} = (1/2) (e^x + e^{-x} ) + (1/2) (e^x - e^{-x} )
+\end{align*}
+They define the even solution to be hyperbolic cosine and the odd solution to be hyperbolic sine.
+
+\begin{align*}
+e^x + e^{-x} = cosh x + sinh x
+\end{align*}
+So the definitions of the regular and hyperbolic trig functions with relation to the exponentials
+are:
+
+\begin{align*}
+cos x = (1/2) ( e^{ix} + e^{-ix} )
+
+sin x = (1/2i) ( e^{ix} - e^{-ix} )
+\end{align*}
+and
+
+\begin{align*}
+cosh x = (1/2) ( e^x + e^{-x} )
+
+sinh x = (1/2) ( e^x - e^{-x} )
+\end{align*}
+
+You can see the analogy! From there, they can work out more algebra and calculus to see if there's
+any other useful relations that make this splitting of the expontial into even and odd components
+helpful. But it is not as crucial that you work with the hyperbolic functions this way. You could
+choose to leave the solutions in their $e^{x}$ and $e^{-x}$ . Many times it helps, but its use is
+not as common as the standard trig functions.
+
+
 
 \section{$\sqrt{2}$ is irrational}
 \begin{theorem*}
