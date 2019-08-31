@@ -408,11 +408,7 @@ Simplify[Sqrt[1 + 1/mu^2]/(1/mu + mu)]
 \end{enumerate}
 
 \subsubsection*{2.9}
-\begin{mdframed}
-  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-9.png}
-\end{mdframed}
-
-Recall that
+Recall from \ref{foundations-hyperbolic-trig-functions} that
 \begin{align*}
   \cosh x &= \frac{e^x + e^{-x}}{2} \\
   \sinh x &= \frac{e^x - e^{-x}}{2},
@@ -420,29 +416,94 @@ Recall that
 therefore
 \begin{align*}
   \ddx \cosh x &= \sinh x \\
-  \ddx \sinh x &= \cosh x.
+  \ddx \sinh x &= \cosh x,
 \end{align*}
+and
+\begin{align*}
+  \cosh^2 x             &= \frac{1}{4}\(e^{2x} + e^{-2x}\) + \frac{1}{2} \\
+  \sinh^2 x             &= \frac{1}{4}\(e^{2x} + e^{-2x}\) - \frac{1}{2} \\
+  1 + \sinh^2 x         &= \cosh^2 x \\
+  \sinh^2 x + \cosh^2 x &= \cosh 2x.
+\end{align*}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-9.png}
+\end{mdframed}
 
 Let $x = 0$ be the centre point of the chain, so that the left end is at $-d$ and the right end at
 $d$.
 
-The height of the chain is $y(x) = (1/\alpha)\cosh \alpha x$ and the slope of the chain is
-$y'(x) = \sinh \alpha x$.
+The height of the chain at $x$ is $y(x) = (1/\alpha)\cosh \alpha x$ and the slope of the chain at
+$x$ is $y'(x) = \sinh \alpha x$.
 
-Let the length of the chain be $l$ with density $\rho$. The forces acting are
-\begin{itemize}
-\item gravity $\rho l g$ vertically downwards,
-\item tension force $T$ at left and right ends, at angle $\sinh(-\alpha d) = \sinh(\alpha d)$ (the
-  hyperbolic functions are even).
-\end{itemize}
+Let the length of the chain be $l$ with density $\rho$.
 
-Consider the length of the chain be $l$ with density $\rho$. The forces acting are
-\begin{itemize}
-\item gravity $\rho l g$ vertically downwards,
-\item tension force $T$ at left and right ends, at angle $\sinh(-\alpha d) = \sinh(\alpha d)$ (the
-  hyperbolic functions are even).
-\end{itemize}
+We can calculate $l$, since we know the form of the curve: consider a short horizontal region of
+length $\Delta x$. Making a linear approximation to the curve, the length is given by
+\begin{align*}
+  (\Delta l)^2            &= (\Delta x)^2 + (y'(x)\Delta x)^2 \\
+                          &= \(1 + y'(x)^2\)(\Delta x)^2\\
+  l = \int_{x=-d}^{x=d}\dl  &= \int_{x=-d}^{x=d} \sqrt{1 + y'(x)^2} \dx \\
+                          &= \int_{x=-d}^{x=d} \sqrt{1 + \sinh^2 \alpha x} \dx \\
+                          &= \int_{x=-d}^{x=d} \cosh \alpha x \dx \\
+                          &= \frac{1}{\alpha}\(\sinh (\alpha d) - \sinh (-\alpha d)\) \\
+                          &= 2\frac{\sinh(\alpha d)}{\alpha}. ~~~~~~~\checkmark
+\end{align*}
 
+The total weight of the chain is $\rho l g$, and since the system is left-right symmetric, each of
+the supports bears half the weight of the chain. Therefore at the right attachment point we have a
+force diagram with hypotenuse $F$ (the force on the chain at the attachment point, acting along the
+chain, upwards and to the right at an angle $\theta$ to the horizontal), and vertical upwards
+component equal to half the weight of the chain. So, we have
+\begin{align*}
+  F\sin\theta = (\rho g)\frac{\sinh(\alpha d)}{\alpha}.
+\end{align*}
+
+Note however that $\alpha$ and $\theta$ are not independent parameters: one determines the other. We
+want an expression with a single parameter that we can then minimize to find the parameter value
+that results in the minimum force $F$.
+
+The dependence of $\theta$ and $\alpha$ is given by the expression for the slope of the curve at the
+attachment point:
+\begin{align*}
+  \tan\theta = \sinh(\alpha d),
+\end{align*}
+and this allows us to write $\sin\theta$ as a function of $\alpha$ as follows: it means that at the
+right end, for every one unit moved horizontally, the chain rises by $\sinh(\alpha d)$. Using the
+identity $1 + \sinh^2\phi = \cosh^2\phi$, this implies that the hypotenuse of such a triangle is
+$\cosh(\alpha d)$, and therefore that
+$\sin\theta = \frac{\sinh(\alpha d)}{\cosh(\alpha d)} = \tanh(\alpha d)$.
+
+\begin{mdframed}
+  \includegraphics[width=300pt]{img/physics--classical-mechanics--morin--2-9-diagram.png}
+\end{mdframed}
+
+Thus we have an expression for $F$ in terms of the single parameter $\alpha$:
+\begin{align*}
+  F = (\rho g)\frac{\sinh(\alpha d)}{\alpha \tanh(\alpha d)} = (\rho g)\frac{\cosh(\alpha d)}{\alpha}, ~~~~~~~\checkmark
+\end{align*}
+and all that remains is to minimize this over $\alpha$:
+\begin{align*}
+  (1/\rho g)\frac{\dif}{\dif\alpha} F &= d\sinh(\alpha d)\alpha^{-1} -\alpha^{-2}\cosh(\alpha d) \\
+                                      &= \frac{\alpha d \sinh(\alpha d) - \cosh(\alpha d)}{\alpha^2} \\
+                                      &= 0 \\
+                      \tanh(\alpha d) &= \frac{1}{\alpha d}. ~~~~~~~\checkmark
+\end{align*}
+
+\begin{verbatim}
+#+begin_src mathematica :results pp
+NSolve[Tanh[ad] == 1/(ad), ad, Reals]
+#+end_src
+
+#+RESULTS:
+: {{ad -> -1.1996786402577337}, {ad -> 1.1996786402577337}}
+\end{verbatim}
+
+
+\todo{Consider a short section of chain. It has weight acting vertically downwards, which can be
+  resolved into a component along the chain and a component normal to the chain. The component along
+  the chain is balanced by equal and opposite tension (and compression?) forces within the
+  chain. But what is the component of the weight normal to the chain balanced by?}
 
 
 
@@ -545,4 +606,3 @@ Integrate[Integrate[m a0 Exp[-b __t], {__t, 0, _t}], {_t, 0, t}]
 : Integrate[Integrate[(a0*m)/E^(b*__t), {__t, 0, _t}], {_t, 0, t}]
 
 \end{verbatim}
-
