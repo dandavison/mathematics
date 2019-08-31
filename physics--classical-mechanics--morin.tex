@@ -327,12 +327,12 @@ These are presumably maximum at $\theta = \pi/4$. \checkmark
 Focus on an arbitrary point $x$ along the horizontal axis. The height of the chain at this point is
 $y(x)$ with tangent slope $\tan \theta = y'(x)$. Consider a short section of chain of length
 $\dl = \sqrt{\dx^2 + \dy^2} = \sqrt{1 + \tan^2\theta} \dx$. Let the mass per unit length be
-$\rho$. The weight is $\rho (\dl) g$ downwards. This has a component normal to the chain which is
-irrelevant, since it is balanced by the opposing normal force from the fixed tube. The component of
+$\rho$. The weight is $\rho (\dl) g$ downwards. This has a component normal to the chain which we
+can ignore, since it is balanced by the opposing normal force from the fixed tube. The component of
 weight along the chain is $\rho (\dl) g \sin\theta$.
 
-There will be tension and normal (compression) forces acting to oppose this component of weight, but
-we don't need to analyse these. Instead we ask what the net force $F$ is on the system. Let $L$ be
+There will be tension and compression forces acting to oppose this component of weight, but we don't
+need to analyse these. Instead we ask what the net force $F$ is \emph{along the chain}. Let $L$ be
 the total length of the chain. We have
 
 \begin{align*}
@@ -411,6 +411,39 @@ Simplify[Sqrt[1 + 1/mu^2]/(1/mu + mu)]
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-9.png}
 \end{mdframed}
+
+Recall that
+\begin{align*}
+  \cosh x &= \frac{e^x + e^{-x}}{2} \\
+  \sinh x &= \frac{e^x - e^{-x}}{2},
+\end{align*}
+therefore
+\begin{align*}
+  \ddx \cosh x &= \sinh x \\
+  \ddx \sinh x &= \cosh x.
+\end{align*}
+
+Let $x = 0$ be the centre point of the chain, so that the left end is at $-d$ and the right end at
+$d$.
+
+The height of the chain is $y(x) = (1/\alpha)\cosh \alpha x$ and the slope of the chain is
+$y'(x) = \sinh \alpha x$.
+
+Let the length of the chain be $l$ with density $\rho$. The forces acting are
+\begin{itemize}
+\item gravity $\rho l g$ vertically downwards,
+\item tension force $T$ at left and right ends, at angle $\sinh(-\alpha d) = \sinh(\alpha d)$ (the
+  hyperbolic functions are even).
+\end{itemize}
+
+Consider the length of the chain be $l$ with density $\rho$. The forces acting are
+\begin{itemize}
+\item gravity $\rho l g$ vertically downwards,
+\item tension force $T$ at left and right ends, at angle $\sinh(-\alpha d) = \sinh(\alpha d)$ (the
+  hyperbolic functions are even).
+\end{itemize}
+
+
 
 
 \newpage
