@@ -505,8 +505,64 @@ NSolve[Tanh[ad] == 1/(ad), ad, Reals]
   the chain is balanced by equal and opposite tension (and compression?) forces within the
   chain. But what is the component of the weight normal to the chain balanced by?}
 
+\newpage
+
+\subsection*{Balancing torques}
+
+\subsection*{Example}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2--torque-example.png}\\
+  \includegraphics[width=100pt]{img/physics--classical-mechanics--morin--2--torque-example-diag.png}
+\end{mdframed}
+
+\includegraphics[width=150pt]{img/physics--classical-mechanics--morin--2--torque-example-diag-2.png}
+
+We can make the following statements about the system:
+\begin{enumerate}
+\item There is a vertical weight force acting downwards and it is balanced by a vertical reaction
+  from the ground: $N_1 = -mg$ (since the wall is frictionless, there is no vertical force there).
+\item There are also some horizontal forces. Basically, although the weight has no horizontal
+  component, it \emph{does} have a component normal to the ladder. This is $mg\cos\theta$,
+  effectively acting at a distance $l/2$ from the toe of the ladder. If we were to remove the wall,
+  the ladder would rotate around its toe due to this torque. So the wall must be doing something to
+  balance this rotation. What it's doing is exerting a horizontal normal/reaction force $N_2$. The
+  component of this normal to the ladder is $N_2\sin\theta$, acting at a distance $l$ from the
+  toe. These torques around the toe must balance, hence
+  \begin{align*}
+    (l/2)mg\cos\theta &= lN_2\sin\theta \\
+    N_2               &= \frac{mg}{2\tan\theta}.
+  \end{align*}
+\item The horizontal normal force $N_2$ at the wall (required to balance the torque induced by the
+  weight), is opposed by a friction force: $F = -N_2$.
+\item So for given $\theta$, we have determined $N_1$, $N_2$, and $F$. However, we could also
+  analyze torques around the contact point with the wall:
+  \begin{align*}
+    (l/2)mg\cos\theta + lF\sin\theta &= lN_1\cos\theta \\
+    N_1                              &= mg/2  + F\tan\theta.
+  \end{align*}
+  This should be consistent with the above solutions. Let's check that: the LHS is $N_1 = -mg$. And
+  the RHS is
+  \begin{align*}
+  mg/2 + F\tan\theta = mg/2 + \frac{-mg}{2\tan\theta}\tan\theta = 0 ~~~~~~~\red{!}
+  \end{align*}
+  \todo{So it looks like there's some sign confusion.}
+\end{enumerate}
 
 
+So to answer the question, the smallest angle the ladder can make with the ground without slipping
+is $\theta$ such that
+\begin{align*}
+  F = \frac{mg}{2\tan\theta} &= \mu N_1 = \mu m g \\
+  \tan\theta                 &= 1/(2\mu).
+\end{align*}
+Sanity check: a larger coefficient of friction permits a shallower angle.
+
+
+\newpage
+\subsection*{2.11}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2-11.png}
+\end{mdframed}
 \newpage
 \section{Using $F = ma$}
 \subsection*{Free-body diagrams}
