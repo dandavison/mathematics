@@ -662,3 +662,71 @@ Integrate[Integrate[m a0 Exp[-b __t], {__t, 0, _t}], {_t, 0, t}]
 : Integrate[Integrate[(a0*m)/E^(b*__t), {__t, 0, _t}], {_t, 0, t}]
 
 \end{verbatim}
+
+
+
+\subsubsection*{3.10}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-10.png}
+\end{mdframed}
+
+We want to find $x(t)$ such that $\ddot{x}(t) = -\frac{k}{m} x(t)$, where $k > 0$.  Suppose $x(t)$
+has the form $Ae^{at}$. Then the acceleration is
+\begin{align*}
+  \ddot{x}(t) = Aa^2e^{at} &= a^2x(t),
+\end{align*}
+in which case we have $a^2 = -k/m < 0$, and we see that any solution of this form requires $a$ to be
+complex.
+
+\todo{In which case, $x(t)$ will in general also be complex-valued. What does it mean for the
+  solution to be complex-valued? What if we had demanded that $x(t)$ was real-valued? Should we have
+  specified whether $A$ was complex?}
+
+Reparameterizing, we have that
+\begin{align*}
+  x(t) &= Ae^{i\omega t} ~~~~~~~ \text{and}\\
+  x(t) &= Be^{-i\omega t}
+\end{align*}
+are both solutions, where $\omega = \sqrt{k/m} > 0$. Further, suppose
+\begin{align*}
+  x(t) &= Ae^{i\omega t} + Be^{-i\omega t}.
+\end{align*}
+Then
+\begin{align*}
+  \ddot{x}(t) &= -A\omega^2e^{i\omega t} - B\omega^2e^{-i\omega t} \\
+              &= -\frac{k}{m}\(Ae^{i\omega t} + Be^{-i\omega t}\) \\
+              &= -\frac{k}{m}x(t),
+\end{align*}
+so in fact, any linear combination $x(t) = Ae^{i\omega t}  + Be^{-i\omega t}$ is a solution.
+
+At $t = 0$, we have
+\begin{align*}
+  x(0) = A + B  &= x_0 \\
+  A             &= x_0 - B
+\end{align*}
+and
+\begin{align*}
+  \dot{x}(0) = Ai\omega e^{i\omega t} - Bi\omega e^{-i\omega t} &= 0 \\
+  A                               &= Be^{-2i\omega t}.
+\end{align*}
+Therefore
+\begin{align*}
+  B    &= x_0 / (1 + e^{-2i\omega t)} \\
+  A    &= x_0e^{-2i\omega t} / (1 + e^{-2i\omega t}) \\
+  x(t) &= 2x_0\frac{e^{-i\omega t}}{1 + e^{-2i\omega t}}.
+\end{align*}
+Check:
+\begin{itemize}
+\item $x(0) = x_0$ \checkmark
+\item $\dot{x}(t) = ...$
+\end{itemize}
+
+So there is one point moving around the unit circle, completing one cycle every $2\pi/\omega$
+seconds. And another point moving around a unit circle centred at 1, completing a cycle every
+$\pi/\omega$ seconds. The position $x$ is given by the real part of the ratio between these complex
+nuimbers, scaled by $2x_0$. That behavior seems too complex; shouldn't it be SHM?
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-10-plot.png}
+\end{mdframed}
+
