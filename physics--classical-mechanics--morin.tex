@@ -711,6 +711,14 @@ and
 \end{align*}
 Therefore
 \begin{align*}
+  x_0 - B &= Be^{-2i\omega t} \\
+  x_0     &= B(1+ e^{-2i\omega t}) \\
+  B       &= x_0/(1 + e^{-2i\omega t}) \\
+  A &= \frac{x_0(1 + e^{-2i\omega t}) - x_0}{1+ e^{-2i\omega t}} \\
+  A &= x_0\frac{e^{-2i\omega t}}{1+ e^{-2i\omega t}} \\
+\end{align*}
+
+\begin{align*}
   B    &= x_0 / (1 + e^{-2i\omega t)} \\
   A    &= x_0e^{-2i\omega t} / (1 + e^{-2i\omega t}) \\
   x(t) &= 2x_0\frac{e^{-i\omega t}}{1 + e^{-2i\omega t}}.
@@ -726,7 +734,69 @@ seconds. And another point moving around a unit circle centred at 1, completing 
 $\pi/\omega$ seconds. The position $x$ is given by the real part of the ratio between these complex
 nuimbers, scaled by $2x_0$. That behavior seems too complex; shouldn't it be SHM?
 
-\begin{mdframed}
-  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-10-plot.png}
-\end{mdframed}
+\includegraphics[width=200pt]{img/physics--classical-mechanics--morin--3-10-plot.png}
 
+\subsubsection*{3.10 Try again}
+
+We are given
+\begin{align*}
+  \ddot{x}  &= -\frac{k}{m}x \\
+  \dot{x}(0) &= 0 \\
+  x(0)       &= x_0,
+\end{align*}
+where $k > 0$.
+
+Suppose $x(t) = Ae^{at}$. Then
+\begin{align*}
+  \dot{x}  &= Aae^{at} = ax \\
+  \ddot{x} &= Aa^2e^{at} = a^2x.
+\end{align*}
+
+Therefore $x(t) = Ae^{at}$ is a solution iff $a^2 = -k/m$. So the solutions are linear combinations
+of the form
+\begin{align*}
+  x(t) = Ae^{i\omega t} + Be^{-i\omega t},
+\end{align*}
+where $\omega = \sqrt{k/m} > 0$.
+
+Alternatively, this can be written as
+\begin{align*}
+  x(t) &= A(\cos\omega t + i\sin \omega t) + B(\cos\omega t - i\sin\omega t) \\
+       &= (A + B)\cos\omega t + (A - B)i\sin \omega t.
+\end{align*}
+
+The derivatives of such a solution are
+\begin{align*}
+    \dot{x} &= Ai\omega e^{i\omega t} - Bi\omega e^{-i\omega t}
+             = i\omega\(A e^{i\omega t} - B e^{-i\omega t}\) \\
+  \ddot{x}  &= -A\omega^2 e^{i\omega t} - B\omega^2 e^{-i\omega t} = -\omega^2x(t).
+\end{align*}
+(The expression for $\ddot{x}$ confirming that any such linear combination is a solution.)
+
+The initial velocity condition yields $A = B$, and hence the initial position condition yields
+$A = \frac{x_0}{2}$. Hence the solution is
+\begin{align*}
+  x(t) &= \frac{x_0}{2}\(e^{i\omega t} + e^{-i\omega t}\) \\
+       &= \frac{x_0}{2}(2\cos\omega t) \\
+       &= x_0\cos\(\sqrt{\frac{k}{m}} t\).
+\end{align*}
+
+\subsubsection*{3.10 Alternative solution: separation of variables}
+
+We have $m\dvdt = m\frac{\dv}{\dx}\dxdt = mv\frac{\dv}{\dx} = -kx$. Therefore
+\begin{align*}
+  \int_{0}^{v} mv \dv &= -\int_{x_0}^{x} kx\dx \\
+  \frac{1}{2}mv^2      &= \frac{1}{2}kx_0^2 - \frac{1}{2}kx^2 \\
+  v = \dxdt            &= \pm\sqrt{\frac{k}{m}(x_0^2 - x^2)} \\
+  \int_{x_0}^x \frac{\dx}{\sqrt{x_0^2 - x^2}}               &= \pm\int_0^t \sqrt{\frac{k}{m}}\dt \\
+  \int_{x_0}^x \frac{\dx}{x_0\sqrt{1 - (\frac{x}{x_0})^2}} &= \pm\int_0^t \sqrt{\frac{k}{m}}\dt.
+\end{align*}
+Note that $\sin u = \sqrt{1 - \cos^2 u}$. So let $x(t)/x_0 = \cos\theta(t)$, so that
+$\dx = -x_0\sin\theta\d\theta$. Then we have
+\begin{align*}
+  \int_{0}^{\theta} \frac{x_0\sin\theta\d\theta}{x_0\sin\theta} = \theta &= \mp\sqrt{\frac{k}{m}}t,
+\end{align*}
+therefore
+\begin{align*}
+  x(t) = x_0\cos\(\sqrt{\frac{k}{m}} t\).
+\end{align*}
