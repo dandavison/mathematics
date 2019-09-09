@@ -751,6 +751,18 @@ therefore
 
 \subsection{Potential energy, conservative force, and work}
 
+The \defn{work} done when a particle moves from $x_0$ to $x_1$ is defined to be
+\begin{align*}
+  W(x_0 \to x_1) := \int_{x_0}^{x_1} F(x) \dx.
+\end{align*}
+
+If this is independent of the path taken between $x_0$ and $x_1$, then we say the force is
+\defn{conservative} and define the \defn{potential energy} at $x$, relative to $x_0$ to be
+\begin{align*}
+  V(x) &:= -\int_{x_0}^x F(x') \dx'.
+\end{align*}
+If the integral depends on the path taken, the potential energy is undefined.
+
 \blue{A force moves something in space (causes an acceleration). Equivalently, something moves in
   space because a small displacement in some direction is associated with a lower potential
   energy. In fact, the force at a location \emph{is} the gradient in potential energy at that
@@ -761,13 +773,20 @@ therefore
   V(x) &= -\int_{x_0}^x F(x') \dx'
 \end{align*}
 
-\blue{However, $V(x)$ is only well-defined if that integral does not depend on the path taken in
-  space. So potential energy is defined only for such a \emph{conservative} force.
-  \emph{Work} is
-}
+\todo{Understand this}:
 
+A force that depends only on position in one dimension is always conservative, because the integral
+depends only on the endpoints. But a force that depends on e.g. time or velocity is
+non-conservative. Friction is such a force because although it looks like a constant force
+($\mu mg$), its direction (sign) is the opposite of the direction of velocity, so it is in fact
+velocity-dependent.
 
-
+Also, how is this so:
+\begin{quote}
+  \emph{Since friction always opposes the motion, the contributions to the $W = \int F \dx$ integral are
+    always negative, so there is never any cancellation. The result is therefore a large negative
+    number.}
+\end{quote}
 \subsubsection{Example: gravitational potential energy}
 
 Consider two point masses $M$ and $m$, separated by a distance $r$. Newton's law of gravitation
@@ -836,3 +855,46 @@ becomes completely unwound?
   \end{align*}
   ...\red{incomplete}
 \end{proof}
+
+\subsubsection*{5.1}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--5-1.png}
+\end{mdframed}
+
+The masses will settle at their lowest potential energy. Suppose this were not a
+minimum-string-above-table configuration. Then some mass would be able to descend, i.e. there would
+be a force on the mass and it would descend. So the equilibrium configuration is a
+minimum-string-above-table configuration.
+
+Each mass pulls with an equal force $mg$, therefore the tension in each string is equal to
+$mg$. These tensions at the central knot balance each other, since there is no motion. So
+considering any one string, it must bisect the angle of the other two. Hence all 3 angles are equal,
+and therefore equal to 120$\deg$.
+
+\subsubsection*{5.2}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--5-2.png}
+\end{mdframed}
+
+Let $T(x)$ be kinetic energy. The potential $V(x)$ is negative, increasing to $V(0) = 0$. At $x = 0$
+the particle has no kinetic energy. Therefore the total energy is $T(x) + V(x) = 0$ and, measuring
+$x$ in the direction of displacement of the particle, we have
+\begin{align*}
+  \frac{1}{2}mv^2 &= Ax^n \\
+  v = \dxdt       &= a x^{n/2},
+\end{align*}
+where $a = \sqrt{2A/m}$. Separating variables, and letting $x_0$ be the starting position and $t$ be
+the time taken to reach $x=0$, we have
+\begin{align*}
+  \int_{x_0}^0 x^{-n/2} \dx &= \int_0^t a\dt' = at.
+\end{align*}
+\todo{Don't think this is right:}
+The antiderivative of $x^{-n/2}$ is $\frac{2}{2 - n}x^{-\frac{n - 2}{2}}$, which exists for
+$n \neq 2$. Therefore these are the values of $n$ for which the particle reaches the origin in
+finite time.
+
+\subsubsection*{5.3}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--5-3.png}
+\end{mdframed}
+
