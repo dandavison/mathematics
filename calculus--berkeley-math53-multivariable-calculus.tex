@@ -11,7 +11,7 @@
 \subsection*{1.c}
 
 \begin{mdframed}
-In order to find the maximum, we want the derivative of
+  In order to find the maximum, we want the derivative of
 \begin{align*}
   f(x) = \int_0^x t^2 - 1 \dt.
 \end{align*}
@@ -172,7 +172,7 @@ Out[80]:
  -(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3)/3 + 2/(c*(sqrt(6561/c**2 + 864/c**3)/2 - 81/(2*c))**(1/3))]
 \end{verbatim}
 
-Alternatively, we have $\dy\dx = \frac{6t^2}{6t} = t$, and so
+  Alternatively, we have $\dy\dx = \frac{6t^2}{6t} = t$, and so
 
 \begin{align*}
   3 - (2t^3 + 1) = t\(4 - (3t^2 + 1)\) \\
@@ -244,7 +244,7 @@ In [119]: integrate(-12 * a**2 * sin(theta)**4 * cos(theta)**2, (theta, pi/2, 0)
 Out[119]: 3*pi*a**2/8
 \end{verbatim}
 
-$\checkmark$
+  $\checkmark$
 
   Alternatively, $r = \sqrt{a^2\cos^6\theta + a^2\sin^6\theta}$, and the area
   in the first quadrant is
@@ -253,7 +253,7 @@ $\checkmark$
     \int_0^{\pi/2} \sqrt{a^2\cos^6\theta + a^2\sin^6\theta} \dtheta \\
   \end{align*}
 
-(Sympy chokes on this integral.)
+  (Sympy chokes on this integral.)
 
 \end{mdframed}
 
@@ -354,13 +354,13 @@ the x-axis.
   x = t^3, ~~~ y = t^2, ~~~ 0 \leq t \leq 1
 \end{align*}
 \begin{mdframed}
-The Cartesian equation is $y = x^{2/3}$, so a concave-downward curve defined on $x \geq 0$.
+  The Cartesian equation is $y = x^{2/3}$, so a concave-downward curve defined on $x \geq 0$.
 
-The area is a sum of infinitesemal strips each with area $2\pi y\sqrt{\dx^2 + \dy^2}$.
+  The area is a sum of infinitesemal strips each with area $2\pi y\sqrt{\dx^2 + \dy^2}$.
 
-Note, this is \textbf{not} $A = \int_{t=0}^{t=1} 2\pi y\dx$! We need to use
-the hypotenuse in order for the integral to converge to the area (see
-footnote).
+  Note, this is \textbf{not} $A = \int_{t=0}^{t=1} 2\pi y\dx$! We need to use
+  the hypotenuse in order for the integral to converge to the area (see
+  footnote).
 
 \begin{align*}
   A &= \int_{t=0}^{t=1} 2\pi y\sqrt{\dx^2 + \dy^2} \\
@@ -495,8 +495,8 @@ Find a polar equation for the Cartesian equation $x^2 + y^2 = 2cx$.
     r^2 &= 2cr\cos\theta\\
     r &= 2c\cos\theta
   \end{align*}
-\includegraphics[width=300pt]{img/10-3-25-1.png}\\
-\includegraphics[width=200pt]{img/10-3-25-2.png}
+  \includegraphics[width=300pt]{img/10-3-25-1.png}\\
+  \includegraphics[width=200pt]{img/10-3-25-2.png}
 \end{mdframed}
 
 \newpage
@@ -549,7 +549,7 @@ $\theta$ in Cartesian coordinates: $r = \theta, \theta \geq 0$.
 Sketch the curve in polar coordinates by first sketching $r$ as a function of
 $\theta$ in Cartesian coordinates: $r = 3\cos(3\theta)$.
 \begin{mdframed}
-\includegraphics[width=300pt]{img/10-3-35.png}
+  \includegraphics[width=300pt]{img/10-3-35.png}
 \end{mdframed}
 
 \newpage
@@ -557,9 +557,9 @@ $\theta$ in Cartesian coordinates: $r = 3\cos(3\theta)$.
 Find the slope of the tangent line to the polar curve, at $\theta$:\\
 $r = 2 + \sin 3\theta, \theta=\pi/4$
 \begin{mdframed}
-\includegraphics[width=200pt]{img/10-3-56.png}\\
-It looks like the slope might be -1. We use the chain rule, $\dydx = \(\dydtheta\)/\(\dxdtheta\)$ and so we need
-$\dxdtheta$ and $\dydtheta$.
+  \includegraphics[width=200pt]{img/10-3-56.png}\\
+  It looks like the slope might be -1. We use the chain rule, $\dydx = \(\dydtheta\)/\(\dxdtheta\)$ and so we need
+  $\dxdtheta$ and $\dydtheta$.
 \begin{align*}
   x          &= r\cos\theta = (2 + \sin 3\theta)\cos\theta\\
   \dxdtheta  &= (3\cos 3\theta)\cos\theta - (2 + \sin 3\theta)\sin\theta\\
@@ -879,7 +879,7 @@ circle rolls along a straight line is called a cycloid. If the circle has
 radius $r$ and rolls along the $x$-axis and if one position of $P$ is the
 origin, find parametric equations for the cycloid.
 \begin{mdframed}
-...
+  ...
 \end{mdframed}
 \section{Math 53 Midterm I Februrary 2011 Frenkel}
 
@@ -894,7 +894,7 @@ $$.
 (b) Find the area of the region enclosed by one loop of this curve.\\
 
 \begin{mdframed}
-The area of a sector of $\dtheta$ radians is $\frac{\dtheta}{2\pi}\pi r^2 = \frac{\dtheta}{2}\cos^2(2\theta)$. Recall the identity $\cos^2 t = \frac{1}{2} + \frac{1}{2}\cos(2t)$. Therefore the area of one loop is
+  The area of a sector of $\dtheta$ radians is $\frac{\dtheta}{2\pi}\pi r^2 = \frac{\dtheta}{2}\cos^2(2\theta)$. Recall the identity $\cos^2 t = \frac{1}{2} + \frac{1}{2}\cos(2t)$. Therefore the area of one loop is
 
 \begin{align*}
   \int_{-\pi/4}^{\pi/4} \frac{\dtheta}{2}\cos^2(2\theta)
@@ -909,7 +909,7 @@ The area of a sector of $\dtheta$ radians is $\frac{\dtheta}{2\pi}\pi r^2 = \fra
 from the point $(0, 0, 1)$ and the plane $z = 2$.\\
 
 \begin{mdframed}
-Such points satisfy $\sqrt{x^2 + y^2 + (z - 1)^2} = z - 2$, which simplifies as
+  Such points satisfy $\sqrt{x^2 + y^2 + (z - 1)^2} = z - 2$, which simplifies as
 
 \begin{align*}
 x^2 + y^2 + z^2 - 2z + 1 &= z^2 - 4z + 4 \\
@@ -921,7 +921,7 @@ z &= -\frac{x^2}{2} -\frac{y^2}{2} + \frac{3}{2} \\
 (b) Sketch this surface. What is it called?
 
 \begin{mdframed}
-Concave-down paraboloid
+  Concave-down paraboloid
 \end{mdframed}
 
 3. Show that the function $\frac{x^{50}y^{50}}{x^{100} + y^{200}}$ does not
@@ -971,14 +971,14 @@ both lie in $S$. Find an equation of the tangent plane to $S$ at the point $P$.
 
 
 ~\\\begin{mdframed}
-First note that $P$ lies in both curves, since $r_1(0) = r_2(1) = P$.
+  First note that $P$ lies in both curves, since $r_1(0) = r_2(1) = P$.
 
-Now we use the two curves to obtain two vectors that lie in the tangent
-plane. Their cross product is a vector normal to the tangent plane and provides
-the coefficients for the equation of the plane.
+  Now we use the two curves to obtain two vectors that lie in the tangent
+  plane. Their cross product is a vector normal to the tangent plane and provides
+  the coefficients for the equation of the plane.
 
-The derivative of a curve $r(t)$ with respect to the parameter $t$ is a
-function giving a tangent vector. The derivatives are:
+  The derivative of a curve $r(t)$ with respect to the parameter $t$ is a
+  function giving a tangent vector. The derivatives are:
 
 \begin{align*}
   \dot r_1(t) = \cveccc{5}{-2t}{1 - 3t^2}, ~~~
