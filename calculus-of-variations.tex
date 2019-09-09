@@ -1,0 +1,52 @@
+\section{}
+\footnotetext{Notes from Classical Mechanics by John R. Taylor, ch. 6}
+
+The calculus of variations can be used to find a function $y(x)$ that minimizes a scalar quantity
+that is expressed as an integral $\int_{x_0}^{x_1} f[y(x), y'(x), x] \dx$. Here are two such
+problems:
+
+\begin{question*}
+  What is the shortest path between two points in a plane?
+\end{question*}
+
+\begin{proof}
+  Let the points be $(x_0, y_0)$ and $(x_1, y_1)$ and let them be joined by some path $y(x)$ of
+  length $L$. Consider a short section of the path of length $\Delta l$ above a section of the
+  $x$-axis of length $\Delta x$, and make a linear approximation to the path in this region. The
+  length of the hypotenuse is
+  \begin{align*}
+    \Delta l = \sqrt{(\Delta x)^2 + (y'(x)\Delta x)^2} = \sqrt{1 + y'(x)^2} \Delta x.
+  \end{align*}
+  Therefore a shortest path is a function $y(x)$ that minimizes
+  \begin{align*}
+    L = \int_{x_0}^{x_1} \d l = \int_{x_0}^{x_1} \sqrt{1 + y'(x)^2} \dx,
+  \end{align*}
+  with the constraint that the endpoints are fixed at $y(x_0) = y_0$ and $y(x_1) = y_1$.
+
+  \todo{Find the function $y$ that minimizes this integral.}
+\end{proof}
+
+
+\begin{question*}
+  In 1662 Fermat proposed that light, when passing from one point to another through a material with
+  varying refractive index, takes the path which takes least time\footnote{\todo{In fact, the path
+      taken is a stationary point with respect to the action? time? ...not necessarily least}}. What
+  is this path?
+\end{question*}
+
+\begin{proof}
+  Again consider a short section of the path of length $\Delta l$ above a section of the $x$-axis of
+  length $\Delta x$. Let $c$ be the speed of light and $n$ be the refractive index in this
+  region. This means that the light travels at speed $c/n$, and therefore takes time $(n/c)\Delta l$
+  to pass along the hypotenuse. The refractive index $n$ can vary with both $x$ and $y$, therefore a
+  least-time path is a function that minimizes
+  \begin{align*}
+    T = \int_{x_0}^{x_1} n(x, y(x)) \d l = \int_{x_0}^{x_1} n(x, y(x)) \sqrt{1 + y'(x)^2} \dx,
+  \end{align*}
+  with the constraint that the endpoints are fixed at $y(x_0) = y_0$ and $y(x_1) = y_1$.
+
+  \todo{Find the function $y$ that minimizes this integral.}
+\end{proof}
+
+Note that in both problems, the integral can be viewed as a scalar-valued \emph{functional} that
+depends on the \emph{functions} $y(x)$ and $y'(x)$.
