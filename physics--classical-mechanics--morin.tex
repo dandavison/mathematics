@@ -618,8 +618,8 @@ Note that if $m = 0$ then there is no force and the particle does not move; othe
 by $m$, removing dependence of the differential equation on $m$. We can then find $x(t)$ by
 integrating twice:
 \begin{align*}
-  \frac{\dv}{\dt}                               &= a_0e^{-bt} \\
-  \int_{v(0) = 0}^{v(t)} \dv = v(t) = \frac{\dx}{\dt} &= a_0 \int_0^t e^{-bt'} \dt'
+  \frac{\d v}{\dt}                               &= a_0e^{-bt} \\
+  \int_{v(0) = 0}^{v(t)} \d v = v(t) = \frac{\dx}{\dt} &= a_0 \int_0^t e^{-bt'} \dt'
                                                  = a_0 \(\frac{-1}{b}e^{-bt} + \frac{1}{b}\) \\
   \int_{x(0) = 0}^{x(t)}\dx = x(t)                    &= a_0 \int_0^{t}\(\frac{-1}{b}e^{-bt'} + \frac{1}{b}\) \dt'
                                                  = a_0\(\frac{1}{b^2}e^{-bt} + \frac{t}{b} - \frac{1}{b^2}\). \checkmark
@@ -701,9 +701,9 @@ non-zero velocity just like jumping into a zero-initial-velocity motion at a lat
 
 \subsubsection*{3.10 Alternative solution: separation of variables}
 
-We have $m\dvdt = m\frac{\dv}{\dx}\dxdt = mv\frac{\dv}{\dx} = -kx$. Therefore
+We have $m\dvdt = m\frac{\d v}{\dx}\dxdt = mv\frac{\d v}{\dx} = -kx$. Therefore
 \begin{align*}
-  \int_{0}^{v} mv \dv &= -\int_{x_0}^{x} kx\dx \\
+  \int_{0}^{v} mv \d v &= -\int_{x_0}^{x} kx\dx \\
   \frac{1}{2}mv^2      &= \frac{1}{2}kx_0^2 - \frac{1}{2}kx^2 \\
   v = \dxdt            &= \pm\sqrt{\frac{k}{m}(x_0^2 - x^2)} \\
   \int_{x_0}^x \frac{\dx}{\sqrt{x_0^2 - x^2}}               &= \pm\int_0^t \sqrt{\frac{k}{m}}\dt \\
