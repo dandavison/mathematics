@@ -212,6 +212,70 @@ the definition of derivative is
   respect to that argument is $\partial_a{f}:X \to A^*$.
 \end{definition*}
 
+\newpage
+\subsection{The chain rule for a function with multiple inputs}
+
+Suppose that a function $f$ measures something about a particle at a moment in time and depends on
+three inputs:
+\begin{enumerate}
+\item the time $t$
+\item the position $y(t)$
+\item the velocity $y'(t)$.
+\end{enumerate}
+Further, suppose that the position and velocity in fact also depend on a parameter $\alpha$.
+
+Now, let the value of $\alpha$ be changed slightly, to $\alpha + \Delta\alpha$, causing $y(t)$ to
+change to $y(t) + \Delta y(t)$ and $y'(t)$ to change to $y'(t) + \Delta y'(t)$. These changes in
+turn cause $f(t)$ to change to $f(t) + \Delta f(t)$.
+
+The increment in $f(t)$ comes from two sources: the change in $y(t)$ and the change in $y'(t)$. We
+can use the definition of partial derivative to make an approximation\footnote{The additive nature
+  of this approximation needs to be justified I think.} to the increment in $f(t)$:
+\begin{align*}
+  \Delta f(t) \approx ~ &(\del_{y(t)} f)(t) \cdot \Delta y(t) \\
+                    +   &(\del_{y'(t)} f)(t) \cdot \Delta y'(t).
+\end{align*}
+And we can do the same for $\Delta y(t)$ and $\Delta y'(t)$, replacing them with their linear
+approximations given the increment in $\alpha$:
+\begin{align*}
+  \Delta f(t) \approx ~ &(\del_{y(t)} f)(t) \cdot (\del_\alpha y)(t) \cdot \Delta \alpha \\
+                      + &(\del_{y'(t)} f)(t) \cdot (\del_\alpha y')(t) \cdot \Delta \alpha.
+\end{align*}
+
+The partial derivative $\del_\alpha f$ of $f$ with respect to $\alpha$ is defined to be a function
+which, when evaluated at $t$, yields a quantity which multiplies $\Delta\alpha$ to give a linear
+approximation to the increment $\Delta f(t)$:
+\begin{align*}
+  \Delta f(t) \approx \Delta\alpha \cdot (\del_\alpha f)(t).
+\end{align*}
+So we see that the quantity
+\begin{align*}
+    &(\del_{y(t)} f)(t) \cdot (\del_\alpha y)(t) \\
+  + &(\del_{y'(t)} f)(t) \cdot (\del_\alpha y')(t)
+\end{align*}
+fits the definition of $(\del_\alpha f)(t)$.
+
+This is normally written in a more streamlined fashion. In functional/operator notation it might be written
+\begin{align*}
+  \del_\alpha f = \del_y f \cdot \del_\alpha y + \del_{y'} f \cdot \del_\alpha y'.
+\end{align*}
+Alternatively, traditional (Leibniz) notation features a pattern of symbols that looks like
+multiplication of fractions with cancellation:
+\begin{align*}
+  \pdv{f}{\alpha} = \pdv{f}{y} \pdv{y}{\alpha} + \pdv{f}{y'}\pdv{y'}{\alpha}.
+\end{align*}
+In both styles of notation we are multiplying and adding functions, with these operations defined
+``pointwise'':
+\begin{align*}
+  (f + g)(x) &:= f(x) + g(x) \\
+  (fg)(x)    &:= f(x)g(x).
+\end{align*}
+
+
+
+
+
+
 
 \subsection{Partial derivatives with respect to non-independent inputs}
 
