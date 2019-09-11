@@ -17,10 +17,17 @@ problems:
   \begin{align*}
     \Delta s = \sqrt{(\Delta x)^2 + (y'(x)\Delta x)^2} = \sqrt{1 + y'(x)^2} \Delta x.
   \end{align*}
+
   Therefore a shortest path is a function $y(x)$ that minimizes
   \begin{align*}
     S = \int_{x_0}^{x_1} \d s = \int_{x_0}^{x_1} \sqrt{1 + y'(x)^2} \dx,
   \end{align*}
+  \blue{
+    \begin{align*}
+      S[y](x_0, x_1) = \int_{x_0}^{x_1} \sqrt{1 + y'(x)^2}\d x.
+    \end{align*}
+  }
+
   with the constraint that the endpoints are fixed at $y(x_0) = y_0$ and $y(x_1) = y_1$.
 
   \todo{Find the function $y$ that minimizes this integral.}
@@ -146,11 +153,89 @@ the definition of derivative is
   things so that the value of the integral is non-zero; a contradiction. Therefore the
   difference-of-derivatives-function is zero for all $x$, and we have the Euler-Lagrange equations:
   \begin{align*}
-    \pdv{f}{y} = \dv{}{x}\pdv{f}{y'}.
+    \pdv{f}{y} - \dv{}{x}\pdv{f}{y'} = 0.
   \end{align*}
   This is a system of differential equations which must be satisfied by any path that is stationary
   with respect to $f$.
+
+  In SICM's functional notation, the Euler-Lagrange system of equations is
+  \begin{align*}
+    \del
+  \end{align*}
+
 \end{proof}
+\section{SICM: Structure and Interpretation of Classical Mechanics}
+
+\begin{definition*}~\\
+  A \defn{derivative} of a function $f$ is the function $D f$. When $D f$ is evaluated at an input
+  value the result is something which can be multiplied by an increment to the function's input to
+  give a linear approximation to the increment in output:
+  \begin{align*}
+    f(x + \Delta x) \approx f(x) + (D f)(x)\Delta x.
+  \end{align*}
+
+  This definition holds for a function with $n$ inputs: the derivative function has $n$ inputs and
+  $n$ outputs. Its output is something whose ``contraction''\footnote{I understand ``contraction''
+    to refer to the multiplicative combination of one object with another object from the dual
+    space. So for example, the matrix product of a row vector on the left with a column vector on
+    the right.} with the increment in the function inputs gives a linear approximation to the
+  increment in output.
+
+  In the case where these inputs and outputs are $n$-dimensional vectors in $\R^n$ we can write this
+  \begin{align*}
+    f(\overrightarrow{x} + \overrightarrow{\Delta x}) \approx \overrightarrow{f(x)} + \overrightarrow{(D f)(x)} \cdot \overrightarrow{\Delta x}.
+  \end{align*}
+  Note that the value of the derivative $(D f)(x)$ is compatible for multiplication with the
+  increment vector $\Delta x$. This is connected to the notions of column vector/row vector, linear
+  functional\footnote{\url{https://en.wikipedia.org/wiki/Linear_form}}, vector/covector, tensor
+  algebra etc. In SICM they refer to the output of the derivative function being a ``down tuple'',
+  whereas all the other tuples here are ``up tuples''.
+
+  A \defn{partial derivative} is one component of the derivative of a function of multiple inputs.
+
+  So for a function $f:X \to Y$, the derivative is the function $D f:X \to X^*$, where $X^*$ is a
+  space containing versions of $x \in X$ that are compatible for multiplication/contraction with
+  $x$, i.e. a ``dual'' space.
+
+  Suppose $f$ has an argument named $a$ that is of type $A$. Then the partial derivative of $f$ with
+  respect to that argument is $\partial_a{f}:X \to A^*$.
+\end{definition*}
+
+
+\subsection{Partial derivatives with respect to non-independent inputs}
+
+Consider the function $f(x) = x^2 + 2x$. Clearly the derivative is $(D f)(x) = 2x + 2$.
+
+However, suppose we choose to think of the function as $f(x, x^2) = x^2 + 2x$. In that case the
+derivative is
+\begin{align*}
+  (D f)(x, x^2) = (x^2 + 2, 1).
+\end{align*}
+
+
+
+
+\section{The Euler-Lagrange equations: SICM functional notation}
+
+Let $q:\R^+ \to \R$ be a function that maps time to coordinate in one-dimensional space.\footnote{In
+  general, $q$ will map time to ``generalized coordinates'' of the system, i.e. whatever parameters
+  are used to specify the state of the system at a moment in time}
+
+Let $\eta$ be another function like $q$, with the same endpoints at the start and end time, and let
+$\epsilon \in \R$, so that $q + \epsilon\eta$ is a different path with the same endpoints.
+
+\blue{Note that the addition and scalar multiplication operators here are acting on a set of
+  functions with the same range, and that they are defined as componentwise addition of the function
+  values, and scalar multiplication of each function value:
+  $(q + \epsilon\eta)(x) := q(x) + (\epsilon\eta)(x) := q(x) + \epsilon\eta(x)$. The set of path
+  functions forms a vector space.}
+
+Let $f[q]$ be a function that depends on a path $q$.
+
+Define a \defn{variation of the function $f$ on the path $q$} to be
+\begin{align*}
+  \delta_{\eta}f[q] := \lim_{\epsilon \to 0} \frac{f[q + \epsilon\eta] - f[q]}{\epsilon}.
+\end{align*}
 
 \newpage
 \footnote{Notes and exercises from Sussman et al. Structure and Interpretation of Classical Mechanics}
