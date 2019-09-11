@@ -71,55 +71,66 @@ the definition of derivative is
 
 \begin{proof}
   Note that in both example problems, the integral to be minimized can be viewed as a scalar-valued
-  \emph{functional} $f$ that depends on the \emph{functions} $y(x)$ and $y'(x)$\footnote{It seems to
-    me that this could also be written as $S[y, y'] = \int _{x_0}^{x_1} f[y(x), y'(x)](x) \dx$}:
+  \emph{functional} $S$ that depends on the \emph{function} $y$:
   \begin{align*}
-    S(y, y') = \int_{x_0}^{x_1} f[y(x), y'(x), x] \dx.
+    S[y](x_0, x_1) = \int_{x_0}^{x_1} f[x, y(x), y'(x)] \dx.
   \end{align*}
+  The arguments of the function $f$ that is integrated are \emph{not functions}! They are numeric
+  values at a single point in the path: the current $x$ value, the current $y$ value, and current
+  slope. We will attempt to stick to a notation wherein a symbol like $y$ is a function, and $y(x)$
+  is a result of evaluating the function at input value $x$.
 
   We'll refer to $S$ as giving the \emph{cost} of traveling along the path $y$, from $(x_0, y_0)$ to
-  $(x_1, y_1)$. Of course, $y$ and $y'$ are not independent variables, so we could just write $S(y)$.
-  However, we won't: we'll write $S(y, y')$.
+  $(x_1, y_1)$.
 
-  Recall that we seek a least-cost path $y(x)$, subject to the requirement that the endpoints are
-  $y(x_0) = y_0$ and $y(x_1) = y_1$. Let $y(x)$ be the least-cost path, and consider an alternative
-  path $Y(x)$ whose cost is greater than that of $y(x)$. We can write $Y(x)$ as
+  Recall that we seek a least-cost path $y$, subject to the requirement that the endpoints are
+  $y(x_0) = y_0$ and $y(x_1) = y_1$. Let $y$ be the least-cost path, and consider an alternative
+  path $Y$ whose cost is greater than that of $y$. We can write $Y$ as
   \begin{align*}
-    Y(x) = y(x) + \eta(x),
+    Y = y + \eta,
   \end{align*}
-  where the difference function $\eta$ must satisfy $\eta(x_0) = \eta(x_1) = 0$.  Now introduce a
-  parameter $\alpha$ and redefine $Y(x)$ as
+  where we are performing addition on domain-compatible
+  functions\footnote{$(f + g)(x) := f(x) + g(x)$}. The difference function $\eta$ must satisfy
+  $\eta(x_0) = \eta(x_1) = 0$ in order to restrict the space of functions to those with the same
+  endpoints as $y$. Now introduce a parameter $\alpha \in \R$ and redefine $Y$ as\footnote{We are
+    adding functions, and we are multiplying a function by a real scalar $\alpha$. The resulting
+    function evaluates as $Y(x) = y(x) + \alpha\eta(x).$}
   \begin{align*}
-    Y(x) = y(x) + \alpha\eta(x).
+    Y = y + \alpha\eta.
   \end{align*}
-  So now we have a family of paths, parameterized by $\alpha$, all satisfying the endpoint requirement,
-  and with the least-cost path corresponding to $\alpha=0$. We can consider the cost of these paths to
-  be a function $S(\alpha)$:
+
+  So now we have a family of paths, parameterized by $\alpha$, all satisfying the endpoint
+  requirement, and with the least-cost path corresponding to $\alpha=0$. We can reinterpret the cost
+  $S$ so that it is a function of $\alpha$:
   \begin{align*}
-    S(\alpha) &= \int_{x_0}^{x_1} f(Y, Y', x) \dx \\
-              &= \int_{x_0}^{x_1} f\(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x\) \dx.
+    S[y](\alpha) &= \int_{x_0}^{x_1} f(x, Y(x), Y'(x)) \dx \\
+                 &= \int_{x_0}^{x_1} f\(x, y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x)\) \dx.
   \end{align*}
-  We are trying to find a $y(x)$ that is a minimum in the cost surface over the function space (or a
-  maximum, or saddle point). For such a $y(x)$ it must be the case that
+  We are trying to find a path $y$ that is a minimum in the cost surface over the function space (or
+  a maximum, or saddle point). For such a $y$ it must be the case that\footnote{In traditional
+    notation, $\pdv{S}{\alpha}\Big|_{\alpha=0} = 0$.}
   \begin{align*}
-    \pdv{S}{\alpha}\Big|_{\alpha=0} = 0.
+    \del_\alpha S[y]\Big|_{\alpha=0} = 0.
   \end{align*}
-  So, let's compute $\pdv*{S}{\alpha}$ and use the fact that it must evaluate to zero at $\alpha=0$
+
+  So, let's compute $\del_\alpha S[y]$ and use the fact that it must evaluate to zero at $\alpha=0$
   to obtain an equation that $y$ must obey. We'll assume that $f$ satisfies the (mild) conditions
-  necessary to differentiate under the integral sign, i.e. that
+  necessary to ``differentiate under the integral sign'', i.e. that
   \begin{align*}
-    \pdv{S}{\alpha} = \pdv{}{\alpha}\int_{x_0}^{x_1} f(Y, Y', x) \dx
-                    = \int_{x_0}^{x_1} \pdv{f(Y, Y', x)}{\alpha} \dx.
+    \del_\alpha S = \del_\alpha \int_{x_0}^{x_1} f(x, Y(x), Y'(x)) \dx
+                 = \int_{x_0}^{x_1} (\del_\alpha f)(x, Y(x), Y'(x)) \dx.
   \end{align*}
-  Dropping the explicit function notation, we have
+
+  We have
   \begin{align*}
     Y  &= y + \alpha\eta \\
     Y' &= y' + \alpha\eta',
   \end{align*}
-  and so from the chain rule we have\footnote{It seems to me that this is the first time (?) that we
-    are treating functions ($\eta$ and $\eta'$) as objects on which a multiplication operation is
-    defined. I.e. we're saying that $\dv{}{\alpha}\alpha\eta = \eta$, as if $\eta$ were a simple
-    scalar from a field.}
+  and so from the chain rule we have
+  \begin{align*}
+    (\del_\alpha f)(x, Y(x), Y'(x)) &= (\del_{Y(x)} f)\del_\alpha
+  \end{align*}
+
   \begin{align*}
     \pdv{f(Y, Y', x)}{\alpha} &= \pdv{f}{Y}\pdv{Y}{\alpha} + \pdv{f}{Y'}\pdv{Y'}{\alpha} \\
                               &= \pdv{f}{Y}\eta + \pdv{f}{Y'}\eta'.
