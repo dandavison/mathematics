@@ -77,7 +77,6 @@ dimensional region of input space (e.g. a subset of the plane).
   respect to that argument is $\partial_a{f}:X \to A^*$.
 \end{definition*}
 
-\newpage
 \subsection{The chain rule for a function with multiple inputs}
 
 Suppose that a function $f$ measures something about a particle at a moment in time and depends on
@@ -124,6 +123,7 @@ This is normally written in a more streamlined fashion. In functional/operator n
 \begin{align*}
   \del_\alpha f = \del_y f \cdot \del_\alpha y + \del_{y'} f \cdot \del_\alpha y'.
 \end{align*}
+
 Alternatively, traditional (Leibniz) notation features a pattern of symbols that looks like
 multiplication of fractions with cancellation:
 \begin{align*}
@@ -135,6 +135,39 @@ In both styles of notation we are multiplying and adding functions, with these o
   (f + g)(x) &:= f(x) + g(x) \\
   (fg)(x)    &:= f(x)g(x).
 \end{align*}
+
+However, there's are serious problems with both these notations.
+
+\red{Firstly, the traditional notation doesn't type check. For example, $\pdv{f}{y}$ is a function that
+  takes the same arguments as $f$ (time, position and velocity), and $\pdv{y}{\alpha}$ is a function
+  that takes the same arguments as $y$ (time). So it's not possible to form the product of these
+  functions.}
+
+Take $\del_y f$ for example, which is $\pdv{f}{y}$ in the traditional notation. The problem is that
+$y$ is a function. The partial derivative of $f$ is not contemplating the consequences of a small
+change to the function; rather it is contemplating the consequences of a small change to the
+argument of $f$ that is supplied by evaluating the function $y$. So, one might be tempted to write
+something like $\del_{y(x)}f$ or $\pdv{f}{y(x)}$. But that notation doesn't really make sense and in
+any case isn't going to fare well when the expression gets more complex than $y(x)$. The solution
+that Spivak (1965)\footnote{Calculus on Manifolds} and Sussman (2001)\footnote{Structure and
+  Interpretation of Classical Mechanics} adopt is to abandon all attempts to indicate what the
+argument \emph{is} with respect to which a partial derivative is being taken, instead simply using
+an integer subscript to indicate \emph{which} argument it is (first, second, third, etc). So they
+might write (using 1-based indexing)
+\begin{align*}
+  \del_1 (f \circ (y, y')) = \del_2 f \cdot \del_1 y + \del_3 f \cdot \del_1 y'.
+\end{align*}
+
+Unpacking that:
+\begin{itemize}
+\item $\del_i g$ is the partial derivative of a function $g$ with respect to its $i$-th argument. Spivak (1965)
+  uses $D_i g$ for this.
+\item $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. These
+  arguments are fed into $y$, with the result yielding the first argument to $f$, and into $y'$,
+  with the result yielding the second argument to $f$. (The construction implies that the two
+  functions on the RHS of the circle take the same argument types, as indeed they do in this case,
+  since one is the derivative of the other.)
+\end{itemize}
 
 
 \subsection{Partial derivatives with respect to non-independent inputs}
