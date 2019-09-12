@@ -82,92 +82,79 @@ dimensional region of input space (e.g. a subset of the plane).
 Suppose that a function $f$ measures something about a particle at a moment in time and depends on
 three inputs:
 \begin{enumerate}
+\item the position $y(\alpha, t)$
+\item the velocity $y'(\alpha, t)$
 \item the time $t$
-\item the position $y(t)$
-\item the velocity $y'(t)$.
 \end{enumerate}
-Further, suppose that the position and velocity in fact also depend on a parameter $\alpha$.
+where position and velocity depend on a parameter $\alpha$ in addition to time.
 
 Now, let the value of $\alpha$ be changed slightly, to $\alpha + \Delta\alpha$, causing $y(t)$ to
 change to $y(t) + \Delta y(t)$ and $y'(t)$ to change to $y'(t) + \Delta y'(t)$. These changes in
 turn cause $f(t)$ to change to $f(t) + \Delta f(t)$.
 
+We'll use the notation of Spivak (1965)\footnote{Calculus on Manifolds} and Sussman
+(2001)\footnote{Structure and Interpretation of Classical Mechanics} for partial
+derivatives\footnote{See also \url{http://www.vendian.org/mncharity/dir3/dxdoc/}}. This notation
+abandons all attempts to indicate what the argument \emph{is} with respect to which a partial
+derivative is being taken, instead simply using an integer subscript to indicate \emph{which}
+argument it is (first, second, third, etc).
+
+So define $\del_i g$ to be the partial derivative of a function $g$ with respect to its $i$-th
+argument\footnote{Spivak (1965) uses $D_i g$ for this}.
+
 The increment in $f(t)$ comes from two sources: the change in $y(t)$ and the change in $y'(t)$. We
 can use the definition of partial derivative to make an approximation\footnote{The additive nature
   of this approximation needs to be justified I think.} to the increment in $f(t)$:
 \begin{align*}
-  \Delta f(t) \approx ~ &(\del_{y(t)} f)(t) \cdot \Delta y(t) \\
-                    +   &(\del_{y'(t)} f)(t) \cdot \Delta y'(t).
+  \Delta f(t) \approx ~ &(\del_1 f)(t) \cdot \Delta y(t) \\
+                    +   &(\del_2 f)(t) \cdot \Delta y'(t).
 \end{align*}
 And we can do the same for $\Delta y(t)$ and $\Delta y'(t)$, replacing them with their linear
 approximations given the increment in $\alpha$:
 \begin{align*}
-  \Delta f(t) \approx ~ &(\del_{y(t)} f)(t) \cdot (\del_\alpha y)(t) \cdot \Delta \alpha \\
-                      + &(\del_{y'(t)} f)(t) \cdot (\del_\alpha y')(t) \cdot \Delta \alpha.
+  \Delta f(t) \approx ~ &(\del_1 f)(t) \cdot (\del_1 y)(t) \cdot \Delta \alpha \\
+                      + &(\del_2 f)(t) \cdot (\del_1 y')(t) \cdot \Delta \alpha.
 \end{align*}
 
-The partial derivative $\del_\alpha f$ of $f$ with respect to $\alpha$ is defined to be a function
-which, when evaluated at $t$, yields a quantity which multiplies $\Delta\alpha$ to give a linear
-approximation to the increment $\Delta f(t)$:
+The partial derivative of $f$ with respect to $\alpha$ is written\footnote{It's hard not to want to
+  write $\del_\alpha f$ here even though that is not Spivak notation.}
+$\del_\alpha f := \del_1 (f \circ (y, y'))$. It is defined to be a function which, when evaluated at
+$t$, yields a quantity which multiplies $\Delta\alpha$ to give a linear approximation to the
+increment $\Delta f(t)$:
 \begin{align*}
   \Delta f(t) \approx \Delta\alpha \cdot (\del_\alpha f)(t).
 \end{align*}
 So we see that the quantity
 \begin{align*}
-    &(\del_{y(t)} f)(t) \cdot (\del_\alpha y)(t) \\
-  + &(\del_{y'(t)} f)(t) \cdot (\del_\alpha y')(t)
+    &(\del_1 f)(t) \cdot (\del_1 y)(t) \\
+  + &(\del_2 f)(t) \cdot (\del_1 y')(t)
 \end{align*}
-fits the definition of $(\del_\alpha f)(t)$.
-
-This is normally written in a more streamlined fashion. In functional/operator notation it might be written
+fits the definition of $(\del_\alpha f)(t)$. So that is the partial derivative evaluated at a single
+point in time. But we can write the partial derivative as an equation involving functions, as
+opposed to function values:
 \begin{align*}
-  \del_\alpha f = \del_y f \cdot \del_\alpha y + \del_{y'} f \cdot \del_\alpha y'.
+  \del_1 (f \circ (y, y')) = \del_1 f \cdot \del_1 y + \del_2 f \cdot \del_1 y'.
 \end{align*}
+
+Here we are multiplying and adding functions, with these operations defined pointwise:
+\begin{align*}
+  (f + g)(x) &:= f(x) + g(x) \\
+  (fg)(x)    &:= f(x)g(x).
+\end{align*}
+
+$f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. (The
+construction implies that the two functions on the RHS of the circle take the same argument types,
+as indeed they do in this case, since one is the derivative of the other.) These arguments are fed
+independently into both $y$ and $y'$; the result from $y$ yields the first argument to $f$, and the
+result from $y'$ yields the second argument to $f$.
 
 Alternatively, traditional (Leibniz) notation features a pattern of symbols that looks like
 multiplication of fractions with cancellation:
 \begin{align*}
   \pdv{f}{\alpha} = \pdv{f}{y} \pdv{y}{\alpha} + \pdv{f}{y'}\pdv{y'}{\alpha}.
 \end{align*}
-In both styles of notation we are multiplying and adding functions, with these operations defined
-``pointwise'':
-\begin{align*}
-  (f + g)(x) &:= f(x) + g(x) \\
-  (fg)(x)    &:= f(x)g(x).
-\end{align*}
 
-However, there's are serious problems with both these notations.
-
-\red{Firstly, the traditional notation doesn't type check. For example, $\pdv{f}{y}$ is a function that
-  takes the same arguments as $f$ (time, position and velocity), and $\pdv{y}{\alpha}$ is a function
-  that takes the same arguments as $y$ (time). So it's not possible to form the product of these
-  functions.}
-
-Take $\del_y f$ for example, which is $\pdv{f}{y}$ in the traditional notation. The problem is that
-$y$ is a function. The partial derivative of $f$ is not contemplating the consequences of a small
-change to the function; rather it is contemplating the consequences of a small change to the
-argument of $f$ that is supplied by evaluating the function $y$. So, one might be tempted to write
-something like $\del_{y(x)}f$ or $\pdv{f}{y(x)}$. But that notation doesn't really make sense and in
-any case isn't going to fare well when the expression gets more complex than $y(x)$. The solution
-that Spivak (1965)\footnote{Calculus on Manifolds} and Sussman (2001)\footnote{Structure and
-  Interpretation of Classical Mechanics} adopt is to abandon all attempts to indicate what the
-argument \emph{is} with respect to which a partial derivative is being taken, instead simply using
-an integer subscript to indicate \emph{which} argument it is (first, second, third, etc). So they
-might write (using 1-based indexing)
-\begin{align*}
-  \del_1 (f \circ (y, y')) = \del_2 f \cdot \del_1 y + \del_3 f \cdot \del_1 y'.
-\end{align*}
-
-Unpacking that:
-\begin{itemize}
-\item $\del_i g$ is the partial derivative of a function $g$ with respect to its $i$-th argument. Spivak (1965)
-  uses $D_i g$ for this.
-\item $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. These
-  arguments are fed into $y$, with the result yielding the first argument to $f$, and into $y'$,
-  with the result yielding the second argument to $f$. (The construction implies that the two
-  functions on the RHS of the circle take the same argument types, as indeed they do in this case,
-  since one is the derivative of the other.)
-\end{itemize}
+\todo{What do the elements of the Leibniz notation mean?\footnote{\url{https://en.wikipedia.org/wiki/Chain_rule}}}
 
 
 \subsection{Partial derivatives with respect to non-independent inputs}
