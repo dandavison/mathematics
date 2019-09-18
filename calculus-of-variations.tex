@@ -128,7 +128,8 @@ the definition of derivative is
   \end{align*}
   and so from the chain rule we have
   \begin{align*}
-    (\del_\alpha f)(x, Y(x), Y'(x)) &= (\del_{Y(x)} f)\del_\alpha
+    \del_\alpha f &= \del_{Y(x)} f \cdot \del_\alpha Y + \del_{Y'} f \cdot \del_\alpha Y' \\
+                 &= \del_{Y} f \cdot \del_\alpha Y + \del_{Y'} f \cdot \del_\alpha Y' \\
   \end{align*}
 
   \begin{align*}
@@ -166,21 +167,74 @@ the definition of derivative is
   \begin{align*}
     \pdv{f}{y} - \dv{}{x}\pdv{f}{y'} = 0.
   \end{align*}
-  This is a system of differential equations which must be satisfied by any path that is stationary
-  with respect to $f$.
-
-  In SICM's functional notation, the Euler-Lagrange system of equations is
-  \begin{align*}
-    \del
-  \end{align*}
-
 \end{proof}
+
+This is a system of differential equations which must be satisfied by any path that is stationary
+with respect to $f$.
+
+In SICM's functional notation, the Euler-Lagrange system of equations is
+\begin{align*}
+    (\del_1 f \circ \Gamma[q]) - D(\del_2f \circ \Gamma[q]) = 0,
+\end{align*}
+where
+\begin{itemize}
+\item $\Gamma$ is a function mapping time to the tuple of arguments taken by $f$,
+  i.e. $\Gamma[q](t) = (t, y(t), y'(t))$,
+\item $\del_1$ refers to the partial derivative with respect to position and $\del_2$ is with
+  respect to velocity (zero-based indexing of positional arguments).
+\end{itemize}
+
+So, any path $q$ for which the action is stationary satisfies the Euler-Lagrange system of
+differential equations. And what those equations say is the following:
+\begin{enumerate}
+\item Recall that $f$ is a function of time, position and velocity values at a single moment in time.
+\item Compute the partial derivative function of $f$ with respect to the position argument. Note
+  that this is a function of time, position and velocity; its output is a real number (the slope
+  of a certain tangent line to the real-valued $f$ surface).
+\item Now, form a new function by composing this partial derivative function with $\Gamma[q]$. The
+  new function maps time to a real number (the slope). Call this function $A$.
+\item Repeat the previous two steps for the velocity argument, instead of the position
+  argument. So again, the result is a function mapping time to a real number. But this time, take
+  the time derivative of that function. The result is still a function mapping time to a real
+  number. Call this function $B$.
+\item Now, take a candidate path $q$. If the action is stationary along that path, then at every
+  moment $t$ we will find that $A(t) = B(t)$.
+\end{enumerate}
+
+
+\newpage
+\subsection{The shortest path between two points on a plane}
+
+Let's return to this problem, using the functional notation. We have
+\begin{itemize}
+\item $f(x, y, v) = (1 + v^2)^{1/2}$ \\
+  A function mapping the local tuple to the cost associated with that point in the path.
+\item $(\del_1 f)(x, y, v) = 0$ \\
+  Partial derivative of $f$ with respect to its first argument.
+\item $(\del_2 f)(x, y, v) = v(1 + v^2)^{-1/2}$ \\
+  Partial derivative of $f$ with respect to its second argument.
+\item $q(t) = y(t)$ \\
+  The path: a map from time to spatial coordinate.
+\item $(\del_2 f \circ \Gamma[q])(t) = y'(t)(1 + y'(t)^2)^{-1/2}$ \\
+  Composing $\del_2 f$ with $\Gamma[q]$ represents ``plugging in'' $y'(t)$ as the value of $v$.
+\item Since the partial derivative of $f$ with respect to its position argument is zero, the
+  Euler-Lagrange equation states that for the action to be minimized we must have
+  \begin{align*}
+     D (\del_2 f \circ \Gamma[q])(t)
+     = \(\frac{y'}{(1 + y'^2)^{1/2}}\)'
+     = 0.
+  \end{align*}
+  In other words, $\frac{y'}{(1 + y'^2)^{1/2}}$ is constant, say $C$, which leads to
+  $y' = \sqrt{C/(1 - C)}$. So a general form for the path is a straight line
+  \begin{align*}
+    y = mx + c
+  \end{align*}
+  where $m = \sqrt{C/(1 - C)}$.
+\end{itemize}
+
 \section{SICM: Structure and Interpretation of Classical Mechanics}
 
-
-
-
-\section{The Euler-Lagrange equations: SICM functional notation}
+\subsection{The Euler-Lagrange equations}
 
 Let $q:\R^+ \to \R$ be a function that maps time to coordinate in one-dimensional space.\footnote{In
   general, $q$ will map time to ``generalized coordinates'' of the system, i.e. whatever parameters

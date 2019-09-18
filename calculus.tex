@@ -1,3 +1,4 @@
+\begin{comment}  % latex-focus
 \section{Overview}
 Differential calculus is a way to compute quantities related to functions by
 treating the smooth curve or surface of function output values as being
@@ -40,7 +41,7 @@ $\omega$ would depend on $|\Delta x_i|$ only and not otherwise on $\Delta x_i$?
 
 Another question is what is the value of the integral over some higher
 dimensional region of input space (e.g. a subset of the plane).
-
+\end{comment}  % latex-focus
 \section{Derivatives}
 \begin{definition*}~\\
   A \defn{derivative} of a function $f$ is the function $D f$. When $D f$ is evaluated at an input
@@ -48,6 +49,27 @@ dimensional region of input space (e.g. a subset of the plane).
   give a linear approximation to the increment in output:
   \begin{align*}
     f(x + \Delta x) \approx f(x) + (D f)(x)\Delta x.
+  \end{align*}
+
+  Note that this implies that the product (``contraction'' or matrix product etc) of the evaluated
+  derivative with the input increment is something which can be added to $f(x)$, i.e. it's in the
+  codomain of $f$.
+
+  E.g. consider a linear map $f:\R^n \to \R^m$ (which can be represented by a matrix
+  $A \in \R^{m \times n}$). Let $x \in \R^n$ and let $U = (D f)(x)$. It must be the case that one or
+  other of
+  \begin{align*}
+    &f(x) + U \cdot \Delta x ~~~~~~~\text{xor} \\
+    &f(x) + \Delta x \cdot U
+  \end{align*}
+  is valid (compatible for multiplication) and is an approximation to $f(x + \Delta x)$.
+
+  We have $\Delta x \in \R^n$ and $f(x) \in \R^m$. So if we're saying that $f(x) = Ax$, then $x$ and
+  $\Delta x$ are $(n \times 1)$ column vectors, and $f(x)$ is a $(m \times 1)$ column vector. So we
+  need something that maps column vectors in $\R^n$ to column vectors in $\R^m$, i.e.
+  $U \in \R^{m \times n}$ and the version that is valid is
+  \begin{align*}
+    &f(x) + U \cdot \Delta x.
   \end{align*}
 
   This definition holds for a function with $n$ inputs: the derivative function has $n$ inputs and
@@ -88,65 +110,82 @@ three inputs:
 \end{enumerate}
 where position and velocity depend on a parameter $\alpha$ in addition to time.
 
-Now, let the value of $\alpha$ be changed slightly, to $\alpha + \Delta\alpha$, causing $y(t)$ to
-change to $y(t) + \Delta y(t)$ and $y'(t)$ to change to $y'(t) + \Delta y'(t)$. These changes in
-turn cause $f(t)$ to change to $f(t) + \Delta f(t)$.
+Now\footnote{Regarding $\Delta y$, $\Delta y'$, $\Delta f$: these are small increments in the
+  \emph{value} of these functions. The notation is bad: it implies that they are increments in the
+  function itself (like a ``variation'' in calculus of variations). I can't think of a better
+  notation.}, let the value of $\alpha$ be changed slightly, to $\alpha + \Delta\alpha$, causing
+$y(t)$ to change to $y(t) + \Delta y$ and $y'(t)$ to change to $y'(t) + \Delta y'$. These changes in
+turn cause $f(t)$ to change to $f(t) + \Delta f$.
 
 We'll use the notation of Spivak (1965)\footnote{Calculus on Manifolds} and Sussman
 (2001)\footnote{Structure and Interpretation of Classical Mechanics} for partial
 derivatives\footnote{See also \url{http://www.vendian.org/mncharity/dir3/dxdoc/}}. This notation
 abandons all attempts to indicate what the argument \emph{is} with respect to which a partial
-derivative is being taken, instead simply using an integer subscript to indicate \emph{which}
-argument it is (first, second, third, etc).
+derivative is being taken, instead using an integer subscript to indicate \emph{which} argument it
+is (first, second, third, etc).
 
 So define $\del_i g$ to be the partial derivative of a function $g$ with respect to its $i$-th
-argument\footnote{Spivak (1965) uses $D_i g$ for this}.
+argument\footnote{Spivak (1965) uses $D_i g$ for this}. We also need a function composition notation
+that can handle a function with multiple arguments. So define
+${(f \circ (y, y'))(\alpha, t) := f(y(\alpha, t), y'(\alpha, t), t)}$\footnote{In other words,
+  $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. (The
+  construction implies that the two functions on the RHS of the circle take the same argument types,
+  as indeed they do in this case, since one is the derivative of the other.) These arguments are fed
+  independently into both $y$ and $y'$; the result from $y$ yields the first argument to $f$, and
+  the result from $y'$ yields the second argument to $f$.}.
 
 The increment in $f(t)$ comes from two sources: the change in $y(t)$ and the change in $y'(t)$. We
 can use the definition of partial derivative to make an approximation\footnote{The additive nature
   of this approximation needs to be justified I think.} to the increment in $f(t)$:
 \begin{align*}
-  \Delta f(t) \approx ~ &(\del_1 f)(t) \cdot \Delta y(t) \\
-                    +   &(\del_2 f)(t) \cdot \Delta y'(t).
+  \Delta f \approx ~ &(\del_1 f)(y, y', t) \cdot \Delta y \\
+                 +   &(\del_2 f)(y, y', t) \cdot \Delta y'.
 \end{align*}
-And we can do the same for $\Delta y(t)$ and $\Delta y'(t)$, replacing them with their linear
+Here we are abusing notation again: $y$ and $y'$ are not functions but rather the values $y(\alpha, t)$
+and $y'(\alpha, t)$.
+
+And we can do the same for $\Delta y$ and $\Delta y'$, replacing them with their linear
 approximations given the increment in $\alpha$:
 \begin{align*}
-  \Delta f(t) \approx ~ &(\del_1 f)(t) \cdot (\del_1 y)(t) \cdot \Delta \alpha \\
-                      + &(\del_2 f)(t) \cdot (\del_1 y')(t) \cdot \Delta \alpha.
+  \Delta f \approx ~ &(\del_1 f)(y, y', t) \cdot (\del_1 y)(\alpha, t) \cdot \Delta \alpha \\
+                   + &(\del_2 f)(y, y', t) \cdot (\del_1 y')(\alpha, t) \cdot \Delta \alpha.
 \end{align*}
 
 The partial derivative of $f$ with respect to $\alpha$ is written\footnote{It's hard not to want to
   write $\del_\alpha f$ here even though that is not Spivak notation.}
 $\del_\alpha f := \del_1 (f \circ (y, y'))$. It is defined to be a function which, when evaluated at
-$t$, yields a quantity which multiplies $\Delta\alpha$ to give a linear approximation to the
-increment $\Delta f(t)$:
+$(\alpha, t)$, yields a quantity which multiplies $\Delta\alpha$ to give a linear approximation to the
+increment $\Delta f$:
 \begin{align*}
-  \Delta f(t) \approx \Delta\alpha \cdot (\del_\alpha f)(t).
+  \Delta f \approx \Delta\alpha \cdot (\del_\alpha f)(t).
 \end{align*}
 So we see that the quantity
 \begin{align*}
     &(\del_1 f)(t) \cdot (\del_1 y)(t) \\
   + &(\del_2 f)(t) \cdot (\del_1 y')(t)
 \end{align*}
-fits the definition of $(\del_\alpha f)(t)$. So that is the partial derivative evaluated at a single
+fits the definition of $(\del_\alpha f)(t)$. That is the partial derivative evaluated at a single
 point in time. But we can write the partial derivative as an equation involving functions, as
 opposed to function values:
 \begin{align*}
   \del_1 (f \circ (y, y')) = \del_1 f \cdot \del_1 y + \del_2 f \cdot \del_1 y'.
 \end{align*}
 
-Here we are multiplying and adding functions, with these operations defined pointwise:
-\begin{align*}
-  (f + g)(x) &:= f(x) + g(x) \\
-  (fg)(x)    &:= f(x)g(x).
-\end{align*}
+Here we are multiplying and adding functions, with these operations defined pointwise.
 
-$f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. (The
-construction implies that the two functions on the RHS of the circle take the same argument types,
-as indeed they do in this case, since one is the derivative of the other.) These arguments are fed
-independently into both $y$ and $y'$; the result from $y$ yields the first argument to $f$, and the
-result from $y'$ yields the second argument to $f$.
+Let's check the types. Let $t \in \R$, $\alpha \in \R$, and let the codomain of $f$ be $\R$. Then
+we have
+\begin{align*}
+  y:                      &\R^2 \to \R \\
+  y':                     &\R^2 \to \R \\
+  \del_1 y:               &\R^2 \to \R \\
+  \del_1 y':              &\R^2 \to \R \\
+  f:                      &\R^3 \to \R \\
+  \del_1 f:               &\R^3 \to \R \\
+  \del_2 f:               &\R^3 \to \R \\
+  f \circ (y, y'):        &\R^2 \to \R \\
+  \del_1 f \circ (y, y'): &\R^2 \to \R
+\end{align*}
 
 Alternatively, traditional (Leibniz) notation features a pattern of symbols that looks like
 multiplication of fractions with cancellation:
@@ -168,6 +207,7 @@ derivative is
 \end{align*}
 \todo{Finish this.}
 
+\begin{comment}  % latex-focus
 
 \newpage
 \section{The Fundamental Theorem of (Integral) Calculus}
@@ -1113,3 +1153,4 @@ obvious how to calculate $\int_{-\infty}^{\infty}e^{-x^2}\dx$.
 \begin{proof}
 
 \end{proof}
+\end{comment}  % latex-focus
