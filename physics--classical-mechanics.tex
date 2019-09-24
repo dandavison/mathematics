@@ -25,6 +25,111 @@ The acceleration of the object due to gravity at the Earth's surface is
   = 9.82 ms^{-2}.
 \end{align*}
 
+\section{Projectile motion}
+
+A projectile of mass $m$ is released with velocity $v_0$ at an angle $\theta$ to the ground. There
+is no air resistance.
+
+Note that vertical and horizontal motion are independent of each other. The equations of motion are:
+
+\begin{itemize}
+\item {\bf Vertical}\\
+  $\ddot{y}(t) = -g$, with initial condition $\dot{y}(0) = v_0\sin\theta$.
+\end{itemize}
+
+\subsection{Using integration / FTC to solve the equation of motion}
+Informally, since the acceleration is constant, the solution for the velocity function must be
+$\dot{y}(t) = v_0\sin\theta - gt$, and therefore by integration the solution for vertical
+position is $y(t) = y_0 + v_0\sin\theta t -\frac{1}{2}gt^2$.
+
+More formally, we want to identify the set of functions $y$ that are consistent with the facts:
+\begin{align*}
+  \ddot{y}(t) &= -g \\
+  \dot{y}(0)  &= v_0 \\
+  y(0)        &= y_0.
+\end{align*}
+
+The first step is to identify the set of first-derivative functions $\dot{y}$ that fit the
+facts. Using only the fact that the second derivative is a constant $-g$, we conclude that the
+first derivative can be any linear function: $\dot{y}(t) = C - gt$. Then using the initial
+velocity, we narrow this further to $\dot{y}(t) = v_0 - gt$.
+
+More formally... the ``antiderivative'' operation maps a single function to a (infinite) set of
+functions.
+\begin{align*}
+  \int \ddot{y}(t) \dt = \int -g \dt = C - gt.
+\end{align*}
+
+But the operation of integration maps an $\R \to \R$ function to $\R$.
+
+We have an $\R \to \R$ function $\ddot{y}(t) = -g$. Antidifferentiating tells us that a family of
+linear velocity functions are consistent with the acceleration function. What does integration
+tell us? It tells us the ``net amount'' of acceleration that has accumulated between time $0$ and
+time $t$. (And the FTC tells us that antidifferentiating gives us a trick to find this net amount
+easily.)
+
+It's easier to think about velocity and distance. ``Net amount of accumulated velocity'',
+i.e. area under the velocity graph, corresponds to net displacement. E.g. $70$ mph $\times$ $2$
+hrs equals $140$ miles displacement. What does that familiar calculation correspond to formally?
+$140$ miles displacement is saying $x(2) - x(0) = 140$. So the statement is that
+\begin{align}
+    x(t) - x(0) &= \int_{t'=0}^{t'=t} \dxdt(t') \dt' \label{pcm-ftc} \\
+                &= \int_{t'=0}^{t'=t} 70 \dt'.       \nonumber
+\end{align}
+In this case, \eqref{pcm-ftc} is common sense, because the velocity is constant. But for an
+arbitrary velocity function, it would be invoking the FTC.
+
+To compute that integral we can either
+\begin{enumerate}
+\item Use common sense again: visualize it as the area of a rectangle with height $70$ and width
+  $t$.
+\item Invoke the FTC a second time: notice that area is increasing linearly with $t$ with a slope
+  of $70$, so the answer to the integral is given by the difference in value at $0$ and at $t$ of
+  some function which has a slope equal to the integrand. Obvious for a constant integrand, but
+  the FTC says that that line of thought still holds when the integrand is any well-behaved
+  function. In other words, we need to antidifferentiate: find a function that has derivative
+  $70$. In other words, we need to solve a differential equation: $f' = 70$.
+\end{enumerate}
+
+So in the velocity/distance problem, the facts were
+\begin{align*}
+    \dot{x} &= 70 \\
+    x(0)    &= 0,
+\end{align*}
+we wanted to know the function $x$, and we found the solution $x(t) = 70t$ by solving the equation
+\begin{align*}
+    x(t) - x(0) = \int_0^t 70 \dt.
+\end{align*}
+
+Returning to the vertical acceleration of the projectile, the area under the acceleration graph
+corresponds to net change in velocity. Recall that the facts are
+\begin{align*}
+    \ddot{y}(t) &= -g \\
+    \dot{y}(0)  &= v_0 \\
+    y(0)        &= y_0.
+  \end{align*}
+  We want to know the function $y$. So, invoking the FTC, we write down the equation
+  \begin{align*}
+    \int_{t'=0}^{t'=t}\ddot{y}(t') \dt' &= \dot{y}(t) - \dot{y}(0) \\
+    \int_{t'=0}^{t'=t}-g \dt' &= \dot{y}(t) - v_0.
+\end{align*}
+Then, to solve this equation, we invoke FTC again, identifying $-gt$ as an antiderivative, and
+conclude that
+\begin{align*}
+    -gt'\Big|_{t'=0}^{t'=t} &= \dot{y}(t) - v_0 \\
+    \dot{y}(t)                   &= v_0 - gt.
+\end{align*}
+Then, we repeat the procedure, writing down
+\begin{align*}
+    \int_{t'=0}^{t'=t}\dot{y}(t') \dt' &= y(t) - y(0) \\
+    \int_{t'=0}^{t'=t}v_0 - gt \dt'    &= y(t) - y_0 \\
+    v_0t' - \frac{1}{2}gt'^2\Big|_{t'=0}^{t'=t} &= y(t) - y_0 \\
+    y(t) &= y_0 + v_0t - \frac{1}{2}gt^2.
+\end{align*}
+
+
+
+
 
 \section{Potential energy, conservative force, and work}
 
