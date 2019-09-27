@@ -1,3 +1,151 @@
+
+\section{Force, energy, work, momentum}
+
+Facts:
+
+\begin{enumerate}
+\item The rate of change of momentum is determined by the net force acting on an object.
+\item To slow something down, a force must be applied for some period of time.
+\item To slow something which has momentum $p$, a strong force could be applied briefly, or a weaker
+  force for a longer time.
+\item ``Slow something down'' in those sentences could be replaced with ``change the velocity''. The
+  change in velocity could be a change in direction, without a change in speed.
+\end{enumerate}
+
+
+Consider two bodies traveling in one dimension with masses and velocities $m_1, v_1$ and $m_2,
+v_2$. Their momenta are identical: $m_1v_1 = m_2v_2$.
+
+Suppose that mass $m_1 > m_2$, and therefore $v_1 < v_2$.
+
+A force $F$ acts to slow them down. Over what length of time must the force be in effect?
+
+The force causes accelerations (decelerations) $a_1 = F/m_1$ and $a_2 = F/m_2$. So we have velocity
+functions
+\begin{align*}
+  \dv{x_1}{t} (t) &= v_1 - \frac{F}{m_1}t \\
+  \dv{x_2}{t} (t) &= v_2 - \frac{F}{m_1}t,
+\end{align*}
+and we see that the velocities become equal to zero at the same time, i.e. when
+$t = \frac{m_1v_1}{F} = \frac{m_2v_2}{F}$.
+
+So, \blue{the length of time for which a force must be applied depends only on the momentum}; not on the
+mass or velocity separately.
+
+Now, how far does a mass travel while it is slowing down (i.e. over time $mv/F$)? This is
+\begin{align*}
+  x &= \int_{t=0}^{t=mv/F} \(v - \frac{F}{m}t\) \dt \\
+    &= vt - \frac{F}{2m}t^2\Big|_{t=0}^{t=mv/F} \\
+    &= \frac{mv^2}{F} - \frac{F}{2m}\frac{m^2v^2}{F^2} \\
+    &= \frac{1}{2}mv^2/F.
+\end{align*}
+
+So, in order for a constant force $F$ to halt a mass $m$ with velocity $v$, the product of force and
+the distance over which the force is applied (i.e. the work done) must equal the kinetic energy of
+the mass $\frac{1}{2}mv^2$.
+
+I.e. \blue{the distance over which the force must be applied depends on the kinetic energy}
+$\frac{1}{2}mv^2$.
+
+The lighter mass covers more distance while it is slowing down, because it has higher kinetic energy.
+
+The following connections between force and momentum, and force and work/energy, make sense under
+the FTC:
+\begin{enumerate}
+\item Force is the time derivative of momentum. The integral of force over time corresponds to change in momentum.
+\item Force is the spatial derivative of potential energy. The integral of force over space
+  (i.e. work) corresponds to change in potential energy.
+\end{enumerate}
+
+
+\section{Potential energy, conservative force, and work}
+
+The \defn{work} done when a particle moves from $x_0$ to $x_1$ is defined to be
+\begin{align*}
+  W(x_0 \to x_1) := \int_{x_0}^{x_1} F(x) \dx.
+\end{align*}
+
+If this is independent of the path taken between $x_0$ and $x_1$, then we say the force is
+\defn{conservative} and define the \defn{potential energy} at $x$, relative to $x_0$ to be
+\begin{align*}
+  V(x) &:= -\int_{x_0}^x F(x') \dx'.
+\end{align*}
+If the integral depends on the path taken, the potential energy is undefined.
+
+\blue{A force moves something in space (causes an acceleration). Equivalently, something moves in
+  space because a small displacement in some direction is associated with a lower potential
+  energy. In fact, the force at a location \emph{is} the gradient in potential energy at that
+  location.}
+
+\begin{align*}
+  F(x) &= -\frac{\d V(x)}{\dx} \\
+  V(x) &= -\int_{x_0}^x F(x') \dx'
+\end{align*}
+
+\todo{Understand this}:
+
+A force that depends only on position in one dimension is always conservative, because the integral
+depends only on the endpoints. But a force that depends on e.g. time or velocity is
+non-conservative. Friction is such a force because although it looks like a constant force
+($\mu mg$), its direction (sign) is the opposite of the direction of velocity, so it is in fact
+velocity-dependent.
+
+Also, how is this so:
+\begin{quote}
+  \emph{Since friction always opposes the motion, the contributions to the $W = \int F \dx$ integral are
+    always negative, so there is never any cancellation. The result is therefore a large negative
+    number.}
+\end{quote}
+\subsection{Example: gravitational potential energy}
+
+Consider two point masses $M$ and $m$, separated by a distance $r$. Newton's law of gravitation
+states that there is a force between them of magnitude $-GMm/r^2$ (the force is attractive, hence
+the negative sign).
+
+The potential energy of the system at separation $r$, relative to separation $r_0$, is
+
+\begin{align*}
+  V(r) &= -\int_{r_0}^r F(r) \dr \\
+       &= -\int_{r_0}^r \frac{-GMm}{r^2} \dr \\
+       &= -\(\frac{GMm}{r} - \frac{GMm}{r_0}\).
+\end{align*}
+
+Typically in this situation we would choose $r_0 = \infty$ as the reference separation, so that
+\begin{align*}
+  V(r) = -\frac{GMm}{r}.
+\end{align*}
+
+\blue{Potential energy, relative to $r = \infty$, decreases as the two masses get closer: so the
+  masses will approach each other. It's always negative because we have measured it relative to
+  $r = \infty$, and any separation is more favorable than infinitely large separation.}
+
+\begin{question*}
+  What is the gravitational potential energy of a mass $m$ at a height $y$, relative to the Earth's
+  surface?
+\end{question*}
+
+\begin{proof}
+  Let the mass and radius of Earth be $M$ and $R$. Then
+  \begin{align*}
+    V(y) &= -\(\frac{GMm}{R + y} - \frac{GMm}{R}\) \\
+         &= GMm(\frac{R + y - R}{R^2 + Ry}) \\
+   &\approx \frac{GMmy}{R^2},
+  \end{align*}
+  for $y << R$. Recall that the gravitational acceleration of a particle of mass $m$ is $g = \frac{GM}{R^2}$. So
+  we can write this in terms of $g$ as
+  \begin{align*}
+  V(y) &\approx mgy.
+  \end{align*}
+\end{proof}
+\blue{This expression for potential energy decreases as the height $y$ decreases. It does still
+  depend on the inverse of the spatial separation, but this factor is approximately constant since
+  $y << R$. In any case, the mass falls to Earth, since smaller $y$ has lower potential energy. The
+  derivative of the potential energy is the familiar gravitational force
+  \begin{align*}
+    mg = \frac{GMm}{R^2}.
+  \end{align*}
+}
+
 \section{Gravity}
 \begin{tabular*}{1.0\linewidth}{l|l}
   $M, m$ & masses of two bodies \\
@@ -127,94 +275,3 @@ Then, we repeat the procedure, writing down
     y(t) &= y_0 + v_0t - \frac{1}{2}gt^2.
 \end{align*}
 
-
-
-
-
-\section{Potential energy, conservative force, and work}
-
-The \defn{work} done when a particle moves from $x_0$ to $x_1$ is defined to be
-\begin{align*}
-  W(x_0 \to x_1) := \int_{x_0}^{x_1} F(x) \dx.
-\end{align*}
-
-If this is independent of the path taken between $x_0$ and $x_1$, then we say the force is
-\defn{conservative} and define the \defn{potential energy} at $x$, relative to $x_0$ to be
-\begin{align*}
-  V(x) &:= -\int_{x_0}^x F(x') \dx'.
-\end{align*}
-If the integral depends on the path taken, the potential energy is undefined.
-
-\blue{A force moves something in space (causes an acceleration). Equivalently, something moves in
-  space because a small displacement in some direction is associated with a lower potential
-  energy. In fact, the force at a location \emph{is} the gradient in potential energy at that
-  location.}
-
-\begin{align*}
-  F(x) &= -\frac{\d V(x)}{\dx} \\
-  V(x) &= -\int_{x_0}^x F(x') \dx'
-\end{align*}
-
-\todo{Understand this}:
-
-A force that depends only on position in one dimension is always conservative, because the integral
-depends only on the endpoints. But a force that depends on e.g. time or velocity is
-non-conservative. Friction is such a force because although it looks like a constant force
-($\mu mg$), its direction (sign) is the opposite of the direction of velocity, so it is in fact
-velocity-dependent.
-
-Also, how is this so:
-\begin{quote}
-  \emph{Since friction always opposes the motion, the contributions to the $W = \int F \dx$ integral are
-    always negative, so there is never any cancellation. The result is therefore a large negative
-    number.}
-\end{quote}
-\subsection{Example: gravitational potential energy}
-
-Consider two point masses $M$ and $m$, separated by a distance $r$. Newton's law of gravitation
-states that there is a force between them of magnitude $-GMm/r^2$ (the force is attractive, hence
-the negative sign).
-
-The potential energy of the system at separation $r$, relative to separation $r_0$, is
-
-\begin{align*}
-  V(r) &= -\int_{r_0}^r F(r) \dr \\
-       &= -\int_{r_0}^r \frac{-GMm}{r^2} \dr \\
-       &= -\(\frac{GMm}{r} - \frac{GMm}{r_0}\).
-\end{align*}
-
-Typically in this situation we would choose $r_0 = \infty$ as the reference separation, so that
-\begin{align*}
-  V(r) = -\frac{GMm}{r}.
-\end{align*}
-
-\blue{Potential energy, relative to $r = \infty$, decreases as the two masses get closer: so the
-  masses will approach each other. It's always negative because we have measured it relative to
-  $r = \infty$, and any separation is more favorable than infinitely large separation.}
-
-\begin{question*}
-  What is the gravitational potential energy of a mass $m$ at a height $y$, relative to the Earth's
-  surface?
-\end{question*}
-
-\begin{proof}
-  Let the mass and radius of Earth be $M$ and $R$. Then
-  \begin{align*}
-    V(y) &= -\(\frac{GMm}{R + y} - \frac{GMm}{R}\) \\
-         &= GMm(\frac{R + y - R}{R^2 + Ry}) \\
-   &\approx \frac{GMmy}{R^2},
-  \end{align*}
-  for $y << R$. Recall that the gravitational acceleration of a particle of mass $m$ is $g = \frac{GM}{R^2}$. So
-  we can write this in terms of $g$ as
-  \begin{align*}
-  V(y) &\approx mgy.
-  \end{align*}
-\end{proof}
-\blue{This expression for potential energy decreases as the height $y$ decreases. It does still
-  depend on the inverse of the spatial separation, but this factor is approximately constant since
-  $y << R$. In any case, the mass falls to Earth, since smaller $y$ has lower potential energy. The
-  derivative of the potential energy is the familiar gravitational force
-  \begin{align*}
-    mg = \frac{GMm}{R^2}.
-  \end{align*}
-}
