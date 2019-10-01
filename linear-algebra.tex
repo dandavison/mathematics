@@ -333,7 +333,15 @@ A matrix represents a linear transformation by showing where the basis vector
 are taken to.
 
 \begin{theorem}
-  The inverse of a 2x2 matrix is...
+  The inverse of a 2x2 matrix is
+  \begin{align*}
+   \mat{a}{c}
+       {b}{d}^{-1}
+  =
+  \frac{1}{\text{det}} \mat{d }{-c}
+                           {-b}{a}
+  \end{align*}
+  where $\text{det} = ad - cb$.
 \end{theorem}
 
 \section{Geometric interpretation of matrix operations}
