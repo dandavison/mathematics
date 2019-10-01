@@ -732,6 +732,38 @@ therefore
   x(t) = x_0\cos\(\sqrt{\frac{k}{m}} t\).
 \end{align*}
 
+\subsubsection*{3.11 Falling chain}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-11.png}
+\end{mdframed}
+
+Let $y(t)$ be the length of chain hanging below the hole at time $t$, and let the density of the
+chain be $\rho > 0$. From the Second Law we have
+\begin{align*}
+  l \rho \ddot{y} &= y\rho g \\
+  \ddot{y} &= \frac{g}{l} y,
+\end{align*}
+Note that this is a second-order ODE and hence will have a 2-dimensional space of solutions. By
+inspection, the space of solutions is $y(t) = Ae^{\alpha t} + Be^{-\alpha t}$, for real $A$, $B$,
+where $\alpha = \sqrt{\frac{g}{l}}$.
+
+The initial conditions yield
+\begin{align*}
+  y_0 &= A + B ~~~~~~~\text{from initial position}\\
+  0   &= \alpha(A - B) ~~~~~~~\text{from initial velocity},
+\end{align*}
+therefore the solution is
+$y(t) = \frac{y_0}{2}\(e^{\alpha t} + e^{-\alpha t}\) = y_0\cosh \alpha t$ (\red{\checkmark}), and
+the velocity function is $\dot{y}(t) = y_0\alpha\sinh \alpha t$.
+
+The chain loses contact with the table at time $t^*$ satisfying $\cosh \alpha t^* =
+\frac{l}{y_0}$. Since $\sinh x = \sqrt{\cosh^2 x - 1}$, the velocity when the chain loses contact
+with the table is
+\begin{align*}
+  y_0\alpha\sinh \alpha t^* = y_0\alpha\sqrt{\(\frac{l}{y_0}\)^2 - 1}.
+\end{align*}
+
+
 
 
 \section{Oscillations}
