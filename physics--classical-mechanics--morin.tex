@@ -1,5 +1,3 @@
-
-
 \section{Strategies for solving problems}
 \subsection*{Units \& dimensional analysis}
 \subsubsection*{}
@@ -483,7 +481,7 @@ NSolve[Tanh[ad] == 1/(ad), ad, Reals]
 
 \subsection*{Balancing torques}
 
-\subsection*{Example}
+\subsection*{Example: Leaning ladder}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--2--torque-example.png}\\
   \includegraphics[width=100pt]{img/physics--classical-mechanics--morin--2--torque-example-diag.png}
@@ -540,7 +538,8 @@ Sanity check: a larger coefficient of friction permits a shallower angle.
 \newpage
 \section{Using $F = ma$}
 \subsection*{Free-body diagrams}
-\subsubsection*{}
+
+\subsubsection*{3.1 Atwood's machine}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-1.png}
 \end{mdframed}
@@ -548,7 +547,7 @@ Let $a$ be the rightward acceleration of the string, and $T$ be the tension in t
 
 To find $a$ is simple: there is a net force of $F = m_2g - m_1g$, therefore
 \begin{align}
-  a = \frac{F}{m} = \frac{m_2g - m_1g}{m_1 + m_2}. \label{morin-3-1-a} \checkmark
+  a = \frac{F}{m} = \frac{m_2g - m_1g}{m_1 + m_2}. \label{morin-3-1-a} ~~~~~~~\checkmark
 \end{align}
 However, this doesn't give $T$.
 
@@ -569,7 +568,7 @@ Using $F = ma$ at each mass, we have
 From \eqref{morin-3-1-a} and \eqref{morin-3-1-Fma1} we have
 \begin{align*}
   T &= \frac{m_1(m_2g - m_1g)}{m_1 + m_2} + m_1g \\
-    &= \frac{2m_1m_2g}{m_1 + m_2}. \checkmark
+    &= \frac{2m_1m_2g}{m_1 + m_2}. ~~~~~~~\checkmark
 \end{align*}
 And as a check, from \eqref{morin-3-1-a} and \eqref{morin-3-1-Fma2} we have
 \begin{align*}
@@ -582,16 +581,30 @@ Alternatively, we can solve the linear system given by $F = ma$ at each mass:
   m_1a - T &= -m_1g \\
   m_2a + T &= m_2g,
 \end{align*}
-i.e.
+which can be solved by inverting the $2 \times 2$ matrix:
 \begin{align*}
   \mat{m_1}{-1}
-      {m_2}{1} \vecMM{a}{T} = \vecMM{-m_1g}{m_2g}.
+      {m_2}{1} \vecMM{a}{T} &= \vecMM{-m_1g}{m_2g} \\
+  \vecMM{a}{T}              &= \frac{1}{m_1 + m_2} \mat{1}{1}
+                                                       {-m_2}{m_1} \vecMM{-m_1g}{m_2g} \\
+                            &= \frac{1}{m_1 + m_2} \vecMM{m_2g - m_1g}{2m_1m_2}. ~~~~~~~\checkmark
 \end{align*}
-Solution:
+
+\subsubsection*{3.2 Double Atwood's machine}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-2.png}
+\end{mdframed}
+Define upward acceleration to be positive. So for example the net force acting on mass $m_1$ is
+$T_1 - G\frac{Mm_1}{R^2}$, where $M$ and $R$ are the mass and radius of Earth. We usually denote
+$G\frac{M}{R^2}$ as $g = 9.8ms^{-2}$, so we have
 \begin{align*}
-    T = m_1a + m_1g &= m_2g - m_2a \\
-    a &= \frac{m_2g - m_1g}{m_1 + m_2}.
+  m_1a_1 &= T_1 - m_1g \\
+  a_3 &= -a_2 \\
+  ...
 \end{align*}
+
+
+
 \subsection*{Solving differential equations}
 \subsubsection*{}
 \begin{mdframed}
@@ -718,6 +731,9 @@ therefore
 \begin{align*}
   x(t) = x_0\cos\(\sqrt{\frac{k}{m}} t\).
 \end{align*}
+
+
+
 \section{Oscillations}
 
 
