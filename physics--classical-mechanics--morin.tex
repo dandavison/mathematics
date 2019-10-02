@@ -766,6 +766,71 @@ with the table is
 
 
 
+\subsection*{Projectile motion}
+\subsection*{Motion in a plane, polar coordinates}
+\subsubsection*{Example}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3--example-1.png}
+\end{mdframed}
+
+Fix a polar coordinate system for the plane of circular motion, such that $r = l\sin\beta$ is the
+distance from the center and $\theta$ is the angle in radians relative to some $\theta=0$. The task
+is to find $\dot{\theta}$.
+
+Note that, since the units of $\theta$ are radians, by definition $r\theta$ is the position along
+the circumference, and so $v = r\dot{\theta}$ is the the tangential velocity in the Cartesian
+coordinate system.
+
+Since the motion is circular, there must be a centripetal acceleration of magnitude
+$v^2/r = r\dot{\theta}^2 = l\sin\beta\dot{\theta}^2$ directed radially towards the center.
+
+Let $T$ be the string tension force. Since the mass is not accelerating vertically, we have that
+$T\cos\beta = mg$.
+
+The next step is to equate the centripetal acceleration with the net force that is causing it. This
+force is the horizontal component of the string tension, i.e. $T\sin\beta = mg\tan\beta$.
+
+Thus we have that $mg\tan\beta = ml\sin\beta\dot{\theta}^2$, and so the angular velocity is
+$\omega = \dot{\theta} = \sqrt{\frac{g}{r\cos\beta}}$.
+
+Checks:
+\begin{itemize}
+\item The units are $(LT^{-2}/L)^{1/2} = T^{-1}$. \checkmark
+\item If the angle is to be larger, $\dot{\theta}$ must be faster. \checkmark
+\item If the angle is to be constant, while gravity becomes stronger, $\dot{\theta}$ must be
+  faster. \checkmark
+\item If the angle is to be constant, while the radius becomes larger, $\dot{\theta}$ must be
+  slower. \checkmark
+\end{itemize}
+
+
+\subsection*{3.20 Centripetal acceleration}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-20.png}
+\end{mdframed}
+
+Suppose that a particle is moving in a circle at a constant speed of $v$ radians per second. At time
+$t = 0$ its position vector is $\vec{r_1}$ and its velocity vector is $\vec{v_1}$, pointing
+tangentially.  After $\Delta t$ seconds, its position vector is $\vec{r_2}$ and its velocity vector
+is $\vec{v_2}$.
+
+Define $\Delta \vec{r} = \vec{r_2} - \vec{r_1}$ and $\Delta \vec{v} = \vec{v_2} - \vec{v_1}$.  Note
+that the angle between $\vec{v_1}$ and $\vec{v_2}$ is the same as that between $\vec{r_1}$ and
+$\vec{r_2}$\footnote{According to the solutions in the book, this follows from the fact that the
+  tangential velocity vectors are both perpendicular to their respective radial position
+  vector.}. Therefore the triangle of position vectors, and velocity vectors are similar and we have
+\begin{align*}
+  \frac{|\Delta \vec{v}|}{v} &= \frac{|\Delta \vec{r}|}{r} \\
+  \frac{|\Delta \vec{v}|}{\Delta t} &= \frac{v}{r}\frac{|\Delta \vec{r}|}{\Delta t} = \frac{v^2}{r},
+\end{align*}
+where $r = |\vec{r_1}| = |\vec{r_2}|$ and $v = |\vec{v_1}| = |\vec{v_2}|$.
+
+{\bf Intuition:} The similar triangles argument says that the relationship between the second and
+first derivatives parallels that between the first and zeroth derivatives:
+\begin{align*}
+  \frac{\ddot{\vec{r}}}{|\dot{\vec{r}}|} = \frac{\dot{\vec{r}}}{|\vec{r}|},
+\end{align*}
+from which $\ddot{r} = \frac{\dot{r}^2}{r}$ follows.
 \section{Oscillations}
 
 
