@@ -1,5 +1,45 @@
-
 \section{Force, energy, work, momentum}
+
+\subsection{Potential energy, conservative force, and work}
+
+The \defn{work} done when a particle moves from $x_0$ to $x_1$ is defined to be
+\begin{align*}
+  W(x_0 \to x_1) := \int_{x_0}^{x_1} F(x) \dx.
+\end{align*}
+
+If this is independent of the path taken between $x_0$ and $x_1$, then we say the force is
+\defn{conservative} and define the \defn{potential energy} at $x$, relative to $x_0$ to be
+\begin{align*}
+  V(x) &:= -\int_{x_0}^x F(x') \dx'.
+\end{align*}
+If the integral depends on the path taken, the potential energy is undefined.
+
+\blue{A force moves something in space (causes an acceleration). Equivalently, something moves in
+  space because a small displacement in some direction is associated with a lower potential
+  energy. In fact, the force at a location \emph{is} the gradient in potential energy at that
+  location.}
+
+\begin{align*}
+  F(x) &= -\frac{\d V(x)}{\dx} \\
+  V(x) &= -\int_{x_0}^x F(x') \dx'
+\end{align*}
+
+\todo{Understand this}:
+
+A force that depends only on position in one dimension is always conservative, because the integral
+depends only on the endpoints. But a force that depends on e.g. time or velocity is
+non-conservative. Friction is such a force because although it looks like a constant force
+($\mu mg$), its direction (sign) is the opposite of the direction of velocity, so it is in fact
+velocity-dependent.
+
+Also, how is this so:
+\begin{quote}
+  \emph{Since friction always opposes the motion, the contributions to the $W = \int F \dx$ integral are
+    always negative, so there is never any cancellation. The result is therefore a large negative
+    number.}
+\end{quote}
+
+\subsection{Slowing down a moving object}
 
 Facts:
 
@@ -58,44 +98,7 @@ the FTC:
 \end{enumerate}
 
 
-\section{Potential energy, conservative force, and work}
 
-The \defn{work} done when a particle moves from $x_0$ to $x_1$ is defined to be
-\begin{align*}
-  W(x_0 \to x_1) := \int_{x_0}^{x_1} F(x) \dx.
-\end{align*}
-
-If this is independent of the path taken between $x_0$ and $x_1$, then we say the force is
-\defn{conservative} and define the \defn{potential energy} at $x$, relative to $x_0$ to be
-\begin{align*}
-  V(x) &:= -\int_{x_0}^x F(x') \dx'.
-\end{align*}
-If the integral depends on the path taken, the potential energy is undefined.
-
-\blue{A force moves something in space (causes an acceleration). Equivalently, something moves in
-  space because a small displacement in some direction is associated with a lower potential
-  energy. In fact, the force at a location \emph{is} the gradient in potential energy at that
-  location.}
-
-\begin{align*}
-  F(x) &= -\frac{\d V(x)}{\dx} \\
-  V(x) &= -\int_{x_0}^x F(x') \dx'
-\end{align*}
-
-\todo{Understand this}:
-
-A force that depends only on position in one dimension is always conservative, because the integral
-depends only on the endpoints. But a force that depends on e.g. time or velocity is
-non-conservative. Friction is such a force because although it looks like a constant force
-($\mu mg$), its direction (sign) is the opposite of the direction of velocity, so it is in fact
-velocity-dependent.
-
-Also, how is this so:
-\begin{quote}
-  \emph{Since friction always opposes the motion, the contributions to the $W = \int F \dx$ integral are
-    always negative, so there is never any cancellation. The result is therefore a large negative
-    number.}
-\end{quote}
 \subsection{Example: gravitational potential energy}
 
 Consider two point masses $M$ and $m$, separated by a distance $r$. Newton's law of gravitation
@@ -172,6 +175,87 @@ The acceleration of the object due to gravity at the Earth's surface is
   = \frac{6.67408 \times 10^{-11} \times 5.972 \times 10^{24}}{(6.371 \times 10^6)^2}
   = 9.82 ms^{-2}.
 \end{align*}
+
+\subsection*{Conservation of momentum}
+
+The basic argument for conservation of momentum derives from Newton's 3rd law:
+
+Suppose particle $a$ is exerting a force $\vec{F}_{ab}$ on particle $b$. Since
+$\vec{F} = \dv{\vec{p}}{t}$, we have that
+\begin{align*}
+  \int_{t=0}^t \vec{F}_{ab} \dt = \vec{p_b(t)} - \vec{p_b(0)}.
+\end{align*}
+From Newton's Third Law we have $\vec{F}_{ab} = -\vec{F}_{ba}$, which implies
+$\vec{p_b(t)} - \vec{p_b(0)} = -\(\vec{p_a(t)} - \vec{p_a(0)}\)$ and therefore
+\begin{align*}
+  \vec{p_a(t)} + \vec{p_b(t)} &= \vec{p_a(0)} + \vec{p_b(0)},
+\end{align*}
+i.e. total momentum is conserved.
+
+
+
+\subsection*{Collisions in 1-D}
+
+A collision between two particles may be
+\begin{itemize}
+\item \defn{inelastic}: kinetic energy is lost, e.g. lumps of putty.\footnote{Taylor 3.1 Ex 3.1 p.84, }
+\item \defn{elastic}: kinetic energy is conserved, e.g. billiard balls\footnote{Taylor ch4 p. 142, Morin 5.6 p.162 (using CM frame), Morin 5.7 p.164 (using conservation of KE)}
+\end{itemize}
+
+\subsubsection*{Perfectly inelastic collision\footnote{Taylor 3.1 p.84}}
+
+The simplest case seems to be ``perfectly inelastic'' collision: two lumps of putty that stick
+together (without generating any heat or sound). In this case we have one unknown (the
+post-collision velocity), and one equation (conservation of momentum) suffices.
+
+\red{Is kinetic energy conserved here? If not why not?}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--sec-3-1.png}
+\end{mdframed}
+
+We have
+\begin{align*}
+  m_1\vec{v_1} + m_2\vec{v_2} &= (m_1 + m_2)\vec{v} \\
+  \vec{v} &= \frac{m_1\vec{v_1} + m_2\vec{v_2}}{m_1 + m_2} \\
+          &= \alpha\vec{v_1} + (1 - \alpha)\vec{v_2},
+\end{align*}
+where $\alpha = \frac{m_1}{m_1 + m_2}$.
+
+
+\red{What happens if we do this with conservation of energy? Suppose we are in 1-D}
+\begin{align*}
+  \frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 &= \frac{1}{2}(m_1 + m_2)v^2 \\
+  v                                        &= \sqrt{\frac{m_1v_1^2 + m_2v_2^2}{m_1 + m_2}}.
+\end{align*}
+So, letting $v_M$ and $v_E$ be the momentum- and energy- based post-collision velocity answers, we
+have
+\begin{align*}
+  v_E^2 &= \alpha v_1^2 + (1 - \alpha)v_2^2 \\
+  v_M^2 &= \(\alpha v_1 + (1 - \alpha)v_2\)^2.
+\end{align*}
+Since $x \mapsto x^2$ is a convex function (\ref{convexity}), we have that $v_E > v_M$.
+
+\red{Why is this -- why does assuming conservation of kinetic energy lead to a higher post-collision
+  velocity than assuming conservation of momentum?}  \blue{Is this because squashing the lumps of
+  putty together necessarily loses KE, so if we assume KE is conserved then we are overestimating
+  the post-collision KE, which is why the post-collision velocity $v_E$ is greater than the estimate
+  $v_M$ based on conservation of momentum?}
+
+
+
+
+\subsubsection*{Example: Elastic collision (Morin p.162)}
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--sec-5-6-ex.png}
+\end{mdframed}
+
+This can be solved in two ways:
+\begin{enumerate}
+\item Using the center of mass (CM) frame (Morin p.164)
+\item Using conservation of kinetic energy (Morin p. 164, )
+\end{enumerate}
 
 \section{Projectile motion}
 
