@@ -112,11 +112,11 @@ Functions can be neither even nor odd.
   A polynomial $p(x)$ is odd if an only if it has only odd powers of $x$.
 \end{claim*}
 
-\section{Convex and concave functions}
+\section{Convex and concave functions}\label{convexity}
 A real-valued function $f:\R\to\R$ is \defn{convex} over an interval $[x_1, x_2]$ if the line
 segment joining $f(x_1)$ to $f(x_2)$ lies above the graph of $f$, i.e. if
 \begin{align*}
-  f(px_1 + (1 - p)x_2) \geq pf(x_1) + (1-p)f(x_2).
+  pf(x_1) + (1-p)f(x_2) \geq f(px_1 + (1 - p)x_2).
 \end{align*}
 E.g. $x \mapsto x^2$ and $x \mapsto e^x$ are convex.
 

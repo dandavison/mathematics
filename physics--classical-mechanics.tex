@@ -1,5 +1,34 @@
 \section{Force, energy, work, momentum}
 
+In this section we define 3 quantities:
+\begin{itemize}
+\item \defn{kinetic energy}
+\item \defn{potential energy}
+\item \defn{work}
+\end{itemize}
+and we show that the total energy is constant at all points of a trajectory that solves the equation of motion.
+
+Let $x$ be location in a one-dimensional space. We use $v = \dot{x}$ and $a = \dot{v} = \ddot{x}$ to
+denote velocity and acceleration.
+
+Basically, energy measures an accumulation of force over some path in space. Equivalently, the force
+at some location in space is a spatial gradient of energy at that location.
+
+However, we also have the Second Law notion that force is the rate of change of momentum,
+$F = \dot{p} = m\dot{v}$.
+
+The Second Law is relating force to change in $x$ over time, whereas the notion of energy is
+concerned with accumulating force along a spatial trajectory.
+
+Consider a force $F(x)$ that depends only on spatial location. Let's look at what we get when we
+integrate the force over some interval in space:
+
+\begin{align*}
+  \int_{x_1}^{x_2} F(x) \dx
+  &= \int_{x_1}^{x_2} m\ddot{x} \dx \\
+  &= \int_{x_1}^{x_2} m\dot{v} \dx
+\end{align*}
+
 \subsection{Potential energy, conservative force, and work}
 
 The \defn{work} done when a particle moves from $x_0$ to $x_1$ is defined to be

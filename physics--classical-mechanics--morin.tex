@@ -1,3 +1,5 @@
+{\bf Problem sheets from Morin -- Introduction to Classical Mechanics}
+
 \section{Strategies for solving problems}
 \subsection*{Units \& dimensional analysis}
 \subsubsection*{}
@@ -831,7 +833,48 @@ first derivatives parallels that between the first and zeroth derivatives:
   \frac{\ddot{\vec{r}}}{|\dot{\vec{r}}|} = \frac{\dot{\vec{r}}}{|\vec{r}|},
 \end{align*}
 from which $\ddot{r} = \frac{\dot{r}^2}{r}$ follows.
+
+
+\subsubsection*{3.21 Vertical acceleration}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-21.png}
+\end{mdframed}
+
+Let $\theta$ be the angle of the bead in radians measured clockwise from the top of the hoop.
+
+When the bead has angle $\theta$, the weight has a radial component $g\cos\theta$ (opposed by an
+equal normal reaction force) and a tangential component $g\sin\theta$ (unopposed). In addition,
+there is a radial centripetal acceleration of magnitude $v^2/R$. The resultant acceleration will be
+vertically downwards whenever the centripetal acceleration is equal to $g\cos\theta$ (because then
+it is the same as the radial component of the weight, which we know yields vertically downwards
+weight), and also when $\sin\theta=0$ (see diagram below). Using the fact, from conservation of
+energy, that $v = \sqrt{2gh} = \sqrt{2g(R - R\cos\theta)}$, we have
+\begin{align*}
+  g\cos\theta  &= \frac{v^2}{R} =2g(1 - \cos\theta)\\
+  \cos\theta &= \frac{2}{3},
+\end{align*}
+at which point the acceleration is $g$ vertically downwards.
+
+\begin{mdframed}
+  \includegraphics[width=300pt]{img/physics--classical-mechanics--morin--3-21-diag-2.png}
+\end{mdframed}
+
+
+\newpage
+\subsubsection*{3.22 Circling around a pole}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-22.png}
+\end{mdframed}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--3-22-2.png}
+\end{mdframed}
+
+
+
+
 \section{Oscillations}
+
+
 
 
 \section{Conservation of energy and momenum}
