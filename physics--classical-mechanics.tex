@@ -1,16 +1,5 @@
 \section{Force, energy, work, momentum}
 
-In this section we define 3 quantities:
-\begin{itemize}
-\item \defn{kinetic energy}
-\item \defn{potential energy}
-\item \defn{work}
-\end{itemize}
-and we show that the total energy is constant at all points of a trajectory that solves the equation of motion.
-
-Let $x$ be location in a one-dimensional space. We use $v = \dot{x}$ and $a = \dot{v} = \ddot{x}$ to
-denote velocity and acceleration.
-
 Basically, energy measures an accumulation of force over some path in space. Equivalently, the force
 at some location in space is a spatial gradient of energy at that location.
 
@@ -20,14 +9,70 @@ $F = \dot{p} = m\dot{v}$.
 The Second Law is relating force to change in $x$ over time, whereas the notion of energy is
 concerned with accumulating force along a spatial trajectory.
 
-Consider a force $F(x)$ that depends only on spatial location. Let's look at what we get when we
-integrate the force over some interval in space:
+Suppose space $x$ is one-dimensional and there is a force $F(x)$ that depends only on position
+$x$. We want to compute the integral of force over some interval in space (i.e. ``work''). Let
+$v = \dxdt$. Since $F(x) = m\dvdt(x)$, we basically want to compute the following integral:
+\begin{align*}
+  W = \int_{x_1}^{x_2} \dvdt(x) \dx.
+\end{align*}
 
+One approach is to write down the equation $\dvdt = \dxdt \dvdx = v\dvdx$ and thus argue that
+\begin{align*}
+  W
+  = \int_{x_1}^{x_2} v\dvdx \dx
+  &= \int_{x_1}^{x_2} v\d v \\
+  &= \Big[\frac{1}{2}mv^2\Big]_{v(x_1)}^{v(x_2)},
+\end{align*}
+where we have ``canceled $\dx$'', and for some reason stopped writing the function argument syntax
+``$(x)$''. And why are velocity and acceleration functions of position rather than of time here?
+\red{What if the particle visits $x_1$ multiple times with different velocities so that $v(x)$ is
+  not well-defined?}
+
+What do these formal manipulations of Leibniz notation actually mean?
+
+Let's go back to the integral we want to compute:
+\begin{align*}
+  W = \int_{x_1}^{x_2} \dvdt(x) \dx.
+\end{align*}
+So, we want to calculate the signed area under the graph of $\dvdt(x)$, over the interval
+$[x_1, x_2]$.
+
+~\\\hrule~\\
+
+Suppose that we know the trajectory function $x(t)$ of a particle of mass $m$.
+
+Therefore we also know $\dot{x}(t)$ and $\ddot{x}(t)$.
+
+Further, suppose that we know that the net force acting on the particle depends only on its position
+$x$. Let this force be $F(x)$.
+
+We want to evaluate
 \begin{align*}
   \int_{x_1}^{x_2} F(x) \dx
-  &= \int_{x_1}^{x_2} m\ddot{x} \dx \\
-  &= \int_{x_1}^{x_2} m\dot{v} \dx
 \end{align*}
+in terms of the trajectory function $x(t)$ and its derivatives (velocity and acceleration).
+
+By definition of derivative, at time $t$, the increments $\dx$ and $\dt$ are related according to
+$\dx = \dot{x}(t)\dt$, so we can rewrite the integral as
+\begin{align*}
+  \int_{x_1}^{x_2} F(x(t)) \dot{x}(t)\dt.
+\end{align*}
+From Newton's Second Law, this is
+\begin{align*}
+  \int_{x_1}^{x_2} m\ddot{x}(t) \dot{x}(t)\dt,
+\end{align*}
+or equivalently
+\begin{align*}
+  \int_{x_1}^{x_2} m\dot{v}(t) v(t)\dt.
+\end{align*}
+Note that an antiderivative is available here, since $\ddt \frac{1}{2}v^2 = v\dot{v}$. Therefore
+\begin{align*}
+  \int_{x_1}^{x_2} F(x) \dx = \Big[\frac{1}{2}mv(t)^2\Big]_{t_1}^{t_2},
+\end{align*}
+where $x(t_1) = x_1$ and $x(t_2) = x_2$. \red{But what if the particle visits $x_1$ multiple times,
+  i.e. $x(t_1) = x_1$ has multiple solutions?}
+
+
 
 \subsection{Potential energy, conservative force, and work}
 
