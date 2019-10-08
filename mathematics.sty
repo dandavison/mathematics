@@ -108,7 +108,8 @@
 \newcommand{\dt}{\dif t}
 \newcommand{\du}{\dif u}
 \newcommand{\dvdt}{\frac{\dif v}{\dif t}}
-% \newcommand{\dxdt}{\frac{\dif x}{\dif t}}
+\newcommand{\dvdx}{\frac{\dif v}{\dif x}}
+%\newcommand{\dxdt}{\frac{\dif x}{\dif t}}
 \newcommand{\dxdu}{\frac{\dif x}{\dif u}}
 \newcommand{\dx}{\dif x}
 \newcommand{\dy}{\dif y}
@@ -174,12 +175,6 @@
 \let\origlim\lim
 \renewcommand{\lim}{\origlim\limits}
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}  % TODO: delete
-\newcommand{\dQdx}{\frac{\partial Q}{\partial x}}
-\newcommand{\dQdy}{\frac{\partial Q}{\partial y}}
-\newcommand{\ddQdxx}{\frac{\partial^2 Q}{\partial x^2}}
-\newcommand{\ddQdxy}{\frac{\partial^2 Q}{\partial x \partial y}}
-\newcommand{\ddQdyx}{\frac{\partial^2 Q}{\partial y \partial x}}
-\newcommand{\ddQdyy}{\frac{\partial^2 Q}{\partial y^2}}
 \newcommand{\dddfzbarz}{\frac{\partial^2 f}{\partial \bar z \partial z}}
 \newcommand{\dddxx}{\frac{\partial^2}{\partial x^2}}
 \newcommand{\dddyy}{\frac{\partial^2}{\partial y^2}}
@@ -192,22 +187,6 @@
 \newcommand{\ddy}{\frac{\partial}{\partial y}}
 \newcommand{\ddz}{\frac{\partial}{\partial z}}
 \renewcommand{\deg}{^\circ}
-\newcommand{\dfdxj}{\frac{\partial f}{\partial x_j}}
-\newcommand{\dfdx}{\frac{\partial f}{\partial x}}
-\newcommand{\dfdy}{\frac{\partial f}{\partial y}}
-\newcommand{\dfdzbar}{\frac{\partial f}{\partial \bar z}}
-\newcommand{\dfdz}{\frac{\partial f}{\partial z}}
-\newcommand{\dqdx}{\frac{\partial q}{\partial x}}
-\newcommand{\dqdy}{\frac{\partial q}{\partial y}}
-\newcommand{\dudx}{\frac{\partial u}{\partial x}}
-\newcommand{\dudy}{\frac{\partial u}{\partial y}}
-\newcommand{\dudz}{\frac{\partial u}{\partial z}}
-\newcommand{\dvdx}{\frac{\partial v}{\partial x}}
-\newcommand{\dvdy}{\frac{\partial v}{\partial y}}
-\newcommand{\dveczdx}{\frac{\partial \vec z}{\partial x}}
-\newcommand{\dveczdy}{\frac{\partial \vec z}{\partial y}}
-\newcommand{\dwdx}{\frac{\partial w}{\partial x}}
-\newcommand{\dwdy}{\frac{\partial w}{\partial y}}
 \newcommand{\dxdtheta}{\frac{\dx}{\dtheta}}
 \newcommand{\dxdt}{\frac{\dx}{\dt}}
 \newcommand{\dxdzbar}{\frac{\partial x}{\partial \bar z}}
@@ -216,13 +195,6 @@
 \newcommand{\dydt}{\frac{\dy}{\dt}}
 \newcommand{\dydx}{\frac{\dy}{\dx}}
 \newcommand{\dxdy}{\frac{\dx}{\dy}}
-\newcommand{\dydzbar}{\frac{\partial y}{\partial \bar z}}
-\newcommand{\dydz}{\frac{\partial y}{\partial z}}
-\newcommand{\dzbar}{\frac{\partial}{\partial \bar z}}
-\newcommand{\dzdx}{\frac{\partial z}{\partial x}}
-\newcommand{\dzdy}{\frac{\partial z}{\partial y}}
-\newcommand{\pzpx}{\frac{\partial z}{\partial x}}
-\newcommand{\pzpy}{\frac{\partial z}{\partial y}}
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
 \newcommand{\f}{\vec f}
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
