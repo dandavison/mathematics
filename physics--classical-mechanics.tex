@@ -4,6 +4,103 @@
   \includegraphics[width=400pt]{img/physics--classical-mechanics--oxford--dynamics--example--gravity.png}
 \end{mdframed}
 
+Below we find the maximum height using two methods:
+\begin{enumerate}
+\item by using Newton's Second Law to write a second-order differential equation for the position
+  function, and solving it to give velocity and position functions,
+\item by equating the kinetic energy at the beginning with the potential energy at the maximum
+  height (when velocity is zero).
+\end{enumerate}
+
+Conservation of energy is useful here because total energy ($T + V$) is constant along any
+trajectory that satisfies N2L. The logic here is:
+\begin{enumerate}
+\item We know the trajectory satisfies N2L (because that's how the universe works)
+\item Therefore, we know that $T + V$ is constant at any $x$ on the trajectory (one can prove that
+  $T+V$ is constant over any trajectory that satisfies N2L.)
+\item At one point in the trajectory, we know the values of $T$ and $V$, and the expression for $V$
+  involves the quantity of interest $z_{max}$.
+\item We also know the values of $T$ and $V$ at another point in the trajectory, not involving
+  $z_{max}$.
+\item This gives us one equation for the one unknown.
+\end{enumerate}
+
+Momentum \textit{is} also conserved, but to see conservation of momentum we have to expand the
+system to include the Earth and the particle\footnote{Conservation of momentum is related to N3L,
+  and the relevant N3L pair of forces are the Earth's gravitational attraction on the particle and
+  the particle's on the Earth, both of which have strength $G\frac{mM_E}{d^2}$, where $M_E$ is the
+  mass of the Earth and $d$ is the separation of the two particles, which is approximately the
+  radius of the Earth.}. I don't think conservation of momentum can be used to find the height at
+which velocity is zero.
+
+
+We'll use $v_0$ instead of $u$ for the initial velocity.
+
+\begin{enumerate}
+\item {\bf Solution via dimensional analysis}\\
+
+  We have
+  \begin{align*}
+    [g] &= LT^{-2} \\
+    [v_0] &= LT^{-1},
+  \end{align*}
+  and we want $z_{max}$ with units $L$. This suggests that the answer is $z_{max} = C\frac{v_0^2}{g}$,
+  where $C$
+  is dimensionless.\\
+\item {\bf Solution via Newton's Second Law}\\
+
+  Applying N2L here gives $m\ddot{z}(t) = -mg$, i.e.
+  \begin{align*}
+    \ddot{z}(t) = -g.
+  \end{align*}
+  Applying FTC once gives the velocity function,
+  \begin{align}
+    \dot{z}(t) - \dot{z}(0) = \dot{z}(t) - v_0 &= \int_0^t \ddot{z}(t) \dt = -gt \nonumber \\
+    \dot{z}(t)                               &= v_0 - gt, \label{oxford-dynamics-example-gravity-velocity}
+  \end{align}
+  and applying FTC again gives the position function (trajectory),
+  \begin{align}
+    z(t) - z(0) = z(t) - 0 = \int_0^t \dot{z}(t) \dt = v_0t - \frac{1}{2}gt^2. \label{oxford-dynamics-example-gravity-position}
+  \end{align}
+  The maximum height occurs when the velocity is zero. From
+  \eqref{oxford-dynamics-example-gravity-velocity} we see that this occurs when $t = \frac{v_0}{g}$,
+  and from \eqref{oxford-dynamics-example-gravity-position} we see that at that time the height is
+  \begin{align*}
+    z_{max} = z\(\frac{v_0}{g}\) = \frac{v_0^2}{g} - \frac{1}{2}g\frac{v_0^2}{g^2} = \frac{1}{2}\frac{v_0^2}{g}.
+  \end{align*}
+\item {\bf Solution via conservation of energy}\\
+
+  Initially, the particle has kinetic energy $T = \frac{1}{2}mv_0^2$.
+
+  Recall that the definition of potential energy relative to $z_0$ is $V(z) = -\int_{z_0}^z F(s) \ds$.
+
+  At its maximum height, gravity has done work
+  \begin{align*}
+    W = \int_0^{z_{max}} F(z) \dz = \int_0^{z_{max}} m(-g) \dz = -mgz_{max}
+  \end{align*}
+  on the particle (slowing it down). The potential energy at $z = z_{max}$ relative to $z = 0$ is
+  $mgz_{max}$.
+
+  So, we have\\
+  \begin{tabular}{l|l|l|}
+    Time         & Kinetic energy      & Potential energy \\
+    \hline
+    $0$          & $\frac{1}{2}mv_0^2$ & 0\\
+    $t_{z_{max}}$ & $0$                 & $mgz_{max}$.
+  \end{tabular}
+
+  So, from conservation of energy, we have that
+  \begin{align*}
+    mgz_{max}         &= \frac{1}{2}mv_0^2  \\
+    z_{max}           &= \frac{1}{2}\frac{v_0^2}{g}.
+  \end{align*}
+
+
+
+\end{enumerate}
+
+
+
 \section{Force, energy, work, momentum}
 
 Basically, energy measures an accumulation of force over some path in space. Equivalently, the force
@@ -572,4 +669,3 @@ Then, we repeat the procedure, writing down
     v_0t' - \frac{1}{2}gt'^2\Big|_{t'=0}^{t'=t} &= y(t) - y_0 \\
     y(t) &= y_0 + v_0t - \frac{1}{2}gt^2.
 \end{align*}
-
