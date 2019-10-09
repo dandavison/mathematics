@@ -327,9 +327,131 @@ Since $x \mapsto x^2$ is a convex function (\ref{convexity}), we have that $v_E 
 
 This can be solved in two ways:
 \begin{enumerate}
-\item Using the center of mass (CM) frame (Morin p.164)
+\item Using the center of mass (CM) frame (Morin p.162)
 \item Using conservation of kinetic energy (Morin p. 164, )
 \end{enumerate}
+
+Let the post-collision masses and velocities be $(m, v_f)$ and $(M, V_f)$.
+
+{\bf Solution using conservation of kinetic energy}\\
+
+From conservation of momentum and KE we have the system of equations
+\begin{align}
+  mv              &= mv_f + MV_f \\
+  \frac{1}{2}mv^2 &= \frac{1}{2}mv_f^2 + \frac{1}{2}MV_f^2.
+\end{align}
+Now, we solve for $v_f$ and $V_f$...
+
+\begin{verbatim}
+#+begin_src mathematica :results raw pp
+Solve[m v == m vf + M Vf && m v^2 == m vf^2 + M Vf^2, {vf, Vf}]
+#+end_src
+
+#+RESULTS:
+: {{vf -> v, Vf -> 0}, {vf -> (m*v - M*v)/(m + M), Vf -> (2*m*v)/(m + M)}}
+\end{verbatim}
+...and the solution is
+\begin{align*}
+  v_f &= \frac{mv - Mv}{m + M} \\
+  V_f &= \frac{2mv}{m + M}.
+\end{align*}
+
+So the stationary mass moves in the direction of impact, and for the moving mass:
+\begin{itemize}
+\item if it's smaller, it reverses its direction,
+\item if it's the same mass, it stops dead,
+\item if it's larger, it continues in the same direction.
+\end{itemize}
+Furthermore, the stationary mass always moves away faster than the moving mass. For values of the
+stationary mass approaching zero, the ratio of their speeds approaches 2.
+
+
+Now\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}}, what about if they are both in
+motion when they collide? In that case we have
+\begin{align}
+  mv + MV                           &= mv_f + MV_f \\
+  \frac{1}{2}mv^2 + \frac{1}{2}MV^2 &= \frac{1}{2}mv_f^2 + \frac{1}{2}MV_f^2.
+\end{align}
+\begin{verbatim}
+#+begin_src mathematica :results raw pp
+Solve[m v + M V == m vf + M Vf && m v^2 + M V^2 == m vf^2 + M Vf^2, {vf, Vf}]
+#+end_src
+
+#+RESULTS:
+: {{vf -> v, Vf -> V}, {vf -> (m*v - M*v + 2*M*V)/(m + M), Vf -> (2*m*v - m*V + M*V)/(m + M)}}
+\end{verbatim}
+\begin{align*}
+  v_f &= \frac{mv - Mv + 2MV}{m + M} \\
+  V_f &= \frac{2mv - mV + MV}{m + M}.
+\end{align*}
+
+\newpage
+The 3blue1brown $\pi$ in colliding blocks
+video\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}} involves perfectly elastic
+collisions of two blocks, and a wall. The block closest to the wall starts off stationary, and the
+outer block (mass $m_1$) moves towards it with constant velocity. We count the number of collisions
+between blocks, and between the inner block and the wall, for varying values of the mass $m_1$ of
+the outer block.
+
+\begin{minted}{python3}
+import sys
+from dataclasses import dataclass
+from typing import Tuple
+
+
+@dataclass
+class Blocks:
+    m0 = 1.0  # mass of left block
+    m1 = None  # mass of right block (supplied as input)
+
+    v0 = 0.0  # left block starts off stationary
+    v1 = -1.0  # initial velocity of right block
+
+    def will_collide_again(self):
+        return abs(self.v0) > self.v1
+
+    def collide(self):
+        v0, v1 = self.v0, self.v1
+        m0, m1 = self.m0, self.m1
+        self.v0 = (m0 * v0 - m1 * v0 + 2 * m1 * v1) / (m0 + m1)
+        self.v1 = (2 * m0 * v0 - m0 * v1 + m1 * v1) / (m0 + m1)
+
+    def simulate(self):
+        n = 0
+        while True:
+            self.collide()
+            n += 1
+            if self.will_collide_again():
+                # Bounce off wall
+                self.v0 = -self.v0
+                n += 1
+            else:
+                break
+        if self.v0 < 0:
+            # Bounce off wall
+            n += 1
+        print(n)
+
+
+if __name__ == "__main__":
+    assert not sys.argv[2:]
+    blocks = Blocks()
+    blocks.m1 = float(sys.argv[1])
+    blocks.simulate()
+\end{minted}
+
+Here are the counts for $m_1$ taking values that are integer powers of 100:
+
+\begin{verbatim}
+$ for i in 0 1 2 3 4 5 6; do python 3blue1brown-blocks.py $((100**i)); done
+3
+31
+314
+3141
+31415
+314159
+3141592
+\end{verbatim}
 
 \section{Projectile motion}
 
