@@ -1,6 +1,8 @@
-\newcommand{\xhat}{\vec{e_x}}
-\newcommand{\rhat}{\vec{e_r}}
-\newcommand{\phihat}{\vec{e_\phi}}
+\newcommand{\xhat}{\vec{\hat{x}}}
+\renewcommand{\yhat}{\vec{\hat{y}}}
+\newcommand{\zhat}{\vec{\hat{z}}}
+\newcommand{\rhat}{\vec{\hat{r}}}
+\newcommand{\phihat}{\vec{\hat{\phi}}}
 \renewcommand{\a}{\vec{a}}
 \renewcommand{\p}{\vec{p}}
 \renewcommand{\F}{\vec{F}}
@@ -61,11 +63,11 @@ chapter covers two main coordinate systems. Let's say the particle is moving in
 2D space for now.
 
 - \textbf{Cartesian coordinates}: we write down how far the particle currently is in
-  the x-direction, $x(t)$, and how far it currently is in the y-direction,
-  $y(t)$.
+the x-direction, $x(t)$, and how far it currently is in the y-direction,
+$y(t)$.
 
 - \textbf{Polar coordinates}: we write down how far the particle currently is,
-  $r(t)$, in the current direction to the particle.
+$r(t)$, in the current direction to the particle.
 
 Note that $x(t)$, $y(t)$, and $r(t)$ were not written with arrows. They are
 just numbers, saying how far the particle is *in some direction*. The "in some
@@ -78,10 +80,10 @@ these directions as the unit vectors $\xhat$ and $\yhat$. So in Cartesian
 coordinates, the position is
 
 <table style="width:100%">
-  <tr>
-    <td> $$\r(t) = x(t)\xhat + y(t)\yhat$$ </td>
-    <td> $$\mathrm{Go~} x(t) \mathrm{~units~in~the~} \xhat \mathrm{~direction} \mathrm{~and~} y(t) \mathrm{~units~in~the~} \yhat \mathrm{~direction}$$ </td>
-  </tr>
+<tr>
+<td> $$\r(t) = x(t)\xhat + y(t)\yhat$$ </td>
+<td> $$\mathrm{Go~} x(t) \mathrm{~units~in~the~} \xhat \mathrm{~direction} \mathrm{~and~} y(t) \mathrm{~units~in~the~} \yhat \mathrm{~direction}$$ </td>
+</tr>
 </table>
 
 In contrast, polar coordinates just use one direction to specify the position:
@@ -91,10 +93,10 @@ coordinates, the position is
 
 
 <table style="width:100%">
-  <tr>
-    <td> $$\r(t) = r(t)\rhat(t)$$ </td>
-    <td> $$\mathrm{Go~} r(t) \mathrm{~units~in~the~} \rhat(t) \mathrm{~direction}$$ </td>
-  </tr>
+<tr>
+<td> $$\r(t) = r(t)\rhat(t)$$ </td>
+<td> $$\mathrm{Go~} r(t) \mathrm{~units~in~the~} \rhat(t) \mathrm{~direction}$$ </td>
+</tr>
 </table>
 
 
@@ -377,13 +379,54 @@ speed of light. However I am unfamiliar with those forces and with the
 
 \section{Work, energy}
 
-How much energy does one sit-up require?
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--ex-4-2.png}
+\end{mdframed}
 
-body = 164 lbs
-upper torso = 80 lbs = 36.3 kg
-bag = 36 lbs = 16.3 kg
-centre of gravity of body + bag elevated by 0.15 m
+The components of the force are given by $\F(\r) = (F_x, F_y, F_z) = (qE_0, 0, 0)$.
 
-work = force x distance
-     = mgd (kg . m/s/s . m) i.e. Nm
-     = Cmgd calories where C = 0.239 calories/Nm
+To show that the force is conservative we must show
+\begin{enumerate}
+\item That it depends on no variable other than position.
+  \begin{proof}
+    The force is constant (doesn't even vary with position).
+  \end{proof}
+
+\item That the work done when moving between two positions does not depend on the path.
+  \begin{proof}
+    Let $\r_0$ and $\r_1$ be two positions and let $S$ be a path joining them. Then
+    \begin{align*}
+      W(\r_0 \to \r_1)
+      &= \int_S \F(\r) \cdot \d \r \\
+      &= qE_0\int_S \xhat \d\r \\
+      &= qE_0\int_S 1 \dx \\
+      &= qE_0(x_1 - x_0).
+    \end{align*}
+    Therefore the work depends only on the endpoints $x_0$ and $x_1$.
+  \end{proof}
+  The potential energy relative to $x_0, y_0, z_0$ is
+  \begin{align*}
+    V(x, y, z) = -qE_0(x - x_0).
+  \end{align*}
+\end{enumerate}
+
+
+Questions with solutions:
+
+3 a,b,c
+7 a,b,c
+9 b
+11
+13
+15
+19 a b
+21
+23 a b c
+29 a b d
+31 a
+33 b c
+35 a b
+37 a b c d
+39 c
+51
+53 b c

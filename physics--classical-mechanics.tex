@@ -1,4 +1,105 @@
+
 \section{Force, energy, work}
+The argument is\footnote{Taylor ch. 4}:
+
+\begin{enumerate}
+\item Suppose a particle is moving under the influence of a force, according to Newton's Second Law.
+\item Consider the integral of the force over some section of the particle's trajectory:
+  $\int_{\vec{r_0 \to \vec{r_1}}} F(\vec{r}) \dif \vec{r}$.
+\item The integral is equal to the difference in value of a certain quantity that depends on speed,
+  evaluated at the start and end point.
+\item This quantity is $\frac{1}{2}mv^2$. It depends only on the particle's mass, and speed at a
+  moment in time. As long as the particle's motion obeys Newton's Second Law
+  $m\ddot{\vec{r}} = F(\vec{r})$, then the relationship between this quantity and the integral of
+  force over space is just a fact of calculus.
+\item The quantity $\frac{1}{2}mv^2$ is given the name \blue{kinetic energy} and the integral of
+  force over a path in space is given the name \blue{work}.
+\item Thus the \blue{Work - KE Theorem}: when a particle is moved along a path according to Newton's
+  Second Law, then the work done by the force is equal to the difference in kinetic energy.
+\item This can be used, for example, to calculate the new velocity, given knowledge of the work done
+  and the initial velocity.
+\item So the work done when moving from $\vec{r_0}$ to $\vec{r}$ is equal to the difference in
+  kinetic energy at those locations\footnote{This implies that every position is associated with a
+    unique speed?}:
+  \begin{align*}
+    W(\vec{r_0} \to \vec{r})
+    &= \int_{\vec{r_0}}^{\vec{r}} F(\vec{r}) \dif \vec{r} \\
+    &= \frac{1}{2}mv^2 - \frac{1}{2}mv_0^2.
+  \end{align*}
+\item Therefore the following quantity is constant at all points along the path:
+  \begin{align*}
+    E
+    &= \frac{1}{2}mv^2 - \int_{\vec{r_0}}^{\vec{r}} F(\vec{r}) \dif \vec{r} \\
+    &= \frac{1}{2}mv_0^2.
+  \end{align*}
+\end{enumerate}
+
+
+Suppose we start at position $x_0$ with speed $v_0$. Some time later we find ourselves at position
+$x_1$ with speed $v_1$. Then the change in our KE is equal to the work done by the force along the
+path we followed, $T(v_1) - T(v_0) = W(x_0 \to x_1)$. So, for this path, we have that the quantity
+\begin{align*}
+  T(v_1) - W(x_0 \to x_1)
+\end{align*}
+is constant and equal to $T(v_0)$.
+
+
+Now suppose that in this system the work done along any path depends only on the endpoints of the
+path, and not otherwise on the actual path followed. Then the quantity
+\begin{align*}
+  T(v) - W(x_0 \to x)
+\end{align*}
+is constant, where $v$ is the speed at $x$.
+
+{\bf Intuition:} the quantity that is conserved is
+\begin{align*}
+  \text{(new KE at some position)} - \text{(change in KE that must have occurred to get there)}
+\end{align*}
+
+
+
+\subsection{Non-mathematical explanation of potential energy and kinetic energy}
+
+Suppose we're in a 1-dimensional universe (i.e our universe is just one straight line). There's a
+force that's pushing to the left or to the right, with some strength, at every point along the
+line. The force doesn't vary over time; it depends only on where we are along the line. And there's
+no friction; the only thing accelerating us (in one direction or the other) is the force.
+
+% We're going to be moved around under the influence of the force; apart from the force, there's
+% nothing else that will make us move, and we can't prevent the force moving us.
+
+Let $x$ be our location on the line, and let $F(x)$ be the value of the force at that location
+(negative means it's pushing to the left).
+
+We're going to keep track of how much force we are subject to while it moves us around. So, we keep
+a running total of all the $F$ values we are subject to at all the locations along the line that we
+are taken to. If the force is pushing to the right with some strength $F$ then our running total
+goes up by $F$; if it's pushing to the left, then it goes down by $F$. Then, at the new location we
+were taken to, we do the same thing according to the strength of the force there. Except, of course,
+space is continuous and this doesn't really happen in discrete steps: instead we compute the
+integral of the $F$ function over some region of the line.
+
+Let $V(x)$ be the value of this integral, i.e. the net amount of force we encounter while being
+moved from our starting position to some position $x$. Recall that, basically, force is something
+that causes acceleration. In other words, it increases or decreases our velocity. So $E$ is in some
+sense measuring our net gain in velocity as we move around the line.
+
+Now, suppose we're at some point $x_0$ on the line. The force is pushing us to the right. Looking to
+the right, the value of the force function over that region dictates that a certain change in our
+velocity will occur while we traverse it. So there's some function $V(x)$ that says, if the force
+moves us to $x$, how much change in our velocity this will result in.
+
+Say we start of at $a$ with some amount $T$ of velocity.
+
+So that's like a promised amount of
+change.
+
+
+The function that maps $x$ to the
+change in velocity that will occur between here and $x$ is called the potential energy function
+$V(x)$.
+
+\subsection{Solving a gravity problem using dimensional analysis, Newton's Second Law, and Conservation of Energy}
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--oxford--dynamics--example--gravity.png}
