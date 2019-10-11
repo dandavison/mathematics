@@ -601,13 +601,13 @@ Solve[m v + M V == m vf + M Vf && m v^2 + M V^2 == m vf^2 + M Vf^2, {vf, Vf}]
   V_f &= \frac{2mv - mV + MV}{m + M}.
 \end{align*}
 
-\newpage
-The 3blue1brown $\pi$ in colliding blocks
-video\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}} involves perfectly elastic
-collisions of two blocks, and a wall. The block closest to the wall starts off stationary, and the
-outer block (mass $m_1$) moves towards it with constant velocity. We count the number of collisions
-between blocks, and between the inner block and the wall, for varying values of the mass $m_1$ of
-the outer block.
+\subsubsection{3blue1brown $\pi$ in colliding blocks}
+
+This 3blue1brown video\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}} involves
+perfectly elastic collisions of two blocks, and a wall. The block closest to the wall starts off
+stationary, and the outer block (mass $m_1$) moves towards it with constant velocity. We count the
+number of collisions between blocks, and between the inner block and the wall, for varying values of
+the mass $m_1$ of the outer block.
 
 \begin{minted}{python3}
 import sys
@@ -669,6 +669,39 @@ $ for i in 0 1 2 3 4 5 6; do python 3blue1brown-blocks.py $((100**i)); done
 3141592
 \end{verbatim}
 
+OK, so. The problem statement is
+\begin{mdframed}
+  A vertical wall stands at the left edge of a frictionless surface. There are two blocks on the
+  surface: the left block is stationary and has mass $m_1$, and the right block is moving towards
+  the left block at constant velocity and has mass $m_2$.
+
+  Show that for $n \in \N$, if $m_2/m_1 = 10^{2n}$ then the total number of collisions (including
+  the left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
+  of the decimal expansion of $\pi$. So, for example:\\~\\
+  \begin{tabular}{l|l}
+    $m_2$ & #collisions \\
+    \hline
+    $m_1$        & 3 \\
+    $10^2m_1$     & 31 \\
+    $10^4m_1$   & 314 \\
+    $10^6m_1$ & 3141 \\
+    \ldots
+  \end{tabular}
+
+  All collisions are ``elastic'', i.e. momentum and kinetic energy are conserved. You may use the
+  following result from classical mechanics for elastic collisions:
+
+  \textit{Suppose that an object with mass $m_1$ and velocity $u_1$ collides elastically with an
+    object with mass $m_2$ and velocity $u_2$. The post-collision velocities are
+    \begin{align*}
+      v_1 &= \frac{m_1v_1 - m_2v_1 + 2m_2v_2}{m_1 + m_2} \\
+      v_2 &= \frac{2m_1v_1 - m_1v_2 + m_2v_2}{m_1 + m_2}.
+    \end{align*}
+  }
+
+  When the left block bounces off the wall, its new velocity has the same magnitude and opposite
+  sign.
+\end{mdframed}\begin{comment}  % latex-focus
 \section{Projectile motion}
 
 A projectile of mass $m$ is released with velocity $v_0$ at an angle $\theta$ to the ground. There
