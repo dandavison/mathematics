@@ -541,35 +541,40 @@ Since $x \mapsto x^2$ is a convex function (\ref{convexity}), we have that $v_E 
   \includegraphics[width=400pt]{img/physics--classical-mechanics--morin--sec-5-6-ex.png}
 \end{mdframed}
 
+\textit{For consistency with the 3blue1brown ``colliding blocks'' section below we will use
+  $(m_1, m_2)$ instead of $(m, M)$, and in contrast to the diagram we will have $m_1$ initially
+  stationary and $m_2$ moving right to left at constant velocity $v_2$ (which is negative, since it
+  is moving right to left).}
+
 This can be solved in two ways:
 \begin{enumerate}
 \item Using the center of mass (CM) frame (Morin p.162)
 \item Using conservation of kinetic energy (Morin p. 164, )
 \end{enumerate}
 
-Let the post-collision masses and velocities be $(m, v_f)$ and $(M, V_f)$.
+Let $m_1 = m$ the post-collision masses and velocities be $(m_1, v_1')$ and $(m_2, v_2')$.
 
 {\bf Solution using conservation of kinetic energy}\\
 
 From conservation of momentum and KE we have the system of equations
 \begin{align}
-  mv              &= mv_f + MV_f \\
-  \frac{1}{2}mv^2 &= \frac{1}{2}mv_f^2 + \frac{1}{2}MV_f^2.
+  m_2v_2              &= m_1v_1' + m_2v_2' \\
+  \frac{1}{2}m_2v_2^2 &= \frac{1}{2}m_1v_1'^2 + \frac{1}{2}m_2v_2'^2.
 \end{align}
-Now, we solve for $v_f$ and $V_f$...
+Now, we solve for $v_1'$ and $v_2'$...
 
 \begin{verbatim}
 #+begin_src mathematica :results raw pp
-Solve[m v == m vf + M Vf && m v^2 == m vf^2 + M Vf^2, {vf, Vf}]
+Solve[m2 v2 == m1 v1p + m2 v2p && m2 v2^2 == m1 v1p^2 + m2 v2p^2, {v1p, v2p}]
 #+end_src
 
 #+RESULTS:
-: {{vf -> v, Vf -> 0}, {vf -> (m*v - M*v)/(m + M), Vf -> (2*m*v)/(m + M)}}
+: {{v1p -> 0, v2p -> v2}, {v1p -> (2*m2*v2)/(m1 + m2), v2p -> (-(m1*v2) + m2*v2)/(m1 + m2)}}
 \end{verbatim}
 ...and the solution is
 \begin{align*}
-  v_f &= \frac{mv - Mv}{m + M} \\
-  V_f &= \frac{2mv}{m + M}.
+  v_1' &= \frac{2m_2}{m_1 + m_2}v_2 \\
+  v_2' &= \frac{m_2 - m_1}{m + M}v_2.
 \end{align*}
 
 So the stationary mass moves in the direction of impact, and for the moving mass:
@@ -585,22 +590,25 @@ stationary mass approaching zero, the ratio of their speeds approaches 2.
 Now\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}}, what about if they are both in
 motion when they collide? In that case we have
 \begin{align}
-  mv + MV                           &= mv_f + MV_f \\
-  \frac{1}{2}mv^2 + \frac{1}{2}MV^2 &= \frac{1}{2}mv_f^2 + \frac{1}{2}MV_f^2.
+  m_1v_1 + m_2v_2                           &= m_1v_1' + m_2v_2' \\
+  \frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 &= \frac{1}{2}m_1v_1'^2 + \frac{1}{2}m_2v_2'^2.
 \end{align}
 \begin{verbatim}
 #+begin_src mathematica :results raw pp
-Solve[m v + M V == m vf + M Vf && m v^2 + M V^2 == m vf^2 + M Vf^2, {vf, Vf}]
+Solve[m1 v1 + m2 v2     == m1 v1p + m2 v2p &&
+      m1 v1^2 + m2 v2^2 == m1 v1p^2 + m2 v2p^2,
+      {v1p, v2p}]
 #+end_src
 
 #+RESULTS:
-: {{vf -> v, Vf -> V}, {vf -> (m*v - M*v + 2*M*V)/(m + M), Vf -> (2*m*v - m*V + M*V)/(m + M)}}
+: {{v1p -> v1, v2p -> v2}, {v1p -> (m1*v1 - m2*v1 + 2*m2*v2)/(m1 + m2), v2p -> (2*m1*v1 - m1*v2 + m2*v2)/(m1 + m2)}}
 \end{verbatim}
 \begin{align*}
-  v_f &= \frac{mv - Mv + 2MV}{m + M} \\
-  V_f &= \frac{2mv - mV + MV}{m + M}.
+  v_1' &= \frac{2m_2v_2 - v_1(m_2 - m_1)}{m_1 + m_2} \\
+  v_2' &= \frac{2m_1v_1 + v_2(m_2 - m_1)}{m_1 + m_2}.
 \end{align*}
 
+\newpage
 \subsubsection{3blue1brown $\pi$ in colliding blocks}
 
 This 3blue1brown video\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}} involves
@@ -617,20 +625,20 @@ from typing import Tuple
 
 @dataclass
 class Blocks:
-    m0 = 1.0  # mass of left block
-    m1 = None  # mass of right block (supplied as input)
+    m1 = 1.0  # mass of left block
+    m2 = None  # mass of right block (supplied as input)
 
-    v0 = 0.0  # left block starts off stationary
-    v1 = -1.0  # initial velocity of right block
+    v1 = 0.0  # left block starts off stationary
+    v2 = -1.0  # initial velocity of right block
 
     def will_collide_again(self):
-        return abs(self.v0) > self.v1
+        return abs(self.v1) > self.v2
 
     def collide(self):
-        v0, v1 = self.v0, self.v1
-        m0, m1 = self.m0, self.m1
-        self.v0 = (m0 * v0 - m1 * v0 + 2 * m1 * v1) / (m0 + m1)
-        self.v1 = (2 * m0 * v0 - m0 * v1 + m1 * v1) / (m0 + m1)
+        v1, v2 = self.v1, self.v2
+        m1, m2 = self.m1, self.m2
+        self.v1 = (2 * m2 * v2 - v1 * (m2 - m1)) / (m1 + m2)
+        self.v2 = (2 * m1 * v1 + v2 * (m2 - m1)) / (m1 + m2)
 
     def simulate(self):
         n = 0
@@ -639,11 +647,11 @@ class Blocks:
             n += 1
             if self.will_collide_again():
                 # Bounce off wall
-                self.v0 = -self.v0
+                self.v1 = -self.v1
                 n += 1
             else:
                 break
-        if self.v0 < 0:
+        if self.v1 < 0:
             # Bounce off wall
             n += 1
         print(n)
@@ -652,7 +660,7 @@ class Blocks:
 if __name__ == "__main__":
     assert not sys.argv[2:]
     blocks = Blocks()
-    blocks.m1 = float(sys.argv[1])
+    blocks.m2 = float(sys.argv[1])
     blocks.simulate()
 \end{minted}
 
@@ -675,11 +683,15 @@ OK, so. The problem statement is
   surface: the left block is stationary and has mass $m_1$, and the right block is moving towards
   the left block at constant velocity and has mass $m_2$.
 
-  Show that for $n \in \N$, if $m_2/m_1 = 10^{2n}$ then the total number of collisions (including
-  the left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
-  of the decimal expansion of $\pi$. So, for example:\\~\\
+  Show that for $n \in \N$, if $m_2/m_1 = b^{2n}$ then the total number of collisions (including the
+  left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
+  of the base-$b$ expansion of $\pi$. So:\\~\\
+
+  Show that for $n \in \N$, if $m_2/m_1 = b^{2n}$ then the total number of collisions (including the
+  left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
+  of the base-$b$ expansion of $\pi$. So:\\~\\
   \begin{tabular}{l|l}
-    $m_2$ & #collisions \\
+    $m_2$ & \#collisions \\
     \hline
     $m_1$        & 3 \\
     $10^2m_1$     & 31 \\
@@ -694,14 +706,20 @@ OK, so. The problem statement is
   \textit{Suppose that an object with mass $m_1$ and velocity $u_1$ collides elastically with an
     object with mass $m_2$ and velocity $u_2$. The post-collision velocities are
     \begin{align*}
-      v_1 &= \frac{m_1v_1 - m_2v_1 + 2m_2v_2}{m_1 + m_2} \\
-      v_2 &= \frac{2m_1v_1 - m_1v_2 + m_2v_2}{m_1 + m_2}.
+      v_1' &= \frac{2m_2v_2 - v_1(m_2 - m_1)}{m_1 + m_2} \\
+      v_2' &= \frac{2m_1v_1 + v_2(m_2 - m_1)}{m_1 + m_2}.
     \end{align*}
   }
 
   When the left block bounces off the wall, its new velocity has the same magnitude and opposite
   sign.
-\end{mdframed}\begin{comment}  % latex-focus
+\end{mdframed}
+
+Initially, $m_1 = 0$ and we have post-collision velocities
+\begin{align*}
+  v_1' &= \frac{2m_2}{m_1 + m_2}v_2 \\
+  v_2' &= \frac{m_2 - m_1}{m_1 + m_2}v_2.
+\end{align*}
 \section{Projectile motion}
 
 A projectile of mass $m$ is released with velocity $v_0$ at an angle $\theta$ to the ground. There
