@@ -1,19 +1,19 @@
 \renewcommand{\bar}{\overline}
 \renewcommand{\ddx}{\frac{\partial}{\partial x}}
-\renewcommand{\dfdx}{\frac{\partial f}{\partial x}}
-\renewcommand{\dfdy}{\frac{\partial f}{\partial y}}
-\renewcommand{\dfdzbar}{\frac{\partial f}{\partial \bar z}}
-\renewcommand{\dfdz}{\frac{\partial f}{\partial z}}
-\renewcommand{\dudx}{\frac{\partial u}{\partial x}}
-\renewcommand{\dudy}{\frac{\partial u}{\partial y}}
-\renewcommand{\dudz}{\frac{\partial u}{\partial z}}
+\newcommand{\dfdx}{\frac{\partial f}{\partial x}}
+\newcommand{\dfdy}{\frac{\partial f}{\partial y}}
+\newcommand{\dfdzbar}{\frac{\partial f}{\partial \bar z}}
+\newcommand{\dfdz}{\frac{\partial f}{\partial z}}
+\newcommand{\dudx}{\frac{\partial u}{\partial x}}
+\newcommand{\dudy}{\frac{\partial u}{\partial y}}
+\newcommand{\dudz}{\frac{\partial u}{\partial z}}
 \renewcommand{\dvdx}{\frac{\partial v}{\partial x}}
-\renewcommand{\dvdy}{\frac{\partial v}{\partial y}}
-\renewcommand{\dveczdx}{\frac{\partial \vec z}{\partial x}}
-\renewcommand{\dveczdy}{\frac{\partial \vec z}{\partial y}}
-\renewcommand{\dydzbar}{\frac{\partial y}{\partial \bar z}}
-\renewcommand{\dydz}{\frac{\partial y}{\partial z}}
-\renewcommand{\dzbar}{\frac{\partial}{\partial \bar z}}
+\newcommand{\dvdy}{\frac{\partial v}{\partial y}}
+\newcommand{\dveczdx}{\frac{\partial \vec z}{\partial x}}
+\newcommand{\dveczdy}{\frac{\partial \vec z}{\partial y}}
+\newcommand{\dydzbar}{\frac{\partial y}{\partial \bar z}}
+\newcommand{\dydz}{\frac{\partial y}{\partial z}}
+\newcommand{\dzbar}{\frac{\partial}{\partial \bar z}}
 
 
 % - Berkeley Math 185 - Complex Function Theory (Sarason)
@@ -116,7 +116,7 @@
 
 % \end{comment}
 
-\exercise{I.4.3}{Prove that if a polynomial with real coefficients has the
+  \exercise{I.4.3}{Prove that if a polynomial with real coefficients has the
     complex root $z$, then it also has $\bar z$ as a root.}
 
   Let $P:\C \rightarrow \C$ defined by $P(c) = r_0 + r_1c^1 + \ldots + r_kc^k$ be a $k$-th degree
@@ -139,9 +139,9 @@
 
   proving that if $z$ is a root then $\bar z$ is a root also.
 
-\exercise{I.7.4}{Prove that the distinct complex numbers $z_1, z_2, z_3$ are
-  the vertices of an equilateral triangle if and only if
-  $$z_1^2 + z_2^2 + z_3^2 = z_1z_2 + z_2z_3 + z_3z_1$$}
+  \exercise{I.7.4}{Prove that the distinct complex numbers $z_1, z_2, z_3$ are
+    the vertices of an equilateral triangle if and only if
+    $$z_1^2 + z_2^2 + z_3^2 = z_1z_2 + z_2z_3 + z_3z_1$$}
 
   The condition can be rewritten as
   $$
@@ -216,9 +216,9 @@
   % \le |z_1||z_2| + |z_2||z_3| + |z_3||z_1|.
   % $$
 
-\exercise{I.10.1}{Use de Moivre's formula to find expressions for
-  $\cos 5\theta$ and $\sin 5\theta$ as polynomials in $\cos \theta$ and
-  $\sin \theta$.}
+  \exercise{I.10.1}{Use de Moivre's formula to find expressions for
+    $\cos 5\theta$ and $\sin 5\theta$ as polynomials in $\cos \theta$ and
+    $\sin \theta$.}
 
   From de Moivre's formula we have
   $(\cos\theta + i\sin\theta)^5 = \cos 5\theta + i\sin 5\theta$. The left hand
@@ -248,25 +248,25 @@
   &= 16\sin^5\theta - 20\sin^3\theta + 5\sin\theta.
   \end{align*}
 
-\exercise{I.11.4}{Prove that the sum of the $n$-th roots of 1 equals 0,
-  ($n > 1$).}
+  \exercise{I.11.4}{Prove that the sum of the $n$-th roots of 1 equals 0,
+    ($n > 1$).}
 
-Let $w = \cos \frac{2\pi}{n} + i\sin \frac{2\pi}{n}$ be the $n$-th root of 1
-with smallest argument, other than 1 itself. Then the sum of the roots is
-$1 + w + w^2 + \ldots + w^{n-1}$. This is the first $n$ terms of a geometric
-series with constant ratio $w$, and is therefore equal to
-$\frac{1 - w^{n}}{1 - w} = \frac{1 - 1}{1 - w} = 0$.
+  Let $w = \cos \frac{2\pi}{n} + i\sin \frac{2\pi}{n}$ be the $n$-th root of 1
+  with smallest argument, other than 1 itself. Then the sum of the roots is
+  $1 + w + w^2 + \ldots + w^{n-1}$. This is the first $n$ terms of a geometric
+  series with constant ratio $w$, and is therefore equal to
+  $\frac{1 - w^{n}}{1 - w} = \frac{1 - 1}{1 - w} = 0$.
 
 
-\exercise{I.11.5}{Let $w$ be an $n$-th root of 1 different from 1
-  itself. Establish the formulas
-  $$
-  1 + 2w + 3w^2 + \ldots + nw^{n-1} = \frac{n}{w -1},
-  $$
-  $$
-  1 + 4w + 9w^2 + \ldots + n^2w^{n-1} = \frac{n^2}{w-1} - \frac{2n}{(w-1)^2}.
-  $$
-}
+  \exercise{I.11.5}{Let $w$ be an $n$-th root of 1 different from 1
+    itself. Establish the formulas
+    $$
+    1 + 2w + 3w^2 + \ldots + nw^{n-1} = \frac{n}{w -1},
+    $$
+    $$
+    1 + 4w + 9w^2 + \ldots + n^2w^{n-1} = \frac{n^2}{w-1} - \frac{2n}{(w-1)^2}.
+    $$
+  }
 
   [Note: my answers to this question appear to be wrong.]
 
@@ -351,11 +351,11 @@ $$}
 
 % \end{comment}
 
-\exercise{I.14.1}{Establish the formula
-$$
-\rho(z, \infty) = \frac{2}{\sqrt{|z|^2 + 1}}
-$$
-}
+  \exercise{I.14.1}{Establish the formula
+    $$
+    \rho(z, \infty) = \frac{2}{\sqrt{|z|^2 + 1}}
+    $$
+  }
 
   $\rho(z, \infty)$ is the Euclidean distance between the image point of $z$ and
   the north pole $(0, 0, 1)$:
@@ -394,17 +394,17 @@ $u(x,y)$ and $v(x,y)$, so that $f: \cvec{x}{y} \mapsto
 local linear approximation with sublinear error. That linear approximation is
 $$
 \cvec{u(x, y)}
-     {v(x, y)} \approx \cvec{u(x_0, y_0)}
-                            {v(x_0, y_0)} + \cvec{(x - x_0)\dudx + (y - y_0)\dudy}
-                                                 {(x - x_0)\dvdx + (y - y_0)\dvdy}
+{v(x, y)} \approx \cvec{u(x_0, y_0)}
+{v(x_0, y_0)} + \cvec{(x - x_0)\dudx + (y - y_0)\dudy}
+{(x - x_0)\dvdx + (y - y_0)\dvdy}
 $$
 This is more succinctly expressed using the Jacobian:
 $$
 \cvec{u(x, y)}
-     {v(x, y)} \approx \cvec{u(x_0, y_0)}
-                            {v(x_0, y_0)} + \mat{u_x}{u_y}
-                                                {v_x}{v_y} \cvec{x - x_0}
-                                                                {y - y_0}.
+{v(x, y)} \approx \cvec{u(x_0, y_0)}
+{v(x_0, y_0)} + \mat{u_x}{u_y}
+{v_x}{v_y} \cvec{x - x_0}
+{y - y_0}.
 $$
 Note that this "linear approximation" form
 $$
@@ -422,16 +422,16 @@ Recall that the derivative of a complex function $f$ is defined to be a complex
 number,
 $$
 f'\(\cvec{x_0}
-        {y_0}\) = \lim_{(x,y) \rightarrow (x_0,y_0)}
+{y_0}\) = \lim_{(x,y) \rightarrow (x_0,y_0)}
 \frac{
-\cvec{u(x, y)}
-     {v(x, y)} - \cvec{u(x_0)}
-                      {v(y_0)}
+  \cvec{u(x, y)}
+  {v(x, y)} - \cvec{u(x_0)}
+  {v(y_0)}
 }
 {
-\cvec{x}
-     {y} - \cvec{x_0}
-                {y_o}.
+  \cvec{x}
+  {y} - \cvec{x_0}
+  {y_o}.
 },
 $$
 i.e.
@@ -487,10 +487,10 @@ $$
 That's exactly the same as the equation involving the Jacobian above
 $$
 \cvec{u(x, y)}
-     {v(x, y)} - \cvec{u(x_0, y_0)}
-                      {v(x_0, y_0)} = \mat{u_x}{u_y}
-                                          {v_x}{v_y} \cvec{x - x_0}
-                                                          {y - y_0}.
+{v(x, y)} - \cvec{u(x_0, y_0)}
+{v(x_0, y_0)} = \mat{u_x}{u_y}
+{v_x}{v_y} \cvec{x - x_0}
+{y - y_0}.
 $$
 
 So how are we to make sense of the equation relating $f'$ and the partial
@@ -526,24 +526,24 @@ derivative.
 So if the local linear approximation to the transformation $f$ behaves exactly as
 multiplication by a complex number, then the Jacobian must have the form of a
 rotation+scale matrix, $\smat{a}{-b}
-                             {b}{a}$. Therefore the Jacobian must satisfy the
+{b}{a}$. Therefore the Jacobian must satisfy the
 Cauchy-Riemann equations
 $$
 \begin{cases}
-u_x = v_y \\
-v_x = -u_y. \\
+  u_x = v_y \\
+  v_x = -u_y. \\
 \end{cases}
 $$
 The Jacobian that effects the local linear rotation+scale transformation, together with
 the equivalent complex number, is
 $$
 \mat{u_x}{-v_x}
-    {v_x}{u_x} ~~~~ u_x + iv_x
+{v_x}{u_x} ~~~~ u_x + iv_x
 $$
 or
 $$
 \mat{v_y}{u_y}
-    {-u_y}{v_y} ~~~~ v_y - iu_y.
+{-u_y}{v_y} ~~~~ v_y - iu_y.
 $$
 So we can write
 \begin{align*}
@@ -610,48 +610,48 @@ and
 
 \begin{description}
 
-\exercise{II.8.1(b,d)}{
-  Let the function $f$ be holomorphic in the open disc $D$. Prove that each of
-  the following conditions forces $f$ to be constant:\\\\
-  \textnormal{Let $f(z) = u(z) + iv(z)$.}
-  \begin{description}
-    \exercise{(a)}{$f' = 0$ throughout $D$} \\\\
-    \textnormal{ \textbfit{Informally:} $f' = 0$ throughout $D$ means that the
-      best linear approximation of $f(z) - f(z_0)$ is $0(z - z_0)$ which
-      implies that $f(z) = f(z_0)$ everywhere, so $f$ is constant.\\
-      ~\\
-      \textbfit{Formally:} Since $f$ is holomorphic, $f' = u_x + iv_x =
-      0$. Equating real and imaginary parts shows that $u_x = v_x = 0$ and
-      therefore that $v_y = u_x = 0$ and $u_y = -v_x = 0$. Since the Jacobian
-      of $f$ is the zero matrix, $f$ is constant.}\\
-    \exercise{(b)}{$f$ is real-valued in $D$} \\\\
-    \textnormal{
-      % \textbfit{Informally:}
-      $f$ is real-valued, so $f(z) - f(z_0)$ is real-valued. Therefore the
-      local linear approximation $c(z - z_0)$ collapses the plane onto the real
-      axis, i.e. the Jacobian matrix has the form $\mat{a}{b} {0}{0}$. But $f$
-      is holomorphic, so the Jacobian must also have the form
-      $\mat{a}{-b}
-           {b}{a}$. Therefore the Jacobian is the zero matrix, i.e.
-      all partial derivatives are zero, $u_x = u_y = v_x = v_y = 0$, so $f$ is constant.\\
-      % \textbfit{Formally:} $f$ is real-valued means that $v(z) = 0$
-      % everywhere. Therefore the partial derivatives $v_x = v_y = 0$. Since $f$
-      % is holomorphic the partial derivatives satisfy the Cauchy-Riemann
-      % equations, therefore we have $u_x = v_y = 0$ and $u_y = -v_x = 0$. The
-      % Jacobian is the zero matrix hence $f$ is constant.
-      % \\
-    }
-    \exercise{(c)}{$|f|$ is constant in $D$} \\\\
-    \textnormal{ \textbfit{Informally:} $|f|$ is constant means that it collapses
-      all points in the open disc $D$ onto a circle. Therefore the Jacobian of
-      $f$ has determinant $0 = u_x^2 + v_x^2 = v_y^2 + u_y^2$. Therefore the
-      Jacobian
-      is the zero matrix and the function $f$ is constant.\\
-      ~\\
-      \textbfit{Formally:} $|f|$ is constant, therefore
-      $|f|^2 = f\bar f = u^2 + v^2$ is constant. Therefore the following two
-      partial derivatives are constant:
-      \begin{align*}
+  \exercise{II.8.1(b,d)}{
+    Let the function $f$ be holomorphic in the open disc $D$. Prove that each of
+    the following conditions forces $f$ to be constant:\\\\
+    \textnormal{Let $f(z) = u(z) + iv(z)$.}
+    \begin{description}
+      \exercise{(a)}{$f' = 0$ throughout $D$} \\\\
+      \textnormal{ \textbfit{Informally:} $f' = 0$ throughout $D$ means that the
+        best linear approximation of $f(z) - f(z_0)$ is $0(z - z_0)$ which
+        implies that $f(z) = f(z_0)$ everywhere, so $f$ is constant.\\
+        ~\\
+        \textbfit{Formally:} Since $f$ is holomorphic, $f' = u_x + iv_x =
+        0$. Equating real and imaginary parts shows that $u_x = v_x = 0$ and
+        therefore that $v_y = u_x = 0$ and $u_y = -v_x = 0$. Since the Jacobian
+        of $f$ is the zero matrix, $f$ is constant.}\\
+      \exercise{(b)}{$f$ is real-valued in $D$} \\\\
+      \textnormal{
+        % \textbfit{Informally:}
+        $f$ is real-valued, so $f(z) - f(z_0)$ is real-valued. Therefore the
+        local linear approximation $c(z - z_0)$ collapses the plane onto the real
+        axis, i.e. the Jacobian matrix has the form $\mat{a}{b} {0}{0}$. But $f$
+        is holomorphic, so the Jacobian must also have the form
+        $\mat{a}{-b}
+        {b}{a}$. Therefore the Jacobian is the zero matrix, i.e.
+        all partial derivatives are zero, $u_x = u_y = v_x = v_y = 0$, so $f$ is constant.\\
+        % \textbfit{Formally:} $f$ is real-valued means that $v(z) = 0$
+        % everywhere. Therefore the partial derivatives $v_x = v_y = 0$. Since $f$
+        % is holomorphic the partial derivatives satisfy the Cauchy-Riemann
+        % equations, therefore we have $u_x = v_y = 0$ and $u_y = -v_x = 0$. The
+        % Jacobian is the zero matrix hence $f$ is constant.
+        % \\
+      }
+      \exercise{(c)}{$|f|$ is constant in $D$} \\\\
+      \textnormal{ \textbfit{Informally:} $|f|$ is constant means that it collapses
+        all points in the open disc $D$ onto a circle. Therefore the Jacobian of
+        $f$ has determinant $0 = u_x^2 + v_x^2 = v_y^2 + u_y^2$. Therefore the
+        Jacobian
+        is the zero matrix and the function $f$ is constant.\\
+        ~\\
+        \textbfit{Formally:} $|f|$ is constant, therefore
+        $|f|^2 = f\bar f = u^2 + v^2$ is constant. Therefore the following two
+        partial derivatives are constant:
+        \begin{align*}
         \begin{cases}
           \ddx |f|^2 =  2uu_x + 2vv_x = 0 \\
           \ddy |f|^2 = 2uu_y + 2vv_y = 0.
@@ -667,7 +667,7 @@ and
       % i.e.
       % $$
       % \mat{u}{-v}
-      %     {u}{v} \cvec{u_x}{u_y} = \cvec{0}{0}.
+      % {u}{v} \cvec{u_x}{u_y} = \cvec{0}{0}.
       % $$
       % The determinant of this system is $2uv$ which is not in general zero. But
       % the equations hold throughout the disc $D$, therefore
@@ -697,14 +697,14 @@ and
       We conclude that $u_x = u_y = 0$ and that $f$ is therefore constant.  }
     \exercise{(d)}{$\arg f$ is constant in $D$} \\\\
     \textnormal{
-      %\textbfit{Informally:}
+      % \textbfit{Informally:}
       Let $\arg f = \theta$, constant throughout
       $D$. Then $\arg (f(z) - f(z_0)) = \theta$, whenever $z \neq z_0$.
       Therefore the best local linear approximation to $f$ is a linear
       transformation that collapses the plane onto a line with angle $\theta$.
       The Jacobian determinant is therefore zero. Since $f$
       is holomorphic the Jacobian is of the form $\mat{a}{-b}
-                                                      {b}{a}$ and therefore we have
+      {b}{a}$ and therefore we have
       $a^2 + b^2 = 0$, so $a = b = 0$.  Therefore the Jacobian is the zero
       matrix, i.e. $f' = 0$ throughout $D$, so $f$ is constant.\\
       % ~\\
@@ -761,8 +761,8 @@ in its domain.
 Let $v$ and $w$ be harmonic conjugates of $u$, so that
 $$
 \begin{cases}
-u_x = v_y = w_y\\
-u_y = -v_x = -w_x.
+  u_x = v_y = w_y\\
+  u_y = -v_x = -w_x.
 \end{cases}
 $$
 We want to show that $q = v-w$ is constant, i.e. that $q_x = q_y = 0$,
@@ -779,7 +779,7 @@ $q_x = v_x - w_x = 0$ and $q_y = v_y - w_y = 0$ as required.
   $$
   \dddzbarz =
   \frac{1}{4}\(\frac{\partial^2}{\partial x^2} +
-               \frac{\partial^2}{\partial y^2}\)
+  \frac{\partial^2}{\partial y^2}\)
   $$
   Thus, Laplace's equation can be written as $\frac{\partial^2 f}{\partial \bar z \partial z} = 0$.
 }
@@ -1032,7 +1032,7 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
     a + d &= \pm 2
   \end{align*}
   A translation has matrix of the form $\mat{x}{y}
-                                            {0}{x}$. So the question is,
+  {0}{x}$. So the question is,
   can we find $e,f,g,h$ such that
   \begin{align*}
     g(ah - bg) + h(-ch - dg) &= 0 \\
@@ -1045,13 +1045,13 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
   \end{align*}
 
   % \exercise{III.9.1}{
-  %   ~\\
-  %   Find the image of the half-plane $\Re z > 0$ under the linear-fractional
-  %   transformation that maps $0, i, -i$ to $1, -1, 0$, respectively.
-  %   ~\\
+  % ~\\
+  % Find the image of the half-plane $\Re z > 0$ under the linear-fractional
+  % transformation that maps $0, i, -i$ to $1, -1, 0$, respectively.
+  % ~\\
   % }\\
-  % Let the linear-fractional transformation be $\phi(z) = \frac{az + b}{cz + d}$. We have
-  % \begin{align*}
+  %   Let the linear-fractional transformation be $\phi(z) = \frac{az + b}{cz + d}$. We have
+  %   \begin{align*}
   %   \phi(-i) &= \frac{-ai + b}{-ci + d} = 0 \implies b = ai \\
   %   \phi(0) &= \frac{b}{d} = 1 \implies d = b = ai \\
   %   \phi(i) &= \frac{ai + b}{ci + d} = -1 \implies ci + d = -2b \implies c = -3a,
@@ -1120,7 +1120,7 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
     onto itself are those induced by matrices of the form
     $$
     \mat{a     }{b     }
-        {\bar b}{\bar a}
+    {\bar b}{\bar a}
     $$
     with $|a|^2 - |b|^2 = 1$.
     ~\\
@@ -1142,7 +1142,7 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
   linear-fractional transformation is induced by a matrix of the form
   $$
   \mat{a     }{b     }
-      {\bar b}{\bar a}
+  {\bar b}{\bar a}
   $$
   with $|a|^2 - |b|^2 = 1$, if and only if the matrix is of the form
   \begin{align*}
@@ -1366,8 +1366,8 @@ with $\tan, \cot, \sec$ and $\cosec$ also defined as usual.
 
 
 \begin{description}
-\exercise{IV.5.2}{
-Describe the curves $|f| = $ constant and $\arg f =$ constant for the function
+  \exercise{IV.5.2}{
+    Describe the curves $|f| = $ constant and $\arg f =$ constant for the function
 \begin{align*}
   f(z) = \exp(z^2).
 \end{align*}
@@ -1467,7 +1467,7 @@ Therefore the image of $G$ under $f$ is $\C$ with the interval $[-1, 0]$ removed
 % return to the starting point. So $f$ is not a branch in $G$.
 
 \exercise{IV.16.1}{
-Find all the values of $(1 + i)^i$.
+  Find all the values of $(1 + i)^i$.
 } \\\\
 $(1 + i)^i$ is the set of values
 \begin{align*}
@@ -1546,21 +1546,21 @@ that $f$ is defined.
   \item Show that $z$ has a neighborhood which is a subset of $S$. $\qed$
   \end{enumerate}
 
-\exercise{V.7.2}{
-  Prove that the series
-  $\sum_{n=0}^\infty \(\frac{z-1}{z+1}\)^n$ converges locally uniformly in the
-  half-plane $\Re z > 0$, and find the sum.
-}\\
-(No attempt)
+  \exercise{V.7.2}{
+    Prove that the series
+    $\sum_{n=0}^\infty \(\frac{z-1}{z+1}\)^n$ converges locally uniformly in the
+    half-plane $\Re z > 0$, and find the sum.
+  }\\
+  (No attempt)
 
-\exercise{V.14.1(b)}{
-  Find the radius of convergence of the following series:
-  $$
-  \sum_{n=0}^\infty \frac{(n!)^3}{(3n)!} z^{3n}
-  $$
-}
-\\\\
-We use the ratio test:
+  \exercise{V.14.1(b)}{
+    Find the radius of convergence of the following series:
+    $$
+    \sum_{n=0}^\infty \frac{(n!)^3}{(3n)!} z^{3n}
+    $$
+  }
+  \\\\
+  We use the ratio test:
 \begin{align*}
   \limn \left|\frac{a_n}{a_{n+1}}\right|
   &= \limn \left|\frac{(n!)^3z^{3n}}{(3n)!}
@@ -1626,13 +1626,13 @@ Then
     by integrating the function $\frac{1}{z}\(z + \frac{1}{z}\)^{2n}$ around
     the unit circle, parameterized by the curve
     $\gamma(t) = e^{it} (0 \leq t \leq 2\pi)$.
-}
-\\
-Here are two slightly different attempts:
+  }
+  \\
+  Here are two slightly different attempts:
 
-\begin{mdframed}
-  We can write the integral as
-  \begin{align*}
+  \begin{mdframed}
+    We can write the integral as
+    \begin{align*}
     \frac{1}{2\pi}\int_0^{2\pi}\cos^{2n}t ~dt
     &= \frac{1}{2^{2n+1}\pi } \int_0^{2\pi} (e^{it} + e^{-it})^{2n} ~dt \\
     &= \frac{1}{2^{2n+1}\pi } \int_\gamma (z + z^{-1})^{2n} ~dz
@@ -1685,14 +1685,14 @@ Here are two slightly different attempts:
   $(z + z^{-1})^{2n}$ around the unit circle:
 
 \end{mdframed}
-  \exercise{VI.8.1}{
-    Let $z_1$ and $z_2$ be distinct points of $\C$. Evaluate
-    $\int_{[z1,z2]}z^n dz$ and $\int_{[z1,z2]}\bar{z}^n dz$ for
-    $n = 0, 1, 2, \ldots$.
+\exercise{VI.8.1}{
+  Let $z_1$ and $z_2$ be distinct points of $\C$. Evaluate
+  $\int_{[z1,z2]}z^n dz$ and $\int_{[z1,z2]}\bar{z}^n dz$ for
+  $n = 0, 1, 2, \ldots$.
 }
 \\
 \begin{mdframed}
-Let $\gamma(t) = z_1 + t(z_2 - z_1)$ for $t \in [0, 1]$ represent the curve $[z_1,z_2]$. We have
+  Let $\gamma(t) = z_1 + t(z_2 - z_1)$ for $t \in [0, 1]$ represent the curve $[z_1,z_2]$. We have
 \begin{align*}
   \int_{[z1,z2]}z^n dz
   &= \int_0^1 \gamma(t)^n\gamma'(t) dt \\
