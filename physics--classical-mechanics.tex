@@ -686,10 +686,6 @@ OK, so. The problem statement is
   Show that for $n \in \N$, if $m_2/m_1 = b^{2n}$ then the total number of collisions (including the
   left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
   of the base-$b$ expansion of $\pi$. So:\\~\\
-
-  Show that for $n \in \N$, if $m_2/m_1 = b^{2n}$ then the total number of collisions (including the
-  left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
-  of the base-$b$ expansion of $\pi$. So:\\~\\
   \begin{tabular}{l|l}
     $m_2$ & \#collisions \\
     \hline
@@ -703,8 +699,8 @@ OK, so. The problem statement is
   All collisions are ``elastic'', i.e. momentum and kinetic energy are conserved. You may use the
   following result from classical mechanics for elastic collisions:
 
-  \textit{Suppose that an object with mass $m_1$ and velocity $u_1$ collides elastically with an
-    object with mass $m_2$ and velocity $u_2$. The post-collision velocities are
+  \textit{Suppose that an object with mass $m_1$ and velocity $v_1$ collides elastically with an
+    object with mass $m_2$ and velocity $v_2$. The post-collision velocities are
     \begin{align*}
       v_1' &= \frac{2m_2v_2 - v_1(m_2 - m_1)}{m_1 + m_2} \\
       v_2' &= \frac{2m_1v_1 + v_2(m_2 - m_1)}{m_1 + m_2}.
@@ -715,11 +711,30 @@ OK, so. The problem statement is
   sign.
 \end{mdframed}
 
-Initially, $m_1 = 0$ and we have post-collision velocities
+If at any time $|v_1'| - v_2' \leq 0$ then the right block is escaping to the right and the left
+block will never catch up with it. Otherwise $|v_1'| - v_2' > 0$ and there will be another
+collision.
+
+Initially, $v_1 = 0$, and $v_2 < 0$, and we have post-collision velocities
 \begin{align*}
   v_1' &= \frac{2m_2}{m_1 + m_2}v_2 \\
   v_2' &= \frac{m_2 - m_1}{m_1 + m_2}v_2.
 \end{align*}
+Thus after the first collision the further-collisions criterion is
+\begin{align*}
+  (m_1 + m_2)(|v_1'| - v_2')
+  &= 2m_2(-v_2) - (m_2 - m_1)v_2 \\
+  &= v_2(m_1 - 3m_2).
+\end{align*}
+Therefore there will be another collision if
+\begin{align*}
+  |v_1'| - v_2'   &> 0 \\
+  v_2(m_1 - 3m_2) &> 0 \\
+  m_1 - 3m_2      &< 0 \\
+  m_1             &< 3m_2.
+\end{align*}
+
+Note that we are only considering $m_2 \geq m_1$, so this is always true and there are 3 collisions.
 \section{Projectile motion}
 
 A projectile of mass $m$ is released with velocity $v_0$ at an angle $\theta$ to the ground. There
