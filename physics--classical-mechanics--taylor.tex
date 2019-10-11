@@ -4,10 +4,12 @@
 \newcommand{\rhat}{\vec{\hat{r}}}
 \newcommand{\phihat}{\vec{\hat{\phi}}}
 \renewcommand{\a}{\vec{a}}
+\renewcommand{\b}{\vec{b}}
 \renewcommand{\p}{\vec{p}}
 \renewcommand{\F}{\vec{F}}
 \renewcommand{\r}{\vec{r}}
 \renewcommand{\vector}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
 
 Notes on Classical Mechanics by John R. Taylor\footnote{http://www.amazon.com/Classical-Mechanics-John-R-Taylor/dp/189138922X}
 
@@ -411,22 +413,93 @@ To show that the force is conservative we must show
 \end{enumerate}
 
 
-Questions with solutions:
+% Questions with solutions:
 
-3 a,b,c
-7 a,b,c
-9 b
-11
-13
-15
-19 a b
-21
-23 a b c
-29 a b d
-31 a
-33 b c
-35 a b
-37 a b c d
-39 c
-51
-53 b c
+% 3 a,b,c
+% 7 a,b,c
+% 9 b
+% 11
+% 13
+% 15
+% 19 a b
+% 21
+% 23 a b c
+% 29 a b d
+% 31 a
+% 33 b c
+% 35 a b
+% 37 a b c d
+% 39 c
+% 51
+% 53 b c
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--ex-4-1.png}\\
+  \includegraphics[width=200pt]{img/physics--classical-mechanics--taylor--ex-4-1-diag.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item
+\begin{align*}
+  W
+  &= \int_O^Q \F(\r) \cdot \d\r + \int_Q^P \F(\r) \cdot \d\r \\
+  &= \int_0^1 F_x(x, 0) \dx + \int_0^1 F_y(1, y) \dy \\
+  &= \int_0^1 0 \dx + \int_0^1 2 \dy \\
+  &= 2. ~~~ \red{\checkmark}
+\end{align*}
+\item Along path b we have $y = x$ and therefore $\dy = \dx$.
+\begin{align*}
+  W
+  &= \int_O^P \F(\r) \cdot \d\r \\
+  &= \int_O^P F_x(x, y) \dx + F_y(x, y) \dy \\
+  &= \int_0^1 F_x(x, x) \dx + F_y(x, x) \dx \\
+  &= \int_0^1 x \dx + 2x \dx \\
+  &= \frac{3}{2}x^2\Big|_0^1 \\
+  &= \frac{3}{2}.
+\end{align*}
+\item Along path c
+
+
+\end{enumerate}
+
+\subsection{4.1}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-1.png}
+\end{mdframed}
+
+\begin{align*}
+  \ddt (\a \cdot \b)
+  &= \ddt \sum a_ib_i \\
+  &= \sum \ddt a_ib_i \\
+  &= \sum \(\dot{a}_ib_i + a_i\dot{b}_i\) \\
+  &= \sum \dot{a}_ib_i + \sum a_i\dot{b}_i \\
+  &= \dot{\a} \cdot \b + \a \cdot \dot{\b}.
+\end{align*}
+
+\subsection{4.2, 4.3}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-3.png}\\
+  \includegraphics[width=200pt]{img/physics--classical-mechanics--taylor--q-4-3-diag.png}
+\end{mdframed}
+
+\begin{enumerate}[label=(\alph*)]
+\item Along the segment $PO$ we have $\F \cdot \d\r = 0$ since $F = (0, x)$ and $\d\r = (-\dx,
+  0)$. And along the segment $OQ$ we have $\F \cdot \d\r = 0$ since $F = (-y, 0)$ and
+  $\d\r = (0, y)$. So the path is perpendicular to the force at all times and hence the work is
+  zero:
+  \begin{align*}
+    W
+    = \int_P^Q \F \cdot \d\r
+    = \int_P^O \F \cdot \d\r + \int_O^Q \F \cdot \d\r
+    = 0 + 0 = 0. ~~~\red{\checkmark}
+  \end{align*}
+\item Along $PQ$ we have $y = 1 - x$ and so $\dr = (-\dx, -\dx)$, Therefore
+  \begin{align*}
+    \int_P^Q \F \cdot \d\r
+    &= \int_P^Q (x - 1, x) \cdot (-\dx, -\dx) \\
+    &= \int_P^Q -x\dx + \dx - x\dx \\
+    &= \int_P^Q (1 - 2x)\dx \\
+    &= [x - x^2]_1^0 \\
+    &= 0 - 1 + 1 \\
+    &= 0. ~~~ \red{ERROR}
+  \end{align*}
+\end{enumerate}
