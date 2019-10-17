@@ -113,7 +113,7 @@ $m$ equations true.
 
 In other words, we notice that the equations involve $n$ variables, and
 consider the set of $n$-tuples
-$S = \{(x, y, \ldots) ~|~ x, y, \ldots \in \R\}$.
+$S = \{(x, y, \ldots) ~|~ x, y, \ldots \in  \R\}$.
 
 The set of solutions is the subset of $S$ for which all the equations are true.
 
@@ -148,8 +148,8 @@ $A:\R^n \to \R^m$.
 
 This matrix equation is saying:
 \begin{enumerate}
-\item Let the $x$ coefficients be a vector $\vec a_1 \in \R^m$. And let the $y$
-  coefficients be another vector $\vec a_2 \in \R^m$, and so on.
+\item Let the $x$ coefficients be a vector $\vec a_1 \in  \R^m$. And let the $y$
+  coefficients be another vector $\vec a_2 \in  \R^m$, and so on.
 \item So now you have $n$ vectors spanning some subspace of $\R^m$.
 \item Is $b$ in their span? If so, for what values of $x, y, \ldots$ does
   $x\vec a_1 + y\vec a_2 + \cdots = b$?
@@ -203,7 +203,7 @@ Now we introduce a dependent equation into the system.
 \section{Subspaces}
 A subspace $U$ of $V$ is a subset of $V$ for which
 \begin{enumerate}
-\item $0 \in U$
+\item $0 \in  U$
 \item For any finite subset $U^* \subset U$, the set of all linear combinations
   of $U^*$ is also a subset of $U$.
 \end{enumerate}
@@ -239,7 +239,7 @@ A subspace $U$ of $V$ is a subset of $V$ for which
 \end{proof}
 
 \begin{theorem}\label{transformed-basis-is-a-basis}
-  Let $U, V$ be vector spaces, let $f:U \to V$ be an invertible linear map, and let
+  Let $U, V$ be vector spaces, let $f:U \to  V$ be an invertible linear map, and let
   $e_1, \ldots, e_n$ be a basis for $U$. Then $f(e_1), \ldots, f(e_n)$ is a basis for $V$.
 \end{theorem}
 
@@ -260,7 +260,7 @@ A subspace $U$ of $V$ is a subset of $V$ for which
   \item {\bf Spanning}\\
     Let $v \in V$.
 
-    Then $v = f(u)$ for some $u \in U$, since $f$ is surjective.
+    Then $v = f(u)$ for some $u \in  U$, since $f$ is surjective.
 
     Therefore $v = f\(\sumin \lambda_ie_i\) = \sumin \lambda_if(e_i)$ for some
     $\lambda_1, \ldots, \lambda_n$, as required.
