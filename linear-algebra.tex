@@ -694,6 +694,123 @@ What are the eigenspaces of this map?
 The characteristic polynomial (basis independent) is $\det(A - \lambda I) = 0$
 where $A$ is the matrix of the map wrt some basis.
 
+
+\subsection{Equation of a line under a change of basis}
+\begin{question*}
+  How does the equation of a line change when the basis is changed?
+\end{question*}
+
+\begin{proof}
+  A straight line in a real vector space $V$ is a set defined by two points $v_1, v_2 \in V$:
+  \begin{align*}
+    L = \{v_1 + \alpha(v_2 - v_1) ~|~ \alpha \in \R \}.
+  \end{align*}
+  Equivalently, we can write a ``parametric equation'' for the straight line:
+  \begin{align*}
+    v(\alpha) = v_1 + \alpha(v_2 - v_1).
+  \end{align*}
+  This is a map $\R \to L$, i.e. it maps a value of the parameter $\alpha$ to a point on the line.
+
+  Suppose $V = \R^2$ and we specify a basis such that $y = mx + y_0$. Now fix $x_1 \in \R$ and we
+  have a parametric equation
+  \begin{align*}
+    \vecMM{x}{y} &= \vecMM{0}{y_0} + \alpha\vecMM{x_1}{mx_1}.
+  \end{align*}
+
+  Now, let $A = \matMMxNN{a_1}{a_2} {a_3}{a_4}$ be the matrix containing the new basis vectors
+  (expressed in the original basis). Then with coordinates expressed in the new basis we have
+  \begin{align*}
+    \vecMM{x}{y}                    &= A^{-1}\vecMM{0}{y_0} + \alpha A^{-1}\vecMM{x_1}{mx_1} \\
+    \matMMxNN{a_1}{a_2}
+             {a_3}{a_4}\vecMM{x}{y} &= \vecMM{\alpha x_1}{y_0 + \alpha mx_1} \\
+    \alpha &= \frac{a_1x + a_2y}{x_1} \\
+    a_3x + a_4y &= y_0 + \frac{a_1x + a_2y}{x_1} mx_1 \\
+                &= y_0 + a_1mx + a_2my \\
+    y &= \frac{a_1m - a_3}{a_4 - a_2m}x + \frac{y_0}{a_4 - a_2m}.
+  \end{align*}
+
+%   Suppose $V = \R^2$ and we specify a basis such that $v_1 = \vecMM{x_1}{y_1}$ and
+%   $v_2 = \vecMM{x_2}{y_2}$. Then the parametric equation of the line is equivalent to the system of equations:
+%   \begin{align*}
+%     \vecMM{x(\alpha)}{y(\alpha)}
+%     &= \vecMM{x_1}{y_1} + \alpha\vecMM{x_2 - x_1}{y_2 - y_1} \\
+%     &= \vecMM{x_1 + \alpha(x_2 - x_1)}{y_1 + \alpha(y_2 - y_1)}.
+%   \end{align*}
+%   We can solve for $y$ as a function of $x$:
+%   \begin{align*}
+%     y &= \(\frac{y_2 - y_1}{x_2 - x_1}\)x + \(y_1 - \frac{y_2 - y_1}{x_2 - x_1}x_1\).
+%   \end{align*}
+
+%   Now, let $A$ be the matrix containing the new basis vectors (expressed in the original
+%   basis). So $A$ maps (\red{what LT does $A$ correspond to?}).
+
+%   Suppose a point has coordinates $\vecMM{x}{y}$ in the old basis. Then its coordinates
+%   $\vecMM{x'}{y'}$ in the new basis by definition satisfy
+%   \begin{align*}
+%     A\vecMM{x'}{y'} = \vecMM{x}{y},
+%   \end{align*}
+%   therefore
+%   \begin{align*}
+%     \vecMM{x'}{y'} = A^{-1}\vecMM{x}{y}.
+%   \end{align*}
+
+%   So, in the new basis, the parametric equation of the line is
+%   \begin{align*}
+%     v(\alpha) = A^{-1}v_1 + \alpha A^{-1}(v_2 - v_1),
+%   \end{align*}
+%   i.e.
+%   \begin{align*}
+%     \vecMM{x(\alpha)}{y(\alpha)}
+%     &= A^{-1}\vecMM{x_1}{y_1} + \alpha A^{-1}\vecMM{x_2 - x_1}{y_2 - y_1} \\
+%     &= A^{-1}\vecMM{x_1 + \alpha(x_2 - x_1)}
+%                   {y_1 + \alpha(y_2 - y_1)}.
+%   \end{align*}
+%   Let $A = \matMMxNN{a_1}{a_2}
+%   {a_3}{a_4}$. Then
+%   \begin{align*}
+%     \matMMxNN{a_1}{a_2}
+%              {a_3}{a_4}\vecMM{x}{y}
+%     &= \vecMM{x_1 + \alpha(x_2 - x_1)}
+%              {y_1 + \alpha(y_2 - y_1)}.
+%   \end{align*}
+
+%   \begin{align*}
+%     \alpha      &= \frac{a_1x + a_2y - x_1}{x_2 - x_1} \\
+%     a_3x + a_4y
+%     &= y_1 +  \frac{a_1x + a_2y - x_1}{x_2 - x_1}(y_2 - y_1) \\
+%     &= \frac{a_2(y_2 - y_1)}{x_2 - x_1}y + \frac{y_1(x_2 - x_1) + (a_1x - x_1)(y_2 - y_1)}{x_2 - x_1} \\
+%     y\(a_4 - \frac{a_2(y_2 - y_1)}{x_2 - x_1}\) &= \frac{y_1(x_2 - x_1) + (a_1x - x_1)(y_2 - y_1)}{x_2 - x_1} - a_3x\\
+%     y\(\frac{a_4(x_2 - x_1) - a_2(y_2 - y_1)}{x_2 - x_1}\) &= \frac{y_1(x_2 - x_1) + (a_1x - x_1)(y_2 - y_1) - a_3x(x_2 - x_1)}{x_2 - x_1}\\
+%     y &= \frac{y_1(x_2 - x_1) + (a_1x - x_1)(y_2 - y_1) - a_3x(x_2 - x_1)}{a_4(x_2 - x_1) - a_2(y_2 - y_1)}\\
+%     y &= \frac{1}{a_4(x_2 - x_1) - a_2(y_2 - y_1)}
+%          \(
+%            x(a_1y_2 - a_1y_1 - a_3x_2 + a_3x_1) +
+%            (y_1(x_2 - x_1) - x_1y_2 + x_1y_1)
+%          \) \\
+%     y &= \frac{1}{a_4(x_2 - x_1) - a_2(y_2 - y_1)}
+%          \(
+%            x(a_1(y_2 - y_1) - a_3(x_2 - x_1)) +
+%            (y_1(x_2 - x_1) - x_1(y_2 - y_1))
+%          \) \\
+%     y &= \frac{-a_3(x_2 - x_1) + a_1(y_2 - y_1)}{a_4(x_2 - x_1) - a_2(y_2 - y_1)}x +
+%          \frac{y_1(x_2 - x_1) - x_1(y_2 - y_1)}{a_4(x_2 - x_1) - a_2(y_2 - y_1)}
+%   \end{align*}
+
+
+
+% \begin{verbatim}
+% #+begin_src mathematica :results raw pp
+% LinearSolve[{{a1, a2}, {a3, a4}}, {x1 + alpha*(x2 - x1), y1 + alpha*(y2 - y1)}] // Simplify
+% #+end_src
+
+% #+RESULTS:
+% : {
+%    (a4*(x1 - alpha*x1 + alpha*x2) + a2*((-1 + alpha)*y1 - alpha*y2)) / (-(a2*a3) + a1*a4),\
+%    (a3*((-1 + alpha)*x1 - alpha*x2) + a1*(y1 - alpha*y1 + alpha*y2)) / (-(a2*a3) + a1*a4)
+%   }
+% \end{verbatim}
+
+
 \newpage
 \section{Symmetric matrices}
 
