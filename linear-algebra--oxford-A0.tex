@@ -1,9 +1,3 @@
-\documentclass[12pt]{article}
-\usepackage{enumerate}
-\usepackage{mathematics}
-
-\begin{document}
-
 \title{Oxford A0 - Linear Algebra \footnotetext{\url{https://courses.maths.ox.ac.uk/node/5353}}}
 \author{Dan Davison}
 \maketitle
@@ -12,7 +6,7 @@
 
 \subsection*{} % 1
 \begin{mdframed}
-\includegraphics[width=450pt]{img/linear-algebra-a0-1-1-a.png}\\
+  \includegraphics[width=450pt]{img/linear-algebra-a0-1-1-a.png}\\
 \end{mdframed}
 
 Let\footnote{Unlike the question, I am trying to use notation that
@@ -88,14 +82,14 @@ The field axioms are listed below, together with proof that they hold for $\F_p$
 \item \textbf{Distributive axiom}
   \begin{enumerate}
   \item \textit{Multiplication distributes over addition}: $\bar a (\bar b + \bar c) = \bar a (\bar{b + c}) = \bar{a(b+c)} = \bar{ab +
-    ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
+      ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
   \end{enumerate}
 \end{enumerate}
 
 There are $p^n$ elements in a vector space of dimension $n$ over the field $\F_p$.
 \newpage
 \begin{mdframed}
-\includegraphics[width=200pt]{img/linear-algebra-a0-1-1-b.png}
+  \includegraphics[width=200pt]{img/linear-algebra-a0-1-1-b.png}
 \end{mdframed}
 
 \textit{Remark}: This is like the 8 vectors that form the unit cube in
@@ -129,7 +123,7 @@ The set of subspaces of $(\F_2)^3$ is
 \newpage
 \subsection*{} % 2
 \begin{mdframed}
-\includegraphics[width=450pt]{img/linear-algebra-a0-1-2.png}\\
+  \includegraphics[width=450pt]{img/linear-algebra-a0-1-2.png}\\
 \end{mdframed}
 We need to:
 \begin{enumerate}
@@ -186,13 +180,13 @@ We need to:
 \newpage
 \subsection*{} % 3
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-3.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-3.png}\\
 \end{mdframed}
 
 Note:
 \begin{enumerate}
 \item The space of functions $f:\N \to \R$ is the space of real-valued
-infinite sequences.
+  infinite sequences.
 \item A basis is countable iff a bijection exists between the basis and $\N$.
 \end{enumerate}
 
@@ -214,7 +208,7 @@ Note that $F_1 = \{x_1 ~|~ x_1 \in \R\} = \R$. Therefore every basis for $F_1$ h
 Similarly, $F_2 = \R^2$, and every basis of $F_2$ has cardinality 2.
 
 \red{Basically it seems like the following is a basis of this space of functions,
-but it is countable:}
+  but it is countable:}
 \begin{align*}
   &(1, 0, 0, \ldots),\\
   &(0, 1, 0, \ldots),\\
@@ -237,7 +231,7 @@ but it is countable:}
 \newpage
 \subsection*{} % 4
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-4.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-4.png}\\
 \end{mdframed}
 Let $P$ be the set of polynomials modulo $f(x)$.
 
@@ -296,14 +290,14 @@ The field axioms are listed below, together with proof that they hold for $P$.
 \item \textbf{Distributive axiom}
   \begin{enumerate}
   \item \textit{Multiplication distributes over addition}: $\bar a (\bar b + \bar c) = \bar a (\bar{b + c}) = \bar{a(b+c)} = \bar{ab +
-    ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
+      ac} = \bar{ab} + \bar{ac} = \bar{a}~\bar{b} + \bar{a}~\bar{c}$
   \end{enumerate}
 \end{enumerate}
 
 \newpage
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-eg-2-6.png}
+  \includegraphics[width=400pt]{img/linear-algebra-eg-2-6.png}
 \end{mdframed}
 
 \begin{claim*}
@@ -339,8 +333,8 @@ The field axioms are listed below, together with proof that they hold for $P$.
   $i - m \in I$.
 
 
- % By the definition of an ideal, $ki \in I$ for
- %  all $k \in \Z$. Therefore $i$ is a multiple of $m$.
+  % By the definition of an ideal, $ki \in I$ for
+  % all $k \in \Z$. Therefore $i$ is a multiple of $m$.
 
   % Conversely, suppose $i \in m\Z$. We want to show that $i \in I$.
 
@@ -389,25 +383,25 @@ The set of ideals of the ring $\Z$ is $\{m\Z ~|~ m \in \Z\}$.
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-5-b.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-5-b.png}\\
 \end{mdframed}
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/ideal-in-integers.png}
+  \includegraphics[width=400pt]{img/ideal-in-integers.png}
 \end{mdframed}
 
 \begin{mdframed}
-\begin{remark*}
-  Recall that in group theory a quotient group is formed by:
-  \begin{enumerate}
-  \item Identify a subgroup.
-  \item Form cosets.
-  \item Inherit operation on cosets from operation on original group elements.
-  \end{enumerate}
-  But only if the subgroup is normal.
+  \begin{remark*}
+    Recall that in group theory a quotient group is formed by:
+    \begin{enumerate}
+    \item Identify a subgroup.
+    \item Form cosets.
+    \item Inherit operation on cosets from operation on original group elements.
+    \end{enumerate}
+    But only if the subgroup is normal.
 
-  Here, the ideal $I$ is playing the role of subgroup.~\\
-\end{remark*}
+    Here, the ideal $I$ is playing the role of subgroup.~\\
+  \end{remark*}
 \end{mdframed}
 
 Let $S$ and $T$ be cosets, and let $r \in S$ and $r' \in T$. We need to show that $rr' + I$ is the
@@ -415,13 +409,13 @@ same coset, for all choices of $r$, $r'$.
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=280pt]{img/linear-algebra-a0-1-5-c.png}\\
+  \includegraphics[width=280pt]{img/linear-algebra-a0-1-5-c.png}\\
 \end{mdframed}
 
 \newpage
 \subsection*{} % 6
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-6-a.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-6-a.png}\\
 \end{mdframed}
 It is an abelian group under addition since:
 \begin{enumerate}
@@ -441,7 +435,7 @@ Under multiplication:
 Therefore it is a ring (but not a field since multiplicative inverses may not exist).
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-6-b.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-6-b.png}\\
 \end{mdframed}
 Let $I$ be an ideal of a ring $R$.
 
@@ -494,33 +488,33 @@ Then $R/I = \{3\Z, 3\Z + 1, 3\Z + 2\}$.
 The kernel is $\{A ~|~ A_{ij} \in 3\Z\}$.
 
 \begin{mdframed}
-\includegraphics[width=350pt]{img/linear-algebra-a0-1-6-c.png}\\
+  \includegraphics[width=350pt]{img/linear-algebra-a0-1-6-c.png}\\
 \end{mdframed}
 The set of diagonal matrices is the sole ideal?
 
 \newpage
 \subsection*{} % 7
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-7.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-7.png}\\
 \end{mdframed}
 
 \subsection*{} % 8
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-8.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-8.png}\\
 \end{mdframed}
 
 \subsection*{} % 9
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-1-9-a.png}\\
+  \includegraphics[width=400pt]{img/linear-algebra-a0-1-9-a.png}\\
 \end{mdframed}
 \begin{mdframed}
-\includegraphics[width=250pt]{img/linear-algebra-a0-1-9-b.png}\\
+  \includegraphics[width=250pt]{img/linear-algebra-a0-1-9-b.png}\\
 \end{mdframed}
 \begin{mdframed}
-\includegraphics[width=350pt]{img/linear-algebra-a0-1-9-c.png}\\
+  \includegraphics[width=350pt]{img/linear-algebra-a0-1-9-c.png}\\
 \end{mdframed}
 \begin{mdframed}
-\includegraphics[width=220pt]{img/linear-algebra-a0-1-9-d.png}\\
+  \includegraphics[width=220pt]{img/linear-algebra-a0-1-9-d.png}\\
 \end{mdframed}
 
 \newpage
@@ -528,7 +522,7 @@ The set of diagonal matrices is the sole ideal?
 
 % https://math.stackexchange.com/questions/555726/inducing-a-linear-map-on-quotient-spaces
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-1.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-1.png}
 \end{mdframed}
 \begin{mdframed}
   \begin{example*}
@@ -547,7 +541,7 @@ The set of diagonal matrices is the sole ideal?
 
     ``In some sense'' the matrix of $\bar T:V/U \to V/U$ is the block
     $\matMMxNN{\cos\theta}{-\sin\theta}
-              {\sin\theta}{~~\cos\theta}$.
+    {\sin\theta}{~~\cos\theta}$.
   \end{example*}
 \end{mdframed}
 
@@ -655,10 +649,10 @@ Let $v + U$ be a coset of $U$. Then the induced mapping is given by
 
 % \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-2.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2.png}
 \end{mdframed}
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-1.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-1.png}
 \end{mdframed}
 
 Let $D^n:\mc P \to \mc P$ be the $n$-th derivative operator.
@@ -683,12 +677,12 @@ Therefore $\mc P/\mc P_n \cong \mc P$.
 Therefore $\mc P/\mc P_n$ is infinite-dimensional.
 
 \begin{remark*}
-Each element of $\mc P/\mc P_n$ is a set of polynomials differing only by additive terms
-of degree $n$ or less.
+  Each element of $\mc P/\mc P_n$ is a set of polynomials differing only by additive terms
+  of degree $n$ or less.
 \end{remark*}
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
 \end{mdframed}
 Let $\mc E$ and $\mc O$ be the set of even and odd polynomials respectively.
 
@@ -700,7 +694,7 @@ Therefore $\mc P/\mc E \cong \mc O$, infinite-dimensional.
 
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
 \end{mdframed}
 Let $f: \mc P \to \mc P$ be given by $f(p(x)) := $ (remainder after division by $x^n$).
 
@@ -719,7 +713,7 @@ Note that $x^n\mc P$ is the kernel of $f$.
 If these claims are true, then $\mc P/x^n\mc P \cong \mc P_n$, finite-dimensional.
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
 \end{mdframed}
 
 \begin{claim*}
@@ -747,7 +741,7 @@ If these claims are true, then $\mc P/x^n\mc P \cong \mc P_n$, finite-dimensiona
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-3.png}
 \end{mdframed}
 
 First, a theorem and a corollary:
@@ -788,7 +782,7 @@ Therefore the formula
 does not give a well-defined map $\bar L:\mc P/\mc P_n \to \mc P/\mc P_n$.
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-2.png}
 \end{mdframed}
 
 % Recall that:
@@ -835,7 +829,7 @@ $\bar L$ has no matrix representation.
 % that is, an infinite-dimensional identity matrix below a row of zeros.
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
+  \includegraphics[width=400pt]{img/linear-algebra-a0-2-2-3.png}
 \end{mdframed}
 
 % Recall that:
@@ -868,7 +862,3 @@ A matrix representation for $\bar L$ with respect to this basis is
   [\vec a_1, \vec a_2, \ldots, \vec a_{n-1}],
 \end{align*}
 where $\vec a_{j}$ is a column vector with 1 in its $(j + 2)$-th entry, and 0 elsewhere.
-
-
-
-\end{document}
