@@ -695,7 +695,7 @@ The characteristic polynomial (basis independent) is $\det(A - \lambda I) = 0$
 where $A$ is the matrix of the map wrt some basis.
 
 
-\subsection{Equation of a line under a change of basis}
+\subsection{Equation of a line under a change of basis} \label{equation-of-line-under-change-of-basis}
 \begin{question*}
   How does the equation of a line change when the basis is changed?
 \end{question*}
@@ -728,8 +728,21 @@ where $A$ is the matrix of the map wrt some basis.
                 &= y_0 + a_1mx + a_2my \\
     y &= \frac{a_1m - a_3}{a_4 - a_2m}x + \frac{y_0}{a_4 - a_2m}.
   \end{align*}
+\end{proof}
 
-
+\begin{example*}~\\
+  \begin{enumerate}
+  \item If the line is a subspace of $\R^2$ (passes through the origin), then
+    \begin{align*}
+      y = \frac{a_1m - a_3}{a_4 - a_2m}x
+    \end{align*}
+  \item If the new basis vectors point in the same direction as the original basis vectors, then
+    $a_2 = a_3 = 0$ and
+    \begin{align*}
+      y = \frac{a_1m}{a_4}x + \frac{y_0}{a_4}
+    \end{align*}
+  \end{enumerate}
+\end{example*}
 \newpage
 \section{Symmetric matrices}
 
