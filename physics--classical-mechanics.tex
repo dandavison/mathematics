@@ -1,3 +1,4 @@
+\renewcommand{\r}{\vec{r}}
 
 \section{Force, energy, work}
 The argument is\footnote{Taylor ch. 4}:
@@ -35,6 +36,8 @@ The argument is\footnote{Taylor ch. 4}:
 \end{enumerate}
 
 
+
+
 Suppose we start at position $x_0$ with speed $v_0$. Some time later we find ourselves at position
 $x_1$ with speed $v_1$. Then the change in our KE is equal to the work done by the force along the
 path we followed, $T(v_1) - T(v_0) = W(x_0 \to x_1)$. So, for this path, we have that the quantity
@@ -54,6 +57,17 @@ is constant, where $v$ is the speed at $x$.
 {\bf Intuition:} the quantity that is conserved is
 \begin{align*}
   \text{(new KE at some position)} - \text{(change in KE that must have occurred to get there)}
+\end{align*}
+
+\subsection{3 dimensions}
+
+The extension to 3-dimensions is as expected. We have
+\begin{align*}
+  W(\r_1 \to \r_2) &= \int_{\r_1}^{\r_2} \F(\r) \cdot \d\r,
+\end{align*}
+and
+\begin{align*}
+  \F = -\grad \vec{V}.
 \end{align*}
 
 
@@ -483,6 +497,10 @@ $\vec{p_b(t)} - \vec{p_b(0)} = -\(\vec{p_a(t)} - \vec{p_a(0)}\)$ and therefore
 i.e. total momentum is conserved.
 
 
+Consider an 2-dimensional phase space defined by the velocities of 2 particles. Conservation of
+momentum means that the pre- and post-collision system state in this phase space is constrained to
+lie on a line: $m_1v_1 + m_2v_2 = \text{constant}$. Another equation (e.g. conservation of energy)
+is needed to determine the post-collision velocities.
 
 \subsection*{Collisions in 1-D}
 
@@ -612,33 +630,32 @@ Solve[m1 v1 + m2 v2     == m1 v1p + m2 v2p &&
 \subsubsection{3blue1brown $\pi$ in colliding blocks}
 
 This 3blue1brown video\footnote{\url{https://www.youtube.com/watch?v=HEfHFsfGXjs}} involves
-perfectly elastic collisions of two blocks, and a wall. The block closest to the wall starts off
-stationary, and the outer block (mass $m_1$) moves towards it with constant velocity. We count the
-number of collisions between blocks, and between the inner block and the wall, for varying values of
-the mass $m_1$ of the outer block.
+perfectly elastic collisions of two blocks, and a wall. The block closest to the wall (mass $m_2$)
+starts off stationary, and the outer block (mass $m_1$) moves towards it with constant velocity. We
+count the number of collisions between blocks, and between the inner block and the wall, for varying
+values of the mass $m_1$ of the outer block.
 
 \begin{minted}{python3}
 import sys
 from dataclasses import dataclass
-from typing import Tuple
 
 
 @dataclass
 class Blocks:
-    m1 = 1.0  # mass of left block
-    m2 = None  # mass of right block (supplied as input)
+    m1 = None  # mass of right block (supplied as input)
+    m2 = 1.0  # mass of left block
 
-    v1 = 0.0  # left block starts off stationary
-    v2 = -1.0  # initial velocity of right block
+    v1 = -1.0  # initial velocity of right block
+    v2 = 0.0  # left block starts off stationary
 
     def will_collide_again(self):
-        return abs(self.v1) > self.v2
+        return abs(self.v2) > self.v1
 
     def collide(self):
         v1, v2 = self.v1, self.v2
         m1, m2 = self.m1, self.m2
-        self.v1 = (2 * m2 * v2 - v1 * (m2 - m1)) / (m1 + m2)
-        self.v2 = (2 * m1 * v1 + v2 * (m2 - m1)) / (m1 + m2)
+        self.v1 = (2 * m2 * v2 + v1 * (m1 - m2)) / (m2 + m1)
+        self.v2 = (2 * m1 * v1 - v2 * (m1 - m2)) / (m2 + m1)
 
     def simulate(self):
         n = 0
@@ -647,11 +664,11 @@ class Blocks:
             n += 1
             if self.will_collide_again():
                 # Bounce off wall
-                self.v1 = -self.v1
+                self.v2 = -self.v2
                 n += 1
             else:
                 break
-        if self.v1 < 0:
+        if self.v2 < 0:
             # Bounce off wall
             n += 1
         print(n)
@@ -660,7 +677,7 @@ class Blocks:
 if __name__ == "__main__":
     assert not sys.argv[2:]
     blocks = Blocks()
-    blocks.m2 = float(sys.argv[1])
+    blocks.m1 = float(sys.argv[1])
     blocks.simulate()
 \end{minted}
 
@@ -680,19 +697,19 @@ $ for i in 0 1 2 3 4 5 6; do python 3blue1brown-blocks.py $((100**i)); done
 OK, so. The problem statement is
 \begin{mdframed}
   A vertical wall stands at the left edge of a frictionless surface. There are two blocks on the
-  surface: the left block is stationary and has mass $m_1$, and the right block is moving towards
-  the left block at constant velocity and has mass $m_2$.
+  surface: the left block is stationary and has mass $m_2$, and the right block, with mass $m_1$, is
+  moving towards the left block at constant (negative) velocity.
 
-  Show that for $n \in \N$, if $m_2/m_1 = b^{2n}$ then the total number of collisions (including the
+  Show that for $n \in \N$, if $m_1/m_2 = b^{2n}$ then the total number of collisions (including the
   left block bouncing off the wall) is equal to the integer formed from the first $n+1$ digits
   of the base-$b$ expansion of $\pi$. So:\\~\\
   \begin{tabular}{l|l}
-    $m_2$ & \#collisions \\
+    $m_1$ & \#collisions \\
     \hline
-    $m_1$        & 3 \\
-    $10^2m_1$     & 31 \\
-    $10^4m_1$   & 314 \\
-    $10^6m_1$ & 3141 \\
+    $m_2$        & 3 \\
+    $10^2m_2$     & 31 \\
+    $10^4m_2$   & 314 \\
+    $10^6m_2$ & 3141 \\
     \ldots
   \end{tabular}
 
@@ -711,6 +728,60 @@ OK, so. The problem statement is
   sign.
 \end{mdframed}
 
+Note that $E := \frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2$ is constant throughout the evolution of
+the system (i.e. over all collisions).
+
+Suppose we define a phase space $x := v_1$, $y := v_2$. Then the system is constrained to points
+satisfying $Ax^2 + By^2 = E$, where $A = m_1/2$ and $B = m_2/2$.
+
+This is an ellipse. Instead, we define the phase space:
+\begin{align*}
+  u_1 &= \alpha_1v_1 \\
+  u_2 &= \alpha_2v_2,
+\end{align*}
+where $\alpha_i = \sqrt{m_i/2}$.
+Now we have $u_1^2 + u_2^2 = E$ and the system is constrained to lie on a circle of radius $E$ centered
+at the origin.
+
+The $(u_1, u_2)$ space is just a change of basis in which the basis vectors point in the same
+direction but are scaled differently: to transform a point in $(v_1, v_2)$-space to $(u_1, u_2)$ one
+multiplies by
+\begin{align*}
+ \matMMxNN{\alpha_1}{0}
+          {0}{\alpha_2}.
+\end{align*}
+
+At time $t=0$ we have $v_1 < 0$ and $v_2 = 0$, so the state of the system corresponds to the point
+on the circle at $-\pi$.
+
+Now consider conservation of momentum. Whenever there is a collision, we have
+$m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'$. In other words, suppose the system is at $(v_1, v_2)$ and
+define $p = m_1v_1 + m_2v_2$. Then the possible new velocities lie on a line
+\begin{align*}
+  m_1v_1' + m_2v_2' &= p \\
+  v_2'              &= -\frac{m_1}{m_2}v_1' + \frac{p}{m_2}.
+\end{align*}
+This will still be a straight line in $(u_1, u_2)$ space: from
+\ref{equation-of-line-under-change-of-basis} we have that
+\begin{align*}
+  u_2'
+  &= -\frac{\alpha_1m_1}{\alpha_2m_2}u_1' + \frac{p}{\alpha_2m_2} \\
+  &= -\frac{\beta_1}{\beta_2}u_1' + \frac{p}{\beta_2},
+\end{align*}
+where $\beta_i = \sqrt{m_i^3/2}$.
+
+Initially, $v_1 = 0$, and $v_2 < 0$, and $p = m_2v_2 < 0$, and $E = \frac{1}{2}m_2v_2^2$.
+
+If $m_1 = m_2 = m$ then $u_2' = 0$ and
+$u_1' = \frac{p}{\beta_1} = \frac{mv_2}{\sqrt{m^3/2}} = \frac{v_2}{\sqrt{m/2}}$. \red{This doesn't
+  seem right, we should have $u_1'^2 = E$}.
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/3blue1brown--pi-colliding-blocks-1.png}
+\end{mdframed}
+
+
+\newpage
 If at any time $|v_1'| - v_2' \leq 0$ then the right block is escaping to the right and the left
 block will never catch up with it. Otherwise $|v_1'| - v_2' > 0$ and there will be another
 collision.

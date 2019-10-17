@@ -175,26 +175,21 @@
 \let\origlim\lim
 \renewcommand{\lim}{\origlim\limits}
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}  % TODO: delete
-\newcommand{\dddfzbarz}{\frac{\partial^2 f}{\partial \bar z \partial z}}
-\newcommand{\dddxx}{\frac{\partial^2}{\partial x^2}}
-\newcommand{\dddyy}{\frac{\partial^2}{\partial y^2}}
-\newcommand{\dddzbarz}{\frac{\partial^2}{\partial \bar z \partial z}}
-\newcommand{\ddfdxx}{\frac{\partial^2 f}{\partial x}}
-\newcommand{\ddfdyy}{\frac{\partial^2 f}{\partial y}}
+
+\renewcommand{\deg}{^\circ}
+
+\newcommand{\dds}{\frac{\dif}{\dif s}}
 \newcommand{\ddtheta}{\frac{\d}{\dtheta}}
 \newcommand{\ddx}{\frac{\dif}{\dif x}}
-\newcommand{\dds}{\frac{\dif}{\dif s}}
-\newcommand{\ddy}{\frac{\partial}{\partial y}}
-\newcommand{\ddz}{\frac{\partial}{\partial z}}
-\renewcommand{\deg}{^\circ}
 \newcommand{\dxdtheta}{\frac{\dx}{\dtheta}}
 \newcommand{\dxdt}{\frac{\dx}{\dt}}
-\newcommand{\dxdzbar}{\frac{\partial x}{\partial \bar z}}
-\newcommand{\dxdz}{\frac{\partial x}{\partial z}}
+\newcommand{\dxdy}{\frac{\dx}{\dy}}
 \newcommand{\dydtheta}{\frac{\dy}{\dtheta}}
 \newcommand{\dydt}{\frac{\dy}{\dt}}
 \newcommand{\dydx}{\frac{\dy}{\dx}}
-\newcommand{\dxdy}{\frac{\dx}{\dy}}
+
+\newcommand{\pddx}{\frac{\partial}{\partial x}}
+
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
 \newcommand{\f}{\vec f}
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
@@ -262,6 +257,8 @@
 \newcommand{\subspace}{<}
 \newcommand{\subspaceeq}{\leq}
 \newcommand{\ubar}[1]{\text{\b{$#1$}}}
+\newcommand{\correct}{\red{\checkmark}}
+%\newcommand{\grad}{\nabla}
 
 \DeclareMathOperator{\df}{\text{df}}
 \DeclareMathOperator{\dg}{\text{dg}}
@@ -287,3 +284,4 @@
 \newcommand{\mat}{\matMMxNN}
 
 \DeclareMathOperator{\diam}{\mathrm{diam}}
+\renewcommand\labelitemi{---}

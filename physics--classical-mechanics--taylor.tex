@@ -11,7 +11,7 @@
 \renewcommand{\vector}[1]{\begin{bmatrix}#1\end{bmatrix}}
 
 
-\begin{comment}  % latex-focus
+
 Notes on Classical Mechanics by John R. Taylor\footnote{http://www.amazon.com/Classical-Mechanics-John-R-Taylor/dp/189138922X}
 
 
@@ -414,26 +414,6 @@ To show that the force is conservative we must show
 \end{enumerate}
 
 
-% Questions with solutions:
-
-% 3 a,b,c
-% 7 a,b,c
-% 9 b
-% 11
-% 13
-% 15
-% 19 a b
-% 21
-% 23 a b c
-% 29 a b d
-% 31 a
-% 33 b c
-% 35 a b
-% 37 a b c d
-% 39 c
-% 51
-% 53 b c
-\end{comment}  % latex-focus
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--ex-4-1.png}\\
@@ -557,7 +537,194 @@ Integrate[Sin[t]^2 + 2 Cos[t] (1 - Cos[t]), t]
     &= \int_0^{\pi/2} 1 \d\phi \\
     &= \frac{\pi}{2}. ~~~\red{\checkmark}
   \end{align*}
-
 \end{enumerate}
-\begin{comment}  % latex-focus
-\end{comment}  % latex-focus
+\subsection{4.7}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-7.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item Let $x_1$ and $x_2$ measure two horizontal directions, and $y$ measure vertical height.
+  \begin{align*}
+    W(\r_1 \to \r_2)
+    &= \int_{\r_1}^{\r_2} \F(\r) \cdot \d\r \\
+    &= \int_{\r_1}^{\r_2} F_{x_1}(x_1, x_2, y)\dx_1 + F_{x_2}(x_1, x_2, y)\dx_2 + F_y(x_1, x_2, y)\dy \\
+    &= \int_{y_1}^{y_2} F_y(x_1, yx_2, x)\dy \\
+    &= \int_{y_1}^{y_2} -m\gamma y^2\dy \\
+    &= -\frac{m\gamma}{3}\(y_2^3 - y_1^3\). ~~~\red{\checkmark}
+  \end{align*}
+  This depends on the endpoints only and not otherwise on the path, so the force is conservative.
+  The potential energy is $V(y) = \frac{m\gamma}{3}y^3$.
+\item Conservation of KE + PE at $y=h$ and $y=0$ yields
+  \begin{align*}
+    0 + \frac{m\gamma}{3}h^3 &= \frac{1}{2}mv^2 + 0 \\
+    v &= \sqrt{\frac{2\gamma h^3}{3}}. ~~~\red{\checkmark}
+  \end{align*}
+\end{enumerate}
+\subsection{4.9}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-9.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item
+\begin{align*}
+  U(x)
+  = -\int_0^x F(x) \dx
+  = \int_0^x kx \dx = \frac{1}{2}kx^2.
+\end{align*}
+\item At the new equilibrium we have $mg - kx = 0$ therefore the new equilibrium position is
+  $\frac{mg}{k}$ beyond the old equilibrium position. \correct
+
+  Measuring with $y = 0$ at the new equilibrium the potential energy is $U(y) = -\int_0^y (-ky) \dy$ as before.
+\end{enumerate}
+
+\subsection{4.11}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-11.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item
+\begin{align*}
+  f_x &= 0 \\
+  f_y &= 2ay + 2bz \\
+  f_z &= 2by + 2cz ~~~\correct
+\end{align*}
+\item
+\begin{align*}
+  g_x &= -ay^2z^3\sin(axy^2z^3) \\
+  g_y &= -2axyz^3\sin(axy^2z^3) \\
+  g_z &= -3axy^2z^2\sin(axy^2z^3) ~~~\correct
+\end{align*}
+\item
+\begin{align*}
+  h_x &= ax/r \\
+  h_y &= ay/r \\
+  h_z &= az/r. ~~~\correct
+\end{align*}
+
+\begin{verbatim}
+#+begin_src mathematica
+D[a Sqrt[x^2 + y^2 + z^2], x]
+#+end_src
+
+#+RESULTS:
+: (a*x)/Sqrt[x^2 + y^2 + z^2]
+
+\end{verbatim}
+\end{enumerate}
+
+\subsection{4.13}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-13.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item $r = (x^2 + y^2 + z^2)^{1/2}$.
+  \begin{align*}
+    f &= \ln r \\
+    \grad f &= \vecMMM{r^{-1}\frac{1}{2}r^{-1}2x}
+                      {r^{-1}\frac{1}{2}r^{-1}2y}
+                      {r^{-1}\frac{1}{2}r^{-1}2z}
+    = \vecMMM{xr^{-2}}{yr^{-2}}{zr^{-2}}
+  \end{align*}
+\begin{verbatim}
+#+begin_src mathematica
+D[Log[Sqrt[x^2 + y^2 + z^2]], x]
+#+end_src
+
+#+RESULTS:
+: x/(x^2 + y^2 + z^2)
+\end{verbatim}
+\item
+\begin{align*}
+  \grad r^n
+  &= \vecMMM{nxrn^{-2}}{nyrn^{-2}}{nzrn^{-2}}
+\end{align*}
+\item
+  \begin{align*}
+    \grad g(r) = \vecMMM{g'(r)x/r}{g'(r)y/r}{g'(r)z/r} ~~~\correct
+  \end{align*}
+\end{enumerate}
+
+\subsection{4.18}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-18.png}
+\end{mdframed}
+Property 4.35 is
+\begin{align*}
+  \df = \grad f \cdot \d\r.
+\end{align*}
+Intuitively this says that, for a small displacement $\d\r$, the resulting $\df$ is equal to the
+projection of a vector $\grad f$ onto $\d\r$. So, if $\d\r$ points in a direction of constant $f$,
+then the projection of $\grad f$ onto that $\d\r$ is zero. This is the same as saying that $\grad f$
+is perpendicular to such a $\d\r$.
+
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{claim*}
+    Let $f:\R^3 \to \R$, and let $\r \in \R^3$. The vector $\grad f$ at $\r$ is perpendicular to the
+    surface\footnote{Note that for $f:\R^3 \to \R$, if $f$ is ``nice'', then the level sets of $f$
+      form a surface of constant $f$ -- a sort of 2D ``shell'' embedded in $\R^3$.} of constant $f$
+    through $\r$.
+  \end{claim*}
+  \begin{proof}
+    Let $\d\r$ lie in a surface of constant $f$. Therefore $\df = f(\r + \d\r) - f(\r) =
+    0$. Therefore $\grad f \cdot \d\r = 0$. Therefore these vectors are perpendicular.
+  \end{proof}
+\item
+  \begin{claim*}
+    The direction of $\grad f$ at any point $\r$ is the direction in which $f$ increases most
+    rapidly as we move away from $\r$.
+  \end{claim*}
+  \begin{proof}
+    Let:
+    \begin{itemize}
+    \item $f:\R^3 \to \R$
+    \item $\r \in \R^3$
+    \item $\vec u \in \R^3$ and $|\vec u| = 1$
+    \item $\epsilon > 0$
+    \item $\d\r = \epsilon\vec u$
+    \item $\theta$ be the angle between $(\grad f)(\r)$ and $\vec u$
+    \end{itemize}
+    The claim is that, out of all possible choices of $\vec u$, the one for which the associated
+    $\d\r$ results in the largest $\df$ is the $\vec u$ that points in the same direction as
+    $\grad f$.
+
+    We have
+    \begin{align*}
+      \df
+      &= \grad f \cdot \d\r \\
+      &= |\grad f| ~ |\d\r| \cos \theta \\
+      &= |\grad f|\epsilon \cos \theta \\
+    \end{align*}
+
+  \end{proof}
+\end{enumerate}
+
+\subsection{4.19}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-19.png}
+\end{mdframed}
+\begin{enumerate}[label=(\alph*)]
+\item
+\end{enumerate}
+
+
+
+% Questions with solutions:
+
+% 3 a,b,c
+% 7 a,b,c
+% 9 b
+% 11
+% 13
+% 15
+% 19 a b
+% 21
+% 23 a b c
+% 29 a b d
+% 31 a
+% 33 b c
+% 35 a b
+% 37 a b c d
+% 39 c
+% 51
+% 53 b c
