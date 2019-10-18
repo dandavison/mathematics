@@ -43,6 +43,27 @@ dimensional region of input space (e.g. a subset of the plane).
 
 
 \section{Derivatives}
+
+Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
+
+\begin{quote}
+  ``The derivative of a function $f$ is the function $D f$ whose value
+  for a particular argument is something that can be multiplied by an
+  increment $\Delta x$ in the argument to get a linear approximation to the
+  increment in the value of $f$:
+  $f(x + \Delta x) \approx f(x) + D f(x) \Delta x$.''\footnote{Sussman et
+    al. Structure and Interpretation of Classical Mechanics p.482}
+\end{quote}
+
+\begin{quote}
+  ``The derivative of a real-valued function of multiple argu- ments
+  is an object whose contraction with the tuple of increments in the
+  arguments gives a linear approximation to the increment in the
+  function’s value.''\footnote{Sussman et al. Structure and
+    Interpretation of Classical Mechanics p.483}
+\end{quote}
+
+
 \begin{definition*}~\\
   A \defn{derivative} of a function $f$ is the function $D f$. When $D f$ is evaluated at an input
   value the result is something which can be multiplied by an increment to the function's input to
@@ -206,6 +227,52 @@ derivative is
   (D f)(x, x^2) = (x^2 + 2, 1).
 \end{align*}
 \todo{Finish this.}
+
+
+\subsection{Gradient and directional derivative}
+
+\begin{definition*}
+  Let $f:\R^2 \to \R$. The \defn{gradient} of $f$ evaluated at
+  $(x, y)$ is the row vector (cotangent vector\footnote{See
+    \url{https://math.stackexchange.com/a/54359/397805}})
+  \begin{align*}
+    (\nabla f)(x, y) = \(\pdfdx(x, y), \pdfdy(x, y)\).
+  \end{align*}
+\end{definition*}
+
+\begin{definition*}
+  Let $f:\R^2 \to \R$ and let $u \in \R^2$. The \defn{directional derivative}
+  of $f$ in the direction of $u$ is... \todo{}
+\end{definition*}
+
+I believe this is the same concept as the Spivak/Sussman definition of the derivative $D f$:
+
+\begin{quote}
+  ``The derivative of a real-valued function of multiple arguments is
+  an object whose contraction with the tuple of increments in the
+  arguments gives a linear approximation to the increment in the
+  function’s value.''\footnote{Sussman et al. Structure and
+    Interpretation of Classical Mechanics p.483}
+\end{quote}
+
+\begin{theorem*}
+  Let $\d\r$ be an increment in input, and let $\df$ be the linear approximation to the increment in output. Then
+  \begin{align*}
+    \df = \grad f \cdot \d\r.
+  \end{align*}
+\end{theorem*}
+
+\begin{theorem*}
+  The direction of $\grad f$ is perpendicular to the surface\footnote{The
+    ``surface'' of constant f will be a line if the domain of $f$ is
+    $\R^2$} of constant $f$.
+\end{theorem*}
+
+\begin{theorem*}
+  The direction of $\grad f$ at $\r$ is the direction of steepest increase in $f$ at $\r$.
+\end{theorem*}
+
+\begin{proof}
 
 
 \newpage
