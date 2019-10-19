@@ -229,7 +229,9 @@ derivative is
 \todo{Finish this.}
 
 
+
 \subsection{Gradient and directional derivative}
+\newpage
 A working informal definition of derivative is
 \begin{quote}
   \emph{
@@ -302,6 +304,8 @@ $\R^n \to \R$, we are able to think of the gradient simultaneously as a vector i
 $\R^n$, \emph{and} as a linear transformation mapping $\Delta\r \in \R^n$ to an approximation to the
 increment in output $\Delta f$.
 
+\newpage
+
 \begin{definition*}
   Let $f:\R^2 \to \R$. The \defn{gradient} of $f$ evaluated at
   $(x, y)$ is the row vector (cotangent vector\footnote{See
@@ -309,11 +313,6 @@ increment in output $\Delta f$.
   \begin{align*}
     (\nabla f)(x, y) = \(\pdfdx(x, y), \pdfdy(x, y)\).
   \end{align*}
-\end{definition*}
-
-\begin{definition*}
-  Let $f:\R^2 \to \R$ and let $u \in \R^2$. The \defn{directional derivative}
-  of $f$ in the direction of $u$ is... \todo{}
 \end{definition*}
 
 I believe this is the same concept as the Spivak/Sussman definition of the derivative $D f$:
@@ -339,11 +338,47 @@ I believe this is the same concept as the Spivak/Sussman definition of the deriv
     $\R^2$} of constant $f$.
 \end{theorem*}
 
+\todo{This stuff about directional derivative and why grad is the direction of steepest ascent is not quite there.}
+
+
+\begin{definition*}
+  Let $f:\R^2 \to \R$ and let $u \in \R^2$. The \defn{directional derivative}
+  of $f$ in the direction of $u$ is
+  \begin{align*}
+    (\grad_u f)(\r)
+    &= u_1\pdfdx(\r) + u_2\pdfdy(\r) \\
+    &= \vec{u} \cdot (\grad f)(\r)
+  \end{align*}
+\end{definition*}
+
+\begin{theorem*}
+  The directional derivative converts an increment in the direction of $u$ into an approximation to
+  the resulting increment in $f$:
+  \begin{align*}
+    \Delta f \approx \grad_u f \cdot \Delta \r.
+  \end{align*}
+  \todo{but the notation needs to indicate that $\Delta\r$ is in the direction of $u$?}
+\end{theorem*}
+
+\begin{proof}
+  \todo{}
+\end{proof}
+
 \begin{theorem*}
   The direction of $\grad f$ at $\r$ is the direction of steepest increase in $f$ at $\r$.
 \end{theorem*}
 
 \begin{proof}
+  Let $u \in \R^2$ be a unit vector. We seek the $u$ which maximises the directional derivative
+  $(\grad_u f)(\r)$. By definition of directional derivative we have
+  \begin{align*}
+    (\grad_u f)(\r) &= \vec{u} \cdot (\grad f)(\r),
+  \end{align*}
+  therefore the $u$ we seek is the $u$ which maximises this dot product. Therefore it has the same
+  direction as $(\grad f)(\r)$.
+\end{proof}
+
+
 
 
 \newpage
@@ -1287,5 +1322,5 @@ obvious how to calculate $\int_{-\infty}^{\infty}e^{-x^2}\dx$.
 \end{proof}
 
 \begin{proof}
-
+  TODO
 \end{proof}
