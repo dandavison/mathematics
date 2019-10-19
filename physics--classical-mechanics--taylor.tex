@@ -380,6 +380,7 @@ magnetic and electrostatic forces between charged particles moving close to the
 speed of light. However I am unfamiliar with those forces and with the
 "right-hand rule" for fields/forces and I haven't understood this section.
 
+
 \section{Work, energy}
 
 \begin{mdframed}
@@ -704,10 +705,82 @@ is perpendicular to such a $\d\r$.
   \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-19.png}
 \end{mdframed}
 \begin{enumerate}[label=(\alph*)]
-\item
+\item The equation $x^2 + 4y^2 = K$ describes an ``elliptical cylinder''
+  in $\R^3$. It has radius $\sqrt{K}$ in the $x$-direction and radius
+  $\sqrt{K}/2$ in the $y$-direction, and is constant in the $z$
+  direction. \correct
+\item We have $\grad f = \(2x, 8y, 0\)$. Therefore at the point
+  $\r = (1, 1, 1)^T$, we have $(\grad f)(\r) = (2, 8, 0)$. Therefore a
+  unit normal is
+  $\frac{1}{\sqrt{68}}(2, 8, 0)^T = \sqrt{\frac{1}{17}}(1, 4, 0)^T$,
+  and this is also the direction that maximizes change in $f$. \correct
 \end{enumerate}
+\subsection{4.21}
 
+\begin{definition*}
+  The work done by a force $\F$ when it moves a mass along a path
+  $\r_1 \to \r_2$ is
+\begin{align*}
+  W(\r_1 \to \r_2) = \int_{\r_1 \to \r_2} \F(\r) \cdot \d\r.
+\end{align*}
+\end{definition*}
 
+\begin{definition*}
+  A \defn{trajectory} is a function $\r(t)$.
+\end{definition*}
+
+\begin{definition*}
+  A force is conservative if the work done when it moves a body from $\r_1$ to $\r_2$ is the same for
+  all trajectories from $\r_1$ to $\r_2$ that obey Newton's second law.
+\end{definition*}
+
+(Note that different initial conditions at $\r_1$ may yield more than one such path.)
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-21.png}
+\end{mdframed}
+
+\begin{proof}
+  Let the path be $\r(t)$ where $\r(0) = \r_1$ and $\r(1) = \r_2$, and let $\v(t) = \dot{\r}(t)$. Then
+  \begin{align*}
+    W(\r_1 \to \r_2) = \int_0^1 \F(\r(t)) \cdot \d\r(t).
+  \end{align*}
+  Note that
+  \begin{enumerate}
+  \item since the trajectory obeys Newton's Second Law, we have $\F(\r(t)) = m\ddot{\r}(t) = m\dot{\v}(t)$,
+  \item we can write $\d\r = \dot{\r} \dt = \v \dt$,
+  \end{enumerate}
+  Thus we have
+\begin{align*}
+  W(\r_1 \to \r_2) &= \int_0^1 m\dot{\v}(t) \cdot \v(t) \dt.
+\end{align*}
+Note that $\ddt \frac{1}{2}m(\v \cdot \v) = \frac{1}{2}m(\dot{\v} \cdot \v + \v \cdot \dot{\v}) = m\dot{\v} \cdot \v$, therefore
+\begin{align*}
+  W(\r_1 \to \r_2) &= \frac{1}{2}m|\v(t)|^2\Bigg|_0^1.
+\end{align*}
+Since the work depends only on the difference in the magnitudes of the velocities at the start and
+end points, the force is conservative.
+
+\todo{But couldn't there be two paths between $\r_1$ and $\r_2$ that obey Newton's second law yet for
+  which the difference in KE is different?}
+
+\begin{mdframed}
+  Try again, using the gravitational force:
+
+  The work done by gravity when the mass moves from $\r_1$ to $\r_2$ is
+  \begin{align*}
+    W(\r_1 \to \r_2) = \int_{\r_1 \to \r_2} \frac{-GMm\hat{\r}}{|\r|^2} \cdot \d\r.
+  \end{align*}
+  Note that
+  \begin{enumerate}
+  \item We have $\F(\r(t)) = m\ddot{\r}(t) = m\dot{\v}(t)$,
+  \item we can write $\d\r = \dot{\r} \dt = \v \dt$,
+  \end{enumerate}
+  Thus we have
+
+\end{mdframed}
+
+\end{proof}
 
 % Questions with solutions:
 
