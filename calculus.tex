@@ -233,90 +233,74 @@ derivative is
 A working informal definition of derivative is
 \begin{quote}
   \emph{
-    The derivative of $f:\R^n \to \R$ at a point $\r$ is something that
-    multiplies an increment $\Delta \r$ in the input to give an approximation
-    to the associated increment $\Delta f$ in output.
-}
+    The derivative of $f:\R^n \to \R$ at a point $\r$ is something that multiplies an increment
+    $\Delta \r$ in the input to give an approximation to the associated increment $\Delta f$ in output.
+  }
 \end{quote}
 
-Geometrically, we think of the gradient (i.e. the derivative of a
-function $\R^n \to \R$) and directional derivative as, basically,
-directions in the \emph{input} space $\R^n$. I.e. the gradient at $\r$
-is a ``direction you walk in'' while watching the function value
-increase above you (and in this direction it increases more steeply
-than in any other direction).
+Geometrically, we think of the gradient (i.e. the derivative of a function $\R^n \to \R$) and
+directional derivative as, basically, directions in the \emph{input} space $\R^n$. I.e. the gradient
+at $\r$ is a ``direction you walk in'' while watching the function value increase above you (and in
+this direction it increases more steeply than in any other direction).
 
-Superficially that seems to make some sense because, if the derivative
-is multiplying an increment to the input then it has to be the ``same
-kind of thing'' as an increment to the input.
+Superficially that seems to make some sense because, if the derivative is multiplying an increment
+to the input then it has to be the ``same kind of thing'' as an increment to the input.
 
-However, in a vector space, there is no multiplication operation
-defined on the set of vectors. But $\Delta \r$ is a vector in $\R^n$. So,
-although we think of the gradient as a vector in $\R^n$, the gradient
-$(\grad f)(\r)$ can't literally be a vector in the same vector space as
-$\Delta \r$, with which it combines multiplicatively, because no such
-multiplication operation is defined.
+$\Delta \r$ is a vector in $\R^n$. However, in a vector space, there is no multiplication operation defined
+on the set of vectors. So, although we think of the gradient as a vector in $\R^n$, the gradient
+$(\grad f)(\r)$ can't literally be a vector in the same vector space as $\Delta \r$, with which it combines
+multiplicatively, because no such multiplication operation is defined.
 
 So, backing up, we can modify our definition of derivative as follows:
 \begin{quote}
   \emph{
-    The derivative of $f:\R^n \to \R$ at a point $\r$ is a function
-    $\R^n \to \R$ that takes in an increment $\Delta \r$ in the input and returns
-    an approximation to the associated increment $\Delta f$ in output.
+    The derivative of $f:\R^n \to \R$ at a point $\r$ is a \textbf{function} $\R^n \to \R$ that takes in an increment
+    $\Delta \r$ in the input and returns an approximation to the associated increment $\Delta f$ in output.
   }
 \end{quote}
 
-Furthermore, we know that ``the derivative is linear''. What does this
-mean? Viewed as an operator mapping functions to functions, this means
-that the derivative operator is linear under scalar multiplication and
-addition \emph{of functions}. Alternatively, we might be saying that
-the derivative $f'$ at a point $\r$ is a linear transformation on
-$\R^n$ in the sense that $f'(a\Delta \r + b) = af'(\Delta\r) + b$.
+Furthermore, we know that ``the derivative is linear''. What does this mean? Viewed as an operator
+mapping functions to functions, this means that the derivative operator is linear under scalar
+multiplication and addition \emph{of functions}. Alternatively, we might be saying that the
+derivative $f'$ at a point $\r$ is a linear transformation on $\R^n$ in the sense that
+$f'(a\Delta \r + b) = af'(\Delta\r) + b$.
 
 So we can improve our definition:
 \begin{quote}
   \emph{
     The derivative of $f:\R^n \to \R$ at a point $\r$ is a \textbf{linear transformation}
-    $\R^n \to \R$ that takes in an increment $\Delta \r$ in the input and returns
-    an approximation to the associated increment $\Delta f$ in output.
+    $\R^n \to \R$ that takes in an increment $\Delta \r$ in the input and returns an approximation to the
+    associated increment $\Delta f$ in output.
   }
 \end{quote}
 
-Now, given a choice of basis, a linear transformation $f':\R^n \to \R$ is
-represented by a $1 \times n$ matrix.\footnote{In fact, things like this
-  have a name: ''linear functional''.} And when we apply the
-derivative to the increment in input, we are performing a
+Now, given a choice of basis, a linear transformation $f':\R^n \to \R$ is represented by a
+$1 \times n$ matrix. So when we apply the derivative to the increment in input, we are performing a
 matrix-vector multiplication:
 \begin{align*}
-  \Bigg[\pdfdx(\r), \pdfdy(\r), \pdfdz(\r)\Bigg] \vecMMM{\Delta x}{\Delta y}{\Delta z} \approx \Delta f.
+  \Bigg[\pdfdx(\r), \pdfdy(\r), \pdfdz(\r)\Bigg] \bvecMMM{\Delta x}{\Delta y}{\Delta z} \approx \Delta f.
 \end{align*}
 
-And in some sense this is ``the same'' as the dot product operation:
+In some sense this is ``the same'' as the dot product operation:
 \begin{align*}
   (\grad f)(\r) \cdot \Delta\r \approx \Delta f.
 \end{align*}
 
-When the dot product is first introduced, one is encouraged to think
-of it geometrically, as giving the projection of one vector onto
-another, and defining the angle between the two vectors. And of
-course, those two vectors are living in the same vector space,
-otherwise one wouldn't be able to visualize their geometry like that.
+When the dot product is first introduced, one is encouraged to think of it geometrically, as giving
+the projection of one vector onto another, and defining the angle between the two vectors. And of
+course, those two vectors are living in the same vector space, otherwise one wouldn't be able to
+visualize their geometry like that.
 
-But the following correspondence exists:
-\begin{align*}
-  \vec v_1 \cdot \vec v_2 = \vec v_1^T \vec v_2,
-\end{align*}
-where on the LHS the two vectors are in the same vector space, and on
-the RHS $\vec v_1^T$ is an element of a space of $n \times 1$ matrices, or
-``linear functionals''. If $\vec v_1 \in \R^n$ then this latter space is
-referred to as the ``cotangent space'' of $\R^n$.
+So a correspondence exists: $\vec v_1 \cdot \vec v_2 = \vec v_1^T \vec v_2$, where on the LHS the two
+vectors are in the same vector space, and on the RHS $\vec v_1^T$ is an element of a space of
+$n \times 1$ matrices, or ``linear functionals''. In differential geometry this latter space is referred
+to as the ``cotangent space''.
 
 
-Because of this one-to-one correspondence between elements of $\R^n$
-and linear transformations $\R^n \to \R$, we are able to think of the
-gradient simultaneously as a vector in the input space $\R^n$,
-\emph{and} as a linear transformation mapping $\Delta x \in \R^n$ to an
-approximation to the increment in outout $\Delta f$.
+Because of this one-to-one correspondence between elements of $\R^n$ and linear transformations
+$\R^n \to \R$, we are able to think of the gradient simultaneously as a vector in the input space
+$\R^n$, \emph{and} as a linear transformation mapping $\Delta\r \in \R^n$ to an approximation to the
+increment in output $\Delta f$.
 
 \begin{definition*}
   Let $f:\R^2 \to \R$. The \defn{gradient} of $f$ evaluated at
