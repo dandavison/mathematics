@@ -1,10 +1,12 @@
-\section{Matousek -- 33 Miniatures}
+\begin{comment}  % latex-focus
 
-\subsection{Fibonacci - matrix multiplication}\label{fibonacci-matrix-multiplication}
+  \section{Matousek -- 33 Miniatures}
 
-\begin{definition*}
-  The Fibonacci sequence $0, 1, 1, 2, 3, 5, 8, ...$ is defined by
-  \begin{align*}
+  \subsection{Fibonacci - matrix multiplication}\label{fibonacci-matrix-multiplication}
+
+  \begin{definition*}
+    The Fibonacci sequence $0, 1, 1, 2, 3, 5, 8, ...$ is defined by
+    \begin{align*}
     x_0 &= 0\\
     x_1 &= 1\\
     x_{n} &= x_{n-1} + x_{n-2}, ~~~~~~~ n \geq 2.
@@ -30,31 +32,27 @@
 Let $V$ be the vector space containing all sequences of real numbers
 $u_0, u_1, \ldots$.
 
-\begin{comment}
-  \begin{proof}
-    This is a vector space since:
-    \begin{enumerate}
-    \item It's an Abelian group under addition (the zero sequence is the additive identity, inverse
-      is obtained by negating each element, addition is associative and commutative)
-    \item Closed under scalar multiplication since $\lambda u_0, \lambda u_1, ... \in V$.
-    \end{enumerate}
-  \end{proof}
-\end{comment}
+% \begin{proof}
+%   This is a vector space since:
+%   \begin{enumerate}
+%   \item It's an Abelian group under addition (the zero sequence is the additive identity, inverse
+%     is obtained by negating each element, addition is associative and commutative)
+%   \item Closed under scalar multiplication since $\lambda u_0, \lambda u_1, ... \in V$.
+%   \end{enumerate}
+% \end{proof}
 
 Let $W$ be the subspace of $V$ containing sequences such that $u_{n+2} = u_{n+1} + u_n$ for all
 $n \geq 0$.
 
-\begin{comment}
-  \begin{proof}
-    $W$ is a subspace because:
-    \begin{enumerate}
-    \item $W$ contains the zero sequence.
-    \item Let $(u)_{n\geq 0}, (v)_{n\geq 0} \in W$. Then
-      $$(u + v)_{n+2} = u_{n+1} + u_n + v_{n + 1} + v_n = (u + v)_{n+1} + (u + v)_n,$$ and
-      $$(\lambda u)_{n+2} = \lambda u_{n+1} + \lambda u_n = (\lambda u)_{n+1} + (\lambda u)_n.$$
-    \end{enumerate}
-  \end{proof}
-\end{comment}
+% \begin{proof}
+%   $W$ is a subspace because:
+%   \begin{enumerate}
+%   \item $W$ contains the zero sequence.
+%   \item Let $(u)_{n\geq 0}, (v)_{n\geq 0} \in W$. Then
+%     $$(u + v)_{n+2} = u_{n+1} + u_n + v_{n + 1} + v_n = (u + v)_{n+1} + (u + v)_n,$$ and
+%     $$(\lambda u)_{n+2} = \lambda u_{n+1} + \lambda u_n = (\lambda u)_{n+1} + (\lambda u)_n.$$
+%   \end{enumerate}
+% \end{proof}
 
 \begin{claim*}
   A basis for $W$ is
@@ -362,3 +360,42 @@ Oddtown has two rules about clubs:
   But the rank of a product of matrices cannot be larger than the minimum rank of any one factor, so
   $m \leq n$.
 \end{proof}
+
+\end{comment}  % latex-focus
+\subsection{Same-size intersections}
+
+\begin{theorem*}[Generalized Fisher inequality]~\\
+  Let $S$ be a set of $n$ elements, and let $C_1, C_2, ..., C_m$ be distinct and non-empty subsets of
+  $S$. Further, suppose that every intersection $C_i \cap C_j, i \neq j$, is the same size. Then $n \geq m$.
+\end{theorem*}
+
+Informally: if you have $n$ objects you can't form more than $n$ subsets such that the subsets have
+same-size intersections.
+
+Note that there are $2^n - 1$ non-empty subsets.
+
+\begin{example*}~\\
+  \begin{enumerate}
+  \item If $S$ is empty then there is no such collection of subsets.
+  \item If $|S| = 1$ then there is one subset and there are no intersections, so they are all the same
+    size. We see than $m = n$.
+  \item If $|S| = 2$ then there are 3 non-empty subsets: $\{1\}, \{2\}, \{1, 2\}$. We can do $m=2$
+    but we cannot do $m=3$. Thus $m = n$.
+  \item If $|S| = 3$ then there are 7 non-empty subsets.
+\begin{verbatim}
+  1
+  2
+  3
+  12
+  13
+  23
+  123
+  \end{verbatim}
+    The claim is that we cannot find a same-sized-intersection collection of size more than 3.
+  \end{enumerate}
+\end{example*}
+
+
+\begin{comment}  % latex-focus
+
+\end{comment}  % latex-focus
