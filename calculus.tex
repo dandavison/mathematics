@@ -452,6 +452,34 @@ TODO FTC -- moving away from thinking that an integral ``just has to end with
 d-something''. Why does one seek the antiderivative of the part without the
 d-something?
 
+
+
+\subsection*{FTC in Penrose - The Road To Reality}
+
+\begin{mdframed}
+  \includegraphics[width=200pt]{img/calculus-ftc-penrose-1.png}
+  \includegraphics[width=250pt]{img/calculus-ftc-penrose-2.png}
+\end{mdframed}
+
+\begin{itemize}
+\item An integral of a real-valued function $f$ gives the area under the curve $f(x)$.
+\item So, basically, it's equal to the sum of a bunch of (base) x (height) calculations: $\Delta x \times f(x)$.
+\item Now, suppose we can find a function $g$ whose \textit{slope} at $x$ is equal to the height $f(x)$.
+\item That means that we can now think of $\Delta x \times f(x)$ as (increment in input) x (slope).
+\item So, what we were thinking of as a sum of rectangles under $f$, we can now think of a sum of
+  (increments in height of $g$).
+\item The end result is that the net area accumulated under $f(x)$ is equal to the net change in height of
+  the function $g(x)$.
+\item More generally (e.g. complex-valued $f$), an integral $\int_{a \to b} f(z) \dz$ gives an ``amount of
+  function value accumulated'' along some path from $a$ to $b$.
+\item But the same argument applies: if we can find a function $g$ whose derivative $g'$ is equal to
+  $f$, then the integral becomes a sum of (increment in input) x (derivative) calculations, and the
+  value of the integral is equal to the net change in output of $g$ over the interval.
+\end{itemize}
+
+One implication of this is that if we are evaluating an integral of $f$ over some interval $(a, b)$ we
+only need to find a $g$ whose derivative is $f$ over that same interval; it doesn't have to be over the
+whole domain. Not sure what the version of that statement is for domains other than real intervals.
 \subsubsection*{Examples}
 
 In all the following examples, some quantity is
