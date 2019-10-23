@@ -1,5 +1,43 @@
 \renewcommand{\r}{\vec{r}}
 
+\section{Gravity}
+
+\begin{tabular*}{1.0\linewidth}{l|l}
+  $M, m$ & masses of two bodies \\
+  $r$    & distance between bodies
+\end{tabular*}
+
+Newton's law of gravity: the force between two bodies is $F = G\frac{Mm}{r^2}$, where $G$ is the
+gravitational constant.
+
+Units: since $[F] = \frac{LM}{T^2}$, we have $[G] = \frac{LM}{T^2}\frac{L^2}{M^2} = \frac{L^3}{MT^2}$.
+
+\begin{tabular*}{1.0\linewidth}{l|l}
+  $M_E = 5.972 \times 10^{24} kg$ & mass of the Earth \\
+  $R =  6.371 \times 10^6 m$     & radius of the Earth \\
+  $G = 6.67408 \times 10^{-11} m^3 kg^{-1} s^{-2}$        & gravitational constant\\
+  $m$ & mass of an object
+\end{tabular*}
+
+The acceleration of the object due to gravity at the Earth's surface is
+\begin{align*}
+  g
+  = \frac{F}{m}
+  = G\frac{M_E}{R^2}
+  = \frac{6.67408 \times 10^{-11} \times 5.972 \times 10^{24}}{(6.371 \times 10^6)^2}
+  = 9.82 ms^{-2}.
+\end{align*}
+
+\blue{Note that, for gravity, the strength of the force itself depends on the mass $m$. So Newton's
+  Second Law for a body of mass $m$ near the Earth's surface is
+\begin{align*}
+  ma &= F \\
+  ma &= mg \\
+  a  &= g.
+\end{align*}
+}
+
+
 \section{Force, energy, work}
 The argument is\footnote{Taylor ch. 4}:
 
@@ -410,6 +448,8 @@ Typically in this situation we would choose $r_0 = \infty$ as the reference sepa
   V(r) = -\frac{GMm}{r}.
 \end{align*}
 
+\todo{Do this in 3D.}
+
 \blue{Potential energy, relative to $r = \infty$, decreases as the two masses get closer: so the
   masses will approach each other. It's always negative because we have measured it relative to
   $r = \infty$, and any separation is more favorable than infinitely large separation.}
@@ -440,45 +480,6 @@ Typically in this situation we would choose $r_0 = \infty$ as the reference sepa
     mg = \frac{GMm}{R^2}.
   \end{align*}
 }
-
-\section{Gravity}
-
-\begin{tabular*}{1.0\linewidth}{l|l}
-  $M, m$ & masses of two bodies \\
-  $r$    & distance between bodies
-\end{tabular*}
-
-Newton's law of gravity: the force between two bodies is $F = G\frac{Mm}{r^2}$, where $G$ is the
-gravitational constant.
-
-Units: since $[F] = \frac{LM}{T^2}$, we have $[G] = \frac{LM}{T^2}\frac{L^2}{M^2} = \frac{L^3}{MT^2}$.
-
-\begin{tabular*}{1.0\linewidth}{l|l}
-  $M_E = 5.972 \times 10^{24} kg$ & mass of the Earth \\
-  $R =  6.371 \times 10^6 m$     & radius of the Earth \\
-  $G = 6.67408 \times 10^{-11} m^3 kg^{-1} s^{-2}$        & gravitational constant\\
-  $m$ & mass of an object
-\end{tabular*}
-
-The acceleration of the object due to gravity at the Earth's surface is
-\begin{align*}
-  g
-  = \frac{F}{m}
-  = G\frac{M_E}{R^2}
-  = \frac{6.67408 \times 10^{-11} \times 5.972 \times 10^{24}}{(6.371 \times 10^6)^2}
-  = 9.82 ms^{-2}.
-\end{align*}
-
-\blue{Note that, for gravity, the strength of the force itself depends on the mass $m$. So Newton's
-  Second Law for a body of mass $m$ near the Earth's surface is
-\begin{align*}
-  ma &= F \\
-  ma &= mg \\
-  a  &= g.
-\end{align*}
-}
-
-
 
 \subsection*{Conservation of momentum}
 
@@ -693,6 +694,7 @@ $ for i in 0 1 2 3 4 5 6; do python 3blue1brown-blocks.py $((100**i)); done
 314159
 3141592
 \end{verbatim}
+
 
 OK, so. The problem statement is
 \begin{mdframed}
