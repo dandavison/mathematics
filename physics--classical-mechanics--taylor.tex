@@ -82,12 +82,10 @@ Cartesian coordinates use two directions to specify the position. We'll write
 these directions as the unit vectors $\xhat$ and $\yhat$. So in Cartesian
 coordinates, the position is
 
-<table style="width:100%">
-<tr>
-<td> $$\r(t) = x(t)\xhat + y(t)\yhat$$ </td>
-<td> $$\mathrm{Go~} x(t) \mathrm{~units~in~the~} \xhat \mathrm{~direction} \mathrm{~and~} y(t) \mathrm{~units~in~the~} \yhat \mathrm{~direction}$$ </td>
-</tr>
-</table>
+\begin{align*}
+  \r(t) = x(t)\xhat + y(t)\yhat
+  \mathrm{Go~} x(t) \mathrm{~units~in~the~} \xhat \mathrm{~direction} \mathrm{~and~} y(t) \mathrm{~units~in~the~} \yhat \mathrm{~direction}
+\end{align*}
 
 In contrast, polar coordinates just use one direction to specify the position:
 the direction of a direct line to the particle's current position. This
@@ -95,13 +93,10 @@ direction is the unit vector $\rhat(t)$. So in polar
 coordinates, the position is
 
 
-<table style="width:100%">
-<tr>
-<td> $$\r(t) = r(t)\rhat(t)$$ </td>
-<td> $$\mathrm{Go~} r(t) \mathrm{~units~in~the~} \rhat(t) \mathrm{~direction}$$ </td>
-</tr>
-</table>
-
+\begin{align*}
+\r(t) = r(t)\rhat(t)
+\mathrm{Go~} r(t) \mathrm{~units~in~the~} \rhat(t) \mathrm{~direction}
+\end{align*}
 
 Notice (and this is pretty important; it's basically the reason the chapter is
 covering polar coordinates) that in polar coordinates the unit vector
@@ -124,12 +119,16 @@ vector-valued function.
 Because $\xhat$ and $\yhat$ are not functions of time, differentiating is
 straightforward:
 
-$$\v(t) = \frac{d}{dt}\bigg(x(t)\xhat + y(t)\yhat\bigg) = \frac{d x(t)}{dt}\xhat + \frac{d y(t)}{dt} \yhat$$
+\begin{align*}
+\v(t) = \frac{d}{dt}\bigg(x(t)\xhat + y(t)\yhat\bigg) = \frac{d x(t)}{dt}\xhat + \frac{d y(t)}{dt} \yhat
+\end{align*}
 
 Physicists use a dot to represent derivative-with-respect-to-time. So they
 might write this as
 
-$$\v(t) =  \dot x(t) \xhat + \dot y(t) \yhat$$
+\begin{align*}
+\v(t) =  \dot x(t) \xhat + \dot y(t) \yhat
+\end{align*}
 
 Either way, what this is saying is that in Cartesian coordinates, the velocity
 function is a vector comprised of current x-speed in the x-direction and
@@ -137,7 +136,9 @@ current y-speed in the y-direction. In other words, it's what you expect.
 
 \textbf{Polar coordinates}
 
-$$\v(t) = \frac{d}{dt}\bigg(r(t)\rhat(t)\bigg)$$
+\begin{align*}
+\v(t) = \frac{d}{dt}\bigg(r(t)\rhat(t)\bigg)
+\end{align*}
 
 That's a product of two things that are both a function of time, so we use the
 "product rule"[ref] The product rule is the thing when you studied
@@ -147,7 +148,9 @@ differentiate the other while keeping the first as-is, and you add the two
 things together: $\frac{d(f(t)g(t))}{dt} = \dot f(t) g(t) + f(t) \dot g(t)$
 [/ref] to differentiate it:
 
-$$\frac{d}{dt}\bigg(r(t)\rhat(t)\bigg) = \dot r(t) \rhat(t) + r(t)\frac{d \rhat(t)}{dt}$$
+\begin{align*}
+\frac{d}{dt}\bigg(r(t)\rhat(t)\bigg) = \dot r(t) \rhat(t) + r(t)\frac{d \rhat(t)}{dt}
+\end{align*}
 
 There's quite a few $r$s there and it's important at this stage not to get lost
 in the symbols. We know that the answer (velocity) is a vector. That means we
@@ -190,11 +193,15 @@ vector is $\dot \phi(t) \phihat(t)$
 
 The conclusion of all that is that in polar coordinates, the velocity vector is
 
-$$\v(t) = \dot r(t) \rhat(t) + r(t) \dot \phi(t) \phihat(t)$$
+\begin{align*}
+\v(t) = \dot r(t) \rhat(t) + r(t) \dot \phi(t) \phihat(t)
+\end{align*}
 
 Compare this with the expression for velocity in Cartesian coordinates
 
-$$\v(t) =  \dot x(t) \xhat + \dot y(t) \yhat$$
+\begin{align*}
+\v(t) =  \dot x(t) \xhat + \dot y(t) \yhat
+\end{align*}
 
 and we see it's a bit more complicated in polar coordinates.
 
@@ -222,7 +229,9 @@ Again, because the unit vectors do not change with time, it's as you expect:
 there's an x-acceleration in the x-direction, and a y-acceleration in the
 y-direction.
 
-$$\a(t) = \ddot x(t) \xhat + \ddot y(t) \yhat$$
+\begin{align*}
+\a(t) = \ddot x(t) \xhat + \ddot y(t) \yhat
+\end{align*}
 
 \textbf{Polar coordinates}
 
@@ -232,7 +241,9 @@ complicated than when using Cartesian coordinates. For acceleration, we
 differentiate the velocity expression and of course it gets even more
 complicated. But basically the answer is still a function of the form
 
-$$\a(t) = \bigg( \text{Some function of } t \bigg) \rhat(t) + \bigg( \text{Another function of } t \bigg) \phihat(t)$$
+\begin{align*}
+\a(t) = \bigg( \text{Some function of } t \bigg) \rhat(t) + \bigg( \text{Another function of } t \bigg) \phihat(t)
+\end{align*}
 
 The functions of $t$ involve the current radius length, the speed and
 acceleration in the current radius direction, and the speed and acceleration of
@@ -251,7 +262,9 @@ equation[ref]The dot means "differentiated with respect to time". So if $r$ is
 position as a function of time then $\dot r$ is velocity and $\ddot r$ is
 acceleration.[/ref]:
 
-$$m \ddot \r(t) = \F$$
+\begin{align*}
+m \ddot \r(t) = \F
+\end{align*}
 
 I'm understanding this as follows: You know what forces are acting on the body
 in question. You want to know how the position of the body will evolve through
@@ -282,15 +295,21 @@ the plane, so we are only interested in the component of the force that acts
 parallel to the plane. This component is $-mg sin(\theta)$. So taking $x$ as the
 direction up the plane, Newton's second law is
 
-$$ m\ddot x(t) = -mgsin(\theta)$$
+\begin{align*}
+ m\ddot x(t) = -mgsin(\theta)
+\end{align*}
 
 Integrating once gives velocity
 
-$$ \dot x(t) = -g sin(\theta) t + v_0$$
+\begin{align*}
+ \dot x(t) = -g sin(\theta) t + v_0
+\end{align*}
 
 Integrating again gives position
 
-$$ x(t) = -\frac{1}{2} g sin(\theta) t^2 + v_0t + x_0$$
+\begin{align*}
+ x(t) = -\frac{1}{2} g sin(\theta) t^2 + v_0t + x_0
+\end{align*}
 
 and $x_0=0$ since we start measuring from its starting position.
 
@@ -298,7 +317,9 @@ and $x_0=0$ since we start measuring from its starting position.
 
 The puck is at its starting point whenever $x = 0$:
 
-$$0 = t\bigg(-\frac{1}{2} g sin(\theta) t + v_0\bigg)$$
+\begin{align*}
+0 = t\bigg(-\frac{1}{2} g sin(\theta) t + v_0\bigg)
+\end{align*}
 
 The solutions of that are either $t=0$ (which we already knew) or (the solution
 we want)
@@ -334,7 +355,9 @@ speed $\dot r(t)$ (and acceleration) in the radial direction is
 zero.[/ref]). So Newton's second law in this context is the differential
 equation
 
-$$mR \ddot \phi(t) = -mg sin(\phi(t))$$
+\begin{align*}
+mR \ddot \phi(t) = -mg sin(\phi(t))
+\end{align*}
 
 We read this as saying:
 
@@ -352,7 +375,10 @@ second derivative having a different property, but one which is very similar to
 the desired property as long as we're restricting ourselves to the angle being
 fairly small.[/ref] is
 
-$$\phi(t) = \phi_0 cos\bigg(\sqrt\frac{g}{R}t\bigg)$$
+
+\begin{align*}
+  \phi(t) = \phi_0 cos\bigg(\sqrt\frac{g}{R}t\bigg)
+\end{align*}
 
 where $\phi_0$ is the angle that the skateboard was released at at time $t=0$.
 This is the "solution" of the differential equation: a function matching the
