@@ -1,13 +1,6 @@
-\newcommand{\xhat}{\vec{\hat{x}}}
-\renewcommand{\yhat}{\vec{\hat{y}}}
-\newcommand{\zhat}{\vec{\hat{z}}}
-\newcommand{\rhat}{\vec{\hat{r}}}
-\newcommand{\phihat}{\vec{\hat{\phi}}}
 \renewcommand{\a}{\vec{a}}
 \renewcommand{\b}{\vec{b}}
 \renewcommand{\p}{\vec{p}}
-\renewcommand{\F}{\vec{F}}
-\renewcommand{\r}{\vec{r}}
 \renewcommand{\vector}[1]{\begin{bmatrix}#1\end{bmatrix}}
 
 
@@ -82,21 +75,24 @@ Cartesian coordinates use two directions to specify the position. We'll write
 these directions as the unit vectors $\xhat$ and $\yhat$. So in Cartesian
 coordinates, the position is
 
+
 \begin{align*}
   \r(t) = x(t)\xhat + y(t)\yhat
-  \mathrm{Go~} x(t) \mathrm{~units~in~the~} \xhat \mathrm{~direction} \mathrm{~and~} y(t) \mathrm{~units~in~the~} \yhat \mathrm{~direction}
 \end{align*}
 
-In contrast, polar coordinates just use one direction to specify the position:
-the direction of a direct line to the particle's current position. This
-direction is the unit vector $\rhat(t)$. So in polar
-coordinates, the position is
+(Go $x(t)$ units in the  $\xhat$ direction and $y(t)$ units in the $\yhat$ direction.)
 
+
+In contrast, polar coordinates just use one direction to specify the position: the direction of a
+direct line to the particle's current position. This direction is the unit vector $\rhat(t)$. So in
+polar coordinates, the position is
 
 \begin{align*}
 \r(t) = r(t)\rhat(t)
-\mathrm{Go~} r(t) \mathrm{~units~in~the~} \rhat(t) \mathrm{~direction}
 \end{align*}
+
+(Go $r(t)$ units in the $\rhat(t)$ direction)
+
 
 Notice (and this is pretty important; it's basically the reason the chapter is
 covering polar coordinates) that in polar coordinates the unit vector
@@ -152,14 +148,12 @@ things together: $\frac{d(f(t)g(t))}{dt} = \dot f(t) g(t) + f(t) \dot g(t)$
 \frac{d}{dt}\bigg(r(t)\rhat(t)\bigg) = \dot r(t) \rhat(t) + r(t)\frac{d \rhat(t)}{dt}
 \end{align*}
 
-There's quite a few $r$s there and it's important at this stage not to get lost
-in the symbols. We know that the answer (velocity) is a vector. That means we
-can write it as a bunch of things added together, where each thing is a number
-times some unit vector. And we're using polar coordinates, so the unit vectors
-are going to be the polar unit vectors. So the thing on the left $\dot r(t)
-\rhat(t)$ is fine: that's saying that the velocity has one component which is
-the current radial speed (a number $\dot r(t)$) in the current radial direction
-(the unit vector $\rhat(t)$).
+There's quite a few $r$s there and it's important at this stage not to get lost in the symbols. We
+know that the answer (velocity) is a vector. That means we can write it as a bunch of things added
+together, where each thing is a number times some unit vector. And we're using polar coordinates, so
+the unit vectors are going to be the polar unit vectors. So the thing on the left
+$\dot r(t) \rhat(t)$ is fine: that's saying that the velocity has one component which is the current
+radial speed (a number $\dot r(t)$) in the current radial direction (the unit vector $\rhat(t)$).
 
 What about the thing on the right? It's the current radial distance times the
 current derivative of the unit vector function. We've said that in polar
@@ -789,6 +783,13 @@ end points, the force is conservative.
 
 \todo{But couldn't there be two paths between $\r_1$ and $\r_2$ that obey Newton's second law yet for
   which the difference in KE is different?}
+
+\newpage
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/physics--classical-mechanics--taylor--q-4-21.png}
+\end{mdframed}
+
+
 
 \begin{mdframed}
   Try again, using the gravitational force:
