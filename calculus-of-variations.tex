@@ -20,14 +20,8 @@ problems:
 
   Therefore a shortest path is a function $y(x)$ that minimizes
   \begin{align*}
-    S = \int_{x_0}^{x_1} \d s = \int_{x_0}^{x_1} \sqrt{1 + y'(x)^2} \dx,
+    S[y](x_0, x_1) = \int_{x_0}^{x_1} \sqrt{1 + y'(x)^2}\d x.
   \end{align*}
-  \blue{
-    \begin{align*}
-      S[y](x_0, x_1) = \int_{x_0}^{x_1} \sqrt{1 + y'(x)^2}\d x.
-    \end{align*}
-  }
-
   with the constraint that the endpoints are fixed at $y(x_0) = y_0$ and $y(x_1) = y_1$.
 
   \todo{Find the function $y$ that minimizes this integral.}
@@ -205,32 +199,95 @@ differential equations. And what those equations say is the following:
 \newpage
 \subsection{The shortest path between two points on a plane}
 
+\subsubsection{Functional notation}
+
 Let's return to this problem, using the functional notation. We have
-\begin{itemize}
-\item $f(x, y, v) = (1 + v^2)^{1/2}$ \\
-  A function mapping the local tuple to the cost associated with that point in the path.
-\item $(\del_1 f)(x, y, v) = 0$ \\
-  Partial derivative of $f$ with respect to its first argument.
-\item $(\del_2 f)(x, y, v) = v(1 + v^2)^{-1/2}$ \\
-  Partial derivative of $f$ with respect to its second argument.
-\item $q(t) = y(t)$ \\
-  The path: a map from time to spatial coordinate.
-\item $(\del_2 f \circ \Gamma[q])(t) = y'(t)(1 + y'(t)^2)^{-1/2}$ \\
-  Composing $\del_2 f$ with $\Gamma[q]$ represents ``plugging in'' $y'(t)$ as the value of $v$.
-\item Since the partial derivative of $f$ with respect to its position argument is zero, the
-  Euler-Lagrange equation states that for the action to be minimized we must have
-  \begin{align*}
+\begin{proof}
+  \begin{itemize}
+  \item $f(x, y, v) = (1 + v^2)^{1/2}$ \\
+    A function mapping the local tuple to the cost associated with that point in the path.
+  \item $(\del_1 f)(x, y, v) = 0$ \\
+    Partial derivative of $f$ with respect to its second argument.
+  \item $(\del_2 f)(x, y, v) = v(1 + v^2)^{-1/2}$ \\
+    Partial derivative of $f$ with respect to its third argument.
+  \item $q(t) = y(t)$ \\
+    The path: a map from time to spatial coordinate.
+  \item $(\del_2 f \circ \Gamma[q])(t) = y'(t)(1 + y'(t)^2)^{-1/2}$ \\
+    Composing $\del_2 f$ with $\Gamma[q]$ represents ``plugging in'' $y'(t)$ as the value of $v$.
+  \item Recall the Euler-Lagrange equation, which is true for any $q$ for which the action is minimized:
+    \begin{align*}
+    D(\partial_2f \circ \Gamma[q]) - \partial_1f \circ \Gamma[q] = 0.
+    \end{align*}
+  \item Since the partial derivative $\partial_1f$ with respect to the position argument is zero, the
+    Euler-Lagrange equation states that for the action to be minimized we must have
+    \begin{align*}
      D (\del_2 f \circ \Gamma[q])(t)
      = \(\frac{y'}{(1 + y'^2)^{1/2}}\)'
      = 0.
-  \end{align*}
-  In other words, $\frac{y'}{(1 + y'^2)^{1/2}}$ is constant, say $C$, which leads to
-  $y' = \sqrt{C/(1 - C)}$. So a general form for the path is a straight line
+    \end{align*}
+  \item In other words, $\frac{y'}{(1 + y'^2)^{1/2}}$ is constant, which leads to
+    $y' = \sqrt{C/(1 - C)}$, where $C$ is a constant.
+  \item So $y'$ is constant, i.e. a straight line.
+  \end{itemize}
+\end{proof}
+
+\subsubsection{Traditional notation}
+\begin{proof}
+  Let $\r = (x, y). $ We want to find the $y$ that minimizes
+\begin{align*}
+  S[y] = \int_{\r_0}^{\r_1}\ds = \int_{x_0}^{x_1}\sqrt{1 + y'(x)} \dx,
+\end{align*}
+where $y$ ranges over all functions (of a certain class) having the specified endpoints.
+
+Let $f(x, y, y') = \sqrt{1 + y'(x)}$. In this context, the Euler-Lagrange equations are
+\begin{align*}
+  \ddx \frac{\partial f}{\partial y'} - \frac{\partial f}{\partial y} = 0.
+\end{align*}
+But $f$ depends only on $y'$, so we have that $\frac{\partial f}{\partial y'} $ is constant. The argument above then
+proves that $y$ must be a straight line.
+\end{proof}
+
+\todo{This proof only shows that a straight line is a minimum out of those paths that can be expressed
+  as a function $y(x)$. Prove it is the minimum over all paths.}
+
+\subsubsection{Traditional notation, minimum over parametric curves}
+\begin{proof}
+  Let $\r(u) = (x(u), y(u))$ be a parameterized representation that ranges over a suitable class of
+  paths such that $\r(0) = (x_0, y_0)$ and $\r(1) = (x_1, y_1)$. We want to find the $\r(u)$ that minimizes
   \begin{align*}
-    y = mx + c
+    S[\r] = \int_{u=0}^{u=1} \ds.
   \end{align*}
-  where $m = \sqrt{C/(1 - C)}$.
-\end{itemize}
+  In order to use the Euler-Lagrange equations, we need to write the integrand as a function of
+  independent variable, dependent variable, derivatives of dependent variable. I.e.
+  $f(u, \r, \r')$. We have
+  \begin{align*}
+    (\Delta S)^2
+    &= (\Delta x)^2 + (\Delta y)^2 \\
+    &= (\Delta u ^2) \(\(\frac{\Delta x}{\Delta u}\)^2 + \(\frac{\Delta y}{\Delta u}\)^2\), \\
+  \end{align*}
+  therefore
+  \begin{align*}
+    S[\r] = \int_0^1 f(u, x, y, x', y') \dt,
+  \end{align*}
+  where $f(u, x, y, x', y') = \sqrt{x'^2 + y'^2}$.
+
+  In this context, the Euler-Lagrange equations are a system of equations:
+  \begin{align*}
+    \begin{cases}
+      \ddu \frac{\partial f}{\partial x'} - \frac{\partial f}{\partial x} &= 0 \\
+      \ddu \frac{\partial f}{\partial y'} - \frac{\partial f}{\partial y} &= 0.
+    \end{cases}
+  \end{align*}
+  Since $f$ depends only on the derivative but not on the position, we have that
+  $\frac{\partial f}{\partial x'}$ and $\frac{\partial f}{\partial y'}$ are constant:
+  \begin{align*}
+    \pdfdxp = \frac{x'}{\sqrt{x'^2 + y'^2}} &= \text{constant} \\
+    \pdfdyp = \frac{y'}{\sqrt{x'^2 + y'^2}} &= \text{constant}.
+  \end{align*}
+  On dividing the second equation by the first we have $y'/x' = \dydx = \text{constant}$, and
+  therefore that $\r(u)$ is a straight line.
+\end{proof}
+
 
 \section{SICM: Structure and Interpretation of Classical Mechanics}
 
