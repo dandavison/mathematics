@@ -98,7 +98,7 @@ the definition of derivative is
   $S$ so that it is a function of $\alpha$:
   \begin{align*}
     S[y](\alpha) &= \int_{x_0}^{x_1} f(x, Y(x), Y'(x)) \dx \\
-                 &= \int_{x_0}^{x_1} f\(x, y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x)\) \dx.
+            &= \int_{x_0}^{x_1} f\(x, y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x)\) \dx.
   \end{align*}
   We are trying to find a path $y$ that is a minimum in the cost surface over the function space (or
   a maximum, or saddle point). For such a $y$ it must be the case that\footnote{In traditional
@@ -288,31 +288,118 @@ proves that $y$ must be a straight line.
   therefore that $\r(u)$ is a straight line.
 \end{proof}
 
-
-
 \subsection{The Brachistochrone}
 
 \begin{mdframed}
-  A wire is arranged in a plane perpendicular to the Earth's surface. A bead slides doesn the wire,
-  without friction, from a height $y_0$ to a height $y_1$. What shape must the wire adopt to minimize the
+  A wire is arranged in a plane perpendicular to the Earth's surface. A bead slides down the wire,
+  without friction, from the origin to $(x_1, y_1)$. What shape must the wire adopt to minimize the
   travel time?
 \end{mdframed}
 
 \begin{proof}
-  We want to find the function $y$ that minimizes
+  Note that the independent variable in this problem is $x$, not $t$.
+
+  We want to find the function $y = y(x)$ that minimizes
   \begin{align*}
-    S[y] = \int_{y_0}^{y_1} \dt.
+    S[y] = \int_{(0, 0) \to (x_1, y_1)} \dt.
   \end{align*}
-  Since $\dy = \dt ~ \dot{y}(t)$, we can write this as
+  But, we don't know what the end time is, so we don't know how to evaluate that integral as it
+  stands. What we do know is (a) the path taken in the $x$ dimension and (b) the path taken in the
+  $y$ dimension. So what we need to do is express the integral as an integral over one of those
+  one-dimensional paths.
+
+  % Since $\dy = \dt ~ \dot{y}(t)$, we can write the integral as
+  % \begin{align*}
+  %   S[y] = \int_0^{y_1} \frac{1}{\dot{y}}\dy.
+  % \end{align*}
+  % \begin{mdframed}
+  %   OK, so can we just apply Euler-Lagrange now to solve it? Let
+  %   $f(x, y, y') = \frac{1}{\dot{y}}$, and we have
+  %   \begin{align*}
+  %     \ddx \pdfdyp - \pdfdy = 0.
+  %   \end{align*}
+  %   I think the problem is we don't know how to differentiate $\frac{1}{\ydot}$ w.r.t. $y$ or $y'$.
+  % \end{mdframed}
+
+  % So that doesn't immediately solve the problem because we don't know what $\ydot$ is. So what \textit{do}
+  % we know?
+
+  Somehow, the shape of the wire is going to influence the velocity of the bead: that's the
+  connection between the shape, and the travel time. So, how exactly does the shape influence the
+  velocity? Well, in any small section of wire, the local angle of the wire determines the component
+  of the weight force that acts along the wire. So, the net force acting on the bead depends only on
+  position, and the trajectory function is a solution to the corresponding differential
+  equation. But that seems circular: we can't specify the differential equation until we know the
+  shape. It's like we'd be doing a search over differential equations with the aim of finding the
+  one whose solution has minimum travel time.
+
+  Conservation of energy is the way forwards here. Although we don't know $\ydot$ or $\xdot$
+  individually, we \textit{do} know the magnitude of the velocity:
   \begin{align*}
-    S[y] = \int_{y_0}^{y_1} \frac{1}{\dot{y}}\dy.
+    \frac{1}{2}mv^2 &= mgy \\
+    v               &= \sqrt{2gy}.
   \end{align*}
-  WLOG, let $y_0 = 0$. Then from conservation of energy, when the bead is at height $y$ we have
+  OK, so that seems promising; let's try to formulate the problem as an integral over the path in
+  the $y$ dimension. Recall that we want to evaluate
   \begin{align*}
-     \frac{1}{2}m(\dot{x}^2 + \dot{y}^2) = mgy.
+    S[y] = \int_{(0, 0) \to (x_1, y_1)} \dt.
   \end{align*}
+  We know that $\dt ~ v$ is the distance traveled in a small increment of
+  time. I.e. $\dt ~ v &= \sqrt{\dx^2 + \dy^2} \\$, therefore
+  \begin{align*}
+    S[y] = \frac{1}{\sqrt{2g}}\int_{(0, 0) \to (x_1, y_1)} \sqrt{\frac{\dx^2 + \dy^2}{y}}.
+  \end{align*}
+  In order to compute this integral, we write it as
+  \begin{align*}
+    S[y] = \frac{1}{\sqrt{2g}}\int_{0}^{y_1} \sqrt{\frac{x'^2 + 1}{y}}\dy,
+  \end{align*}
+  where $x' = \frac{\dx}{\dy}$. I.e. we are now viewing
+  $y$ as the independent variable, and seek a function
+  $x(y)$ subject to the endpoint conditions $x(0) = 0$ and $x(y_1) = x_1$.
+
+
+  If we define $f(y, x, x') = \sqrt{\frac{x'^2 + 1}{y}}$, then the Euler-Lagrange equations for this problem are
+  \begin{align*}
+    \ddy \pdfdxp - \pdfdx = 0.
+  \end{align*}
+  The partial derivative with respect to $x'$ is
+  \begin{align*}
+    \pdfdxp = \frac{1}{\sqrt{y}} \frac{1}{2}\frac{1}{\sqrt{x'^2 + 1}}2x' = \sqrt{\frac{x'^2}{y(x'^2 + 1)}}.
+  \end{align*}
+  And the partial derivative with respect to $x$ is $\pdfdx = 0$, so we have that
+  $\pdfdxp$ is a constant, say $c^2$. Hence the function $x(y)$ that we seek must satisfy
+  \begin{align*}
+    \frac{x'^2}{y(x'^2 + 1)} &= c \\
+    x'^2(cy - 1) + cy       &= 0 \\
+    x'                     &= \sqrt{\frac{cy}{1 - cy}}.
+  \end{align*}
+  Therefore the solution is
+  \begin{align*}
+    x(y) = \int \sqrt{\frac{cy}{1 - cy}} \dy.
+  \end{align*}
+  This can be solved by substitution.
+
+  Let $y = \cos \theta$. Then...
+
+
+  Alternatively, using $x$ as the independent variable:
+  \begin{mdframed}
+    In order to compute this integral, we write it as
+    \begin{align*}
+    S[y] = \int_{0}^{x_1} \sqrt{\frac{1 + y'^2}{2gy}}\dx.
+  \end{align*}
+  Thus the problem is to find the function $y$ that minimizes the functional
+  $S$, subject to the conditions $y(0) = 0$ and $y(x_1) = y_1$.
+
+  Can we now use the Euler-Lagrange equations? We have $f(x, y, y') = \sqrt{\frac{1 + y'^2}{2gy}}$, and so
+  \begin{align*}
+    \pdfdy = -\frac{1}{2}\sqrt{\frac{2gy}{1 + y'^2}}\frac{1 + y'^2}{2gy^2} = -\frac{1}{2y}\sqrt{\frac{1 + y'^2}{2gy}}
+  \end{align*}
+\end{mdframed}
 
 \end{proof}
+
+
 \section{SICM: Structure and Interpretation of Classical Mechanics}
 
 \subsection{The Euler-Lagrange equations}
