@@ -1,5 +1,5 @@
 BUILD_DIR:=.build
-LATEXRUN:=latexrun --latex-args="-shell-escape" -W no-all -O $(BUILD_DIR) --max-iterations 1
+LATEXRUN:=latexrun --latex-args="-shell-escape" -W no-all -O $(BUILD_DIR)
 PDFLATEX:=cd $(BUILD_DIR) && pdflatex -shell-escape -file-line-error
 RUBBER:=cd $(BUILD_DIR) && rubber -d --shell-escape
 MAKE_PDF:=$(LATEXRUN)
