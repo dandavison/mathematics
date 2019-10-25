@@ -289,6 +289,30 @@ proves that $y$ must be a straight line.
 \end{proof}
 
 
+
+\subsection{The Brachistochrone}
+
+\begin{mdframed}
+  A wire is arranged in a plane perpendicular to the Earth's surface. A bead slides doesn the wire,
+  without friction, from a height $y_0$ to a height $y_1$. What shape must the wire adopt to minimize the
+  travel time?
+\end{mdframed}
+
+\begin{proof}
+  We want to find the function $y$ that minimizes
+  \begin{align*}
+    S[y] = \int_{y_0}^{y_1} \dt.
+  \end{align*}
+  Since $\dy = \dt ~ \dot{y}(t)$, we can write this as
+  \begin{align*}
+    S[y] = \int_{y_0}^{y_1} \frac{1}{\dot{y}}\dy.
+  \end{align*}
+  WLOG, let $y_0 = 0$. Then from conservation of energy, when the bead is at height $y$ we have
+  \begin{align*}
+     \frac{1}{2}m(\dot{x}^2 + \dot{y}^2) = mgy.
+  \end{align*}
+
+\end{proof}
 \section{SICM: Structure and Interpretation of Classical Mechanics}
 
 \subsection{The Euler-Lagrange equations}
