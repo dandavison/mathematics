@@ -667,9 +667,103 @@ height of the curve\footnote{He actually wrote ``$bc=q$''; $bc$ is a line in
   Therefore the derivative of $\tan^\1(a)$ is $\frac{1}{1 + a^2}$.
 \end{proof}
 
+\section{Optimization}
+
+Consider a scalar-valued function $f:\R^n \to \R$.
+
+$f$ is a set $\{(x, y) ~|~ x \in \R^n, y = f(x) \}$.
+
+
+
+\begin{definition*}
+  The \defn{optimization problem} is to find the set of input values for which the function value is
+  minimal. I.e. the problem is to find
+  \begin{align*}
+    \argmin f := \{ x ~|~ x \in \R^n, f(x) = f^{\text{min}} \},
+  \end{align*}
+  where $f^{\text{min}} = \min\{f(x) ~ | ~ x \in \R^n\}$.
+\end{definition*}
+
+This can be solved as usual by searching for stationary points of $f$.
+
+Now consider a \defn{constrained optimization problem}: we want to find minima within a certain
+subset of the domain. The constraint will be specified as the set of points in the domain satisfying
+\begin{align*}
+  g(x) = 0,
+\end{align*}
+where $g:\R^n \to \R$ is a differentiable function (we take the RHS to be zero WLOG).
+
+So in other words, we can specify the points in the domain that satisfy the constraint arbitrarily
+by choosing $g$ such that it vanishes at those points; we just have to ensure that $g$ is differentiable.
+
+\begin{example*}
+  Let $f:\R^2 \to \R$. Suppose we want to find the minima subject to the constraint that they lie on the
+  line $x_2 = 2x_1$. This corresponds to the constraint $g(x) = 0$ where $g(x_1, x_2) = 2x_1 - x_2$.
+
+  Alternatively, suppose we want to find the minima subject to the constraint that they lie on the
+  ellipse $x_1^2 + 2x_2^2 = -3$. This is an ``implicit equation'' in $\R^2$, but corresponds to the
+  ``explicit'' equation $g(x_1, x_2) = x_1^2 + 2x_2^2 + 3 = 0$.
+\end{example*}
+
+An equation relating the input variables corresponds to an equation in a space with one higher dimension.
+
+\todo{Confused?}
+
+
+
+Let $g:\R^n \to \R$, and consider the set $\{ x ~|~ x \in \R^n, g(x) = 0 \}$.
+
+\begin{definition*}
+  The \defn{constrained optimization problem} is to find the set of input values \emph{in the constraint
+    set} for which $f$ is minimum:
+  \begin{align*}
+    \{ x ~|~ x \in \R^n, g(x) = 0, f(x) = f^{\text{min}} \},
+  \end{align*}
+  where $f^{\text{min}} = \min \{f(x) ~|~ x \in \R^n, g(x) = 0\}$.
+\end{definition*}
+
+
+\begin{theorem*}[Lagrange multiplier]
+  Let $f: \R^n \to \R$ and $g:\R^n \to \R$.
+
+  Define $\mathcal{L}(x, \lambda) = f(x) + \lambda g(x)$ for $\lambda \in \R$.
+
+  Then the $x$-values of the stationary points of $\mathcal{L}$ are solutions of the constrained
+  optimization problem.
+\end{theorem*}
+
+\begin{intuition}
+  Consider $f:\R^2 \to \R$ given by $f(x_1, x_2) = -(x_1^2 + x_2^2)$. This is a convex function with its maximum at the origin.
+
+  Now introduce the constraint $x_2 = x_1 - 1$. It's clear geometrically that the constrained maximum
+  is at $(-\frac{1}{2}, -\frac{1}{2}).$
+
+  We can draw a 2D diagram of $(x_1, x_2)$-space, showing the level sets of $f$ as circles, and the constraint as a line.
+
+  Alternatively, we can draw a 3D diagram of $(x_1, x_2, y)$-space. Now the graph of
+  $g(x) = -x_1 + x_2 + 1$ is a plane, and the constraint line represents the intersection of this
+  plane with the $y=0$ plane. This plane is sloping upwards from the bottom-right to the top-left and
+  $\grad g = \bvecMM{-1}{1}$.
+
+  The gradient of $f$is $\grad f = \bvecMM{-2x_1}{-2x_2}$.
+
+
+\end{intuition}
+
+\begin{proof}
+
+\end{proof}
+
 
 \newpage
 \section{Multivariable calculus (Berkeley Math 53)}
+
+\begin{quote}
+  The moment I finally realized that every implicit graph in $N$ dimensions is really just a slice of
+  an explicit one in $N+1$ dimensions, a ridiculous amount of things clicked together.
+\end{quote}
+Steven Wittens \url{https://acko.net/blog/making-mathbox/}
+
 \footnotetext{Berkeley Math 53 (Frenkel)}
 \subsection{Curves and surfaces}
 
