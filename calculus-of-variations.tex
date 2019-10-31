@@ -101,8 +101,7 @@ the definition of derivative is
             &= \int_{x_0}^{x_1} f\(x, y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x)\) \dx.
   \end{align*}
   We are trying to find a path $y$ that is a minimum in the cost surface over the function space (or
-  a maximum, or saddle point). For such a $y$ it must be the case that\footnote{In traditional
-    notation, $\pdv{S}{\alpha}\Big|_{\alpha=0} = 0$.}
+  a maximum, or saddle point). For such a $y$ it must be the case that
   \begin{align*}
     \del_\alpha S[y]\Big|_{\alpha=0} = 0.
   \end{align*}
@@ -308,22 +307,6 @@ proves that $y$ must be a straight line.
   $y$ dimension. So what we need to do is express the integral as an integral over one of those
   one-dimensional paths.
 
-  % Since $\dy = \dt ~ \dot{y}(t)$, we can write the integral as
-  % \begin{align*}
-  %   S[y] = \int_0^{y_1} \frac{1}{\dot{y}}\dy.
-  % \end{align*}
-  % \begin{mdframed}
-  %   OK, so can we just apply Euler-Lagrange now to solve it? Let
-  %   $f(x, y, y') = \frac{1}{\dot{y}}$, and we have
-  %   \begin{align*}
-  %     \ddx \pdfdyp - \pdfdy = 0.
-  %   \end{align*}
-  %   I think the problem is we don't know how to differentiate $\frac{1}{\ydot}$ w.r.t. $y$ or $y'$.
-  % \end{mdframed}
-
-  % So that doesn't immediately solve the problem because we don't know what $\ydot$ is. So what \textit{do}
-  % we know?
-
   Somehow, the shape of the wire is going to influence the velocity of the bead: that's the
   connection between the shape, and the travel time. So, how exactly does the shape influence the
   velocity? Well, in any small section of wire, the local angle of the wire determines the component
@@ -356,7 +339,6 @@ proves that $y$ must be a straight line.
   where $x' = \frac{\dx}{\dy}$. I.e. we are now viewing
   $y$ as the independent variable, and seek a function
   $x(y)$ subject to the endpoint conditions $x(0) = 0$ and $x(y_1) = x_1$.
-
 
   If we define $f(y, x, x') = \sqrt{\frac{x'^2 + 1}{y}}$, then the Euler-Lagrange equations for this problem are
   \begin{align*}
@@ -446,3 +428,104 @@ Therefore the action is
 \end{align*}
 
 % the dependence of the lagrangian on position is equal to the rate of change of the dependence of the lagrangian on velocity.
+$$
+
+\section{Haliakis: Optimisation and Optimal Control: Exercises}
+\subsection{Sheet 1}
+\subsubsection{1.1}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-1.png}
+\end{mdframed}
+\begin{enumerate}
+\item Let $f(t, x, \xdot) = \frac{\xdot^2}{t^3}$. Then $\pdfdx = 0$ and
+  $\pdfdxd = \frac{2\xdot}{t^3}$, and from the Euler-Lagrange equations we have that
+  $x(t)$ satisfies
+\begin{align*}
+  \ddt \frac{2\xdot}{t^3} = 0.
+\end{align*}
+Therefore, letting $a, b, c$ be constants,
+\begin{align*}
+  \xdot &= at^3 \\
+  x(t) &= bt^4 + c.
+\end{align*}
+From the endpoint conditions we have
+\begin{align*}
+  x(1) &= b + c = 2 \\
+  x(2) &= 16b + c = 17 \\
+  16b + 2 - b &= 17 \\
+  b &= 1 \\
+  c &= 1.
+\end{align*}
+So the extremising $x$ is $x(t) = t^4 + 1$. For this solution, the value of the functional is
+\begin{align*}
+  J[x]
+  &= \int_1^2 \frac{(4t^3)^2}{t^3} \dt \\
+  &= 16 \frac{t^4}{4}\Bigg|_1^2 \\
+  &= 4 (16 - 1) = 60.
+\end{align*}
+
+\end{enumerate}
+
+Let's compare some other curves:
+\begin{align*}
+  x(t) &= bt^n + c \\
+  x(1) &= 2 = b + c \implies c = 2 - b \\
+  x(2) &= 17 = b2^n + 2 - b = b(2^n - 1) + 2 \implies b = 15/(2^n - 1)
+\end{align*}
+
+\begin{verbatim}
+#+begin_src mathematica
+n = 3.9; b = 15/(2^n - 1); x = b t^n + 2 - b; i = D[x, t]^2/t^3; Integrate[i, {t, 1, 2}]
+#+end_src
+
+#+RESULTS:
+: 60.01726779228775
+\end{verbatim}
+
+So this appears to be correct \correct.
+
+
+\subsubsection{1.2}
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-2.png}
+\end{mdframed}
+
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/zz.png}
+\end{mdframed}
+
+
+\subsubsection{1.8}
+\begin{mdframed}
+  Among all curves of length $l$ in the upper-half $(x, y)$ plane passing through the points
+  $(-a, 0)$ and $(a, 0)$, find the one which together with the interval $[-a, a]$ encloses the
+  largest possible area.
+\end{mdframed}
+
+\newpage
+Note that the curves in question need not be functions $y(x)$, so we will express the curves
+parametrically. In order to restrict ourselves to curves of length $l$ we will restate the problem
+as follows:
+
+Let $u \in (0, l)$ be a parameter measuring distance along the curve, and let $\chi$ be a suitable family of
+curves. We seek a curve $\r(u) = \vecMM{x(u)}{y(u)} \in \chi$ maximising the functional
+\begin{align*}
+  A[\r] = \int_0^l f(l, \r, \r') \d l,
+\end{align*}
+where $f(l, \r, \r')$ gives the rate of change of area with respect to $l$.
+
+such that $\r(0) = \vecMM{0}{0}$ and $\r(l) = \vecMM{a}{0}$.
+
+\newpage
+We want to find a curve that maximizes
+\begin{align*}
+  \int_0^l \d A.
+\end{align*}
+We can write this as
+\begin{align*}
+  \int_0^l A'(l) \d l
+\end{align*}
+where $A(l)$ is the area up to $l$.
+
+We need to express $A'(l)$ in terms of...?
