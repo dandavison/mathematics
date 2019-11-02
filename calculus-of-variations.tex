@@ -506,7 +506,7 @@ So this appears to be correct \correct.
 To use Euler-Lagrange, we write this as a functional in the standard form. The integrand, which in
 general is $f(x, y, y')$, here is simply $y(x)$.
 \begin{align*}
-A[y] = \int_{-a}^{a} f(x, y, y') \dx = \int_{-a}^{a} y(x) \dx.
+  A[y] = \int_{-a}^{a} f(x, y, y') \dx = \int_{-a}^{a} y(x) \dx.
 \end{align*}
 Clearly there is no extremizing $y$ as things stand; we need a constraint on the shape of $y$.
 
@@ -525,7 +525,18 @@ In any case, we have a constraint:
 \end{align*}
 where $g(x,y,y') = \sqrt{1 + y'^2}$.
 
-So we use a Lagrange multiplier approach
+So we use a Lagrange multiplier approach: we will maximize the functional
+\begin{align*}
+  A[y]
+  &= \int_{-a}^{a} h(x, y, y') \dx \\
+  &= \int_{-a}^{a} f(x, y, y') - \lambda g(x, y, y') \dx.
+\end{align*}
+We have $\pdgdy = 1$ and $\pdgdyp = \frac{y'}{\sqrt{1 + y'^2}}$ and so the Euler-Lagrange equations are
+\begin{align*}
+  \ddx \pdfdyp ...
+\end{align*}
+
+
 
 \newpage
 Note that the curves in question need not be functions $y(x)$, so we will express the curves
