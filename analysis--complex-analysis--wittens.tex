@@ -1,0 +1,50 @@
+\begin{comment}  % latex-focus
+\end{comment}  % latex-focus
+\section{Complex exponentials}
+
+Let $A, B \in \C$, and consider the linear combination $Ae^{i\theta} + Be^{-i\theta}$. When is this real?
+
+That's the same as asking: let $z \in \C$ with $|z| = 1$, and let $\bar{z}$ be the conjugate of
+$z$. When is $Az + B\bar{z}$ real?
+\begin{comment}  % latex-focus
+
+
+\section{Complex functions}
+\footnotetext{Notes based on Steven Wittens article \url{http://acko.net/blog/how-to-fold-a-julia-fractal/}}
+
+Define
+\begin{align*}
+  \C   &= \{(r, \theta) ~|~ 0 \leq r < \infty, -\pi < \theta \leq \pi\} \\
+  \C^* &= \{(r, \theta) ~|~ 0 \leq r < \infty, -\infty < \theta < \infty\}.
+\end{align*}
+
+Geometrically, we can think of $\C$ as a disc of infinite radius and $\C^*$ as a corkscrew-shaped
+surface of infinite radius and infinite longitudinal extent.
+
+There is a many-to-one map $\C^* \to \C$ given by
+\begin{align*}
+  (r, \theta) \mapsto (r, \theta\mod 2\pi).
+\end{align*}
+
+Geometrically, this map squashes the corkscrew into a plane (it is many-to-one and surjective). So
+$z \in \C$ recurs on infinitely many ``sheets'' of the corkscrew.
+
+Now consider the square root map $\C^* \to \C^*$ defined by
+\begin{align*}
+  \(r, \theta\) &\mapsto \(\sqrt{r}, \theta/2\).
+\end{align*}
+
+Geometrically, we can think of this as ``compressing'' the corkscrew longitudinally by a factor of
+$1/2$, and distorting it radially by a square root transformation. This map is a bijection.
+
+Now, how can we define a square root map $\C \to \C$? If we define this as
+$\(r, \theta\) \mapsto \(\sqrt{r}, \theta/2\)$ then the image image is restricted to $-\pi/2 < \theta \leq \pi/2$, i.e. $f(\C)$ of the map is a half-plane.
+
+\begin{align*}
+  \(r, \theta\) &\mapsto \(\sqrt{r}, \theta/2\)
+\end{align*}
+then its . But
+\begin{align*}
+  (r, 2\pi) \mapsto (\sqrt{r}, \pi)
+\end{align*}
+\end{comment}  % latex-focus
