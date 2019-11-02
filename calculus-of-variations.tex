@@ -503,6 +503,30 @@ So this appears to be correct \correct.
   largest possible area.
 \end{mdframed}
 
+To use Euler-Lagrange, we write this as a functional in the standard form. The integrand, which in
+general is $f(x, y, y')$, here is simply $y(x)$.
+\begin{align*}
+A[y] = \int_{-a}^{a} f(x, y, y') \dx = \int_{-a}^{a} y(x) \dx.
+\end{align*}
+Clearly there is no extremizing $y$ as things stand; we need a constraint on the shape of $y$.
+
+But let's see what happens if we try to use Euler-Lagrange at this stage. We have $\pdfdy = 1$ and
+$\pdfdyp = 0$, and the Euler-Lagrange equations are
+\begin{align*}
+  \ddx \pdfdyp - \pdfdy = 0 - 1 = 0.
+\end{align*}
+So some assumption has clearly been violated.
+
+In any case, we have a constraint:
+\begin{align*}
+  \int_{-a}^a \sqrt{\dx^2 + \dy^2} &= l \\
+  \int_{-a}^a \sqrt{1 + y'^2} \dx &= l \\
+  \int_{-a}^a g(x, y, y') \dx &= l,
+\end{align*}
+where $g(x,y,y') = \sqrt{1 + y'^2}$.
+
+So we use a Lagrange multiplier approach
+
 \newpage
 Note that the curves in question need not be functions $y(x)$, so we will express the curves
 parametrically. In order to restrict ourselves to curves of length $l$ we will restate the problem
