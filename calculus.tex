@@ -1242,7 +1242,111 @@ Therefore the integral over $S$ is
 \end{align*}
 
 \newpage
-\begin{theorem*}[Integration by substitution]~\\
+\subsection{Integration by substitution}
+
+\footnotetext{\url{https://en.wikipedia.org/wiki/Integration_by_substitution#Examples}}
+
+\begin{example}
+  Evaluate
+  \begin{align*}
+    \int_{0}^{2} x\cos(x^2 + 1) \dx.
+  \end{align*}
+  \begin{mdframed}
+    _-\includegraphics[width=400pt]{img/calculus-integration-by-substitution-example-1.png}
+  \end{mdframed}
+
+  It's easy to see that an antiderivative is $\frac{1}{2}\sin(x^2 + 1)$, leading to the answer
+  $\frac{1}{2}(\sin 5 - \sin 1)$. 5 radians is in the 3rd quadrant and 1 radian is in the first
+  quadrant, so $\sin 5$ is negative and $\sin 1$ is positive, and the final result is some negative
+  number (close to -0.9). But let's do it by substitution.
+
+  First, we define a function $u(x) = x^2 + 1$. So the integral is now
+  \begin{align*}
+    \int_{x=0}^{x=2} x\cos(u(x)) \dx.
+  \end{align*}
+  Next, we notice that $\dudx = 2x$, so the integral can be written as
+  \begin{align*}
+    \int_{x=0}^{x=2} \frac{1}{2} \dudx \cos(u(x)) \dx.
+  \end{align*}
+  So far, nothing we've done is questionable.
+
+  But now, we write the integral as
+  \begin{align*}
+    \int_{u=1}^{u=5} \frac{1}{2} \cos(u) \du,
+  \end{align*}
+  Clearly, this is going to give the same answer as above: $\frac{1}{2}(\sin 5 - \sin 1)$.
+
+  But, it requires justification. We've done 3 things:
+  \begin{enumerate}
+  \item We apparently replaced $\dudx \dx$ with $\du$.
+  \item We changed the integral limits to be the corresponding $u$ values.
+  \item We wrote $\cos(u)$ in place of $\cos(u(x))$.
+  \end{enumerate}
+
+\end{example}
+
+
+
+\begin{example}
+  Evaluate
+  \begin{align*}
+     \int _{0}^{1} \sqrt {1-x^{2}} \dx.
+  \end{align*}
+  By plotting the graph, we can see this is going to be a positive number (larger than the integral
+  without the square root transformation).
+
+  This time, there's no obvious antiderivative.
+
+  But, we know that $\sin^2 \theta + \cos^2 \theta = 1$, and we notice that the expression
+  $\sqrt{1 - x^2}$ reminds us of $\sqrt{1 - \sin^2 \theta}$, which is equal to $\cos \theta$.
+
+  To proceed, we say ``Let $x = \sin \theta$.'' But what does that mean? Why can we just let $x$ be something else?
+  
+  What we are doing is saying that, as we move from $x=0$ to $x = 1$, we are free to consider those
+  $x$ values to be the output of the $\sin$ function, as it sweeps through the first quadrant of the
+  unit circle ($0$ to $\frac{\pi}{2}$).\footnote{Note that the function $x(\theta) = \sin(\theta)$, when restricted to the domain
+  $(0, \frac{\pi}{2})$ is a bijective map between $\theta$ values in $(0, \frac{\pi}{2})$ and $x$ values in
+  $(0, 1)$. This means it is invertible: for every $x$ value along the path that we are integrating
+  over, there is a uniquely determined $\theta$ value.}
+
+  So basically, what we're going to do is evaluate this integral by expressing it as an integral along
+  a path through $\theta$ values instead of $x$ values. The mapping $x \mapsto \theta$ is defined by the inverse of the
+  $\sin$ function. We're doing this because, once expressed as an integral along a path through
+  $\theta$ values, it's going to be easy to evaluate.
+
+  So, the integral is now
+  \begin{align*}
+     \int _{0}^{1} \sqrt {1-\sin^{2} \theta} \dx,
+  \end{align*}
+  and we know that this is equivalent to
+  \begin{align*}
+     \int _{0}^{1} \cos \theta \dx.
+  \end{align*}
+  Notice that we have a $\dx$, and an integrand that's a function of some other variable $\theta$. So in
+  particular, it would be incorrect to just ``integrate $\cos \theta$'' and say that the answer is
+  $\sin \theta\Big|_0^1$.
+
+  What the integral is saying is: ``walk along the $x$ axis from 0 to 1, and accumulate $\cos \theta$ values as
+  you do so, where $\theta$ is the angle in the first quadrant whose $\sin$ is $x$.''
+
+  And to evaluate that integral, we want to express it as an integral over a path in $\theta$ space.
+
+\end{example}
+
+\begin{verbatim}
+#+begin_src mathematica
+(Sin[5] - Sin[1]) / 2 // N
+#+end_src
+
+#+RESULTS:
+: -0.9001976297355174
+
+\end{verbatim}
+
+
+
+
+\begin{theorem*}[Integration by substitution]
   Let $u = h(x)$. Then
   \begin{align*}
     \int g(h(x))h'(x) \dx = \int g(u) \du.
