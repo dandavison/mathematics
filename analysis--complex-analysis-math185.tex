@@ -93,7 +93,7 @@
   transformed as $(1, 0) \mapsto (a, b)(1, 0) = (a, b)$. The second basis vector
   ($i$) is transformed as $(0, 1) \mapsto (a, b)(0, 1) = (-b, a)$. Therefore the
   matrix of $T_c$ is
-  $$M_c = \mat{a}{-b}
+  $$M_c = \matMMxNN{a}{-b}
               {b}{a},$$
   which is a rotation + scaling transformation of $\R^2$.
 
@@ -101,17 +101,17 @@
     multiplication.}
 
   Let $f: \R^2 \rightarrow \text{(2x2 matrices)}$ denote the map $c \mapsto M_c$. Then
-  $$f(c_1 + c_2) = \mat{a_1 + a_2}{-b_1 - b_2}
+  $$f(c_1 + c_2) = \matMMxNN{a_1 + a_2}{-b_1 - b_2}
                        {b_1 + b_2}{a_1 + a_2} = f(c_1) + f(c_2),$$
   and
-  $$f(c_1c_2) = \mat{a_1b_1 - a_2b_2}{-a_1b_2 - a_2b_1}
+  $$f(c_1c_2) = \matMMxNN{a_1b_1 - a_2b_2}{-a_1b_2 - a_2b_1}
                     {a_1b_2 + a_2b_1}{a_1b_1 - a_2b_2},$$
   while
   $$f(c_1)f(c_2)
-  = \mat{a_1}{-b_1}
-        {b_1}{a_1} \mat{a_2}{-b_2}
+  = \matMMxNN{a_1}{-b_1}
+        {b_1}{a_1} \matMMxNN{a_2}{-b_2}
                        {b_2}{a_2}
-  = \mat{a_1a_2 - b_1b_2}{-a_1b_2 - a_2b_1}
+  = \matMMxNN{a_1a_2 - b_1b_2}{-a_1b_2 - a_2b_1}
         {a_2b_1 + a_1b_2}{a_1a_2-b_1b_2}
   $$
 
@@ -413,7 +413,7 @@ This is more succinctly expressed using the Jacobian:
 $$
 \cvec{u(x, y)}
 {v(x, y)} \approx \cvec{u(x_0, y_0)}
-{v(x_0, y_0)} + \mat{u_x}{u_y}
+{v(x_0, y_0)} + \matMMxNN{u_x}{u_y}
 {v_x}{v_y} \cvec{x - x_0}
 {y - y_0}.
 $$
@@ -499,7 +499,7 @@ That's exactly the same as the equation involving the Jacobian above
 $$
 \cvec{u(x, y)}
 {v(x, y)} - \cvec{u(x_0, y_0)}
-{v(x_0, y_0)} = \mat{u_x}{u_y}
+{v(x_0, y_0)} = \matMMxNN{u_x}{u_y}
 {v_x}{v_y} \cvec{x - x_0}
 {y - y_0}.
 $$
@@ -548,12 +548,12 @@ $$
 The Jacobian that effects the local linear rotation+scale transformation, together with
 the equivalent complex number, is
 $$
-\mat{u_x}{-v_x}
+\matMMxNN{u_x}{-v_x}
 {v_x}{u_x} ~~~~ u_x + iv_x
 $$
 or
 $$
-\mat{v_y}{u_y}
+\matMMxNN{v_y}{u_y}
 {-u_y}{v_y} ~~~~ v_y - iu_y.
 $$
 So we can write
@@ -640,9 +640,9 @@ and
         % \textbfit{Informally:}
         $f$ is real-valued, so $f(z) - f(z_0)$ is real-valued. Therefore the
         local linear approximation $c(z - z_0)$ collapses the plane onto the real
-        axis, i.e. the Jacobian matrix has the form $\mat{a}{b} {0}{0}$. But $f$
+        axis, i.e. the Jacobian matrix has the form $\matMMxNN{a}{b} {0}{0}$. But $f$
         is holomorphic, so the Jacobian must also have the form
-        $\mat{a}{-b}
+        $\matMMxNN{a}{-b}
         {b}{a}$. Therefore the Jacobian is the zero matrix, i.e.
         all partial derivatives are zero, $u_x = u_y = v_x = v_y = 0$, so $f$ is constant.\\
         % \textbfit{Formally:} $f$ is real-valued means that $v(z) = 0$
@@ -677,7 +677,7 @@ and
       \end{align*}
       % i.e.
       % $$
-      % \mat{u}{-v}
+      % \matMMxNN{u}{-v}
       % {u}{v} \cvec{u_x}{u_y} = \cvec{0}{0}.
       % $$
       % The determinant of this system is $2uv$ which is not in general zero. But
@@ -714,7 +714,7 @@ and
       Therefore the best local linear approximation to $f$ is a linear
       transformation that collapses the plane onto a line with angle $\theta$.
       The Jacobian determinant is therefore zero. Since $f$
-      is holomorphic the Jacobian is of the form $\mat{a}{-b}
+      is holomorphic the Jacobian is of the form $\matMMxNN{a}{-b}
       {b}{a}$ and therefore we have
       $a^2 + b^2 = 0$, so $a = b = 0$.  Therefore the Jacobian is the zero
       matrix, i.e. $f' = 0$ throughout $D$, so $f$ is constant.\\
@@ -857,8 +857,8 @@ w(x + iy)
 \end{align*}
 Then the Jacobian of $w$ is
 \begin{align*}
-\mat{s_x}{s_y}
-    {t_x}{t_y} = \frac{1}{2}\mat{u_{xx}}{u_{xy}}
+\matMMxNN{s_x}{s_y}
+    {t_x}{t_y} = \frac{1}{2}\matMMxNN{u_{xx}}{u_{xy}}
                                 {-u_{yx}}{-u_{yy}}.
 \end{align*}
 But since $u$ is harmonic, we know that $u_{xx} + u_{yy} = 0$, therefore the
@@ -1017,14 +1017,14 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
   \begin{align*}
     \phi_2(z)
     &= (\psi \circ \phi_1 \circ \psi^{-1})(z) \\
-    &= \mat{e}{f}
-           {g}{h} \mat{a}{b}
-                      {c}{d} \mat{h }{-f}
+    &= \matMMxNN{e}{f}
+           {g}{h} \matMMxNN{a}{b}
+                      {c}{d} \matMMxNN{h }{-f}
                                  {-g}{e } \cvec{z}{1} \\
-    &= \mat{e}{f}
-           {g}{h} \mat{ ah - bg}{-af + be}
+    &= \matMMxNN{e}{f}
+           {g}{h} \matMMxNN{ ah - bg}{-af + be}
                       {-ch - dg}{-cf + de} \cvec{z}{1} \\
-    &= \mat{e(ah - bg) + f(-ch - dg)}{e(-af + be) + f(-cf + de)}
+    &= \matMMxNN{e(ah - bg) + f(-ch - dg)}{e(-af + be) + f(-cf + de)}
            {g(ah - bg) + h(-ch - dg)}{g(-af + be) + h(-cf + de)} \cvec{z}{1} \\
   \end{align*}
 
@@ -1042,7 +1042,7 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
     ad - bc &= 1 \\
     a + d &= \pm 2
   \end{align*}
-  A translation has matrix of the form $\mat{x}{y}
+  A translation has matrix of the form $\matMMxNN{x}{y}
   {0}{x}$. So the question is,
   can we find $e,f,g,h$ such that
   \begin{align*}
@@ -1130,7 +1130,7 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
     Prove that the linear-fractional transformations mapping the disc $|z| < 1$
     onto itself are those induced by matrices of the form
     $$
-    \mat{a     }{b     }
+    \matMMxNN{a     }{b     }
     {\bar b}{\bar a}
     $$
     with $|a|^2 - |b|^2 = 1$.
@@ -1152,12 +1152,12 @@ scaling it by multipying it with a scaled identity matrix from the kernel).
   where $b = c = 0$ and $|a| = |d|$. So an answer along those lines would hope to show that a
   linear-fractional transformation is induced by a matrix of the form
   $$
-  \mat{a     }{b     }
+  \matMMxNN{a     }{b     }
   {\bar b}{\bar a}
   $$
   with $|a|^2 - |b|^2 = 1$, if and only if the matrix is of the form
   \begin{align*}
-    \mat{a}{0}
+    \matMMxNN{a}{0}
         {0}{d},
   \end{align*}
   with $|a| = |d|$. But that doesn't look to be a true statement.

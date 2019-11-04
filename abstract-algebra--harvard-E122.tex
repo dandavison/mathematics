@@ -368,12 +368,12 @@ length $n$.
 normal subgroups $H$ of $G$. If they do, use the First Isomorphism Theorem to
 identify the quotient group $G/H$. **
 
-$G = \left\{ \mat{a}{b}
+$G = \left\{ \matMMxNN{a}{b}
                  {0}{d} \right\}$
 
 ** (a) $a_{11} = 1$ **
 
-$H = \left\{ \mat{1}{b}
+$H = \left\{ \matMMxNN{1}{b}
                  {0}{d} \right\}$
 
 This is closed, contains the identity and contains inverses, so it is a
@@ -390,14 +390,14 @@ vector and shearing parallel to the first basis vector, and thus the conjugated
 matrix is still in the subgroup.
 
 \begin{align*}
-&\mat{e}{f}
-     {0}{h} \mat{1}{b}
-                {0}{d} \mat{h}{-f}
+&\matMMxNN{e}{f}
+     {0}{h} \matMMxNN{1}{b}
+                {0}{d} \matMMxNN{h}{-f}
                            {0}{e} \frac{1}{eh} \\
-= &\mat{e}{f}
-       {0}{h} \mat{h}{-f + be}
+= &\matMMxNN{e}{f}
+       {0}{h} \matMMxNN{h}{-f + be}
                   {0}{de     } \frac{1}{eh} \\
-= &\mat{eh}{e(-f + be) + fde}
+= &\matMMxNN{eh}{e(-f + be) + fde}
        {0}{hde} \frac{1}{eh}
 \end{align*}
 
@@ -420,18 +420,18 @@ some $h \in H$. So there are infinitely many cosets and each has infinitely
 many elements. Each coset contains matrices of the form
 
 \begin{align*}
-\mat{1}{b}
-    {0}{d} \mat{e}{f}
-               {0}{h} = \mat{e}{b + df}
+\matMMxNN{1}{b}
+    {0}{d} \matMMxNN{e}{f}
+               {0}{h} = \matMMxNN{e}{b + df}
                             {0}{dh    }.
 \end{align*}
 
 Since $b$ and $d$ can be any real numbers, we could write this as
 
 \begin{align*}
-\mat{1}{*}
-    {0}{*} \mat{a}{b}
-               {0}{d} = \mat{a}{*}
+\matMMxNN{1}{*}
+    {0}{*} \matMMxNN{a}{b}
+               {0}{d} = \matMMxNN{a}{*}
                             {0}{*},
 \end{align*}
 
@@ -445,7 +445,7 @@ stretch in the x-direction.
 \hrule
 ** (b) $a_{12} = 0$ **
 
-$H = \left\{ \mat{a}{0}
+$H = \left\{ \matMMxNN{a}{0}
                  {0}{d} \right\}$
 
 This is closed, contains identity and inverses, hence is a subgroup. However
@@ -457,21 +457,21 @@ transformation in the changed basis does not stretch in the directions of the
 basis vectors in the original basis.
 
 \begin{align*}
-&\mat{e}{f}
-     {0}{h} \mat{a}{0}
-                {0}{d} \mat{h}{-f}
+&\matMMxNN{e}{f}
+     {0}{h} \matMMxNN{a}{0}
+                {0}{d} \matMMxNN{h}{-f}
                            {0}{e } \frac{1}{eh} \\
-= &\mat{e}{f}
-       {0}{h} \mat{ah}{-af}
+= &\matMMxNN{e}{f}
+       {0}{h} \matMMxNN{ah}{-af}
                   {0 }{de } \frac{1}{eh} \\
-= &\mat{eah}{-eaf + fde}
+= &\matMMxNN{eah}{-eaf + fde}
        {0  }{hde       } \frac{1}{eh}
 \end{align*}
 
 \hrule
 ** (c) $a_{11} = a_{22}$ **
 
-$H = \left\{ \mat{a}{b}
+$H = \left\{ \matMMxNN{a}{b}
                  {0}{a} \right\}$
 
 Closed and contains identity and inverses, so a subgroup, but again not closed
@@ -483,14 +483,14 @@ performs the transformation in the changed basis does not stretch equally in
 the directions of the basis vectors in the original basis.
 
 \begin{align*}
-&\mat{e}{f}
-     {0}{h} \mat{a}{b}
-                {0}{d} \mat{h}{-f}
+&\matMMxNN{e}{f}
+     {0}{h} \matMMxNN{a}{b}
+                {0}{d} \matMMxNN{h}{-f}
                            {0}{e } \frac{1}{eh} \\
-= &\mat{e}{f}
-       {0}{h} \mat{ah}{-af + be}
+= &\matMMxNN{e}{f}
+       {0}{h} \matMMxNN{ah}{-af + be}
                   {0 }{de      } \frac{1}{eh} \\
-= &\mat{eah}{e(-af + be) + fde}
+= &\matMMxNN{eah}{e(-af + be) + fde}
        {0  }{hde              } \frac{1}{eh}
 \end{align*}
 
@@ -498,7 +498,7 @@ the directions of the basis vectors in the original basis.
 \hrule
 ** (d) $a_{11} = a_{22} = 1$ **
 
-$H = \left\{ \mat{1}{b}
+$H = \left\{ \matMMxNN{1}{b}
                  {0}{1} \right\}$
 
 Closed, contains identity and inverses. It performs a shear, with no
@@ -510,32 +510,32 @@ also performs a shear without stretching in the original basis.
 
 
 \begin{align*}
-&\mat{e}{f}
-     {0}{h} \mat{1}{b}
-                {0}{1} \mat{h}{-f}
+&\matMMxNN{e}{f}
+     {0}{h} \matMMxNN{1}{b}
+                {0}{1} \matMMxNN{h}{-f}
                            {0}{e} \frac{1}{eh} \\
-= &\mat{e}{f}
-       {0}{h} \mat{h}{-f + be}
+= &\matMMxNN{e}{f}
+       {0}{h} \matMMxNN{h}{-f + be}
                   {0}{e      } \frac{1}{eh} \\
-= &\mat{eh}{e(-f + be) + fe}
+= &\matMMxNN{eh}{e(-f + be) + fe}
        {0  }{eh             } \frac{1}{eh}
 \end{align*}
 
 Each coset contains matrices of the form
 
 \begin{align*}
-\mat{1}{b}
-    {0}{1} \mat{e}{f}
-               {0}{h} = \mat{e}{f + bh}
+\matMMxNN{1}{b}
+    {0}{1} \matMMxNN{e}{f}
+               {0}{h} = \matMMxNN{e}{f + bh}
                             {0}{h     }.
 \end{align*}
 
 which could be written as
 
 \begin{align*}
-\mat{1}{*}
-    {0}{1} \mat{e}{f}
-               {0}{h} = \mat{e}{*}
+\matMMxNN{1}{*}
+    {0}{1} \matMMxNN{e}{f}
+               {0}{h} = \matMMxNN{e}{*}
                             {0}{h}.
 \end{align*}
 

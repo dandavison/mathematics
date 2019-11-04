@@ -136,6 +136,7 @@
 \DeclareMathOperator{\limplies}{\rightarrow}
 \DeclareMathOperator{\lequiv}{\leftrightarrow}
 \DeclareMathOperator{\interior}{\text{int}}
+\newcommand{\mat}{\mathbf}
 \newcommand{\0}{\vec 0}
 \newcommand{\1}{{-1}}
 \newcommand{\Arg}{\text{Arg}~}
@@ -250,7 +251,7 @@
 \newcommand{\partiald}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\scvec}[2]{\tiny{\cvec{#1}{#2}}}
 \newcommand{\smatt}[9]{\tiny{\matt{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
-\newcommand{\smat}[4]{\tiny{\mat{#1}{#2}{#3}{#4}}}
+\newcommand{\smat}[4]{\tiny{\matMMxNN{#1}{#2}{#3}{#4}}}
 \newcommand{\sumn}{\sum_{n=1}^{\infty}}
 \newcommand{\sumim}{\sum_{i=1}^{m}}
 \newcommand{\sumin}{\sum_{i=1}^{n}}
@@ -309,9 +310,6 @@
 \newcommand{\rarrow}{\rightarrow}
 \newcommand{\seq}{\subseteq}
 % \newcommand{\norm}[1]{\|#1\|}
-
-% deprecated
-\newcommand{\mat}{\matMMxNN}
 
 \DeclareMathOperator{\diam}{\mathrm{diam}}
 \renewcommand\labelitemi{---}

@@ -585,9 +585,9 @@ Alternatively, we can solve the linear system given by $F = ma$ at each mass:
 \end{align*}
 which can be solved by inverting the $2 \times 2$ matrix:
 \begin{align*}
-  \mat{m_1}{-1}
+  \matMMxNN{m_1}{-1}
       {m_2}{1} \vecMM{a}{T} &= \vecMM{-m_1g}{m_2g} \\
-  \vecMM{a}{T}              &= \frac{1}{m_1 + m_2} \mat{1}{1}
+  \vecMM{a}{T}              &= \frac{1}{m_1 + m_2} \matMMxNN{1}{1}
                                                        {-m_2}{m_1} \vecMM{-m_1g}{m_2g} \\
                             &= \frac{1}{m_1 + m_2} \vecMM{m_2g - m_1g}{2m_1m_2}. ~~~~~~~\checkmark
 \end{align*}
