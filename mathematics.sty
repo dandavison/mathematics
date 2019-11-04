@@ -99,22 +99,6 @@
 \DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
 \DeclareMathOperator{\dldmu}{\frac{\partial \l}{\partial \mu}}
 \DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
-\newcommand{\dA}{\dif A}
-\newcommand{\dG}{\dif G}
-\newcommand{\dL}{\dif L}
-\newcommand{\dl}{\dif l}
-\newcommand{\dr}{\dif r}
-\newcommand{\ds}{\dif s}
-\newcommand{\dtheta}{\dif \theta}
-\newcommand{\dt}{\dif t}
-\newcommand{\du}{\dif u}
-\newcommand{\dvdt}{\frac{\dif v}{\dif t}}
-\newcommand{\dvdx}{\frac{\dif v}{\dif x}}
-%\newcommand{\dxdt}{\frac{\dif x}{\dif t}}
-\newcommand{\dxdu}{\frac{\dif x}{\dif u}}
-\newcommand{\dx}{\dif x}
-\newcommand{\dy}{\dif y}
-\newcommand{\dz}{\dif z}
 \DeclareMathOperator{\ealign}{\end{align*}}
 \DeclareMathOperator{\hess}{\nabla^2}
 \DeclareMathOperator{\p}{\text{p}}
@@ -182,34 +166,51 @@
 \newcommand{\F}{\vec{F}}
 \renewcommand{\r}{\vec{r}}
 
+\newcommand{\dA}{\dif A}
+\newcommand{\dG}{\dif G}
+\newcommand{\dL}{\dif L}
+\newcommand{\df}{\dif f}
+\newcommand{\dl}{\dif l}
+\newcommand{\dr}{\dif r}
+\newcommand{\ds}{\dif s}
+\newcommand{\dtheta}{\dif \theta}
+\newcommand{\dt}{\dif t}
+\newcommand{\du}{\dif u}
+\newcommand{\dx}{\dif x}
+\newcommand{\dy}{\dif y}
+\newcommand{\dz}{\dif z}
+
+% \newcommand{\dxdt}{\frac{\dif x}{\dif t}}
 \newcommand{\dds}{\frac{\dif}{\dif s}}
 \newcommand{\ddtheta}{\frac{\d}{\dtheta}}
 \newcommand{\ddx}{\frac{\dif}{\dif x}}
 \newcommand{\ddy}{\frac{\dif}{\dif y}}
+
+\newcommand{\dfdu}{\frac{\df}{\du}}
+\newcommand{\dudx}{\frac{\du}{\dx}}
+\newcommand{\dvdt}{\frac{\dif v}{\dif t}}
+\newcommand{\dvdx}{\frac{\dif v}{\dif x}}
 \newcommand{\dxdtheta}{\frac{\dx}{\dtheta}}
 \newcommand{\dxdt}{\frac{\dx}{\dt}}
+\newcommand{\dxdu}{\frac{\dif x}{\dif u}}
 \newcommand{\dxdy}{\frac{\dx}{\dy}}
 \newcommand{\dydtheta}{\frac{\dy}{\dtheta}}
 \newcommand{\dydt}{\frac{\dy}{\dt}}
-\newcommand{\dudx}{\frac{\du}{\dx}}
 \newcommand{\dydx}{\frac{\dy}{\dx}}
 
 \newcommand{\pddx}{\frac{\partial}{\partial x}}
 \newcommand{\pddy}{\frac{\partial}{\partial y}}
-\newcommand{\pdfdx}{\frac{\partial f}{\partial x}}
-\newcommand{\pdfdxp}{\frac{\partial f}{\partial x'}}
-\newcommand{\pdgdx}{\frac{\partial g}{\partial x}}
-\newcommand{\pdgdxp}{\frac{\partial g}{\partial x'}}
 \newcommand{\pdfdxd}{\frac{\partial f}{\partial \dot{x}}}
-
-\newcommand{\pdfdy}{\frac{\partial f}{\partial y}}
-\newcommand{\pdfdyp}{\frac{\partial f}{\partial y'}}
-
-\newcommand{\pdgdy}{\frac{\partial g}{\partial y}}
-\newcommand{\pdgdyp}{\frac{\partial g}{\partial y'}}
-
+\newcommand{\pdfdxp}{\frac{\partial f}{\partial x'}}
+\newcommand{\pdfdx}{\frac{\partial f}{\partial x}}
 \newcommand{\pdfdyd}{\frac{\partial f}{\partial \dot{y}}}
+\newcommand{\pdfdyp}{\frac{\partial f}{\partial y'}}
+\newcommand{\pdfdy}{\frac{\partial f}{\partial y}}
 \newcommand{\pdfdz}{\frac{\partial f}{\partial z}}
+\newcommand{\pdgdxp}{\frac{\partial g}{\partial x'}}
+\newcommand{\pdgdx}{\frac{\partial g}{\partial x}}
+\newcommand{\pdgdyp}{\frac{\partial g}{\partial y'}}
+\newcommand{\pdgdy}{\frac{\partial g}{\partial y}}
 
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
 \newcommand{\f}{\vec f}
