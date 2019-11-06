@@ -115,6 +115,23 @@ Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
   respect to that argument is $\partial_a{f}:X \to A^*$.
 \end{definition*}
 
+\subsection{The chain rule}
+
+\begin{theorem}
+  Let $g:U \to V$and $f:V \to W$ be functions with derivatives $g':U \to U$ and
+  $f':V \to V$\footnote{Actually, the output of the derivative function is an element of a dual
+    space, i.e. if the input to $f$ is a column vector then the output of $f'$ is a row
+    vector.}. Then their composition $f \circ g$ has derivative $U \to V$ given by
+  \begin{align*}
+    (f \circ g)' = g' \cdot (f' \circ g).
+  \end{align*}
+\end{theorem}
+
+In Leibnitz notation this might be written as
+\begin{align*}
+  \ddu f(g(u)) = \dgdu \dfdg.
+\end{align*}
+
 \subsection{The chain rule for a function with multiple inputs}
 
 Suppose that a function $f$ measures something about a particle at a moment in time and depends on
