@@ -1,45 +1,42 @@
 \section{Overview}
-Differential calculus is a way to compute quantities related to functions by
-treating the smooth curve or surface of function output values as being
-comprised of many local linear functions. Each linear approximation applies
-over a tiny (arbitrarily small) local interval; the linear approximation in the
-next interval will in general have a slightly different gradient.
 
-A central concept in differential calculus is the \textit{differential}: the
-change in output value caused by a small change in the input value, at some
-starting input value. This describes the way in which the function output
-changes in response to changes in input. Differentials are often used to
-compute a \textit{derivative}: the ratio of change in output value to the
-change in some input value. Derivatives define a local \textit{linear
-  approximation} to the function: over a small local region we consider the
-real function to be approximated by a line with gradient equal to the
+\url{https://www.math.ucla.edu/~tao/preprints/forms.pdf}
+
+Differential calculus is a way to compute quantities related to functions by treating the smooth
+curve or surface of function output values as being comprised of many local linear functions. Each
+linear approximation applies over a tiny (arbitrarily small) local interval; the linear
+approximation in the next interval will in general have a slightly different gradient.
+
+A central concept in differential calculus is the \textit{differential}: the change in output value
+caused by a small change in the input value, at some starting input value. This describes the way in
+which the function output changes in response to changes in input. Differentials are often used to
+compute a \textit{derivative}: the ratio of change in output value to the change in some input
+value. Derivatives define a local \textit{linear approximation} to the function: over a small local
+region we consider the real function to be approximated by a line with gradient equal to the
 derivative at that point.
 
-The above is differential calculus. Integral calculus is concerned with
-``summing'' the output values of a function associated with some region in the
-input space. In the familiar case, the input space is a section of the real
-number line, and the output values are also real numbers. So ``summing'' the
-output values corresponds to calculating the area under a curve (i.e. under the
-graph of the function).
+The above is differential calculus. Integral calculus is concerned with ``summing'' the output values
+of a function associated with some region in the input space. In the familiar case, the input space
+is a section of the real number line, and the output values are also real numbers. So ``summing'' the
+output values corresponds to calculating the area under a curve (i.e. under the graph of the
+function).
 
-Now allow the input space to be a higher dimensional Euclidean space, e.g. some
-region of the plane $\R^2$, but keep the output values as being simply real
-numbers. One question is what is the value of the integral along some
-1-dimensional \textit{path} through the input space. We imagine dividing the
-input space up into many small sections (vectors) $\Delta x_i$, as
-usual. However, when computing the contribution from one such infinitisimal
-section, it is not sufficient to say simply that this is $f(x_i)|\Delta
-x_i|$. The reason is that the appropriate contribution might depend not only on
-the position $x_i$ but on the direction of the infinitisimal displacement
-vector $\Delta x_i$. Therefore, we define $\omega_{x_i}$ to be the linear
-mapping that takes as input $\Delta x_i$ and outputs the ``height'' $f(x_i)$.
+Now allow the input space to be a higher dimensional Euclidean space, e.g. some region of the plane
+$\R^2$, but keep the output values as being simply real numbers. One question is what is the value
+of the integral along some 1-dimensional \textit{path} through the input space. We imagine dividing
+the input space up into many small sections (vectors) $\Delta x_i$, as usual. However, when computing
+the contribution from one such infinitisimal section, it is not sufficient to say simply that this
+is $f(x_i)|\Delta x_i|$. The reason is that the appropriate contribution might depend not only on the
+position $x_i$ but on the direction of the infinitisimal displacement vector
+$\Delta x_i$. Therefore, we define $\omega_{x_i}$ to be the linear mapping that takes as input
+$\Delta x_i$ and outputs the ``height'' $f(x_i)$.
 
-What does this look like in the simple case where the answer is insensitive to
-the direction of the infinitisimal displacement vector $\Delta x_i$? I think
-$\omega$ would depend on $|\Delta x_i|$ only and not otherwise on $\Delta x_i$?
+What does this look like in the simple case where the answer is insensitive to the direction of the
+infinitisimal displacement vector $\Delta x_i$? I think $\omega$ would depend on $|\Delta x_i|$ only
+and not otherwise on $\Delta x_i$?
 
-Another question is what is the value of the integral over some higher
-dimensional region of input space (e.g. a subset of the plane).
+Another question is what is the value of the integral over some higher dimensional region of input
+space (e.g. a subset of the plane).
 
 
 \section{Derivatives}
@@ -47,34 +44,32 @@ dimensional region of input space (e.g. a subset of the plane).
 Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
 
 \begin{quote}
-  ``The derivative of a function $f$ is the function $D f$ whose value
-  for a particular argument is something that can be multiplied by an
-  increment $\Delta x$ in the argument to get a linear approximation to the
-  increment in the value of $f$:
-  $f(x + \Delta x) \approx f(x) + D f(x) \Delta x$.''\footnote{Sussman et
-    al. Structure and Interpretation of Classical Mechanics p.482}
+  ``The derivative of a function $f$ is the function $D f$ whose value for a particular
+  argument is something that can be multiplied by an increment $\Delta x$ in the argument to get a
+  linear approximation to the increment in the value of $f$:
+  $f(x + \Delta x) \approx f(x) + D f(x) \Delta x$.''\footnote{Sussman et al. Structure and Interpretation of
+    Classical Mechanics p.482}
 \end{quote}
 
 \begin{quote}
-  ``The derivative of a real-valued function of multiple argu- ments
-  is an object whose contraction with the tuple of increments in the
-  arguments gives a linear approximation to the increment in the
-  function’s value.''\footnote{Sussman et al. Structure and
-    Interpretation of Classical Mechanics p.483}
+  ``The derivative of a real-valued function of multiple argu- ments is an object whose contraction
+  with the tuple of increments in the arguments gives a linear approximation to the increment in the
+  function’s value.''\footnote{Sussman et al. Structure and Interpretation of Classical Mechanics
+    p.483}
 \end{quote}
 
 
 \begin{definition*}~\\
-  A \defn{derivative} of a function $f$ is the function $D f$. When $D f$ is evaluated at an input
-  value the result is something which can be multiplied by an increment to the function's input to
-  give a linear approximation to the increment in output:
+  A \defn{derivative} of a function $f$ is the function $D f$. When $D f$ is evaluated
+  at an input value the result is something which can be multiplied by an increment to the
+  function's input to give a linear approximation to the increment in output:
   \begin{align*}
     f(x + \Delta x) \approx f(x) + (D f)(x)\Delta x.
   \end{align*}
 
   Note that this implies that the product (``contraction'' or matrix product etc) of the evaluated
-  derivative with the input increment is something which can be added to $f(x)$, i.e. it's in the
-  codomain of $f$.
+  derivative with the input increment is something which can be added to $f(x)$, i.e. it's in
+  the codomain of $f$.
 
   E.g. consider a linear map $f:\R^n \to \R^m$ (which can be represented by a matrix
   $A \in \R^{m \times n}$). Let $x \in \R^n$ and let $U = (D f)(x)$. It must be the case that one or
@@ -85,20 +80,20 @@ Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
   \end{align*}
   is valid (compatible for multiplication) and is an approximation to $f(x + \Delta x)$.
 
-  We have $\Delta x \in \R^n$ and $f(x) \in \R^m$. So if we're saying that $f(x) = Ax$, then $x$ and
-  $\Delta x$ are $(n \times 1)$ column vectors, and $f(x)$ is a $(m \times 1)$ column vector. So we
-  need something that maps column vectors in $\R^n$ to column vectors in $\R^m$, i.e.
-  $U \in \R^{m \times n}$ and the version that is valid is
+  We have $\Delta x \in \R^n$ and $f(x) \in \R^m$. So if we're saying that $f(x) = Ax$, then $x$
+  and $\Delta x$ are $(n \times 1)$ column vectors, and $f(x)$ is a $(m \times 1)$ column
+  vector. So we need something that maps column vectors in $\R^n$ to column vectors in $\R^m$,
+  i.e.  $U \in \R^{m \times n}$ and the version that is valid is
   \begin{align*}
     &f(x) + U \cdot \Delta x.
   \end{align*}
 
-  This definition holds for a function with $n$ inputs: the derivative function has $n$ inputs and
-  $n$ outputs. Its output is something whose ``contraction''\footnote{I understand ``contraction''
-    to refer to the multiplicative combination of one object with another object from the dual
-    space. So for example, the matrix product of a row vector on the left with a column vector on
-    the right.} with the increment in the function inputs gives a linear approximation to the
-  increment in output.
+  This definition holds for a function with $n$ inputs: the derivative function has $n$
+  inputs and $n$ outputs. Its output is something whose ``contraction''\footnote{I understand
+    ``contraction'' to refer to the multiplicative combination of one object with another object from
+    the dual space. So for example, the matrix product of a row vector on the left with a column
+    vector on the right.} with the increment in the function inputs gives a linear approximation to
+  the increment in output.
 
   In the case where these inputs and outputs are $n$-dimensional vectors in $\R^n$ we can write this
   \begin{align*}
