@@ -21,7 +21,6 @@
 \usepackage{mdframed}
 \usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
 \usepackage{parskip}
-\usepackage{physics}
 \usepackage{verbatim}
 
 \let\originalfootnote\footnote
@@ -170,6 +169,7 @@
 \newcommand{\dG}{\dif G}
 \newcommand{\dL}{\dif L}
 \newcommand{\df}{\dif f}
+\newcommand{\dg}{\dif g}
 \newcommand{\dl}{\dif l}
 \newcommand{\dr}{\dif r}
 \newcommand{\ds}{\dif s}
@@ -180,7 +180,6 @@
 \newcommand{\dy}{\dif y}
 \newcommand{\dz}{\dif z}
 
-% \newcommand{\dxdt}{\frac{\dif x}{\dif t}}
 \newcommand{\dds}{\frac{\dif}{\dif s}}
 \newcommand{\ddtheta}{\frac{\d}{\dtheta}}
 \newcommand{\ddx}{\frac{\dif}{\dif x}}
@@ -213,6 +212,9 @@
 \newcommand{\pdgdx}{\frac{\partial g}{\partial x}}
 \newcommand{\pdgdyp}{\frac{\partial g}{\partial y'}}
 \newcommand{\pdgdy}{\frac{\partial g}{\partial y}}
+
+\newcommand{\dv}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
 
 \newcommand{\exercise}[2]{\item[#1]\textbf{#2}}
 \newcommand{\f}{\vec f}
@@ -292,12 +294,7 @@
 \newcommand{\subspaceeq}{\leq}
 \newcommand{\ubar}[1]{\text{\b{$#1$}}}
 \newcommand{\correct}{\red{\checkmark}}
-%\newcommand{\grad}{\nabla}
-
-\DeclareMathOperator{\df}{\text{df}}
-\DeclareMathOperator{\dg}{\text{dg}}
-\let\dh\relax\DeclareMathOperator{\dh}{\text{dh}}
-
+\newcommand{\grad}{\nabla}
 
 % https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix$
 \newenvironment{amatrix}[1]{%
