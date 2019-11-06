@@ -41,6 +41,7 @@ space (e.g. a subset of the plane).
 
 \section{Functions of a single variable}
 
+\subsection{Definition of derivative}
 Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
 
 \begin{quote}
@@ -132,53 +133,53 @@ In Leibnitz notation this might be written as
   \ddu f(g(u)) = \dgdu \dfdg.
 \end{align*}
 
+\begin{proof}
+  TODO
+\end{proof}
+
+\subsection{The product rule}
+
+\begin{theorem}
+  Let $f:U \to U$ and $g:U \to U$. Then their product $fg:U \to U$ has derivative
+  $(fg)':U \to U$ given by
+  \begin{align*}
+    (fg)' = f'g + g'f.
+  \end{align*}
+\end{theorem}
+
+\begin{example}
+  \begin{align*}
+    \ddx \(x^2\sin(x)\) = 2x\sin(x) + \cos(x)x^2.
+  \end{align*}
+  In this example, $f(x) = x^2$ and $g(x) = \sin(x)$. Whereas the theorem was stated above at
+  the level of functions, this Leibnitz notation gives the value of the derivative-of-the-product at
+  a single input value $x$.
+\end{example}
+
+\subsection{Integration by substitution}
+
 \begin{theorem}[Integration by substitution]
-  From the chain rule we have
+  Let $g:X \to Y$ and $f:Y \to Z$. Then
+  \begin{align*}
+    \int f(g(x)) g'(x) \dx = \int f(g) \dg.
+  \end{align*}
+
+\end{theorem}
+
+\begin{proof}
+  From the chain rule we have that if $g:U \to V$ and $f:V \to W$, then
   \begin{align*}
     (f \circ g)' = g' \cdot (f' \circ g).
   \end{align*}
   Taking antiderivatives of both sides gives
   \begin{align*}
-    f \circ g =
+    f \circ g = \int (f' \circ g) \cdot g' \du + C,
   \end{align*}
-
-
-\end{theorem}
-
-\begin{proof}
-
-
-
-
+  and we can make the replacement $g'\du = \dg$ yielding
+  \begin{align*}
+    f \circ g = \int (f' \circ g) \dg + C.
+  \end{align*}
 \end{proof}
-
-
-\subsection{Integration by parts}
-
-
-\begin{align*}
-  \int u \dvdx \dx = uv - \int v \du
-\end{align*}
-
-\begin{align*}
-  \ddx\(f(x)g(x)\)   &= f'(x)g(x) + f(x)g'(x) \\
-  f(x)g(x) + C       &= \int f'(x)g(x) \dx + \int f(x)g'(x) \dx \\
-  \int f(x)g'(x) \dx &= f(x)g(x) - \int f'(x)g(x) \dx
-\end{align*}
-
-
-
-\begin{verbatim}
-#+begin_src mathematica
-(Sin[5] - Sin[1]) / 2 // N
-#+end_src
-
-#+RESULTS:
-: -0.9001976297355174
-
-\end{verbatim}
-
-
 
 
 \begin{theorem*}[Integration by substitution]
@@ -206,27 +207,50 @@ In Leibnitz notation this might be written as
   \end{align*}
 \end{proof}
 
-\begin{proof}
-  Let $G' = g$, i.e. $G$ is an antiderivative of $g$.
+\subsection{Integration by parts}
 
-  Recall the chain rule:
+
+\begin{theorem}
+  Let $f:U \to U$ and $g:U \to U$. Then
   \begin{align*}
-    \ddx G(h(x)) = \frac{\dG}{\dh} \frac{\dh}{\dx}.
+    \int fg' \du = fg - \int gf' \du.
   \end{align*}
-  Integrating both sides with respect to $x$ gives
+\end{theorem}
+
+\todo{Does the RHS need to be $fg - \int g\df$ instead?}
+
+So, if you can recognise an integrand as having a factor that you can integrate, then rewriting the
+integral in the IBP form may help.
+
+In Leibnitz notation this might be written
+\begin{align*}
+    \int f(x)g'(x) \dx &= f(x)g(x) - \int f'(x)g(x) \dx,
+\end{align*}
+or
+\begin{align*}
+  \int u \dvdx \dx = uv - \int v \du.
+\end{align*}
+
+\todo{$f'\du$ has become $\du$.}
+
+\begin{proof}
+  From the product rule we have
   \begin{align*}
-    G(h(x)) + C = \int \frac{\dG}{\dh} \frac{\dh}{\dx} \dx.
+    (fg)' = f'g + g'f.
   \end{align*}
-  Let $u = h(x)$. Then
-  \begin{align*}
-    G(u) + C &= \int g(u) \du
-              = \int \frac{\dG}{\dh} \frac{\du}{\dx} \dx.
-  \end{align*}
+  Taking antiderivatives of both sides and rearranging gives the result.
+  \todo{But what happens to the constant of integration?}
 \end{proof}
 
-\subsection{Integration by substitution}
+\subsection{Integration by parts: examples}
 
-\footnotetext{\url{https://en.wikipedia.org/wiki/Integration_by_substitution#Examples}}
+% \begin{mdframed}
+% \includegraphics[width=400pt]{img/integration-by-parts-example-1.png}
+% \end{mdframed}
+
+\subsection{Integration by substitution: examples}
+
+\footnotetext{\url{https://en.wikipedia.org/wiki/Integration_by_substitution\#Examples}}
 
 \begin{example}
   Evaluate
@@ -234,7 +258,7 @@ In Leibnitz notation this might be written as
     \int_{0}^{2} x\cos(x^2 + 1) \dx.
   \end{align*}
   \begin{mdframed}
-    _-\includegraphics[width=400pt]{img/calculus-integration-by-substitution-example-1.png}
+   \includegraphics[width=400pt]{img/calculus-integration-by-substitution-example-1.png}
   \end{mdframed}
 
   It's easy to see that an antiderivative is $\frac{1}{2}\sin(x^2 + 1)$, leading to the answer
@@ -287,8 +311,10 @@ In Leibnitz notation this might be written as
   \begin{align*}
      \int _{0}^{1} \sqrt {1-x^{2}} \dx.
   \end{align*}
-  By plotting the graph, we can see this is going to be a positive number (larger than the integral
-  without the square root transformation).
+  We can see that this is going to be a positive number (larger than the integral without the square
+  root transformation). In fact, we can evaluate this immediately: note, for $x \in [0, 1]$, that
+  $\sqrt{1 - x^2}$ is the y-coordinate of the unit circle in the upper-right quadrant. So the answer
+  must be $\pi/4$.
 
   This time, there's no obvious antiderivative.
 
@@ -324,8 +350,14 @@ In Leibnitz notation this might be written as
   What the integral is saying is: ``walk along the $x$ axis from 0 to 1, and accumulate $\cos \theta$ values as
   you do so, where $\theta$ is the angle in the first quadrant whose $\sin$ is $x$.''
 
-  And to evaluate that integral, we want to express it as an integral over a path in $\theta$ space.
-
+  And to evaluate that integral, we want to express it as an integral over a path in $\theta$
+  space. Since $x = \sin \theta$, we have that $\dx = \cos \theta \d\theta$. So the integral is now
+  \begin{align*}
+    \int_{\theta=0}^{\theta=\pi/2} \cos^2 \theta \d\theta.
+  \end{align*}
+  To proceed one could use the double angle formula $\cos 2\theta = \cos^2\theta - \sin^2\theta$, or integration
+  by parts. These lead to a value of $\pi/4$, as they must, since the integral is the upper right
+  quadrant of the unit circle.
 \end{example}
 
 
