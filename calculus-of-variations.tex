@@ -527,6 +527,33 @@ The integrand is $f(t, x, \xdot) = x^2 - \xdot^2 - 2x\sin t$, so $\pdfdx = 2x - 
   \begin{align*}
     2\sin t + \cos t - \frac{t}{2}\cos t. ~~~~~~~ \correct
   \end{align*}
+\item
+  \begin{mdframed}
+    Find the extremising solution to the functional
+    \begin{align*}
+      J[x] = \int_0^{\pi} \xdot^2 + 2x\sin t \dt,
+    \end{align*}
+    subject to the endpoint conditions
+    \begin{align*}
+      x(0) &= 1 \\
+      x(\pi) &= 0.
+    \end{align*}
+  \end{mdframed}
+  We have $f(t, x, \xdot) = \xdot^2 + 2x\sin t$ hence
+  \begin{align*}
+    \pdfdx  &= 2\sin t \\
+    \pdfdxd &= 2\xdot,
+  \end{align*}
+  and the E-L equation is
+  \begin{align*}
+    \ddt \pdfdxd - \pdfdx &= 0 \\
+    \xddot &= \sin t.
+  \end{align*}
+  The solution to which is $x(t) = -\sin t + C$. From $x(0) = 0$ we have $C = 0$, and
+  this satisfies the other endpoint condition also.
+
+  So the solution is $x(t) = -\sin t$. ~~~~~~~\correct
+
 \end{enumerate}
 
 
@@ -535,7 +562,28 @@ The integrand is $f(t, x, \xdot) = x^2 - \xdot^2 - 2x\sin t$, so $\pdfdx = 2x - 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-2.png}
 \end{mdframed}
+(Note that although $f$ does not depend \emph{explicitly} on $t$, it does depend on $t$
+through its dependence on $x(t)$ and $\xdot(t)$.)
 
+Let $Q(t) = f(x, \xdot) - \xdot\pdfdxd$.
+
+We are asked to show that the stated assumptions lead to the conclusion that
+\begin{align*}
+  \text{E-L condition holds} \iff Q(t) \text{ is constant}.
+\end{align*}
+First we examine the time derivative of $Q$:
+\begin{align*}
+  \ddt Q(t)
+  &= \ddt \(f(x, \xdot) - \xdot \pdfdxd\) \\
+  &= \xdot \pdfdx + \xddot \pdfdxd - \xdot \ddt \pdfdxd - \xddot \pdfdxd \\
+  &= \xdot\(\pdfdx - \ddt \pdfdxd\).
+\end{align*}
+Note that this will be zero if $x$ is extremal.
+
+So at this point we conclude that, if $x$ is an extremal function, then $Q(t)$ is constant.
+
+Now, suppose $Q(t)$ is constant. Then its time derivative is zero. Therefore either $\xdot(t) = 0$
+or the E-L equations hold.
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/zz.png}
@@ -560,9 +608,9 @@ it comes back to $(a, o)$ -- we need a constraint on the shape of $y$.
 But let's see what happens if we try to use Euler-Lagrange at this stage anyway. We have
 $\pdfdy = 1$ and $\pdfdyp = 0$, and the Euler-Lagrange equations are
 \begin{align*}
-  \ddx \pdfdyp - \pdfdy = 0 - 1 = 0.
+  \ddx \pdfdyp - \pdfdy = 0 - 1 = 0,
 \end{align*}
-So some assumption has clearly been violated.
+so it looks like some assumption has been violated.
 
 In any case, we have a constraint:
 \begin{align*}
