@@ -54,4 +54,93 @@ In general the loss function is $\ell(z, \gamma, X, y)$.
   The true risk of the model is the expected value of the loss for a new (input, output)
   observation: $\E_{X, y}$
 \end{definition*}
+
+\section{Poisson Process}
+
+Let $T_1, T_2, \ldots T_n$ be waiting times sampled from a Poisson process.
+
+Since this is a Poisson process, the $T_i$ have an Exponential distribution. We want to estimate
+the rate parameter $\lambda$.
+
+Recall that the probability density function of the Exponential distribution is
+\begin{align*}
+  p(T) = \lambda e^{-\lambda T}.
+\end{align*}
+
+Check that this integrates to 1:
+\begin{align*}
+  \int_0^\infty p(t) \dt = \int_0^\infty \lambda e^{-\lambda t} \dt = -e^{-\lambda t}\Big|_0^\infty = 0 - (-1) = 1 \correct.
+\end{align*}
+
+Therefore the likelihood function (probability of the data set as a function of $\lambda$) is
+\begin{align*}
+  p(T_1, T_2, \ldots T_n) = \prod_{i=1}^n p(T_i) = \lambda^ne^{-\lambda \sum_iT_i}.
+\end{align*}
+We want to find the maximum likelihood estimate (MLE) of $\lambda$, i.e. the $\lambda$ which maximizes the
+likelihood. It is most convenient to do this using the log-likelihood (the maximum will be in the
+same location as the non-log likelihood):
+
+\begin{align*}
+  \log p(T_1, T_2, \ldots T_n) &=  n\log \lambda - \lambda \sum_iT_i \\
+  \ddlambda \log p(T_1, T_2, \ldots T_n) &= \frac{n}{\lambda} - \sum_iT_i.
+\end{align*}
+Therefore the MLE $\hat \lambda$ satisfies
+\begin{align*}
+ \frac{n}{\hat \lambda} - \sum_iT_i = 0
+\end{align*}
+which gives
+\begin{align*}
+  \hat \lambda = \frac{n}{\sum_iT_i},
+\end{align*}
+as expected.
+
+In other words, we estimate the rate by dividing the number of sampled waiting times by the sum of
+those waiting times.
+
+
+\subsection{Estimating the rate when we have only a lower bound on the waiting time}
+
+We now consider the problem of estimating the rate parameter given only lower bounds on the waiting
+times. I.e. we make $n$ observations, as before, and in each case we wait for $B$ seconds
+and did not observe any event, and at that point we stopped observing.
+
+If an Exponential random variable has rate parameter $\lambda$ events/second, the probability that we
+will observe no event in $B$ seconds is
+\begin{align*}
+  p(T > B)
+  &= 1 - \int_0^B p(t) \dt \\
+  &= 1 - \int_0^B \lambda e^{-\lambda t} \dt \\
+  &= 1 - \Big[-e^{-\lambda t}\Big]_0^B \\
+  &= 1 - (-e^{-\lambda B} - (-1)) \\
+  &= e^{-\lambda B}.
+\end{align*}
+
+So if our data set is $B_1, B_2, \ldots B_n$ then the likelihood (probability of the data set as a
+function of $\lambda$) is
+\begin{align*}
+  p(B_1, B_2, \ldots B_n) = \prod_{i=1}^n p(T > B_i) = e^{-\lambda \sum_iB_i}.
+\end{align*}
+
+Suppose now that our data set consists of $n_T$ waiting times $T_i$ that we did observe and
+$n_B$ lower bounds $B_i$ where we were only able to wait for $B_i$ seconds and didn't
+see an event.
+
+The likelihood of the combined data set is
+\begin{align*}
+  p(T_1, T_2, \ldots, T_{n_T}, B_1, B_2, \ldots, B_{n_B})
+  &= \prod_{i=1}^{n_T} p(T_i) \prod_{i=1}^{n_B} p(T > B_i) \\
+  &= \lambda^{n_T}e^{-\lambda \sum_iT_i}e^{-\lambda \sum_iB_i}.
+\end{align*}
+As before, we solve for the MLE by setting the derivative of the log likelihood to zero:
+\begin{align*}
+  \log p(T_1, T_2, \ldots, T_{n_T}, B_1, B_2, \ldots, B_{n_B})
+  &= n_T\log \lambda - \lambda \sum_iT_i - \lambda \sum_iB_i \\
+  \ddlambda \log p(T_1, T_2, \ldots, T_{n_T}, B_1, B_2, \ldots, B_{n_B})
+  &= 0 = \frac{n_T}{\lambda} - \sum_iT_i - \sum_iB_i \\
+  \hat \lambda &= \frac{n_T}{\sum_iT_i + \sum_iB_i}.
+\end{align*}
+In other words, we now estimate the rate in a similar way to before, but the numerator is different:
+we count the number of times where we \emph{did} observe an event, and dividing by the total time
+observed (including the times where we did not observe an event).
+
 \end{document}
