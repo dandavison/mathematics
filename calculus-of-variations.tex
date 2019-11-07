@@ -437,9 +437,8 @@ $$
   \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-1.png}
 \end{mdframed}
 \begin{enumerate}
-\item Let $f(t, x, \xdot) = \frac{\xdot^2}{t^3}$. Then $\pdfdx = 0$ and
-  $\pdfdxd = \frac{2\xdot}{t^3}$, and from the Euler-Lagrange equations we have that
-  $x(t)$ satisfies
+\item We have $f(t, x, \xdot) = \frac{\xdot^2}{t^3}$. So $\pdfdx = 0$ and $\pdfdxd =
+  \frac{2\xdot}{t^3}$, and from the Euler-Lagrange equations we have that $x(t)$ satisfies
 \begin{align*}
   \ddt \frac{2\xdot}{t^3} = 0.
 \end{align*}
@@ -463,9 +462,6 @@ So the extremising $x$ is $x(t) = t^4 + 1$. For this solution, the value of the 
   &= 16 \frac{t^4}{4}\Bigg|_1^2 \\
   &= 4 (16 - 1) = 60.
 \end{align*}
-
-\end{enumerate}
-
 Let's compare some other curves:
 \begin{align*}
   x(t) &= bt^n + c \\
@@ -481,8 +477,58 @@ n = 3.9; b = 15/(2^n - 1); x = b t^n + 2 - b; i = D[x, t]^2/t^3; Integrate[i, {t
 #+RESULTS:
 : 60.01726779228775
 \end{verbatim}
-
 So this appears to be correct \correct.
+
+\item
+  \begin{mdframed}
+    Find the extremising solution to the functional
+    \begin{align*}
+      J[x] = \int_0^{\pi/2} x^2 - \xdot^2 - 2x\sin t \dt,
+    \end{align*}
+    subject to the endpoint conditions
+    \begin{align*}
+      x(0)   &= 1 \\
+      x(\pi/2) &= 2.
+    \end{align*}
+  \end{mdframed}
+The integrand is $f(t, x, \xdot) = x^2 - \xdot^2 - 2x\sin t$, so $\pdfdx = 2x - 2\sin t$ and
+  $\pdfdxd = -2\xdot$, and the Euler-Lagrange equations are
+  \begin{align*}
+    \dxdt (-2\xdot)  - \(2x - 2\sin t\) &= 0 \\
+    \xddot + x &= \sin t.
+  \end{align*}
+  Let $V$ be a vector space of functions $\R \to \R$ and define $L:V \to V$ by $L(x) = \xddot + x$.
+
+  To solve our differential equation, we first find the kernel of $L$. I.e. the set of functions
+  $x$ that solve the homogeneous equation $\xddot + x = 0$.
+
+  This is a Simple Harmonic oscillator: $x(t) = \sin t$ and $x(t) = \cos t$ are both
+  solutions and so the kernel of $L$ is $\{A\sin t + B\cos t ~|~ A, B \in \R\}$.
+
+  \todo{Should complex exponentials be used here?}
+
+  Next we need a particular solution. We try (inspiration/online solutions) $x(t) = Ct\cos t$:
+  \begin{align*}
+    \xdot(t)/C      &= -t\sin t + \cos t \\
+    \xddot(t)/C      &= -t\cos t - \sin t - \sin t \\
+    \xddot(t) + x(t) &= -2C\sin t,
+  \end{align*}
+  so $x(t) = -\frac{1}{2}t\cos t$ is a particular solution, and the set of all solutions is
+  $\{A\sin t + B\cos t - \frac{1}{2}t\cos t ~|~ A, B \in \R\}$.
+
+  We now restrict this set to functions that satisfy the endpoint conditions:
+  \begin{align*}
+    A\sin 0 + B\cos 0 - \frac{1}{2}(0)\cos 0                     &= 1 \\
+    B                                                            &= 1 \\
+    A\sin (\pi/2) + B\cos (\pi/2) - \frac{1}{2}(\pi/2)\cos \pi/2 &= 2 \\
+    A                                                            &= 2.
+  \end{align*}
+  So the function that is extremal for the given functional is
+  \begin{align*}
+    2\sin t + \cos t - \frac{t}{2}\cos t. ~~~~~~~ \correct
+  \end{align*}
+\end{enumerate}
+
 
 
 \subsubsection{1.2}
@@ -508,10 +554,11 @@ general is $f(x, y, y')$, here is simply $y(x)$.
 \begin{align*}
   A[y] = \int_{-a}^{a} f(x, y, y') \dx = \int_{-a}^{a} y(x) \dx.
 \end{align*}
-Clearly there is no extremizing $y$ as things stand; we need a constraint on the shape of $y$.
+Clearly there is no extremizing $y$ as things stand -- it could go as high as it likes as long as
+it comes back to $(a, o)$ -- we need a constraint on the shape of $y$.
 
-But let's see what happens if we try to use Euler-Lagrange at this stage. We have $\pdfdy = 1$ and
-$\pdfdyp = 0$, and the Euler-Lagrange equations are
+But let's see what happens if we try to use Euler-Lagrange at this stage anyway. We have
+$\pdfdy = 1$ and $\pdfdyp = 0$, and the Euler-Lagrange equations are
 \begin{align*}
   \ddx \pdfdyp - \pdfdy = 0 - 1 = 0.
 \end{align*}
@@ -533,7 +580,8 @@ So we use a Lagrange multiplier approach: we will maximize the functional
 \end{align*}
 We have $\pdgdy = 1$ and $\pdgdyp = \frac{y'}{\sqrt{1 + y'^2}}$ and so the Euler-Lagrange equations are
 \begin{align*}
-  \ddx \pdfdyp ...
+  \ddx \pdhdyp - \pdhdy = 0 \\
+  \ddx \(\pdfdyp - \frac{\lambda y'}{\sqrt{1 + y'^2}}\) - \(\pdfdy - \lambda\) = 0 \\
 \end{align*}
 
 
