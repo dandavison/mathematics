@@ -923,43 +923,55 @@ $f$ is a set $\{(x, y) ~|~ x \in \R^n, y = f(x) \}$.
   The \defn{optimization problem} is to find the set of input values for which the function value is
   minimal. I.e. the problem is to find
   \begin{align*}
-    \argmin f := \{ x ~|~ x \in \R^n, f(x) = f^{\text{min}} \},
+    \argmin f = \{ x ~|~ x \in \R^n, f(x) = f^{\text{min}} \},
   \end{align*}
   where $f^{\text{min}} = \min\{f(x) ~ | ~ x \in \R^n\}$.
 \end{definition*}
 
-This can be solved as usual by searching for stationary points of $f$.
+This can be solved using the standard search for stationary points of $f$: i.e. compute the
+derivative function $\grad f$ (a vector field) and find the zeros of this function:
+$\{\vec{x} ~|~ (\grad f)(x) = \vec{0} \}$. In other words, we are examining the \emph{input } space, looking
+for points where the gradient is the zero vector. When considering a candidate point $\vec{x}$
+we are concerned with the gradient at that point and not directly concerned with the function value
+$f(\vec{x})$.
 
 Now consider a \defn{constrained optimization problem}: we want to find minima within a certain
-subset of the domain. The constraint will be specified as the set of points in the domain satisfying
+subset of the domain. We will initially require this subset to be a curve in the domain.
+
+Recall that there are various ways to specify a curve in the domain $\R^n$, including:
+\begin{enumerate}
+\item As an ``implicit'' equation, i.e. a {\it relation} $g(x, y, z) = 0$ (the RHS may always be taken to be zero WLOG).
+\item Parametrically, e.g. $\vecMMM{x(t)}{y(t)}{z(t)}$
+\end{enumerate}
+In the first case, for some curves it is possible to rearrange the implicit equation to express one
+coordinate as a function of the others, i.e. $g(x, y, z) = 0 \iff z = h(x, y)$.
+
+So for example, the explicit equation $y = 2x + 1$ is equivalent to the implicit relation
+$2x - y + 1 = 0$. The explicit version describes a line in $\R^2$, whereas the implicit
+version is a slice through an explicit equation of a plane in $\R^3$ ($x = 2x - y + 1$).
+
+On the other hand, the implicit relation $ax^2 + by^2 = 0$ (an ellipse in $\R^2$ centered at
+the origin) cannot be expressed as an explicit equation in $\R^2$.
+
+Here we will specify the constraint set implicitly as the set of points in the domain satisfying
 \begin{align*}
   g(x) = 0,
 \end{align*}
 where $g:\R^n \to \R$ is a differentiable function (we take the RHS to be zero WLOG).
 
+Geometrically, we can suppose that the domain is $\R^2$ and we can visualize the constraint $g$ as a
+surface in $\R^3$: the constraint set is the intersection of this surface with the x-y plane.
+
+\todo{How does the theory hold up to distinct choices of $g$ which yield the same constraint set?}
+
 So in other words, we can specify the points in the domain that satisfy the constraint arbitrarily
-by choosing $g$ such that it vanishes at those points; we just have to ensure that $g$ is differentiable.
-
-\begin{example*}
-  Let $f:\R^2 \to \R$. Suppose we want to find the minima subject to the constraint that they lie on the
-  line $x_2 = 2x_1$. This corresponds to the constraint $g(x) = 0$ where $g(x_1, x_2) = 2x_1 - x_2$.
-
-  Alternatively, suppose we want to find the minima subject to the constraint that they lie on the
-  ellipse $x_1^2 + 2x_2^2 = -3$. This is an ``implicit equation'' in $\R^2$, but corresponds to the
-  ``explicit'' equation $g(x_1, x_2) = x_1^2 + 2x_2^2 + 3 = 0$.
-\end{example*}
-
-An equation relating the input variables corresponds to an equation in a space with one higher dimension.
-
-\todo{Confused?}
-
-
+by choosing $g$ such that it is zero at those points; we just have to ensure that $g$ is differentiable.
 
 Let $g:\R^n \to \R$, and consider the set $\{ x ~|~ x \in \R^n, g(x) = 0 \}$.
 
 \begin{definition*}
-  The \defn{constrained optimization problem} is to find the set of input values \emph{in the constraint
-    set} for which $f$ is minimum:
+  The \defn{constrained optimization problem} is to find the set of input values \emph{in the
+constraint set} for which $f$ is minimum:
   \begin{align*}
     \{ x ~|~ x \in \R^n, g(x) = 0, f(x) = f^{\text{min}} \},
   \end{align*}
@@ -968,30 +980,91 @@ Let $g:\R^n \to \R$, and consider the set $\{ x ~|~ x \in \R^n, g(x) = 0 \}$.
 
 
 \begin{theorem*}[Lagrange multiplier]
-  Let $f: \R^n \to \R$ and $g:\R^n \to \R$.
+  Let $f: \R^n \to \R$ and $g:\R^n \to \R$ be differentiable.
 
-  Define $\mathcal{L}(x, \lambda) = f(x) + \lambda g(x)$ for $\lambda \in \R$.
+  Define $\mathcal{L}(x, \lambda) = f(x) - \lambda g(x)$ for $\lambda \in \R$.
 
-  Then the $x$-values of the stationary points of $\mathcal{L}$ are solutions of the constrained
-  optimization problem.
+  Then the $x$-coordinates of the stationary points of $\mathcal{L}$ are maxima/minima of $f$ subject to
+  the constraint that $g(x) = 0$.
 \end{theorem*}
 
-\begin{intuition}
+\begin{example}
   Consider $f:\R^2 \to \R$ given by $f(x_1, x_2) = -(x_1^2 + x_2^2)$. This is a convex function with its maximum at the origin.
 
   Now introduce the constraint $x_2 = x_1 - 1$. It's clear geometrically that the constrained maximum
-  is at $(-\frac{1}{2}, -\frac{1}{2}).$
+  is at $(\frac{1}{2}, -\frac{1}{2})$.
 
-  We can draw a 2D diagram of $(x_1, x_2)$-space, showing the level sets of $f$ as circles, and the constraint as a line.
+  Define the constraint function $g(x_1, x_2) = x_1 - x_2 - 1$, and define
+  \begin{align*}
+    \Lag(x_1, x_2, \lambda)
+    &= f(x_1, x_2) - \lambda g(x_1, x_2) \\
+    &= -(x_1^2 + x_2^2) - \lambda(x_1 - x_2 - 1).
+  \end{align*}
+  Find the minimum in the 3-dimensional input space of the Lagrangian:
+  \begin{align*}
+    \grad \Lag = \bvecMMM{-2x_1 - \lambda}{-2x_2 + \lambda}{x_1 - x_2 - 1} &= 0 \\
+  \end{align*}
+  \begin{align*}
+    \lambda &= -2x_1 \\
+    -2x_2 - 2x_1 &= 0 \\
+    x_1 &= -x_2 \\
+    x_2 &= -1/2 \\
+    x_1 &= 1/2 \\
+    \lambda &= -1.
+  \end{align*}
+  So the constrained maximum is at $(\frac{1}{2}, -\frac{1}{2})$ as expected.
+\end{example}
 
-  Alternatively, we can draw a 3D diagram of $(x_1, x_2, y)$-space. Now the graph of
-  $g(x) = -x_1 + x_2 + 1$ is a plane, and the constraint line represents the intersection of this
-  plane with the $y=0$ plane. This plane is sloping upwards from the bottom-right to the top-left and
-  $\grad g = \bvecMM{-1}{1}$.
+So, why does this work?
 
-  The gradient of $f$is $\grad f = \bvecMM{-2x_1}{-2x_2}$.
+Recall basic facts about the gradient. Let $h:\R^n \to \R$.
+\begin{itemize}
+\item $\grad h$ is a vector field, attaching a vector at each point in the domain of $h$.
+\item The direction of $(\grad h)(\vec x)$ is perpendicular to the curve of constant $h$ at $\vec x$.
+- The direction of $(\grad h)(\vec x)$ is the direction of steepest slope at $\vec x$.
+\end{itemize}
 
+\begin{intuition}
+  Consider $f:\R^2 \to \R$ given by $f(x_1, x_2) = -(x_1^2 + x_2^2)$. This is a convex function with its
+  maximum at the origin.
 
+  Now introduce the constraint $x_2 = x_1 - 1$. It's clear geometrically that the constrained maximum
+  is at $(\frac{1}{2}, -\frac{1}{2})$.
+
+  We can draw a 2D diagram of $(x_1, x_2)$-space, showing the level sets of $f$ as circles.
+
+  The constraint function $g$ is a plane sloping upwards to the bottom right, and the constraint is
+  the line where the plane intersects the $(x_1,x_2)$ plane.
+
+  The key intuition is that, from the diagram below it appears that the constrained maximum occurs
+  at a point where $\grad f$ and $\grad g$ are parallel.
+
+  We know that our solution lies on the red constraint line, so we search along that line. If we
+  start out on that line somewhere towards the top right, the green $\grad f$ vectors will cause us to
+  move along the line to the bottom left, but only until the point where the two gradient vectors are
+  parallel (and opposite in this case); if you go too far, they will push you back in the other
+  direction along the line.
+
+  So this suggests that we are seeking a point $(x_1, x_2)$ in the domain such that
+  $(\grad f)(x_1, x_2) = \lambda (\grad g)(x_1, x_2)$, for some constant $\lambda$.
+
+  I.e. we're seeking $(x_1, x_2)$ (and the associated $\lambda$) that solve
+\begin{align*}
+  \grad f - \lambda \grad g &= 0 \\
+  \grad (f - \lambda g) &= 0.
+\end{align*}
+
+  What does the function $f - \lambda g$ correspond to? It seems that we're ``tilting'' the $f$ surface, so
+  that it has a new maximum. The axis of rotation corresponds to the intersection of the constraint
+  plane with the $(x_1, x_2)$ plane, so we end up finding a constrained maximum that is ``above'' the
+  constraint line. If the constraint were not a straight line, this transformation would be more
+  complicated than a simple rotation.
+\begin{mdframed}
+\includegraphics[width=400pt]{img/lagrange-multiplier-diag-1.png}
+\end{mdframed}
+
+\todo{Why does the constraint line correspond to a plane with this particular orientation? Why
+doesn't it slope the other way?}
 \end{intuition}
 
 \begin{proof}
