@@ -589,7 +589,25 @@ or the E-L equations hold.
   \includegraphics[width=400pt]{img/zz.png}
 \end{mdframed}
 
+\subsubsection{1.3}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/cov-haliakis-ooc-1-3.png}
+\end{mdframed}
 
+Recall that if the Lagrangian $f = f(x, \xdot)$ does not depend on $t$ {\it explicitly}, and $x$ is extremal if
+it satisfies the alternative form of the Euler-Lagrange equation
+\begin{align*}
+    f(x, \xdot) - \xdot\pdfdxd = \constant.
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+\item We have $f(x, \xdot) = \frac{\xdot^2}{x^3}$. Therefore $\pdfdxd = \frac{2\xdot}{x^3}$, and E-L is
+  \begin{align*}
+    \frac{\xdot^2}{x^3} - \xdot \frac{2\xdot}{x^3} &= C_1 \\
+    -\xdot^2 &= C_1x^3
+  \end{align*}
+
+
+\end{enumerate}
 \subsubsection{1.8}
 \begin{mdframed}
   Among all curves of length $l$ in the upper-half $(x, y)$ plane passing through the points
@@ -632,57 +650,32 @@ We have $\pdhdy = 1$ and $\pdhdyp = \frac{-\lambda y'}{\sqrt{1 + y'^2}}$ and so 
   \ddx \pdhdyp - \pdhdy &= 0 \\
   \lambda \ddx \frac{y'}{\sqrt{1 + y'^2}} + 1 &= 0.
 \end{align*}
-Recall that we are trying to find a function $y(x)$. Integrating, we have
+Integrating, we have
 \begin{align*}
-  \lambda \frac{y'}{\sqrt{1 + y'^2}} + x &= C_1.
+  x + \lambda \frac{y'}{\sqrt{1 + y'^2}} &= C_1.
 \end{align*}
+Switch notation:
 
+We have
 \begin{align*}
-  t + \lambda \frac{\xdot}{\sqrt{1 + \xdot^2}} &= C_1 \\
+  t + \lambda \frac{\xdot}{\sqrt{1 + \xdot^2}} &= C_1,
+\end{align*}
+therefore
+\begin{align*}
   \lambda^2 \frac{\xdot^2}{1 + \xdot^2} &= (t - C_1)^2 \\
-  \lambda^2 \int \frac{\xdot^2}{1 + \xdot^2} \dt &= \int (t - C_1)^2 \dt
+  \lambda^2 \xdot^2 &= (t - C_1)^2(1 + \xdot^2) \\
+  \xdot^2(\lambda^2 - (t - C_1)^2) &= (t - C_1)^2 \\
+  \xdot^2 &= \frac{(t - C_1)^2}{\lambda^2 - (t - C_1)^2} \\
+  \xdot &= \frac{t - C_1}{\sqrt{\lambda^2 - (t - C_1)^2}} \\
+        &= \ddt \sqrt{\lambda^2 - (t - C_1)^2}.
 \end{align*}
-
-
+Therefore on integrating again, we have
 \begin{align*}
-  t + \lambda \frac{\xdot}{\sqrt{1 + \xdot^2}} &= C_1 \\
-  \lambda^2 \frac{\xdot^2}{1 + \xdot^2} &= (t - C_1)^2 \\
-  \lambda^2 \int \frac{\xdot^2}{1 + \xdot^2} \dx &= (t - C_1)^2x + C_2
+  (t - C_1)^2 + (x - C_2)^2 = \lambda^2.
 \end{align*}
+\footnote{
+The following attempts to approach the problem without Lagrange Multipliers didn't seem to get anywhere:
 
-
-
-
-
-Integrating again we have
-
-\begin{align*}
-  \lambda \int \frac{y'}{\sqrt{1 + y'^2}} \dx + \frac{1}{2}x^2 &= C_1x + C_2
-\end{align*}
-\begin{align*}
-  \lambda \int \frac{1}{\sqrt{1 + y'^2}} \dy + \frac{1}{2}x^2 &= C_1x + C_2
-\end{align*}
-
-
-\begin{align*}
-  \lambda^2 y'^2 + (x - C)(1 + y'^2) &= 0 \\
-  y'^2(\lambda^2 - (C - x)) &= C - x \\
-  y' &= \(\frac{\lambda^2}{C - x} - 1\)^{-1/2}
-\end{align*}
-\begin{align*}
-  y = 2\frac{\lambda^2}{(C - x)^2}\(\frac{\lambda^2}{C - x} - 1\)^{1/2}
-\end{align*}
-
-To integrate again, we make the substitution $y' = \sinh t$, so that we have
-\begin{align*}
-  \lambda \tanh t &= -x + C.
-\end{align*}
-\begin{align*}
-  \int \lambda \tanh t \dx = -\frac{1}{2}x^2 + Cx + D
-\end{align*}
-
-
-\newpage
 Note that the curves in question need not be functions $y(x)$, so we will express the curves
 parametrically. In order to restrict ourselves to curves of length $l$ we will restate the problem
 as follows:
@@ -696,7 +689,6 @@ where $f(l, \r, \r')$ gives the rate of change of area with respect to $l$.
 
 such that $\r(0) = \vecMM{0}{0}$ and $\r(l) = \vecMM{a}{0}$.
 
-\newpage
 We want to find a curve that maximizes
 \begin{align*}
   \int_0^l \d A.
@@ -708,3 +700,4 @@ We can write this as
 where $A(l)$ is the area up to $l$.
 
 We need to express $A'(l)$ in terms of...?
+}
