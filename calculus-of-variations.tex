@@ -624,14 +624,62 @@ So we use a Lagrange multiplier approach: we will maximize the functional
 \begin{align*}
   A[y]
   &= \int_{-a}^{a} h(x, y, y') \dx \\
-  &= \int_{-a}^{a} f(x, y, y') - \lambda g(x, y, y') \dx.
+  &= \int_{-a}^{a} f(x, y, y') - \lambda g(x, y, y') \dx \\
+  &= \int_{-a}^{a} y - \lambda \sqrt{1 + y'^2} \dx.
 \end{align*}
-We have $\pdgdy = 1$ and $\pdgdyp = \frac{y'}{\sqrt{1 + y'^2}}$ and so the Euler-Lagrange equations are
+We have $\pdhdy = 1$ and $\pdhdyp = \frac{-\lambda y'}{\sqrt{1 + y'^2}}$ and so the Euler-Lagrange equations are
 \begin{align*}
-  \ddx \pdhdyp - \pdhdy = 0 \\
-  \ddx \(\pdfdyp - \frac{\lambda y'}{\sqrt{1 + y'^2}}\) - \(\pdfdy - \lambda\) = 0 \\
+  \ddx \pdhdyp - \pdhdy &= 0 \\
+  \lambda \ddx \frac{y'}{\sqrt{1 + y'^2}} + 1 &= 0.
+\end{align*}
+Recall that we are trying to find a function $y(x)$. Integrating, we have
+\begin{align*}
+  \lambda \frac{y'}{\sqrt{1 + y'^2}} + x &= C_1.
 \end{align*}
 
+\begin{align*}
+  t + \lambda \frac{\xdot}{\sqrt{1 + \xdot^2}} &= C_1 \\
+  \lambda^2 \frac{\xdot^2}{1 + \xdot^2} &= (t - C_1)^2 \\
+  \lambda^2 \int \frac{\xdot^2}{1 + \xdot^2} \dt &= \int (t - C_1)^2 \dt
+\end{align*}
+
+
+\begin{align*}
+  t + \lambda \frac{\xdot}{\sqrt{1 + \xdot^2}} &= C_1 \\
+  \lambda^2 \frac{\xdot^2}{1 + \xdot^2} &= (t - C_1)^2 \\
+  \lambda^2 \int \frac{\xdot^2}{1 + \xdot^2} \dx &= (t - C_1)^2x + C_2
+\end{align*}
+
+
+
+
+
+Integrating again we have
+
+\begin{align*}
+  \lambda \int \frac{y'}{\sqrt{1 + y'^2}} \dx + \frac{1}{2}x^2 &= C_1x + C_2
+\end{align*}
+\begin{align*}
+  \lambda \int \frac{1}{\sqrt{1 + y'^2}} \dy + \frac{1}{2}x^2 &= C_1x + C_2
+\end{align*}
+
+
+\begin{align*}
+  \lambda^2 y'^2 + (x - C)(1 + y'^2) &= 0 \\
+  y'^2(\lambda^2 - (C - x)) &= C - x \\
+  y' &= \(\frac{\lambda^2}{C - x} - 1\)^{-1/2}
+\end{align*}
+\begin{align*}
+  y = 2\frac{\lambda^2}{(C - x)^2}\(\frac{\lambda^2}{C - x} - 1\)^{1/2}
+\end{align*}
+
+To integrate again, we make the substitution $y' = \sinh t$, so that we have
+\begin{align*}
+  \lambda \tanh t &= -x + C.
+\end{align*}
+\begin{align*}
+  \int \lambda \tanh t \dx = -\frac{1}{2}x^2 + Cx + D
+\end{align*}
 
 
 \newpage
