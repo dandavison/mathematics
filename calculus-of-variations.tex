@@ -603,8 +603,25 @@ it satisfies the alternative form of the Euler-Lagrange equation
 \item We have $f(x, \xdot) = \frac{\xdot^2}{x^3}$. Therefore $\pdfdxd = \frac{2\xdot}{x^3}$, and E-L is
   \begin{align*}
     \frac{\xdot^2}{x^3} - \xdot \frac{2\xdot}{x^3} &= C_1 \\
-    -\xdot^2 &= C_1x^3
+    -\xdot^2       &= C_1x^3 \\
+    x^{-3/2} \xdot &= C_2 \\
+    \int x^{-3/2} \dx &= \int C_2 \dt \\
+    -2x^{-1/2} &= C_2t + C_3 \\
+    x &= \frac{1}{(C_3t + C_4)^2}.
   \end{align*}
+  From the endpoint conditions, we have
+  \begin{align*}
+   x(0) = 1 &= \frac{1}{C_4^2} \\
+   C_4      &= \pm 1
+  \end{align*}
+
+\begin{align*}
+  x(2) = 4 &= \frac{1}{(2C_3 + 1)^2} \\
+  2C_3 + 1 &= \pm \frac{1}{4} \\
+  C_3      &= -\frac{3}{8}, -\frac{5}{8}.
+\end{align*}
+
+
 
 
 \end{enumerate}
