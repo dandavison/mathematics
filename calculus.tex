@@ -1071,12 +1071,100 @@ Recall basic facts about the gradient. Let $h:\R^n \to \R$.
 doesn't it slope the other way?}
 \end{intuition}
 
-\begin{proof}
+\subsection{Lagrange Multiplier theorem}
 
+\begin{theorem*}[Lagrange multiplier]
+  Let $f: \R^n \to \R$ and $g:\R^n \to \R$ be differentiable.
+
+  Let $U = \{x ~|~ g(x) = 0\}$ be the zero set of $g$.
+
+  Let $f|_U$ be the restriction of $f$ to $U$.
+
+  Define $\mathcal{L}(x, \lambda) = f(x) - \lambda g(x)$ for $\lambda \in \R$.
+
+  Then $x^*$ is an extremal point of $f|_U$ if and only if $(x^*, \lambda^*) \in \R^{n+1}$ is a stationary
+  point of $\mathcal{L}$ for some $\lambda^* \in \R$.
+\end{theorem*}
+
+\begin{lemma}[Gradient is orthogonal to level set]
+  \todo{}
+\end{lemma}
+
+
+\begin{proof}~\\
+  {\bf Preliminaries}:
+
+  (Make the declarations and assumptions listed above.)
+
+  We will use the notation $\grad_{\vec{v}} f(\x)$ to mean the directional derivative of $f$ in the
+  direction of $\v$, evaluated at $\x$.
+
+  We say a vector $\v$ is ``tangent to U at $\x$'' if there exists $\delta > 0$ such that for all
+  $0 < \epsilon < \delta$ we have $x + \epsilon \v \in U$. \todo{What is the correct notion here?}
+
+  Note that if $(\vec{w}, a)$ is a stationary point of $\Lag$, then $\grad \Lag(\vec{w}, a) = 0$ and therefore
+  $\grad f(\vec{w}) = a \grad g(\vec{w})$.
+
+  {\bf Forward direction} $\implies$:
+
+  We first show that if $\x$ is an extremal point of $f|_U$ then there exists $\lambda$ such
+  that $(\x, \lambda)$ is a stationary point of $\Lag$.
+
+  Let $\x \in U$ and suppose $\x$ is an extremal point of $f|_U$.
+
+  Therefore $\grad_{\v}f(x) = 0$ for all $\v$ tangent to $U$ at $\x$.
+
+  Suppose for a contradiction that there does not exist $\lambda$ such that $(\x, \lambda)$ is a
+  stationary point of $\Lag$.
+
+  Therefore there does not exist $\lambda$ such that $\grad f(\x) = \lambda \grad g(\x)$,
+  i.e. $\grad f(\x)$ and $\grad g(\x)$ are not parallel.
+
+  Recall (lemma) that $\grad g$ is orthogonal to the level set of $g$.
+
+  Let $\v$ be tangent to $U$ at $\x$.
+
+  Therefore $\grad g$ is orthogonal to $\v$.
+
+  Therefore $\v$ is not orthogonal to $\grad f$. (\todo{Does this hold up to arbitrary dimensionality?})
+
+  Therefore $f(\x + \v) \neq f(\x)$.
+
+  Therefore $\grad_\v f(\x) \neq 0$, i.e. $\x$ is not an extremal point of $f|_U$: a contradiction.
+
+  Therefore if $\x$ is an extremal point of $f|_U$ then there exists $\lambda$ such that $(\x, \lambda)$ is a stationary point of $\\\Lag$.
+
+  {\bf Reverse direction} $\impliedby$:
+
+  Finally we show that if $(\x, \lambda)$ is a stationary point of $\Lag$ then $\x$ is an extremal point of $f|_U$.
+
+  Let $(\x, \lambda)$ be a stationary point of $\Lag$.
+
+  Then $\grad f(\x) = \lambda\grad g(\x)$, i.e. $\grad f$ and $\grad g$ are parallel.
+
+  Let $\v$ be tangent to $U$ at $x$.
+
+  Then $\v$ is orthogonal to $\grad g$.
+
+  Therefore $\v$ is orthogonal to $\grad f$.
+
+  Therefore $\v$ is in the level set of $f$, i.e. $f(\x + \v) = f(x).$, i.e. $\grad_\v f(x) = 0$.
+
+  Since $\v$ was an arbitrary tangent vector we have that $\grad_\v f(x) = 0$ for all tangent vectors $\v$.
+
+  Therefore $x$ is an extremal point of $f|_U$.
 \end{proof}
 
 
-\newpage
+\footnote{Intuitively, there exists $\lambda^*$ such that $(x^*, \lambda^*)$ is stationary for
+  $\Lag$ because $\Lag$ represents a transformation of the surface $f$ such that $x^*$ is maximal for
+  the transformed $f$. But for this to form part of a proof, we would need to make a connection
+  between this intuition and gradients being parallel, etc.}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/lagrange-multiplier-diag-1.png}
+\end{mdframed}
+
 \section{Multivariable calculus (Berkeley Math 53)}
 
 \begin{quote}
