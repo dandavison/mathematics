@@ -158,6 +158,8 @@ In Leibnitz notation this might be written as
 
 \subsection{Integration by substitution}
 
+\todo{Incomplete}
+
 \begin{theorem}[Integration by substitution]
   Let $g:X \to Y$ and $f:Y \to Z$. Then
   \begin{align*}
@@ -911,7 +913,7 @@ height of the curve\footnote{He actually wrote ``$bc=q$''; $bc$ is a line in
   Therefore the derivative of $\tan^\1(a)$ is $\frac{1}{1 + a^2}$.
 \end{proof}
 
-\section{Optimization}
+\section{Constrained optimization: Lagrange Multipliers}
 
 Consider a scalar-valued function $f:\R^n \to \R$.
 
@@ -959,7 +961,7 @@ Here we will specify the constraint set implicitly as the set of points in the d
 \end{align*}
 where $g:\R^n \to \R$ is a differentiable function (we take the RHS to be zero WLOG).
 
-Geometrically, we can suppose that the domain is $\R^2$ and we can visualize the constraint $g$ as a
+Geometrically, we can suppose that the domain is $\R^2$ and we can visualize the constraint function $g$ as a
 surface in $\R^3$: the constraint set is the intersection of this surface with the x-y plane.
 
 \todo{How does the theory hold up to distinct choices of $g$ which yield the same constraint set?}
@@ -992,8 +994,10 @@ constraint set} for which $f$ is minimum:
   Consider $f:\R^2 \to \R$ given by $f(x_1, x_2) = -(x_1^2 + x_2^2)$. This is a convex function with its maximum at the origin.
 
   Now introduce the constraint $x_2 = x_1 - 1$. It's clear geometrically that the constrained maximum
-  is at $(\frac{1}{2}, -\frac{1}{2})$.
-
+  is at $(\frac{1}{2}, -\frac{1}{2})$:
+\begin{mdframed}
+\includegraphics[width=400pt]{img/lagrange-multiplier-diag-1.png}
+\end{mdframed}
   Define the constraint function $g(x_1, x_2) = x_1 - x_2 - 1$, and define
   \begin{align*}
     \Lag(x_1, x_2, \lambda)
