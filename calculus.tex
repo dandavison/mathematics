@@ -1102,8 +1102,34 @@ doesn't it slope the other way?}
   We say a vector $\v$ is ``tangent to U at $\x$'' if there exists $\delta > 0$ such that for all
   $0 < \epsilon < \delta$ we have $x + \epsilon \v \in U$. \todo{What is the correct notion here?}
 
-  Note that if $(\vec{w}, a)$ is a stationary point of $\Lag$, then $\grad \Lag(\vec{w}, a) = 0$ and therefore
-  $\grad f(\vec{w}) = a \grad g(\vec{w})$.
+  Note that if $(x, \lambda)$ is a stationary point of $\Lag$, then $(\grad \Lag)(x, \lambda) = 0$, so we have
+  \begin{align*}
+    \begin{cases}
+      \(\partial_x \Lag\)(x, \lambda) &= 0 \\
+      \(\partial_\lambda \Lag\)(x, \lambda) &= 0
+    \end{cases}
+  \end{align*}
+
+  \begin{align*}
+    \begin{cases}
+      \(\partial_x (f - \lambda g)\)(x, \lambda) &= 0 \\
+      \(\partial_\lambda (f - \lambda g)\)(x, \lambda) &= 0
+    \end{cases}
+  \end{align*}
+
+  \begin{align*}
+    \begin{cases}
+      \(\partial_x f - \lambda \partial_x g\)(x, \lambda) &= 0 \\
+      \(\partial_\lambda f - \partial_\lambda (\lambda g)\)(x, \lambda) &= 0
+    \end{cases}
+  \end{align*}
+
+  \begin{align*}
+    \begin{cases}
+      (\partial_x f)(x) - \lambda (\partial_x g)(x) &= 0 \\
+      0 - g(x)
+    \end{cases}
+  \end{align*}
 
   {\bf Forward direction} $\implies$:
 
