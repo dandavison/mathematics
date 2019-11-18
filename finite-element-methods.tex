@@ -1,0 +1,59 @@
+\section{DSM / FEM (ch 1 \& 2)}
+\begin{enumerate}
+\item A plane truss is a system of bars (elements), meeting at joints (nodes) .
+\item We model it, basically, as a system of springs, each element behaving a bit like a spring under Hooke's law.
+\item The truss has some equilibrium configuration in which forces are balanced.
+\item Each node has a resultant force and a displacement away from its equilibrium position. It's a 2D model so that's 4 numbers in total.
+\item In a $n$-node system there are $2n$ forces and $2n$ displacements.
+\item In a DSM analysis, the basic question is: Suppose some of the nodes are displaced away from that equilibrium configuration. What are the resulting
+  forces?
+\item The DSM model says that there is a linear transformation $K$ which computes the vector of forces $f$, given the vector of
+  displacements $u$, i.e. $f = K u$
+\item In some sense (?) this is like Hooke's law, which says that the force on the end of a single spring is equal to some constant times the spring
+  displacement.
+\item The entries in the matrix $K$involve three considerations:
+  \begin{enumerate}
+  \item Certain displacements are irrelevant to certain forces.
+  \item Certain displacements are positively related to certain forces while others are negatively related.
+  \item The actual value of the non-zero entries is determined by physical considerations (elasticity, cross-sectional area, length), similar to
+    how the Hooke's law coefficient reflects physical characteristics of the spring.
+  \end{enumerate}
+\item In the first step of a FEM analysis, one considers each element separately, so the force and displacement vectors have length 4 (two nodes),
+  i.e. the equation is a linear tranformation $\R^4 \to \R^4$. You write the matrix equations for each element separately, and then there is some
+  procedure for coming up with a combined equation for the overall system (i.e.$\R^{2n} \to \R^{2n}$). (I'm vague on this bit, but it didn't seem to be an
+  iterative algorithm, it seemed like linear algebra gave you a way of just computing a consistent equation for the combined system in one step)
+\item Some nodal displacements / forces are known a priori, the others can then be solved for using standard linear algebra techniques (I'm vague on this
+  too).
+\end{enumerate}
+
+\section{Variational approach (ch. 11)}
+\begin{enumerate}
+\item Consider a system comprising a single bar. $x$ measures location along the bar.
+\item The question has now changed. Whereas previously we asked what the nodal forces are given nodal displacements (i.e. the bars always remained
+  straight lines?), now we say: Suppose the nodal displacements cause the bars to be deformed. What function describes the shape that the bars adopts
+  when subjected to the nodal displacaments?
+\item This function is the axial displacement function $u(x)$.
+\item So we're now seeking a continuous function, rather than a finite-dimensional vector.
+\item We can write down a functional that, given a candidate axial displacement function, computes the associated total potential energy TPE. Then we can
+  use calculus of variations arguments to solve for $u(x)$on the basis that the unknown function $u(x)$ will be whatever minimizes the TPE functional.
+\item The TPE functional has the form (potential energy) = (internal energy) - (external energy)
+\item The internal energy is modeled as an integral over the length of the bar. The quantity being integrated models stress and strain at location
+  $x$.
+\item The internal energy at a location $x$ depends not only on the location $x$, but also on the rate-of-change of axial displacement $u'$. I.e. "strain"
+  is greater in a region in which the displacement is changing more rapidly.
+\item This involvement of $u'$ is similar to the situation in classical mechanics, where the motion of a particle is determined not only by its location
+  (which determined its potential energy) but also by its momentum (velocity; which determines its kinetic energy). So whereas in FEM the independent
+  variable is $x$ and we want to know the axial displacement function $u(x)$, in classical mechanics the independent variable is time $t$ and we want
+  to know the particle's trajectory $y(t)$. In classical mechanics the Principle of Least Action says that the trajectory $y(t)$ of the particle will
+  be whatever function $y(t)$ minimizes the functional
+  \begin{align*}
+    \int \text{KE}\(y'(t)\) - \text{PE}\(y(t)\) \dt.
+  \end{align*}
+  In FEM we are trying to find a function $u(x)$ which minimizes the functional
+  \begin{align*}
+    \int \text{IE}\(u(x), u'(x)\) - \text{EE}\(x, u(x)\) \dx.
+  \end{align*}
+\item In principle one could use the Euler-Lagrange equations, which would give a differential equation which the unknown function $u(x)$ must
+  satisfy. However in ch. 11 the author assumes that $u$ has a piecewise-linear form. I think this is in order to demonstrate that the same linear
+  equation from DSM connecting nodal displacements and forces via a stiffness matrix can be derived under that assumption?
+\end{enumerate}
