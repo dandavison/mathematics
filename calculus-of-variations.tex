@@ -1,19 +1,17 @@
 \footnotetext{Notes from Classical Mechanics by John R. Taylor, ch. 6}
 
 \section{Two example problems}
-The calculus of variations can be used to find a function $y(x)$ that minimizes a scalar quantity
-that is expressed as an integral $\int_{x_0}^{x_1} f[y(x), y'(x), x] \dx$. Here are two such
-problems:
+The calculus of variations can be used to find a function $y(x)$ that minimizes a scalar quantity that is expressed as an
+integral $\int_{x_0}^{x_1} f[y(x), y'(x), x] \dx$. Here are two such problems:
 
 \begin{question*}
   What is the shortest path between two points in a plane?
 \end{question*}
 
 \begin{proof}
-  Let the points be $(x_0, y_0)$ and $(x_1, y_1)$ and let them be joined by some path $y(x)$ of
-  length $S$. Consider a short section of the path of length $\Delta s$ above a section of the
-  $x$-axis of length $\Delta x$, and make a linear approximation to the path in this region. The
-  length of the hypotenuse is
+  Let the points be $(x_0, y_0)$ and $(x_1, y_1)$ and let them be joined by some path $y(x)$ of length $S$. Consider a short section of the path of
+  length $\Delta s$ above a section of the $x$-axis of length $\Delta x$, and make a linear approximation to the path in this region. The length of the
+  hypotenuse is
   \begin{align*}
     \Delta s = \sqrt{(\Delta x)^2 + (y'(x)\Delta x)^2} = \sqrt{1 + y'(x)^2} \Delta x.
   \end{align*}
@@ -29,18 +27,15 @@ problems:
 
 
 \begin{question*}
-  In 1662 Fermat proposed that light, when passing from one point to another through a material with
-  varying refractive index, takes the path which takes least time\footnote{\todo{In fact, the path
-      taken is a stationary point with respect to the action? time? ...not necessarily least}}. What
-  is this path?
+  In 1662 Fermat proposed that light, when passing from one point to another through a material with varying refractive index, takes the path which
+  takes least time\footnote{\todo{In fact, the path taken is a stationary point with respect to the action? time? ...not necessarily least}}. What is
+  this path?
 \end{question*}
 
 \begin{proof}
-  Again consider a short section of the path of length $\Delta s$ above a section of the $x$-axis of
-  length $\Delta x$. Let $c$ be the speed of light and $n$ be the refractive index in this
-  region. This means that the light travels at speed $c/n$, and therefore takes time $(n/c)\Delta s$
-  to pass along the hypotenuse. The refractive index $n$ can vary with both $x$ and $y$, therefore a
-  least-time path is a function $y(x)$ that minimizes
+  Again consider a short section of the path of length $\Delta s$ above a section of the $x$-axis of length $\Delta x$. Let $c$ be the speed of light and
+  $n$ be the refractive index in this region. This means that the light travels at speed $c/n$, and therefore takes time $(n/c)\Delta s$ to pass along the
+  hypotenuse. The refractive index $n$ can vary with both $x$ and $y$, therefore a least-time path is a function $y(x)$ that minimizes
   \begin{align*}
     T = \int_{x_0}^{x_1} n(x, y(x)) \d s = \int_{x_0}^{x_1} n(x, y(x)) \sqrt{1 + y'(x)^2} \dx,
   \end{align*}
@@ -49,66 +44,56 @@ problems:
   \todo{Find the function $y$ that minimizes this integral.}
 \end{proof}
 
-A naive thought would be to somehow treat $y$ similarly to how a variable is treated when minimizing
-a function in in basic calculus, i.e. differentiate the expression with respect to $y$. Recall that
-the definition of derivative is
+A naive thought would be to somehow treat $y$ similarly to how a variable is treated when minimizing a function in in basic calculus,
+i.e. differentiate the expression with respect to $y$. Recall that the definition of derivative is
 \begin{align*}
   f'(y_0) = \lim_{y_1 \to y_0}\frac{f(y_1) - f(y_0)}{||y_1 - y_0||}.
 \end{align*}
 
-\todo{I think this is nonsense and the reason is that multiplication (and therefore division) of
-  functions is not defined (they can be treated as vectors, so can be added and scaled, but do not
-  have an obviously appropriate multiplication operation). I don't think choosing a norm would
+\todo{I think this is nonsense and the reason is that multiplication (and therefore division) of functions is not defined (they can be treated as
+  vectors, so can be added and scaled, but do not have an obviously appropriate multiplication operation). I don't think choosing a norm would
   necessarily be problematic.}
 
 \section{The Euler-Lagrange equations}
 
 \begin{proof}
-  Note that in both example problems, the integral to be minimized can be viewed as a scalar-valued
-  \emph{functional} $S$ that depends on the \emph{function} $y$:
+  Note that in both example problems, the integral to be minimized can be viewed as a scalar-valued \emph{functional} $S$ that depends on the \emph{function} $y$:
   \begin{align*}
     S[y](x_0, x_1) = \int_{x_0}^{x_1} f[x, y(x), y'(x)] \dx.
   \end{align*}
-  The arguments of the function $f$ that is integrated are \emph{not functions}! They are numeric
-  values at a single point in the path: the current $x$ value, the current $y$ value, and current
-  slope. We will attempt to stick to a notation wherein a symbol like $y$ is a function, and $y(x)$
-  is a result of evaluating the function at input value $x$.
+  The arguments of the function $f$ that is integrated are \emph{not functions}! They are numeric values at a single point in the path: the current
+  $x$ value, the current $y$ value, and current slope. We will attempt to stick to a notation wherein a symbol like $y$ is a function, and $y(x)$ is a
+  result of evaluating the function at input value $x$.
 
-  We'll refer to $S$ as giving the \emph{cost} of traveling along the path $y$, from $(x_0, y_0)$ to
-  $(x_1, y_1)$.
+  We'll refer to $S$ as giving the \emph{cost} of traveling along the path $y$, from $(x_0, y_0)$ to $(x_1, y_1)$.
 
-  Recall that we seek a least-cost path $y$, subject to the requirement that the endpoints are
-  $y(x_0) = y_0$ and $y(x_1) = y_1$. Let $y$ be the least-cost path, and consider an alternative
-  path $Y$ whose cost is greater than that of $y$. We can write $Y$ as
+  Recall that we seek a least-cost path $y$, subject to the requirement that the endpoints are $y(x_0) = y_0$ and $y(x_1) = y_1$. Let $y$ be the
+  least-cost path, and consider an alternative path $Y$ whose cost is greater than that of $y$. We can write $Y$ as
   \begin{align*}
     Y = y + \eta,
   \end{align*}
-  where we are performing addition on domain-compatible
-  functions\footnote{$(f + g)(x) := f(x) + g(x)$}. The difference function $\eta$ must satisfy
-  $\eta(x_0) = \eta(x_1) = 0$ in order to restrict the space of functions to those with the same
-  endpoints as $y$. Now introduce a parameter $\alpha \in \R$ and redefine $Y$ as\footnote{We are
-    adding functions, and we are multiplying a function by a real scalar $\alpha$. The resulting
-    function evaluates as $Y(x) = y(x) + \alpha\eta(x).$}
+  where we are performing addition on domain-compatible functions\footnote{$(f + g)(x) := f(x) + g(x)$}. The difference function $\eta$ must
+  satisfy $\eta(x_0) = \eta(x_1) = 0$ in order to restrict the space of functions to those with the same endpoints as $y$. Now introduce a parameter
+  $\alpha \in \R$ and redefine $Y$ as\footnote{We are adding functions, and we are multiplying a function by a real scalar $\alpha$. The resulting function
+    evaluates as $Y(x) = y(x) + \alpha\eta(x).$}
   \begin{align*}
     Y = y + \alpha\eta.
   \end{align*}
 
-  So now we have a family of paths, parameterized by $\alpha$, all satisfying the endpoint
-  requirement, and with the least-cost path corresponding to $\alpha=0$. We can reinterpret the cost
-  $S$ so that it is a function of $\alpha$:
+  So now we have a family of paths, parameterized by $\alpha$, all satisfying the endpoint requirement, and with the least-cost path corresponding
+  to $\alpha=0$. We can reinterpret the cost $S$ so that it is a function of $\alpha$:
   \begin{align*}
     S[y](\alpha) &= \int_{x_0}^{x_1} f(x, Y(x), Y'(x)) \dx \\
             &= \int_{x_0}^{x_1} f\(x, y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x)\) \dx.
   \end{align*}
-  We are trying to find a path $y$ that is a minimum in the cost surface over the function space (or
-  a maximum, or saddle point). For such a $y$ it must be the case that
+  We are trying to find a path $y$ that is a minimum in the cost surface over the function space (or a maximum, or saddle point). For such a $y$ it
+  must be the case that
   \begin{align*}
     \del_\alpha S[y]\Big|_{\alpha=0} = 0.
   \end{align*}
 
-  So, let's compute $\del_\alpha S[y]$ and use the fact that it must evaluate to zero at $\alpha=0$
-  to obtain an equation that $y$ must obey. We'll assume that $f$ satisfies the (mild) conditions
-  necessary to ``differentiate under the integral sign'', i.e. that
+  So, let's compute $\del_\alpha S[y]$ and use the fact that it must evaluate to zero at $\alpha=0$ to obtain an equation that $y$ must obey. We'll assume
+  that $f$ satisfies the (mild) conditions necessary to ``differentiate under the integral sign'', i.e. that
   \begin{align*}
     \del_\alpha S = \del_\alpha \int_{x_0}^{x_1} f(x, Y(x), Y'(x)) \dx
                  = \int_{x_0}^{x_1} (\del_\alpha f)(x, Y(x), Y'(x)) \dx.
@@ -136,34 +121,28 @@ the definition of derivative is
   (I believe that $Y$ and $Y'$ have now become $y$ and $y'$ because we are evaluating at
   $\alpha=0$.)
 
-  Now, recall integration by parts,
-  $\int_a^b u \dv{v}{x} \d x = [uv]_a^b - \int_a^b v\dv{u}{x}\d x$, and apply it to the second term
-  inside the integral:
+  Now, recall integration by parts, $\int_a^b u \dv{v}{x} \d x = [uv]_a^b - \int_a^b v\dv{u}{x}\d x$, and apply it to the second term inside the integral:
   \begin{align*}
     \int_{x_0}^{x_1} \eta'\pdv{f}{y'} \d x = \Bigg[\eta\pdv{f}{y'}\Bigg]_{x_0}^{x_1} - \int_{x_0}^{x_1} \eta\(\dv{}{x}\pdv{f}{y'}\)\d x.
   \end{align*}
-  Because $\eta$ was defined to be the difference between two candidate paths, as noted above we
-  have that $\eta(x_0) = \eta(x_1) = 0$. Thus the first term (the ``endpoint term'' or ``boundary
-  term'') is zero\footnote{According to Taylor this is common in physics, i.e. that the endpoint
-    term is zero and thus integration by parts results in ``switching the prime'' from one factor to
-    the other under the integral, and applying a negation.}. So now we have
+  Because $\eta$ was defined to be the difference between two candidate paths, as noted above we have that $\eta(x_0) = \eta(x_1) = 0$. Thus the first term
+  (the ``endpoint term'' or ``boundary term'') is zero\footnote{According to Taylor this is common in physics, i.e. that the endpoint term is zero and
+    thus integration by parts results in ``switching the prime'' from one factor to the other under the integral, and applying a negation.}. So now we
+  have
   \begin{align*}
     \int_{x_0}^{x_1} \eta(x)\(\pdv{f}{y} - \dv{}{x}\pdv{f}{y'}\) \d x = 0.
   \end{align*}
-  We now argue that this means that the difference-of-derivatives-function inside the integral is
-  zero for all $x$. The reason is basically that this equality is true for \emph{any} $\eta(x)$. So
-  suppose the difference-of-derivatives-function were not equal to zero for some $x$. Then we could
-  construct an $\eta(x)$ that is non-zero for the same $x$ values that the
-  difference-of-derivatives-function is non-zero for, the upshot being that we could construct
-  things so that the value of the integral is non-zero; a contradiction. Therefore the
-  difference-of-derivatives-function is zero for all $x$, and we have the Euler-Lagrange equations:
+  We now argue that this means that the difference-of-derivatives-function inside the integral is zero for all $x$. The reason is basically that this
+  equality is true for \emph{any} $\eta(x)$. So suppose the difference-of-derivatives-function were not equal to zero for some $x$. Then we could construct
+  an $\eta(x)$ that is non-zero for the same $x$ values that the difference-of-derivatives-function is non-zero for, the upshot being that we could
+  construct things so that the value of the integral is non-zero; a contradiction. Therefore the difference-of-derivatives-function is zero for
+  all $x$, and we have the Euler-Lagrange equations:
   \begin{align*}
     \pdv{f}{y} - \dv{}{x}\pdv{f}{y'} = 0.
   \end{align*}
 \end{proof}
 
-This is a system of differential equations which must be satisfied by any path that is stationary
-with respect to $f$.
+This is a system of differential equations which must be satisfied by any path that is stationary with respect to $f$.
 
 In SICM's functional notation, the Euler-Lagrange system of equations is
 \begin{align*}
@@ -171,27 +150,23 @@ In SICM's functional notation, the Euler-Lagrange system of equations is
 \end{align*}
 where
 \begin{itemize}
-\item $\Gamma$ is a function mapping time to the tuple of arguments taken by $f$,
-  i.e. $\Gamma[q](t) = (t, y(t), y'(t))$,
-\item $\del_1$ refers to the partial derivative with respect to position and $\del_2$ is with
-  respect to velocity (zero-based indexing of positional arguments).
+\item $\Gamma$ is a function mapping time to the tuple of arguments taken by $f$, i.e. $\Gamma[q](t) = (t, y(t), y'(t))$,
+\item $\del_1$ refers to the partial derivative with respect to position and $\del_2$ is with respect to velocity (zero-based indexing of positional
+  arguments).
 \end{itemize}
 
-So, any path $q$ for which the action is stationary satisfies the Euler-Lagrange system of
-differential equations. And what those equations say is the following:
+So, any path $q$ for which the action is stationary satisfies the Euler-Lagrange system of differential equations. And what those equations say is the
+following:
 \begin{enumerate}
 \item Recall that $f$ is a function of time, position and velocity values at a single moment in time.
-\item Compute the partial derivative function of $f$ with respect to the position argument. Note
-  that this is a function of time, position and velocity; its output is a real number (the slope
-  of a certain tangent line to the real-valued $f$ surface).
-\item Now, form a new function by composing this partial derivative function with $\Gamma[q]$. The
-  new function maps time to a real number (the slope). Call this function $A$.
-\item Repeat the previous two steps for the velocity argument, instead of the position
-  argument. So again, the result is a function mapping time to a real number. But this time, take
-  the time derivative of that function. The result is still a function mapping time to a real
-  number. Call this function $B$.
-\item Now, take a candidate path $q$. If the action is stationary along that path, then at every
-  moment $t$ we will find that $A(t) = B(t)$.
+\item Compute the partial derivative function of $f$ with respect to the position argument. Note that this is a function of time, position and velocity;
+  its output is a real number (the slope of a certain tangent line to the real-valued $f$ surface).
+\item Now, form a new function by composing this partial derivative function with $\Gamma[q]$. The new function maps time to a real number (the slope). Call
+  this function $A$.
+\item Repeat the previous two steps for the velocity argument, instead of the position argument. So again, the result is a function mapping time to a real
+  number. But this time, take the time derivative of that function. The result is still a function mapping time to a real number. Call this
+  function $B$.
+\item Now, take a candidate path $q$. If the action is stationary along that path, then at every moment $t$ we will find that $A(t) = B(t)$.
 \end{enumerate}
 
 
@@ -217,8 +192,8 @@ Let's return to this problem, using the functional notation. We have
     \begin{align*}
     D(\partial_2f \circ \Gamma[q]) - \partial_1f \circ \Gamma[q] = 0.
     \end{align*}
-  \item Since the partial derivative $\partial_1f$ with respect to the position argument is zero, the
-    Euler-Lagrange equation states that for the action to be minimized we must have
+  \item Since the partial derivative $\partial_1f$ with respect to the position argument is zero, the Euler-Lagrange equation states that for the action to be
+    minimized we must have
     \begin{align*}
      D (\del_2 f \circ \Gamma[q])(t)
      = \(\frac{y'}{(1 + y'^2)^{1/2}}\)'
@@ -242,23 +217,21 @@ Let $f(x, y, y') = \sqrt{1 + y'(x)}$. In this context, the Euler-Lagrange equati
 \begin{align*}
   \ddx \frac{\partial f}{\partial y'} - \frac{\partial f}{\partial y} = 0.
 \end{align*}
-But $f$ depends only on $y'$, so we have that $\frac{\partial f}{\partial y'} $ is constant. The argument above then
-proves that $y$ must be a straight line.
+But $f$ depends only on $y'$, so we have that $\frac{\partial f}{\partial y'} $ is constant. The argument above then proves that $y$ must be a straight line.
 \end{proof}
 
-\todo{This proof only shows that a straight line is a minimum out of those paths that can be expressed
-  as a function $y(x)$. Prove it is the minimum over all paths.}
+\todo{This proof only shows that a straight line is a minimum out of those paths that can be expressed as a function $y(x)$. Prove it is the minimum
+  over all paths.}
 
 \subsubsection{Traditional notation, minimum over parametric curves}
 \begin{proof}
-  Let $\r(u) = (x(u), y(u))$ be a parameterized representation that ranges over a suitable class of
-  paths such that $\r(0) = (x_0, y_0)$ and $\r(1) = (x_1, y_1)$. We want to find the $\r(u)$ that minimizes
+  Let $\r(u) = (x(u), y(u))$ be a parameterized representation that ranges over a suitable class of paths such that $\r(0) = (x_0, y_0)$
+  and $\r(1) = (x_1, y_1)$. We want to find the $\r(u)$ that minimizes
   \begin{align*}
     S[\r] = \int_{u=0}^{u=1} \ds.
   \end{align*}
-  In order to use the Euler-Lagrange equations, we need to write the integrand as a function of
-  independent variable, dependent variable, derivatives of dependent variable. I.e.
-  $f(u, \r, \r')$. We have
+  In order to use the Euler-Lagrange equations, we need to write the integrand as a function of independent variable, dependent variable, derivatives
+  of dependent variable. I.e.  $f(u, \r, \r')$. We have
   \begin{align*}
     (\Delta S)^2
     &= (\Delta x)^2 + (\Delta y)^2 \\
@@ -277,22 +250,19 @@ proves that $y$ must be a straight line.
       \ddu \frac{\partial f}{\partial y'} - \frac{\partial f}{\partial y} &= 0.
     \end{cases}
   \end{align*}
-  Since $f$ depends only on the derivative but not on the position, we have that
-  $\frac{\partial f}{\partial x'}$ and $\frac{\partial f}{\partial y'}$ are constant:
+  Since $f$ depends only on the derivative but not on the position, we have that $\frac{\partial f}{\partial x'}$ and $\frac{\partial f}{\partial y'}$ are constant:
   \begin{align*}
     \pdfdxp = \frac{x'}{\sqrt{x'^2 + y'^2}} &= \text{constant} \\
     \pdfdyp = \frac{y'}{\sqrt{x'^2 + y'^2}} &= \text{constant}.
   \end{align*}
-  On dividing the second equation by the first we have $y'/x' = \dydx = \text{constant}$, and
-  therefore that $\r(u)$ is a straight line.
+  On dividing the second equation by the first we have $y'/x' = \dydx = \text{constant}$, and therefore that $\r(u)$ is a straight line.
 \end{proof}
 
 \subsection{The Brachistochrone}
 
 \begin{mdframed}
-  A wire is arranged in a plane perpendicular to the Earth's surface. A bead slides down the wire,
-  without friction, from the origin to $(x_1, y_1)$. What shape must the wire adopt to minimize the
-  travel time?
+  A wire is arranged in a plane perpendicular to the Earth's surface. A bead slides down the wire, without friction, from the origin
+  to $(x_1, y_1)$. What shape must the wire adopt to minimize the travel time?
 \end{mdframed}
 
 \begin{proof}
@@ -302,33 +272,26 @@ proves that $y$ must be a straight line.
   \begin{align*}
     S[y] = \int_{(0, 0) \to (x_1, y_1)} \dt.
   \end{align*}
-  But, we don't know what the end time is, so we don't know how to evaluate that integral as it
-  stands. What we do know is (a) the path taken in the $x$ dimension and (b) the path taken in the
-  $y$ dimension. So what we need to do is express the integral as an integral over one of those
+  But, we don't know what the end time is, so we don't know how to evaluate that integral as it stands. What we do know is (a) the path taken in
+  the $x$ dimension and (b) the path taken in the $y$ dimension. So what we need to do is express the integral as an integral over one of those
   one-dimensional paths.
 
-  Somehow, the shape of the wire is going to influence the velocity of the bead: that's the
-  connection between the shape, and the travel time. So, how exactly does the shape influence the
-  velocity? Well, in any small section of wire, the local angle of the wire determines the component
-  of the weight force that acts along the wire. So, the net force acting on the bead depends only on
-  position, and the trajectory function is a solution to the corresponding differential
-  equation. But that seems circular: we can't specify the differential equation until we know the
-  shape. It's like we'd be doing a search over differential equations with the aim of finding the
-  one whose solution has minimum travel time.
+  Somehow, the shape of the wire is going to influence the velocity of the bead: that's the connection between the shape, and the travel time. So, how
+  exactly does the shape influence the velocity? Well, in any small section of wire, the local angle of the wire determines the component of the
+  weight force that acts along the wire. So, the net force acting on the bead depends only on position, and the trajectory function is a solution to
+  the corresponding differential equation. But that seems circular: we can't specify the differential equation until we know the shape. It's like we'd
+  be doing a search over differential equations with the aim of finding the one whose solution has minimum travel time.
 
-  Conservation of energy is the way forwards here. Although we don't know $\ydot$ or $\xdot$
-  individually, we \textit{do} know the magnitude of the velocity:
+  Conservation of energy is the way forwards here. Although we don't know $\ydot$ or $\xdot$ individually, we \textit{do} know the magnitude of the velocity:
   \begin{align*}
     \frac{1}{2}mv^2 &= mgy \\
     v               &= \sqrt{2gy}.
   \end{align*}
-  OK, so that seems promising; let's try to formulate the problem as an integral over the path in
-  the $y$ dimension. Recall that we want to evaluate
+  OK, so that seems promising; let's try to formulate the problem as an integral over the path in the $y$ dimension. Recall that we want to evaluate
   \begin{align*}
     S[y] = \int_{(0, 0) \to (x_1, y_1)} \dt.
   \end{align*}
-  We know that $\dt ~ v$ is the distance traveled in a small increment of
-  time. I.e. $\dt ~ v &= \sqrt{\dx^2 + \dy^2} \\$, therefore
+  We know that $\dt ~ v$ is the distance traveled in a small increment of time. I.e. $\dt ~ v &= \sqrt{\dx^2 + \dy^2} \\$, therefore
   \begin{align*}
     S[y] = \frac{1}{\sqrt{2g}}\int_{(0, 0) \to (x_1, y_1)} \sqrt{\frac{\dx^2 + \dy^2}{y}}.
   \end{align*}
@@ -336,8 +299,7 @@ proves that $y$ must be a straight line.
   \begin{align*}
     S[y] = \frac{1}{\sqrt{2g}}\int_{0}^{y_1} \sqrt{\frac{x'^2 + 1}{y}}\dy,
   \end{align*}
-  where $x' = \frac{\dx}{\dy}$. I.e. we are now viewing
-  $y$ as the independent variable, and seek a function
+  where $x' = \frac{\dx}{\dy}$. I.e. we are now viewing $y$ as the independent variable, and seek a function
   $x(y)$ subject to the endpoint conditions $x(0) = 0$ and $x(y_1) = x_1$.
 
   If we define $f(y, x, x') = \sqrt{\frac{x'^2 + 1}{y}}$, then the Euler-Lagrange equations for this problem are
@@ -348,8 +310,8 @@ proves that $y$ must be a straight line.
   \begin{align*}
     \pdfdxp = \frac{1}{\sqrt{y}} \frac{1}{2}\frac{1}{\sqrt{x'^2 + 1}}2x' = \sqrt{\frac{x'^2}{y(x'^2 + 1)}}.
   \end{align*}
-  And the partial derivative with respect to $x$ is $\pdfdx = 0$, so we have that
-  $\pdfdxp$ is a constant, say $c^2$. Hence the function $x(y)$ that we seek must satisfy
+  And the partial derivative with respect to $x$ is $\pdfdx = 0$, so we have that $\pdfdxp$ is a constant, say $c^2$. Hence the function
+  $x(y)$ that we seek must satisfy
   \begin{align*}
     \frac{x'^2}{y(x'^2 + 1)} &= c \\
     x'^2(cy - 1) + cy       &= 0 \\
@@ -370,8 +332,7 @@ proves that $y$ must be a straight line.
     \begin{align*}
     S[y] = \int_{0}^{x_1} \sqrt{\frac{1 + y'^2}{2gy}}\dx.
   \end{align*}
-  Thus the problem is to find the function $y$ that minimizes the functional
-  $S$, subject to the conditions $y(0) = 0$ and $y(x_1) = y_1$.
+  Thus the problem is to find the function $y$ that minimizes the functional $S$, subject to the conditions $y(0) = 0$ and $y(x_1) = y_1$.
 
   Can we now use the Euler-Lagrange equations? We have $f(x, y, y') = \sqrt{\frac{1 + y'^2}{2gy}}$, and so
   \begin{align*}
@@ -390,14 +351,12 @@ Let $q:\R^+ \to \R$ be a function that maps time to coordinate in one-dimensiona
   general, $q$ will map time to ``generalized coordinates'' of the system, i.e. whatever parameters
   are used to specify the state of the system at a moment in time}
 
-Let $\eta$ be another function like $q$, with the same endpoints at the start and end time, and let
-$\epsilon \in \R$, so that $q + \epsilon\eta$ is a different path with the same endpoints.
+Let $\eta$ be another function like $q$, with the same endpoints at the start and end time, and let $\epsilon \in \R$, so that $q + \epsilon\eta$ is a different path with
+the same endpoints.
 
-\blue{Note that the addition and scalar multiplication operators here are acting on a set of
-  functions with the same range, and that they are defined as componentwise addition of the function
-  values, and scalar multiplication of each function value:
-  $(q + \epsilon\eta)(x) := q(x) + (\epsilon\eta)(x) := q(x) + \epsilon\eta(x)$. The set of path
-  functions forms a vector space.}
+\blue{Note that the addition and scalar multiplication operators here are acting on a set of functions with the same range, and that they are defined
+  as componentwise addition of the function values, and scalar multiplication of each function
+  value: $(q + \epsilon\eta)(x) := q(x) + (\epsilon\eta)(x) := q(x) + \epsilon\eta(x)$. The set of path functions forms a vector space.}
 
 Let $f[q]$ be a function that depends on a path $q$.
 
@@ -499,11 +458,10 @@ So this appears to be correct \correct.
   \end{align*}
   Let $V$ be a vector space of functions $\R \to \R$ and define $L:V \to V$ by $L(x) = \xddot + x$.
 
-  To solve our differential equation, we first find the kernel of $L$. I.e. the set of functions
-  $x$ that solve the homogeneous equation $\xddot + x = 0$.
+  To solve our differential equation, we first find the kernel of $L$. I.e. the set of functions $x$ that solve the homogeneous equation $\xddot + x = 0$.
 
-  This is a Simple Harmonic oscillator: $x(t) = \sin t$ and $x(t) = \cos t$ are both
-  solutions and so the kernel of $L$ is $\{A\sin t + B\cos t ~|~ A, B \in \R\}$.
+  This is a Simple Harmonic oscillator: $x(t) = \sin t$ and $x(t) = \cos t$ are both solutions and so the kernel of $L$
+  is $\{A\sin t + B\cos t ~|~ A, B \in \R\}$.
 
   \todo{Should complex exponentials be used here?}
 
@@ -562,8 +520,7 @@ So this appears to be correct \correct.
 \begin{mdframed}
   \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-2.png}
 \end{mdframed}
-(Note that although $f$ does not depend \emph{explicitly} on $t$, it does depend on $t$
-through its dependence on $x(t)$ and $\xdot(t)$.)
+(Note that although $f$ does not depend \emph{explicitly} on $t$, it does depend on $t$ through its dependence on $x(t)$ and $\xdot(t)$.)
 
 Let $Q(t) = f(x, \xdot) - \xdot\pdfdxd$.
 
@@ -582,8 +539,7 @@ Note that this will be zero if $x$ is extremal.
 
 So at this point we conclude that, if $x$ is an extremal function, then $Q(t)$ is constant.
 
-Now, suppose $Q(t)$ is constant. Then its time derivative is zero. Therefore either $\xdot(t) = 0$
-or the E-L equations hold.
+Now, suppose $Q(t)$ is constant. Then its time derivative is zero. Therefore either $\xdot(t) = 0$ or the E-L equations hold.
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/zz.png}
@@ -645,21 +601,19 @@ Therefore if $C_4 = 1$ then we have $C_3 = \frac{1}{2}\(\frac{1}{\pm\sqrt{2}} - 
 \end{enumerate}
 \subsubsection{1.8}
 \begin{mdframed}
-  Among all curves of length $l$ in the upper-half $(x, y)$ plane passing through the points
-  $(-a, 0)$ and $(a, 0)$, find the one which together with the interval $[-a, a]$ encloses the
-  largest possible area.
+  Among all curves of length $l$ in the upper-half $(x, y)$ plane passing through the points $(-a, 0)$ and $(a, 0)$, find the one which together with
+  the interval $[-a, a]$ encloses the largest possible area.
 \end{mdframed}
 
-To use Euler-Lagrange, we write this as a functional in the standard form. The integrand, which in
-general is $f(x, y, y')$, here is simply $y(x)$.
+To use Euler-Lagrange, we write this as a functional in the standard form. The integrand, which in general is $f(x, y, y')$, here is simply $y(x)$.
 \begin{align*}
   A[y] = \int_{-a}^{a} f(x, y, y') \dx = \int_{-a}^{a} y(x) \dx.
 \end{align*}
-Clearly there is no extremizing $y$ as things stand -- it could go as high as it likes as long as
-it comes back to $(a, o)$ -- we need a constraint on the shape of $y$.
+Clearly there is no extremizing $y$ as things stand -- it could go as high as it likes as long as it comes back to $(a, o)$ -- we need a constraint on
+the shape of $y$.
 
-But let's see what happens if we try to use Euler-Lagrange at this stage anyway. We have
-$\pdfdy = 1$ and $\pdfdyp = 0$, and the Euler-Lagrange equations are
+But let's see what happens if we try to use Euler-Lagrange at this stage anyway. We have $\pdfdy = 1$ and $\pdfdyp = 0$, and the Euler-Lagrange
+equations are
 \begin{align*}
   \ddx \pdfdyp - \pdfdy = 0 - 1 = 0,
 \end{align*}
