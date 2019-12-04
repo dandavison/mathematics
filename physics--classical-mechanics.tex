@@ -43,28 +43,34 @@ The argument is\footnote{Taylor ch. 4}:
 
 \begin{enumerate}
 \item Suppose a particle is moving under the influence of a force, according to Newton's Second Law.
-\item Consider the integral of the force over some section of the particle's trajectory:
-  $\int_{\vec{r_0 \to \vec{r_1}}} F(\vec{r}) \dif \vec{r}$.
-\item The integral is equal to the difference in value of a certain quantity that depends on speed,
-  evaluated at the start and end point.
-\item This quantity is $\frac{1}{2}mv^2$. It depends only on the particle's mass, and speed at a
-  moment in time. As long as the particle's motion obeys Newton's Second Law
-  $m\ddot{\vec{r}} = F(\vec{r})$, then the relationship between this quantity and the integral of
-  force over space is just a fact of calculus.
-\item The quantity $\frac{1}{2}mv^2$ is given the name \blue{kinetic energy} and the integral of
-  force over a path in space is given the name \blue{work}.
-\item Thus the \blue{Work - KE Theorem}: when a particle is moved along a path according to Newton's
-  Second Law, then the work done by the force is equal to the difference in kinetic energy.
-\item This can be used, for example, to calculate the new velocity, given knowledge of the work done
-  and the initial velocity.
-\item So the work done when moving from $\vec{r_0}$ to $\vec{r}$ is equal to the difference in
-  kinetic energy at those locations\footnote{This implies that every position is associated with a
-    unique speed?}:
+
+\item Consider the integral of the force over some section of the particle's
+  trajectory: $\int_{\vec{r_0 \to \vec{r_1}}} F(\vec{r}) \dif \vec{r}$.
+
+\item The integral is equal to the difference in value of a certain quantity that depends on speed, evaluated at
+  the start and end point.
+
+\item This quantity is $\frac{1}{2}mv^2$. It depends only on the particle's mass, and speed at a moment in
+  time. As long as the particle's motion obeys Newton's Second Law $m\ddot{\vec{r}} = F(\vec{r})$, then the
+  relationship between this quantity and the integral of force over space is just a fact of calculus.
+
+\item The quantity $\frac{1}{2}mv^2$ is given the name \blue{kinetic energy} and the integral of force over a path
+  in space is given the name \blue{work}.
+
+\item Thus the \blue{Work - KE Theorem}: when a particle is moved along a path according to Newton's Second Law,
+  then the work done by the force is equal to the difference in kinetic energy.
+
+\item This can be used, for example, to calculate the new velocity, given knowledge of the work done and the
+  initial velocity.
+
+\item So the work done when moving from $\vec{r_0}$ to $\vec{r}$ is equal to the difference in kinetic energy at
+  those locations\footnote{This implies that every position is associated with a unique speed?}:
   \begin{align*}
     W(\vec{r_0} \to \vec{r})
     &= \int_{\vec{r_0}}^{\vec{r}} F(\vec{r}) \dif \vec{r} \\
     &= \frac{1}{2}mv^2 - \frac{1}{2}mv_0^2.
   \end{align*}
+
 \item Therefore the following quantity is constant at all points along the path:
   \begin{align*}
     E

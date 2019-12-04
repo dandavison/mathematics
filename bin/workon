@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -u
+
+name="${1%%.*}"
+emacsclient -n "$name".tex
+open -a /Applications/Skim.app "$name".pdf
