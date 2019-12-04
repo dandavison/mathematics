@@ -1,21 +1,205 @@
+\section{1. The Nature of  Classical Mechanics}
 \begin{enumerate}
-\item Discrete state machines: simplest example of dynamical system
+\item Discrete state machines: simplest example of dynamical system (directed graph)
 \item To be valid in classical mechanics, dynamical law must be:
   \begin{enumerate}
   \item Deterministic (There's only one next state)
   \item Reversible (Conservation of information: there's only one previous state)
   \end{enumerate}
 \item Even in a cycle, there's still one in-edge and one out-edge
-\item There can be separate cycles: these correspond to conservation laws
-  (The system stays in the cycle it started in.)
+\item There can be separate cycles: these correspond to conservation laws (The system stays in the cycle it started in.)
 \end{enumerate}
 
+\section{2. Motion}
+
+\section{3. Dynamics}
+$F = ma$
+\section{4.    Systems of  More Than One Particle}
+\begin{enumerate}
+\item The force vector acting on a particle is determined by the locations of all the particles:
+  \begin{align*}
+    m_i\ddot{\x}_i = \vec{F_i} = \vec{F_i}(\x_1, \x_2, \ldots, \x_N).
+  \end{align*}
+\item Note that
+  \begin{enumerate}
+  \item There are $N$ such equations.
+  \item Each equation is really 3 equations: one for each spatial dimension.
+  \end{enumerate}
+\item So, the {\it configuration space} is d$3N$-dimensional. Given a point in configuration space, we can compute the acceleration
+  vector of each particle in the system.
+\item But that is not enough to specify the evolution of the system: we need to know the current velocities (momenta)
+  also.
+\item So our {\it state space} is $6N$-dimensional \footnote{In physics, this full state space is called ``phase space'': ``configuration space plus momentum space
+    equals phase space''.}.
+\item Note that the dynamical law can be written
+  \begin{align*}
+    \vec{\dot{p}}_i = \vec{F_i} = \vec{F_i}(\x_1, \x_2, \ldots, \x_N).
+  \end{align*}
+\item A consequence of Newton's 3rd Law is that the net force on a closed system of  $N$ particles is zero.
+\item Therefore the rate of change of momentum is zero: the law of \emph{conservation of momentum}.
+\item Recall from chapter 1 the notion that cycles in a dynamical system correspond to conservation laws. Here we have
+  an example:
+  \begin{enumerate}
+  \item We can label points in $6N$-dimensional state space according to the total momentum of the system.
+  \item Conservation of momentum means that these partitions of state space are cycles / unconnected components of the
+    graph.
+  \end{enumerate}
+\item So the system corresponds to a point $(\x, \vec{p})$ in a $6N$-dimensional state space. Our system evolves according
+  to a trajectory $(\x(t), \vec{p}(t))$ in this state space. This trajectory never jumps between points
+  with different values of total system momentum.
+
+\end{enumerate}
+
+\todo{Explain why the second-order DE is equivalent to two first-order
+  DEs, i.e. why the $3N$ N2L equations are really $6N$ equations.}
+
+\section{5. Energy}
+\begin{enumerate}
+\item Configuration $\x$ is a point in a $3N$-dimensional space.
+\item Potential energy function $V(\x)$.
+\item Force as negative derivative of PE $V(\x)$.
+\item Time-derivative of PE + KE is zero under N2L.
+\end{enumerate}
+\section{6. The Principle of Least Action}
 
 \begin{enumerate}
-\item Difference between
-  \begin{enumerate}
-  \item Discrete state machine
-  \item Directed graph
-  \item Discrete finite automaton
-  \end{enumerate}
+\item The \textit{action} of a trajectory $x(t)$ for a single particle is
+
+  \begin{align*}
+    \mathcal{A}[x]
+    &=  \int_{t_0}^{t_1} \(\frac{1}{2}m\dot{x}(t)^2 - V\(x(t)\)\) \dt \\
+    &= \int_{t_0}^{t_1} \(T - V\) \dt \\
+    &= \int_{t_0}^{t_1} \Lag\(x(t), \dot{x}(t)\) \dt.
+  \end{align*}
+
+  \red{Why does he seem to deny that you need to know velocity for the Lagrangian? p 108, 109}
+
+\item The {\it principle of least action} states that the trajectory $x(t)$ that is taken is that for which the action is minimal
+  (actually, a stationary point).
+
+\item For $N$ particles we have $N$ trajectory functions $x_1, \ldots, x_N$, and the action is a functional
+  depending on all of them:
+
+  \begin{align*}
+    \mathcal{A}[x_1, \ldots, x_N]
+    &=  \int_{t_0}^{t_1} \(\frac{1}{2}\sum_im_i\dot{x_i}(t)^2 - V(x_1(t), \ldots, x_n(t)\) \dt \\
+    &= \int_{t_0}^{t_1} \(T - V\) \dt \\
+    &= \int_{t_0}^{t_1} \Lag(x_1(t), \ldots, x_2(t), \dot{x_1}(t), \ldots, \dot{x_2}(t)) \dt.
+  \end{align*}
+
+
+\item The Euler-Lagrange equations: the least action set of trajectories (trajectory of the system through
+  configuration space) satisfies the following {\it at every point $t$ in time}.  :
+  \begin{align*}
+    \begin{cases}
+      \ddt \pdLdxdOne - \pdLdxOne = 0 \\
+      \vdots \\
+      \ddt \pdLdxdN - \pdLdxN = 0
+    \end{cases}
+  \end{align*}
+\item Informal derivation of Euler-Lagrange equations
+\subsection*{One-dimensional system}
+
+  Consider a particle moving along a line. The (unknown) trajectory it follows is written as $x(t)$.
+
+  The ``action'' for the system is the functional
+  \begin{align*}
+      \mathcal{A}[x]
+      &= \int_{t_a}^{t_b} \Lag\( x(t), \dot{x}(t) \) \dt.
+  \end{align*}
+  \begin{theorem*}[Euler-Lagrange equations]
+      The trajectory $x(t)$ that minimize $\mathcal{A}$ satisfies the
+      following for all $t \in (t_a, t_b)$:
+    \begin{align*}
+      \ddt \pdLdxd - \pdLdx = 0.
+    \end{align*}
+
+  \begin{proof} (sketch)
+    We pretend that time is discrete and that the system evolves via $n$ instantaneous ``jumps'' each $\Delta t$ seconds apart, so that
+    the particle visits locations $x_1, x_2, \ldots, x_n$ at clock ticks $1, 2, \ldots, n$.
+
+    The discretized version of the functional we wish to minimize is
+  \begin{align*}
+      \mathcal{A}[\x]
+      &= \sum_j \Lag\( x_j, \dot{x}_j \) \Delta t.
+  \end{align*}
+  In our discrete-time model, we make the following replacements: at the $j$-th clock tick, the position
+  is $\frac{x_j + x_{j+1}}{2}$, and velocity is $\frac{x_{j+1} - x_{j}} {\Delta t}$, so we have
+
+  \begin{align*}
+      \mathcal{A}[\x]
+      &= \sum_j \Lag\( \frac{x_j + x_{j+1}}{2}, \frac{x_{j+1} - x_{j}} {\Delta t} \) \Delta t.
+  \end{align*}
+
+  {\it Now, instead of seeeking a minimizing function in an infinite-dimensional function space, we are working in a
+  finite-dimensional space. differentiate at each clock tick, set these derivatives equal to zero, and solve
+  the resulting system of equations.}
+
+  The partial derivative with respect to $x_j$ involves just two terms of the sum:
+  \begin{align*}
+    \frac{\partial \mathcal{A}}{\partial x_j} = \Delta t \frac{\partial}{\partial x_j} \(
+    \Lag\( \frac{x_{j-1} + x_{j}}{2}, \frac{x_{j} - x_{j-1}}{\Delta t} \) +
+    \Lag\( \frac{x_j + x_{j+1}}{2}, \frac{x_{j+1} - x_{j}}{\Delta t} \) \)
+  \end{align*}
+
+
+  \end{proof}
+
+\subsection*{N-dimensional system}
+  Consider a system whose spatial configuration is specified by a point $\x \in \R^N$. (So, perhaps $N$
+  particles moving in one dimension, or $N/3$ particles moving in 3 dimensions.)
+
+  We write $\x(t) = x_1(t), \ldots, x_N(t)$ to represent the evolution of the system.
+
+  The ``action'' for the system is the functional
+  \begin{align*}
+      \mathcal{A}[\x]
+      &= \int_{t_a}^{t_b} \Lag\( \x(t), \dot{\x}(t) \) \dt \\
+      &= \int_{t_a}^{t_b} \Lag\( x_1(t), \ldots, x_N(t), \dot{x}_1(t), \ldots, \dot{x}_N(t) \) \dt.
+  \end{align*}
+  \begin{theorem*}[Euler-Lagrange equations]
+      The collection of trajectories $\x(t)$ that minimize $\mathcal{A}$ satisfy the
+      following for $i = 1, \ldots, N$ and all $t \in (t_a, t_b)$:
+      \begin{align*}
+      \ddt \pdLdxdi - \pdLdxi = 0.
+    \end{align*}
+  \end{theorem*}
+  \begin{proof} (sketch)\\
+    We pretend that time is discrete and that the system evolves via $n$ instantaneous ``jumps'' each $\Delta t$ seconds apart, so that
+    the $i$-th spatial coordinate visits the following sequence of values: $x_i^{(1)}, x_i^{(2)}, \ldots, x_i^{(n)}$.
+
+    The discretized version of the functional we wish to minimize is
+  \begin{align*}
+      \mathcal{A}[\x]
+      &= \sum_j \Lag\( x_1^{(j)}, \ldots, x_N^{(j)}, \dot{x}_1^{(j)}, \ldots, \dot{x}_N^{(j)} \) \Delta t.
+  \end{align*}
+    In our discrete-time model, we make the following replacements: at the $j$-th
+    clock tick, the $i$-th position component is $\frac{x_i^{(j)} + x_i^{(j+1)}}{2}$, and the $i$-th velocity component
+    is $\frac{x_i(t_{j}) - x_i(t_{j+1})} {\Delta t}$.
+
+    Now
+
+
+  \end{proof}
+
+
+\item With ``generalized coordinates'' $q$ in place of $x$, this captures ``all of classical physics in a
+  nutshell! If you know what the $q_i$s are, and if you know the Lagrangian, then you have it all.''
+
+\item Switching between coordinate systems
+
+\item Note that if $\Lag = \frac{1}{2}\sum_im\xdot_i^2 - V(x_1, \ldots, x_N)$ as usual,
+  then $\pdLdxdi = m\xdot_i$. Accordingly, $p_i := \pdLdqdi$ is referred to as the ``conjugate momentum'' to $q_i$.
+
+\item So a streamlined statement of the Euler-Lagrange equations for classical mechanics is
+\begin{align*}
+  \frac{\d p_i}{\dt} - \pdLdqi = 0.
+\end{align*}
+\item Momentum is conserved when there is no potential energy function (which would be dependent on the spatial
+  coordinates).
+
+\item In general, if there is a generalized coordinate that appears in the Lagrangian only via its velocity (if
+  there exists a change of coordinates such that this is true), then the corresponding generalized momentum is
+  conserved.
 \end{enumerate}
+\section{7.  Symmetries and Conservation Laws}
