@@ -236,6 +236,7 @@ from math import sin
 g = 9.8   # acceleration due to gravity (m/s)
 dt = 0.0001  # tick interval (s)
 
+
 @dataclass
 class World:
     r: float = 1
@@ -244,25 +245,24 @@ class World:
     theta_dot: float = 0
     time: float = 0
 
-def r_dot_dot(self):
-    return 0.5 * (self.r * self.theta_dot**2 - g*(1 - cos(self.theta)))
+    def r_dot_dot(self):
+        return 0.5 * (self.r * self.theta_dot**2 - g*(1 - cos(self.theta)))
 
-def theta_dot_dot(self):
-    return -2 * self.r_dot * self.theta_dot / self.r - g * sin(self.theta) / self.r
+    def theta_dot_dot(self):
+        return -2 * self.r_dot * self.theta_dot / self.r - g * sin(self.theta) / self.r
 
-def tick(self):
-    self.r_dot += dt * self.r_dot_dot()
-    self.r += dt * self.r_dot
-    self.theta_dot += dt * self.theta_dot_dot()
-    self.theta += dt * self.theta_dot
-    self.time += dt
+    def tick(self):
+        self.r_dot += dt * self.r_dot_dot()
+        self.r += dt * self.r_dot
+        self.theta_dot += dt * self.theta_dot_dot()
+        self.theta += dt * self.theta_dot
+        self.time += dt
 
 
 def main():
     world = World()
     while world.r < 2:
         world.tick()
-
     print(world.time)
 \end{minted}
 
