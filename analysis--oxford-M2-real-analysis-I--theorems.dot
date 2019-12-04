@@ -1,0 +1,43 @@
+digraph {
+    "Addition on R" -> "Triangle Law";
+    "Addition on R" -> "Reverse Triangle Law";
+
+    "Completeness of R" -> "Approximation Property";
+
+    "Approximation Property" -> "Existence of Square Roots";
+
+    "Completeness of R" -> "Archimedean Property of N";
+    "Approximation Property" -> "Archimedean Property of N";
+
+    "Completeness of R" -> "Well-ordered Property of N";
+    "Approximation Property" -> "Well-ordered Property of N";
+
+    // "Definition of Limit" -> "Tails Lemma";
+
+    // "Definition of Limit" -> "Sandwiching Lemma";
+
+    // "Definition of Limit" -> "Uniqueness of Limits";
+    "Triangle Law" -> "Uniqueness of Limits";
+
+    // "Definition of Limit" -> "Convergent sequence is bounded";
+    "Triangle Law" -> "Convergent sequence is bounded";
+
+    "Reverse Triangle Law" -> "Convergence => Convergence in absolute value"
+    "Sandwiching Lemma" -> "Convergence => Convergence in absolute value"
+
+    // "Definition of Limit" -> "All subsequences of convergent sequence are convergent";
+
+    // "Definition of Limit" -> "Subsequences w/ different limits => Divergent sequence";
+
+    "Definition of Limit" -> "Algebra of Limits";
+    "Triangle Law" -> "Algebra of Limits";
+    "Reverse Triangle Law" -> "Algebra of Limits";
+
+    "Completeness of R" -> "Monotonic sequence converges iff bounded";
+    "Approximation Property" -> "Monotonic sequence converges iff bounded";
+
+    "Scenic Viewpoint Theorem" -> "Bolzano-Weierstrass Theorem";
+    "Monotonic sequence converges iff bounded" -> "Bolzano-Weierstrass Theorem";
+
+    "Triangle Law" -> "Cauchy convergence criterion";
+ }
