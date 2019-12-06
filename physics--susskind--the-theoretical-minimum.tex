@@ -145,42 +145,6 @@ $F = ma$
 
   \end{proof}
 
-\subsection*{N-dimensional system}
-  Consider a system whose spatial configuration is specified by a point $\x \in \R^N$. (So, perhaps $N$
-  particles moving in one dimension, or $N/3$ particles moving in 3 dimensions.)
-
-  We write $\x(t) = x_1(t), \ldots, x_N(t)$ to represent the evolution of the system.
-
-  The ``action'' for the system is the functional
-  \begin{align*}
-      \mathcal{A}[\x]
-      &= \int_{t_a}^{t_b} \Lag\( \x(t), \dot{\x}(t) \) \dt \\
-      &= \int_{t_a}^{t_b} \Lag\( x_1(t), \ldots, x_N(t), \dot{x}_1(t), \ldots, \dot{x}_N(t) \) \dt.
-  \end{align*}
-  \begin{theorem*}[Euler-Lagrange equations]
-      The collection of trajectories $\x(t)$ that minimize $\mathcal{A}$ satisfy the
-      following for $i = 1, \ldots, N$ and all $t \in (t_a, t_b)$:
-      \begin{align*}
-      \ddt \pdLdxdi - \pdLdxi = 0.
-    \end{align*}
-  \end{theorem*}
-  \begin{proof} (sketch)\\
-    We pretend that time is discrete and that the system evolves via $n$ instantaneous ``jumps'' each $\Delta t$ seconds apart, so that
-    the $i$-th spatial coordinate visits the following sequence of values: $x_i^{(1)}, x_i^{(2)}, \ldots, x_i^{(n)}$.
-
-    The discretized version of the functional we wish to minimize is
-  \begin{align*}
-      \mathcal{A}[\x]
-      &= \sum_j \Lag\( x_1^{(j)}, \ldots, x_N^{(j)}, \dot{x}_1^{(j)}, \ldots, \dot{x}_N^{(j)} \) \Delta t.
-  \end{align*}
-    In our discrete-time model, we make the following replacements: at the $j$-th
-    clock tick, the $i$-th position component is $\frac{x_i^{(j)} + x_i^{(j+1)}}{2}$, and the $i$-th velocity component
-    is $\frac{x_i(t_{j}) - x_i(t_{j+1})} {\Delta t}$.
-
-    Now
-
-
-  \end{proof}
 
 
 \item With ``generalized coordinates'' $q$ in place of $x$, this captures ``all of classical physics in a
