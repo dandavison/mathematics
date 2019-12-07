@@ -163,6 +163,7 @@
 \renewcommand{\deg}{^\circ}
 
 \newcommand{\F}{\vec{F}}
+\renewcommand{\a}{\vec{a}}
 \renewcommand{\r}{\vec{r}}
 
 \newcommand{\dA}{\dif A}
@@ -217,6 +218,11 @@
 \newcommand{\pdLdxdOne}{\frac{\partial \Lag}{\partial \dot{x}_1}}
 \newcommand{\pdLdxOne}{\frac{\partial \Lag}{\partial x_1}}
 
+\newcommand{\pdLdqdOne}{\frac{\partial \Lag}{\partial \dot{q}_1}}
+\newcommand{\pdLdqOne}{\frac{\partial \Lag}{\partial q_1}}
+\newcommand{\pdLdqdTwo}{\frac{\partial \Lag}{\partial \dot{q}_1}}
+\newcommand{\pdLdqTwo}{\frac{\partial \Lag}{\partial q_1}}
+
 \newcommand{\pdLdxdN}{\frac{\partial \Lag}{\partial \dot{x}_N}}
 \newcommand{\pdLdxN}{\frac{\partial \Lag}{\partial x_N}}
 
@@ -251,17 +257,21 @@
 \newcommand{\limn}{\lim_{n \to \infty}}
 \newcommand{\limxa}{\lim_{x \to a}}
 \newcommand{\mih}[1]{\mintinline{haskell}{#1}}
-\newcommand{\vecMM}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+
 \newcommand{\bvecMM}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
-\newcommand{\vecMMM}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
 \newcommand{\bvecMMM}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
 \newcommand{\bmatMMxNN}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
 \newcommand{\bmatt}{\bmatMMxNN}
-\newcommand{\matMMxNN}[4]{\begin{pmatrix}#1 & #2\\#3 & #4\\ \end{pmatrix}}
-\newcommand{\matMMMxNN}[6]{\begin{pmatrix}#1 & #2\\#3 & #4\\#5 & #6\\ \end{pmatrix}}
-\newcommand{\matMMMxNNN}[9]{\begin{pmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{pmatrix}}
+
+\newcommand{\vecMM}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
+\newcommand{\vecMMM}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
+\newcommand{\matMMxNN}[4]{\begin{bmatrix}#1 & #2\\#3 & #4\\ \end{bmatrix}}
+\newcommand{\matMMMxNN}[6]{\begin{bmatrix}#1 & #2\\#3 & #4\\#5 & #6\\ \end{bmatrix}}
+\newcommand{\matMMMxNNN}[9]{\begin{bmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{bmatrix}}
+
 \newcommand{\vmatMMxNN}[4]{\begin{vmatrix}#1 & #2\\#3 & #4\\ \end{vmatrix}}
 \newcommand{\vmatMMMxNNN}[9]{\begin{vmatrix}#1 & #2 & #3\\#4 & #5 & #6\\#7 & #8 & #9\\ \end{vmatrix}}
+
 % Not allowed more than 9 arguments
 % \newcommand{\matMMMMxNNNN}[16]{
 % \begin{pmatrix}
@@ -294,6 +304,7 @@
 \newcommand{\rhat}{\vec{\hat{r}}}
 
 \newcommand{\xdot}{\dot{x}}
+\newcommand{\qdot}{\dot{q}}
 \newcommand{\ydot}{\dot{y}}
 \newcommand{\xddot}{\ddot{x}}
 \newcommand{\yddot}{\ddot{y}}

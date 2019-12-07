@@ -145,12 +145,89 @@ $F = ma$
 
   \end{proof}
 
+\item
+  \begin{exercise}
+    Let $\Lag(x, \xdot) = \frac{1}{2}m\xdot^2 - V(x)$. Show that the Euler-Lagrange
+    equation $\pdLdx = \ddt \pdLdxd$ is equivalent to Newton's law of motion $F = ma$.
+  \end{exercise}
+  \begin{proof}
+    On the LHS we have $\pdLdx = -V'(x) = F$.
+
+    We have $\pdLdxd = m\xdot$, therefore on the RHS we have $\ddt \pdLdxd = m\xddot = ma$.
+  \end{proof}
 
 
 \item With ``generalized coordinates'' $q$ in place of $x$, this captures ``all of classical physics in a
   nutshell! If you know what the $q_i$s are, and if you know the Lagrangian, then you have it all.''
 
-\item Switching between coordinate systems
+\item Switching between coordinate systems.
+
+  In observer A's frame of reference, a particle is at $x$.
+
+  Observer B is moving relative to observer A according to a function $f(t)$.
+
+  In observer B's frame of reference, the particle is at $X = x - f(t)$.
+
+  According to observer $A$, the Lagrangian is $\frac{1}{2}m\xdot^2 - V(x)$, which under E-L leads to the
+  equation of motion $m\xddot = -V'(x)$ or $F = ma$.
+
+  According to observer $B$, the Lagrangian is $\frac{1}{2}m\(\dot{X}(t) + \dot{f}(t)\)^2 - V(X)$, which under
+  E-L leads to the equation of motion $m\(\ddot{X} + \ddot{f}\) = -V'(x)$, or $F = ma + m\ddot{f}$. So
+  observer $B$ sees a fictitious force $m\ddot{f}$, associated with their movement.
+
+\item Change of coordinates Example 2
+
+  Observer A (reference frame A) uses coordinates $x$ and $y$.
+
+  Observer B (reference frame B) uses coordinates $X$ and $Y$.
+
+  Reference frame B is rotating relative to A:
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/physics--susskind--the-theoretical-minimum--1.-the-nature-of-classical-mechanics--6.-the-principle-of-least-action--28fe.png}
+\end{mdframed}
+
+To translate between the two reference frames:
+
+  \begin{align*}
+    x &= X \cos \omega t + Y \sin \omega t \\
+    y &= -X \sin \omega t + Y \cos \omega t.
+  \end{align*}
+i.e.
+\begin{align*}
+  \vecMM{x}{y} = \matMMxNN{\cos \omega t}{-\sin \omega t}{\sin \omega t}{\cos \omega t} \vecMM{X}{Y}.
+\end{align*}
+
+\begin{align*}
+  \vecMM{\xdot}{\ydot} =
+        \matMMxNN{ \cos \omega t}{-\sin \omega t}{\sin \omega t}{\cos \omega t} \vecMM{\dot{X}}{\dot{Y}} +
+  \omega\matMMxNN{-\sin \omega t}{-\cos \omega t}{\cos \omega t}{-\sin \omega t} \vecMM{X}{Y}
+\end{align*}
+\TODO
+
+
+Observer A sees a particle moving with no forces acting on it, so the Lagrangian from their point of view
+is $\frac{1}{2}m(\xdot^2 + \ydot^2)$.
+
+From observer B's point of view, we have
+\begin{align*}
+  \xdot &= -\omega X \sin \omega t + \dot{X}\cos \omega t  +  \omega Y \cos \omega t \\
+  \ydot &= -\omega X \cos \omega t - \omega Y \sin \omega t,
+\end{align*}
+therefore
+\begin{align*}
+    \xdot^2 &= \omega^2\(X^2\sin^2\omega t - 2XY\sin \omega t \cos\omega t + Y^2\cos^2\omega t\) \\
+    \ydot^2 &= \omega^2\(X^2\cos^2\omega t + 2XY\sin \omega t \cos\omega t + Y^2\sin^2\omega t\),
+\end{align*}
+and so the Lagrangian for observer B is
+\begin{align*}
+  \frac{1}{2}m(\xdot^2 + \ydot^2) =
+  \omega^2\frac{1}{2}m(X^2 + Y^2).
+\end{align*}
+
+
+
+
 
 \item Note that if $\Lag = \frac{1}{2}\sum_im\xdot_i^2 - V(x_1, \ldots, x_N)$ as usual,
   then $\pdLdxdi = m\xdot_i$. Accordingly, $p_i := \pdLdqdi$ is referred to as the ``conjugate momentum'' to $q_i$.
@@ -167,3 +244,33 @@ $F = ma$
   conserved.
 \end{enumerate}
 \section{7.  Symmetries and Conservation Laws}
+
+\begin{enumerate}
+\item $\Lag(\qdot, q) = \frac{1}{2}(\dot{q_1}^2 + \dot{q_2}^2) - V(q_1 - q_2)$
+\end{enumerate}
+Derive the equations of motion:
+\begin{align*}
+  \ddt \pdLdqdOne &= \pdLdqOne \\
+  \ddt \pdLdqdTwo &= \pdLdqTwo \\
+\end{align*}
+\begin{align*}
+  \dot{p}_1        &= -V'(q_1 - q_2) \\
+  \dot{p}_2        &= +V'(q_1 - q_2)
+\end{align*}
+The sign difference is related to the fact that the potential depends on the distance between the two
+particles: they are both approaching each other. This has something to do with Newton's third law.
+
+So $\ddt(p_1 + p_2) = 0$: generalized momentum is conserved.
+
+\item $\Lag(\qdot, q) = \frac{1}{2}(\dot{q_1}^2 + \dot{q_2}^2) - V(aq_1 - bq_2)$
+\begin{align*}
+  \dot{p}_1        &= -aV'(aq_1 - bq_2) \\
+  \dot{p}_2        &= +bV'(aq_1 - bq_2)
+\end{align*}
+\begin{align*}
+  \dot{p}_1 + \dot{p}_2 &= (b-a)V'(aq_1 - bq_2) \\
+\end{align*}
+Now generalized momentum appears not to be conserved in general.
+
+But we see that $bp_1 + ap_2$ is conserved.
+
