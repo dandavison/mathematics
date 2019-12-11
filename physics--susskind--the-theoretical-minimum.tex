@@ -62,9 +62,8 @@ $F = ma$
 \end{enumerate}
 \section{6. The Principle of Least Action}
 
-\begin{enumerate}
-\item The \textit{action} of a trajectory $x(t)$ for a single particle is
-
+\subsection*{Definition of Action and Lagrangian}
+The \textit{action} of a trajectory $x(t)$ for a single particle is
   \begin{align*}
     \mathcal{A}[x]
     &=  \int_{t_0}^{t_1} \(\frac{1}{2}m\dot{x}(t)^2 - V\(x(t)\)\) \dt \\
@@ -74,11 +73,13 @@ $F = ma$
 
   \red{Why does he seem to deny that you need to know velocity for the Lagrangian? p 108, 109}
 
-\item The {\it principle of least action} states that the trajectory $x(t)$ that is taken is that for which the action is minimal
-  (actually, a stationary point).
+\subsection*{The Principle of Least Action}
+The {\it principle of least action} states that the trajectory $x(t)$ that is taken is that for which the
+action is minimal (actually, a stationary point).
 
-\item For $N$ particles we have $N$ trajectory functions $x_1, \ldots, x_N$, and the action is a functional
-  depending on all of them:
+\subsection*{N particles}
+For $N$ particles we have $N$ trajectory functions $x_1, \ldots, x_N$, and the action is a functional depending
+on all of them:
 
   \begin{align*}
     \mathcal{A}[x_1, \ldots, x_N]
@@ -88,8 +89,9 @@ $F = ma$
   \end{align*}
 
 
-\item The Euler-Lagrange equations: the least action set of trajectories (trajectory of the system through
-  configuration space) satisfies the following {\it at every point $t$ in time}.  :
+\subsection*{The Euler-Lagrange equations}
+The least action set of trajectories (trajectory of the system through configuration space) satisfies the
+following {\it at every point $t$ in time}.  :
   \begin{align*}
     \begin{cases}
       \ddt \pdLdxdOne - \pdLdxOne = 0 \\
@@ -97,8 +99,9 @@ $F = ma$
       \ddt \pdLdxdN - \pdLdxN = 0
     \end{cases}
   \end{align*}
-\item Informal derivation of Euler-Lagrange equations
-\subsection*{One-dimensional system}
+\subsection*{Informal derivation of Euler-Lagrange equations}
+
+\subsubsection*{One-dimensional system}
 
   Consider a particle moving along a line. The (unknown) trajectory it follows is written as $x(t)$.
 
@@ -108,15 +111,17 @@ $F = ma$
       &= \int_{t_a}^{t_b} \Lag\( x(t), \dot{x}(t) \) \dt.
   \end{align*}
   \begin{theorem*}[Euler-Lagrange equations]
-      The trajectory $x(t)$ that minimize $\mathcal{A}$ satisfies the
-      following for all $t \in (t_a, t_b)$:
+    The trajectory $x(t)$ that minimize $\mathcal{A}$ satisfies the following for all $t \in (t_a, t_b)$:
     \begin{align*}
-      \ddt \pdLdxd - \pdLdx = 0.
+      \ddt \pdLdxd = \pdLdx.
     \end{align*}
+  \end{theorem*}
 
   \begin{proof} (sketch)
-    We pretend that time is discrete and that the system evolves via $n$ instantaneous ``jumps'' each $\Delta t$ seconds apart, so that
-    the particle visits locations $x_1, x_2, \ldots, x_n$ at clock ticks $1, 2, \ldots, n$.
+
+    We pretend that time is discrete and that the system evolves via $n$ instantaneous ``jumps'' each
+    $\Delta t$ seconds apart, so that the particle visits locations $x_1, x_2, \ldots, x_n$ at clock
+    ticks $1, 2, \ldots, n$.
 
     The discretized version of the functional we wish to minimize is
   \begin{align*}
@@ -132,20 +137,26 @@ $F = ma$
   \end{align*}
 
   {\it Now, instead of seeeking a minimizing function in an infinite-dimensional function space, we are working in a
-  finite-dimensional space. differentiate at each clock tick, set these derivatives equal to zero, and solve
+  finite-dimensional space: differentiate at each clock tick, set these derivatives equal to zero, and solve
   the resulting system of equations.}
 
   The partial derivative with respect to $x_j$ involves just two terms of the sum:
   \begin{align*}
-    \frac{\partial \mathcal{A}}{\partial x_j} = \Delta t \frac{\partial}{\partial x_j} \(
+    \frac{\partial \mathcal{A}}{\partial x_j}
+    &= \Delta t \frac{\partial}{\partial x_j} \(
     \Lag\( \frac{x_{j-1} + x_{j}}{2}, \frac{x_{j} - x_{j-1}}{\Delta t} \) +
     \Lag\( \frac{x_j + x_{j+1}}{2}, \frac{x_{j+1} - x_{j}}{\Delta t} \) \)
   \end{align*}
-
+  \begin{align*}
+    &= \Delta t \(
+       \frac{1}{2}\frac{\del \Lag}{\del f} + \frac{1}{\Delta t}\frac{\del \Lag}{\del g} +
+       \frac{1}{2}\frac{\del \Lag}{\del f} - \frac{1}{\Delta t}\frac{\del \Lag}{\del g} +
+   \)
+  \end{align*}
 
   \end{proof}
 
-\item
+\subsection*{Equivalence of Lagrange equations and Newton's second law}
   \begin{exercise}
     Let $\Lag(x, \xdot) = \frac{1}{2}m\xdot^2 - V(x)$. Show that the Euler-Lagrange
     equation $\pdLdx = \ddt \pdLdxd$ is equivalent to Newton's law of motion $F = ma$.
@@ -157,10 +168,11 @@ $F = ma$
   \end{proof}
 
 
-\item With ``generalized coordinates'' $q$ in place of $x$, this captures ``all of classical physics in a
-  nutshell! If you know what the $q_i$s are, and if you know the Lagrangian, then you have it all.''
+\subsection*{Generalized coordinates}
+With ``generalized coordinates'' $q$ in place of $x$, this captures ``all of classical physics in a nutshell!
+If you know what the $q_i$s are, and if you know the Lagrangian, then you have it all.''
 
-\item Switching between coordinate systems.
+\subsection*{Changing coordinate system}
 
   In observer A's frame of reference, a particle is at $x$.
 
@@ -175,7 +187,7 @@ $F = ma$
   E-L leads to the equation of motion $m\(\ddot{X} + \ddot{f}\) = -V'(x)$, or $F = ma + m\ddot{f}$. So
   observer $B$ sees a fictitious force $m\ddot{f}$, associated with their movement.
 
-\item Change of coordinates Example 2
+\subsection*{Change of coordinates Example 2}
 
   Observer A (reference frame A) uses coordinates $x$ and $y$.
 
@@ -225,24 +237,23 @@ and so the Lagrangian for observer B is
   \omega^2\frac{1}{2}m(X^2 + Y^2).
 \end{align*}
 
+\subsection*{Conjugate momentum}
+Note that if $\Lag = \frac{1}{2}\sum_im\xdot_i^2 - V(x_1, \ldots, x_N)$ as usual,
+then $\pdLdxdi = m\xdot_i$. Accordingly, $p_i := \pdLdqdi$ is referred to as the ``conjugate momentum''
+to $q_i$.
 
-
-
-
-\item Note that if $\Lag = \frac{1}{2}\sum_im\xdot_i^2 - V(x_1, \ldots, x_N)$ as usual,
-  then $\pdLdxdi = m\xdot_i$. Accordingly, $p_i := \pdLdqdi$ is referred to as the ``conjugate momentum'' to $q_i$.
-
-\item So a streamlined statement of the Euler-Lagrange equations for classical mechanics is
+So a streamlined statement of the Euler-Lagrange equations for classical mechanics is
 \begin{align*}
   \frac{\d p_i}{\dt} - \pdLdqi = 0.
 \end{align*}
-\item Momentum is conserved when there is no potential energy function (which would be dependent on the spatial
-  coordinates).
+\subsection*{Conserved quantities}
+Momentum is conserved when there is no potential energy function (which would be dependent on the spatial
+coordinates).
 
-\item In general, if there is a generalized coordinate that appears in the Lagrangian only via its velocity (if
-  there exists a change of coordinates such that this is true), then the corresponding generalized momentum is
-  conserved.
-\end{enumerate}
+In general, if there is a generalized coordinate that appears in the Lagrangian only via its velocity (if there
+exists a change of coordinates such that this is true), then the corresponding generalized momentum is
+conserved.
+
 \section{7.  Symmetries and Conservation Laws}
 
 \begin{enumerate}

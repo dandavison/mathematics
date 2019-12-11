@@ -2,7 +2,11 @@
 
 \section{Two example problems}
 The calculus of variations can be used to find a function $y(x)$ that minimizes a scalar quantity that is
-expressed as an integral $\int_{x_0}^{x_1} f[y(x), y'(x), x] \dx$. Here are two such problems:
+expressed as an integral $\int_{x_0}^{x_1} f[y(x), y'(x), x] \dx$. \footnote{Note that in physics, the
+  independent variable is typically time, and $f$ is a ``Lagrangian'', so the integral is likely to look
+  like $\int_{t_0}^{t_1} \Lag(x(t), \xdot(t), t) \dt$.}
+
+Here are two such problems:
 
 \begin{question*}
   What is the shortest path between two points in a plane?
@@ -26,6 +30,17 @@ expressed as an integral $\int_{x_0}^{x_1} f[y(x), y'(x), x] \dx$. Here are two 
   \todo{Find the function $y$ that minimizes this integral.}
 \end{proof}
 
+
+Can we rephrase  this as a Lagrangian  dependent on position only,  i.e. not involve the  derivative? Let's say
+that   there  is   a  scalar   field  $f$   of  constant   value   $f(x,  y)   =  c$.   So  our   task  is   to
+minimise $S[y] = \int_{y} c$ where this notation refers to  a path integral along the curve $y(x)$. On the face
+of it this is dependent on position only. However, the calculation ends up involving the derivative:
+\begin{align*}
+  \int_{y} c
+  &= c\int_{y}1 \\
+  &= c\int_{x_{0}}^{x_{1}}\sqrt{(\dx)^{2} + (y'(x)\dx)^{2}} \\
+  &= x\int_{x_0}^{x_1} \sqrt{1 + y'(x)} \dx.
+\end{align*}
 
 \begin{question*}
   In 1662 Fermat proposed that light, when passing from one point to another through a material with varying
@@ -190,28 +205,39 @@ equations. And what those equations say is the following:
   find that $A(t) = B(t)$.
 \end{enumerate}
 
-\newpage
+\section{Examples}
+
 \subsection{The shortest path between two points on a plane}
 
 \subsubsection{Functional notation}
+
+\begin{question*}
+
+\end{question*}
 
 Let's return to this problem, using the functional notation. We have
 \begin{proof}
   \begin{itemize}
   \item $f(x, y, v) = (1 + v^2)^{1/2}$ \\
     A function mapping the local tuple to the cost associated with that point in the path.
+
   \item $(\del_1 f)(x, y, v) = 0$ \\
     Partial derivative of $f$ with respect to its second argument.
+
   \item $(\del_2 f)(x, y, v) = v(1 + v^2)^{-1/2}$ \\
     Partial derivative of $f$ with respect to its third argument.
+
   \item $q(t) = y(t)$ \\
     The path: a map from time to spatial coordinate.
+
   \item $(\del_2 f \circ \Gamma[q])(t) = y'(t)(1 + y'(t)^2)^{-1/2}$ \\
     Composing $\del_2 f$ with $\Gamma[q]$ represents ``plugging in'' $y'(t)$ as the value of $v$.
+
   \item Recall the Euler-Lagrange equation, which is true for any $q$ for which the action is minimized:
     \begin{align*}
     D(\partial_2f \circ \Gamma[q]) - \partial_1f \circ \Gamma[q] = 0.
     \end{align*}
+
   \item Since the partial derivative $\partial_1f$ with respect to the position argument is zero, the
     Euler-Lagrange equation states that for the action to be minimized we must have
     \begin{align*}
@@ -219,8 +245,10 @@ Let's return to this problem, using the functional notation. We have
      = \(\frac{y'}{(1 + y'^2)^{1/2}}\)'
      = 0.
     \end{align*}
+
   \item In other words, $\frac{y'}{(1 + y'^2)^{1/2}}$ is constant, which leads to
     $y' = \sqrt{C/(1 - C)}$, where $C$ is a constant.
+
   \item So $y'$ is constant, i.e. a straight line.
   \end{itemize}
 \end{proof}
@@ -371,6 +399,39 @@ then proves that $y$ must be a straight line.
 \end{proof}
 
 
+
+
+
+
+\subsection{Lagrangian not dependent on velocity}
+
+Let $\Lag = \Lag(x)$. Then the functional to be minimized is
+\begin{align*}
+  A[f] = \int_{t_{0}}^{t_{1}} \Lag(x(t)) \dt,
+\end{align*}
+and the Euler-Lagrange equations are
+\begin{align*}
+  \ddt \pdLdxd = \pdLdx.
+\end{align*}
+
+We have $\pdLdxd = 0$ for all $t$, therefore the extremal $x(t)$ has the property that $\pdLdx = 0$ for all $t$.
+
+What this is saying is that, if the Lagrangian is dependent only on position, then the path of least action
+will be one which always visits locations that are local minima.
+
+What is a simple example?
+
+
+
+\subsection{Fitting a curve to data points}
+
+\begin{question*}
+  We have $n$ data points $(x_{1}, y_{1}), \ldots, (x_{2}, y_{2})$. Find $f(x)$ which minimizes the sum of squares.
+\end{question*}
+
+How do we represent this as an integral of a differentiable Lagrangian?
+
+
 \section{SICM: Structure and Interpretation of Classical Mechanics}
 
 \subsection{The Euler-Lagrange equations}
@@ -421,7 +482,7 @@ Therefore the action is
 
 \section{Haliakis: Optimisation and Optimal Control: Exercises}
 \subsection{Sheet 1}
-\subsubsection{1.1}
+\subsubsection{1.1: Find extremising solutions of given functionals}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-1.png}
 \end{mdframed}
@@ -547,7 +608,8 @@ So this appears to be correct \correct.
 
 
 
-\subsubsection{1.2}
+\subsubsection{1.2: Lagrangian not explicitly dependent on t}
+
 \begin{mdframed}
   \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-2.png}
 \end{mdframed}
@@ -578,7 +640,7 @@ equations hold.
   \includegraphics[width=400pt]{img/zz.png}
 \end{mdframed}
 
-\subsubsection{1.3}
+\subsubsection{1.3: Lagrangian not explicitly dependent on t}
 \begin{mdframed}
   \includegraphics[width=400pt]{img/cov-haliakis-ooc-1-3.png}
 \end{mdframed}
@@ -632,7 +694,7 @@ x[t] /. Solve[{x[0] == 1, x[2] == 4}, {c3, c4}]
 
 
 \end{enumerate}
-\subsubsection{1.8}
+\subsubsection{1.8: Find curve enclosing maximal area (Lagrange multiplier)}
 \begin{mdframed}
   Among all curves of length $l$ in the upper-half $(x, y)$ plane passing through the points $(-a, 0)$
   and $(a, 0)$, find the one which together with the interval $[-a, a]$ encloses the largest possible area.
