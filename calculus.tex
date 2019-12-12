@@ -45,35 +45,32 @@ space (e.g. a subset of the plane).
 Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
 
 \begin{quote}
-  ``The derivative of a function $f$ is the function $D f$ whose value for a particular
-  argument is something that can be multiplied by an increment $\Delta x$ in the argument to get a
-  linear approximation to the increment in the value of $f$:
-  $f(x + \Delta x) \approx f(x) + D f(x) \Delta x$.''\footnote{Sussman et al. Structure and Interpretation of
-    Classical Mechanics p.482}
+  ``The derivative of  a function $f$ is the function  $D f$ whose value for a  particular argument is something
+  that can  be multiplied  by an increment  $\Delta x$  in the argument  to get a  linear approximation  to the
+  increment in  the value  of $f$:  $f(x +  \Delta x)  \approx f(x)  + D  f(x) \Delta  x$.''\footnote{Sussman et
+    al. Structure and Interpretation of Classical Mechanics p.482}
 \end{quote}
 
 \begin{quote}
-  ``The derivative of a real-valued function of multiple argu- ments is an object whose contraction
-  with the tuple of increments in the arguments gives a linear approximation to the increment in the
-  function’s value.''\footnote{Sussman et al. Structure and Interpretation of Classical Mechanics
-    p.483}
+  ``The derivative of a real-valued function of multiple arguments is an object whose contraction with the tuple
+  of increments in the arguments gives a linear approximation to the increment in the function’s
+  value.''\footnote{Sussman et al. Structure and Interpretation of Classical Mechanics p.483}
 \end{quote}
 
 
 \begin{definition*}~\\
-  A \defn{derivative} of a function $f$ is the function $D f$. When $D f$ is evaluated
-  at an input value the result is something which can be multiplied by an increment to the
-  function's input to give a linear approximation to the increment in output:
+  A \defn{derivative} of a  function $f$ is the function $D  f$. When $D f$ is evaluated at  an input value the
+  result  is something  which can  be multiplied  by an  increment to  the function's  input to  give a  linear
+  approximation to the increment in output:
   \begin{align*}
     f(x + \Delta x) \approx f(x) + (D f)(x)\Delta x.
   \end{align*}
 
-  Note that this implies that the product (``contraction'' or matrix product etc) of the evaluated
-  derivative with the input increment is something which can be added to $f(x)$, i.e. it's in
-  the codomain of $f$.
+  Note that this implies  that the product (``contraction'' or matrix product etc)  of the evaluated derivative
+  with the input increment is something which can be added to $f(x)$, i.e. it's in the codomain of $f$.
 
-  E.g. consider a linear map $f:\R^n \to \R^m$ (which can be represented by a matrix
-  $A \in \R^{m \times n}$). Let $x \in \R^n$ and let $U = (D f)(x)$. It must be the case that one or
+  E.g. consider a linear map $f:\R^n \to \R^m$ (which can be represented by a
+  matrix $A \in \R^{m \times n}$). Let $x \in \R^n$ and let $U = (D f)(x)$. It must be the case that one or
   other of
   \begin{align*}
     &f(x) + U \cdot \Delta x ~~~~~~~\text{xor} \\
@@ -81,48 +78,46 @@ Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
   \end{align*}
   is valid (compatible for multiplication) and is an approximation to $f(x + \Delta x)$.
 
-  We have $\Delta x \in \R^n$ and $f(x) \in \R^m$. So if we're saying that $f(x) = Ax$, then $x$
-  and $\Delta x$ are $(n \times 1)$ column vectors, and $f(x)$ is a $(m \times 1)$ column
-  vector. So we need something that maps column vectors in $\R^n$ to column vectors in $\R^m$,
-  i.e.  $U \in \R^{m \times n}$ and the version that is valid is
+  We have $\Delta x \in \R^n$ and $f(x) \in \R^m$. So if we're saying that $f(x) = Ax$, then $x$ and $\Delta x$
+  are $(n \times 1)$  column vectors, and $f(x)$ is a  $(m \times 1)$ column vector. So  we need something that
+  maps column vectors in $\R^n$ to column vectors in $\R^m$, i.e.  $U \in \R^{m \times n}$ and the version that
+  is valid is
   \begin{align*}
     &f(x) + U \cdot \Delta x.
   \end{align*}
 
-  This definition holds for a function with $n$ inputs: the derivative function has $n$
-  inputs and $n$ outputs. Its output is something whose ``contraction''\footnote{I understand
-    ``contraction'' to refer to the multiplicative combination of one object with another object from
-    the dual space. So for example, the matrix product of a row vector on the left with a column
-    vector on the right.} with the increment in the function inputs gives a linear approximation to
-  the increment in output.
+  This  definition holds  for a  function with  $n$  inputs: the  derivative function  has $n$  inputs and  $n$
+  outputs. Its  output is something whose  ``contraction''\footnote{I understand ``contraction'' to  refer to the
+    multiplicative combination  of one object  with another object  from the dual  space.  So for  example, the
+    matrix product of a  row vector on the left with  a column vector on the right.} with  the increment in the
+  function inputs gives a linear approximation to the increment in output.
 
   In the case where these inputs and outputs are $n$-dimensional vectors in $\R^n$ we can write this
   \begin{align*}
     f(\overrightarrow{x} + \overrightarrow{\Delta x}) \approx \overrightarrow{f(x)} + \overrightarrow{(D f)(x)} \cdot \overrightarrow{\Delta x}.
   \end{align*}
-  Note that the value of the derivative $(D f)(x)$ is compatible for multiplication with the
-  increment vector $\Delta x$. This is connected to the notions of column vector/row vector, linear
-  functional\footnote{\url{https://en.wikipedia.org/wiki/Linear_form}}, vector/covector, tensor
-  algebra etc. In SICM they refer to the output of the derivative function being a ``down tuple'',
-  whereas all the other tuples here are ``up tuples''.
+  Note  that the  value of  the  derivative $(D  f)(x)$ is  compatible  for multiplication  with the  increment
+  vector   $\Delta  x$.    This  is   connected   to  the   notions   of  column   vector/row  vector,   linear
+  functional\footnote{\url{https://en.wikipedia.org/wiki/Linear_form}}, vector/covector, tensor  algebra etc. In SICM they  refer to the
+  output of the derivative function being a ``down tuple'', whereas all the other tuples here are ``up tuples''.
 
   A \defn{partial derivative} is one component of the derivative of a function of multiple inputs.
 
-  So for a function $f:X \to Y$, the derivative is the function $D f:X \to X^*$, where $X^*$ is a
-  space containing versions of $x \in X$ that are compatible for multiplication/contraction with
-  $x$, i.e. a ``dual'' space.
+  So for a function $f:X \to Y$, the derivative is the function $D f:X \to X^*$, where $X^*$ is a space
+  containing versions of $x \in X$ that are compatible for multiplication/contraction with $x$, i.e. a ``dual''
+  space.
 
-  Suppose $f$ has an argument named $a$ that is of type $A$. Then the partial derivative of $f$ with
-  respect to that argument is $\partial_a{f}:X \to A^*$.
+  Suppose $f$ has an argument named $a$ that is of type $A$. Then the partial derivative of $f$ with respect to
+  that argument is $\partial_a{f}:X \to A^*$.
 \end{definition*}
 
 \subsection{The chain rule}
 
 \begin{theorem}
-  Let $g:U \to V$and $f:V \to W$ be functions with derivatives $g':U \to U$ and
-  $f':V \to V$\footnote{Actually, the output of the derivative function is an element of a dual
-    space, i.e. if the input to $f$ is a column vector then the output of $f'$ is a row
-    vector.}. Then their composition $f \circ g$ has derivative $U \to V$ given by
+  Let $g:U \to V$and $f:V \to W$ be functions with derivatives $g':U \to U$ and $f':V \to V$\footnote{Actually,
+    the output of the derivative function is an element of a dual space, i.e. if the input to $f$ is a column
+    vector then the output of $f'$ is a row vector.}. Then their composition $f \circ g$ has
+  derivative $U \to V$ given by
   \begin{align*}
     (f \circ g)' = g' \cdot (f' \circ g).
   \end{align*}
@@ -377,29 +372,27 @@ three inputs:
 \end{enumerate}
 where position and velocity depend on a parameter $\alpha$ in addition to time.
 
-Now\footnote{Regarding $\Delta y$, $\Delta y'$, $\Delta f$: these are small increments in the
-  \emph{value} of these functions. The notation is bad: it implies that they are increments in the
-  function itself (like a ``variation'' in calculus of variations). I can't think of a better
-  notation.}, let the value of $\alpha$ be changed slightly, to $\alpha + \Delta\alpha$, causing
-$y(t)$ to change to $y(t) + \Delta y$ and $y'(t)$ to change to $y'(t) + \Delta y'$. These changes in
-turn cause $f(t)$ to change to $f(t) + \Delta f$.
+Now\footnote{Regarding $\Delta y$, $\Delta y'$, $\Delta f$: these are small increments in the \emph{value} of these
+  functions. The notation is bad: it implies that they are increments in the function itself (like a
+  ``variation'' in calculus of variations). I can't think of a better notation.}, let the value of $\alpha$ be
+changed slightly, to $\alpha + \Delta\alpha$, causing $y(t)$ to change to $y(t) + \Delta y$ and $y'(t)$ to
+change to $y'(t) + \Delta y'$. These changes in turn cause $f(t)$ to change to $f(t) + \Delta f$.
 
-We'll use the notation of Spivak (1965)\footnote{Calculus on Manifolds} and Sussman
-(2001)\footnote{Structure and Interpretation of Classical Mechanics} for partial
-derivatives\footnote{See also \url{http://www.vendian.org/mncharity/dir3/dxdoc/}}. This notation
-abandons all attempts to indicate what the argument \emph{is} with respect to which a partial
-derivative is being taken, instead using an integer subscript to indicate \emph{which} argument it
-is (first, second, third, etc).
+We'll use the notation of Spivak (1965)\footnote{Calculus on Manifolds} and Sussman (2001)\footnote{Structure
+  and Interpretation of Classical Mechanics} for partial derivatives\footnote{See also
+  \url{http://www.vendian.org/mncharity/dir3/dxdoc/}}. This notation abandons all attempts to indicate what the argument \emph{is} with respect
+to which a partial derivative is being taken, instead using an integer subscript to indicate \emph{which} argument it is
+(first, second, third, etc).
 
 So define $\del_i g$ to be the partial derivative of a function $g$ with respect to its $i$-th
-argument\footnote{Spivak (1965) uses $D_i g$ for this}. We also need a function composition notation
-that can handle a function with multiple arguments. So define
-${(f \circ (y, y'))(\alpha, t) := f(y(\alpha, t), y'(\alpha, t), t)}$\footnote{In other words,
-  $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. (The
-  construction implies that the two functions on the RHS of the circle take the same argument types,
-  as indeed they do in this case, since one is the derivative of the other.) These arguments are fed
-  independently into both $y$ and $y'$; the result from $y$ yields the first argument to $f$, and
-  the result from $y'$ yields the second argument to $f$.}.
+argument\footnote{Spivak (1965) uses $D_i g$ for this}. We also need a function composition notation that can
+handle a function with multiple arguments.  So
+define ${(f \circ (y, y'))(\alpha, t) := f(y(\alpha, t), y'(\alpha, t), t)}$\footnote{In other
+  words, $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$.  (The
+  construction implies that the two functions on the RHS of the circle take the same argument types, as indeed
+  they do in this case, since one is the derivative of the other.) These arguments are fed independently into
+  both $y$ and $y'$; the result from $y$ yields the first argument to $f$, and the result from $y'$ yields the
+  second argument to $f$.}.
 
 The increment in $f(t)$ comes from two sources: the change in $y(t)$ and the change in $y'(t)$. We
 can use the definition of partial derivative to make an approximation\footnote{The additive nature
