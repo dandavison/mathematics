@@ -123,6 +123,19 @@ Sussman et al. Structure and Interpretation of Classical Mechanics p.482-483:
   \end{align*}
 \end{theorem}
 
+{\bf Intuition}: By definition, $(f \circ g)'$ is a function that takes in an increment in the domain of $g$ and returns
+something which multiplies that increment to give an approximation to the resulting change in the output
+of $f$. The change in the output of $f$ is due to two sources: the sensitivity of $g$ to changes in its input,
+and the sensitivity of $f$ to the output of $g$.
+
+Similarly, by definition, $g'$ is a function that takes an increment in the domain of $g$ and returns
+something which multiplies that increment to give an approximation to the change in output of $g$.
+
+And $(f' \circ g)$ is a function that takes in a value in the domain of $g$, and returns something which
+multiplies an increment in the domain of $f$ to give an approximation to the change in output of $f$. It's the ``derivative of $f$ at $g$''.
+
+
+
 In Leibnitz notation this might be written as
 \begin{align*}
   \ddu f(g(u)) = \dgdu \dfdg.
