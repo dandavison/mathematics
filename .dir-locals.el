@@ -1,2 +1,2 @@
-((latex-mode . ((TeX-master . "mathematics.tex")))
- (plain-TeX-mode . ((TeX-master . "mathematics.tex"))))
+((latex-mode . ((TeX-master . "mathematics.tex")
+                (xenops-image-directory . "img"))))
