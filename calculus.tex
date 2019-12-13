@@ -399,17 +399,17 @@ to which a partial derivative is being taken, instead using an integer subscript
 
 So define $\del_i g$ to be the partial derivative of a function $g$ with respect to its $i$-th
 argument\footnote{Spivak (1965) uses $D_i g$ for this}. We also need a function composition notation that can
-handle a function with multiple arguments.  So
+handle a function with multiple arguments. So
 define ${(f \circ (y, y'))(\alpha, t) := f(y(\alpha, t), y'(\alpha, t), t)}$\footnote{In other
-  words, $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$.  (The
+  words, $f \circ (y, y')$ is a function which takes the same argument types as do $y$ and $y'$. (The
   construction implies that the two functions on the RHS of the circle take the same argument types, as indeed
   they do in this case, since one is the derivative of the other.) These arguments are fed independently into
   both $y$ and $y'$; the result from $y$ yields the first argument to $f$, and the result from $y'$ yields the
   second argument to $f$.}.
 
-The increment in $f(t)$ comes from two sources: the change in $y(t)$ and the change in $y'(t)$. We
-can use the definition of partial derivative to make an approximation\footnote{The additive nature
-  of this approximation needs to be justified I think.} to the increment in $f(t)$:
+The increment in $f(t)$ comes from two sources: the change in $y(t)$ and the change in $y'(t)$. We can use the
+definition of partial derivative to make an approximation\footnote{The additive nature of this approximation
+  needs to be justified I think.} to the increment in $f(t)$:
 \begin{align*}
   \Delta f \approx ~ &(\del_1 f)(y, y', t) \cdot \Delta y \\
                  +   &(\del_2 f)(y, y', t) \cdot \Delta y'.

@@ -13,8 +13,8 @@ Here are two such problems:
 \end{question*}
 
 \begin{proof}
-  Let the points be $(x_0, y_0)$ and $(x_1, y_1)$ and let them be joined by some path $y(x)$ of
-  length $S$. Consider a short section of the path of length $\Delta s$ above a section of the $x$-axis of
+  Let the points be $(x_0, y_0)$ and $(x_1, y_1)$ and let them be joined by some path $y(x)$ of length $S$.
+  Consider a short section of the path of length $\Delta s$ above a section of the $x$-axis of
   length $\Delta x$, and make a linear approximation to the path in this region. The length of the hypotenuse
   is
   \begin{align*}
@@ -206,7 +206,6 @@ equations. And what those equations say is the following:
 \end{enumerate}
 
 \section{Examples}
-
 \subsection{The shortest path between two points on a plane}
 
 \subsubsection{Functional notation}
@@ -426,10 +425,48 @@ What is a simple example?
 \subsection{Fitting a curve to data points}
 
 \begin{question*}
-  We have $n$ data points $(x_{1}, y_{1}), \ldots, (x_{2}, y_{2})$. Find $f(x)$ which minimizes the sum of squares.
+  We have $n$ data points $(x_{1}, y_{1}), \ldots, (x_{2}, y_{2})$. Find $y(x)$ which minimizes the sum of squares.
 \end{question*}
 
 How do we represent this as an integral of a differentiable Lagrangian?
+
+Under the conventional least-squares criterion, the ``action'' is
+\begin{align*}
+  A[y] = \sum_{i=1}^{n} \(y(x_{i}) - y_{i}\)^{2}.
+\end{align*}
+We need to represent this as
+\begin{align*}
+  A[y] = \int_{y} \Lag(y, y', x),
+\end{align*}
+or
+\begin{align*}
+  A[y] = \int_{x_1}^{x_n} \Lag\(y(x), y'(x), x\) \dx.
+\end{align*}
+One simple choice of lagrangian would be to compute, (at every point along the candidate curve) the sum of
+squared distances to all data points:
+\begin{align*}
+  \Lag(x, y) = \sum_i (x - x_i)^2 + (y - y_i)^2.
+\end{align*}
+The derivatives are
+\begin{align*}
+  \pdLdy &= \sum_i 2(y - y_i) = 2ny - 2\sum_i y_i \\
+  \pdLdyp &= 0.
+\end{align*}
+The Lagrange equations are then
+\begin{align*}
+  \ddx \pdLdyp = \pdLdy,
+\end{align*}
+so we have that $\pdLdy = 0$ for all $x$ and therefore
+\begin{align*}
+  y = \frac{1}{n}\sum_i y_i
+\end{align*}
+for all $x$.
+
+
+
+
+
+
 
 
 \section{SICM: Structure and Interpretation of Classical Mechanics}
