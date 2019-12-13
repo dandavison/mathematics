@@ -123,48 +123,50 @@ The \textit{action} of a trajectory $x(t)$ for a single particle is
     ticks $1, 2, \ldots, n$.
 
     The discretized version of the functional we wish to minimize is
-  \begin{align*}
+    \begin{align*}
       \mathcal{A}[\x]
-      &= \sum_j \Lag\( x_j, \dot{x}_j \) \Delta t.
-  \end{align*}
-  In our discrete-time model, we make the following replacements: at the $j$-th clock tick, the position
-  is $\frac{x_j + x_{j+1}}{2}$, and velocity is $\frac{x_{j+1} - x_{j}} {\Delta t}$, so we have
+      &= \sum_i \Lag\( x_i, \dot{x}_i \) \Delta t.
+    \end{align*}
+    Now, instead of seeeking a minimizing function in an infinite-dimensional function space, we are working in a
+    finite-dimensional space: we need to find the values $x_1, \ldots, x_n$ that minimize the action. So we
+    differentiate with respect to each $x_i$, set these derivatives equal to zero, and solve the resulting system
+    of equations.
 
-  \begin{align*}
+    In our discrete-time model, we make the following replacements: at the $i$-th clock tick, the position
+    is $\frac{x_{i+1} + x_i}{2}$, and velocity is $\frac{x_{i+1} - x_{i}} {\Delta t}$, so we have
+    \begin{align*}
       \mathcal{A}[\x]
-      &= \sum_j \Lag\( \frac{x_j + x_{j+1}}{2}, \frac{x_{j+1} - x_{j}} {\Delta t} \) \Delta t.
-  \end{align*}
-
-  {\it Now, instead of seeeking a minimizing function in an infinite-dimensional function space, we are working in a
-  finite-dimensional space: differentiate at each clock tick, set these derivatives equal to zero, and solve
-  the resulting system of equations.}
-
-  The partial derivative with respect to $x_j$ involves just two terms of the sum:
+      &= \sum_i \Lag\( \frac{x_{i+1} + x_i}{2}, \frac{x_{i+1} - x_i} {\Delta t} \) \Delta t.
+    \end{align*}
+    The partial derivative with respect to a particular $x_i$ involves only the $(i-1)$-th and $i$-th terms of the sum:
   \begin{align*}
-    \frac{\partial \mathcal{A}}{\partial x_j}
-    &= \Delta t \frac{\partial}{\partial x_j} \(
-    \Lag\( \frac{x_{j-1} + x_{j}}{2}, \frac{x_{j} - x_{j-1}}{\Delta t} \) +
-    \Lag\( \frac{x_j + x_{j+1}}{2}, \frac{x_{j+1} - x_{j}}{\Delta t} \) \)
+    \frac{1}{\Delta t}\frac{\partial \mathcal{A}}{\partial x_i}
+    &= \frac{\partial}{\partial x_i} \(
+    \Lag\( \frac{x_i + x_{i-1}}{2}, \frac{x_i - x_{i-1}}{\Delta t} \) +
+    \Lag\( \frac{x_{i+1} + x_i}{2}, \frac{x_{i+1} - x_{i}}{\Delta t} \) \) \\
+    &=
+    \frac{1}{2}\pdLdx\Big|_{x=x_{i-1}} + \frac{1}{\Delta t}\pdLdxd\Big|_{x=x_{i-1}} +
+    \frac{1}{2}\pdLdx\Big|_{x=x_i}     - \frac{1}{\Delta t}\pdLdxd\Big|_{x=x_i} \\
+    &= \(\frac{\pdLdx\Big|_{x=x_i} + \pdLdx\Big|_{x=x_{i-1}}}{2} \) -
+      \(\frac{\pdLdxd\Big|_{x=x_i} - \pdLdxd\Big|_{x=x_{i-1}}}{\Delta t} \).
   \end{align*}
+  In the limit $\Delta t \to 0$, (we claim that) the condition $\frac{\partial A}{\partial x_i} = 0$ for $i=1,\ldots, n$ becomes
   \begin{align*}
-    &= \Delta t \(
-       \frac{1}{2}\frac{\del \Lag}{\del f} + \frac{1}{\Delta t}\frac{\del \Lag}{\del g} +
-       \frac{1}{2}\frac{\del \Lag}{\del f} - \frac{1}{\Delta t}\frac{\del \Lag}{\del g} +
-   \)
+    0 = \pdLdx - \ddt \pdLdxd,
   \end{align*}
-
-  \end{proof}
+  for all $t$.
+\end{proof}
 
 \subsection*{Equivalence of Lagrange equations and Newton's second law}
-  \begin{exercise}
-    Let $\Lag(x, \xdot) = \frac{1}{2}m\xdot^2 - V(x)$. Show that the Euler-Lagrange
-    equation $\pdLdx = \ddt \pdLdxd$ is equivalent to Newton's law of motion $F = ma$.
-  \end{exercise}
-  \begin{proof}
-    On the LHS we have $\pdLdx = -V'(x) = F$.
+\begin{exercise}
+  Let $\Lag(x, \xdot) = \frac{1}{2}m\xdot^2 - V(x)$. Show that the Euler-Lagrange
+  equation $\pdLdx = \ddt \pdLdxd$ is equivalent to Newton's law of motion $F = ma$.
+\end{exercise}
+\begin{proof}
+  On the LHS we have $\pdLdx = -V'(x) = F$.
 
-    We have $\pdLdxd = m\xdot$, therefore on the RHS we have $\ddt \pdLdxd = m\xddot = ma$.
-  \end{proof}
+  We have $\pdLdxd = m\xdot$, therefore on the RHS we have $\ddt \pdLdxd = m\xddot = ma$.
+\end{proof}
 
 
 \subsection*{Generalized coordinates}
@@ -283,4 +285,3 @@ So $\ddt(p_1 + p_2) = 0$: generalized momentum is conserved.
 Now generalized momentum appears not to be conserved in general.
 
 But we see that $bp_1 + ap_2$ is conserved.
-
