@@ -64,7 +64,7 @@ $F = ma$
 
 \subsection*{Definition of Action and Lagrangian}
 The \textit{action} of a trajectory $x(t)$ for a single particle is
-  \begin{align*}
+\begin{align*}
     \mathcal{A}[x]
     &=  \int_{t_0}^{t_1} \(\frac{1}{2}m\dot{x}(t)^2 - V\(x(t)\)\) \dt \\
     &= \int_{t_0}^{t_1} \(T - V\) \dt \\
@@ -73,13 +73,13 @@ The \textit{action} of a trajectory $x(t)$ for a single particle is
 
   \red{Why does he seem to deny that you need to know velocity for the Lagrangian? p 108, 109}
 
-\subsection*{The Principle of Least Action}
-The {\it principle of least action} states that the trajectory $x(t)$ that is taken is that for which the
-action is minimal (actually, a stationary point).
+  \subsection*{The Principle of Least Action}
+  The {\it principle of least action} states that the trajectory $x(t)$ that is taken is that for which the
+  action is minimal (actually, a stationary point).
 
-\subsection*{N particles}
-For $N$ particles we have $N$ trajectory functions $x_1, \ldots, x_N$, and the action is a functional depending
-on all of them:
+  \subsection*{N particles}
+  For $N$ particles we have $N$ trajectory functions $x_1, \ldots, x_N$, and the action is a functional depending
+  on all of them:
 
   \begin{align*}
     \mathcal{A}[x_1, \ldots, x_N]
@@ -89,9 +89,9 @@ on all of them:
   \end{align*}
 
 
-\subsection*{The Euler-Lagrange equations}
-The least action set of trajectories (trajectory of the system through configuration space) satisfies the
-following {\it at every point $t$ in time}.  :
+  \subsection*{The Euler-Lagrange equations}
+  The least action set of trajectories (trajectory of the system through configuration space) satisfies the
+  following {\it at every point $t$ in time}.  :
   \begin{align*}
     \begin{cases}
       \ddt \pdLdxdOne - \pdLdxOne = 0 \\
@@ -99,9 +99,9 @@ following {\it at every point $t$ in time}.  :
       \ddt \pdLdxdN - \pdLdxN = 0
     \end{cases}
   \end{align*}
-\subsection*{Informal derivation of Euler-Lagrange equations}
+  \subsection*{Informal derivation of Euler-Lagrange equations}
 
-\subsubsection*{One-dimensional system}
+  \subsubsection*{One-dimensional system}
 
   Consider a particle moving along a line. The (unknown) trajectory it follows is written as $x(t)$.
 
@@ -116,7 +116,6 @@ following {\it at every point $t$ in time}.  :
       \ddt \pdLdxd = \pdLdx.
     \end{align*}
   \end{theorem*}
-
   \begin{proof} (sketch)
 
     We pretend that time is discrete and that the system evolves via $n$ instantaneous ``jumps'' each
@@ -174,38 +173,38 @@ If you know what the $q_i$s are, and if you know the Lagrangian, then you have i
 
 \subsection*{Changing coordinate system}
 
-  In observer A's frame of reference, a particle is at $x$.
+In observer A's frame of reference, a particle is at $x$.
 
-  Observer B is moving relative to observer A according to a function $f(t)$.
+Observer B is moving relative to observer A according to a function $f(t)$.
 
-  In observer B's frame of reference, the particle is at $X = x - f(t)$.
+In observer B's frame of reference, the particle is at $X = x - f(t)$.
 
-  According to observer $A$, the Lagrangian is $\frac{1}{2}m\xdot^2 - V(x)$, which under E-L leads to the
-  equation of motion $m\xddot = -V'(x)$ or $F = ma$.
+According to observer $A$, the Lagrangian is $\frac{1}{2}m\xdot^2 - V(x)$, which under E-L leads to the
+equation of motion $m\xddot = -V'(x)$ or $F = ma$.
 
-  According to observer $B$, the Lagrangian is $\frac{1}{2}m\(\dot{X}(t) + \dot{f}(t)\)^2 - V(X)$, which under
-  E-L leads to the equation of motion $m\(\ddot{X} + \ddot{f}\) = -V'(x)$, or $F = ma + m\ddot{f}$. So
-  observer $B$ sees a fictitious force $m\ddot{f}$, associated with their movement.
+According to observer $B$, the Lagrangian is $\frac{1}{2}m\(\dot{X}(t) + \dot{f}(t)\)^2 - V(X)$, which under
+E-L leads to the equation of motion $m\(\ddot{X} + \ddot{f}\) = -V'(x)$, or $F = ma + m\ddot{f}$. So
+observer $B$ sees a fictitious force $m\ddot{f}$, associated with their movement.
 
 \subsection*{Change of coordinates Example 2}
 
-  Observer A (reference frame A) uses coordinates $x$ and $y$.
+Observer A (reference frame A) uses coordinates $x$ and $y$.
 
-  Observer B (reference frame B) uses coordinates $X$ and $Y$.
+Observer B (reference frame B) uses coordinates $X$ and $Y$.
 
-  Reference frame B is rotating relative to A:
+Reference frame B is rotating relative to A:
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/physics--susskind--the-theoretical-minimum--1.-the-nature-of-classical-mechanics--6.-the-principle-of-least-action--28fe.png}
+  \includegraphics[width=400pt]{img/physics--susskind--the-theoretical-minimum--1.-the-nature-of-classical-mechanics--6.-the-principle-of-least-action--28fe.png}
 \end{mdframed}
 
 To translate between the two reference frames:
 
-  \begin{align*}
+\begin{align*}
     x &= X \cos \omega t + Y \sin \omega t \\
     y &= -X \sin \omega t + Y \cos \omega t.
   \end{align*}
-i.e.
+  i.e.
 \begin{align*}
   \vecMM{x}{y} = \matMMxNN{\cos \omega t}{-\sin \omega t}{\sin \omega t}{\cos \omega t} \vecMM{X}{Y}.
 \end{align*}
