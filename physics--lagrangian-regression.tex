@@ -55,6 +55,10 @@ Note that, via the quotient rule $\(\frac{f}{g}\)' = \frac{gf' - fg'}{g^2}$, we 
 \begin{minted}{wolfram} :results latex
 D[y'[x]/Sqrt[1 + y'[x]^2], x]
 \end{minted}
+
+\begin{align*}
+\frac{y''(x)}{\sqrt{y'(x)^2+1}}-\frac{y'(x)^2 y''(x)}{\left(y'(x)^2+1\right)^{3/2}}
+\end{align*}
 \begin{align*}
 \frac{y''(x)}{\sqrt{y'(x)^2+1}}-\frac{y'(x)^2 y''(x)}{\left(y'(x)^2+1\right)^{3/2}}
 \end{align*}
@@ -120,44 +124,86 @@ First, let's check we know how to differentiate an expression w.r.t. $x$, $y$, a
 f = Sqrt[1 + (y'[x])^2];
 {D[f, x], D[f, y[x]], D[f, y'[x]]}
 \end{minted}
+
+\begin{align*}
+\left\{\frac{y'(x) y''(x)}{\sqrt{y'(x)^2+1}},0,\frac{y'(x)}{\sqrt{y'(x)^2+1}}\right\}
+\end{align*}
 \begin{align*}
 \left\{\frac{y'(x) y''(x)}{\sqrt{y'(x)^2+1}},0,\frac{y'(x)}{\sqrt{y'(x)^2+1}}\right\}
 \end{align*}
 
 Compute the partial derivatives of the Lagrangian:
 
-\begin{minted}{wolfram} :results latex
-p = (x - x1)^2 + (y[x] - y1)^2; (* penalty function *)
-lag = p Sqrt[1 + (y'[x])^2]; (* Lagrangian *)
-{D[lag, y[x]], D[lag, y'[x]]}
-\end{minted}
-
-\begin{align*}
-\left\{2 (y(x)-\text{y1}) \sqrt{y'(x)^2+1},\frac{y'(x) \left((x-\text{x1})^2+(y(x)-\text{y1})^2\right)}{\sqrt{y'(x)^2+1}}\right\}
-\end{align*}
-
-
-Now, $\ddx \pdLdyp$ is
-
-\begin{minted}{wolfram} :results latex
-p = (x - x1)^2 + (y[x] - y1)^2; (* penalty function *)
-lag = p Sqrt[1 + (y'[x])^2]; (* Lagrangian *)
-D[ D[lag, y'[x]], x]
-\end{minted}
-
-\begin{align*}
-\frac{y'(x) \left(2 (x-\text{x1})+2 (y(x)-\text{y1}) y'(x)\right)}{\sqrt{y'(x)^2+1}}-\frac{y'(x)^2 y''(x) \left((x-\text{x1})^2+(y(x)-\text{y1})^2\right)}{\left(y'(x)^2+1\right)^{3/2}}+\frac{y''(x) \left((x-\text{x1})^2+(y(x)-\text{y1})^2\right)}{\sqrt{y'(x)^2+1}}
-\end{align*}
-
-
-Solve the Euler-Lagrange equations:
-
-\begin{minted}{wolfram} :results latex
-pen = (x - x1)^2 + (y[x] - y1)^2; (* penalty function *)
-lag = pen Sqrt[1 + (y'[x])^2]; (* Lagrangian *)
-y /. DSolve[D[ D[lag, y'[x]], x] == D[lag, y[x]], y, x]
-\end{minted}
+% \begin{minted}{wolfram} :results latex
+% xobs = {-2, -1, 0, 1, 2};
+% yobs = {4, 1, 0, 1, 4};
+% n = Length[xobs]
+% pen = Sum[(x - xobs[[i]])^2 + (y[x] - yobs[[i]])^2, {i, n}]; (* penalty function *)
+% lag = pen Sqrt[1 + (y'[x])^2]; (* Lagrangian *)
+% {D[lag, y[x]], D[lag, y'[x]]}
+% \end{minted}
 
 % \begin{align*}
-% \left\{\{x\}\unicode{f4a1}\left(\text{y1} \cos \left(c_1\right)-x \sin \left(c_1\right)+\text{x1} \sin \left(c_1\right)\right) \sec \left(c_1\right)+\frac{\sqrt[3]{-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)+\sqrt{4 \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right){}^3+\left(-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)\right){}^2}} \sec \left(c_1\right)}{3 \sqrt[3]{2}}-\frac{\sqrt[3]{2} \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right) \sec \left(c_1\right)}{3 \sqrt[3]{-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)+\sqrt{4 \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right){}^3+\left(-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)\right){}^2}}},\{x\}\unicode{f4a1}\left(\text{y1} \cos \left(c_1\right)-x \sin \left(c_1\right)+\text{x1} \sin \left(c_1\right)\right) \sec \left(c_1\right)-\frac{\left(1-i \sqrt{3}\right) \sqrt[3]{-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)+\sqrt{4 \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right){}^3+\left(-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)\right){}^2}} \sec \left(c_1\right)}{6 \sqrt[3]{2}}+\frac{\left(1+i \sqrt{3}\right) \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right) \sec \left(c_1\right)}{3\ 2^{2/3} \sqrt[3]{-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)+\sqrt{4 \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right){}^3+\left(-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)\right){}^2}}},\{x\}\unicode{f4a1}\left(\text{y1} \cos \left(c_1\right)-x \sin \left(c_1\right)+\text{x1} \sin \left(c_1\right)\right) \sec \left(c_1\right)-\frac{\left(1+i \sqrt{3}\right) \sqrt[3]{-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)+\sqrt{4 \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right){}^3+\left(-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)\right){}^2}} \sec \left(c_1\right)}{6 \sqrt[3]{2}}+\frac{\left(1-i \sqrt{3}\right) \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right) \sec \left(c_1\right)}{3\ 2^{2/3} \sqrt[3]{-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)+\sqrt{4 \left(-9 x^2 \cos ^2\left(c_1\right)-9 \text{x1}^2 \cos ^2\left(c_1\right)+18 x \text{x1} \cos ^2\left(c_1\right)-9 x^2 \sin ^2\left(c_1\right)-9 \text{x1}^2 \sin ^2\left(c_1\right)+18 x \text{x1} \sin ^2\left(c_1\right)\right){}^3+\left(-54 \sin ^3\left(c_1\right) x^3+27 e^{3 c_2} \cos ^2\left(c_1\right) x^3-54 \cos ^2\left(c_1\right) \sin \left(c_1\right) x^3+162 \text{x1} \sin ^3\left(c_1\right) x^2-81 e^{3 c_2} \text{x1} \cos ^2\left(c_1\right) x^2+162 \text{x1} \cos ^2\left(c_1\right) \sin \left(c_1\right) x^2-162 \text{x1}^2 \sin ^3\left(c_1\right) x+81 e^{3 c_2} \text{x1}^2 \cos ^2\left(c_1\right) x-162 \text{x1}^2 \cos ^2\left(c_1\right) \sin \left(c_1\right) x+54 \text{x1}^3 \sin ^3\left(c_1\right)-27 e^{3 c_2} \text{x1}^3 \cos ^2\left(c_1\right)+54 \text{x1}^3 \cos ^2\left(c_1\right) \sin \left(c_1\right)\right){}^2}}}\right\}
+% \left\{\sqrt{y'(x)^2+1} \left(\sum _i^n 2 (y(x)-\text{yobs}[[i]])\right),\frac{y'(x) \left(\sum _i^n \left((x-\text{xobs}[[i]])^2+(y(x)-\text{yobs}[[i]])^2\right)\right)}{\sqrt{y'(x)^2+1}}\right\}
 % \end{align*}
+
+
+
+
+% Now, $\ddx \pdLdyp$ is
+
+% \begin{minted}{wolfram} :results latex
+% p = (x - x1)^2 + (y[x] - y1)^2; (* penalty function *)
+% lag = p Sqrt[1 + (y'[x])^2]; (* Lagrangian *)
+% D[ D[lag, y'[x]], x]
+% \end{minted}
+
+% \begin{align*}
+% \frac{y'(x) \left(2 (x-\text{x1})+2 (y(x)-\text{y1}) y'(x)\right)}{\sqrt{y'(x)^2+1}}-\frac{y'(x)^2 y''(x) \left((x-\text{x1})^2+(y(x)-\text{y1})^2\right)}{\left(y'(x)^2+1\right)^{3/2}}+\frac{y''(x) \left((x-\text{x1})^2+(y(x)-\text{y1})^2\right)}{\sqrt{y'(x)^2+1}}
+% \end{align*}
+
+
+% Solve the Euler-Lagrange equations:
+
+% \begin{minted}{wolfram} :results latex
+% pen = (x - x1)^2 + (y[x] - y1)^2; (* penalty function *)
+% lag = pen Sqrt[1 + (y'[x])^2]; (* Lagrangian *)
+% y /. DSolve[D[ D[lag, y'[x]], x] == D[lag, y[x]], y, x]
+% \end{minted}
+
+
+% Sanity check: show that straight line is shortest curve joining two points:
+
+% \begin{minted}{wolfram} :results latex
+% lag = Sqrt[1 + (y'[x])^2];
+% y /. DSolve[D[D[lag, y'[x]], x] == D[lag, y[x]], y, x]
+% \end{minted}
+
+% \begin{align*}
+% \left\{\{x\}\unicode{f4a1}c_2 x+c_1\right\}
+% \end{align*}
+% (that is actually saying it's a straight line)
+
+
+\begin{minted}{wolfram} % :results file graphics :file /tmp/mathematica3.png
+obs = {{-3, 6}, {-2, 4}, {-1, 1}, {0, 0}, {1, 1}, {2, 4}, {3, 6}};
+ListPlot[obs]
+\end{minted}
+
+\includegraphics{/tmp/mathematica3.png}
+
+
+\includegraphics{/tmp/mathematica3.png}
+
+
+
+
+\begin{minted}{wolfram} :results file graphics
+data = {2, 3, 5, 7, 11, 13};
+fn = Fit[data, {1, x, x^2}, x];
+Show[{Plot[fn, {x, 1, 6}], ListPlot[data]}]
+\end{minted}
+
+\includegraphics{physics--lagrangian-regression.png}
+
+
