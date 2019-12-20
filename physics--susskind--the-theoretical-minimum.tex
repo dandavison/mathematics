@@ -14,6 +14,7 @@
 
 \section{3. Dynamics}
 $F = ma$
+
 \section{4.    Systems of  More Than One Particle}
 \begin{enumerate}
 \item The force vector acting on a particle is determined by the locations of all the particles:
@@ -245,8 +246,10 @@ to $q_i$.
 
 So a streamlined statement of the Euler-Lagrange equations for classical mechanics is
 \begin{align*}
-  \frac{\d p_i}{\dt} - \pdLdqi = 0.
+  \dot{p_i} = \pdLdqi.
 \end{align*}
+
+
 \subsection*{Conserved quantities}
 Momentum is conserved when there is no potential energy function (which would be dependent on the spatial
 coordinates).
@@ -285,3 +288,67 @@ So $\ddt(p_1 + p_2) = 0$: generalized momentum is conserved.
 Now generalized momentum appears not to be conserved in general.
 
 But we see that $bp_1 + ap_2$ is conserved.
+
+\section{8. Hamiltonian Mechanics and Time-Translation Invariance}
+
+For a Lagrangian with no explicit time dependence we have
+\begin{align*}
+  L = L({q_i}, {\dot{q}}),
+\end{align*}
+and from the chain rule
+\begin{align*}
+  \dLdt = \sum_i \(\pdLdqi \dot{q}_i + \pdLdqdi \ddot{q}_i\).
+\end{align*}
+So, even without explicit time dependence, the Lagrangian does of course vary over time, because the
+generalized coordinates and velocities vary with time.
+
+Now consider a Lagrangian with an explicit time dependence: $L = L(q_i, \dot{q}_i, t)$; we now have
+\begin{align*}
+  \dLdt = \sum_i \(\pdLdqi \dot{q}_i + \pdLdqdi \ddot{q}_i\) + \pdLdt.
+\end{align*}
+Recall that the Euler-Lagrange equations can be wrtten $\dot{p_i} = \pdLdqdi$. So we can write this as
+\begin{align*}
+  \dLdt = \sum_i \(\dot{p}_i \dot{q}_i + p_i \ddot{q}_i\) + \pdLdt,
+\end{align*}
+and via the product rule this is
+\begin{align*}
+  \dLdt = \ddt \sum_i p_i\dot{q}_i + \pdLdt,
+\end{align*}
+or equivalently
+\begin{align*}
+  \ddt\(\sum_i p_i\dot{q}_i - \Lag\) = -\pdLdt.
+\end{align*}
+Accordingly we define the {\it Hamiltonian}
+\begin{align*}
+  H := \sum_i p_i\dot{q}_i - \Lag\),
+\end{align*}
+so that we have
+\begin{align*}
+  \dHdt = -\pdLdt.
+\end{align*}
+Thus the Hamiltonian is a quantity that is constant in time if and only if the Lagrangian has no explicit time
+dependence.
+
+In other words, if a system is {\it time-translation invariant}, then the Hamiltonian is conserved.
+
+\subsection{Example}
+
+Consider a particle in a potential. The Lagrangian is
+\begin{align*}
+  \Lag = \frac{1}{2}m\dot{x}^2 - V(x).
+\end{align*}
+The Hamiltonian is then
+\begin{align*}
+  H
+  &= m\dot{x} \cdot \dot{x} - \frac{1}{2}m\dot{x}^2 + V(x) \\
+  &= \frac{1}{2}m\dot{x}^2 + V(x),
+\end{align*}
+i.e. it is the total energy of the system.
+
+This holds for a system comprising any number of particles. Even if the Lagrangian has a more complex form
+than $T - V$, the Hamiltonian is defined in the same way, and it is conserved if and only if the Lagrangian
+lacks explicit time dependence, and in fact one defines for these systems:
+\begin{align*}
+  \text{Energy} ~=~ \text{Hamiltonian}.
+\end{align*}
+
