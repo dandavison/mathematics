@@ -510,11 +510,11 @@ The potential energy $V$ depends on the function $y$ describing the shape of the
 \begin{align*}
   V[y]
   &= \int_{-d}^d \sqrt{(\dx)^2 + (\dy)^2} \cdot \rho g y(x) \\
-  &= \rho g \int_{-d}^d \sqrt{1 + y'(x)} \cdot y(x) \dx. \\
+  &= \rho g \int_{-d}^d \sqrt{1 + y'(x)^2} \cdot y(x) \dx. \\
 \end{align*}
 Furthermore, we have two constraints. Firstly, the total length is $L = 80m$:
 \begin{align*}
-  \int_{-d}^d \sqrt{1 + y'(x)} \dx = 80,
+  \int_{-d}^d \sqrt{1 + y'(x)^2} \dx = L,
 \end{align*}
 and the endpoints are both at height zero: $y(-d) = y(d) = 0$.
 
@@ -524,16 +524,12 @@ problem as minimizing
   A[y] &= \int_{-d}^d \sqrt{1 + y'(x)^2} y(x) - \lambda \sqrt{1 + y'(x)^2} \dx \\
   &= \int_{-d}^d \(y(x) - \lambda\)\sqrt{1 + y'(x)^2} \dx. \\
 \end{align*}
-So this has the form
-\begin{align*}
-  \int_{-d}^d f(y, y', x) \dx
-\end{align*}
-where $f(y, y', x) = \(y - \lambda\)\sqrt{1 + y'^2}$.
-
+So this has the form $\int_{-d}^d f(y, y', x) \dx$, where $f(y, y', x) = \(y - \lambda\)\sqrt{1 + y'^2}$.
 We have
 \begin{align*}
   \pdfdyp =  (y - \lambda)(1 + y'^2)^{-1/2}y'
 \end{align*}
+
 and
  \begin{align*}
   \ddx \pdfdyp
@@ -541,15 +537,6 @@ and
   & (y - \lambda)  \cdot \(\frac{-1}{2}\)(1 + y'^2)^{-3/2}2y'y'' \cdot y' + \\
   & y' \cdot (1 + y'^2)^{-1/2} \cdot y'.
 \end{align*}
-\footnote{
-\begin{align*}
-  (fgh)'
-  &= f(gh)' + f'(gh) \\
-  &= f(gh' + g'h) + f'gh \\
-  &= fgh' + fg'h + f'gh
-\end{align*}
-}
-
 and
 \begin{align*}
   \pdfdy = (1 + y'^2)^{1/2}.
@@ -566,42 +553,59 @@ The Euler-Lagrange equations are
   & y' \cdot (1 + y'^2)^{-1/2} \cdot y'.
 \end{align*}
  \begin{align*}
-  (1 + y'^2)^{1/2} =
-  & (y - \lambda) \cdot (1 + y'^2)^{-1/2}  \cdot y'' + \\
-  & (y - \lambda)  \cdot \(\frac{-1}{2}\)(1 + y'^2)^{-3/2}2y'y'' \cdot y' + \\
-  & y' \cdot (1 + y'^2)^{-1/2} \cdot y'.
+  (1 + y'^2) =
+  & (y - \lambda)  y'' + \\
+  & (y - \lambda) (-1)(1 + y'^2)^{-1}y'^2y'' + \\
+  & y'^2.
+\end{align*}
+\begin{align*}
+  1 = (y - \lambda)  y'' - (y - \lambda) (1 + y'^2)^{-1}y'^2y''
+\end{align*}
+\begin{align*}
+ (y - \lambda) y''\(1 - \frac{y'^2}{1 + y'^2}\) - 1 = 0
+\end{align*}
+
+\begin{minted}{wolfram} :results latex
+  el = (y[x] - lambda)y''[x](1 - y'[x]^2 / (1 + y'[x]^2)) - 1;
+  DSolve[el == 0, y, x]
+\end{minted}
+
+\begin{align*}
+\left\{\left\{y\to \left(\frac{1}{2} \left(-e^{-e^{c_1} x-2 c_1-e^{c_1} c_2}-e^{e^{c_1} x+e^{c_1} c_2}+2 \lambda \right)\right)\right\},\left\{y\to \left(\frac{1}{2} \left(-e^{-e^{c_1} x-e^{c_1} c_2}-e^{e^{c_1} x-2 c_1+e^{c_1} c_2}+2 \lambda \right)\right)\right\}\right\}
+\end{align*}
+
+Compare against doing it all in Mathematica. They seem to give the same result.
+
+\begin{minted}{wolfram} :results latex
+  (* hanging cable problem *)
+  (* f = (y[x] - lambda)Sqrt[1 + y'[x]^2]; *)
+
+  (* curve enclosing greatest area problem *)
+  f = y[x] - lambda Sqrt[1 + y'[x]^2];
+
+  pdfdy = D[f, y[x]];
+  pdfdyp = D[f, y'[x]];
+  ddxpdfdyp = D[pdfdyp, x];
+  (* {pdfdy, pdfdyp, ddxpdfdyp, ddxpdfdyp - pdfdy} // Simplify *)
+  (* ddxpdfdyp - pdfdy // Simplify *)
+  DSolveValue[ddxpdfdyp == pdfdy, y, x]
+\end{minted}
+
+% DSolveValue::dsvb:
+%    There are multiple solution branches for the equations, but DSolveValue
+%     will return only one. Use DSolve to get all of the solution branches.
+
+\begin{align*}
+\{x\}\unicode{f4a1}\frac{1}{2} \left(-e^{-e^{c_1} x-2 c_1-e^{c_1} c_2}-e^{e^{c_1} x+e^{c_1} c_2}+2 \lambda \right)
 \end{align*}
 
 \begin{align*}
-  \ddx (y - \lambda)(1 + y'^2)^{-1/2}y' = (1 + y'^2)^{1/2}.
-\end{align*}
-Integrating, we have
-\begin{align*}
-  (y - \lambda)(1 + y'^2)^{-1/2}y' = \int (1 + y'^2)^{1/2} \dx.
-\end{align*}
-
-
-and
-\begin{align*}
-  \ddx \pdfdyp = -\frac{1}{2}(y - \lambda)\frac{1}{2}(1 + y')^{-3/2}y'' + \frac{1}{2}y'(1 + y')^{-1/2}
+\text{DSolveExpr}\left(-\frac{(y(x)-\lambda ) y'(x)^2 y''(x)}{\left(y'(x)^2+1\right)^{3/2}}+\frac{(y(x)-\lambda ) y''(x)}{\sqrt{y'(x)^2+1}}+\frac{y'(x)^2}{\sqrt{y'(x)^2+1}}=\sqrt{y'(x)^2+1},y,x\right)
 \end{align*}
 
 \begin{align*}
-  -\frac{1}{4}(y - \lambda)(1 + y')^{-3/2}y'' + \frac{1}{2}y'(1 + y')^{-1/2} =  (1 + y')^{1/2}.
+\left\{\left\{y\to \left(\frac{1}{2} \left(-e^{-e^{c_1} x-2 c_1-e^{c_1} c_2}-e^{e^{c_1} x+e^{c_1} c_2}+2 \lambda \right)\right)\right\},\left\{y\to \left(\frac{1}{2} \left(-e^{-e^{c_1} x-e^{c_1} c_2}-e^{e^{c_1} x-2 c_1+e^{c_1} c_2}+2 \lambda \right)\right)\right\}\right\}
 \end{align*}
-\begin{align*}
-  -\frac{1}{4}(y - \lambda)(1 + y')^{-2}y'' + \frac{1}{2}y'(1 + y')^{-1} =  1.
-\end{align*}
-\begin{align*}
-  -\frac{1}{4}(y - \lambda)(1 + y')^{-1}y'' + \frac{1}{2}y' =  1 + y'.
-\end{align*}
-\begin{align*}
-  -\frac{1}{2}(y - \lambda)(1 + y')^{-1}y'' - y' -2 =  0.
-\end{align*}
-\begin{align*}
-  \frac{(\lambda - y)y''}{2(1 + y')} - y' -2 =  0.
-\end{align*}
-
 
 \subsection{Initial attempts}
 Consider the following approximation: the cable is divided into many straight line segments each of
