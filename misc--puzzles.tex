@@ -500,6 +500,110 @@ If this does not overlap with $g_1$... no not sure this leads to a proof.
   $50$m. The lowest point of the cable is $20$m above the ground. How far apart are the poles?
 \end{mdframed}
 
+\subsection{Calculus of variations approach}
+
+Let the density of the cable be $\rho$ kg/m. Introduce a coordinate system such that $x=0$ is the mid-point of
+the cable, and $y = 0$ the height of the top of the poles. Let the distance between the poles be $2d$, so that
+the poles are at $x = -d$ and $x = +d$. Let $y(x)$ be a function describing the shape of the cable.
+
+The potential energy $V$ depends on the function $y$ describing the shape of the curve:
+\begin{align*}
+  V[y]
+  &= \int_{-d}^d \sqrt{(\dx)^2 + (\dy)^2} \cdot \rho g y(x) \\
+  &= \rho g \int_{-d}^d \sqrt{1 + y'(x)} \cdot y(x) \dx. \\
+\end{align*}
+Furthermore, we have two constraints. Firstly, the total length is $L = 80m$:
+\begin{align*}
+  \int_{-d}^d \sqrt{1 + y'(x)} \dx = 80,
+\end{align*}
+and the endpoints are both at height zero: $y(-d) = y(d) = 0$.
+
+To impose the total length constraint we use a Lagrange multiplier approach: this leads to reformulating the
+problem as minimizing
+\begin{align*}
+  A[y] &= \int_{-d}^d \sqrt{1 + y'(x)^2} y(x) - \lambda \sqrt{1 + y'(x)^2} \dx \\
+  &= \int_{-d}^d \(y(x) - \lambda\)\sqrt{1 + y'(x)^2} \dx. \\
+\end{align*}
+So this has the form
+\begin{align*}
+  \int_{-d}^d f(y, y', x) \dx
+\end{align*}
+where $f(y, y', x) = \(y - \lambda\)\sqrt{1 + y'^2}$.
+
+We have
+\begin{align*}
+  \pdfdyp =  (y - \lambda)(1 + y'^2)^{-1/2}y'
+\end{align*}
+and
+ \begin{align*}
+  \ddx \pdfdyp
+  =& (y - \lambda) \cdot (1 + y'^2)^{-1/2}  \cdot y'' + \\
+  & (y - \lambda)  \cdot \(\frac{-1}{2}\)(1 + y'^2)^{-3/2}2y'y'' \cdot y' + \\
+  & y' \cdot (1 + y'^2)^{-1/2} \cdot y'.
+\end{align*}
+\footnote{
+\begin{align*}
+  (fgh)'
+  &= f(gh)' + f'(gh) \\
+  &= f(gh' + g'h) + f'gh \\
+  &= fgh' + fg'h + f'gh
+\end{align*}
+}
+
+and
+\begin{align*}
+  \pdfdy = (1 + y'^2)^{1/2}.
+\end{align*}
+
+The Euler-Lagrange equations are
+\begin{align*}
+  \pdfdy = \ddx \pdfdyp.
+\end{align*}
+ \begin{align*}
+  (1 + y'^2)^{1/2} =
+  & (y - \lambda) \cdot (1 + y'^2)^{-1/2}  \cdot y'' + \\
+  & (y - \lambda)  \cdot \(\frac{-1}{2}\)(1 + y'^2)^{-3/2}2y'y'' \cdot y' + \\
+  & y' \cdot (1 + y'^2)^{-1/2} \cdot y'.
+\end{align*}
+ \begin{align*}
+  (1 + y'^2)^{1/2} =
+  & (y - \lambda) \cdot (1 + y'^2)^{-1/2}  \cdot y'' + \\
+  & (y - \lambda)  \cdot \(\frac{-1}{2}\)(1 + y'^2)^{-3/2}2y'y'' \cdot y' + \\
+  & y' \cdot (1 + y'^2)^{-1/2} \cdot y'.
+\end{align*}
+
+\begin{align*}
+  \ddx (y - \lambda)(1 + y'^2)^{-1/2}y' = (1 + y'^2)^{1/2}.
+\end{align*}
+Integrating, we have
+\begin{align*}
+  (y - \lambda)(1 + y'^2)^{-1/2}y' = \int (1 + y'^2)^{1/2} \dx.
+\end{align*}
+
+
+and
+\begin{align*}
+  \ddx \pdfdyp = -\frac{1}{2}(y - \lambda)\frac{1}{2}(1 + y')^{-3/2}y'' + \frac{1}{2}y'(1 + y')^{-1/2}
+\end{align*}
+
+\begin{align*}
+  -\frac{1}{4}(y - \lambda)(1 + y')^{-3/2}y'' + \frac{1}{2}y'(1 + y')^{-1/2} =  (1 + y')^{1/2}.
+\end{align*}
+\begin{align*}
+  -\frac{1}{4}(y - \lambda)(1 + y')^{-2}y'' + \frac{1}{2}y'(1 + y')^{-1} =  1.
+\end{align*}
+\begin{align*}
+  -\frac{1}{4}(y - \lambda)(1 + y')^{-1}y'' + \frac{1}{2}y' =  1 + y'.
+\end{align*}
+\begin{align*}
+  -\frac{1}{2}(y - \lambda)(1 + y')^{-1}y'' - y' -2 =  0.
+\end{align*}
+\begin{align*}
+  \frac{(\lambda - y)y''}{2(1 + y')} - y' -2 =  0.
+\end{align*}
+
+
+\subsection{Initial attempts}
 Consider the following approximation: the cable is divided into many straight line segments each of
 length $\Delta L$. Segment $i$ is inclined at angle $\theta_i$ to the horizontal.
 
@@ -518,8 +622,8 @@ right half of the curve.
 Segment $i$ is subject to the following forces:
 \begin{enumerate}
 \item Weight $\Delta L$ acting vertically downwards.
-\item Tension $\Tl$ exerted by segment $i-1$ acting leftwards at angle $\theta_{i-1}$.
-\item Tension $\Tr$ exerted by segment $i+1$ acting rightwards at angle $\theta_{i+1}$.
+\item Tension $T_l$ exerted by segment $i-1$ acting leftwards at angle $\theta_{i-1}$.
+\item Tension $T_r$ exerted by segment $i+1$ acting rightwards at angle $\theta_{i+1}$.
 \end{enumerate}
 Consider the point where segment $i-1$ is attached to segment $i$. There are the following turning
 moments around that point:
