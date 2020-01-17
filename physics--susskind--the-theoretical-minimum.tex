@@ -26,7 +26,7 @@ $F = ma$
   \item There are $N$ such equations.
   \item Each equation is really 3 equations: one for each spatial dimension.
   \end{enumerate}
-\item So, the {\it configuration space} is d$3N$-dimensional. Given a point in configuration space, we can compute the acceleration
+\item So, the {\it configuration space} is $3N$-dimensional. Given a point in configuration space, we can compute the acceleration
   vector of each particle in the system.
 \item But that is not enough to specify the evolution of the system: we need to know the current velocities (momenta)
   also.
@@ -100,6 +100,7 @@ The \textit{action} of a trajectory $x(t)$ for a single particle is
       \ddt \pdLdxdN - \pdLdxN = 0
     \end{cases}
   \end{align*}
+
   \subsection*{Informal derivation of Euler-Lagrange equations}
 
   \subsubsection*{One-dimensional system}
@@ -249,6 +250,9 @@ So a streamlined statement of the Euler-Lagrange equations for classical mechani
   \dot{p_i} = \pdLdqi.
 \end{align*}
 
+In words, the time derivative of the conjugate momentum equals the rate of change of the Lagrangian with respect to the
+generalized spatial coordinate.
+
 
 \subsection*{Conserved quantities}
 Momentum is conserved when there is no potential energy function (which would be dependent on the spatial
@@ -289,11 +293,11 @@ Now generalized momentum appears not to be conserved in general.
 
 But we see that $bp_1 + ap_2$ is conserved.
 
-\section{8. Hamiltonian Mechanics and Time-Translation Invariance}
+\section*{8. Hamiltonian Mechanics and Time-Translation Invariance}
 
 For a Lagrangian with no explicit time dependence we have
 \begin{align*}
-  L = L({q_i}, {\dot{q}}),
+  L = L({q_i}, {\dot{q_i}}),
 \end{align*}
 and from the chain rule
 \begin{align*}
@@ -306,11 +310,13 @@ Now consider a Lagrangian with an explicit time dependence: $L = L(q_i, \dot{q}_
 \begin{align*}
   \dLdt = \sum_i \(\pdLdqi \dot{q}_i + \pdLdqdi \ddot{q}_i\) + \pdLdt.
 \end{align*}
-Recall that the Euler-Lagrange equations can be wrtten $\dot{p_i} = \pdLdqdi$. So we can write this as
+Recall that the Euler-Lagrange equations for classical mechanics $\ddt \pdLdqdi = \pdLdqi$ can be
+written $\dot{p_i} = \pdLdqi$, which implies that $p_i = \pdLdqdi$. So we can write the time-derivative of the
+Lagrangian as
 \begin{align*}
   \dLdt = \sum_i \(\dot{p}_i \dot{q}_i + p_i \ddot{q}_i\) + \pdLdt,
 \end{align*}
-and via the product rule this is
+which via the product rule is
 \begin{align*}
   \dLdt = \ddt \sum_i p_i\dot{q}_i + \pdLdt,
 \end{align*}
@@ -320,7 +326,7 @@ or equivalently
 \end{align*}
 Accordingly we define the {\it Hamiltonian}
 \begin{align*}
-  H := \sum_i p_i\dot{q}_i - \Lag\),
+  H := \sum_i p_i\dot{q}_i - \Lag,
 \end{align*}
 so that we have
 \begin{align*}
@@ -331,7 +337,7 @@ dependence.
 
 In other words, if a system is {\it time-translation invariant}, then the Hamiltonian is conserved.
 
-\subsection{Example}
+\subsection*{Example}
 
 Consider a particle in a potential. The Lagrangian is
 \begin{align*}
@@ -340,15 +346,175 @@ Consider a particle in a potential. The Lagrangian is
 The Hamiltonian is then
 \begin{align*}
   H
+  &= p\dot{q} - \Lag \\
   &= m\dot{x} \cdot \dot{x} - \frac{1}{2}m\dot{x}^2 + V(x) \\
   &= \frac{1}{2}m\dot{x}^2 + V(x),
 \end{align*}
 i.e. it is the total energy of the system.
 
-This holds for a system comprising any number of particles. Even if the Lagrangian has a more complex form
-than $T - V$, the Hamiltonian is defined in the same way, and it is conserved if and only if the Lagrangian
-lacks explicit time dependence, and in fact one defines for these systems:
+This holds for a system comprising any number of particles. $p_i\dot{q}_i$ is like $m\dot{x} \cdot \dot{x}$,
+which is twice the $i$-th component of the kinetic energy. So if the Lagrangian is $T - V$, then we have
+\begin{align*}
+  H
+  &= \sum_i p_i\dot{q}_i - \Lag \\
+  &= 2T - (T - V) \\
+  &= T + V.
+\end{align*}
+Even if the Lagrangian has a more complex form than $T - V$, the Hamiltonian is defined in the same way, and it
+is conserved if and only if the Lagrangian lacks explicit time dependence, and in fact one defines for these
+systems:
 \begin{align*}
   \text{Energy} ~=~ \text{Hamiltonian}.
 \end{align*}
+One way (the only way?) in which the Lagrangian may have explicit time dependence is if we are only considering
+part of a system: in this case, energy is not in general conserved.
 
+\subsection*{Phase space and Hamilton's equations}
+
+The Lagrangian formulation focuses on motion $q(t)$ through configuration space, and involves second order
+differential equations: so we must specify the initial positions, and the initial velocities.
+
+The Hamiltonian formulation focuses on motion $\(q(t), p(t)\)$ through {\it phase space}, and involves first order
+differential equations.
+
+For a particle moving on a line, we have
+\begin{align*}
+  H
+  &= \frac{1}{2}m\dot{x}^2 + V(x).
+\end{align*}
+To derive Hamilton's equations, we rewrite this in terms of momentum $p$ and consider the derivative with
+respect to $p$:
+\begin{align*}
+  H
+  &= \frac{1}{2}m\dot{x}^2 + V(x) \\
+  &= \frac{1}{2}m\(\frac{p}{m}\)^2 + V(x) \\
+  &= \frac{p^2}{2m} + V(x).
+\end{align*}
+So we have
+\begin{align*}
+  \pdHdx = \frac{\d V}{\dx} = -m\ddot{x} = -\dot{p},
+\end{align*}
+and
+\begin{align*}
+    \pdHdp = \frac{p}{m} = \dot{x}.
+\end{align*}
+Hamilton's equations for a system of any number of generalized coordinates are
+\begin{align*}
+  \dot{p}_i &= -\pdHdqi \\
+  \dot{q}_i &= ~~\pdHdpi.
+\end{align*}
+So if you know the form of the Hamiltonian, and you know the values of the coordinates at some point in time,
+you can simulate the trajectory of the system through phase space.
+
+\subsection*{The harmonic oscillator Hamiltonian}
+
+Let $q$ be a degree of freedom with potential energy $V(q)$, and that $V(q)$ has a minum representing a stable
+equilibrium value of $q$. WLOG we suppose the minimum is at $q=0$. If $q$ stays close to zero then it will be
+accurate to approximate $V(q)$ as a quadratic. The constant term may be taken to be zero (since potential
+energy is defined relative to some position), and the linear term must be zero since we want $V'(0) = 0$.
+Therefore our model is
+\begin{align*}
+  V(q) = cq^2.
+\end{align*}
+The Lagrangian may be written
+\begin{align*}
+  \Lag
+  &= T - V \\
+  &= \frac{1}{2\omega}\dot{q}^2 - \frac{\omega}{2}q^2.
+\end{align*}
+\begin{proof}
+  Let $x$ be a coordinate (degree of freedom) with Lagrangian $\Lag = \frac{m}{2}\dot{x}^2 - \frac{k}{2}x^2$.
+  Now define another coordinate $q = (km)^{1/4}x$. Then
+  \begin{align*}
+    x^2 &= \frac{1}{(km)^{1/2}}q^2 \\
+    \dot{x}^2 &= \frac{1}{(km)^{1/2}}\dot{q}^2 \\
+    \Lag &= \frac{m^{1/2}}{2k^{1/2}}\dot{q}^2 - \frac{k^{1/2}}{2m^{1/2}}q^2 \\
+    &= \frac{1}{2\sqrt{k/m}}\dot{q}^2 - \frac{\sqrt{k/m}}{2}q^2 \\
+    &= \frac{1}{2\omega}\dot{q}^2 - \frac{\omega}{2}q^2,
+  \end{align*}
+where $\omega = \sqrt{k/m}$.
+ \end{proof}
+
+Now, $\dot{q}^2 = \frac{p^2}{m^2}$, hence $T = \frac{1}{2m^2\sqrt{k/m}}p^2$ and the Hamiltonian is
+\begin{align*}
+  H
+  &= T + V \\
+  &= \frac{\omega}{2}(p^2 + q^2). ~~~~~~?
+\end{align*}
+Therefore Hamilton's equations for the Harmonic Oscillator are
+\begin{align*}
+  \dot{p}_i &= -\pdHdqi = -\omega q \\
+  \dot{q}_i &= ~~\pdHdpi = \omega p.
+\end{align*}
+For comparison, the Lagrangian equation is $\ddot{q} = \omega \dot{p}$.
+
+So, in phase space -- i.e. $(q, p)$-space -- the oscillator moves around a circle centered on the origin. I.e.
+both position and momentum oscillate sinusoidally. In general, the phase point always stays on a contour of
+constant energy.
+
+\subsection*{General derivation of Hamilton's equations}
+\red{TODO}
+
+\section{9. The Phase Space Fluid and the Gibbs-Liouiville Theorem}
+
+Hamilton's equations define a vector field in phase space and we can think of this vector field as representing the
+flow of a fluid.
+
+In general, phase space is $2N$-dimensional. Energy conservation means that the fluid flows along surfaces
+of $(2N-1)$-dimensions. For the harmonic oscillator with one degree of freedom, we have 2 dimensions and the
+phase space fluid flows in concentric circles around an origin.
+
+\begin{definition*}[divergence]
+  The {\it divergence} at some location in a fluid flow (vector field) basically measures the extent to which there is a
+  net change in the local density of the fluid, as a result of the flow patterns. In 3-dimensional space it's
+  defined by considering an infinitesimal cuboid with volume $\dx \dy \dz$. Let $v_x$ be the flow velocity in
+  the $x$ direction, and consider an infinitesimal cuboid at some point $\r$.
+  If $\frac{\partial v_x}{\partial x}$ at $\r$ is positive, then there is a net loss of fluid from the cuboid
+  in the $x$-direction (decrease in density). The amount of fluid lost is given by the rate of loss multiplied
+  by the volume:
+  \begin{align*}
+    \frac{\partial v_x}{\partial x} \dx \dy \dz
+  \end{align*}
+  The overall change in density is the sum of the changes in density in the 3 spatial
+  dimensions, leading to the definition of divergence
+\begin{align*}
+  \nabla \cdot \v
+  := -\(\frac{\partial v_x}{\partial x} +
+        \frac{\partial v_y}{\partial y} +
+        \frac{\partial v_z}{\partial z}\).
+\end{align*}
+If a fluid is incompressable, then the divergence is zero everywhere. This means that if you select some volume
+of fluid at some point in time, and watch how it changes under the flow, its volume will never change.
+\end{definition}
+
+\begin{theorem*}[Gibbs-Liouiville]
+  The phase space fluid is incompressable (divergence is everywhere zero).
+
+  \begin{proof}
+    Divergence for the $2N$-dimensional phase space fluid is
+    \begin{align*}
+      \nabla \cdot \v =
+      -\sum_{i=1}^N \(\frac{\partial \dot{q}_i}{\partial q_i} +
+                     \frac{\partial \dot{p}_i}{\partial p_i}\).
+    \end{align*}
+    Recall Hamilton's equations:
+\begin{align*}
+  \dot{p}_i &= -\pdHdqi \\
+  \dot{q}_i &= ~~\pdHdpi.
+\end{align*}
+Therefore
+    \begin{align*}
+      \nabla \cdot \v :=
+      -\sum_{i=1}^N \(\frac{\partial^2H}{\partial q_i \partial p_i} -
+                      \frac{\partial^2H}{\partial p_i\partial q_i}\)
+      = 0.
+    \end{align*}
+  \end{proof}
+
+  \begin{intuition*}
+    We already knew that the phase fluid flows along constant-energy contours ($(2N-1)$-dimensional surfaces).
+    The Gibbs-Liouiville theorem is related to the idea of reversibility: the fact that a blob of continuous
+    phase space fluid always retains the same volume is analogous to the notion that, in a finite state machine
+    representing a physical process, a given state must always have exactly one precursor state and one
+    successor state.
+  \end{intuition*}
