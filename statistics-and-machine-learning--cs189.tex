@@ -13,20 +13,52 @@ Logistic regression lays down a logistic surface over $\R^d$. The parameters of
 that surface ($\vec w$) are scored according to the probability of drawing the
 $y$ values from the probability distribution given by the surface.
 
-In both cases, the score (cost) is a measure of distance of the $y$ values from
-the surface, i.e. a distance between $\vec y$ and the predictions
-$\hat \y$.
+In both cases, the score (loss/cost) is a measure of distance of the $y$ values from the surface, i.e. a
+distance between $\vec y$ and the predictions $\hat \y$.
 
 The surface over $\R^d$ maps the $n$ sample points $\x_i \in \R^d$ to their
 predictions $y_i$ in $\R$ or $[0, 1]$.
 
 \section{Neural networks}
 
-A neural net with one hidden layer of $K$ units first maps
-$\x_i \in \R^d \to \R^K$ using parameter matrix $\mat V$, and then maps
-$\R^K \to \R$ using parameters $\vec w$. Again, the cost associated with
-parameters $(\mat V, \vec w)$ is a distance between $\vec y$ and the
-$\hat \y$ values in the output layer.
+In general, each layer has an associated matrix of parameters. So if layer-2 has 16 nodes and layer-3 has 8
+nodes, then there is a $(8 \times 16)$ matrix $W$ of weights specifying how layer-3 values are computed from
+layer-2 values. After applying the linear transformation, a non-linear activation function is applied to
+compute the final value at a node.
+
+Consider the classic problem of classifying images of handwritten digits. Each input vector is
+a $(28 \times 28)$ pixel image, so a single input vector $x$ consists of 784 pixel values (real numbers). The
+aim is to build a function which maps input vectors to an answer. There are 10 possible digits, so we can think
+of an answer as a vector in $\R^{10}$ (one score for each possible answer). So we are building a
+map $R^{784} \to \R^{10}$.
+
+In this case, the first layer of the network will have 784 nodes. When we feed in an image, we assign its pixel
+values as the values in the first layer. Suppose the second layer has 16 nodes, and activation function $f$.
+Then there will be a $(16 \times 784)$ matrix of parameters specifying a linear map $\R^{784} \to \R^{16}$. The
+value at the 7th node in the second layer will be $f((Wx)_7)$ or $f(w_7 \cdot x)$. Since the activation
+functions are non-linear, the overall map is non-linear.
+
+The entire network represents a non-linear map $\R^{784} \to \R^{10}$ formed by the composition of these
+non-linear functions at each layer. But, really we're interested in the categorical predictions, so we could
+think of it as defining (non-linear) decision boundaries by painting the input domain $\R^{784}$ with 10
+different colors.
+
+In a simple lower-dimensional case, each input is a point in some region of the $\R^2$ plane, and we want to
+classify to two possible categories. Then the decision boundaries defined by the trained neural network are
+curved lines either partitioning the 2D input space, or forming closed loops.
+
+Training consists of presenting to the network a sequence of input vectors with known labels. The training data
+from a single input vector, or a batch of input vectors, defines a loss function: a function mapping the
+parameters (the weight matrix entries) to a distance between the output of the network and the true value.
+
+Holding this training data fixed, for every parameter in every matrix (i.e. across all layers) we compute the
+gradient of the loss function with respect to that parameter, and take a downhill step for that parameter.
+
+A neural net with one hidden layer of $K$ units first maps $\x_i \in \R^d \to \R^K$ using parameter
+matrix $\mat V$, and then maps $\R^K \to \R$ using parameters $\vec w$. Again, the loss associated with
+parameters $(\mat V, \vec w)$ is a distance between $\vec y$ and the $\hat \y$ values in the output layer.
+
+
 
 \subsection{Backpropagation algorithm}
 
