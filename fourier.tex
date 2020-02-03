@@ -1,3 +1,40 @@
+\section{Questions}
+\begin{enumerate}
+\item Why do we use the complex conjugate in the inner product? I.e.
+\begin{align*}
+  \vec{u} \cdot \vec{v} &:= \sum_i u_i \bar{v}_i \\
+  f \cdot g &:= \int f(x) \bar{g}(x) \dx
+\end{align*}
+\end{enumerate}
+
+
+
+\section{Finite-dimensional vector spaces review}
+\begin{enumerate}
+\item What does it mean to ``project a vector into a different coordinate space?''? A simple example is the
+  vector $v = \cvecc{1}{2}$. ``Projecting'' it onto the x-axis yields $\cvecc{1}{0}$, and projecting it onto the y-axis
+  yields $\cvecc{0}{2}$. So, projecting here means what it sounds like: the 2D vector is collapsed onto a 1D axis,
+  and we lose information about where the vector was in that other dimension.
+\item What does this have to do with inner products? The inner product between vectors $a$ and $b$ is
+\begin{align*}
+  a \cdot b = |a| ~ |b|\cos\theta.
+\end{align*}
+Thus it is the area of a rectangle with one side equal to the length of the original vector and the other side
+equal to the length of the projection (and it makes no difference which vector we consider to be projected).
+\item Therefore, the projection of $a$ onto $b$ is
+\begin{align*}
+  a \cdot b
+\end{align*}
+
+
+  The projection onto the x-axis is computed as the inner
+  product between the original vector $v$ and the x-axis basis vector $\hat{x}$:
+\begin{align*}
+  v \cdot \hat{x} = \cvecc{1}{2} \cdot \cvecc{1}{0} = \sum_i v_i \hat{x}_i
+\end{align*}
+
+\end{enumerate}
+
 \section{Complex exponentials review}
 \begin{enumerate}
 \item $e^{xi}$ is a point on the unit circle.
@@ -6,7 +43,8 @@
   this point will perform one cycle per second (1 Hz).
 \item $r(t) = e^{2\pi i f t}$ is a point rotating at a frequency of $f$ Hz. (E.g. if $f = 2$ then it will get to
   the same position in half the time.)
-\end{enumerate}
+
+
 
 \section{Fourier transform}
 
