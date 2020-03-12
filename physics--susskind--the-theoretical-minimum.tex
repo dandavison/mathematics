@@ -199,7 +199,7 @@ Observer B (reference frame B) uses coordinates $X$ and $Y$.
 Reference frame B is rotating relative to A:
 
 \begin{mdframed}
-  \includegraphics[width=400pt]{img/physics--susskind--the-theoretical-minimum--1.-the-nature-of-classical-mechanics--6.-the-principle-of-least-action--28fe.png}
+  \includegraphics[width=400pt]{img/physics--susskind--the-theoretical-minimum--1--the-nature-of-classical-mechanics--6--the-principle-of-least-action--28fe.png}
 \end{mdframed}
 
 To translate between the two reference frames:
@@ -218,7 +218,7 @@ To translate between the two reference frames:
         \matMMxNN{ \cos \omega t}{-\sin \omega t}{\sin \omega t}{\cos \omega t} \vecMM{\dot{X}}{\dot{Y}} +
   \omega\matMMxNN{-\sin \omega t}{-\cos \omega t}{\cos \omega t}{-\sin \omega t} \vecMM{X}{Y}
 \end{align*}
-\TODO
+TODO
 
 
 Observer A sees a particle moving with no forces acting on it, so the Lagrangian from their point of view
@@ -485,36 +485,37 @@ phase space fluid flows in concentric circles around an origin.
 \end{align*}
 If a fluid is incompressable, then the divergence is zero everywhere. This means that if you select some volume
 of fluid at some point in time, and watch how it changes under the flow, its volume will never change.
-\end{definition}
+\end{definition*}
 
 \begin{theorem*}[Gibbs-Liouiville]
   The phase space fluid is incompressable (divergence is everywhere zero).
+\end{theorem*}
 
-  \begin{proof}
-    Divergence for the $2N$-dimensional phase space fluid is
-    \begin{align*}
-      \nabla \cdot \v =
-      -\sum_{i=1}^N \(\frac{\partial \dot{q}_i}{\partial q_i} +
-                     \frac{\partial \dot{p}_i}{\partial p_i}\).
-    \end{align*}
-    Recall Hamilton's equations:
-\begin{align*}
-  \dot{p}_i &= -\pdHdqi \\
-  \dot{q}_i &= ~~\pdHdpi.
-\end{align*}
-Therefore
-    \begin{align*}
-      \nabla \cdot \v :=
-      -\sum_{i=1}^N \(\frac{\partial^2H}{\partial q_i \partial p_i} -
-                      \frac{\partial^2H}{\partial p_i\partial q_i}\)
-      = 0.
-    \end{align*}
-  \end{proof}
+\begin{proof}
+  Divergence for the $2N$-dimensional phase space fluid is
+  \begin{align*}
+    \nabla \cdot \v =
+    -\sum_{i=1}^N \(\frac{\partial \dot{q}_i}{\partial q_i} +
+    \frac{\partial \dot{p}_i}{\partial p_i}\).
+  \end{align*}
+  Recall Hamilton's equations:
+  \begin{align*}
+    \dot{p}_i &= -\pdHdqi \\
+    \dot{q}_i &= ~~\pdHdpi.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \nabla \cdot \v :=
+    -\sum_{i=1}^N \(\frac{\partial^2H}{\partial q_i \partial p_i} -
+    \frac{\partial^2H}{\partial p_i\partial q_i}\)
+    = 0.
+  \end{align*}
+\end{proof}
 
-  \begin{intuition*}
-    We already knew that the phase fluid flows along constant-energy contours ($(2N-1)$-dimensional surfaces).
-    The Gibbs-Liouiville theorem is related to the idea of reversibility: the fact that a blob of continuous
-    phase space fluid always retains the same volume is analogous to the notion that, in a finite state machine
-    representing a physical process, a given state must always have exactly one precursor state and one
-    successor state.
-  \end{intuition*}
+\begin{intuition*}
+  We already knew that the phase fluid flows along constant-energy contours ($(2N-1)$-dimensional surfaces).
+  The Gibbs-Liouiville theorem is related to the idea of reversibility: the fact that a blob of continuous
+  phase space fluid always retains the same volume is analogous to the notion that, in a finite state machine
+  representing a physical process, a given state must always have exactly one precursor state and one
+  successor state.
+\end{intuition*}

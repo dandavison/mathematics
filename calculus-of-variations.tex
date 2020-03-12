@@ -668,12 +668,14 @@ satisfies the alternative form of the Euler-Lagrange equation
 Therefore if $C_4 = 1$ then we have $C_3 = \frac{1}{2}\(\frac{1}{\pm\sqrt{2}} - \1\)$ and
 \todo{incomplete}
 
-\begin{minted}{wolfram}
-x[t_] := 1 / (c3 t + c4)^2;
-x[t] /. Solve[{x[0] == 1, x[2] == 4}, {c3, c4}]
-\end{minted}
+% why doesn't this compile?
+% .build/calculus-of-variations.texpdfTeX:674: error: [minted] Missing Pygments output; \inputminted was
+%      at \end{minted}
+% \begin{minted}{wolfram}
+% x[t_] := 1 / (c3 t + c4)^2;
+% x[t] /. Solve[{x[0] == 1, x[2] == 4}, {c3, c4}]
+% \end{minted}
 
-  #+RESULTS:
   \begin{align*}
     \left\{\frac{1}{\left(1-\frac{3 t}{4}\right)^2},\frac{1}{\left(1-\frac{t}{4}\right)^2},\frac{1}{\left(\frac{t}{4}-1\right)^2},\frac{1}{\left(\frac{3 t}{4}-1\right)^2}\right\}
   \end{align*}
@@ -758,20 +760,16 @@ Therefore on integrating again, we have
 so the curve is a semicircle.
 \footnote{
   The following attempts to approach the problem without Lagrange Multipliers didn't seem to get anywhere:
-
   Note that the curves in question need not be functions $y(x)$, so we will express the curves
   parametrically. In order to restrict ourselves to curves of length $l$ we will restate the problem
   as follows:
-
   Let $u \in (0, l)$ be a parameter measuring distance along the curve, and let $\chi$ be a suitable family of
   curves. We seek a curve $\r(u) = \vecMM{x(u)}{y(u)} \in \chi$ maximising the functional
 \begin{align*}
   A[\r] = \int_0^l f(l, \r, \r') \d l,
 \end{align*}
 where $f(l, \r, \r')$ gives the rate of change of area with respect to $l$.
-
 such that $\r(0) = \vecMM{0}{0}$ and $\r(l) = \vecMM{a}{0}$.
-
 We want to find a curve that maximizes
 \begin{align*}
   \int_0^l \d A.
@@ -781,7 +779,6 @@ We can write this as
   \int_0^l A'(l) \d l
 \end{align*}
 where $A(l)$ is the area up to $l$.
-
 We need to express $A'(l)$ in terms of...?
 }
 
