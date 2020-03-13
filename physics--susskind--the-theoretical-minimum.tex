@@ -519,3 +519,66 @@ of fluid at some point in time, and watch how it changes under the flow, its vol
   representing a physical process, a given state must always have exactly one precursor state and one
   successor state.
 \end{intuition*}
+\subsection{Poisson Brackets}
+
+Consider a function $F(p_i, p_2, \ldots, q_1, q_2, \ldots)$. It has two interpretations:
+\begin{enumerate}
+\item It defines a surface/field over phase space
+\item As a point moves through phase space, this induces an $F(t)$.\end{enumerate}
+
+Focusing on the second interpretation, we compute the time derivative of $F$:
+\begin{align*}
+  \dot{F} = \sum_i \Big\{ \pdFdqi \dot{q}_i + \pdFdpi \dot{p}_i \Big\}.
+\end{align*}
+From Hamilton's equations for $\dot{p}_i$ and $\dot{q}_i$, this is
+\begin{align*}
+  \dot{F} = \sum_i \Big\{ \pdFdqi \pdHdpi - \pdFdpi \pdHdqi \Big\}.
+\end{align*}
+The Poisson Bracket notation for this is
+\begin{align*}
+  \dot{F} = \{F, H\}.
+\end{align*}
+
+
+\section{10. Poisson brackets, angular momentum, and symmetries}
+
+
+\section{11. Electric and Magnetic Forces}
+
+
+Let $f(x, y, z)$ be a scalar field and $\vec v(x, y, z)$ be a vector field.
+
+\subsubsection{Gradient}
+E.g.
+\[
+\grad f = \vecMMM{\pdfdx}{\pdfdy}{\pdfdz}.
+\]
+
+\subsubsection{Divergence}
+
+E.g.
+\[
+  \nabla \cdot \v
+  := -\(\frac{\partial v_x}{\partial x} +
+        \frac{\partial v_y}{\partial y} +
+        \frac{\partial v_z}{\partial z}\).
+\]
+If $v = (v_x, v_y, v_z)$ is the velocity of a fluid, then the divergence can be thought of as the net decrease
+in density at a point, due to fluid accelerating away in any of the three spatial directions.
+
+\subsubsection{Curl}
+
+$x$ aaa \(e^x\)
+
+\(\dot{y}\)
+
+
+
+
+
+
+
+
+
+
+
