@@ -1,0 +1,76 @@
+\url{https://erikbern.com/2014/11/29/deep-learning-for-chess.html}
+
+In chess there are 64 squares and 12 piece types.
+
+\begin{definition}
+  A {\it position} comprises two bits of information:
+  \begin{enumerate}
+  \item An assignment to each of the 64 squares of one of the 12 piece types, or EMPTY.
+  \item Whether white or black is to play next.
+  \end{enumerate}
+  A {\it valid position} is a position for which the counts of the piece types are less than or equal to their initial counts.
+
+  A {\it terminal position} is a valid position which is a win for white, a win for black, or a draw.
+\end{definition}
+Define the set $F = \{-1, 0, 1\}$ of labels. We label a terminal position $p$ as follows:
+\begin{align*}
+  f(p) =
+  \begin{cases}
+  -1 & \text{if $p$ is a win for white} \\
+  0  & \text{if $p$ is a draw} \\
+  +1 & \text{if $p$ is a win for black}.
+  \end{cases}
+\end{align*}
+We extend this definition recursively to non-terminal positions as follows. Define $M(p)$ to be the set of
+valid positions reachable in one move from $p$. The label at a non-terminal position $p$ is
+\begin{align*}
+  f(p) = \min_{p' \in M(p)} f(p').
+\end{align*}
+Thus, for
+
+We now want to extend this definition to assign labels $f(p) \in F$ to non-terminal positions.
+
+We do so (conceptually) according to the following algorithm:
+
+\begin{definition*}
+  \begin{itemize}
+  \item Define $M(p)$ to be the set of valid positions reachable in one move from $p$.
+  \item Define $M^{-1}(p)$ to be the set of valid positions from which $p$ is reachable in one move.
+  \end{itemize}
+\end{definition*}
+
+#+begin_src python
+def visit(position):
+    if position.is_terminal:
+        return
+
+    ancestors = position.get_ancestors()
+
+    for
+
+
+#+end_src
+
+\begin{enumerate}
+\item Let $T_w$ be the set of all terminal positions (white to play).
+\item For all $$$q \in T_w$
+\end{enumerate}
+
+Let $p$ (white to play) be a valid non-terminal position, and let $M(p)$ be the set of valid positions reachable in one move from $p$.
+
+Note that if some $q = -1$ for $q \in M(p)$ then white can win in one move. Accordingly, we define $f(p) = -1$ if $-1 \in M(p)$.
+
+Alternatively, suppose that $-1 \not\in M(p)$.
+
+Let $q$ be a terminal position (black to play) and consider the set $P$ of positions (white to play) from which $q$ is reachable in one move.
+
+Note that if $q = -1$ then white can win in one move from all positions $p \in P$. Therefore we will define $p = -1$ for all .$p \in P$.
+
+
+
+
+
+
+Define $f(p) \in \{-1, 0, 1\}$ as follows:
+
+Assuming that

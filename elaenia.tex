@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\begin{document}
+
+\section{Objective}
+
+We record an audio signal on a smart phone and we want to infer:
+\begin{enumerate}
+\item The set of species that are vocalising during the recording
+\item Points in time at which each vocalisation starts and stops
+
+
+\section{VGGish}
+\footnote{
+  \url{https://github.com/tensorflow/models/tree/master/research/audioset/vggish#input-audio-features}
+  \url{https://arxiv.org/pdf/1903.00765.pdf} I am slightly confused.
+  Google describe the initial step as: Audio signal is converted to a log-mel spectrogram via STFT (window-size 25ms, hop-size 10ms, Hann window) I guess I don't know what hop size is.
+}
+\begin{enumerate}
+\item Input audio is divided into non-overlapping 0.96s segments (treated as distinct observations for training)
+\item Each observation is represented as a 96 x 64 pixel input spectrogram image (a log mel spectrogram with 10ms frames).
+\item The penultimate (``bottleneck'') layer has 128 units: these values are the ``embedding'' that summarizes one 0.96s input.
+
+\item {\bf VGGish Training}:
+  \begin{enumerate}
+  \item The VGGish network was trained by Google on a large YouTube audio data set.
+  \item Basically it learns to associate 0.96s frames with the set of tags of the parent image.
+  \item The trained VGGish is henceforth a fixed function that maps a 0.96s frame to an ``embedding''
+    representation.
+  \item So whatever that embedding is, it should be something that contains good information for classifying to
+    sound class.
+  \item Note that VGGish has discarded all information about patterns that extend over more than 0.96s.
+  \item OTOH, its classifications are based on many frames per sound type
+  \item So the embedding is going to be something fairly generic: for every sound type, for any 0.96s frame, if
+    that frame is informative for classification, then the embedding will capture some information from it.
+  \end{enumerate}
+
+\item {\bf Bird Audio Classifier training}:
+  \begin{enumerate}
+  \item Each labeled training recording is broken into 0.96s frames
+  \item Use the trained VGGish to compute the embedding vector for each frame
+  \item Use these labeled embedding vectors to train the final classifier (SVM)
+  \item Thus the final classifier learns to classify embedding vectors to species
+  \item Note: the final classifier does not have access to any information about patterns extending over > 0.96s.
+  \item OTOH, it does use many 0.96s frames per species.
+  \end{enumerate}
+\item {\bf Inference}:
+  \begin{enumerate}
+  \item The bird recording is broken into 0.96s frames.
+  \item For each frame, use the trained VGGish to compute the embedding
+  \item Use the trained final classifier to classify the embedding to species
+  \item Final classification is majority-vote among embedding classifications
+  \end{enumerate}
+
+
+\section{Inference}
+What do we ultimately want the inference phase to look like?
+\begin{enumerate}
+\item Take short frames from a live recording in real time and map them to classifier output?
+  If so, then we will not be using any information about extended patterns (duration, repeat intervals etc) in
+  the vocalisation.
+\item Or, also be able to process entire recording?
+\end{enumerate}
+\end{enumerate}
+
+\section*{Training data}
+\begin{enumerate}
+\item For every bird species, there exist many recordings labeled with the species name.
+\item It is unknown at what times during the recording the bird is vocalising, and it is unknown which vocalisation
+  types are involved (song, call, etc).
+\item Suppose we are in a location at which there is only one possible bird species, and it makes one vocalisation type only.
+\item We record audio. The problem is now
+  \begin{quote}
+    Does the audio contain the bird noise which is present in the training data?
+  \end{quote}
+\item What would a likelihood-based approach look like?
+
+\section*{Notation }
+\begin{tabular}{l|l}
+  $y_n \in \R$                   & The signal (amplitude) at time point $n$. \\
+  $Y_m \in \R^d$                 & The frequency-domain coordinates for the signal during time-window $m$
+\end{tabular}
+
+
+\section{Model}
+
+Let $k$ be the species identity (or no-bird). The likelihood of the data is
+\begin{align*}
+  P(y|k) = P(y_1, \ldots, y_N | k)
+\end{align*}
+Alternatively, we can compute the likelihood of the Short-time Fourier-transformed signal:
+\begin{align*}
+  P(y|k) = P(Y|k) = P(Y_1, \ldots, Y_M|k).
+\end{align*}
+
+\begin{enumerate}
+\item The input vector (field recording) has one variable high dimension (number of time windows); the second
+  dimension could be fixed frequency windows.
+\item The output layer is $K$-dimensional, where $K$ is the number of possible species.
+\item So we could try to find sub-intervals of the input time dimension which give strong signal in the output layer.
+\end{enumerate}
+
+
+\section{Ideal model}
+
+\begin{enumerate}
+\item From the training data for species $k$, we learn a generative model for that species' vocalisations.
+\item We classify new data $y$ to the species model under which $y$ has highest likelihood of being generated.
+\end{enumerate}
+So what would a generative model for recording data look like?
+
+
+
+What would a generative model for STFT look like?
+
+
+\end{enumerate}
+We could
+\begin{enumerate}
+\item Classify each recording to the closest training sample. What distance metric?
+\end{enumerate}
+
+
+(For now, we assume that different bird vocalisations do not overlap in time.)
+\end{document}
+The discrete-time STFT divides the signal into time windows, and performs a Fourier transform on each window.
+
+The Fourier transform of a signal can be viewed as representing the signal by its coordinates in a new basis.
+
+The STFT converts the 1D time series into a higher dimensional time series (with coarser time buckets).
+
+
+
+What is an example of a STFT-based algorithm that could conceivably work?

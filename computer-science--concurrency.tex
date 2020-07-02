@@ -1,0 +1,33 @@
+\section{aio}
+\begin{itemize}
+\item A promise is (result, callbacks)
+\item To {\it subscribe} to a promise means to add your callback (aio-listen).
+\item Callbacks take one argument: the {\it value function} that will be supplied when the callback is resolved.
+\item To {\it resolve} a promise means to call all the callbacks, passing them a {\it value function} (aio-resolve)
+\item The simplest example of the promise lifecyle is an non-async function creating and resolving a promise:
+
+\begin{minted}{emacs-lisp}
+(setq lexical-binding t)
+
+(defun make-call-function-promise (seconds function)
+  (let ((promise (aio-promise))
+        (value-function (lambda () (funcall function))))
+    (aio-listen promise (lambda (value-function) (funcall value-function)))
+    (prog1 promise
+      (run-at-time seconds nil #'aio-resolve promise value-function))))
+
+(make-call-function-promise 1 (lambda () (message "Hello world!")))
+\end{minted}
+
+\subsection{Chaining promises}
+
+To chain two promises means to create an awaitable object which:
+\begin{enumerate}
+\item Can be kicked off
+\item When resolved, will kick off the second
+\end{enumerate}
+
+
+\begin{minted}{emacs-lisp}
+  (aio-listen promise-1 (lambda (value-function) (schedule promise-2)))
+\end{minted}
