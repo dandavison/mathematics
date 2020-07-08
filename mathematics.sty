@@ -22,6 +22,8 @@
 \usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
 \usepackage{parskip}
 \usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{graphs}
 
 \let\originalfootnote\footnote
 \let\footnote\undefined
@@ -98,6 +100,7 @@
 \DeclareMathOperator{\dldmuj}{\frac{\partial \l}{\partial \mu_j}}
 \DeclareMathOperator{\dldmu}{\frac{\partial \l}{\partial \mu}}
 \DeclareMathOperator{\dldsigmaj}{\frac{\partial \l}{\partial \sigma_j}}
+\DeclareMathOperator{\pdo}{\text{do}}
 \DeclareMathOperator{\ealign}{\end{align*}}
 \DeclareMathOperator{\hess}{\nabla^2}
 \DeclareMathOperator{\p}{\text{p}}

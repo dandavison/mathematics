@@ -1,0 +1,98 @@
+\section{Bayes' rule}
+
+The probability of hypothesis $h$ after observing evidence $e$ is
+\begin{align*}
+  \p(h | e)
+  = \frac{\p(h, e)}{\p(h, e) + \p(\neg h, e)}.
+\end{align*}
+Interpretations:
+\begin{enumerate}
+\item Suppose we know the joint probability distribution of $H$ and $E$. Then Bayes' rule says that the posterior
+  probability of $h$ is equal to the proportion of probability mass associated with $(h, e)$ out of all the
+  probability mass associated with $(*, e)$.
+
+\item Alternatively, suppose we do not know the joint distribution directly. If we know the likelihoods
+  $\p(e|h)$ and $p(e|\neg h)$ and the prior $p(h)$ then we can do the same calculation, since $\p(h, e) = \p(h)\p(e | h)$.
+\end{enumerate}
+
+\subsection{Disease testing}
+
+Let the hypotheses be
+\begin{align*}
+  h      &= \text{have disease} \\
+  \neg h &= \text{do not have disease}.
+\end{align*}
+
+What is the probability that you have the disease given a positive test ($e$)? We could
+\begin{enumerate}
+\item Estimate the true-positive $\p(e|h)$ and false-positive $\p(e|\neg h)$ rates by running the test on control samples.
+\item Estimate the prior probability $\p(h)$ from the population frequency of the disease.
+\end{enumerate}
+
+
+\subsection{Lindley - Causality review}
+
+\subsubsection{2. Multivariate Distributions}
+
+Consider 3 random variables with a joint distribution $\p(u, x, y)$. This can be factorized:
+
+$\p(u, x, y) = \p(u)\p(x|u)\p(y|u, x)$.
+
+A factorization requires choosing an order and corresponds to a network diagram:
+\begin{tabular}{|c|c|}
+ \textbf{Factorization} & \textbf{Network} \\
+ \hline
+ $\p(u)\p(x|u)\p(y|u, x)$ &
+    \begin{tikzpicture}
+      \graph {u -> {x, y}, x -> y};
+    \end{tikzpicture} \\
+  \hline
+ $\p(x)\p(u|x)\p(y|x, u)$ &
+    \begin{tikzpicture}
+      \graph {u <- x, y <- {x, u}};
+    \end{tikzpicture}
+\end{tabular}
+
+When a causal mechanism is adopted, some of these factorizations become inapplicable. For example, let $x$ be
+foot size and $y$ be hand size, and let $u$ be a common genetic factor. Then the second factorization above is
+inapplicable. The appropriate diagram is a variant of the first in which $y$ is independent of $x$,
+i.e. $\p(y|u,x) = \p(y|u)$:
+\begin{tikzpicture}
+\graph {u -> {x, y}};
+\end{tikzpicture}
+\subsubsection{3. Causal Mechanisms}
+Consider again the ordering/factorization: $\p(u, x, y) = \p(u)\p(x|u)\p(y|u, x)$
+\begin{tikzpicture}
+  \graph {u -> {x, y}, x -> y};
+\end{tikzpicture}
+What happens when $x$ is replaced by $\pdo(x)$? The factorization becomes
+\begin{align*}
+  \p(u, \pdo(x), y) = \p(u)\p(y|u, x).
+\end{align*}
+I.e.
+\begin{enumerate}
+\item $x$ now has no uncertainty, so $\p(x|u) = 1$
+\item This doesn't affect $\p(u)$ (assumption)
+\item $\p(y|u, \pdo(x)) = \p(y|u, x)$ (assumption)
+\end{enumerate}
+Consider $\p(y|x)$. When $x$ is random this is
+\begin{align*}
+  \p(y|x)
+  &= \int \p(u, y|x) \du \\
+  &= \frac{1}{\p(x)}\int \p(u)\p(x|u)\p(y|u, x) \du
+\end{align*}
+And when $x$ is selected this is
+\begin{align*}
+  \p(y|\pdo(x))
+  &= \int \p(u, y|\pdo(x)) \du \\
+  &= \int \p(u)\p(y|u, x) \du.
+\end{align*}
+Relatedly, if a different ordering were chosen: $\p(u, x, y) = \p(x)\p(u|x)\p(y|u, x)$ then we would have
+\begin{align*}
+  \p(u, \pdo(x), y) = \p(u|x)\p(y|u, x),
+\end{align*}
+leading to a third value for the regression of $y$ on $x$:
+\begin{align*}
+  \p(y|\pdo(x))
+  &= \int \p(u|x)\p(y|u, x) \du.
+\end{align*}
