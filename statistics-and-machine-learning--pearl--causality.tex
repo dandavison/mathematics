@@ -1,0 +1,113 @@
+\section{Introduction to Probabilities, Graphs, and Causal Models}
+
+\begin{enumerate}
+\item Bayesian interpretation of probability
+\item Probabilities are degrees of belief
+\item Beliefs are updated in response to observing data
+\item E.g. $\p(H|e)$ is belief about hypothesis given evidence
+  Alternatively: within the realities in which $E=e$, what is the distribution of $H$?
+\item E.g. $\p(Y|x)$ is belief about outcome variable given treatment observed to be $X=x$
+  Alternatively: within the cases in which $X=x$, what is the distribution of $Y$?
+\item {\it independence}: $\forall x$ we have $\p(Y|x) = \p(Y)$
+\end{enumerate}
+
+Conditional probabilities are primitive; they are not defined in terms of joint probabilities. Instead
+\begin{align*}
+  \p(x, y) = \p(x)\p(y|x).
+\end{align*}
+Thus the law of total probability $\p(X) = \sum_Z\p(X, Z)$ gives rise to
+\begin{align*}
+  \p(y|x) = \sum_z \p(z)\p(y|x,z).
+\end{align*}
+This theorem lies behind the notion of ``controlling'' for a covariate $Z$ when studying the effect of $X$ on $Y$.
+
+\subsection{Bayes' rule}
+
+Since conditional probabilities are primitive, Bayes' rule
+\begin{align*}
+  \p(H|e) = \p(H) \p(e|H) \times \p(e)^{-1}
+\end{align*}
+is a ``normative rule for updating beliefs in response to evidence'', as opposed to a tautology (theorem) derivable from definitions of conditional probability.
+
+\begin{quote}
+  {\it Accordingly, (1.14) [Bayes' rule] is not a definition but rather an empirically verifiable relationship
+    between English expressions.}
+\end{quote}
+\begin{question}
+  What does that mean?
+
+
+\item Belief in $h$ after observing $e$ increases (relative to $\p(h,e)$) in proportion to the degree of surprise of observing $e$.
+\item Belief in $h$ after observing $e$ is never lower than prior belief in $(h, e)$.
+
+\end{enumerate}
+
+\begin{intuition}
+  We're imagining possible pairs $(H, E)$ of explanation (hypothesis) and data (evidence) and have formed prior beliefs about their joint value. Then data $e$ becomes known. Belief about $h$ is now equal to $\p(h,e)$ multiplied by the surprise $\p(e)^{-1}$ of observing $e$.
+
+  I'm not sure that's an interesting way of describing it really. I think I'd describe it as:
+\begin{enumerate}
+\item We have formed prior beliefs about $(H, E)$ pairs.
+\item We observe data.
+\item This causes all but one column of the joint distribution to be set to zero.
+\item To view the result as a probability distribution, we have to rescale (and drop a now-pointless dimension).
+\end{enumerate}
+
+
+\subsection{Probability models, Boolean logic}
+
+Given atomic propositions $A, B, C, \ldots$, a \defn{elementary event} is a conjunction involving the joint values of all of them, i.e. a sentence in which each proposition, or its negation, occurs exactly once, e.g.
+\begin{align*}
+  S = (A \land B) \lor \lnot C.
+\end{align*}
+
+\begin{theorem*}
+  Elementary events are mutually exclusive and every boolean formula can be expressed as a disjunction of elementary events.
+\end{theorem*}
+
+The {\it sample space} of probability textbooks is (for discrete RVs) equivalent to the set of {\it elementary events} in propositional logic.
+
+A \defn{probability model} gives the probability of every well-formed sentence. A joint probability distribution is a probability model.
+
+\begin{quote}
+  {\it In practice, however, joint distribution functions are rarely specified explicitly. In
+    the analysis of continuous random variables, the distribution functions are given by
+    algebraic expressions such as those describing normal or exponential distributions; for
+    discrete variables, indirect representation methods have been developed where the overall
+    distribution is inferred from local relationships among small groups of variables.
+    Graphical models, the most popular of these representations, provide the basis of
+    discussion throughout this book.}
+\end{quote}
+
+\begin{question}
+  Is that saying graphical models apply only to discrete RVs??
+\end{question}
+
+
+
+\subsection{Odds, likelihood ratios}
+
+The \defn{odds} of $H$ are a measure of strength of belief in $H$:
+\begin{align*}
+  O(H) = \frac{\p(H)}{\p(\lnot H)} = \frac{\p(H)}{1 - \p(H)}.
+\end{align*}
+Bayes' rule says that
+\begin{align*}
+ \p(H|e) = \p(H) \p(e|H) \times \p(e)^{-1},
+\end{align*}
+therefore the posterior strength of belief in $H$ is equal to the prior strength of belief, multiplied by the likelihood ratio:
+\begin{align*}
+  O(H|e) = O(H) \times \frac{\p(e|H)}{~\p(e|\lnot H)}.
+\end{align*}
+
+\subsection{Expected values}
+
+\begin{tabular}{l l l}
+Expectation                  & $\E[f(x)] = \sum_x f(x) \p(x)$                                                & centroid \\
+Variance                       & $\Var[Z] = \sigma^2_Z = \E\Big[(Z - \E[Z])^2\Big]$                     & average distance (squared) from center in 1D \\
+Covariance                    & $\Cov[X, Y] = \sigma_{XY} = \E\Big[(X - \E[X])(Y - \E[Y])\Big]$   & average size of squares from center in 2D \\
+Correlation coefficient     & $\rho_{XY} = \sigma_{XY} / \sigma_X\sigma_Y$                             & average size of squares from center in 2D, scaled by both variances\\
+Regression coefficient      & $r_{XY} = \sigma_{XY} / \sigma^2_{Y}$                                      & average size of squares from center in 2D, scaled by one variance
+\end{tabular}
+
+\subsection{Conditional independence and graphoids}

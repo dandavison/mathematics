@@ -30,9 +30,62 @@ What is the probability that you have the disease given a positive test ($e$)? W
 \end{enumerate}
 
 
-\subsection{Lindley - Causality review}
+\section{The Book of Why}
 
-\subsubsection{2. Multivariate Distributions}
+\subsection{Conditional probabilities and confounding}
+
+
+We use an upper case letter, such as $X$, to represent a random variable, and a lower case symbol, such
+as $x_1$ or $x^*$ to represent a concrete observed value.
+
+For example, $X$ could be ``smoker? yes/no'', and $x^*$ could be ``yes''. And $U$ could be ``age'', and $u_1$
+could be ``1''.
+
+A tuple $(\ldots, U, V, W, X, Y, Z, \ldots)$ represents a single sample taken from reality of some things that
+we can measure. Each slot in the tuple, such as $W$, is a random variable representing the value of some thing
+we can measure.
+
+Let $X$ be a variable we're interested in as a possible cause (e.g. smoker? yes/no), and let $Y$ be
+an outcome variable of interest (e.g. symptomatic Covid-19 diagnosis? yes/no).
+
+The traditional conditional probability $\p(Y|X=x^*)$ is the distribution of $y$ values in all tuples in
+which $X=x^*$. I.e. the distribution of $y$ values in tuples of the
+form $(\ldots, U, V, W, x^*, Y, Z, \ldots)$. You can estimate this conditional probability distribution by
+taking a large sample of random tuples, {\it filtering} down to those in which $X=x^*$, and looking at the $Y$ values in
+the remaining tuples.
+
+But {\it filtering} possible tuples down to just those where $X=x^*$ may alter the distribution of another variable, such
+as $U$, in the remaining tuples (relative to unfiltered tuples). And the value of $U$ may influence the value
+of $Y$ via mechanisms that don't involve $X$. For example, $U$ could be age.
+
+In contrast, an experimental intervention is {\it not} filtering random tuples: it is equivalent to the following procedure:
+\begin{enumerate}
+\item Sample a single tuple randomly from reality. Say the values you observe are $(u_3, v_{17}, w_4, x_2, y_3, z_{10})$.
+\item Mutate the value in the $X$ slot so that it has the treatment value of interest. For this one sample that
+  would yield $(u_3, v_{17}, w_4, x^*, y_3, z_{10})$.
+- Allow the mutation to have any causal effects that it may have.
+\item Repeat.
+\end{enumerate}
+The distribution of $Y$ values in a sample obtained in this way is what Pearl calls $\p(Y|\pdo(X = x^*))$.
+
+In general, $\p(Y|\pdo(X = x^*)) \neq \p(Y|X=x^*)$. Variables such as $U$ that give rise to these two
+distributions not being the same are known as {\it confounding variables}.
+
+A problem is that, in this example, the experimental intervention would involve demanding that certain study
+participants start smoking.
+
+
+
+In ch 5/6 of Book of Why. why does it seem that magnitudes / strengths of causal connections didn’t come into play?
+
+
+
+
+
+
+\section{Lindley - Causality review}
+
+\subsection{2. Multivariate Distributions}
 
 Consider 3 random variables with a joint distribution $\p(u, x, y)$. This can be factorized:
 
@@ -60,7 +113,7 @@ i.e. $\p(y|u,x) = \p(y|u)$:
 \begin{tikzpicture}
 \graph {u -> {x, y}};
 \end{tikzpicture}
-\subsubsection{3. Causal Mechanisms}
+\subsection{3. Causal Mechanisms}
 Consider again the ordering/factorization: $\p(u, x, y) = \p(u)\p(x|u)\p(y|u, x)$
 \begin{tikzpicture}
   \graph {u -> {x, y}, x -> y};
