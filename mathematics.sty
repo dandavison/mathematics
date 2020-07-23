@@ -20,10 +20,13 @@
 \usepackage{mathtools}
 \usepackage{mdframed}
 \usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
+\usepackage{MnSymbol} % \upmodels
 \usepackage{parskip}
+\usepackage{relsize} % \mathlarger
 \usepackage{verbatim}
 \usepackage{tikz}
-\usetikzlibrary{graphs}
+\usetikzlibrary{graphs,graphdrawing}
+\usegdlibrary{force}
 
 \let\originalfootnote\footnote
 \let\footnote\undefined
@@ -162,6 +165,7 @@
 \newcommand{\bveccc}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
 \newcommand{\bvecc}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
 \newcommand{\pvecc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\newcommand{\indep}{\mathlarger{\mathlarger{\upmodels}}}
 \let\origlim\lim
 \renewcommand{\lim}{\origlim\limits}
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}  % TODO: delete
