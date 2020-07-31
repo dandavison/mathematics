@@ -113,10 +113,264 @@ Regression coefficient      & $r_{XY} = \sigma_{XY} / \sigma^2_{Y}$             
 
 \subsection{Conditional independence and graphoids}
 
-Now let $X, Y, Z$ be {\it subsets} of random variables.
+Let $W_1, W_2, \ldots, X_1, X_2, \ldots, Y_1, Y_2, \ldots, Z_1, Z_2, \ldots$ be random variables with some
+joint distribution.
 
-We write $X \indep Y|Z$ to mean that the subset $X$ is independent of $Y$ given $Z$, i.e. that
+Let $W, X, Y, Z$ be subsets of these random variables, so that for example $W = \{W_1, W_2, \ldots \}$.
+
+\begin{definition}[Conditional independence of sets of random variables]
+  We write $(X \indep Y ~|~ Z)$ to mean that
 \begin{align*}
-  \p(x|y, z) = \p(x | z)
+  \p(X_i=x ~|~ Y_j=y, Z_k=z) = \p(X_i=x ~|~ Z_k=z)
 \end{align*}
-for all tuples $x$, $y$, $z$. This implies the conditional independence of all pairs of component variables, but the converse is not necessarily true. $Z$ may be empty in which case the statement is that $X \indep Y$.
+for all $x$, $y$, $z$, and for all valid values of the indices $i$, $j$, $k$.
+
+We say that the set $X$ is independent of the set $Y$ given the set $Z$.
+\end{definition}
+
+\begin{definition}[Product]
+  \begin{align*}
+    YW = \Big\{(Y_i, W_j) ~\Big|~ i \in \{1, \ldots, n_Y,\}, j \in \{1, \ldots, n_W\}\Big\}.
+  \end{align*}
+\end{definition}
+
+\begin{theorem}[Weak union]
+  \begin{align*}
+    (X \indep YW ~|~ Z) \implies (X \indep Y | WZ).
+  \end{align*}
+    In other words, if
+    \begin{align*}
+      \p(X_i=x ~|~ (YW)_j=u, Z_k=z) = \p(X_i=x ~|~ Z_k=z)
+    \end{align*}
+    for all $i, j, k$, then
+    \begin{align*}
+      \p(X_i=x ~|~ Y_j=y, (WZ)_k=v) = \p(X_i=x ~|~ (WZ)_k=v)
+    \end{align*}
+    for all $i, j, k$.
+\end{theorem}
+
+
+
+
+
+
+\begin{proof}
+  Suppose that
+    \begin{align*}
+      \p(X_i=x ~|~ (YW)_j=u, Z_k=z) = \p(X_i=x ~|~ Z_k=z)
+    \end{align*}
+    for all $i, j, k$.
+
+    Written without the product notation, this statement is
+    \begin{align*}
+      \p(X_i=x ~|~ Y_j=y, W_k=w, Z_l=z) = \p(X_i=x ~|~ Z_l=z)
+    \end{align*}
+    for all $i, j, k, l$.
+
+    This is equivalent to
+    \begin{align*}
+      \p(X_i=x ~|~ Y_j=y, (WZ)_k=v) = \p(X_i=x ~|~ Z_l=z)
+    \end{align*}
+    for all $i, j, k$.
+
+    We want to show that
+    \begin{align*}
+      \p(X_i=x ~|~ Y_j=y, (WZ)_k=v) = \p(X_i=x ~|~ (WZ)_k=v)
+    \end{align*}
+    or equivalently that
+    \begin{align*}
+      \p(X_i=x ~|~ Z_l=z)  = \p(X_i=x ~|~ (WZ)_k=v)
+    \end{align*}
+
+
+\end{proof}
+
+
+  In other words, let
+  \begin{align*}
+  \p(X_i=x ~|~ Y_j=y, W_k=w, Z_l=z) = \p(X_i=x ~|~ Z_l=z)
+  \end{align*}
+  for all valid values of the indices $i, j, k, l$.
+
+  Then
+  \begin{align*}
+    \p(X_i=x|Y_j=y, W_k=w, Z_l=z) = \p(X_i=x|Z_l=z, W_k=w).
+  \end{align*}
+
+We write the Weak union implication as
+  \begin{align*}
+    (X \indep YW ~|~ Z) \implies (X \indep Y | ZW).
+  \end{align*}
+
+
+
+
+
+
+
+
+
+ This implies the conditional independence of all pairs of component variables,
+but the converse is not necessarily true. $Z$ may be empty in which case the statement is that $X \indep Y$.
+
+Conditional independence between subsets obeys some fairly unsurprising laws:
+
+\begin{itemize}
+  \begin{table}[!h]
+    \centering
+    \begin{tabular}{|l|l l l l}
+      {\bf Symmetry}      & $X \indep Y  ~|~ Z $&$                            $&$\implies Y \indep X  ~|~ Z   $ & \\
+      {\bf Decomposition} & $X \indep YW ~|~ Z $&$                           $&$\implies X \indep Y  ~|~ Z   $ &\\
+      {\bf Weak union}    & $X \indep YW ~|~ Z $&$                           $&$\implies X \indep Y  ~|~ ZW  $ &\\
+      {\bf Contraction}   & $X \indep Y  ~|~ Z  $&$ ~~\&~~ X \indep W ~|~ ZY  $&$\implies X \indep YW ~|~ Z   $ & \\
+      {\bf Intersection}  & $X \indep W  ~|~ ZY $&$ ~~\&~~ X \indep Y ~|~ ZW  $&$\implies X \indep WY ~|~ Z   $ &
+  \end{tabular}
+    \caption{Properties of conditional independence relation between subsets}
+  \end{table}
+\end{itemize}
+
+\begin{itemize}
+\item Graph >
+\item Directed Graph >
+\item Directed Acyclic Graph >
+\item Tree (nodes have one or zero parents)
+\end{itemize}
+
+\begin{definition}[Parent]
+\defn{Parents} $PA_j$ are a minimal set of ancestors such that, conditional on knowing their values, all other
+values are irrelevant to the probability distribution at node $j$.
+\end{definition}
+
+\begin{definition}[Markov Compatability]
+  A joint probability distribution $P$ is \defn{compatible} with a graph $G$ if $P$ factorizes according to the
+  parent relationships of $G$. I.e.
+\begin{align*}
+  P(x_1, x_2, \ldots) = \prod_i P(x_i|pa_i)
+\end{align*}
+ Synonyms:
+ \begin{itemize}
+ \item $G$ \defn{represents} $P$
+ \item $P$ is \defn{Markov} relative to $G$
+ \end{itemize}
+\end{definition}
+
+\begin{definition}[$d$-Separation, ``blocked'']
+  A set of nodes $Z$ \defn{blocks} $X$ from $Y$ if for every path between a node in $X$ and a node in $Y$ one
+  of the following is true (i.e. the path is ``blocked''):
+  \begin{itemize}
+  \item The path contains a chain $i \rightarrow m \rightarrow k$ or a fork $i \leftarrow m \rightarrow k$ with the middle node $m$ in $Z$.
+  \item The path contains a collider $i \rightarrow m \leftarrow k$ with $m$ not in $Z$ and no descendent of $m$ in $Z$.
+  \end{itemize}
+\end{definition}
+
+\begin{intuition}
+  Let the arrows denote causality and suppose $Z$ represents observed nodes.
+  \begin{itemize}
+  \item The first condition is saying that $i$ and $j$ are independent because we have observed the middle node
+    that was mediating their causal connection (dependence).
+  \item The second condition is saying $i$ and $j$ are independent because we have not observed the middle node
+    that would be inducing dependence were it observed.
+  \end{itemize}
+\end{intuition}
+
+
+
+
+Here, $Z$ $d$-separates $X$ and $Y$. Intuitively, $Z$ represents a set of observed nodes. $x_1$ and $y_1$
+are independent because $z_1$ is observed, and $x_2$ and $y_2$ are independent because $m_2$ is not observed.
+
+\includegraphics[width=400pt]{img/statistics-and-machine-learning--pearl--causality--conditional-independence-and-graphoids-1231.png}
+
+But why isn't this a counter-example? Although $m_2$ is still unobserved, we have information about it because
+it is dependent on $z_2$, which is observed.
+
+\includegraphics[width=400pt]{img/statistics-and-machine-learning--pearl--causality--conditional-independence-and-graphoids-7e5e.png}
+
+The graphical condition of $d$-separation implies theorems about probability distributions that are compatible with the graph. E.g.
+
+\begin{theorem}[$d$-Separation and probability distributions]
+  If $X$ and $Y$ are $d$-separated by $Z$ in graph $G$, then $X \indep Y ~|~ Z$ in every probability
+  distribution compatible with $G$.
+
+  Conversely, if they are not $d$-separated, then there exists a probability distribution compatible with $G$
+  in which they are not conditionally independent. (In fact, they are conditionally dependent in ``almost all''
+  probability distributions compatible with $G$.)
+\end{theorem}
+
+\begin{definition}[Skeleton]
+  The \defn{skeleton} of a directed graph $G$ is the graph that results on converting all directed edges into
+  undirected edges.
+\end{definition}
+
+\begin{definition}[Observational Equivalence]
+  TODO
+\end{definition}
+
+\begin{theorem}[Observational Equivalence]
+  Two DAGs are observationally equivalent if they have the same skeleton and the same set of {\it v-structures} (two
+  convergent arrows whose tails are not joined by an arrow).
+\end{theorem}
+
+https://arxiv.org/pdf/1304.1108.pdf
+
+\includegraphics[width=400pt]{img/statistics-and-machine-learning--pearl--conditional-independence-and-graphoids-39eb.png}
+
+
+\begin{intuition}
+  \begin{itemize}
+  \item If we define data to be ``stuff that is spat out by a probability distribution'', then we can only use data
+    to distinguish two explanations if the explanations involve different probability distributions.
+  \item For a DAG $G$, there are many compatible probability distributions.
+  \item For a probability distribution $P$, there are multiple compatible DAGs.
+  \item For example, consider $P(A, B)$.
+  \end{itemize}
+\end{intuition}
+
+In other words, consider the possible joint distributions over $(A, B, C)$. the following factorizations/DAGs
+are all observationally equivalent. They make the conditional independence asssertions that: TODO
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{|c|c|}
+    Factorization & DAG \\
+    \hline&\\
+    $\p(A)\p(B|A)\p(C|B)$&\adjustbox{valign=m}{\begin{tikzpicture}\graph{A -> B -> C};\end{tikzpicture}}\\
+    &\\\hline&\\
+    $\p(C)\p(B|C)\p(A|B)$&\adjustbox{valign=m}{\begin{tikzpicture}\graph{A <- B <- C};\end{tikzpicture}}\\
+    &\\\hline&\\
+    $\p(B)\p(A|B)\p(C|B)$&\adjustbox{valign=m}{\begin{tikzpicture}\graph{B -> A, B -> C};\end{tikzpicture}}\\
+    &\\\hline&\\
+  \end{tabular}
+\end{table}
+
+But this one is not observationally equivalent to those. The conditional independence assertions that it makes are: TODO
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{|c|c|}
+    Factorization & DAG \\
+    \hline&\\
+    $\p(A)\p(C)\p(B|A,C)$&\adjustbox{valign=m}{\begin{tikzpicture}\graph{A -> B, B <- C};\end{tikzpicture}}\\
+    &\\\hline&\\
+  \end{tabular}
+\end{table}
+What about this one?
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{|c|c|}
+    Factorization & DAG \\
+    \hline&\\
+    $\p(A)\p(B)  \p(C|B)$&\adjustbox{valign=m}{\begin{tikzpicture}\graph{A, B -> C};\end{tikzpicture}}\\
+    &\\\hline&\\
+  \end{tabular}
+\end{table}
+
+\includegraphics[width=200pt]{img/statistics-and-machine-learning--pearl--causality--conditional-independence-and-graphoids-cddf.png}
+
+\begin{quote}
+  It seems that if conditional independence judgments are by-products of stored causal relationships, then
+  tapping and representing those relationships directly would be a more natural and more reliable way of
+  expressing what we know or believe about the world. This is indeed the philosophy behind causal Bayesian
+  networks.
+\end{quote}
