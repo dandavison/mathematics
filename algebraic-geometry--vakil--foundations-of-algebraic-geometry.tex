@@ -1,10 +1,32 @@
+Picture a set $A$ on the left and a set $B$ on the right.
+
+A {\defn function} or {\defn map} $f: A \to B$ attaches to every element of $A$ exactly one directed edge, pointing to an element
+of $B$.
+
+$f$ \defn{factors through} a set $C$ if there exists $g: A \to C$ and $h: C \to B$ such that $f = h \circ g$.
+
+\begin{claim}
+  $f: A \to B$ factors through $C$ if and only if $|C| \geq \min\{ ~|A|, ~|B|~ \}$.
+\end{claim}
+
+\begin{proof}
+  Cases:
+  \begin{enumerate}
+  \item $|A| < |B|$
+    If $|C| < |A|$ then some $c \in C$ will be hit by more than one $a \in A$.
+  \end{enumerate}
+\end{proof}
+
+
+
 \section{Product}
 
+product map is given by intersection (which necessarily has one element) of preimages of projection maps?
 
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt
 
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-0.7,xscale=0.7]
 %uncomment if require: \path (0,698); %set diagram left start at 0, and has height of 698
 
 %Shape: Cloud [id:dp6636217093624208]
