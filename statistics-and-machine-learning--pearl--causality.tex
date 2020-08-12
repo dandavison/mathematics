@@ -19,7 +19,7 @@ Thus the law of total probability $\p(X) = \sum_Z\p(X, Z)$ gives rise to
 \begin{align*}
   \p(y|x) = \sum_z \p(z)\p(y|x,z).
 \end{align*}
-This theorem lies behind the notion of ``controlling'' for a covariate $Z$ when studying the effect of $X$ on $Y$.
+This theorem lies behind the notion of ``controlling​'' for a covariate $Z$ when studying the effect of $X$ on $Y$.
 
 \subsection{Bayes' rule}
 
@@ -27,7 +27,7 @@ Since conditional probabilities are primitive, Bayes' rule
 \begin{align*}
   \p(H|e) = \p(H) \p(e|H) \times \p(e)^{-1}
 \end{align*}
-is a ``normative rule for updating beliefs in response to evidence'', as opposed to a tautology (theorem) derivable from definitions of conditional probability.
+is a ``normative rule for updating beliefs in response to evidence​'', as opposed to a tautology (theorem) derivable from definitions of conditional probability.
 
 \begin{quote}
   {\it Accordingly, (1.14) [Bayes' rule] is not a definition but rather an empirically verifiable relationship
@@ -254,9 +254,9 @@ values are irrelevant to the probability distribution at node $j$.
  \end{itemize}
 \end{definition}
 
-\begin{definition}[$d$-Separation, ``blocked'']
+\begin{definition}[$d$-Separation, ``blocked​'']
   A set of nodes $Z$ \defn{blocks} $X$ from $Y$ if for every path between a node in $X$ and a node in $Y$ one
-  of the following is true (i.e. the path is ``blocked''):
+  of the following is true (i.e. the path is ``blocked​''):
   \begin{itemize}
   \item The path contains a chain $i \rightarrow m \rightarrow k$ or a fork $i \leftarrow m \rightarrow k$ with the middle node $m$ in $Z$.
   \item The path contains a collider $i \rightarrow m \leftarrow k$ with $m$ not in $Z$ and no descendent of $m$ in $Z$.
@@ -293,7 +293,7 @@ The graphical condition of $d$-separation implies theorems about probability dis
   distribution compatible with $G$.
 
   Conversely, if they are not $d$-separated, then there exists a probability distribution compatible with $G$
-  in which they are not conditionally independent. (In fact, they are conditionally dependent in ``almost all''
+  in which they are not conditionally independent. (In fact, they are conditionally dependent in ``almost all​''
   probability distributions compatible with $G$.)
 \end{theorem}
 
@@ -318,7 +318,7 @@ https://arxiv.org/pdf/1304.1108.pdf
 
 \begin{intuition}
   \begin{itemize}
-  \item If we define data to be ``stuff that is spat out by a probability distribution'', then we can only use data
+  \item If we define data to be ``stuff that is spat out by a probability distribution​'', then we can only use data
     to distinguish two explanations if the explanations involve different probability distributions.
   \item For a DAG $G$, there are many compatible probability distributions.
   \item For a probability distribution $P$, there are multiple compatible DAGs.
