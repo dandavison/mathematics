@@ -1,6 +1,155 @@
+\section{Overview}
+
+\begin{enumerate}
+
+\item A probabilistic view of the world lies behind everything: in particular, any conclusion based on data. But also quantum physics, perception, machine learning, etc.
+\item Every statement you can make about the world, every observable outcome of any process, any data you can collect; all of these can be thought of as ``random variables​''.
+
+\item {\bf Why would we be interested in learning about this? What can we do with this?}
+  \begin{enumerate}
+  \item Form a conclusion about something unknown (Do I have Covid? Is that a leaf I see in front of me? What species of bird is that singing? What is this person saying?)
+  \item Make a decision (What policy should this government choose? Should this self-driving car come to an abrupt stop right now? Should I as a soldier attempt to kill that man?)
+  \item Form a conclusion about causality (Do cell phones cause cancer? Did the dinosaurs go extinct because of a meteor strike?)
+  \end{enumerate}
+
+\item {\bf Overview}
+  \begin{enumerate}
+  \item The idea of a \defn{random variable​}
+  \item The idea of a \defn{joint probability distribution}
+  \item Network diagrams, correlation/independence
+  \item How should we form conclusions about unknowns?
+    \begin{enumerate}
+    \item The idea of a \defn{probability model} and a \defn{generative process}
+    \item Updating beliefs after making observations
+    \item What is ``statistics​''? What is ``theory​''?
+    \end{enumerate}
+  \item How should we make decisions?
+  \item How should we form conclusions about causality?
+  \item Quantum physics (?)
+  \end{enumerate}
+
+\item {\bf 1. Random variables}
+  \begin{enumerate}
+  \item The simplest example is the coin flip.
+  \item Bar plot of probability
+  \item Reality is somehow coming up with things in proportion to those two probability masses.
+  \item Summaries of RVs: mean, etc (?)
+  \end{enumerate}
+
+\item {\bf 2. Joint probability distributions}
+  \begin{enumerate}
+  \item But we need to be able to think about the probability of many things simultaneously, or of a single complex thing.
+  \item Example of two uncorrelated things. How do we picture this? Diagram of two bar plots next to each other.
+  \item That's not quite right though. Our outcomes are now ``tuples​''
+  \item Diagram of 2D barplot.
+  \item But what if we have 3 things? Or millions of things?
+  \item Spreadsheet format: list all possible tuples using the first d columns, enter probability of that tuple in the final column
+  \end{enumerate}
+
+\item 3. {\bf Network diagrams, correlation}
+
+\item 4. {\bf How should we form conclusions about unknowns?}
+  \begin{enumerate}
+  \item The simplest way to think about this, which is always a valid way to think about it, is the Bayesian way:
+    \begin{enumerate}
+    \item Agree on the joint probability distribution of all the unknowns (including hypotheses, parameters, and observable data values)
+    \item It might be clearest to represent it as a network diagram
+    \item This is called a ``model​'' (or ``statistical model​'')
+    \item Make some measurements of the observable data values
+    \item Look at how the probabilities in the model have changed
+    \end{enumerate}
+  \item What about ``hypothesis tests​'' and ``p-values​''?
+    \begin{enumerate}
+    \item Identify a null hypothesis
+    \item Write down the model (joint probability distribution) as before, but this time with all the probabilities
+      conditional on the null hypothesis being true.
+    \item Observe some data
+    \item Use the model to write down the probability that the model would spit out the data that you observed, or
+      data more extreme than what you observed (here ``more extreme​'' means less consistent with the null
+      hypothesis).
+    \item This probability is known as a \defn{p-value}. If it is very small we conclude that the null hypothesis is unlikely
+      to be true: i.e. it seems more likely that the data set was spat out by some other model, not the model
+      we have with the hypothesis fixed at the null hypothesis.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+TODO:
+
+\begin{itemize}
+\item model as generative procedure
+\item Nature/reality as generative procedure
+\item What does it mean to talk of a generative procedure for a non-observable?
+\item philosophy: according to frequentists, percent of Amazon remaining in 2035 is whatever it is, it's not random
+\end{itemize}
+
+
+
+
 \section{Random variables}
 
-This is an attempt to explain the basic ideas behind some commonly-heard jargon such as: "statistics", "machine learning", "artificial intelligence", "data science", "statistical inference". Basically, all those areas have to do with how we use observations to shape our beliefs about the world and make decisions. That's extremely broad. For example, it includes
+There are basically two things to know about a random variable:
+\begin{enumerate}
+\item It has some fixed range of possible values. In our example: heads and tails.
+\item Each value has a probability associated with it.
+\end{enumerate}
+
+It's usually best to start off with a very simple example. The simplest possible random variable would have
+just one possible value. But the usual word for one of those is a ``fact​'', since there is no uncertainty about
+its value. So, let's start with a random variable with two possible values.
+
+
+
+What should the example be here? We want something which feels very much like reality has ``picked​'' one of the
+two values randomly. And we want something that can be part of a correlated 2-tuple.
+
+\begin{enumerate}
+\item heads/tails?
+\item sex of a baby?
+\item radioactive emissions?
+\item shooting stars?
+\end{enumerate}
+
+
+There are basically two things to know about a random variable:
+\begin{enumerate}
+\item It has some fixed range of possible values. In our example: heads and tails.
+\item Each value has a probability associated with it.
+\end{enumerate}
+
+
+The picture we should have in mind is a simple one:
+
+\includegraphics[width=400pt]{img/statistics-and-machine-learning--introduction--overview--random-variables-8b8d.png}
+
+
+
+Let's try to think of this as a very purely random phenomenon. It's not easy: if you take most examples that
+someone might put forward and think about them, you end up concluding that to a large extent it's not ``really​''
+random, it's more that we're in ignorance of what exactly is going on. Taking the coin flip as an example,
+basically no-one is going to try to precisely characterise the impact of your finger nail with the surface of
+the coin, and the precise shape and density of the coin etc to be able to do the physics calculations. Instead
+we just say: it's approximately 50:50 which way it will land.
+
+A better example might be a small lump of weakly radioactive rock. You sit there with a Geiger counter and
+suitable protective clothing and watch the Geiger counter display for 10 seconds. Is there an emission during
+that time or not? It's yes or no. We don't care what the probabilities of the two possibilities are but the
+point is that this feels really quite random. Even if we could observe what's going on at a subatomic level
+physicists tell us that at sufficiently fine levels of detail they also throw up their hands and say it appears
+to be truly random.
+
+
+
+
+
+
+This is an attempt to explain the basic ideas behind some commonly-heard jargon such as: ``statistics​'', ``machine
+learning​'', ``artificial intelligence​'', ``data science​'', ``statistical inference​​​''.
+
+Basically, all those areas have to do with how we use observations to shape our beliefs about the world and make decisions. That's extremely broad. For example, it includes
 \begin{itemize}
 \item Observing some coin tosses and forming a belief about whether the coin is biased.
 \item Observing the results of an experiment and updating your beliefs regarding whatever was being investigated.
@@ -58,14 +207,6 @@ decisions in light of observed data, and this assignment of probabilities to the
 that one comes across fairly frequently in non-technical writing: it is known as a "model". Of course, if we're
 wrong about the model, our updated beliefs/decisions may be inappropriate.
 
-TODO:
-
-\begin{itemize}
-\item model as generative procedure
-\item Nature/reality as generative procedure
-\item What does it mean to talk of a generative procedure for a non-observable?
-\item philosophy: according to frequentists, percent of Amazon remaining in 2035 is whatever it is, it's not random
-\end{itemize}
 
 To continue to make things concrete, here are some of the scenarios that I listed above with the random variables explicitly identified:
 
