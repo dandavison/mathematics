@@ -232,6 +232,81 @@ To continue to make things concrete, here are some of the scenarios that I liste
 Notice that a random variable can be very simple (the outcome of tossing a coin once), or very complex (an audio signal over some period of time, i.e. at each of many sampled time points, a list of all the audio frequencies that are present and their intensities). The complex random variable is made up of many components, each of which could be considered a random variable in its own right. But none of that changes the basic idea: a random variable is a thing (an outcome, or an answer to a question) about which we are uncertain.
 
 
+\newpage
+
+
+
+
+\section{Updating beliefs}
+
+You are a doctor and tomorrow you are going to test a patient to obtain data on whether they have a certain
+disease. You will never know for sure whether the patient has the disease or not. Instead, at any given moment
+in time you have a ``belief​'' about whether they have the disease or not, which you express as a probability
+between 0\% and 100\%. As time advances and reality reveals itself to you in the form of new information about
+the universe, such as test results, those beliefs should change (if you are a rational person). All you can do
+is appropriately quantify your belief before testing the patient, and then appropriately update your belief in
+the light of the test results; this is what we mean by ``acting as a rational agent​''. The same is true, in
+principle, for anyone: an economist about to receive new data relevant to their model of the economy, a
+bookmaker about to receive new data about which players are injured for Saturday's match, etc. So what we need
+to know is the precise numerical procedure that you should use to ``update your beliefs​''.
+
+This evening, before you see the patient tomorrow, you summarise the situation given your current knowledge.
+The main question of interest is: what is the probability that the patient has the disease? That question is
+easy to answer as things stand this evening. Let's say that you know nothing about the patient (age, sex,
+ethnicity, prior health history / test results, etc). But you do know that 6.25\% of people in the local
+population have the disease. So tomorrow's patient is effectively a person picked uniformly at random from the
+local population and consequently, this evening, your belief that the patient you see tomorrow has the disease
+is 6.25\%, and your belief that they do not have the disease is 93.75\%.
+
+\begin{centering}
+  \includegraphics[width=0.8\textwidth]{img/statistics-and-machine-learning--introduction--updating-beliefs-1.png}
+\end{centering}
+
+Fine. But tomorrow, once we have the test result, how do we update this belief? The answer is not complicated,
+but it is hard to overstate how important it is: it's essentially answering the question ``How should rational
+beings learn from their observations of the world?​'' (and also answering the question ``How should rational
+beings create robots/computer programs that are to respond appropriately to data about the world?'')
+
+In order to be able to update our beliefs when we get the test results tomorrow, the first step is to write
+down the joint probability distribution of all the things that could happen tomorrow. There are four possible
+outcomes: the patient will either have the disease or not; and the test will be negative or positive. So
+``writing down the joint probability distribution​'' simply means writing down the probability for each of these
+four outcomes. Remember that we still haven't seen the test result: we're just listing everything that might
+happen tomorrow, together with its probability (this is what people mean when they talk about constructing a
+``model​'').
+
+It makes sense to arrange the four outcomes in a 2x2 table:
+\begin{table}[h!]
+  \centering
+  \begin{tabular}[h!]{|c|c|c|}
+    & {\bf test negative} & {\bf test positive} \\
+    \hline
+    {\bf no disease} & true negative & false positive\\
+    {\bf has disease} & false negative & true positive
+  \end{tabular}
+\end{table}
+
+Focus on the first row: it represents outcomes where the patient does not have the disease. We have already
+agreed that the probability that the patient doesn't have the disease is 99\%. The first row wants us to split
+that 99\% into two components: one where they don't have the disease AND the test is negative, and one where
+they don't have the disease AND the test is positive. The information we need to do that is the false positive
+rate of the test. This is something that the people who distribute the test kit will be able to tell us,
+hopefully via a conventional peer-reviewed, publicly-available scientific paper.
+
+
+
+
+
+
+ There are four possible outcomes tomorrow
+ about that appropriately before you test the patient, and update your
+beliefs appropriately in light of the test results.
+
+ the test will be either posit
+
+. , and the probability that the patient you see tomorrow has the disease is 1\%.
+
+
 
 
 
