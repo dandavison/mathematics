@@ -1,5 +1,17 @@
 \newcommand{\alphainv}{\alpha^{-1}}
 
+The elements of a group represent permutations, and the group operation is composition.
+
+So what is a group under addition? Do its elements also represent permutations?
+
+Consider $\Z/n\Z$ under $+$. The elements are $\bar 0$ (identity), $\bar 1$, ..., $\bar{n - 1}$. We can think
+of the element $\bar k$ as an action that advance each element $k$ positions, with wrapping back to $\bar 0$.
+So we can certainly think of the elements as permutations and addition as composition.
+
+What about $\R^\times$? I think we can think of that as a permutation of $\R$ also.
+
+
+
 \section{Definitions}
 
 \begin{definition*}[Group]
@@ -53,6 +65,41 @@ assuming commutativity: $a(b + c))$ and $(b + c)a$.
 \item $\Z/n\Z$
 \item Set of $n \times n$ matrices over a field
 \end{itemize}
+
+\begin{claim}
+  $\Z/n\Z$ is a ring. It is also a field when $n$ is prime. 
+\end{claim}
+
+\begin{definition}
+  A ring is an Abelian group under $+$, which additionally has a $\times$ operator, but there is no requirement
+  for every element to have an inverse under $\times$.
+\end{definition}
+
+\begin{proof}
+  $\Z/n\Z$ is an Abelian group under $+$: the identity is $\bar 0$, the inverse of $\bar k$ is $\bar{n - k}$, and $\bar j + \bar k = \bar k +\bar j$.
+
+  $\Z/n\Z$ is a ring because we may define $\times$ with identity $\bar 1$.
+
+  Consider non-prime $n$, for example $\Z/4\Z$, under $\times$.
+
+  Then $\bar 1$ is its own inverse (e.g., at the level of elements rather than cosets, we
+  have $5 \times 9 = 45 = 1 \mod 4$.)
+
+  $\bar 3$ is also its own inverse (e.g. $3 \times 7 = 21 = 1 \mod 4$).
+
+  But $\bar 2$ lacks an inverse.
+
+  Note that advancing in increments of 3 ``slips​'' by 1 each time and hence ends up hitting 1 (the identity):
+  \begin{align*}
+    3             &= 3 \\
+    3 + 3     = 6 &= 2 \\
+    2 + 3     = 5 &= 1
+  \end{align*}
+  But adding 2 just flips between 0 and 2.
+
+  Basically if an element is not a divisor of $n$ then its orbit will be the full set?
+\end{proof}
+
 
 Subrings must contain $0, 1$.
 
