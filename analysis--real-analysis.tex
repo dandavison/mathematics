@@ -1225,6 +1225,68 @@ The following subsections are older notes on metric spaces.
   $V \seq X$ is closed iff its complement in $X$ is open.
 \end{definition}
 
+
+\subsection{Examples}
+
+
+Let $X = [0, 1) \cup \{2\}$ and
+\begin{align*}
+f(x) =
+\begin{cases}
+  x, ~~~~~~~ 0 \le x < 1 \\
+  1, ~~~~~~~ x = 2
+\end{cases}
+\end{align*}
+
+
+\includegraphics[width=400pt]{img/analysis--real-analysis--examples-083a.png}
+
+\begin{itemize}
+
+\item The limit of $f(x)$ as $x \to 1$ is 1.
+  \begin{itemize}
+  \item Recall $f(x) \to L$ if $L$ is the limit of $f(x_1), f(x_2), \ldots$ for {\it every} sequence that converges to 1.
+  \item Since $1 \notin X$, the sequences that converge to 1 never hit 1, but satisfy the standard $\epsilon-N$
+    criterion: for any $\epsilon$ there exists an $N$ such that the sequence remains within $\epsilon$ of 1
+    beyond $N$.
+  \item The limit of the function values is 1 since, for any $\epsilon$, beyond a certain point, we remain
+    within $\epsilon$ of 1. That point is whenever the sequence in the domain gets within $\epsilon$ of 1.
+  \end{itemize}
+
+\item 1 is not in the domain of $f$, so we cannot ask whether $f$ is continuous at 1.
+
+\item The only sequences that converge to 2 are those with a constant tail of infinitely many 2s.
+
+\item The limit of $f(x)$ as $x \to 2$ is also 1.
+
+\item Ball-based definition of continuity: $f$ is continuous at $a$ if for any $\epsilon$ there exists a
+  $\delta$ such that an open ball of radius $\delta$ centred at $a$ has as image a subset of the open ball of
+  radius $\epsilon$ centred at $f(a)$.
+
+\item Topological definition of continuity: $f$ is continuous at $a$ if the preimage of every open set
+  containing $f(a)$ is an open set in $X$?
+
+
+\end{itemize}
+
+Note:
+
+
+\begin{enumerate}
+\item $f(x) \to L$ as $x \to a$ if for all $\epsilon$ there exists $\delta$ such that $d(x, a) < \delta \implies d(f(x), L) < \epsilon$.
+\item Equivalently, if the limit of the sequence of function values is $L$ for every sequence in the domain that
+  converges to $a$.
+\item $f(x)$ is continuous at $a$ if $L = f(a)$.
+\end{enumerate}
+
+
+d(X,Y) = size of the set containing elements in X xor Y “measure of the symmetric difference b/w X and Y" 
+
+
+
+\includegraphics[width=400pt]{img/analysis--real-analysis--examples-58e8.png}
+
+h
 \subsection{Topology on a metric space}
 \begin{definition}
   Let $(X, d)$ be a metric space. The collection $\mc T$ of all open sets in the metric space is
