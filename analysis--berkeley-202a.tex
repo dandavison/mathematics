@@ -92,7 +92,7 @@
   This means that for an arbitrary continuous function $g$, and for any $\epsilon > 0$, we must be able to
   construct a function that lies within $\epsilon$ of $g$.
 
-  https://en.wikipedia.org/wiki/Piecewise_linear_function
+  \url{https://en.wikipedia.org/wiki/Piecewise_linear_function}
 
   \begin{quote}
     A piecewise linear function is a function defined on a (possibly unbounded) interval of real numbers,
@@ -116,22 +116,21 @@
 
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-d1d3.png}
 
-\item Hm. Each function could be zero everywhere except a spike of height 1 at a different location from all
-  other functions. But how do you make that be both continuous and yet ``narrow enough​'' for the set to have
-  the same cardinality as the reals?
+\item Let $f_S: (0, 1) \to \R$ be given by $f_S(x) = \frac{1}{r(S)x}$, where $S \in 2^\N$ and $r(S) \in [0, 1]$ is
+  the real number corresponding to $S$, i.e. the number $r(S) = 0.d_1d_2d_3\ldots$ where
+  \begin{align*}
+    d_i =
+    \begin{cases}
+      1, ~~~~ \text{if} ~~~~ i \in S,\\
+      0, ~~~~ \text{otherwise}.
+    \end{cases}
+  \end{align*}
+  ... but the supremum distance does not exist for a pair of functions from this set: their difference is
+  unbounded.
 
-  Powerset of $\N$
-  000...
-  001...
-  010...
-  011...
-  100...
-  101...
-  110...
-  111...
-
-
-
+\item Let $\mathcal F$ be the uncountable collection of functions identified in part (3). Suppose for a
+  contradiction that $\mathcal C\([0, 1], \R\)$ is separable. Then it contains a countable dense
+  set $\mathcal G$.
 
 \end{enumerate}
 
@@ -189,17 +188,197 @@
   \begin{align*}
     x \in \bigcap_{k=1}^\infty \bigcup_{l=1}^\infty \bigcap_{m \geq l} \bigcap_{n \geq l} E_{m,n}^{1/k}.
   \end{align*}
-  As before, the reverse implication also holds since, for any given $\epsilon > 0$ we can find a $k \in \N$
+  As before, the reverse implication also holds since, for any given $\epsilon > 0$, we can find a $k \in \N$
   such that $\frac{1}{k} < \epsilon$.
+\end{proof}
+
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f175.png}
+
+
+h
+\begin{proof}
+  Let $X \subset [0, 1]$ be the subset of real numbers without any 6 in their decimal expansion. Let $x \in X$ and let
+  \begin{align*}
+    d_n(x) =
+    \begin{cases}
+      0, ~~~~ n\text{-th decimal place of }x \text{ is }0\\
+      1, ~~~~ \text{otherwise}.
+    \end{cases}
+  \end{align*}
+  Thus we see that there is an non-injective surjection from $X$ to the reals in $[0, 1]$ and therefore that
+  the cardinality of $X$ is at least that of the reals. Since $X \subset \R$ we conclude that the cardinality
+  of $X$ is equal to that of the reals.
+\end{proof}
+
+
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-5192.png}
+
+
+\begin{proof}
+  Let $X \subseteq [0, 1]$ be the set of points at which $f$ is continuous. We want to show that $f$ is
+  continuous at $x$ iff $x$ is not rational.
+
+  Suppose for a contradiction that $f$ is continuous at a rational point $x = p/q$, where $p, q$ are
+  non-negative integers. Then $f(x) = 1/q$. But there will always be irrational points within a given
+  distance $\delta$ of $x$, now matter how small $\delta$ is, and at such an irrational point $x'$ we
+  have $|f(x) - f(x')| = |1/q - 0| = 1/q$. Therefore $f$ is not continuous at $x$ since the definition of
+  continuity does not hold for $\epsilon < 1/q$.
+
+  Now let $x$ be irrational, so that $f(x) = 0$. Fix an arbitrary $\epsilon > 0$. We want to show that there
+  exists a $\delta$ such that $1/q < \epsilon$ for any rational point $p/q$ lying within $\delta$ of $x$,
+  where $p/q$ is in reduced terms. If $\epsilon > 1/2$ then any $\delta$ will work, so
+  assume $\epsilon \leq 1/2$. Let $k$ be the largest natural number such that $1/k \geq \epsilon$, let $i$ be
+  the largest natural number such that $i/k < x$ and let $j$ be the smallest natural number such
+  that $j/k > x$. Then a choice of $\delta = \frac{1}{2}\min\{x - i/k, j/k - x\}$ will work to prove continuity
+  of $f$ at irrational $x$.
+\end{proof}
+
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f5e8.png}
+
+\begin{enumerate}
+  \begin{definition}
+    $g: [0, 1] \to \R$ is Riemann integrable if
+    \begin{align*}
+      \sup_{\phi^-} I(\phi^-) = \inf_{\phi^+} I(\phi^+).
+    \end{align*}
+    Here $\phi^-$ and $\phi^+$ are step functions adapted​ to some
+    partition $0 \leq x_1 \leq x_2 \leq \ldots \leq x_{n-1} \leq 1$, such that $\phi(x) = c_i$
+    for $x \in (x_{i-1}, x_i)$. $I(\phi)$ is (informally) the area under the step function $\phi$:
+    \begin{align*}
+      I(\phi) = \sum_{i=1}^n c_i(x_i - x_{i-1}).
+    \end{align*}
+    And the supremum is over all minorants $\phi^- \leq g$ and the infimum is over all
+    majorants $\phi^+ \geq g$, where the length $n$ of the partition is allowed to vary as well as the constant
+    values $\{c_1, c_2, \ldots, c_n\}$ of the step function within each segment.
+  \end{definition}
+\item
+  \begin{claim}
+    The specified function $f$ is not Riemann integrable.
+  \end{claim}
+
+  \begin{proof}
+    Consider the first segment of any partition: $(0, x_1)$. No matter how small $x_1$ is, there
+    exists $n \in \N$ such that $1/n < x_1$. Therefore for all majorants we have $c_1 \geq 1$ and yet for all
+    minorants we have $c_1 \leq 0$. So, when restricted to this first segment, we have $I(\phi^-) > I(\phi^+)$
+    for all $\phi^-, \phi^+$ and, since every majorant is elsewhere less than every minorant, it is not
+    possible that $\sup_{\phi^-} I(\phi^-) = \inf_{\phi^+} I(\phi^+)$ and hence the Riemann integral is
+    undefined.
+  \end{proof}
+
+\item
+  \begin{proof}
+    Suppose for a contradiction that $\int_0^1 f = 0$. Fix an arbitrary minorant $\phi^-$, adapted to a
+    partition of length $n$. Then we have that $\sum_{i=1}^n c_i(x_i - x_{i-1}) \leq 0$.
+    Since $x_i \geq x_{i-1}$ for all $i$, and since $x_0 = 0 < x_n = 1$, it must be the case
+    that $x_i - x_{i-1} > 0$ for some $i$, and therefore that $c_i > 0$ for some $i$. Therefore $f$ vanishes at
+    at least one point. This contradiction proves that $\int_0^1 f \neq 0$.
+
+    To see that it's not negative, note that for every majorant $\phi^+$ we have $x_i - x_{i-1} \geq 0$
+    and $c_i > 0$ for all $i$ and therefore $I(\phi^+) = \sum_{i=1}^n c_i(x_i - x_{i-1}) \geq 0$. Therefore $\int_0^1 f > 0$.
+  \end{proof}
+
+\end{enumerate}
+
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-a577.png}
+
+\begin{proof}
+  Suppose for a contradiction that $[0, 1] \subset \R$ is countable. Fix an enumeration $\{u_n ~|~ n \in \N\}$
+  of the elements of $[0, 1]$. (Note that the elements in the enumeration cannot be assumed to be in order: we
+  are supposing countability of the reals, and it is an axiom that we can determine which is the greater of any
+  two reals, but to enumerate them in order would require a successor function on the reals and we have not
+  assumed we have that.)
+
+  Our aim is to exhibit an element of $[0, 1]$ that is not present in the enumeration$\{u_n ~|~ n \in \N\}$.
+
+  Pick two distinct elements from $[0, 1]$. Label the smaller $u_1$ and the larger $u_2$. Set $U_1 = [u_1, u_2]$.
+
+  {\it Find a definite way to choose one of them:}
+  \begin{enumerate}
+  \item Can we let the lower limit of the interval be $u_1$, and for the upper limit, walk along the integers until
+    we encounter the first one whose associated real is $< u_2$? I don't think so, it might take infinitely long.
+  \end{enumerate}
+
+
+
+\end{proof}
+
+
+\begin{proof}
+  Suppose for a contradiction that $[0, 1] \subset \R$ is countable. This means that the elements of $[0, 1]$
+  may be enumerated as $\{u_n ~|~ n \in \N\}$. Let $a = \min\{u_1, u_2\}$ and $b = \max\{u_1, u_2\}$. But
+  then $\frac{a + b}{2}$ is a real number greater than $u_1$ and less than $u_2$ and therefore is missing from
+  our original enumeration. Therefore no such enumeration exists.
+
+  \red{NOPE: I think the problem here is you can't ``sort​'' a countably infinite set so you don't know that there is no other element between u_1 and u_2.}
+
 \end{proof}
 
 
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f175.png}
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-5192.png}
+\begin{lemma}[Countable intersection of intervals yields a singleton]
+  Let $x \in \R$. Then
+      \begin{align*}
+      \bigcap_{n=1}^\infty \Big(x -\frac{1}{n}, x\Big] = \{x\}.
+    \end{align*}
+\end{lemma}
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f5e8.png}
+\begin{proof}
+  Recall that the notation $\bigcap_{n=1}^\infty f(n)$ means $\lim_{N\to\infty} \bigcap_{n=1}^N f(n)$. We have
+  \begin{align*}
+      \bigcap_{n=1}^\infty \(x -\frac{1}{n}, x\)
+    &= \lim_{N \to \infty} \bigcap_{n=1}^N \(x -\frac{1}{n}, x\) \\
+    &=
+    \end{align*}
+\end{proof}
 
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-a577.png}
+
+\begin{proof}
+  Suppose for a contradiction that $[0, 1] \subset \R$ is countable. This means that the elements of $[0, 1]$
+  may be enumerated as $\{u_n ~|~ n \in \N\}$. We want to exhibit an element of $[0, 1]$ that is not present in
+  such an enumeration.
+
+ Let
+  \begin{align*}
+    U_1 &=
+    \begin{cases}
+      \big(u_1, u_2\big] ~~~~~~~\text{if } u_1 \leq u_2\\
+      \big(u_2, u_1\big] ~~~~~~~\text{otherwise},
+    \end{cases}\\
+    U_2 &=
+    \begin{cases}
+      \big(u_1, \frac{1}{2}u_1 + \frac{1}{2}u_2\big] ~~~~~~~\text{if } u_1 \leq u_2\\
+      \big(u_2, \frac{1}{2}u_2 + \frac{1}{2}u_1\big] ~~~~~~~\text{otherwise},
+    \end{cases}\\
+    U_3 &=
+    \begin{cases}
+      \big(u_1, \frac{2}{3}u_1 + \frac{1}{3}u_2\big] ~~~~~~~\text{if } u_1 \leq u_2\\
+      \big(u_2, \frac{2}{3}u_2 + \frac{1}{3}u_1\big] ~~~~~~~\text{otherwise},
+    \end{cases}\\
+    \ldots,
+  \end{align*}
+  so that in general
+  \begin{align*}
+    U_k &=
+    \begin{cases}
+      \big(u_1, \frac{k-1}{k}u_1 + \frac{1}{k}u_2\big] ~~~~~~~\text{if } u_1 \leq u_2\\
+      \big(u_2, \frac{k-1}{k}u_2 + \frac{1}{k}u_1\big] ~~~~~~~\text{otherwise}.
+    \end{cases}
+  \end{align*}
+
+
+
+
+  Billingsley p.19:
+  \begin{quote}
+    ...require a collection that contains the intervals and is closed under countable unions and intersections.
+    Note that a singleton $\{x\}$ is a countable intersection of intervals:
+    \begin{align*}
+      \bigcap_{n=1}^\infty \Big(x -\frac{1}{n}, x\Big] = \{x\}.
+    \end{align*}
+  \end{quote}
+
+
+
+\end{proof}
