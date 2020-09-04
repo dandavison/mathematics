@@ -1523,3 +1523,90 @@ h
   \end{align*}
   as required.
 \end{proof}
+\section{Measure Theory}
+[Berkeley 202a]
+[Billingsley - Probability \& Measure]
+
+\begin{itemize}
+\item $\Omega = [0, 1]$
+\item $\om \in \Omega$
+\item $d_n(\om) \in \{0, 1\} = $ $n$-th digit in binary expansion of $\om$
+\item Rademacher function $r_n(\om) = 2d_n(\om) - 1 \in \{-1, 1\}$
+\end{itemize}
+
+\subsection{Weak Law of Large Numbers}
+
+Define the partial sum $S_n(\om) = \sum_{i=1}^n r_i(\om)$, i.e. the number of $1$s minus the number of $0$s in
+the first $n$ digits of the binary expansion of $\om$. (The displacement of the random walk after $n$ steps.)
+
+\begin{lemma}
+  \begin{align*}
+    \int_0^1 S_n(\om)^2 \d\om = n
+  \end{align*}
+\end{lemma}
+
+I.e., viewed as a sequence of $n$ coin tosses yielding $-1$ or $+1$, the variance (expected squared distance
+from mean) of their sum is $n$.
+
+\begin{proof}
+  Note that $S_n(\om)^2 = \sum_{i=1}^n r_i(\om)^2 - 2\sum_{i<j}r_i(\om)r_j(\om)$. Integrating over $[0, 1]$ we have
+  \begin{align*}
+    \int_0^1 S_n(\om)^2 \d\om
+    &= \sum_{i=1}^n \int_0^1 r_i(\om)^2 \d\om - 2\sum_{i<j}\int_0^1r_i(\om)r_j(\om) \d\om \\
+    &= \sum_{i=1}^n \int_0^1 1 \d\om - 0 \\
+    &= n.
+  \end{align*}
+  We used there the fact that $\int_0^1r_i(\om)r_j(\om) \d\om = 0$ for $i < j$, i.e that the Rademacher
+  functions are orthogonal. An argument for this is that as we move through a rank $i$ dyadic
+  interval, $r_i(\omega)$ is constant (either $-1$ or $+1$) while at rank $j$ below, $r_j(\omega)$ flickers
+  between $-1$ and $+1$, spending an equal amount of time in each.
+\end{proof}
+
+
+\begin{lemma}[Shaded Area lemma / Markov's Inequality]
+  Let $f: [0, 1] \to \R^+$ be a step function. Then
+  \begin{align*}
+    \int_0^1 f(x) \dx > \alpha P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big).
+  \end{align*}
+\end{lemma}
+
+\begin{proof}
+  \includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c9c2.png}
+\end{proof}
+
+\begin{theorem}[Weak Law of Large Numbers]
+  Fix an $\epsilon > 0$. Then
+  \begin{align*}
+    \lim_{n \to \infty}P\Big(\Big\{\om: \frac{1}{n}\big|\sum_{i=1}^n r_i(\om)\big| \geq \epsilon\Big\}\Big) = 0.
+  \end{align*}
+\end{theorem}
+
+In other words: we move through all the $\om \in [0, 1]$. For a given $\om \in [0, 1]$, compare the number
+of $0$s and $1$s in the first $n$ digits of the binary expansion, and record the excess as a proportion of $n$;
+this is $\frac{1}{n}|S_n(\om)|$. The theorem states that for all $\epsilon > 0$ the probability measure
+associated with the set of $\om$s for which $\frac{1}{n}|S_n(\om)| > \epsilon$ goes to $0$ as $n \to \infty$.
+
+\begin{proof}
+  Fix an $\epsilon > 0$. We square both sides of the inequality, instead of working with the absolute value. So
+  what we want to show is that $P\big(\big\{\om: S_n(\om)^2 \geq n^2\epsilon^2\big\}\big) \to 0$
+  as $n \to \infty$.
+
+  It would be nice to find an expression for this probability measure as a function of $n$. However, what we'll
+  do is find an upper bound: that will suffice also.
+
+  Note that $S_n(\om)$ is a step function (and so $S_n(\om)^2$ is also):
+
+\includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c049.png}
+
+
+By Markov's inequality / ``Shaded Area lemma​'' we have
+\begin{align*}
+  n^2\epsilon^2P\Big(\Big\{\om: S_n(\om)^2 \geq n^2\epsilon^2\Big\}\Big) < \int_0^1 S_n(\om)^2 \d\om = n
+\end{align*}
+and therefore
+\begin{align*}
+  P\Big(\Big\{\om: S_n(\om)^2 \geq n^2\epsilon^2\Big\}\Big) <  \frac{1}{n\epsilon^2},
+\end{align*}
+which proves the desired result since it shows that the probability measure is bounded above by a quantity that
+goes to $0$ as $n \to \infty$.
+\end{proof}
