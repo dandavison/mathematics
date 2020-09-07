@@ -1,6 +1,9 @@
 \section{Homework 1}
 
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-a75a.png}
+\end{mdframed}
+
 
 \begin{proof}
   $d$ is a metric if it satisfies (I) $d(f,f) = 0$, (II) $d(f,g) = d(g, f)$, and (III) $d(f,g) + d(g, h) \le d(f, h)$.
@@ -26,8 +29,22 @@
 \end{align*}
 \end{proof}
 
+\newpage
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-d1d3.png}
-\begin{enumerate}
+\end{mdframed}
+
+
+Stone-Weierstrass is relevant but not needed
+Weierstrass approximation theorem
+
+Ideally the functions should be bounded. e.g. [0,1] -> [0,1]
+
+sin worth looking at
+
+look for functions where all pairs distance exactly 1
+
+\begin{enumerate}[label=(2.\arabic*)]
 \item
   \begin{proof}
     $d$ is a metric on the function space $\mathcal C\([0, 1], \R\)$ if it satisfies (I) $d(f,f) = 0$,
@@ -52,24 +69,68 @@
 \end{align*}
   \end{proof}
 
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-d1d3.png}
+
 \item
   \begin{claim}
-    $\mathcal C\([0, 1], \R\)$ is separable.
+    $\mc C\([0, 1], \R\)$ is separable.
   \end{claim}
 
   \begin{proof}
-    Let $\mathcal F$ be the following set of piecewise affine functions: for all $N \in \N$ and for
-    all $q_1, \ldots, q_N \in \Q$ then $f_{q_1, \ldots, q_N}$ is the function formed by joining the
-    points $\{(0, q_1), (1/(N-1), q_2), \ldots, (1, q_N)\}$with straight lines.
+    Let $\mc G\([0, 1], \R\)$ be the set of piecewise affine functions. Precisely, for all $N \in \N$, for
+    all $\x = (x_1, x_1, \ldots, x_{N-1}) \in \Q^{N-2}$, and for all $\y = (y_1, y_2, \ldots, y_N) \in \Q^N$ we
+    define $g_{(N, \x, \y)}: [0, 1] \to \R$ to be the function whose graph is drawn by connecting with straight
+    lines the sequence of points $(0, y_0), (x_1, y_1), \ldots, (x_{N-1}, y_{N-1}), (1, y_N)$. We will call
+    these points the ``grid points​'' of $g$.
 
-    We need to \red{show that this set of functions is countable}.
+    Note that $\Q^{N-2}$ and $\Q^N$ are both countable, since they are finite products of a countable set $\Q$.
+    And therefore $\mc G$ is countable, since it is a product of 3 countable sets.
 
-    And we need to \red{show that the set is dense} in $\mathcal C\([0, 1], \R\)$.
+    It remains to show that $\mc G$ is dense in $\mc C\([0, 1], \R\)$. To do so we must show that an
+    arbitrary function $f \in \mc C$ can be approximated by a function $g \in \mc G$ in the sense
+    that, under the supremum norm $d(\cdot, \cdot)$, for any $\epsilon > 0$ there exists $g \in \mc G$
+    such that $d(g, f) < \epsilon$.
+
+    So fix some $f \in \mc C$ and fix some $\epsilon > 0$.
+
+    First we show that there exists a $g$ that approximates $f$ at arbitrarily many points.
+
+    Fix $N \in \N$ and fix a sequence $(\om_1, \om_2, \ldots, \om_{N-1}) \in \R^{N-2}$ such that $\omega_1 < \omega2 < \cdots < \om_{N-1}$.
+
+    Now construct $g \in \mc G$ according to the following procedure:
+    \begin{enumerate}
+    \item Pick $y_0 \in \Q$ such that $|y_0 - f(0)| < \epsilon$.
+    \item Extend a straight line from $(0, y_0)$ through $(\om_1, f(\om_1))$
+    \item Pick $(x_1, y_1) \in \Q^2$ such that $\om_1 < x_1 < \om_2$
+    \item \red{TODO}
+    \end{enumerate}
+
+
+    Since $[0, 1]$ is compact, $f$ is uniformly continuous.
+
+    Let $g_n \in \mc G$ be the approximating function using a grid spacing of $1/n$.
+
+    $f$ can be approximated at an arbitrary set of finitely many points using the procedure above. I.e. for
+    any $\epsilon$ there exists an $n$ such that $|g_n(\om_i) - f(\om_i)| < \eps$ for finitely many points $w_i$.
+
+    We want to show that $f$ is adequately approximated everywhere.
+
+    Let $\omega$ be an arbitrary point not in the set $\{w_i: i \in 1, 2, \ldots, n\}$ used to construct the
+    approximation $g_n$.
+
+
+
+    Suppose for a contradiction that it is not. Then there exists a $\om \in [0, 1]$ such
+    that $|g_n(\om) - f(\om)| \geq \epsilon$ for all $n \in \N$.
+
+
+
+
 
     Define $d(f, g)$ to be the supremum distance between functions $f: [0,1] \to \R$ and $g [0,1] \to \R$.
 
-    Let $g$ be an arbitrary function in $\mathcal C\([0, 1], \R\) \setminus \mathcal F$ and fix $\epsilon > 0$.
-    We need to show that there exists $f \in \mathcal F$ such that $d(f, g) < \epsilon$. We construct such
+    Let $g$ be an arbitrary function in $\mc C\([0, 1], \R\) \setminus \mc F$ and fix $\epsilon > 0$.
+    We need to show that there exists $f \in \mc F$ such that $d(f, g) < \epsilon$. We construct such
     an $f$ using the following algorithm:
 
     \red{I think the basic idea here is to use the fact that the interval is closed and therefore the target
@@ -86,7 +147,7 @@
 
   \end{proof}
 
-  We must exhibit a sequence of functions that is a dense and countable subset of $\mathcal C\([0, 1], \R\)$
+  We must exhibit a sequence of functions that is a dense and countable subset of $\mc C\([0, 1], \R\)$
   under the supremum norm.
 
   This means that for an arbitrary continuous function $g$, and for any $\epsilon > 0$, we must be able to
@@ -114,8 +175,6 @@
     a point in $X$.
   \end{definition}
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-d1d3.png}
-
 \item Let $f_S: (0, 1) \to \R$ be given by $f_S(x) = \frac{1}{r(S)x}$, where $S \in 2^\N$ and $r(S) \in [0, 1]$ is
   the real number corresponding to $S$, i.e. the number $r(S) = 0.d_1d_2d_3\ldots$ where
   \begin{align*}
@@ -135,8 +194,11 @@
 \end{enumerate}
 
 
-
+\newpage
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-8349.png}
+\end{mdframed}
+
 
 \begin{proof}
   Let $E_m^a = \{x \in [0, 1] : |f_m(x) < a|\}$ and let $T = \bigcap_{k=1}^\infty \bigcup_{l=1}^\infty \bigcap_{m > l} E_m^{1/k}$.
@@ -151,9 +213,9 @@
   So let $x \in S$. Then from the definition of limit we have
   \begin{align*}
     &\forall \epsilon>0 ~~~~ \exists l \in \N ~~~~ \forall m \geq l ~~~~  x \in E_m^\epsilon \\
-    &\forall \epsilon>0 ~~~~ \exists l \in \N ~~~~                        x \in \bigcap_{m \geq l} E_m^\epsilon \\
-    &\forall \epsilon>0 ~~~~                                              x \in \bigcup_{l=1}^\infty \bigcap_{m \geq l} E_m^\epsilon \\
-    &                                                              x \in \bigcap_{k=1}^\infty \bigcup_{l=1}^\infty \bigcap_{m \geq l} E_m^{1/k} = T,
+    \iff &\forall \epsilon>0 ~~~~ \exists l \in \N ~~~~                        x \in \bigcap_{m \geq l} E_m^\epsilon \\
+    \iff &\forall \epsilon>0 ~~~~                                              x \in \bigcup_{l=1}^\infty \bigcap_{m \geq l} E_m^\epsilon \\
+    \iff &                                                              x \in \bigcap_{k=1}^\infty \bigcup_{l=1}^\infty \bigcap_{m \geq l} E_m^{1/k} = T,
   \end{align*}
   as required.
 
@@ -192,10 +254,12 @@
   such that $\frac{1}{k} < \epsilon$.
 \end{proof}
 
+\newpage
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f175.png}
+\end{mdframed}
 
 
-h
 \begin{proof}
   Let $X \subset [0, 1]$ be the subset of real numbers without any 6 in their decimal expansion. Let $x \in X$ and let
   \begin{align*}
@@ -210,8 +274,11 @@ h
   of $X$ is equal to that of the reals.
 \end{proof}
 
-
+\newpage
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-5192.png}
+\end{mdframed}
+
 
 
 \begin{proof}
@@ -233,24 +300,29 @@ h
   of $f$ at irrational $x$.
 \end{proof}
 
+\newpage
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f5e8.png}
+\end{mdframed}
 
-\begin{enumerate}
-  \begin{definition}
-    $g: [0, 1] \to \R$ is Riemann integrable if
-    \begin{align*}
-      \sup_{\phi^-} I(\phi^-) = \inf_{\phi^+} I(\phi^+).
-    \end{align*}
-    Here $\phi^-$ and $\phi^+$ are step functions adapted​ to some
-    partition $0 \leq x_1 \leq x_2 \leq \ldots \leq x_{n-1} \leq 1$, such that $\phi(x) = c_i$
-    for $x \in (x_{i-1}, x_i)$. $I(\phi)$ is (informally) the area under the step function $\phi$:
-    \begin{align*}
-      I(\phi) = \sum_{i=1}^n c_i(x_i - x_{i-1}).
-    \end{align*}
-    And the supremum is over all minorants $\phi^- \leq g$ and the infimum is over all
-    majorants $\phi^+ \geq g$, where the length $n$ of the partition is allowed to vary as well as the constant
-    values $\{c_1, c_2, \ldots, c_n\}$ of the step function within each segment.
-  \end{definition}
+
+\begin{definition}
+  $g: [0, 1] \to \R$ is Riemann integrable if
+  \begin{align*}
+    \sup_{\phi^-} I(\phi^-) = \inf_{\phi^+} I(\phi^+).
+  \end{align*}
+  Here $\phi^-$ and $\phi^+$ are step functions adapted​ to some
+  partition $0 \leq x_1 \leq x_2 \leq \ldots \leq x_{n-1} \leq 1$, such that $\phi(x) = c_i$
+  for $x \in (x_{i-1}, x_i)$. $I(\phi)$ is (informally) the area under the step function $\phi$:
+  \begin{align*}
+    I(\phi) = \sum_{i=1}^n c_i(x_i - x_{i-1}).
+  \end{align*}
+  And the supremum is over all minorants $\phi^- \leq g$ and the infimum is over all
+  majorants $\phi^+ \geq g$, where the length $n$ of the partition is allowed to vary as well as the constant
+  values $\{c_1, c_2, \ldots, c_n\}$ of the step function within each segment.
+\end{definition}
+
+\begin{enumerate}[label=(6.\arabic*)]
 \item
   \begin{claim}
     The specified function $f$ is not Riemann integrable.
@@ -279,7 +351,11 @@ h
 
 \end{enumerate}
 
+\newpage
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-a577.png}
+\end{mdframed}
+
 
 \begin{proof}
   Suppose for a contradiction that $[0, 1] \subset \R$ is countable. Fix an enumeration $\{u_n ~|~ n \in \N\}$
@@ -292,10 +368,10 @@ h
 
   Pick two distinct elements from $[0, 1]$. Label the smaller $u_1$ and the larger $u_2$. Set $U_1 = [u_1, u_2]$.
 
-  {\it Find a definite way to choose one of them:}
+  {\it Find a definite way to choose an interval in [u1, u2]:}
   \begin{enumerate}
-  \item Can we let the lower limit of the interval be $u_1$, and for the upper limit, walk along the integers until
-    we encounter the first one whose associated real is $< u_2$? I don't think so, it might take infinitely long.
+  \item Set the lower limit of the interval to $u_1$, and for the upper limit, walk along the enumeration until we
+    encounter the first one whose associated real is $< u_2$.
   \end{enumerate}
 
 
@@ -309,7 +385,7 @@ h
   then $\frac{a + b}{2}$ is a real number greater than $u_1$ and less than $u_2$ and therefore is missing from
   our original enumeration. Therefore no such enumeration exists.
 
-  \red{NOPE: I think the problem here is you can't ``sort​'' a countably infinite set so you don't know that there is no other element between u_1 and u_2.}
+  \red{NOPE: I think the problem here is you can't ``sort​'' a countably infinite set so you don't know that there is no other element between u1 and u2.}
 
 \end{proof}
 
