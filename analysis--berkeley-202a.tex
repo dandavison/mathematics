@@ -1,4 +1,4 @@
-\section{Homework 1}
+\section*{Math 202a - HW1 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-a75a.png}
@@ -59,31 +59,11 @@
     \end{align*}
   \end{proof}
 \item
-
-  \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-d1d3.png}
-
-
-  \begin{claim}
+  \begin{claim*}
     $\mc C\([0, 1], \R\)$ is separable.
-  \end{claim}
+  \end{claim*}
 
   \begin{proof}
-    Let $\mc G$ be the set of piecewise affine functions $g: [0, 1] \to \R$. Precisely, for all $N \in \N$, for
-    all $\x = (x_1, x_2, \ldots, x_{N-1}) \in \Q^{N-2}$, and for all $\y = (y_1, y_2, \ldots, y_N) \in \Q^N$ we
-    define $g_{(N, \x, \y)}: [0, 1] \to \R$ to be the function whose graph is drawn by connecting with straight
-    lines the sequence of points $(0, y_0), (x_1, y_1), \ldots, (x_{N-1}, y_{N-1}), (1, y_N)$. We will call
-    these points the ``grid points​'' of $g$.
-
-    Note that $\Q^{N-2}$ and $\Q^N$ are both countable for given $N \in \N$ , since they are finite Cartesian
-    products of a countable set $\Q$. And therefore $\mc G$ is countable, since it is indexed by a set which is
-    a Cartesian product of 3 countable sets.
-
-    It remains to show that $\mc G$ is dense in $\mc C\([0, 1], \R\)$. To do so we must show that an
-    arbitrary function $f \in \mc C$ can be approximated by a function $g \in \mc G$ in the sense
-    that, under the supremum norm $d(\cdot, \cdot)$, for any $\epsilon > 0$ there exists $g \in \mc G$
-    such that $d(g, f) < \epsilon$.
-
-    %%%%%%%%%%%%%%%%%%%
     Let $\mc C$ be the set of continuous functions $[0, 1] \to \R$.
 
     Fix an arbitrary function $f \in \mc C$ and fix some $\epsilon > 0$.
@@ -112,13 +92,16 @@
       and $(x_i, y_i)$.
     \item Define $g_n: [0, 1] \to \R$ to be the function whose graph was just drawn.
     \end{enumerate}
-
     Note that, since $f$ is continuous on a compact domain, $f$ is uniformly continuous. Fix some $\delta > 0$ such
     that $|x - x'| < \delta \implies |f(x) - f(x')| < \epsilon$ for all $(x, x') \in [0, 1]^2$.
 
-    Set $m$ equal to the smallest natural number such that $1/m < \delta/2$ and note that (TODO: proof
-    required) $|f(x) - g_n(x)| < \epsilon$ for all $x \in [0, 1]$ due to the uniform continuity of $f$.
-    Therefore $d(g_n, f) < \epsilon$ for all $n \geq m$ and so $\{g_n | n \in \N\}$ is dense in $\mc C$.
+    Set $m$ equal to the smallest natural number such that $1/m < \delta/2$ and note
+    that $|f(x) - g_n(x)| < \epsilon$ for all $x \in [0, 1]$ due to the uniform continuity of $f$. (Informally,
+    this is true because we can view uniform continuity as stating that a rectangle of base $\delta$ and
+    height $\epsilon$ can be positioned over the graph at any point such that the graph intersects the left and
+    right edges of the rectange but does not otherwise leave the rectangle. Our piecewise affine function
+    consists of straight line segments that fit within such rectangles.) Therefore $d(g_n, f) < \epsilon$ for
+    all $n \geq m$ and so $\{g_n | n \in \N\}$ is dense in $\mc C$.
 
     Finally we must show that $\{g_n ~|~ n \in \N\}$ is countable. Note that $g_n$ is piecewise affine for a
     given $n$, and that the $x$-coordinates of the endpoints are fixed. Thus for a given $n$, the cardinality
@@ -127,170 +110,24 @@
     set $\bigcup_{n\in \N} \Q^n$. This is a countable union of countable sets and is therefore countable.
   \end{proof}
 
+\item
   \begin{proof}
-    Let $\mc C$ be the set of continuous functions $[0, 1] \to \R$.
-
-    We want to show that there exists a subset of $\mc C$ (i.e. a set of continuous functions) which is
-    countable and dense.
-
-    Let $f$ be an arbitrary function in $\mc C$, and we will show how to construct an approximating
-    function $f^*$ that is a member of a countable set.
-
-    Pick an arbitrary fixed distance $\epsilon > 0$.
-
-    We now need to give an algorithm for, given $f$, constructing an $f^*$ that is a distance of $\leq \eps$
-    from $f$. We will make $f^*$ out of straight line segments, where the $x$ and $y$ coordinates of the
-    endpoints are rational numbers (this means that there are a countable number of such functions that are
-    possible.)
-
-    We use the following procedure:
-    \begin{enumerate}
-    \item Pick a natural number $n$.
-    \item Pick $n$ rational $x$ coordinates.
-    \item For $i \in \{1, 2, \ldots, n\}$ set $y_i$ equal to a rational number that is within $\eps$ of $f(x_i)$.
-    \end{enumerate}
-
+    Let $f_s: (0, 1) \to \R$ be given by $f_s(x) = \frac{1}{r(s)x}$, where $s \in 2^\N$ and $r(s) \in [0, 1]$ is
+    the real number corresponding to $s$, i.e. the number $r(s) = 0.d_1d_2d_3\ldots$ where
+    \begin{align*}
+      d_i =
+      \begin{cases}
+        1, ~~~~ \text{if} ~~~~ i \in s,\\
+        0, ~~~~ \text{otherwise}.
+      \end{cases}
+    \end{align*}
+    Note that for real $a, b$ we have
+    \begin{align*}
+      \frac{1}{ax} - \frac{1}{bx} = \frac{b - a}{abx}
+    \end{align*}
+    and therefore the supremum distance between any two elements $f_{s_1}$ and $f_{s_2}$ is unbounded
+    as $x \to 0$.
   \end{proof}
-
-  \begin{proof}
-    First we show that an arbitrary continuous function $f \in \mc C\([0, 1], \R\)$ can be approximated at
-    finitely many points by our piecewise affine functions, to be described below.
-
-    Fix $\epsilon > 0$ and throw down $N$ points $\om_i \in [0, 1]$.
-
-    Focus on $\om_i$. Since $f$ is continuous there exists $\delta_i$ such
-    that $|\om - \om_i| < \delta_i \implies |f(\om) - f(\om_i) < \epsilon|$ for all $\om \in [0, 1]$.
-
-    Pick rationals $x_i^l$ and $x_i^r$ close to $\om_i - \delta_i$ and $\om_i + \delta_i$, respectively. Pick
-    rationals $y_i^l$ and $y_i^r$ close to $f(x_i^l)$ and $f(x_i^r)$, respectively. Draw a straight line
-    segment from $(x_i^l, y_i^l)$ to $(x_i^r, y_i^r)$.
-
-    Repeat for all $i$ and connect the segments with further straight line segments.
-
-    The function whose graph was just drawn approximates $f$ to within $\epsilon$ at each of the $N$ points.
-
-    Now, since $f$ is uniformly continuous, there exists a single $\delta$ that works at all input points.
-    Let $\delta$ be such a value.
-
-
-
-    Draw a short segment with its midpoint at $x_i$ and constant height a rational close to $f(\om_i)$.
-
-    Pick a rational close to $x_i$ on the left and another close to $x_i$ on the right. Pick a rational close
-    to $f(x_i)$
-
-  \end{proof}
-
-
-  \begin{proof}
-    Fix some $\epsilon > 0$ and for every $n \in \N$ let $g_n$ be the piecewise affine function constructed as
-    follows: for $i \in \{0, 1, \ldots, n\}$, set $x_i = \frac{i}{n}$ and set $y_i$ equal to a rational number
-    chosen from the set $(f(x_i) - \epsilon, f(x_i) + \epsilon)$. For $i \in \{1, 2, \ldots, n\}$, draw a
-    straight line between $(x_{i-1}, y_{i-1})$ and $(x_i, y_i)$. Set $g_n$ equal to the function whose graph
-    was just drawn.
-    \red{TODO} give an explicit expression for $g_n(\om)$.
-
-    (We can pick the $y_i$ as described according to the axiom of choice; for an explicit construction,
-    set $y = j/k$ where $k$ is the smallest natural number such that $1/k < \epsilon$ and $j$ is the smallest
-    natural number such that $j/k > f(x_i) - \epsilon$.)
-
-    Now, pick some $\om \in [0, 1]$.
-
-    $\x = \big\{0,\frac{1}{N},\frac{2}{N}, \ldots,\frac{N-1}{N}, 1\big\}$.
-
-
-    $\mc G\([0, 1], \R\)$
-  \end{proof}
-
-
-  \begin{proof}
-
-    Now construct $g \in \mc G$ according to the following procedure:
-    \begin{enumerate}
-    \item Pick $y_0 \in \Q$ such that $|y_0 - f(0)| < \epsilon$.
-    \item Extend a straight line from $(0, y_0)$ through $(\om_1, f(\om_1))$
-    \item Pick $(x_1, y_1) \in \Q^2$ such that $\om_1 < x_1 < \om_2$
-    \item \red{TODO}
-    \end{enumerate}
-
-
-    Since $[0, 1]$ is compact, $f$ is uniformly continuous.
-
-    Let $g_n \in \mc G$ be the approximating function using a grid spacing of $1/n$.
-
-    $f$ can be approximated at an arbitrary set of finitely many points using the procedure above. I.e. for
-    any $\epsilon$ there exists an $n$ such that $|g_n(\om_i) - f(\om_i)| < \eps$ for finitely many points $w_i$.
-
-    We want to show that $f$ is adequately approximated everywhere.
-
-    Let $\omega$ be an arbitrary point not in the set $\{w_i: i \in 1, 2, \ldots, n\}$ used to construct the
-    approximation $g_n$.
-
-
-
-    Suppose for a contradiction that it is not. Then there exists a $\om \in [0, 1]$ such
-    that $|g_n(\om) - f(\om)| \geq \epsilon$ for all $n \in \N$.
-
-
-
-
-
-    Define $d(f, g)$ to be the supremum distance between functions $f: [0,1] \to \R$ and $g [0,1] \to \R$.
-
-    Let $g$ be an arbitrary function in $\mc C\([0, 1], \R\) \setminus \mc F$ and fix $\epsilon > 0$.
-    We need to show that there exists $f \in \mc F$ such that $d(f, g) < \epsilon$. We construct such
-    an $f$ using the following algorithm:
-
-    \red{I think the basic idea here is to use the fact that the interval is closed and therefore the target
-      function has extrema, so keep drawing lines to the extrema and subdividing; something like that}
-
-    \begin{enumerate}
-    \item Set $f$ equal to the function whose graph is a straight line joining $(0, g(0))$ and $(1, g(1))$. In
-      other words, set $f$ such that $f(x) = xg(0) + (1-x)g(1)$.
-    \item If $d(f, g) < \epsilon$, stop.
-    \item Otherwise, divide the interval in half, and repeat the approximation in each half.
-    \end{enumerate}
-    We need to show that this algorithm terminates.
-
-
-  \end{proof}
-
-  We must exhibit a sequence of functions that is a dense and countable subset of $\mc C\([0, 1], \R\)$
-  under the supremum norm.
-
-  This means that for an arbitrary continuous function $g$, and for any $\epsilon > 0$, we must be able to
-  construct a function that lies within $\epsilon$ of $g$.
-
-
-  \begin{definition}
-    A subset $X$ of a metric space is \defn{open} if for any point $x \in X$, there exists $\epsilon$ such that a ball
-    of radius $\epsilon$ centred at $x$ is a subset of $X$.
-
-    A subset $X$ of a metric space is \defn{closed} if it is the complement of an open subset of $X$.
-
-    (Theorem: a set $X^C$ is closed iff it contains all its limit points, i.e. every convergent sequence
-    in $X^C$ has its limit in $X^C$.)
-
-    A subset $X$ of a metric space $Y$ is \defn{dense} if every point $y \in Y$ is either in $X$ or arbitrarily close to
-    a point in $X$.
-  \end{definition}
-
-\item Let $f_s: (0, 1) \to \R$ be given by $f_s(x) = \frac{1}{r(s)x}$, where $s \in 2^\N$ and $r(s) \in [0, 1]$ is
-  the real number corresponding to $s$, i.e. the number $r(s) = 0.d_1d_2d_3\ldots$ where
-  \begin{align*}
-    d_i =
-    \begin{cases}
-      1, ~~~~ \text{if} ~~~~ i \in s,\\
-      0, ~~~~ \text{otherwise}.
-    \end{cases}
-  \end{align*}
-  Note that for real $a, b$ we have
-  \begin{align*}
-    \frac{1}{ax} - \frac{1}{bx} = \frac{b - a}{abx}
-  \end{align*}
-  and therefore the supremum distance between any two elements $f_{s_1}$ and $f_{s_2}$ is unbounded
-  as $x \to 0$.
-
 \item
   \begin{proof}
     Let $\mc C$ be the set of continuous functions $f: (0, 1) \to \R$.
@@ -393,9 +230,16 @@
       1, ~~~~ \text{otherwise}.
     \end{cases}
   \end{align*}
-  Thus we see that there is an non-injective surjection from $X$ to the reals in $[0, 1]$ and therefore that
-  the cardinality of $X$ is at least that of the reals. Since $X \subset \R$ we conclude that the cardinality
-  of $X$ is equal to that of the reals.
+  Define $f: X \to [0, 1]$ by setting $f(x)$ equal to the real number whose binary expansion
+  is $0.d_1(x)d_2(x)\cdots$.
+
+  Note that for any real number $\om \in [0, 1]$, there exists $x \in X$ such that $f(x) = \om$. To find such
+  an $x$, we could for example choose the number whose decimal expansion is equal to the binary expansion
+  of $\om$.
+
+  Therefore $f$ is a non-injective surjection from $X$ to the reals in $[0, 1]$, and so the cardinality of $X$
+  is at least that of the reals. Since $X \subset \R$ we conclude that the cardinality of $X$ is equal to that
+  of the reals.
 \end{proof}
 
 \newpage
@@ -430,7 +274,7 @@
 \end{mdframed}
 
 
-\begin{definition}
+\begin{definition*}
   $g: [0, 1] \to \R$ is Riemann integrable if
   \begin{align*}
     \sup_{\phi^-} I(\phi^-) = \inf_{\phi^+} I(\phi^+).
@@ -444,13 +288,13 @@
   And the supremum is over all minorants $\phi^- \leq g$ and the infimum is over all
   majorants $\phi^+ \geq g$, where the length $n$ of the partition is allowed to vary as well as the constant
   values $\{c_1, c_2, \ldots, c_n\}$ of the step function within each segment.
-\end{definition}
+\end{definition*}
 
 \begin{enumerate}[label=(6.\arabic*)]
 \item
-  \begin{claim}
+  \begin{claim*}
     The specified function $f$ is not Riemann integrable.
-  \end{claim}
+  \end{claim*}
 
   \begin{proof}
     Consider the first segment of any partition: $(0, x_1)$. No matter how small $x_1$ is, there
@@ -462,6 +306,9 @@
   \end{proof}
 
 \item
+  \begin{claim*}
+    $\int_0^1 f > 0$
+  \end{claim*}
   \begin{proof}
     Suppose for a contradiction that $\int_0^1 f = 0$. Fix an arbitrary minorant $\phi^-$, adapted to a
     partition of length $n$. Then we have that $\sum_{i=1}^n c_i(x_i - x_{i-1}) \leq 0$.
