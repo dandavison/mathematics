@@ -1575,15 +1575,50 @@ from mean) of their sum is $n$.
 \end{proof}
 
 
-\begin{lemma}[Shaded Area lemma / Markov's Inequality]
+\begin{lemma}[Markov's Inequality]
   Let $f: [0, 1] \to \R^+$ be a step function. Then
   \begin{align*}
-    \int_0^1 f(x) \dx > \alpha P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big).
+    P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big) \leq \frac{1}{\alpha}\int_0^1 f(x) \dx.
   \end{align*}
 \end{lemma}
 
-\begin{proof}
+
+
+
+\begin{intuition}
+  Think of the statement in rearranged form:
+  \begin{align*}
+    \alpha P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big) \leq \int_0^1 f(x) \dx.
+  \end{align*}
+
+
+
   \includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c9c2.png}
+
+  If $X \sim \Unif(0, 1)$ then the RHS is $\E[X]$.
+
+\end{intuition}
+
+
+\begin{proof}
+  [me]
+
+  Clearly
+  \begin{align*}
+    \int_{f(x) \geq \alpha} f \leq \int_{[0, 1]} f.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \int_{f(x) \geq \alpha} \alpha \leq \int_{[0, 1]} f
+  \end{align*},
+  or equivalently
+\begin{align*}
+  \alpha \int \textbf{1}_{f(x) \geq \alpha} \leq \int_{[0, 1]} f,
+\end{align*}
+which is the same thing as
+  \begin{align*}
+    \alpha P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big) < \int_0^1 f(x) \dx.
+  \end{align*}
 \end{proof}
 
 \begin{theorem}[Weak Law of Large Numbers]
@@ -1600,25 +1635,64 @@ associated with the set of $\om$s for which $\frac{1}{n}|S_n(\om)| > \epsilon$ g
 
 \begin{proof}
   Fix an $\epsilon > 0$. We square both sides of the inequality, instead of working with the absolute value. So
-  what we want to show is that $P\big(\big\{\om: S_n(\om)^2 \geq n^2\epsilon^2\big\}\big) \to 0$
+  what we want to show is that $P\big(\big\{\om: S_n^2(\om) \geq n^2\epsilon^2\big\}\big) \to 0$
   as $n \to \infty$.
 
   It would be nice to find an expression for this probability measure as a function of $n$. However, what we'll
   do is find an upper bound: that will suffice also.
 
-  Note that $S_n(\om)$ is a step function (and so $S_n(\om)^2$ is also):
+  Note that $S_n(\om)$ is a step function (and so $S_n^2(\om)$ is also):
 
 \includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c049.png}
 
 
 By Markov's inequality / ``Shaded Area lemma​'' we have
 \begin{align*}
-  n^2\epsilon^2P\Big(\Big\{\om: S_n(\om)^2 \geq n^2\epsilon^2\Big\}\Big) < \int_0^1 S_n(\om)^2 \d\om = n
+  n^2\epsilon^2P\Big(\Big\{\om: S_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq \int_0^1 S_n^2(\om) \d\om = n
 \end{align*}
 and therefore
 \begin{align*}
-  P\Big(\Big\{\om: S_n(\om)^2 \geq n^2\epsilon^2\Big\}\Big) <  \frac{1}{n\epsilon^2},
+  P\Big(\Big\{\om: S_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq  \frac{1}{n\epsilon^2},
 \end{align*}
 which proves the desired result since it shows that the probability measure is bounded above by a quantity that
 goes to $0$ as $n \to \infty$.
+\end{proof}
+
+\subsection{Strong Law of Large Numbers}
+
+\begin{definition}[negligible, null set]
+  A set $A$ is \defn{negligible} if, for any $\epsilon > 0$, it can be covered by a finite or countable
+  union $\bigcup_k I_k$ of intervals with $\sum_k |I_k| < \epsilon$.
+\end{definition}
+
+Recall the weak law of large numbers:
+  \begin{align*}
+    \lim_{n \to \infty}P\Big(\Big\{\om: \frac{1}{n}\big|s_n(\om)\big| \geq \epsilon\Big\}\Big) = 0.
+  \end{align*}
+
+\begin{definition}[Normal numbers]
+  Define the set of \defn{normal numbers} to be
+  \begin{align*}
+    N = \Big\{\om ~:~ \lim_{n\to\infty} \frac{1}{n}S_n(\om) = 0 \Big\}.
+  \end{align*}
+\end{definition}
+
+\begin{theorem*}[Borel's normal number theorem]
+  $N^c = \R \setminus N$ is negligible.
+\end{theorem*}
+
+\begin{proof}
+  From the lemmas below, for all $n \in \N$, we have (from Markov's inequality)
+  \begin{align*}
+    P\Big(\Big\{ \om : |s_n(\om)| \geq n\eps  \Big\}\Big) \leq \frac{1}{n^4\eps^4} \int_0^1 s_n^4(\om) \d\om,
+  \end{align*}
+  and (by considering integrals of products of four Rademacher functions)
+  \begin{align*}
+    \int_0^1 s_n^4(\om) \d\om \leq 3n^2.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    P\Big(\Big\{ \om : |s_n(\om)| \geq n\eps  \Big\}\Big) \leq \frac{3}{n^2\eps^4}.
+  \end{align*}
+
 \end{proof}

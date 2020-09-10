@@ -366,3 +366,69 @@
   contradiction, since the original enumeration contains all real numbers. Therefore no such enumeration exists
   and the real numbers are not countable.
 \end{proof}
+
+\section*{Math 202a - HW2 - Dan Davison - \texttt{ddavison@berkeley.edu}}
+
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-ebe4.png}
+\end{mdframed}
+
+\begin{enumerate}
+\item
+  \begin{claim*}
+    $\sim$ is an equivalence relation on $O$.
+  \end{claim*}
+  \begin{proof}
+    \begin{enumerate}
+    \item {\bf Reflexivity}\\
+      Let $[x, x] = \{x\}$ be a closed interval containing a single point. We see that $\sim$ is not an
+      equivalence relation since $x \not \sim x$ for all $x \in \R \setminus O$.
+
+    \item {\bf Symmetry}\\
+      Let $x, y \in \R$ such that $x \sim y$. Then $[\min\{x, y\}, \max\{x, y\}] \subseteq O$.
+      Therefore $[\min\{y, x\}, \max\{y, x\}] \subseteq O$. Therefore $y \sim x$.
+
+    \item {\bf Transitivity}\\
+      Let $x, y, z \in \R$ such that $x \sim y$ and $y \sim z$. Then $[\min\{x, y\}, \max\{x, y\}] \subseteq O$
+      and $[\min\{y, z\}, \max\{y, z\}] \subseteq O$ Therefore $[\min\{x, y\}, \max\{y, z\}] \subseteq O$.
+      Therefore $x \sim z$.
+    \end{enumerate}
+  \end{proof}
+
+\item
+  \begin{proof}
+    $O$ is open. By definition, every point in $O$ has a neighborhood that is contained within $O$.
+
+    Let's try a counter-example.
+  \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-8d78.png}
+\end{mdframed}
+
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-6b7a.png}
+\end{mdframed}
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
+\end{mdframed}
+
+
+
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-ccfa.png}
+\end{mdframed}
