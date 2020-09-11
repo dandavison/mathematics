@@ -1,6 +1,7 @@
 BUILD_DIR:=.build
-LATEXRUN:=latexrun --latex-args="-shell-escape" -W no-all -O $(BUILD_DIR)
+LATEXRUN:=latexrun --latex-cmd=lualatex --latex-args="-shell-escape" -W no-all -O $(BUILD_DIR)
 PDFLATEX:=cd $(BUILD_DIR) && pdflatex -shell-escape -file-line-error
+LUALATEX:=cd $(BUILD_DIR) && lualatex -shell-escape -file-line-error
 RUBBER:=cd $(BUILD_DIR) && rubber -d --shell-escape
 MAKE_PDF:=$(LATEXRUN)
 
