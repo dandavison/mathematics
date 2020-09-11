@@ -1548,12 +1548,12 @@ Why does he say ``closed under countable unions and intersections.​''?
 
 \subsection{Weak Law of Large Numbers}
 
-Define the partial sum $S_n(\om) = \sum_{i=1}^n r_i(\om)$, i.e. the number of $1$s minus the number of $0$s in
+Define the partial sum $s_n(\om) = \sum_{i=1}^n r_i(\om)$, i.e. the number of $1$s minus the number of $0$s in
 the first $n$ digits of the binary expansion of $\om$. (The displacement of the random walk after $n$ steps.)
 
 \begin{lemma}
   \begin{align*}
-    \int_0^1 S_n(\om)^2 \d\om = n
+    \int_0^1 s_n(\om)^2 \d\om = n
   \end{align*}
 \end{lemma}
 
@@ -1561,9 +1561,9 @@ I.e., viewed as a sequence of $n$ coin tosses yielding $-1$ or $+1$, the varianc
 from mean) of their sum is $n$.
 
 \begin{proof}
-  Note that $S_n(\om)^2 = \sum_{i=1}^n r_i(\om)^2 - 2\sum_{i<j}r_i(\om)r_j(\om)$. Integrating over $[0, 1]$ we have
+  Note that $s_n(\om)^2 = \sum_{i=1}^n r_i(\om)^2 - 2\sum_{i<j}r_i(\om)r_j(\om)$. Integrating over $[0, 1]$ we have
   \begin{align*}
-    \int_0^1 S_n(\om)^2 \d\om
+    \int_0^1 s_n(\om)^2 \d\om
     &= \sum_{i=1}^n \int_0^1 r_i(\om)^2 \d\om - 2\sum_{i<j}\int_0^1r_i(\om)r_j(\om) \d\om \\
     &= \sum_{i=1}^n \int_0^1 1 \d\om - 0 \\
     &= n.
@@ -1630,29 +1630,29 @@ which is the same thing as
 
 In other words: we move through all the $\om \in [0, 1]$. For a given $\om \in [0, 1]$, compare the number
 of $0$s and $1$s in the first $n$ digits of the binary expansion, and record the excess as a proportion of $n$;
-this is $\frac{1}{n}|S_n(\om)|$. The theorem states that for all $\epsilon > 0$ the probability measure
-associated with the set of $\om$s for which $\frac{1}{n}|S_n(\om)| > \epsilon$ goes to $0$ as $n \to \infty$.
+this is $\frac{1}{n}|s_n(\om)|$. The theorem states that for all $\epsilon > 0$ the probability measure
+associated with the set of $\om$s for which $\frac{1}{n}|s_n(\om)| > \epsilon$ goes to $0$ as $n \to \infty$.
 
 \begin{proof}
   Fix an $\epsilon > 0$. We square both sides of the inequality, instead of working with the absolute value. So
-  what we want to show is that $P\big(\big\{\om: S_n^2(\om) \geq n^2\epsilon^2\big\}\big) \to 0$
+  what we want to show is that $P\big(\big\{\om: s_n^2(\om) \geq n^2\epsilon^2\big\}\big) \to 0$
   as $n \to \infty$.
 
   It would be nice to find an expression for this probability measure as a function of $n$. However, what we'll
   do is find an upper bound: that will suffice also.
 
-  Note that $S_n(\om)$ is a step function (and so $S_n^2(\om)$ is also):
+  Note that $s_n(\om)$ is a step function (and so $s_n^2(\om)$ is also):
 
 \includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c049.png}
 
 
 By Markov's inequality / ``Shaded Area lemma​'' we have
 \begin{align*}
-  n^2\epsilon^2P\Big(\Big\{\om: S_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq \int_0^1 S_n^2(\om) \d\om = n
+  n^2\epsilon^2P\Big(\Big\{\om: s_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq \int_0^1 s_n^2(\om) \d\om = n
 \end{align*}
 and therefore
 \begin{align*}
-  P\Big(\Big\{\om: S_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq  \frac{1}{n\epsilon^2},
+  P\Big(\Big\{\om: s_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq  \frac{1}{n\epsilon^2},
 \end{align*}
 which proves the desired result since it shows that the probability measure is bounded above by a quantity that
 goes to $0$ as $n \to \infty$.
@@ -1673,7 +1673,7 @@ Recall the weak law of large numbers:
 \begin{definition}[Normal numbers]
   Define the set of \defn{normal numbers} to be
   \begin{align*}
-    N = \Big\{\om ~:~ \lim_{n\to\infty} \frac{1}{n}S_n(\om) = 0 \Big\}.
+    N = \Big\{\om ~:~ \lim_{n\to\infty} \frac{1}{n}s_n(\om) = 0 \Big\}.
   \end{align*}
 \end{definition}
 
@@ -1681,8 +1681,62 @@ Recall the weak law of large numbers:
   $N^c = \R \setminus N$ is negligible.
 \end{theorem*}
 
+\begin{intuition}
+  Visualize the $s_n$ sequence of a non-normal number $\om$, stretching off to infinity. However far we’ve
+  gone, there will always be another point further along at which an excursion of the random walk sticks out
+  further than $\eps$. But despite the fact that this must always happen, it’s less and less likely the further
+  we go. tThe fact that it must always happen again corresponds to the fact that we can write the event as a
+  countable union: (happened by this generation) union with (happened at the next generation), etc. But at the
+  same time, since it’s getting harder and harder, for any given $\gamma >0$ we can find some generation $m$
+  beyond which the union sums to less than $\gamma$. nevertheless , the event is equal to the union beyond that
+  point, since the departures must always keep occurring (otherwise the number would be normal). So the union
+  doesn’t have to include earlier generations.
+
+  This is why the complement of the normal numbers is negligible. Perhaps it’s typical of negligible sets that
+  they correspond to an event that must always occur one more time, and yet get ever less and less likely?
+\end{intuition}
+
 \begin{proof}
-  From the lemmas below, for all $n \in \N$, we have (from Markov's inequality)
+  Recall that we are trying to find an ``efficent covering​'' of $N^c$.
+
+  Let $(\eps_n)$ be a sequence that converges to zero, and define a sequence of sets $(A_n)$,
+  where
+  \begin{align*}
+    A_n = \Big\{\om : \Big|\frac{1}{n} s_n(\om)\Big| \geq \eps_n\Big\}.
+  \end{align*}
+  (We can think of $A_n$ as the set of $\om$ whose binary expansions are ``not normal so far​''.)
+
+  Note that, for any given $m$, we have the following: a number that stays inside $\eps_n$ for ever is normal:
+  \begin{align*}
+    \Big(\bigcap_{n=m}^\infty A_n^c\Big) \subset N.
+  \end{align*}
+  Equivalently, a non-normal number must stray outside $\eps_n$ at some point:
+  \begin{align*}
+    N^c \subset \Big(\bigcup_{n=m}^\infty A_n\Big).
+  \end{align*}
+  Recall that our aim is to cover $N^c$ with a countable union of intervals, where the total length of the
+  intervals is arbitrarily small: if we can show that the $A_n$ meet that description then we are done.
+
+  Note that each set $A_n$ is a finite disjoint union $\bigcup_{k}I_{nk}$ of intervals
+  with $P(A_n) = \sum_k |I_{nk}|$. So what we need to do is show that, for any given $\gamma > 0$, there exists
+  a sequence $(\eps_n)$ converging to zero, and an $m$, such that $\sum_{n=m}^\infty P(A_n) < \gamma$.
+
+  At this point, we need to find an expression for an upper bound on $P(A_n)$ in terms of $n$ and $\eps_n$.
+  From the lemma, we have
+  \begin{align*}
+    P(A_n) \leq \frac{3}{n^2\eps_n^4},
+  \end{align*}
+  so we would like to find $(\eps_n)$ and $m$ such that
+  \begin{align*}
+    \sum_{n=m}^\infty \frac{3}{n^2\eps_n^4} < \gamma.
+  \end{align*}
+  To do so, we need only choose $(\eps_n)$ so that the series $\sum_nn^{-2}\eps_n^{-4}$
+  converges: $\eps_n = n^{-1/8}$ will do. Then, since the series converges, there exists an $m$ such that the
+  tail sums to less than $\gamma$, as required.
+\end{proof}
+
+\begin{lemma}
+  For all $n \in \N$, we have (from Markov's inequality)
   \begin{align*}
     P\Big(\Big\{ \om : |s_n(\om)| \geq n\eps  \Big\}\Big) \leq \frac{1}{n^4\eps^4} \int_0^1 s_n^4(\om) \d\om,
   \end{align*}
@@ -1692,7 +1746,6 @@ Recall the weak law of large numbers:
   \end{align*}
   Therefore
   \begin{align*}
-    P\Big(\Big\{ \om : |s_n(\om)| \geq n\eps  \Big\}\Big) \leq \frac{3}{n^2\eps^4}.
+    P\Big(\Big\{ \om : \frac{1}{n}\big|s_n(\om)\big| \geq \eps  \Big\}\Big) \leq \frac{3}{n^2\eps^4}.
   \end{align*}
-
-\end{proof}
+\end{lemma}
