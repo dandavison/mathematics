@@ -382,8 +382,7 @@
   \begin{proof}
     \begin{enumerate}
     \item {\bf Reflexivity}\\
-      Let $[x, x] = \{x\}$ be a closed interval containing a single point. We see that $\sim$ is not an
-      equivalence relation since $x \not \sim x$ for all $x \in \R \setminus O$.
+      $x \sim x$ since $[x, x] = \{x\} \subseteq O$.
 
     \item {\bf Symmetry}\\
       Let $x, y \in \R$ such that $x \sim y$. Then $[\min\{x, y\}, \max\{x, y\}] \subseteq O$.
@@ -391,21 +390,82 @@
 
     \item {\bf Transitivity}\\
       Let $x, y, z \in \R$ such that $x \sim y$ and $y \sim z$. Then $[\min\{x, y\}, \max\{x, y\}] \subseteq O$
-      and $[\min\{y, z\}, \max\{y, z\}] \subseteq O$ Therefore $[\min\{x, y\}, \max\{y, z\}] \subseteq O$.
+      and $[\min\{y, z\}, \max\{y, z\}] \subseteq O$. Therefore $[\min\{x, y\}, \max\{y, z\}] \subseteq O$.
       Therefore $x \sim z$.
     \end{enumerate}
   \end{proof}
 
 \item
   \begin{proof}
-    $O$ is open. By definition, every point in $O$ has a neighborhood that is contained within $O$.
+    Let $\mc I$ be the set of equivalence classes of $O$ under $\sim$.
 
-    Let's try a counter-example.
+    \red{TODO} We want to show that the elements of $\mc I$ are intervals of the form $(I_a, I_b)$
+
+    Since $\sim$ is an equivalence relation, the elements of $\mc I$ are disjoint and their union is equal
+    to $O$.
+
+    We now show that the elements of $\mc I$ are open sets. Let $I \in \mc I$ and suppose for a contradiction
+    that $I$ is not open. Then there exists $x \in I$ such that no neighborhood of $x$ is contained within $I$.
+    Let $x$ be such a point and let $N(x)$ be a neighborhood of $x$. We claim
+    that $N(x) \cap (\R \setminus O) \neq \emptyset$, i.e. that $N(x)$ contains a point outside $O$.
+
+    % Since $O \subseteq \R$ is open, $\inf O$ and $\sup O$ exist.
+
+    % $O$ is an open subset of $\R$. By definition, every point in $O$ has a neighborhood that is contained
+    % within $O$. Since we are working in $\R$, every neighborhood is an interval.
+
+    % Let $x \in O$. Then some interval containing $x$ is a subset of $O$. So $O$ contains no isolated points.
+
+    % So $O$ is a union of intervals. Since we may merge intervals, $O$ is a union of disjoint intervals.
+    % Furthermore, if any interval is closed, then it contains one of its endpoints. For any such endpoint $x$
+    % there is an interval containing $x$ which we may merge with the first interval. We may continue merging
+    % like this until the resulting interval is open. Thus $O$ is a union of disjoint open intervals.
+
+    % Let $i, j \in A$ and let $I_i \subseteq \R$ be disjoint from $I_j \subseteq \R$ for $i \neq j$.
+    % Then $O = \bigcup_{i \in A} I_i$. We need to show that the index set $A$ is countable.
+
+    % We need to show that this is a countable union.
+
+    We can enumerate the intervals as follows:
+
+    Let $q_1, q_2, \ldots$ be an enumeration of the rationals.
+
+    Note that every rational is in zero or one interval, but not more than one. Furthermore, every interval
+    contains at least one rational.
+
+    Therefore there is a non-injective surjection from a subset of the rationals to the set of intervals.
+
+    (We can make this a bijection by choosing one rational from each interval?)
+
+    Therefore the cardinality of the set of intervals is not greater than the cardinality of the rationals.
+
+    Therefore the set of intervals is countable.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    For $i = 1, 2, \ldots$
+    \begin{enumerate}
+    \item Set $I_{2i}$ equal to the interval that, among those not yet included in the enumeration, has the
+      smallest positive lower limit.
+    \item Set $I_{2i + 1}$ equal to the interval that, among those not yet included in the enumeration, has the
+      largest negative upper limit.
+    \end{enumerate}
+
+
+    Let $f: (0, 1) \to \R$ be given by $f(x) = \tan \pi(x -\frac{1}{2})$. Then $f$ is a homeomorphism with $f(0) = -\infty$ and $f(1) = +\infty$.
+  \end{proof}
+
+\item
+  \begin{proof}
+    \red{TODO} We want to show that the elements of $\mc I$ are intervals of the form $(I_a, I_b)$
+
+    We may therefore assign the length $\sum_{i \in A} |I_i|$ to $O$, where $|I| = \sup I - \inf I$.
+
+    Let $\mc I$ be the set of open subsets of $\R$ and let $\mu:\mc I \to \R$ be a function assigning length to
+    these subsets according to $\mu(O) = \sum_{i\in A}\sup I_i - \inf I_i$.
   \end{proof}
 \end{enumerate}
-
-
-
 
 
 
@@ -413,6 +473,20 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-8d78.png}
 \end{mdframed}
 
+\begin{claim*}
+  $C$ is compact.
+\end{claim*}
+\begin{proof}
+  Since $C \subset \R$ it suffices to show that $C$ is closed and bounded. Then it follows from the Heine-Borel theorem that $C$ is compact.
+
+  Certainly $C$ is bounded, since it is constructed by removing points from $[0, 1]$.
+
+  To show that $C$ is closed we must show that $C^c$ is open. Since $C = \bigcap_{n=0}^\infty C_n$, we have
+  \begin{align*}
+    C^c = \bigcup_{n=0}^\infty C_n^c.
+  \end{align*}
+
+\end{proof}
 
 
 
