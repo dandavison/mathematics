@@ -1,0 +1,288 @@
+\section{Billingsley Section 1}
+[Berkeley 202a]
+[Billingsley - Probability \& Measure]
+
+Why does he say ``closed under countable unions and intersections.​''?
+
+  Billingsley p.19:
+  \begin{quote}
+    ...require a collection that contains the intervals and is closed under countable unions and intersections.
+    Note that a singleton $\{x\}$ is a countable intersection of intervals:
+    \begin{align*}
+      \bigcap_{n=1}^\infty \Big(x -\frac{1}{n}, x\Big] = \{x\}.
+    \end{align*}
+  \end{quote}
+
+
+\begin{itemize}
+\item $\Omega = [0, 1]$
+\item $\om \in \Omega$
+\item $d_n(\om) \in \{0, 1\} = $ $n$-th digit in binary expansion of $\om$
+\item Rademacher function $r_n(\om) = 2d_n(\om) - 1 \in \{-1, 1\}$
+\end{itemize}
+
+\subsection{Weak Law of Large Numbers}
+
+Define the partial sum $s_n(\om) = \sum_{i=1}^n r_i(\om)$, i.e. the number of $1$s minus the number of $0$s in
+the first $n$ digits of the binary expansion of $\om$. (The displacement of the random walk after $n$ steps.)
+
+\begin{lemma}
+  \begin{align*}
+    \int_0^1 s_n(\om)^2 \d\om = n
+  \end{align*}
+\end{lemma}
+
+I.e., viewed as a sequence of $n$ coin tosses yielding $-1$ or $+1$, the variance (expected squared distance
+from mean) of their sum is $n$.
+
+\begin{proof}
+  Note that $s_n(\om)^2 = \sum_{i=1}^n r_i(\om)^2 - 2\sum_{i<j}r_i(\om)r_j(\om)$. Integrating over $[0, 1]$ we have
+  \begin{align*}
+    \int_0^1 s_n(\om)^2 \d\om
+    &= \sum_{i=1}^n \int_0^1 r_i(\om)^2 \d\om - 2\sum_{i<j}\int_0^1r_i(\om)r_j(\om) \d\om \\
+    &= \sum_{i=1}^n \int_0^1 1 \d\om - 0 \\
+    &= n.
+  \end{align*}
+  We used there the fact that $\int_0^1r_i(\om)r_j(\om) \d\om = 0$ for $i < j$, i.e that the Rademacher
+  functions are orthogonal. An argument for this is that as we move through a rank $i$ dyadic
+  interval, $r_i(\omega)$ is constant (either $-1$ or $+1$) while at rank $j$ below, $r_j(\omega)$ flickers
+  between $-1$ and $+1$, spending an equal amount of time in each.
+\end{proof}
+
+
+\begin{lemma}[Markov's Inequality]
+  Let $f: [0, 1] \to \R^+$ be a step function. Then
+  \begin{align*}
+    P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big) \leq \frac{1}{\alpha}\int_0^1 f(x) \dx.
+  \end{align*}
+\end{lemma}
+
+
+
+
+\begin{intuition}
+  Think of the statement in rearranged form:
+  \begin{align*}
+    \alpha P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big) \leq \int_0^1 f(x) \dx.
+  \end{align*}
+
+
+
+  \includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c9c2.png}
+
+  If $X \sim \Unif(0, 1)$ then the RHS is $\E[X]$.
+
+\end{intuition}
+
+
+\begin{proof}
+  [me]
+
+  Clearly
+  \begin{align*}
+    \int_{f(x) \geq \alpha} f \leq \int_{[0, 1]} f.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \int_{f(x) \geq \alpha} \alpha \leq \int_{[0, 1]} f
+  \end{align*},
+  or equivalently
+\begin{align*}
+  \alpha \int \textbf{1}_{f(x) \geq \alpha} \leq \int_{[0, 1]} f,
+\end{align*}
+which is the same thing as
+  \begin{align*}
+    \alpha P\Big(\Big\{x: f(x) \geq \alpha\Big\}\Big) < \int_0^1 f(x) \dx.
+  \end{align*}
+\end{proof}
+
+\begin{theorem}[Weak Law of Large Numbers]
+  Fix an $\epsilon > 0$. Then
+  \begin{align*}
+    \lim_{n \to \infty}P\Big(\Big\{\om: \frac{1}{n}\big|\sum_{i=1}^n r_i(\om)\big| \geq \epsilon\Big\}\Big) = 0.
+  \end{align*}
+\end{theorem}
+
+In other words: we move through all the $\om \in [0, 1]$. For a given $\om \in [0, 1]$, compare the number
+of $0$s and $1$s in the first $n$ digits of the binary expansion, and record the excess as a proportion of $n$;
+this is $\frac{1}{n}|s_n(\om)|$. The theorem states that for all $\epsilon > 0$ the probability measure
+associated with the set of $\om$s for which $\frac{1}{n}|s_n(\om)| > \epsilon$ goes to $0$ as $n \to \infty$.
+
+\begin{proof}
+  Fix an $\epsilon > 0$. We square both sides of the inequality, instead of working with the absolute value. So
+  what we want to show is that $P\big(\big\{\om: s_n^2(\om) \geq n^2\epsilon^2\big\}\big) \to 0$
+  as $n \to \infty$.
+
+  It would be nice to find an expression for this probability measure as a function of $n$. However, what we'll
+  do is find an upper bound: that will suffice also.
+
+  Note that $s_n(\om)$ is a step function (and so $s_n^2(\om)$ is also):
+
+\includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c049.png}
+
+
+By Markov's inequality / ``Shaded Area lemma​'' we have
+\begin{align*}
+  n^2\epsilon^2P\Big(\Big\{\om: s_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq \int_0^1 s_n^2(\om) \d\om = n
+\end{align*}
+and therefore
+\begin{align*}
+  P\Big(\Big\{\om: s_n^2(\om) \geq n^2\epsilon^2\Big\}\Big) \leq  \frac{1}{n\epsilon^2},
+\end{align*}
+which proves the desired result since it shows that the probability measure is bounded above by a quantity that
+goes to $0$ as $n \to \infty$.
+\end{proof}
+
+\subsection{Strong Law of Large Numbers}
+
+\red{TODO} Relation of Borel's normal number theorem to SLNN.
+
+\begin{definition}[negligible, null set]
+  A set $A$ is \defn{negligible} if, for any $\epsilon > 0$, it can be covered by a finite or countable
+  union $\bigcup_k I_k$ of intervals with $\sum_k |I_k| < \epsilon$.
+\end{definition}
+
+Recall the weak law of large numbers:
+  \begin{align*}
+    \lim_{n \to \infty}P\Big(\Big\{\om: \frac{1}{n}\big|s_n(\om)\big| \geq \epsilon\Big\}\Big) = 0.
+  \end{align*}
+
+\begin{definition}[Normal numbers]
+  Define the set of \defn{normal numbers} to be
+  \begin{align*}
+    N = \Big\{\om ~:~ \lim_{n\to\infty} \frac{1}{n}s_n(\om) = 0 \Big\}.
+  \end{align*}
+\end{definition}
+
+\begin{theorem*}[Borel's normal number theorem]
+  $N^c = \R \setminus N$ is negligible.
+\end{theorem*}
+
+\begin{intuition}
+  Visualize the $s_n$ sequence of a non-normal number $\om$, stretching off to infinity. However far we’ve
+  gone, there will always be another point further along at which an excursion of the random walk sticks out
+  further than $\eps$. But despite the fact that this must always happen, it’s less and less likely the further
+  we go. The fact that it must always happen again corresponds to the fact that we can write the event as a
+  countable union: (happened by this generation) union with (happened at the next generation), etc. But at the
+  same time, since it’s getting harder and harder, for any given $\gamma >0$ we can find some generation $m$
+  beyond which the union sums to less than $\gamma$. nevertheless , the event is equal to the union beyond that
+  point, since the departures must always keep occurring (otherwise the number would be normal). So the union
+  doesn’t have to include earlier generations.
+
+  This is why the complement of the normal numbers is negligible. Perhaps it’s typical of negligible sets that
+  they correspond to an event that must always occur one more time, and yet get ever less and less likely?
+\end{intuition}
+
+\begin{proof}
+  Recall that we are trying to find an ``efficent covering​'' of $N^c$.
+
+  Let $(\eps_n)$ be a sequence that converges to zero, and define a sequence of sets $(A_n)$,
+  where
+  \begin{align*}
+    A_n = \Big\{\om : \Big|\frac{1}{n} s_n(\om)\Big| \geq \eps_n\Big\}.
+  \end{align*}
+  (We can think of $A_n$ as the set of $\om$ whose binary expansions are ``not normal so far​''.)
+
+  Note that, for any given $m$, we have the following: a number that stays inside $\eps_n$ for ever is normal:
+  \begin{align*}
+    \Big(\bigcap_{n=m}^\infty A_n^c\Big) \subset N.
+  \end{align*}
+  Equivalently, a non-normal number must stray outside $\eps_n$ at some point:
+  \begin{align*}
+    N^c \subset \Big(\bigcup_{n=m}^\infty A_n\Big).
+  \end{align*}
+  Recall that our aim is to cover $N^c$ with a countable union of intervals, where the total length of the
+  intervals is arbitrarily small: if we can show that the $A_n$ meet that description then we are done.
+
+  Recall that $s_n$ is a step function such that, if $\om \in A_n$ then $\om' \in A_n$ for every $\om'$ in the
+  same rank-$n$ dyadic interval as $\om$. Therefore each set $A_n$ is a finite disjoint
+  union $\bigcup_{k}I_{nk}$ of intervals, and $P(A_n) = \sum_k |I_{nk}|$.
+
+  So what we need to do is show that, for any given $\gamma > 0$, there exists a sequence $(\eps_n)$ converging
+  to zero, and an $m$, such that $\sum_{n=m}^\infty P(A_n) < \gamma$.
+
+  At this point, we need to find an expression for an upper bound on $P(A_n)$ in terms of $n$ and $\eps_n$.
+  From the lemma, we have
+  \begin{align*}
+    P(A_n) \leq \frac{3}{n^2\eps_n^4},
+  \end{align*}
+  so we would like to find $(\eps_n)$ and $m$ such that
+  \begin{align*}
+    \sum_{n=m}^\infty \frac{3}{n^2\eps_n^4} < \gamma.
+  \end{align*}
+  To do so, we need only choose $(\eps_n)$ so that the series $\sum_nn^{-2}\eps_n^{-4}$
+  converges: $\eps_n = n^{-1/8}$ will do. Then, since the series converges, there exists an $m$ such that the
+  tail sums to less than $\gamma$, as required.
+\end{proof}
+
+\begin{lemma}
+  Let $A_n = \Big\{\om : \Big|\frac{1}{n} s_n(\om)\Big| \geq \eps\Big\}$.
+
+  For all $n \in \N$, we have (by taking the 4th power of both sides of the inequality and applying Markov's
+  inequality)
+  \begin{align*}
+    P(A_n) \leq \frac{1}{n^4\eps^4} \int_0^1 s_n^4(\om) \d\om,
+  \end{align*}
+  and (by considering integrals of products of four Rademacher functions)
+  \begin{align*}
+    \int_0^1 s_n^4(\om) \d\om \leq 3n^2.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    P(A_n) \leq \frac{3}{n^2\eps^4}.
+  \end{align*}
+\end{lemma}
+
+\subsection{An interval of  positive length is not negligible}
+
+\begin{definition}[length of an interval]
+  The \defn{length} of $(a, b)$ is $|(a, b)| = b - a$.
+\end{definition}
+
+\begin{theorem}
+  Let $I$ be an interval of positive length and let $I_1, I_2, \ldots$ be intervals.
+  \begin{enumerate}
+  \item If $\bigcup_k I_k \subseteq I$ (disjoint) then $\sum_k |I_k| \leq |I|$
+  \item If $\bigcup_k I_k \supseteq I$ then $\sum_k |I_k| \geq |I|$. I.e. no cover of $I$ is negligible.
+  \end{enumerate}
+  A corollary is that if $\bigcup_k I_k = I$ then $\sum_k |I_k| = |I|$.
+\end{theorem}
+
+\begin{proof}
+  First, we show that if $\bigcup_k I_k \subseteq I$ (with the $I_k$ disjoint) then $\sum_k |I_k| \leq |I|$.
+
+  Let $I = (a, b)$ and let $I_k = (a_k, b_k)$ for all $k$. There are two cases:
+  \begin{enumerate}
+  \item {\bf Finite cover}: if $\bigcup_{k=1}^n I_k \subseteq I$ (disjoint) then $\sum_{k=1}^n |I_k| \leq |I|$\\
+    The claim is clearly true for $n = 1$. Assume it's true for $n = m-1$, i.e. that
+    \begin{align*}
+      \sum_{k=1}^{m-1} |I_k| \leq a_{m} - a.
+    \end{align*}
+    Label the intervals $I_1, \ldots, I_n$, sorted by their left endpoint in ascending order. Note that
+    the $m$-th interval has length $b_m - a_m \leq b - a_m$. Thus we have
+    \begin{align*}
+      \sum_{k=1}^m |I_k|
+      &= \sum_{k=1}^{m-1}|I_k| + |I_m| \\
+      &\leq (a_m - a) + (b - a_m) \\
+      &= b - a.
+    \end{align*}
+    Therefore it is true for all $n$ by induction.
+  \item {\bf Infinite cover}: $\sum_{k=1}^\infty |I_k| \leq |I|$\\
+    Since it is true for every finite subcover of size $n$, it is true for a cover comprising infinitely many
+    intervals. (?)
+  \end{enumerate}
+
+  Second, we show that $\sum_k |I_k| \geq |I|$.
+  There are two cases
+  \begin{enumerate}
+  \item {\bf Finite cover}: $\sum_{k=1}^n |I_k| \geq |I|$\\
+    Again, label the intervals $I_1, \ldots, I_n$, sorted by their left endpoint in ascending order. It's clearly true
+    Again, it's obvious for $n=1$. Suppose it's true for $n = m-1$, i.e. that
+    \begin{align*}
+      \sum_{k=1}^{m-1} |I_k| \geq (b - a)
+    \end{align*}
+
+  \item {\bf Infinite cover}
+  \end{enumerate}
+
+\end{proof}
