@@ -118,7 +118,7 @@ associated with the set of $\om$s for which $\frac{1}{n}|s_n(\om)| > \epsilon$ g
 
   Note that $s_n(\om)$ is a step function (and so $s_n^2(\om)$ is also):
 
-\includegraphics[width=400pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c049.png}
+\includegraphics[width=200pt]{img/analysis--real-analysis--measure-theory--weak-law-of-large-numbers-c049.png}
 
 
 By Markov's inequality / ``Shaded Area lemma​'' we have
@@ -233,56 +233,104 @@ Recall the weak law of large numbers:
   \end{align*}
 \end{lemma}
 
+\newpage
 \subsection{An interval of  positive length is not negligible}
 
-\begin{definition}[length of an interval]
+\begin{definition*}[length of an interval]
   The \defn{length} of $(a, b)$ is $|(a, b)| = b - a$.
-\end{definition}
+\end{definition*}
 
-\begin{theorem}
+\begin{theorem*}
   Let $I$ be an interval of positive length and let $I_1, I_2, \ldots$ be intervals.
   \begin{enumerate}
   \item If $\bigcup_k I_k \subseteq I$ (disjoint) then $\sum_k |I_k| \leq |I|$
   \item If $\bigcup_k I_k \supseteq I$ then $\sum_k |I_k| \geq |I|$. I.e. no cover of $I$ is negligible.
   \end{enumerate}
   A corollary is that if $\bigcup_k I_k = I$ then $\sum_k |I_k| = |I|$.
-\end{theorem}
+\end{theorem*}
 
 \begin{proof}
+  Let $I = (a, b)$ and let $I_k = (a_k, b_k)$ for all $k$.
+
   First, we show that if $\bigcup_k I_k \subseteq I$ (with the $I_k$ disjoint) then $\sum_k |I_k| \leq |I|$.
 
-  Let $I = (a, b)$ and let $I_k = (a_k, b_k)$ for all $k$. There are two cases:
+  There are two cases:
   \begin{enumerate}
-  \item {\bf Finite cover}: if $\bigcup_{k=1}^n I_k \subseteq I$ (disjoint) then $\sum_{k=1}^n |I_k| \leq |I|$\\
-    The claim is clearly true for $n = 1$. Assume it's true for $n = m-1$, i.e. that
+  \item {\bf Finite cover}:
+
+    The claim is that for any collection of $n$ disjoint intervals, if $\bigcup_{k=1}^n I_k \subseteq I$
+    then $\sum_{k=1}^n |I_k| \leq |I|$.
+
+    This is clearly true for a collection of intervals of size $n = 1$.
+
+    Assume it's true for any collection of intervals of size $n-1$, and consider a collection of $n$ disjoint
+    intervals with $\bigcup_{k=1}^n I_k \subseteq I$.
+
+    Label the intervals $I_1, \ldots, I_n$, sorted by their left endpoint in ascending order. Note that the
+    union of the first $n-1$ intervals is contained within $(a, a_n)$ and that the $n$-th interval has
+    length $b_n - a_n \leq b - a_n$. Thus we have
     \begin{align*}
-      \sum_{k=1}^{m-1} |I_k| \leq a_{m} - a.
-    \end{align*}
-    Label the intervals $I_1, \ldots, I_n$, sorted by their left endpoint in ascending order. Note that
-    the $m$-th interval has length $b_m - a_m \leq b - a_m$. Thus we have
-    \begin{align*}
-      \sum_{k=1}^m |I_k|
-      &= \sum_{k=1}^{m-1}|I_k| + |I_m| \\
-      &\leq (a_m - a) + (b - a_m) \\
+      \sum_{k=1}^n |I_k|
+      &= \sum_{k=1}^{n-1}|I_k| + |I_n| \\
+      &\leq (a_n - a) + (b - a_n) \\
       &= b - a.
     \end{align*}
     Therefore it is true for all $n$ by induction.
-  \item {\bf Infinite cover}: $\sum_{k=1}^\infty |I_k| \leq |I|$\\
-    Since it is true for every finite subcover of size $n$, it is true for a cover comprising infinitely many
-    intervals. (?)
-  \end{enumerate}
 
-  Second, we show that $\sum_k |I_k| \geq |I|$.
-  There are two cases
+  \item {\bf Infinite cover}:
+
+    The claim is that for any countably infinite collection of $n$ disjoint intervals,
+    if $\bigcup_{k=1}^\infty I_k \subseteq I$ then $\sum_{k=1}^\infty |I_k| \leq |I|$.
+
+    Consider an infinite collection of intervals satisfying $\bigcup_{k=1}^\infty I_k \subseteq I$.
+
+    Note that for every finite subcollection of size $n$ we have $\sum_{k=1}^n |I_k| \leq |I|$ by the finite case.
+
+    Therefore $\sum_{k=1}^\infty |I_k| = \sup \sum_{k=1}^n |I_k| \leq |I|$ where the supremum is over the set
+    of all finite subcollections. Since this set is non-empty, the supremum is a finite positive number.
+  \end{enumerate}
+  ~\\~\\
+  Finally, we show that if $\bigcup_k I_k \supseteq I$ then $\sum_k |I_k| \geq |I|$.
+  Again, there are two cases:
   \begin{enumerate}
-  \item {\bf Finite cover}: $\sum_{k=1}^n |I_k| \geq |I|$\\
-    Again, label the intervals $I_1, \ldots, I_n$, sorted by their left endpoint in ascending order. It's clearly true
-    Again, it's obvious for $n=1$. Suppose it's true for $n = m-1$, i.e. that
+  \item {\bf Finite cover}:
+
+    The claim is that for any collection of $n$ intervals, if $\bigcup_{k=1}^n I_k \supseteq I$
+    then $\sum_{k=1}^n |I_k| \geq |I|$.
+
+    In other words, that the total length of a finite cover of $I$ is bounded below by $|I| > 0$.
+
+    Again, it's obvious for a cover comprising a single interval ($n=1$).
+
+    Assume it's true for any cover comprising $n-1$ intervals, and consider a cover comprising $n$ intervals.
+
+    Again, label the intervals $I_1, \ldots, I_n$, sorted by their left endpoint in ascending order.
+
+    Note that the first $n-1$ intervals cover the interval $(a, b_{n-1})$ and that $|I_n| \geq b - b_{n-1}$.
+    Thus we have
     \begin{align*}
-      \sum_{k=1}^{m-1} |I_k| \geq (b - a)
+      \sum_{k=1}^n |I_k|
+      &= \sum_{k=1}^{n-1}|I_k| + |I_n| \\
+      &\geq (b_{n-1} - a) + (b - b_{n-1}) \\
+      &= b - a.
     \end{align*}
 
-  \item {\bf Infinite cover}
+  \item {\bf Infinite cover}\\
+
+    The claim is that for any infinite cover $\bigcup_{k=1}^\infty I_k \supseteq I$ we have $\sum_{k=1}^\infty |I_k| \geq |I|$.
+
+    Consider a countably infinite cover of $I$.
+
+    We might think that we could make an argument analogous to the one above:
+
+    Note that for every finite subcover of size $n$ we have $\sum_{k=1}^n |I_k| \geq |I|$.
+
+    Therefore $\sum_{k=1}^\infty |I_k| = \inf \sum_{k=1}^n |I_k|  \geq |I|$ where the infimum is over the set of all finite subcovers.
+
+    However, we have to show that a finite subcover exists; otherwise the infimum would be $+\infty$.
+
+    So what we do is construct a closed interval $[a + \eps, b]$ which is covered by a countably infinite open
+    cover. Since that closed interval is compact from Heine-Borel, there exists a finite open subcover.
   \end{enumerate}
 
 \end{proof}
