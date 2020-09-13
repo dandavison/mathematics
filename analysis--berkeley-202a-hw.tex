@@ -1,3 +1,4 @@
+\begin{comment}
 \section*{Math 202a - HW1 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 \begin{mdframed}
@@ -367,6 +368,8 @@
   and the real numbers are not countable.
 \end{proof}
 
+\end{comment}
+
 \section*{Math 202a - HW2 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 
@@ -374,8 +377,17 @@
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-ebe4.png}
 \end{mdframed}
 
-\begin{enumerate}
-\item
+\begin{intuition*}
+  $O \subset \R$ is a countable union of disjoint open intervals.
+
+  $x \sim y$ iff $x$ and $y$ are in the same interval.
+
+  The length of $O$ should be the sum of the lengths of the intervals.
+\end{intuition*}
+
+
+\begin{itemize}
+\item (1)
   \begin{claim*}
     $\sim$ is an equivalence relation on $O$.
   \end{claim*}
@@ -395,36 +407,38 @@
     \end{enumerate}
   \end{proof}
 
-\item
-  \begin{proof}
-    Let $\mc I$ be the set of equivalence classes of $O$ under $\sim$.
+\item (2)
+  \begin{claim*}
+    $O$ may be written as a countable union of disjoint open intervals.
+  \end{claim*}
 
-    \red{TODO} We want to show that the elements of $\mc I$ are intervals of the form $(I_a, I_b)$
+  \begin{proof}
+    Let $\mc I = I_1, I_2, \ldots$ be the set of equivalence classes of $O$ under $\sim$.
 
     Since $\sim$ is an equivalence relation, the elements of $\mc I$ are disjoint and their union is equal
     to $O$.
+
+    We now show that the elements of $I$ are open intervals:
+
+    Let $I \in \mc I$. Note that $I$ has at least two elements since $I$ is an equivalence class. Suppose $I$
+    is bounded below and above. Then for any $\epsilon > 0$ there exists $a \in I$ such
+    that $a - \inf O < \epsilon$. Note that $[a, x] \subseteq I$ for all $x \in I$ where $a < x$. By a similar
+    argument, $[x, b] \subseteq I$ for all $x \in I$ where $b = \sup I$ and $x < b$.
+
+    Note that either one of the elements of $I$ has no lower bound, or none do.
+
+    \red{TODO}
+
+    \red{TODO} We want to show that the elements of $\mc I$ are intervals of the form $(I_a, I_b)$
+
+    Let $I \in \mc I$.
 
     We now show that the elements of $\mc I$ are open sets. Let $I \in \mc I$ and suppose for a contradiction
     that $I$ is not open. Then there exists $x \in I$ such that no neighborhood of $x$ is contained within $I$.
     Let $x$ be such a point and let $N(x)$ be a neighborhood of $x$. We claim
     that $N(x) \cap (\R \setminus O) \neq \emptyset$, i.e. that $N(x)$ contains a point outside $O$.
 
-    % Since $O \subseteq \R$ is open, $\inf O$ and $\sup O$ exist.
-
-    % $O$ is an open subset of $\R$. By definition, every point in $O$ has a neighborhood that is contained
-    % within $O$. Since we are working in $\R$, every neighborhood is an interval.
-
-    % Let $x \in O$. Then some interval containing $x$ is a subset of $O$. So $O$ contains no isolated points.
-
-    % So $O$ is a union of intervals. Since we may merge intervals, $O$ is a union of disjoint intervals.
-    % Furthermore, if any interval is closed, then it contains one of its endpoints. For any such endpoint $x$
-    % there is an interval containing $x$ which we may merge with the first interval. We may continue merging
-    % like this until the resulting interval is open. Thus $O$ is a union of disjoint open intervals.
-
-    % Let $i, j \in A$ and let $I_i \subseteq \R$ be disjoint from $I_j \subseteq \R$ for $i \neq j$.
-    % Then $O = \bigcup_{i \in A} I_i$. We need to show that the index set $A$ is countable.
-
-    % We need to show that this is a countable union.
+    \red{TODO} We need to show that this is a countable union.
 
     We can enumerate the intervals as follows:
 
@@ -440,69 +454,171 @@
     Therefore the cardinality of the set of intervals is not greater than the cardinality of the rationals.
 
     Therefore the set of intervals is countable.
+  \end{proof}
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item (3) \green{DONE}
+  \begin{proof}
+    We may assign a length $\mu(O)$ to $O$ as follows:
+
+    If $O = \emptyset$ then $\mu(O) := 0$.
+
+    Otherwise, if $O$ is not bounded below, or if $O$ is not bounded above, then $\mu(O) := \infty$.
+
+    Otherwise, if the series $\sum_i |I_i|$ diverges, then $\mu(O) := \infty$.
+
+    Otherwise, $\mu(O) := \sum_i |I_i|$.
+
+    Note that every term of the series is positive. In order for this definition to be unambiguous, the
+    value $\mu(O)$ must not depend on the ordering of the series. This is true by the lemma below.
+  \end{proof}
+
+  \begin{lemma}
+      Let $\sum_i a_i$ be a series with $a_i > 0$ for all $i$. Then
+      \begin{enumerate}
+      \item If the series diverges for any ordering of the series, it diverges for all orderings.
+      \item If the series converges for any ordering of the series, it converges to the same value for all
+        orderings.
+      \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    A sketch proof of the second statement is as follows: given any $\epsilon > 0$ we can identify a tail of
+    the sequence whose sum is less than $\epsilon$. Thus the sum of the series is determined by the finite
+    head. The sum of this finite head does not depend on its ordering, by commutativity of addition.
+  \end{proof}
+\end{itemize}
 
 
-    For $i = 1, 2, \ldots$
-    \begin{enumerate}
-    \item Set $I_{2i}$ equal to the interval that, among those not yet included in the enumeration, has the
-      smallest positive lower limit.
-    \item Set $I_{2i + 1}$ equal to the interval that, among those not yet included in the enumeration, has the
-      largest negative upper limit.
-    \end{enumerate}
 
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-8d78.png}
+\end{mdframed}
 
-    Let $f: (0, 1) \to \R$ be given by $f(x) = \tan \pi(x -\frac{1}{2})$. Then $f$ is a homeomorphism with $f(0) = -\infty$ and $f(1) = +\infty$.
+\begin{itemize}
+\item \begin{claim*}
+    $C$ is compact.
+  \end{claim*}
+  \begin{proof}
+    Since $C \subset \R$ it suffices to show that $C$ is closed and bounded. Then it follows from the Heine-Borel
+    theorem that $C$ is compact.
+
+    Certainly $C$ is bounded, since it is constructed by removing points from $[0, 1]$.
+
+    To show that $C$ is closed we may show that $C^c$ is open. Since $C = \bigcap_{n=0}^\infty C_n$, we have
+    \begin{align*}
+      C^c = \bigcup_{n=0}^\infty C_n^c.
+    \end{align*}
+    \red{TODO}
   \end{proof}
 
 \item
+  \begin{claim*}
+    $C$ is uncountable.
+  \end{claim*}
+
   \begin{proof}
-    \red{TODO} We want to show that the elements of $\mc I$ are intervals of the form $(I_a, I_b)$
-
-    We may therefore assign the length $\sum_{i \in A} |I_i|$ to $O$, where $|I| = \sup I - \inf I$.
-
-    Let $\mc I$ be the set of open subsets of $\R$ and let $\mu:\mc I \to \R$ be a function assigning length to
-    these subsets according to $\mu(O) = \sum_{i\in A}\sup I_i - \inf I_i$.
+    \red{TODO}
   \end{proof}
+
+\item \begin{claim*}
+    $C$ is negligible.
+  \end{claim*}
+
+  \begin{proof}
+    Fix an arbitrary $\epsilon > 0$. We will show that there exists a countable union of
+    intervals $I_1, I_2, \ldots$ that cover $C$ and for which $\sum_k |I_k| < \epsilon$.
+
+    Note that $C_n$ comprises $2^n$ disjoint intervals each of length $3^{-n}$. Therefore the total length
+    of $C_n$ is $(2/3)^n$ (i.e. it decreases monotonically with $n$). We want to find an iteration $n$ such that
+    \begin{align*}
+      (2/3)^n < \eps.
+    \end{align*}
+    Set $m = \Big\lceil\frac{\log\eps}{\log 2/3} \Big\rceil$. We see that for all $n > m$ we have $|C_n| < \epsilon$.
+
+    \red{TODO} Tie this up by showing explicitly that the limiting set $C$ can be covered.
+  \end{proof}
+
+\end{itemize}
+
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-6b7a.png}
+\end{mdframed}
+
+\begin{enumerate}[label=(3.\arabic*)]
+
+\item (1)
+  \begin{definition*}
+    Let $X$ be a set formed by iteratively removing open intervals from $[0, 1]$. Let $I_1, I_2, \ldots$ be the
+    open intervals that were removed in the formation of $X$. Note that these are disjoint, since a point can
+    not be removed more than once. Define the measure of $X$ to be $1 - \sum_k |I_k|$.
+  \end{definition*}
+
+\item (2)
+  \begin{definition}[Cantor set of measure $a$]
+    Let $a \in (0, 1)$. The Cantor set of measure $a$ is formed as follows:
+
+    \red{TODO}
+  \end{definition}
+
+\end{enumerate}
+
+
+
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
+\end{mdframed}
+
+\begin{enumerate}[label=(4.\arabic*)]
+
+\item (1) It seems that this limit will have the form
+
+  (measure on $C$ restricted to $(0, x)$) $\times$ ($(3/2)^n$)
+
+  which is
+
+  $0 \times \infty$.
+
+\item (2) $F$ is piecewise affine, hence continuous.
+
+\item (3) $F$ is differentiable on the constant and non-constant sections, but not on the endpoints.
+
 \end{enumerate}
 
 
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-8d78.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-ccfa.png}
 \end{mdframed}
 
-\begin{claim*}
-  $C$ is compact.
-\end{claim*}
-\begin{proof}
-  Since $C \subset \R$ it suffices to show that $C$ is closed and bounded. Then it follows from the Heine-Borel theorem that $C$ is compact.
+\begin{enumerate}[label=(5.\arabic*)]
 
-  Certainly $C$ is bounded, since it is constructed by removing points from $[0, 1]$.
+\item
+  \begin{claim*}
+    The orbit $S_{\lambda}(x)$ is dense for all $x \in (0, 1]$ iff there exists an $x$ for which it is dense.
+  \end{claim*}
+  \begin{proof}
+    \red{TODO}
+  \end{proof}
 
-  To show that $C$ is closed we must show that $C^c$ is open. Since $C = \bigcap_{n=0}^\infty C_n$, we have
-  \begin{align*}
-    C^c = \bigcup_{n=0}^\infty C_n^c.
-  \end{align*}
+\item
+  \begin{claim*}
+    The orbits are dense iff $\lambda \in (0, 1]$ is irrational.
+  \end{claim*}
+  \begin{proof}
+    \red{TODO}
+  \end{proof}
 
-\end{proof}
+\item
+  \begin{claim*}
+    Does the occupation fraction $O_n(I, \lambda)$ have a limiting value and if so what is it?
+  \end{claim*}
+  \begin{proof}
+    \red{TODO}
+  \end{proof}
 
-
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-6b7a.png}
-\end{mdframed}
-
-
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
-\end{mdframed}
-
-
-
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-ccfa.png}
-\end{mdframed}
+\item
+  \begin{proof}
+    \red{TODO}
+  \end{proof}
+\end{enumerate}
