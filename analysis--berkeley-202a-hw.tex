@@ -494,20 +494,21 @@
 \end{mdframed}
 
 \begin{itemize}
-\item \begin{claim*}
+\item
+  \begin{claim*}
     $C$ is compact.
   \end{claim*}
-  \begin{proof}
+  \begin{proof} \green{DONE}
     Since $C \subset \R$ it suffices to show that $C$ is closed and bounded. Then it follows from the Heine-Borel
     theorem that $C$ is compact.
 
-    Certainly $C$ is bounded, since it is constructed by removing points from $[0, 1]$.
+    $C$ is bounded below by $0$ and above by $1$, since it is constructed by removing points from $[0, 1]$.
 
-    To show that $C$ is closed we may show that $C^c$ is open. Since $C = \bigcap_{n=0}^\infty C_n$, we have
-    \begin{align*}
-      C^c = \bigcup_{n=0}^\infty C_n^c.
-    \end{align*}
-    \red{TODO}
+    To show that $C$ is closed we may show that $C^c$ is open. Since $C = \bigcap_{n=0}^\infty C_n$, we
+    have $C^c = \bigcup_{n=0}^\infty C_n^c$. Note that $C_n$ is a union of closed intervals; therefore $C_n^c$
+    is a union of open intervals and therefore open (if an interval contains a neighborhood of each one of its
+    points then the union of intervals also contains neighborhoods of those points); therefore $C^c$ is a union
+    of open intervals and therefore open. Therefore $C$ is closed.
   \end{proof}
 
 \item
@@ -515,8 +516,24 @@
     $C$ is uncountable.
   \end{claim*}
 
-  \begin{proof}
-    \red{TODO}
+  \begin{proof} \red{TODO}
+    Note that $\om \in C$ if and only if the base 3 (ternary) expansion of $\om$ contains no $1$s.
+
+    Consider the map $f:C \to (0, 1]$ defined by the following rule: $f(\om)$ is equal to the real number whose
+    binary expansion is formed by substituting every $2$ with a $1$ in the ternary expansion of $\om$.
+
+    This map is a bijection, therefore $C$ is uncountable.
+
+
+    We want to show that the countably infinite intersection of closed intervals does not result in a single
+    point, or in an empty set.
+
+    For any $n$ we can exhibit an $\eps > 0$ such that $[0, \eps) \subset C$. Since this is an uncountable set, $C_n$ is uncountable.
+
+    So $C_n$ is uncountable for all $n$. How do we show that $C$ is uncountable?
+
+    elements of Cantor set are ternary digits bijection <-> R
+
   \end{proof}
 
 \item \begin{claim*}
@@ -528,11 +545,10 @@
     intervals $I_1, I_2, \ldots$ that cover $C$ and for which $\sum_k |I_k| < \epsilon$.
 
     Note that $C_n$ comprises $2^n$ disjoint intervals each of length $3^{-n}$. Therefore the total length
-    of $C_n$ is $(2/3)^n$ (i.e. it decreases monotonically with $n$). We want to find an iteration $n$ such that
-    \begin{align*}
-      (2/3)^n < \eps.
-    \end{align*}
-    Set $m = \Big\lceil\frac{\log\eps}{\log 2/3} \Big\rceil$. We see that for all $n > m$ we have $|C_n| < \epsilon$.
+    of $C_n$ is $|C_n| = \big(\frac{2}{3}\big)^n$. Set $m = \Big\lceil\frac{\log\eps}{\log 2/3} \Big\rceil$. We see that for all $n > m$ we have $|C_n| < \epsilon$.
+
+
+
 
     \red{TODO} Tie this up by showing explicitly that the limiting set $C$ can be covered.
   \end{proof}
@@ -551,6 +567,8 @@
     Let $X$ be a set formed by iteratively removing open intervals from $[0, 1]$. Let $I_1, I_2, \ldots$ be the
     open intervals that were removed in the formation of $X$. Note that these are disjoint, since a point can
     not be removed more than once. Define the measure of $X$ to be $1 - \sum_k |I_k|$.
+
+    $1r + 2r^2 + 2^2r^3 + \ldots$ geometric series
   \end{definition*}
 
 \item (2)
@@ -569,6 +587,7 @@
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
 \end{mdframed}
 
+Devil's staircase
 \begin{enumerate}[label=(4.\arabic*)]
 
 \item (1) It seems that this limit will have the form
@@ -579,6 +598,7 @@
 
   $0 \times \infty$.
 
+show $F_n$ is a Cauchy sequence
 \item (2) $F$ is piecewise affine, hence continuous.
 
 \item (3) $F$ is differentiable on the constant and non-constant sections, but not on the endpoints.
@@ -610,15 +630,48 @@
   \end{proof}
 
 \item
+  \begin{definition*}
+    The $n$-th occupation fraction of $I$ by $S_\lambda$ is
+    \begin{align*}
+      O_n(I, \lambda) = \frac{1}{n}\Big|\Big\{i \in \{1, \ldots, n\} ~:~ a_n \in I\Big\}\Big|.
+    \end{align*}
+  \end{definition*}
   \begin{claim*}
-    Does the occupation fraction $O_n(I, \lambda)$ have a limiting value and if so what is it?
+   The occupation fraction has a limiting value: $\lim_{n\to\infty}O_n(I, \lambda) = b - a$.
   \end{claim*}
-  \begin{proof}
-    \red{TODO}
-  \end{proof}
-
 \item
-  \begin{proof}
+
+Hi Nathan, Scott, Ali: I had a thought about Q5 and wanted to ask you whether you think it's a direction worth exploring.
+
+Focus on the j-th digit in the binary expansion of a_n, and consider the orbit of that digit alone. That's a sequence of 0s and 1s that we may interpret as a real number in [0, 1]. My thought was that if we could prove the following then that would solve the question:
+
+The real number corresponding to the sequence visited by the j-th digit is normal, for all j.
+The sequence for digit j is, or becomes, (in an appropriate sense) uncorrelated with the sequence for digit k ≠ j.
+
+I think those two results would imply that a_n itself has no tendency to accumulate in any dyadic interval, which is what we want to show.
+
+I'm not sure how to show them though. Possibly the argument would involve observing that lambda is irrational and hence has a non-repeating binary expansion, and then making an argument involving the mechanics of addition of binary sequences (with overflow and the mod 1 operation).
+
+
+  \begin{proof}[Proof sketch]
+    Suppose the process runs for many iterations. We want to show that, if we pick a generation $n$ at random,
+    then $a_n$ (now viewed as a random variable) is uniformly distributed over the interval $I$.
+
+    We want to show that picking a generation $n$ at random yields an $a_n$ which is like a uniform pick
+    from $(0, 1]$.
+
+    \begin{itemize}
+    \item Consider the sequence of values taken by the $j$-th digit in the binary expansion of $a_n$.
+    \item We want to show that this sequence, when interpreted as the binary expansion of a real number in
+      $[0, 1]$ is normal, and uncorrelated from the sequence of values taken by the $k$-th digit for $j \neq k$.
+    \item These results would imply that each digit is visiting $0$ and $1$ with equal frequency, independently of
+      other digits, and therefore that $a_n$ has no tendency to occupy any dyadic interval more than any other
+      dyadic interval.
+    \end{itemize}
+
+    Let $\lambda \in (0, 1) \setminus \Q$.
+
     \red{TODO}
+
   \end{proof}
 \end{enumerate}
