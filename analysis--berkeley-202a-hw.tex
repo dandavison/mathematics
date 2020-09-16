@@ -513,7 +513,7 @@
   \begin{claim*}
     $C$ is compact.
   \end{claim*}
-  \begin{proof} \green{DONE}
+  \begin{proof}
     Since $C \subset \R$ it suffices to show that $C$ is closed and bounded. Then it follows from the Heine-Borel
     theorem that $C$ is compact.
 
@@ -550,12 +550,13 @@
     intervals $I_1, I_2, \ldots$ that cover $C$ and for which $\sum_k |I_k| < \epsilon$.
 
     Note that $C_n$ comprises $2^n$ disjoint intervals each of length $3^{-n}$. Therefore the total length
-    of $C_n$ is $|C_n| = \big(\frac{2}{3}\big)^n$ and we see that $|C_n| < \epsilon$ for all $n > \Big\lceil\frac{\log\eps}{\log 2/3} \Big\rceil$.
+    of $C_n$ is $|C_n| = \big(\frac{2}{3}\big)^n$ and we see that $|C_n| < \epsilon$ for
+    all $n > \Big\lceil\frac{\log\eps}{\log 2/3} \Big\rceil$. Since $C \subset C_n$ for all $n$, we see
+    that $|C| < \eps$. We can write $C$ as $C = \bigcup_{k=1}^\infty I_k$, and so we can construct an efficient
+    cover for $C$ as follows: for $k \in \{1, 2, \ldots\}$ place an interval of length $2^{-k}\eps$ over $I_k$.
+    The total length of the cover is $\eps\sum_{k=1}^\infty 2^{-k} = \eps$.
 
-    Let $C = \bigcup_{k=1}^\infty I_k$. We can construct an efficient cover for $C$ as follows:
-    for $k \in \{1, 2, \ldots\}$ place an interval of length $2^{-k}$ over $I_k$.
-
-    \red{TODO} Tie this up by giving explicit coordinates for the intervals in the covering.
+%    \red{TODO} Tie this up by giving explicit coordinates for the intervals in the covering.
   \end{proof}
 
 \end{enumerate}
@@ -580,11 +581,11 @@
 
     Instead of removing $1/3$ at each iteration, we will remove a smaller fraction.
 
-    Note that $\sum_{i=1}^\infty \frac{1 - a}{2^i} = 1 - a$. So the algorithm will be the same as the standard
-    Cantor set construction except that, instead of removing the middle $1/3$, we remove the
-    middle $\frac{1 - a}{2^i}$ of each remaining interval at the $i$-th iteration.
+    Note that $\sum_{n=1}^\infty \frac{1 - a}{2^n} = 1 - a$. So we will design an algorithm that
+    removes $\frac{1-a}{2^n}$ at each iteration, for $n=1, 2, \ldots$. Note that at the start of iteration $n$
+    we have $n$ intervals. Therefore, in order to remove a length of $\frac{1-a}{2^n}$ we will remove the
+    middle $\frac{1-a}{n2^n}$ from each interval.
   \end{definition*}
-
 \end{enumerate}
 
 
@@ -594,62 +595,67 @@
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
 \end{mdframed}
 
-{\bf Some facts:}\\
+\begin{lemma}\label{lemma-4-1}
+  $F_n(1) = 1$ for all $n$.
+\end{lemma}
 
-$C_n$ is a union of $2^n$ intervals, each of length $1/3^n$, therefore the total length is
-decreasing: $|C_n| = (2/3)^n$. The function $f_n$ has the value $(3/2)^n$ on each interval in $C_n$ and zero
-elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $n$.
+\begin{proof}
+  For all $n$ we have that $C_n$ is a union of $2^n$ intervals, each of length $1/3^n$, therefore the total
+  length is decreasing: $|C_n| = (2/3)^n$. The function $f_n$ has the value $(3/2)^n$ on each interval in $C_n$
+  and zero elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $n$.
+\end{proof}
+
+\begin{lemma}\label{lemma-4-2}
+  Let $x \in C^c$. There exists $m$ such that $F_{n+1}(x) = F_n(x)$ for all $n > m$.
+\end{lemma}
+\begin{proof}
+  Let $x \in C^c$. Then there exists $m$ such that for all $n > m$ we have $x \in C_n^c$. Let $m$ be such a
+  value and fix an arbitrary $n > m$. We write $C_n$ as a union of $2^n$ closed
+  intervals, $C_n = \bigcup_{i=1}^{2^n} [a_i, b_i]$, and let $k = |\{i \in \{1, \ldots, 2^n\} ~:~ b_i < x\}|$
+  be the number of these intervals whose right endpoints are less than $x$. We have
+  \begin{align*}
+    F_n(x) = k\Big(\frac{3}{2}\Big)^n\Big(\frac{1}{3}\Big)^n = \frac{k}{2^n}.
+  \end{align*}
+  At the next generation, there are $2k$ of these intervals whose right endpoints are less than $x$, and we
+  have
+  \begin{align*}
+    F_{n+1}(x) = 2k\Big(\frac{3}{2}\Big)^{n+1}\Big(\frac{1}{3}\Big)^{n+1} = \frac{k}{2^n}.
+  \end{align*}
+  Therefore $F_{n+1}(x) = F_n(x)$ for all $n > m$.
+\end{proof}
+
+
+\begin{lemma}\label{lemma-4-3}
+  Let $[a, b] \subset C$. Then $\int_a^b \big|f_{n+1}(x) - f_n(x)\big| \dx = \frac{1}{3}\frac{1}{2^{n-1}}$.
+\end{lemma}
+
+\begin{proof}
+  Let $[a, b] \subset C$. For $x$ in the left or right thirds (closed) of this interval we have
+  \begin{align*}
+    f_{n+1}(x) - f_n(x)
+    = \Big(\frac{3}{2}\Big)^{n+1} - \Big(\frac{3}{2}\Big)^{n}
+    = \frac{1}{2}\Big(\frac{3}{2}\Big)^n,
+  \end{align*}
+  and for $x$ in the middle third (open) of this interval we have
+  \begin{align*}
+    f_{n+1}(x) - f_n(x)
+    = -\Big(\frac{3}{2}\Big)^{n}.
+  \end{align*}
+  Since the interval has length $(1/3)^n$ we have
+  \begin{align*}
+    \int_a^b \big|f_{n+1}(x) - f_n(x)\big| \dx
+    &=  \frac{2}{3}\Big(\frac{1}{3}\Big)^n\frac{1}{2}\Big(\frac{3}{2}\Big)^n
+      + \frac{1}{3}\Big(\frac{1}{3}\Big)^n\Big(\frac{3}{2}\Big)^n \\
+      % &= \Big(\frac{1}{3}\Big)^n\Big(\frac{3}{2}\Big)^n\Big(\frac{2}{3}\frac{1}{2} + \frac{1}{3}\Big) \\
+    &= 2\Big(\frac{1}{3}\Big)^{n+1}\Big(\frac{3}{2}\Big)^n\\
+    &= \frac{1}{3}\frac{1}{2^{n-1}}.
+  \end{align*}
+\end{proof}
+
 
 \begin{enumerate}[label=(4.\arabic*)]
 
 \item
-  \begin{lemma*}\label{lemma-4-1-1}
-    Let $x \in C^c$. There exists $m$ such that $F_{n+1}(x) = F_n(x)$ for all $n > m$.
-  \end{lemma*}
-  \begin{proof}
-    Let $x \in C^c$. Then there exists $m$ such that for all $n > m$ we have $x \in C_n^c$. Let $m$ be such a
-    value and fix an arbitrary $n > m$. We write $C_n$ as a union of $2^n$ closed
-    intervals, $C_n = \bigcup_{i=1}^{2^n} [a_i, b_i]$, and let $k = |\{i \in \{1, \ldots, 2^n\} ~:~ b_i < x\}|$
-    be the number of these intervals whose right endpoints are less than $x$. We have
-    \begin{align*}
-      F_n(x) = k\Big(\frac{3}{2}\Big)^n\Big(\frac{1}{3}\Big)^n = \frac{k}{2^n}.
-    \end{align*}
-    At the next generation, there are $2k$ of these intervals whose right endpoints are less than $x$, and we
-    have
-    \begin{align*}
-      F_{n+1}(x) = 2k\Big(\frac{3}{2}\Big)^{n+1}\Big(\frac{1}{3}\Big)^{n+1} = \frac{k}{2^n}.
-    \end{align*}
-    Therefore $F_{n+1}(x) = F_n(x)$ for all $n > m$.
-  \end{proof}
-
-
-  \begin{lemma*}\label{lemma-4-1-2}
-    Let $[a, b] \subset C$. Then $\int_a^b \big|f_{n+1}(x) - f_n(x)\big| \dx = \frac{1}{3}\frac{1}{2^{n-1}}$.
-  \end{lemma*}
-
-  \begin{proof}
-    Let $[a, b] \subset C$. For $x$ in the left or right thirds (closed) of this interval we have
-    \begin{align*}
-      f_{n+1}(x) - f_n(x)
-      = \Big(\frac{3}{2}\Big)^{n+1} - \Big(\frac{3}{2}\Big)^{n}
-      = \frac{1}{2}\Big(\frac{3}{2}\Big)^n,
-    \end{align*}
-    and for $x$ in the middle third (open) of this interval we have
-    \begin{align*}
-      f_{n+1}(x) - f_n(x)
-      = -\Big(\frac{3}{2}\Big)^{n}.
-    \end{align*}
-    Since the interval has length $(1/3)^n$ we have
-    \begin{align*}
-      \int_a^b \big|f_{n+1}(x) - f_n(x)\big| \dx
-      &=  \frac{2}{3}\Big(\frac{1}{3}\Big)^n\frac{1}{2}\Big(\frac{3}{2}\Big)^n
-        + \frac{1}{3}\Big(\frac{1}{3}\Big)^n\Big(\frac{3}{2}\Big)^n \\
-        % &= \Big(\frac{1}{3}\Big)^n\Big(\frac{3}{2}\Big)^n\Big(\frac{2}{3}\frac{1}{2} + \frac{1}{3}\Big) \\
-      &= 2\Big(\frac{1}{3}\Big)^{n+1}\Big(\frac{3}{2}\Big)^n\\
-      &= \frac{1}{3}\frac{1}{2^{n-1}}.
-    \end{align*}
-  \end{proof}
-
   \begin{claim*}
     For each $x \in [0, 1]$ the limit $F(x) = \lim_{n\to\infty} F_n(x)$ exists.
   \end{claim*}
@@ -658,8 +664,8 @@ elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $
     We will study the difference $|F_{n+1}(x) - F_n(x)|$ and show that this decreases with $n$ in a way that
     implies that the sequence $F_0(x), F_1(x), \ldots$ is Cauchy for all $x \in [0, 1]$.
 
-    First consider $x \in C^c$. Then from lemma (\ref{lemma-4-1-1}) we have that $F_{n+1}(x) - F_{n}(x) = 0$
-    for sufficiently large $n$ and so the sequence is obviously Cauchy.
+    First consider $x \in C^c$. Then from lemma \ref{lemma-4-2} we have that $F_{n+1}(x) - F_{n}(x) = 0$ for
+    sufficiently large $n$ and so the sequence is obviously Cauchy at a point $x \in C^c$.
 
     Next let $x \in C$ and let $[a, b] \subset C$ be the closed interval containing $x$. Then
     \begin{align*}
@@ -669,10 +675,10 @@ elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $
       &= F_{n+1}(a) - F_{n}(a)
         + \Big(\int_a^x f_{n+1}(t) \dt - \int_a^x f_{n}(t) \dt\Big).
     \end{align*}
-    Now, from lemma (\ref{lemma-4-1-1}) we have that $F_{n+1}(x) - F_{n}(x) = 0$ for sufficiently large $n$,
+    Now, from lemma \ref{lemma-4-2} we have that $F_{n+1}(x) - F_{n}(x) = 0$ for sufficiently large $n$,
     where $x \in C^c$. But this result also holds for $x$ an endpoint of a closed interval in $C$, since such
     an endpoint is arbitrarily close to a point of $C^c$. Thus we have $F_{n+1}(a) - F_{n}(a) = 0$ and, using
-    lemma \ref{lemma-4-1-2},
+    lemma \ref{lemma-4-3},
     \begin{align*}
       \Big|F_{n+1}(x) - F_n(x)\Big|
       &=    \Big|\int_a^x f_{n+1}(t) \dt - f_{n}(t) \dt\Big| \\
@@ -681,37 +687,52 @@ elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $
       &=    \frac{1}{3}\frac{1}{2^{n-1}} \\
       &<    \frac{1}{2^n}.
     \end{align*}
-    In order to show that $F_0(x), F_1(x), \ldots$ is Cauchy, fix $0 < \eps > 1$, let $m \in \N$ be such
+    In order to show that $F_0(x), F_1(x), \ldots$ is Cauchy, fix $0 < \eps < 1$, let $m \in \N$ be such
     that $\sum_{k=1}^m \frac{1}{2^k} \geq 1 - \eps$, and let $i, j > m$. Then
     \begin{align*}
       \Big|F_i(x) - F_j(x)\Big| \leq \sum_{k=m+1}^\infty \frac{1}{2^k} < \eps.
     \end{align*}
-    Therefore the sequence $F_0(x), F_1(x), \ldots$ is Cauchy, and the limit $F(x) = \lim_{n\to\infty} F_n(x)$
-    exists for $x \in C$.
+    Therefore the sequence $F_0(x), F_1(x), \ldots$ is Cauchy at a point $x \in C$.
+
+    Since the sequence $F_0(x), F_1(x), \ldots$ is Cauchy for all $x \in [0, 1]$, the
+    limit $F(x) = \lim_{n\to\infty} F_n(x)$ exists for all $x \in [0, 1]$.
+
+    Furthermore, the same $m$ works for all $x$, i.e. the sequence is uniformly Cauchy.
   \end{proof}
 
-\item (2) $F$ is piecewise affine, hence continuous.
+\item
+  \begin{claim*}
+    $F$ is continuous on $[0, 1]$ with $F(0) = 0$ and $F(1) = 1$.
+  \end{claim*}
+
   \begin{proof}
-    There are two cases: $x \in C$ and $x \in C^c$.
+    For continuity of $F$ it suffices to prove that the $F_n$ are continuous, since in part (4.1) we proved
+    that they are uniformly Cauchy and hence converge uniformly to $F$. Continuity of $F$ then follows from the
+    uniform limit theorem.
 
-    First consider $x \in C^c$. Note that $C^c$ is open, therefore there exists a
-    neighborhood $(x - \delta, x + \delta) \subset C^c$. Furthermore, since $f_n(x) = 0$ for all $x \in C^c$,
-    we have
+    Informally, the $F_n$ are piecewise affine and thus obviously continuous. To prove this, note that from
+    the fundamental theorem of calculus we have that $F'_n = f_n$. Therefore $|F'_n|$ is bounded above
+    by $(3/2)^n$, hence $F_n$ is Lipschitz continuous and therefore continuous.
+
+    Finally, we have
     \begin{align*}
-      F(x + \delta) - F(x - \delta) = \int_{x-\delta}^{x+\delta}f_n(t) \dt = 0.
+      F(0) &= \lim_{n\to\infty} \int_0^0 f_n(0) \dt = 0,
     \end{align*}
-    Therefore $F$ is continuous at $x \in C^c$, since this choice of $\delta$ works for any $\epsilon$ in the
-    definition of continuity.
-
-    Next consider $x \in C$.
+    and, from lemma \ref{lemma-4-1} we have
+    \begin{align*}
+      F(1)
+      &= \lim_{n\to\infty} \int_0^1 f_n(t) \dt \\
+      &= \lim_{n\to\infty} 1 \\
+      &= 1.
+    \end{align*}
   \end{proof}
 
 
 \item
   \begin{proof}
-    For every point $x \in C^c$, $F$ is constant within a neighborhood of $x$. This implies that $F'(x) = 0$
-    everywhere except at the endpoints of the intervals that comprise $C$. There are countably many endpoints,
-    hence the set of endpoints is a null set (i.e. has measure zero, i.e. is negligible).
+    For every point $x \in C^c$, $F$ is constant within a neighborhood of $x$. Since we showed in question 2
+    that $C$ is a null set (i.e. negligible), this implies that for $x$ outside a null set (``almost
+    every $x$​'') $F$ is differentiable with $F'(x) = 0$.
   \end{proof}
 \end{enumerate}
 
@@ -728,8 +749,6 @@ elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $
     The orbit $S_{\lambda}(x)$ is dense for all $x \in (0, 1]$ iff there exists an $x$ for which it is dense.
   \end{claim*}
   \begin{proof}
-    (running out of time hence informality!)
-
     Let $x$ be such that $S_\lambda(x)$ is dense. Let $y \neq x$. Since the orbit of $x$ is dense, the sequence
     starting at $x$ will visit a point $y'$ arbitrarily close to $y$. The set of points in the tail of the
     sequence, after visiting $y'$, is the orbit of $y'$. Since the orbit of $x$ is dense, the set of points in
@@ -741,15 +760,38 @@ elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $
   \end{proof}
 
 \item
+% \begin{lemma}\label{lemma-5-1}
+%   \begin{align*}
+%     S^n_\lambda(x)
+%     &= x + S^n_\lambda(1) \mod 1 \\
+%     &= x + n\lambda \mod 1
+%   \end{align*}
+% \end{lemma}
   \begin{claim*}
     The orbits are dense iff $\lambda \in (0, 1]$ is irrational.
   \end{claim*}
   \begin{proof}
-    (running out of time hence informality!)
+    Let $j, k \in \N$ and let $\lambda = \frac{j}{k}$ be a rational number in reduced form.
 
-    Let $\lambda \in \Q$. Then $a_n(x) = x + n\lambda \mod 1$.
+    Note that $S^n_\lambda(x) = x + n\lambda \mod 1$. Therefore
+    \begin{align*}
+      S^k_\lambda(x)
+      &= x + k\frac{j}{k} \mod 1 \\
+      &= x + 1 \mod 1 \\
+      &= x.
+    \end{align*}
+    Therefore if $\lambda$ is rational, the sequence returns to its starting point after finitely many
+    iterations. Therefore $\orb(x)$ under $S_\lambda$ is a finite set, therefore it is not dense in $(0, 1]$.
 
+    Now suppose $\lambda$ is irrational. Then
+    \begin{align*}
+      S^k_\lambda(x) = x + k\lambda \mod 1.
+    \end{align*}
+    Since $k\lambda = i$ has no solutions for irrational $\lambda$ and integers $i, k$, we see that the
+    sequence never returns to its starting point.
   \end{proof}
+
+
 \item
   \begin{definition*}
     The $n$-th occupation fraction of $I$ by $S_\lambda$ is
@@ -758,7 +800,7 @@ elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $
     \end{align*}
   \end{definition*}
   \begin{claim*}
-    The occupation fraction has a limiting value: $\lim_{n\to\infty}O_n(I, \lambda) = b - a$.
+    The occupation fraction has a limiting value $\lim_{n\to\infty}O_n(I, \lambda) = b - a$.
   \end{claim*}
 \item
 
