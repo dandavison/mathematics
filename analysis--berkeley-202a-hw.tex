@@ -153,6 +153,13 @@
       But $\mc G$ is countable; a contradiction. Therefore no such countable dense set $\mc G$ exists and $\mc C$
       is not separable.
     \end{proof}
+
+
+    But can find bounded fns with image [0, 1]
+
+    \begin{mdframed}
+      \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-7459.png}
+    \end{mdframed}
   \end{enumerate}
 
 
@@ -269,10 +276,26 @@
     of $f$ at irrational $x$.
   \end{proof}
 
+
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-af4c.png}
+  \end{mdframed}
+
+
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-5fee.png}
+  \end{mdframed}
+
+
+
+
   \newpage
   \begin{mdframed}
     \includegraphics[width=400pt]{img/analysis--berkeley-202a--homework-1-f5e8.png}
   \end{mdframed}
+
+
+
 
 
   \begin{definition*}
@@ -370,8 +393,8 @@
 
 \end{comment}
 
-\section*{Math 202a - HW2 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
+\section*{Math 202a - HW2 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-ebe4.png}
@@ -386,8 +409,8 @@
 \end{intuition*}
 
 
-\begin{itemize}
-\item (1)
+\begin{enumerate}[label=(1.\arabic*)]
+\item
   \begin{claim*}
     $\sim$ is an equivalence relation on $O$.
   \end{claim*}
@@ -407,7 +430,7 @@
     \end{enumerate}
   \end{proof}
 
-\item (2)
+\item
   \begin{claim*}
     $O$ may be written as a countable union of disjoint open intervals.
   \end{claim*}
@@ -464,28 +487,28 @@
     value $\mu(O)$ must not depend on the ordering of the series. This is true by the lemma below.
   \end{proof}
 
-  \begin{lemma}
+  \begin{lemma*}
     Let $\sum_i a_i$ be a series with $a_i > 0$ for all $i$. Then
     \begin{enumerate}
     \item If the series diverges for any ordering of the series, it diverges for all orderings.
     \item If the series converges for any ordering of the series, it converges to the same value for all
       orderings.
     \end{enumerate}
-  \end{lemma}
+  \end{lemma*}
   \begin{proof}
     A sketch proof of the second statement is as follows: given any $\epsilon > 0$ we can identify a tail of
     the sequence whose sum is less than $\epsilon$. Thus the sum of the series is determined by the finite
     head. The sum of this finite head does not depend on its ordering, by commutativity of addition.
   \end{proof}
-\end{itemize}
+\end{enumerate}
 
 
-
+\newpage
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-8d78.png}
 \end{mdframed}
 
-\begin{itemize}
+\begin{enumerate}[label=(2.\arabic*)]
 \item
   \begin{claim*}
     $C$ is compact.
@@ -535,24 +558,24 @@
     \red{TODO} Tie this up by giving explicit coordinates for the intervals in the covering.
   \end{proof}
 
-\end{itemize}
+\end{enumerate}
 
-
+\newpage
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-6b7a.png}
 \end{mdframed}
 
-\begin{enumerate}
+\begin{enumerate}[label=(3.\arabic*)]
 
-\item (1)
+\item
   \begin{definition*}
     Let $X$ be a set formed by iteratively removing open intervals from $[0, 1]$. Let $I_1, I_2, \ldots$ be the
     open intervals that were removed in the formation of $X$. Note that these are disjoint, since a point can
     not be removed more than once. Define the measure of $X$ to be $1 - \sum_k |I_k|$.
   \end{definition*}
 
-\item (2)
-  \begin{definition}[Cantor set of measure $a$]
+\item
+  \begin{definition*}[Cantor set of measure $a$]
     Let $a \in (0, 1)$. The Cantor set of measure $a$ is formed as follows:
 
     Instead of removing $1/3$ at each iteration, we will remove a smaller fraction.
@@ -560,30 +583,49 @@
     Note that $\sum_{i=1}^\infty \frac{1 - a}{2^i} = 1 - a$. So the algorithm will be the same as the standard
     Cantor set construction except that, instead of removing the middle $1/3$, we remove the
     middle $\frac{1 - a}{2^i}$ of each remaining interval at the $i$-th iteration.
-  \end{definition}
+  \end{definition*}
 
 \end{enumerate}
 
 
 
-
+\newpage
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
 \end{mdframed}
 
-\begin{enumerate}
+{\bf Some facts:}\\
+
+$C_n$ is a union of $2^n$ intervals, each of length $1/3^n$, therefore the total length is
+decreasing: $|C_n| = (2/3)^n$. The function $f_n$ has the value $(3/2)^n$ on each interval in $C_n$ and zero
+elsewhere. Therefore $F_n(1) = \(\frac{3}{2}\)^n\(\frac{2}{3}\)^n = 1$ for all $n$.
+
+\begin{enumerate}[label=(4.\arabic*)]
 
 \item
+  \begin{lemma*}\label{lemma-4-1-1}
+    Let $x \in C^c$. There exists $m$ such that $F_{n+1}(x) = F_n(x)$ for all $n > m$.
+  \end{lemma*}
+  \begin{proof}
+    Let $x \in C^c$. Then there exists $m$ such that for all $n > m$ we have $x \in C_n^c$. Let $m$ be such a
+    value and fix an arbitrary $n > m$. We write $C_n$ as a union of $2^n$ closed
+    intervals, $C_n = \bigcup_{i=1}^{2^n} [a_i, b_i]$, and let $k = |\{i \in \{1, \ldots, 2^n\} ~:~ b_i < x\}|$
+    be the number of these intervals whose right endpoints are less than $x$. We have
+    \begin{align*}
+      F_n(x) = k\Big(\frac{3}{2}\Big)^n\Big(\frac{1}{3}\Big)^n = \frac{k}{2^n}.
+    \end{align*}
+    At the next generation, there are $2k$ of these intervals whose right endpoints are less than $x$, and we
+    have
+    \begin{align*}
+      F_{n+1}(x) = 2k\Big(\frac{3}{2}\Big)^{n+1}\Big(\frac{1}{3}\Big)^{n+1} = \frac{k}{2^n}.
+    \end{align*}
+    Therefore $F_{n+1}(x) = F_n(x)$ for all $n > m$.
+  \end{proof}
 
-  \includegraphics[width=400pt]{img/analysis--berkeley-202a-8ce8.png}
 
-  \begin{lemma}
+  \begin{lemma*}\label{lemma-4-1-2}
     Let $[a, b] \subset C$. Then $\int_a^b \big|f_{n+1}(x) - f_n(x)\big| \dx = \frac{1}{3}\frac{1}{2^{n-1}}$.
-  \end{lemma}
-
-  \begin{claim*}
-    For each $x \in [0, 1]$ the limit $F(x) = \lim_{n\to\infty} F_n(x)$ exists.
-  \end{claim*}
+  \end{lemma*}
 
   \begin{proof}
     Let $[a, b] \subset C$. For $x$ in the left or right thirds (closed) of this interval we have
@@ -608,20 +650,29 @@
     \end{align*}
   \end{proof}
 
-  \begin{proof}
-    Let $x \in C$ and consider the difference $|F_{n+1}(x) - F_n(x)|$ between successive terms. We will show
-    that this decreases with $n$ in a way that implies that the sequence $F_0(x), F_1(x), \ldots$ is Cauchy.
+  \begin{claim*}
+    For each $x \in [0, 1]$ the limit $F(x) = \lim_{n\to\infty} F_n(x)$ exists.
+  \end{claim*}
 
-    Let $[a, b] \subset C$ be the closed interval containing $x$. Then
+  \begin{proof}
+    We will study the difference $|F_{n+1}(x) - F_n(x)|$ and show that this decreases with $n$ in a way that
+    implies that the sequence $F_0(x), F_1(x), \ldots$ is Cauchy for all $x \in [0, 1]$.
+
+    First consider $x \in C^c$. Then from lemma (\ref{lemma-4-1-1}) we have that $F_{n+1}(x) - F_{n}(x) = 0$
+    for sufficiently large $n$ and so the sequence is obviously Cauchy.
+
+    Next let $x \in C$ and let $[a, b] \subset C$ be the closed interval containing $x$. Then
     \begin{align*}
       F_{n+1}(x) - F_n(x)
       &= \Big(\int_0^a f_{n+1}(t) \dt + \int_a^x f_{n+1}(t) \dt\Big)
         - \Big(\int_0^a f_{n}(t) \dt   + \int_a^x f_{n}(t) \dt\Big) \\
-      &= \Big(\int_0^a f_{n+1}(t) \dt - \int_0^a f_{n}(t) \dt\Big)
+      &= F_{n+1}(a) - F_{n}(a)
         + \Big(\int_a^x f_{n+1}(t) \dt - \int_a^x f_{n}(t) \dt\Big).
     \end{align*}
-    Now, for $x \in C^c$, the value of the integral to the left is constant as $n$ increases (\red{TODO}).
-    I.e. $\int_0^a f_{n+1}(t) \dt - \int_0^a f_{n}(t) \dt = 0$ and we have (using lemma \eqref{lemma-4-1-1})
+    Now, from lemma (\ref{lemma-4-1-1}) we have that $F_{n+1}(x) - F_{n}(x) = 0$ for sufficiently large $n$,
+    where $x \in C^c$. But this result also holds for $x$ an endpoint of a closed interval in $C$, since such
+    an endpoint is arbitrarily close to a point of $C^c$. Thus we have $F_{n+1}(a) - F_{n}(a) = 0$ and, using
+    lemma \ref{lemma-4-1-2},
     \begin{align*}
       \Big|F_{n+1}(x) - F_n(x)\Big|
       &=    \Big|\int_a^x f_{n+1}(t) \dt - f_{n}(t) \dt\Big| \\
@@ -665,12 +716,12 @@
 \end{enumerate}
 
 
-
+\newpage
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-8c2b.png}
 \end{mdframed}
 
-\begin{enumerate}
+\begin{enumerate}[label=(5.\arabic*)]
 
 \item
   \begin{claim*}
