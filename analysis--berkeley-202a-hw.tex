@@ -441,27 +441,25 @@
     Since $\sim$ is an equivalence relation, the elements of $\mc I$ are disjoint and their union is equal
     to $O$.
 
-    We now show that the elements of $I$ are open intervals:
-
-    Let $I \in \mc I$. Note that $I$ has at least two elements since $I$ is an equivalence class. Suppose $I$
-    is bounded below and above. Then for any $\epsilon > 0$ there exists $a \in I$ such
-    that $a - \inf O < \epsilon$. Note that $[a, x] \subseteq I$ for all $x \in I$ where $a < x$. By a similar
-    argument, $[x, b] \subseteq I$ for all $x \in I$ where $b = \sup I$ and $x < b$. It follows from
-    transitivity of the equivalence relation that the elements of $\mc I$ are intervals of the
-    form $(I_a, I_b)$
-
-    Note that either one of the elements of $I$ has no lower bound, or none do.
-
-    Let $I \in \mc I$.
-
     We now show that the elements of $\mc I$ are open sets. Let $I \in \mc I$ and suppose for a contradiction
     that $I$ is not open. Then there exists $x \in I$ such that no neighborhood of $x$ is contained within $I$.
-    Let $x$ be such a point and let $N(x)$ be a neighborhood of $x$. We claim
-    that $N(x) \cap (\R \setminus O) \neq \emptyset$, i.e. that $N(x)$ contains a point outside $O$. [Incomplete]
+    Let $x$ be such a point. Since $O$ is open, we may choose $\eps > 0$ such
+    that $(x-\eps, x+\eps) \subseteq O$. Since $I$ is not open, for all $\eps' < \eps$, we have
+    that $(x-\eps', x+\eps')$ contains a point outside $I$ in some other interval $J \in \mc I$
+    where $J \neq I$. But this contradicts the disjointness of the partition $\mc I$. Therefore $I$ is open.
 
-    We now show that this is a countable union.
+    Note that $I$ has at least two elements since $I$ is an equivalence class. It follows from transitivity of
+    the equivalence relation that the elements of $\mc I$ are intervals.
 
-    Note that every rational number is in zero or one interval, but not more than one. Furthermore, every
+    % Finally we show that the elements of $\mc I$ are intervals. Let $I \in \mc I$. Note that $I$ has at least
+    % two elements since $I$ is an equivalence class. Suppose $I$ is bounded below and above. Then for
+    % any $\epsilon > 0$ there exists $a \in I$ such that $a - \inf O < \epsilon$. Note that $[a, x] \subseteq I$
+    % for all $x \in I$ where $a < x$. By a similar argument, $[x, b] \subseteq I$ for all $x \in I$
+    % where $b = \sup I$ and $x < b$.  of the form $(I_a, I_b)$
+
+    Finally we show that this is a countable union.
+
+    Note that every rational number is in zero or one interval, but not more than one. Furthermore, every open
     interval contains at least one rational.
 
     Therefore there is a non-injective surjection from a subset of the rationals to the set of intervals.
