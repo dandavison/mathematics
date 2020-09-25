@@ -69,8 +69,27 @@
 \end{mdframed}
 
 \begin{proof}
-
+  From finite additivity we have
+  \begin{align*}
+    \mu(A \cup B) &= \mu(A) + \mu(A \setminus B). \\
+    \mu(A \cup B) &= \mu(B) + \mu(B \setminus A).
+  \end{align*}
+  Summing these gives
+  \begin{align*}
+    2\mu(A \cup B)
+    = \mu(A) + \mu(B) + \mu(A \triangle B)
+  \end{align*}
+  But $\{A \triangle B, A \cap B\}$ is a partition of $A \cup B$ hence from finite additivity
+  again $\mu(A \triangle B) + \mu(A \cap B) = \mu(A \cup B)$. Therefore
+  \begin{align*}
+    2\mu(A \cup B) = \mu(A) + \mu(B) + \mu(A \cup B) - \mu(A \cap B),
+  \end{align*}
+  or equivalently
+  \begin{align*}
+    \mu(A \cup B) = \mu(A) + \mu(B) - \mu(A \cap B).
+  \end{align*}
 \end{proof}
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-3a79.png}
