@@ -1,7 +1,6 @@
 \section*{Math 202a - HW4 - Dan Davison - \texttt{ddavison@berkeley.edu}}
-
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-1e56.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-f604.png}
 \end{mdframed}
 \begin{claim*}
   $\mu$ is a measure.
@@ -32,9 +31,15 @@
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-8824.png}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c187.png}
 \end{mdframed}
 
+
+
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-b168.png}
+\end{mdframed}
 \begin{proof}
   $\emptyset$ is countable, therefore we have $\mu(\emptyset) = 0$ as required, and it remains to show
   that $\mu$ is countably additive.
@@ -63,70 +68,75 @@
   is countable; a contradiction. Therefore no such pair $j, k$ exists and we conclude that exactly one of
   the $B_i$ is uncountable, as required.
 \end{proof}
+
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-2389.png}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
 \end{mdframed}
 
-\begin{proof}
-  From finite additivity we have
-  \begin{align*}
-    \mu(A \cup B) &= \mu(A) + \mu(A \setminus B). \\
-    \mu(A \cup B) &= \mu(B) + \mu(B \setminus A).
-  \end{align*}
-  Summing these gives
-  \begin{align*}
-    2\mu(A \cup B)
-    = \mu(A) + \mu(B) + \mu(A \triangle B)
-  \end{align*}
-  But $\{A \triangle B, A \cap B\}$ is a partition of $A \cup B$ hence from finite additivity
-  again $\mu(A \triangle B) + \mu(A \cap B) = \mu(A \cup B)$. Therefore
-  \begin{align*}
-    2\mu(A \cup B) = \mu(A) + \mu(B) + \mu(A \cup B) - \mu(A \cap B),
-  \end{align*}
-  or equivalently
-  \begin{align*}
-    \mu(A \cup B) = \mu(A) + \mu(B) - \mu(A \cap B).
-  \end{align*}
-\end{proof}
-
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-3a79.png}
-\end{mdframed}
-
-\begin{claim*}
-  If $m$ and $n$ have the same value on any open interval in $B$ then they have the same value on any set
-  in $\mc B$.
-\end{claim*}
-
-\begin{proof}
-  Let $\mc O$ be the collection of open subsets of $\R$.
-
-  Let $O \in \mc O$. Then $O$ can be written as a countable union of disjoint open intervals, $O = \bigcup_i I_i$. Therefore
-  \begin{align*}
-    m(O) = m(\bigcup_i I_i) = \sum_i m(I_i) = \sum_i n(I_i) = n(O).
-  \end{align*}
-   By definition, $\mc B = \sigma(\mc O)$. We want to show that measures $m$ and $n$ agree on every set $A \in \mc B$.
-
-   Let $A \in \mc B$ and suppose $m(A) = n(A)$. Then
-   \begin{align*}
-     m(A^c) = m(X) - m(A) = n(X) - n(A) = n(A^c).
-   \end{align*}
-
-
-
-
-\end{proof}
-Read ``complete measure space​'' at end of Bass ch.3
-
-\newpage
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
 \end{mdframed}
 
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-e9e2.png}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c0b6.png}
 \end{mdframed}
+
+\newpage
+
+
+\begin{comment}
+  EXERCISE 3.3 FROM OLD VERSION
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-2389.png}
+  \end{mdframed}
+
+  \begin{proof}
+    From finite additivity we have
+    \begin{align*}
+      \mu(A \cup B) &= \mu(A) + \mu(A \setminus B). \\
+      \mu(A \cup B) &= \mu(B) + \mu(B \setminus A).
+    \end{align*}
+    Summing these gives
+    \begin{align*}
+      2\mu(A \cup B)
+      = \mu(A) + \mu(B) + \mu(A \triangle B)
+    \end{align*}
+    But $\{A \triangle B, A \cap B\}$ is a partition of $A \cup B$ hence from finite additivity
+    again $\mu(A \triangle B) + \mu(A \cap B) = \mu(A \cup B)$. Therefore
+    \begin{align*}
+      2\mu(A \cup B) = \mu(A) + \mu(B) + \mu(A \cup B) - \mu(A \cap B),
+    \end{align*}
+    or equivalently
+    \begin{align*}
+      \mu(A \cup B) = \mu(A) + \mu(B) - \mu(A \cap B).
+    \end{align*}
+  \end{proof}
+
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-3a79.png}
+  \end{mdframed}
+
+  \begin{claim*}
+    If $m$ and $n$ have the same value on any open interval in $B$ then they have the same value on any set
+    in $\mc B$.
+  \end{claim*}
+
+  \begin{proof}
+    Let $\mc O$ be the collection of open subsets of $\R$.
+
+    Let $O \in \mc O$. Then $O$ can be written as a countable union of disjoint open intervals, $O = \bigcup_i I_i$. Therefore
+    \begin{align*}
+      m(O) = m(\bigcup_i I_i) = \sum_i m(I_i) = \sum_i n(I_i) = n(O).
+    \end{align*}
+    By definition, $\mc B = \sigma(\mc O)$. We want to show that measures $m$ and $n$ agree on every set $A \in \mc B$.
+
+    Let $A \in \mc B$ and suppose $m(A) = n(A)$. Then
+    \begin{align*}
+      m(A^c) = m(X) - m(A) = n(X) - n(A) = n(A^c).
+    \end{align*}
+  \end{proof}
+\end{comment}
