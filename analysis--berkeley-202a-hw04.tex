@@ -9,7 +9,7 @@
   It is given that $\mu$ is non-negative and that $\mu(\emptyset) = 0$. We must prove that $\mu$ is countably
   additive.
 
-  So let $B_1, B_2, \dots$ be a disjoint collection of subsets of $X$. We want to show
+  So let $B_1, B_2, \dots$ be a pairwise disjoint countable collection of subsets of $X$. We want to show
   that $\mu(\bigcup_{i=1}^\infty B_i) = \sum_{i=1}^\infty \mu(B_i)$.
 
   Let's construct an increasing sequence of sets. Define $A_j = \bigcup_{i \leq j} B_i$ for $j=1, 2, \dots$, so
@@ -34,6 +34,37 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c187.png}
 \end{mdframed}
 
+\begin{proof}
+  It is given that $\mu$ is non-negative and that $\mu(\emptyset) = 0$. We must prove that $\mu$ is countably
+  additive.
+
+  Let $A_1, A_2, \dots$ be a sequence of sets in $\mc A$ that decrease to $\emptyset$.
+
+  Define $B_i = A_i \setminus \bigcup_{j > i} A_j = A_i \setminus A_{i+1}$. Then $B_1, B_2, \dots$ are a
+  pairwise disjoint and countable collection of subsets of $X$. We want to show
+  that $\mu(\bigcup_{i=1}^\infty B_i) = \sum_{i=1}^\infty \mu(B_i)$.
+
+  We must use:
+  \begin{enumerate}
+  \item Finite additivity of $\mu$
+  \item The fact that $\lim_{i\to\infty} \mu(A_i) = 0$.
+  \end{enumerate}
+
+  Morally, the result is true because some of the $B_i$ have non-zero measure, and yet their measure decreases
+  to zero, and their sum is bounded above by $\mu(A_1)$.
+
+
+  Note that $\bigcup_{i=1}^\infty B_i = \bigcup_{i=1}^\infty A_i = A_1$.
+
+  From finite additivity we have that for all $n \in \N$
+  \begin{align*}
+    \mu(\bigcup_{i=1}^n B_i) = \sum_{i=1}^n \mu(B_i).
+  \end{align*}
+  Also
+
+
+
+\end{proof}
 
 
 \newpage
@@ -74,6 +105,62 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
 \end{mdframed}
 
+\begin{remark*}
+  The text states that this exercise guarantees that the completion of a $\sigma$-algebra exists.
+
+  A subset $A \subset X$ (not necessarily in $\mc A$) is a \defn{null set} if $A$ is a subset of some element of
+  $\mc A$ which has zero measure. $(X, \mc A, \mu)$ is a \defn{complete} measure space if all null sets are in
+  $\mc A$. The \defn{completion} of $\mc A$ is the smallest complete $\sigma$-algebra $\bar{\mc A}$ containing
+  $\mc A$ such that $(X, \bar{\mc A}, \bar \mu)$ is a complete measure space, where $\bar \mu$ is an extension
+  of $\mu$ from $\mc A$ to $\bar{\mc A}$.
+\end{remark*}
+
+\begin{claim*}
+  $B \in \mc B$ if and only if there exists $A \in \mc A$ and $N \in \mc N$ such that $B = A \cup N$.
+\end{claim*}
+
+\begin{proof}
+  Let $\mc B = \sigma(\mc A \cup \mc N)$.
+
+  Suppose that there exists $A \in \mc A$ and $N \in \mc N$ such that $B = A \cup N$.
+  Then $A \in \mc A \cup \mc N$, therefore $A \in \mc B$. And $N \in \mc A \cup \mc N$,
+  therefore $N \in \mc B$. Therefore $B = A \cup N \in \mc B$.
+
+  For the other direction, suppose that $B \in \mc B$. We want to show that there exists $A \in \mc A$
+  and $N \in \mc N$ such that $B = A \cup N$.
+\end{proof}
+
+\begin{claim*}
+  $\bar{\mu}(B)$ is uniquely defined for each $B \in \mc B$.
+\end{claim*}
+
+\begin{proof}
+  The way one shows uniqueness is: let $\bar{\mu'}$ be another...show that $\bar{\mu'} = \bar{\mu}$.
+\end{proof}
+
+\begin{claim*}
+  $\bar{\mu}(B)$ is a measure on $\mc B$.
+\end{claim*}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{claim*}
+  $(X, \mc B, \bar{\mu})$ is complete.
+\end{claim*}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{claim*}
+  $(X, \mc B, \bar{\mu})$ is the completion of $(X, \mc A, \mu)$.
+\end{claim*}
+
+\begin{proof}
+
+\end{proof}
 \newpage
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
