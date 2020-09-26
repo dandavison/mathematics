@@ -35,6 +35,9 @@
 \end{mdframed}
 
 \begin{proof}
+
+  \red{TODO}
+
   It is given that $\mu$ is non-negative and that $\mu(\emptyset) = 0$. We must prove that $\mu$ is countably
   additive.
 
@@ -115,42 +118,182 @@
   of $\mu$ from $\mc A$ to $\bar{\mc A}$.
 \end{remark*}
 
-\begin{claim*}
+\begin{lemma*}\label{lemma-3-8-1}
   $B \in \mc B$ if and only if there exists $A \in \mc A$ and $N \in \mc N$ such that $B = A \cup N$.
-\end{claim*}
+\end{lemma*}
 
 \begin{proof}
-  Let $\mc B = \sigma(\mc A \cup \mc N)$.
+  Let $\mc B = \sigma(\mc A \cup \mc N)$ and let $\mc C$ be the collection of sets of the specified form,
+  i.e. $\mc C = \{A \cup N ~:~ A \in \mc A, N \in \mc N\}$. We want to show that $\mc B = \mc C$.
 
-  Suppose that there exists $A \in \mc A$ and $N \in \mc N$ such that $B = A \cup N$.
-  Then $A \in \mc A \cup \mc N$, therefore $A \in \mc B$. And $N \in \mc A \cup \mc N$,
-  therefore $N \in \mc B$. Therefore $B = A \cup N \in \mc B$.
+  To show that $\mc C \subseteq \mc B$, let $A \in \mc A$ and $N \in \mc N$. Then $A \in \mc A \cup \mc N$,
+  therefore $A \in \mc B$. And $N \in \mc A \cup \mc N$, therefore $N \in \mc B$.
+  Therefore $C = A \cup N \in \mc B$.
 
-  For the other direction, suppose that $B \in \mc B$. We want to show that there exists $A \in \mc A$
-  and $N \in \mc N$ such that $B = A \cup N$.
+  To show that $\mc B \subseteq \mc C$, first note that $\emptyset \in \mc A$ and $\emptyset \in \mc N$,
+  therefore $\mc A \subset \mc C$ and $\mc N \subset \mc C$, therefore $\mc A \cup \mc N \subset \mc C$.
+
+  We will show that $\mc C$ is a $\sigma$-algebra. Then, since $\mc A \cup \mc N \subset \mc C$, it follows
+  that $\mc B := \sigma(\mc A \cup \mc N) \subseteq \sigma(\mc C) = \mc C$ as required.
+
+  Since $\emptyset \in \mc A$ and $\emptyset \in \mc N$, we have $\emptyset \in \mc C$.
+
+  Let $A \in \mc A$ and $N \in \mc N$. Then $(A \cup N)^C = A^c \cap N^c$. Since $A^c \in \mc A$
+  and $N^c \in \mc N$, we see that $\mc C$ is closed under complements.
+
+  It remains to show that $\mc C$ is closed under countable unions. So let $A_1, A_2, \dots \in \mc A$ and
+  let $N_1, N_2, \dots \in \mc N$, and define $C_i = A_i \cup N_i$ for all $i$. Then
+  \begin{align*}
+    \bigcup_{i=1}^\infty C_i = \bigcup_{i=1}^\infty \big(A_i \cup N_i\big) = \big(\bigcup_{i=1}^\infty A_i\big) \bigcup \big(\bigcup_{i=1}^\infty N_i \big).
+  \end{align*}
+  Since $\big(\bigcup_{i=1}^\infty A_i\big) \in \mc A$ and $\big(\bigcup_{i=1}^\infty N_i\big) \in \mc N$ we see that $\big(\bigcup_{i=1}^\infty C_i\big) \in C$ as required.
 \end{proof}
 
 \begin{claim*}
-  $\bar{\mu}(B)$ is uniquely defined for each $B \in \mc B$.
+  Define $\bar{\mu}(B) = \mu(A)$ if $B = A \cup N$ with $A \in \mc A$ and $N \in \mc N$.
+
+  Then $\bar{\mu}(B)$ is uniquely defined for each $B \in \mc B$.
 \end{claim*}
 
 \begin{proof}
-  The way one shows uniqueness is: let $\bar{\mu'}$ be another...show that $\bar{\mu'} = \bar{\mu}$.
+  Let $A \in \mc A$ and $N \in \mc N$ and let $B = A \cup N \in \mc B$.
+
+  Now let $A' \in \mc A$ and $N' \in N$ such that $B = A' \cup N'$.
+
+  Without loss of generality, suppose that $A' \subseteq A$.
+
+  We must show that $\bar{\mu}(A \cup N) = \bar{\mu}(A' \cup N')$. This is equivalent to showing
+  that $\mu(A) = \mu(A')$.
+
+  Note that $\mu(A) = \mu(A \cap A') + \mu(A \setminus A')$ and that $\mu(A') = \mu(A \cap A')$.
+
+  We will show that $\mu(A \setminus A') = 0$. It will then follow that $\mu(A) = \mu(A \cap A') = \mu(A')$ as
+  required.
+
+  Let $n_1, n_2, \dots$ be indices of null sets in $\mc A$, so that $\mu(A_{n_i}) = 0$ for all $i$.
+
+  Note that since $N$ is a null set, there exists $A_{n_i} \in \mc A$ such that $N \subseteq A_{n_i}$
+  and $\mu(A_{n_i}) = 0$. Similarly, there exists $A_{n_j} \in \mc A$ such that $N' \subseteq A_{n_j}$
+  and $\mu(A_{n_j}) = 0$.
+
+  Let $A_{n_k} = A_{n_i} \cup A_{n_j}$. Note that $\mu(A_{n_k}) = 0$
+  since $\mu(A_{n_k}) \leq \mu(A_{n_i}) + \mu(A_{n_j}) = 0 + 0 = 0$.
+
+  Now, we have $A \subseteq B \subseteq A' \cup A_{n_k}$.
+
+  Therefore, since $A' \subseteq A$, we have
+  \begin{align*}
+        &(A \cap A') \cup (A \setminus A') \subseteq (A \cap A') \cup A_{n_k} \\
+    \iff &(A \setminus A') \subseteq A_{n_k}.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \mu(A \setminus A') \leq \mu(A_{n_k}) = 0,
+  \end{align*}
+  therefore $\mu(A \setminus A') = 0$ as required.
 \end{proof}
 
 \begin{claim*}
-  $\bar{\mu}(B)$ is a measure on $\mc B$.
+  $\bar{\mu}$ is a measure on $\mc B$.
 \end{claim*}
 
 \begin{proof}
+  Since $\emptyset \in \mc A$ and $\emptyset \in \mc N$ we
+  have $\bar\mu(\emptyset) = \bar\mu(\emptyset \cup \emptyset) = \mu(\emptyset) = 0$ as required.
 
+  It remains to show that $\bar\mu$ is countably additive on $\mc B$. So let $B_1, B_2, \dots \in \mc B$ be
+  countable and pairwise disjoint where for each $i$ these decompose as $B_i = A_i \cup N_i$
+  with $A_i \in \mc A$ and $N_i \in \mc N$. Note that, since the $B_i$ are pairwise disjoint, so the $A_i$ are
+  pairwise disjoint (and also the $N_i$). Then
+  \begin{align*}
+    \bar\mu\Big(\bigcup_{i=1}^\infty B_i\Big)
+    = \bar\mu\Big(\bigcup_{i=1}^\infty (A_i \cup N_i)\Big)
+    = \bar\mu\Big(\bigcup_{i=1}^\infty A_i ~\cup~ \bigcup_{i=1}^\infty N_i\Big).
+  \end{align*}
+  Therefore, since $\bigcup_{i=1}^\infty A_i \in \mc A$ and $\bigcup_{i=1}^\infty N_i \in \mc N$,
+  \begin{align*}
+    \bar\mu\Big(\bigcup_{i=1}^\infty B_i\Big)
+    = \mu\Big(\bigcup_{i=1}^\infty A_i\Big)
+    = \sum_{i=1}^\infty \mu(A_i)
+    = \sum_{i=1}^\infty \bar\mu(B_i),
+  \end{align*}
+  as required.
 \end{proof}
+
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
+
+\begin{remark*}
+  A subset $A \subset X$ (not necessarily in $\mc A$) is a \defn{null set} if $A$ is a subset of some element of
+  $\mc A$ which has zero measure. $(X, \mc A, \mu)$ is a \defn{complete} measure space if all null sets are in
+  $\mc A$. The \defn{completion} of $\mc A$ is the smallest complete $\sigma$-algebra $\bar{\mc A}$ containing
+  $\mc A$ such that $(X, \bar{\mc A}, \bar \mu)$ is a complete measure space, where $\bar \mu$ is an extension
+  of $\mu$ from $\mc A$ to $\bar{\mc A}$.
+\end{remark*}
 
 \begin{claim*}
   $(X, \mc B, \bar{\mu})$ is complete.
 \end{claim*}
 
 \begin{proof}
+  By definition, $(X, \mc B, \bar{\mu})$ is complete if all null sets with respect to $\bar\mu$ and $\mc B$ are
+  in $\mc B$.
+
+  Let $N_1$ be a null set with respect to $\bar\mu$ and $\mc B$. Then there exists $B_N \in \mc B$
+  with $\bar\mu(B_N) = 0$ such that $N_1 \subseteq B_N$.
+
+  We want to show that $N_1 \in \mc B$.
+
+  Let $A_N \in \mc A$ and $N_2 \in \mc N$ be such that $B_N = A_N \cup N_2$ (we may stipulate this according to
+  lemma \eqref{lemma-3-8-1}).
+
+  Then $N_1 \subseteq A_N \cup N_2$.
+
+  We want to show that there exist $A \in \mc A$ and $N \in \mc N$ such that $N_1 = A \cup N$.
+
+  Note that either could be $\emptyset$, so it suffices to show that $N_1 \in \mc A$ or $N_1 \in \mc N$.
+
+  Take the idea that $N_1 \in \mc N$. Why should this be true? It requires that a null $A$ covers $N_1$. But I
+  don't see why that should be true.
+
+  So take the idea that $N_1 \in \mc A$. Why should this be true? I don't see why: we know that $N_1$ is
+  covered by a null $B$, but I don't see why that null $B$ should be an $A$ as opposed to being the union of
+  non-empty $A$ and $N$.
+
+  So the remaining possibility is that $N_1$ is the union of non-empty $A$ and $N$.
+
+  When we pick $N_1$ we're essentially picking a collection of null $A_N$s that all have measure zero
+  under $\mu$. For every one of those $A_N$s it's the case that there's a $\mu$-null set $N$ together with
+  which $A_N \cup N$ cover $N_1$. But why should they not be a proper superset of $N_1$?
+
+  \red{TODO}
+
+
+
+
+
+
+  We will do this by showing that $N_1 \in \mc N$, since then $N_1 \in \mc B = \sigma(\mc A \cup \mc N)$.
+
+  So we want to show that there exists $N_2 \in \mc A$ such that $N_1 \subseteq N_2$ and $\mu(N_2) = 0$.
+
+  Does $N_2 = B$ work? We know that $N_1 \subseteq B$ and $\bar\mu(B) = 0$. So we just need to show that $B \in \mc A$.
+
+  Why would $B \in \mc A$?
+
+  Recall that $\mc B = \{A \cup N ~:~ A \in \mc A, N \in \mc N\}$
+
+  So we know that $B$ can be decomposed as $B = A \cup N_2$ where $A \in \mc A$ and $N_2 \in \mc N$.
+
+  We can decompose $B$ as $B = A \cup N_2$ where $A \in \mc A$ and $N_2 \in \mc N$. Since $\bar\mu(B) = 0$ we
+  have
+  \begin{align*}
+    0 = \bar\mu(B) = \bar\mu(A \cup (N_2 \setminus A)) \leq  \bar\mu(A \cup (N_2 \setminus A)) \leq
+  \end{align*}
+
+
+
+
+
 
 \end{proof}
 
