@@ -220,7 +220,7 @@
   as required.
 \end{proof}
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
+
 
 \begin{remark*}
   A subset $A \subset X$ (not necessarily in $\mc A$) is a \defn{null set} if $A$ is a subset of some element of
@@ -238,72 +238,32 @@
   By definition, $(X, \mc B, \bar{\mu})$ is complete if all null sets with respect to $\bar\mu$ and $\mc B$ are
   in $\mc B$.
 
-  Let $N_1$ be a null set with respect to $\bar\mu$ and $\mc B$. Then there exists $B_N \in \mc B$
-  with $\bar\mu(B_N) = 0$ such that $N_1 \subseteq B_N$.
+  Let $N_1$ be a null set with respect to $\bar\mu$ and $\mc B$. Then there exists $B^{(N)}_1 \in \mc B$
+  with $\bar\mu(B^{(N)}_1) = 0$ such that $N_1 \subseteq B^{(N)}_1$.
 
-  We want to show that $N_1 \in \mc B$.
+  Since $B^{(N)}_1 \in \mc B$ it is of the form $B^{(N)}_1 = A^{(N)}_1 \cup N_2$ where $A^{(N)}_1 \in \mc A$ and $N_2 \in \mc N$. Therefore
+  $N_1 \subseteq A^{(N)}_1 \cup N_2$.
 
-  Let $A_N \in \mc A$ and $N_2 \in \mc N$ be such that $B_N = A_N \cup N_2$ (we may stipulate this according to
-  lemma \eqref{lemma-3-8-1}).
+  But since $N_2 \in \mc N$, there exists $A^{(N)}_2 \in \mc A$ such that $N_2 \subseteq A^{(N)}_2$.
 
-  Then $N_1 \subseteq A_N \cup N_2$.
-
-  We want to show that there exist $A \in \mc A$ and $N \in \mc N$ such that $N_1 = A \cup N$.
-
-  Note that either could be $\emptyset$, so it suffices to show that $N_1 \in \mc A$ or $N_1 \in \mc N$.
-
-  Take the idea that $N_1 \in \mc N$. Why should this be true? It requires that a null $A$ covers $N_1$. But I
-  don't see why that should be true.
-
-  So take the idea that $N_1 \in \mc A$. Why should this be true? I don't see why: we know that $N_1$ is
-  covered by a null $B$, but I don't see why that null $B$ should be an $A$ as opposed to being the union of
-  non-empty $A$ and $N$.
-
-  So the remaining possibility is that $N_1$ is the union of non-empty $A$ and $N$.
-
-  When we pick $N_1$ we're essentially picking a collection of null $A_N$s that all have measure zero
-  under $\mu$. For every one of those $A_N$s it's the case that there's a $\mu$-null set $N$ together with
-  which $A_N \cup N$ cover $N_1$. But why should they not be a proper superset of $N_1$?
-
-  \red{TODO}
-
-
-
-
-
-
-  We will do this by showing that $N_1 \in \mc N$, since then $N_1 \in \mc B = \sigma(\mc A \cup \mc N)$.
-
-  So we want to show that there exists $N_2 \in \mc A$ such that $N_1 \subseteq N_2$ and $\mu(N_2) = 0$.
-
-  Does $N_2 = B$ work? We know that $N_1 \subseteq B$ and $\bar\mu(B) = 0$. So we just need to show that $B \in \mc A$.
-
-  Why would $B \in \mc A$?
-
-  Recall that $\mc B = \{A \cup N ~:~ A \in \mc A, N \in \mc N\}$
-
-  So we know that $B$ can be decomposed as $B = A \cup N_2$ where $A \in \mc A$ and $N_2 \in \mc N$.
-
-  We can decompose $B$ as $B = A \cup N_2$ where $A \in \mc A$ and $N_2 \in \mc N$. Since $\bar\mu(B) = 0$ we
-  have
-  \begin{align*}
-    0 = \bar\mu(B) = \bar\mu(A \cup (N_2 \setminus A)) \leq  \bar\mu(A \cup (N_2 \setminus A)) \leq
-  \end{align*}
-
-
-
-
-
-
+  Therefore $N_1 \subseteq A^{(N)}_1 \cup A^{(N)}_2$. But then $N_1 \in \mc A$, hence $N_1 \in \mc B$ as required.
 \end{proof}
 
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
 \begin{claim*}
   $(X, \mc B, \bar{\mu})$ is the completion of $(X, \mc A, \mu)$.
+
+  This means that $\mc B$ is the smallest $\sigma$-algebra containing $\mc A$ such that
+  \begin{enumerate}
+  \item $\mc B$ is complete with respect to $\bar{\mu}$.
+  \item $\bar{\mu}$ is an extension of $\mu$.
+  \end{enumerate}
 \end{claim*}
 
 \begin{proof}
-
+  We've already shown all this?
 \end{proof}
+
 \newpage
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
