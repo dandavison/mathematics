@@ -238,15 +238,16 @@
   By definition, $(X, \mc B, \bar{\mu})$ is complete if all null sets with respect to $\bar\mu$ and $\mc B$ are
   in $\mc B$.
 
-  Let $N_1$ be a null set with respect to $\bar\mu$ and $\mc B$. Then there exists $B^{(N)}_1 \in \mc B$
-  with $\bar\mu(B^{(N)}_1) = 0$ such that $N_1 \subseteq B^{(N)}_1$.
+  Let $N_1$ be a null set with respect to $\bar\mu$ and $\mc B$. Then there exists $B_1 \in \mc B$
+  with $\bar\mu(B_1) = 0$ such that $N_1 \subseteq B_1$.
 
-  Since $B^{(N)}_1 \in \mc B$ it is of the form $B^{(N)}_1 = A^{(N)}_1 \cup N_2$ where $A^{(N)}_1 \in \mc A$ and $N_2 \in \mc N$. Therefore
-  $N_1 \subseteq A^{(N)}_1 \cup N_2$.
+  Since $B_1 \in \mc B$ it is of the form $B_1 = A_1 \cup N_2$ where $A_1 \in \mc A$ and $N_2 \in \mc N$. Therefore
+  $N_1 \subseteq A_1 \cup N_2$.
 
-  But since $N_2 \in \mc N$, there exists $A^{(N)}_2 \in \mc A$ such that $N_2 \subseteq A^{(N)}_2$.
+  Furthermore, since $N_2 \in \mc N$, there exists $A_2 \in \mc A$ such that $N_2 \subseteq A_2$.
+  Therefore $N_1 \subseteq A_1 \cup A_2$.
 
-  Therefore $N_1 \subseteq A^{(N)}_1 \cup A^{(N)}_2$. But then $N_1 \in \mc A$, hence $N_1 \in \mc B$ as required.
+  But then $N_1 \in \mc N$, hence $N_1 \in \mc B$ as required.
 \end{proof}
 
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
@@ -255,13 +256,24 @@
 
   This means that $\mc B$ is the smallest $\sigma$-algebra containing $\mc A$ such that
   \begin{enumerate}
-  \item $\mc B$ is complete with respect to $\bar{\mu}$.
-  \item $\bar{\mu}$ is an extension of $\mu$.
+  \item
+  \item
   \end{enumerate}
 \end{claim*}
 
 \begin{proof}
-  We've already shown all this?
+  We've already shown that $(X, \mc B, \bar\mu)$ is complete with $\bar{\mu}$ an extension of $\mu$. It remains
+  to show that no smaller $\sigma$-algebra exists that is complete with respect to its associated measure.
+
+  Let $(X, \mc B', \mu')$ be complete, with $\mu'$ an extension of $\mu$. Let $A \cup N \in \mc B$,
+  where $A \in \mc A$ and $N \in \mc N$.
+
+  Suppose for a contradiction that $A \cup N \notin \mc B'$.
+
+  What is the contradiction? It could be that $(X, \mc B', \mu')$ is not complete, or that $\mu'$ is not an
+  extension of $\mu$.
+
+  \red{TODO}
 \end{proof}
 
 \newpage
@@ -269,16 +281,124 @@
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
 \end{mdframed}
 
+\begin{claim*}
+  $\mu^*$ is an outer measure.
+\end{claim*}
+
+\begin{proof}
+  Note that $\mu^*(\emptyset) = 0$, since $\emptyset \in \mc A$ with $\mu(\emptyset) = 0$.
+
+  It remains to show that $\mu^*$ is countably sub-additive.
+
+  OK, so.
+
+  Let $A_1, A_2, \dots \in \mc A$. We must show that
+  \begin{align*}
+    \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \mu^*(A_i).
+  \end{align*}
+  What we know is that $\mu$ is countably additive, and that $\mu^*$ is the infimum over measures of covering
+  subsets as above.
+
+  Do we know that each $A_i$ is covered? Yes, because $X \in \mc A$.
+
+  For each $i$, let $C_{i1}, C_{i2}, \dots \in \mc A$ be such that $A_i \subseteq \bigcup_{j=1}^\infty C_{ij}$.
+
+  Fix $\epsilon > 0$ and choose the $C_{ij}$ such that
+  \begin{align*}
+    \sum_{j=1}^\infty C_{ij} < \mu^*(A_i) + \epsilon/2^i.
+  \end{align*}
+  (We can do this because $\mu^*(A_i)$ is defined as an infimum over covering sets and so for
+  any $\epsilon_i > 0$ we can find a covering set $C_{i1}, C_{i2}, \dots$ such
+  that $\sum_{j=1}^\infty C_{ij} < \mu^*(A_i) + \epsilon_i$.)
+
+  Then we have
+  \begin{align*}
+    \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \sum_{j=1}^\infty C_{ij} < \sum_{i=1}^\infty \mu^*(A_i) + \epsilon,
+  \end{align*}
+  as required.
+\end{proof}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
+
+\begin{lemma}[Bass theorem 4.6 ``Carathéodory theorem​'']\label{carathéodory-theorem}
+  If $\mu^*$ is an outer measure on all subsets of $X$ then the collection $\mc B$ of $\mu^*$-measurable sets
+  are a $\sigma$-algebra. The $\sigma$-algebra $\mc B$ is complete with respect to $\mu^*$. If $\mu$ is the
+  restriction of $\mu^*$ to $\mc B$ then $(X, \mc B, \mu)$ is a measure space.
+\end{lemma}
+
+\begin{claim*}
+  Each set in $\mc A$ is $\mu^*$-measurable.
+\end{claim*}
+
+\begin{proof}
+  Let $A \in \mc A$. We must show that
+  \begin{align*}
+    \mu^*(A) = \mu^*(A \cap E) + \mu^*(A \cap E^c),
+  \end{align*}
+  for every $E \subseteq X$.
+
+  So let $E \subseteq X$. Note that
+  \begin{align*}
+    \mu^*(A) \leq \mu^*(A \cap E) + \mu^*(A \cap E^c).
+  \end{align*}
+  is a statement of finite sub-additivity of $\mu^*$, which follows from countable sub-additivity of $\mu^*$
+  (form a countable sequence with $A_1 = A \cap E$, $A_2 = A \cap E^c$, and $A_i = \emptyset$ for $i > 2$ and
+  apply countable additivity), so what remains to prove is that
+  \begin{align*}
+    \mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \cap E^c).
+  \end{align*}
+  Fix $\eps > 0$ and let $C_{1}, C_{2}, \dots \in \mc A$ be such that $A \subseteq \bigcup_{i=1}^\infty C_{i}$ with
+  \begin{align*}
+    \sum_{i=1}^\infty C_i < \mu^*(A) + \eps.
+  \end{align*}
+  Then
+  \begin{align*}
+    \mu^*(A) + \eps
+    &> \sum_{i=1}^\infty \mu(C_i) \\
+    &= \sum_{i=1}^\infty \mu(C_i \cap E) + \sum_{i=1}^\infty \mu(C_i \cap E^c) \\
+    &\geq \mu(A \cap E) + \mu(A \cap E^c).
+  \end{align*}
+  Since $\eps$ is arbitrary it follows that
+  \begin{align*}
+    \mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \cap E^c),
+  \end{align*}
+  as required.
+\end{proof}
 
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c0b6.png}
 \end{mdframed}
 
-\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{comment}
+\newpage
   EXERCISE 3.3 FROM OLD VERSION
   \begin{mdframed}
     \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-2389.png}
