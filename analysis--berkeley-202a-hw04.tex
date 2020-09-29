@@ -12,9 +12,8 @@
   So let $B_1, B_2, \dots$ be a pairwise disjoint countable collection of subsets of $X$. We want to show
   that $\mu(\bigcup_{i=1}^\infty B_i) = \sum_{i=1}^\infty \mu(B_i)$.
 
-  Let's construct an increasing sequence of sets. Define $A_j = \bigcup_{i \leq j} B_i$ for $j=1, 2, \dots$, so
-  that $A_1, A_2, \dots$ is an increasing sequence of sets. Note
-  that $\bigcup_{i=1}^\infty B_i = \bigcup_{j=1}^\infty A_j$ therefore, by
+  Define $A_j = \bigcup_{i \leq j} B_i$ for $j=1, 2, \ldots$, so that $A_1, A_2, \ldots$ is an increasing
+  sequence of sets. Note that $\bigcup_{i=1}^\infty B_i = \bigcup_{j=1}^\infty A_j$ therefore, by
   hypothesis,
   $\mu\big(\bigcup_{i=1}^\infty B_i\big) = \mu\big(\bigcup_{j=1}^\infty A_j\big) = \lim_{j\to\infty} \mu(A_j)$.
 
@@ -35,38 +34,34 @@
 \end{mdframed}
 
 \begin{proof}~\\
+  It is given that $\mu$ is non-negative and that $\mu(\emptyset) = 0$. In order to prove that $\mu$ is a
+  measure, we must prove that $\mu$ is countably additive.
 
-  \red{TODO}
-
-  It is given that $\mu$ is non-negative and that $\mu(\emptyset) = 0$. We must prove that $\mu$ is countably
-  additive.
-
-  Let $A_1, A_2, \dots$ be a sequence of sets in $\mc A$ that decrease to $\emptyset$.
-
-  Define $B_i = A_i \setminus \bigcup_{j > i} A_j = A_i \setminus A_{i+1}$. Then $B_1, B_2, \dots$ are a
-  pairwise disjoint and countable collection of subsets of $X$. We want to show
-  that $\mu(\bigcup_{i=1}^\infty B_i) = \sum_{i=1}^\infty \mu(B_i)$.
-
-  We must use:
-  \begin{enumerate}
-  \item Finite additivity of $\mu$
-  \item The fact that $\lim_{i\to\infty} \mu(A_i) = 0$.
-  \end{enumerate}
-
-  Morally, the result is true because some of the $B_i$ have non-zero measure, and yet their measure decreases
-  to zero, and their sum is bounded above by $\mu(A_1)$.
-
-
-  Note that $\bigcup_{i=1}^\infty B_i = \bigcup_{i=1}^\infty A_i = A_1$.
-
-  From finite additivity we have that for all $n \in \N$
+  Let $B_1, B_2, \ldots \in \mc A$ be a countable pairwise disjoint collection of sets. It is given that $\mu$
+  is finitely additive, so we have
   \begin{align*}
-    \mu(\bigcup_{i=1}^n B_i) = \sum_{i=1}^n \mu(B_i).
+    \sum_{i=1}^\infty \mu(B_i) = \lim_{n\to\infty} \sum_{i=1}^n \mu(B_i) = \lim_{n\to\infty} \mu(\bigcup_{i=1}^n B_i).
   \end{align*}
-  Also
-
-
-
+  Therefore in order to prove countable additivity, it suffices to prove
+  \begin{align*}
+    \mu\big(\bigcup_{i=1}^\infty B_i \big) = \lim_{n\to\infty} \mu(\bigcup_{i=1}^n B_i).
+  \end{align*}
+  Let $Y = \bigcup_{i=1}^\infty B_i$ and define $S_n := \bigcup_{i=1}^n B_i$, so that the result we want to
+  prove is now
+  \begin{align*}
+    \mu(Y) = \lim_{n\to\infty} \mu(S_n).
+  \end{align*}
+  Note that the sequence $(Y \setminus S_1), (Y \setminus S_2), \ldots$ decreases to $\emptyset$,
+  therefore $\lim_{n\to\infty}\mu(Y \setminus S_n) = 0$. Note also that by finite additivity of $\mu$ for
+  all $n \in \N$ we have
+  \begin{align*}
+    \mu(Y) = \mu(S_n) + \mu(Y \setminus S_n).
+  \end{align*}
+  Taking the limit as $n \to \infty$ we have
+  \begin{align*}
+    \mu(Y) = \lim_{n\to\infty} \mu(S_n),
+  \end{align*}
+  as required.
 \end{proof}
 
 
@@ -78,7 +73,7 @@
   $\emptyset$ is countable, therefore we have $\mu(\emptyset) = 0$ as required, and it remains to show
   that $\mu$ is countably additive.
 
-  So let $B_1, B_2, \dots$ be a disjoint countable collection of subsets of $X$. We want to show
+  So let $B_1, B_2, \ldots$ be a disjoint countable collection of subsets of $X$. We want to show
   that $\mu(\bigcup_{i=1}^\infty B_i) = \sum_{i=1}^\infty \mu(B_i)$.
 
   % Consider $\bigcup_{i=1}^\infty B_i$. It could be uncountable, since the $B_i$ could be a countable partition
@@ -94,9 +89,12 @@
 
   Next, suppose $\bigcup_{i=1}^\infty B_i$ is uncountable. We want to show
   that $\sum_{i=1}^\infty \mu(B_i) = 1$. Equivalently, we want to show that exactly one of the $B_i$ is
-  uncountable. Note that $\ms A = \sigma(\ms A)$, and therefore we have by hypothesis that either $B_i$ is
-  countable or $B_i^c$ is countable, for all $i$. Clearly some $B_i$ is uncountable or else we would
+  uncountable.
+
+  Note that $\ms A = \sigma(\ms A)$, and therefore we have by hypothesis that either $B_i$ is countable
+  or $B_i^c$ is countable, for all $i$. Clearly some $B_i$ is uncountable or else we would
   have $\sum_{i=1}^\infty \mu(B_i) = \sum_{i=1}^\infty 0 = 0 \neq \mu\big(\bigcup_{i=1}^\infty B_i\big)$.
+
   Suppose for a contradiction that there exists $j \neq k$ such that $B_j$ and $B_k$ are uncountable. Note
   that $B_j$ and $B_k$ are disjoint, therefore $B_k \subseteq B_j^c$. But $B_j^c$ is countable, therefore $B_k$
   is countable; a contradiction. Therefore no such pair $j, k$ exists and we conclude that exactly one of
@@ -131,8 +129,8 @@
   Let $A \in \mc A$ and $N \in \mc N$. Then $(A \cup N)^C = A^c \cap N^c$. Since $A^c \in \mc A$
   and $N^c \in \mc N$, we see that $\mc C$ is closed under complements.
 
-  It remains to show that $\mc C$ is closed under countable unions. So let $A_1, A_2, \dots \in \mc A$ and
-  let $N_1, N_2, \dots \in \mc N$, and define $C_i = A_i \cup N_i$ for all $i$. Then
+  It remains to show that $\mc C$ is closed under countable unions. So let $A_1, A_2, \ldots \in \mc A$ and
+  let $N_1, N_2, \ldots \in \mc N$, and define $C_i = A_i \cup N_i$ for all $i$. Then
   \begin{align*}
     \bigcup_{i=1}^\infty C_i = \bigcup_{i=1}^\infty \big(A_i \cup N_i\big) = \big(\bigcup_{i=1}^\infty A_i\big) \bigcup \big(\bigcup_{i=1}^\infty N_i \big).
   \end{align*}
@@ -160,7 +158,7 @@
   We will show that $\mu(A \setminus A') = 0$. It will then follow that $\mu(A) = \mu(A \cap A') = \mu(A')$ as
   required.
 
-  Let $n_1, n_2, \dots$ be indices of null sets in $\mc A$, so that $\mu(A_{n_i}) = 0$ for all $i$.
+  Let $n_1, n_2, \ldots$ be indices of null sets in $\mc A$, so that $\mu(A_{n_i}) = 0$ for all $i$.
 
   Note that since $N$ is a null set, there exists $A_{n_i} \in \mc A$ such that $N \subseteq A_{n_i}$
   and $\mu(A_{n_i}) = 0$. Similarly, there exists $A_{n_j} \in \mc A$ such that $N' \subseteq A_{n_j}$
@@ -191,7 +189,7 @@
   Since $\emptyset \in \mc A$ and $\emptyset \in \mc N$ we
   have $\bar\mu(\emptyset) = \bar\mu(\emptyset \cup \emptyset) = \mu(\emptyset) = 0$ as required.
 
-  It remains to show that $\bar\mu$ is countably additive on $\mc B$. So let $B_1, B_2, \dots \in \mc B$ be
+  It remains to show that $\bar\mu$ is countably additive on $\mc B$. So let $B_1, B_2, \ldots \in \mc B$ be
   countable and pairwise disjoint where for each $i$ these decompose as $B_i = A_i \cup N_i$
   with $A_i \in \mc A$ and $N_i \in \mc N$. Note that, since the $B_i$ are pairwise disjoint, so the $A_i$ are
   pairwise disjoint (and also the $N_i$). Then
@@ -235,18 +233,18 @@
 \end{claim*}
 
 \begin{proof}~\\
-  We've already shown that $(X, \mc B, \bar\mu)$ is complete with $\bar{\mu}$ an extension of $\mu$. It remains
-  to show that no smaller $\sigma$-algebra exists that is complete with respect to its associated measure.
+  We've already shown that $(X, \mc B, \bar\mu)$ is complete, with $\mc A \subseteq \mc B$ and with $\bar{\mu}$
+  an extension of $\mu$. It remains to show that no smaller $\sigma$-algebra exists that satisfies those same
+  conditions.
 
-  Let $(X, \mc B', \mu')$ be complete, with $\mu'$ an extension of $\mu$. Let $A \cup N \in \mc B$,
-  where $A \in \mc A$ and $N \in \mc N$.
+  So let $(X, \mc B', \mu')$ be complete, with $\mc A \subseteq \mc B$ and with $\mu'$ an extension of $\mu$.
+  We will show that $\mc B \subseteq \mc B'$.
 
-  Suppose for a contradiction that $A \cup N \notin \mc B'$.
+  Let $A \cup N \in \mc B$, where $A \in \mc A$ and $N \in \mc N$. We know that $N \in \mc B'$, since $\mc B'$
+  is complete. And we know that $A \in \mc B'$, since $A \in \mc A \subseteq B'$.
+  Therefore $A \cup N \in \mc B'$, since $\mc B'$ is closed under finite unions.
 
-  What is the contradiction? It could be that $(X, \mc B', \mu')$ is not complete, or that $\mu'$ is not an
-  extension of $\mu$.
-
-  \red{TODO}
+  Therefore $\mc B \subseteq \mc B'$, as required.
 \end{proof}
 
 \newpage
@@ -263,7 +261,7 @@
 
   It remains to show that $\mu^*$ is countably sub-additive.
 
-  Let $A_1, A_2, \dots \in X$. We must show that
+  Let $A_1, A_2, \ldots \in X$. We must show that
   \begin{align*}
     \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \mu^*(A_i).
   \end{align*}
@@ -330,16 +328,19 @@
   \begin{align*}
     \mu^*(B) \geq \mu^*(B \cap E) + \mu^*(B \cap E^c).
   \end{align*}
-  Fix $\eps > 0$ and let $C_{1}, C_{2}, \dots \in \mc A$ be such that $B \subseteq \bigcup_{i=1}^\infty C_{i}$ with
+  Let $\eps > 0$ and let $C \in \mc A$ be such that $B \subseteq C$ with
   \begin{align*}
-    \sum_{i=1}^\infty C_i < \mu^*(B) + \eps.
+    \mu(C_i) < \mu^*(B) + \eps.
   \end{align*}
+  (As before, to see that we can do this note that if we could not, then $\mu^*(B) + \eps$ would be a lower
+  bound, contradicting $\mu^*(B)$ as the infimum.)
+
   Then
   \begin{align*}
     \mu^*(B) + \eps
-    &> \sum_{i=1}^\infty \mu(C_i) \\
-    &= \sum_{i=1}^\infty \mu(C_i \cap E) + \sum_{i=1}^\infty \mu(C_i \cap E^c) \\
-    &\geq \mu(B \cap E) + \mu(B \cap E^c).
+    &> \mu(C) \\
+    &= \mu(C \cap E) + \mu(C \cap E^c) \\
+    &\geq \mu^*(B \cap E) + \mu^*(B \cap E^c).
   \end{align*}
   Since $\eps$ is arbitrary it follows that
   \begin{align*}
@@ -347,6 +348,21 @@
   \end{align*}
   as required.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{claim*}
   $\mu^*$ agrees with the measure $\mu$ on $\mc A$.
