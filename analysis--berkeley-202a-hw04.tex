@@ -108,19 +108,9 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
 \end{mdframed}
 
-\begin{remark*}
-  The text states that this exercise guarantees that the completion of a $\sigma$-algebra exists.
-
-  A subset $A \subset X$ (not necessarily in $\mc A$) is a \defn{null set} if $A$ is a subset of some element of
-  $\mc A$ which has zero measure. $(X, \mc A, \mu)$ is a \defn{complete} measure space if all null sets are in
-  $\mc A$. The \defn{completion} of $\mc A$ is the smallest complete $\sigma$-algebra $\bar{\mc A}$ containing
-  $\mc A$ such that $(X, \bar{\mc A}, \bar \mu)$ is a complete measure space, where $\bar \mu$ is an extension
-  of $\mu$ from $\mc A$ to $\bar{\mc A}$.
-\end{remark*}
-
-\begin{lemma*}\label{lemma-3-8-1}
+\begin{claim*}\label{claim-3-8-1}
   $B \in \mc B$ if and only if there exists $A \in \mc A$ and $N \in \mc N$ such that $B = A \cup N$.
-\end{lemma*}
+\end{claim*}
 
 \begin{proof}
   Let $\mc B = \sigma(\mc A \cup \mc N)$ and let $\mc C$ be the collection of sets of the specified form,
@@ -220,16 +210,6 @@
   as required.
 \end{proof}
 
-
-
-\begin{remark*}
-  A subset $A \subset X$ (not necessarily in $\mc A$) is a \defn{null set} if $A$ is a subset of some element of
-  $\mc A$ which has zero measure. $(X, \mc A, \mu)$ is a \defn{complete} measure space if all null sets are in
-  $\mc A$. The \defn{completion} of $\mc A$ is the smallest complete $\sigma$-algebra $\bar{\mc A}$ containing
-  $\mc A$ such that $(X, \bar{\mc A}, \bar \mu)$ is a complete measure space, where $\bar \mu$ is an extension
-  of $\mu$ from $\mc A$ to $\bar{\mc A}$.
-\end{remark*}
-
 \begin{claim*}
   $(X, \mc B, \bar{\mu})$ is complete.
 \end{claim*}
@@ -250,15 +230,8 @@
   But then $N_1 \in \mc N$, hence $N_1 \in \mc B$ as required.
 \end{proof}
 
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c88b.png}
 \begin{claim*}
   $(X, \mc B, \bar{\mu})$ is the completion of $(X, \mc A, \mu)$.
-
-  This means that $\mc B$ is the smallest $\sigma$-algebra containing $\mc A$ such that
-  \begin{enumerate}
-  \item
-  \item
-  \end{enumerate}
 \end{claim*}
 
 \begin{proof}
@@ -286,13 +259,11 @@
 \end{claim*}
 
 \begin{proof}
-  Note that $\mu^*(\emptyset) = 0$, since $\emptyset \in \mc A$ with $\mu(\emptyset) = 0$.
+  Note that $\mu^*(\emptyset) = 0$, since $\emptyset$ is covered by $\emptyset \in \mc A$ with $\mu(\emptyset) = 0$.
 
   It remains to show that $\mu^*$ is countably sub-additive.
 
-  OK, so.
-
-  Let $A_1, A_2, \dots \in \mc A$. We must show that
+  Let $A_1, A_2, \dots \in X$. We must show that
   \begin{align*}
     \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \mu^*(A_i).
   \end{align*}
@@ -301,9 +272,7 @@
 
   Do we know that each $A_i$ is covered? Yes, because $X \in \mc A$.
 
-  For each $i$, let $C_{i1}, C_{i2}, \dots \in \mc A$ be such that $A_i \subseteq \bigcup_{j=1}^\infty C_{ij}$.
-
-  Fix $\epsilon > 0$ and choose the $C_{ij}$ such that
+  Fix $\epsilon > 0$. For $i \in \N$, let $C_{i1}, C_{i2}, \dots \in \mc A$ be such that $A_i \subseteq \bigcup_{j=1}^\infty C_{ij}$ with
   \begin{align*}
     \sum_{j=1}^\infty C_{ij} < \mu^*(A_i) + \epsilon/2^i.
   \end{align*}
@@ -317,51 +286,63 @@
   \end{align*}
   as required.
 \end{proof}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-0d98.png}
-
-\begin{lemma}[Bass theorem 4.6 ``Carathéodory theorem​'']\label{carathéodory-theorem}
-  If $\mu^*$ is an outer measure on all subsets of $X$ then the collection $\mc B$ of $\mu^*$-measurable sets
-  are a $\sigma$-algebra. The $\sigma$-algebra $\mc B$ is complete with respect to $\mu^*$. If $\mu$ is the
-  restriction of $\mu^*$ to $\mc B$ then $(X, \mc B, \mu)$ is a measure space.
-\end{lemma}
 
 \begin{claim*}
   Each set in $\mc A$ is $\mu^*$-measurable.
 \end{claim*}
 
 \begin{proof}
-  Let $A \in \mc A$. We must show that
+  Let $B \in \mc A$. We must show that
   \begin{align*}
-    \mu^*(A) = \mu^*(A \cap E) + \mu^*(A \cap E^c),
+    \mu^*(B) = \mu^*(B \cap E) + \mu^*(B \cap E^c),
   \end{align*}
   for every $E \subseteq X$.
 
   So let $E \subseteq X$. Note that
   \begin{align*}
-    \mu^*(A) \leq \mu^*(A \cap E) + \mu^*(A \cap E^c).
+    \mu^*(B) \leq \mu^*(B \cap E) + \mu^*(B \cap E^c).
   \end{align*}
   is a statement of finite sub-additivity of $\mu^*$, which follows from countable sub-additivity of $\mu^*$
-  (form a countable sequence with $A_1 = A \cap E$, $A_2 = A \cap E^c$, and $A_i = \emptyset$ for $i > 2$ and
+  (form a countable sequence with $B_1 = B \cap E$, $B_2 = B \cap E^c$, and $B_i = \emptyset$ for $i > 2$ and
   apply countable additivity), so what remains to prove is that
   \begin{align*}
-    \mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \cap E^c).
+    \mu^*(B) \geq \mu^*(B \cap E) + \mu^*(B \cap E^c).
   \end{align*}
-  Fix $\eps > 0$ and let $C_{1}, C_{2}, \dots \in \mc A$ be such that $A \subseteq \bigcup_{i=1}^\infty C_{i}$ with
+  Fix $\eps > 0$ and let $C_{1}, C_{2}, \dots \in \mc A$ be such that $B \subseteq \bigcup_{i=1}^\infty C_{i}$ with
   \begin{align*}
-    \sum_{i=1}^\infty C_i < \mu^*(A) + \eps.
+    \sum_{i=1}^\infty C_i < \mu^*(B) + \eps.
   \end{align*}
   Then
   \begin{align*}
-    \mu^*(A) + \eps
+    \mu^*(B) + \eps
     &> \sum_{i=1}^\infty \mu(C_i) \\
     &= \sum_{i=1}^\infty \mu(C_i \cap E) + \sum_{i=1}^\infty \mu(C_i \cap E^c) \\
-    &\geq \mu(A \cap E) + \mu(A \cap E^c).
+    &\geq \mu(B \cap E) + \mu(B \cap E^c).
   \end{align*}
   Since $\eps$ is arbitrary it follows that
   \begin{align*}
-    \mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \cap E^c),
+    \mu^*(B) \geq \mu^*(B \cap E) + \mu^*(B \cap E^c),
   \end{align*}
   as required.
+\end{proof}
+
+\begin{claim*}
+  $\mu^*$ agrees with the measure $\mu$ on $\mc A$.
+\end{claim*}
+
+\begin{proof}
+  Let $B \in \mc A$ and let $\mc B = \{B' : B \subseteq B', B' \in \mc A\}$. We must show
+  that $\mu^*(B) = \mu(B)$. We have
+  \begin{align*}
+    \mu^*(B)
+    &:= \inf \{\mu(B') : B' \in \mc B\} \\
+    &=  \inf \{\mu(B \cup (B' \setminus B)) : B' \in \mc B\} \\
+    &=  \inf \{\mu(B) + \mu(B' \setminus B) : B' \in \mc B\}.
+  \end{align*}
+  Let $M = \{\mu(B) + \mu(B' \setminus B) : B' \in \mc B\}$; the set over which this last infimum is taken.
+  Note that $B \in \mc B$, therefore $\mu(B) = \mu(B) + \mu(\emptyset) \in M$. Furthermore, since $\mu$ is
+  non-negative, $m \geq \mu(B)$ for all $m \in M$. Therefore $\mu(B)$ is a minimum of $M$, and therefore it is
+  the infimum of $M$, as required.
 \end{proof}
 
 \newpage
@@ -369,6 +350,13 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c0b6.png}
 \end{mdframed}
 
+\begin{proof}
+  By definition,
+  \begin{align*}
+    m(\{x\}) := \inf \Big\{\sum_{i=1}^\infty l(I_i) : \Big\}
+  \end{align*}
+
+\end{proof}
 
 
 
