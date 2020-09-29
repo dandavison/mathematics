@@ -5,7 +5,7 @@
 \begin{claim*}
   $\mu$ is a measure.
 \end{claim*}
-\begin{proof}
+\begin{proof}~\\
   It is given that $\mu$ is non-negative and that $\mu(\emptyset) = 0$. We must prove that $\mu$ is countably
   additive.
 
@@ -34,7 +34,7 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c187.png}
 \end{mdframed}
 
-\begin{proof}
+\begin{proof}~\\
 
   \red{TODO}
 
@@ -74,7 +74,7 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-b168.png}
 \end{mdframed}
-\begin{proof}
+\begin{proof}~\\
   $\emptyset$ is countable, therefore we have $\mu(\emptyset) = 0$ as required, and it remains to show
   that $\mu$ is countably additive.
 
@@ -112,7 +112,7 @@
   $B \in \mc B$ if and only if there exists $A \in \mc A$ and $N \in \mc N$ such that $B = A \cup N$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   Let $\mc B = \sigma(\mc A \cup \mc N)$ and let $\mc C$ be the collection of sets of the specified form,
   i.e. $\mc C = \{A \cup N ~:~ A \in \mc A, N \in \mc N\}$. We want to show that $\mc B = \mc C$.
 
@@ -145,7 +145,7 @@
   Then $\bar{\mu}(B)$ is uniquely defined for each $B \in \mc B$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   Let $A \in \mc A$ and $N \in \mc N$ and let $B = A \cup N \in \mc B$.
 
   Now let $A' \in \mc A$ and $N' \in N$ such that $B = A' \cup N'$.
@@ -187,7 +187,7 @@
   $\bar{\mu}$ is a measure on $\mc B$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   Since $\emptyset \in \mc A$ and $\emptyset \in \mc N$ we
   have $\bar\mu(\emptyset) = \bar\mu(\emptyset \cup \emptyset) = \mu(\emptyset) = 0$ as required.
 
@@ -214,7 +214,7 @@
   $(X, \mc B, \bar{\mu})$ is complete.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   By definition, $(X, \mc B, \bar{\mu})$ is complete if all null sets with respect to $\bar\mu$ and $\mc B$ are
   in $\mc B$.
 
@@ -234,7 +234,7 @@
   $(X, \mc B, \bar{\mu})$ is the completion of $(X, \mc A, \mu)$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   We've already shown that $(X, \mc B, \bar\mu)$ is complete with $\bar{\mu}$ an extension of $\mu$. It remains
   to show that no smaller $\sigma$-algebra exists that is complete with respect to its associated measure.
 
@@ -258,7 +258,7 @@
   $\mu^*$ is an outer measure.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   Note that $\mu^*(\emptyset) = 0$, since $\emptyset$ is covered by $\emptyset \in \mc A$ with $\mu(\emptyset) = 0$.
 
   It remains to show that $\mu^*$ is countably sub-additive.
@@ -291,7 +291,7 @@
   Each set in $\mc A$ is $\mu^*$-measurable.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   Let $B \in \mc A$. We must show that
   \begin{align*}
     \mu^*(B) = \mu^*(B \cap E) + \mu^*(B \cap E^c),
@@ -330,7 +330,7 @@
   $\mu^*$ agrees with the measure $\mu$ on $\mc A$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   Let $B \in \mc A$ and let $\mc B = \{B' : B \subseteq B', B' \in \mc A\}$. We must show
   that $\mu^*(B) = \mu(B)$. We have
   \begin{align*}
@@ -350,7 +350,7 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw04-c0b6.png}
 \end{mdframed}
 
-\begin{proof}
+\begin{proof}~\\
   By definition,
   \begin{align*}
     m(\{x\}) := \inf \Big\{\sum_{i=1}^\infty l(I_i) : \Big\}
@@ -392,7 +392,7 @@
     \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw-2389.png}
   \end{mdframed}
 
-  \begin{proof}
+  \begin{proof}~\\
     From finite additivity we have
     \begin{align*}
       \mu(A \cup B) &= \mu(A) + \mu(A \setminus B). \\
@@ -423,7 +423,7 @@
     in $\mc B$.
   \end{claim*}
 
-  \begin{proof}
+  \begin{proof}~\\
     Let $\mc O$ be the collection of open subsets of $\R$.
 
     Let $O \in \mc O$. Then $O$ can be written as a countable union of disjoint open intervals, $O = \bigcup_i I_i$. Therefore
