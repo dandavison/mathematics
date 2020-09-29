@@ -267,25 +267,47 @@
   \begin{align*}
     \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \mu^*(A_i).
   \end{align*}
-  What we know is that $\mu$ is countably additive, and that $\mu^*$ is the infimum over measures of covering
-  subsets as above.
+  Note that $X \in \mc A$, therefore every $A_i$ is a subset of some set in $\mc A$.
 
-  Do we know that each $A_i$ is covered? Yes, because $X \in \mc A$.
-
-  Fix $\epsilon > 0$. For $i \in \N$, let $C_{i1}, C_{i2}, \dots \in \mc A$ be such that $A_i \subseteq \bigcup_{j=1}^\infty C_{ij}$ with
+  Let $\epsilon > 0$. For $i \in \N$, let $C_i \in \mc A$ be such that $A_i \subseteq C_{i}$ with
   \begin{align*}
-    \sum_{j=1}^\infty C_{ij} < \mu^*(A_i) + \epsilon/2^i.
+    \mu(C_{i}) < \mu^*(A_i) + \epsilon/2^i.
   \end{align*}
-  (We can do this because $\mu^*(A_i)$ is defined as an infimum over covering sets and so for
-  any $\epsilon_i > 0$ we can find a covering set $C_{i1}, C_{i2}, \dots$ such
-  that $\sum_{j=1}^\infty C_{ij} < \mu^*(A_i) + \epsilon_i$.)
+  (We can do this because $\mu^*(A_i)$ is defined as an infimum over covering sets; if for some $\epsilon_i$
+  there did not exist a $C_i$ such that $\mu(C_{i}) < \mu^*(A_i) + \epsilon_i$ then $\mu^*(A_i) + \epsilon_i$
+  would be a lower bound; a contradiction.)
 
   Then we have
   \begin{align*}
-    \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \sum_{j=1}^\infty C_{ij} < \sum_{i=1}^\infty \mu^*(A_i) + \epsilon,
+    \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \mu(C_{i}) < \sum_{i=1}^\infty \mu^*(A_i) + \epsilon.
+  \end{align*}
+  Since $\eps > 0$ is arbitrary, this implies
+  \begin{align*}
+    \mu^*\Big(\bigcup_{i=1}^\infty A_i\Big) \leq \sum_{i=1}^\infty \mu^*(A_i),
   \end{align*}
   as required.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{claim*}
   Each set in $\mc A$ is $\mu^*$-measurable.
