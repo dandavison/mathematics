@@ -544,10 +544,10 @@ An \defn{outer measure} is defined similarly to a measure. The difference is
 A common way to construct an outer measure is
 \begin{enumerate}
 \item Define a collection $\mc C$ of subsets of $\Om$ (the collection must contain a subset that partitions $\Om$.)
-\item Define a cost function $l: \mc C \to [0, \infty]$
+\item Define a cost function $\ell : \mc C \to [0, \infty]$
 \item Define $\mu^*(E)$ to be the cost of the least-cost cover of $E$:
   \begin{align*}
-    \mu^*(E) := \inf \Big\{\sum_{i=1}^\infty l(C_i) ~:~ E \subseteq \bigcup_{i=1}^\infty C_i\Big\}.
+    \mu^*(E) := \inf \Big\{\sum_{i=1}^\infty\ell(C_i) ~:~ E \subseteq \bigcup_{i=1}^\infty C_i\Big\}.
   \end{align*}
   Note what this does: it defines $\mu^*$ on {\it any} subset $E$, while the collection $\mc C$ typically comes from a
   restricted collection (e.g. open sets).
@@ -571,7 +571,7 @@ Is an outer measure always FA? I.e. the issue is just getting CA?
 \begin{example}[Lebesgue measure on subsets of $\R$]
   \begin{enumerate}
   \item Consider the collection of all open intervals $O \subseteq \R$.
-  \item Define $l(O)$ in the normal way (sum of $b_i - a_i$ over the disjoint open intervals).
+  \item Define $\ell(O)$ in the normal way (sum of $b_i - a_i$ over the disjoint open intervals).
   \item Define $\mu^*(E)$ to be the infimal cost of an open cover of $E$ (i.e. as above in the canonical
     construction of outer measure)
   \end{enumerate}
