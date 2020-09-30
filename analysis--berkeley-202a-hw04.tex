@@ -52,8 +52,8 @@
     \mu(Y) = \lim_{n\to\infty} \mu(S_n).
   \end{align*}
   Note that the sequence $(Y \setminus S_1), (Y \setminus S_2), \ldots$ decreases to $\emptyset$,
-  therefore $\lim_{n\to\infty}\mu(Y \setminus S_n) = 0$. Note also that by finite additivity of $\mu$ for
-  all $n \in \N$ we have
+  therefore $\lim_{n\to\infty}\mu(Y \setminus S_n) = 0$. Note also that by finite additivity of $\mu$ we have,
+  for all $n \in \N$,
   \begin{align*}
     \mu(Y) = \mu(S_n) + \mu(Y \setminus S_n).
   \end{align*}
@@ -73,7 +73,7 @@
   $\emptyset$ is countable, therefore we have $\mu(\emptyset) = 0$ as required, and it remains to show
   that $\mu$ is countably additive.
 
-  So let $B_1, B_2, \ldots$ be a disjoint countable collection of subsets of $X$. We want to show
+  So let $B_1, B_2, \ldots$ be a pairwise disjoint countable collection of subsets of $X$. We want to show
   that $\mu(\bigcup_{i=1}^\infty B_i) = \sum_{i=1}^\infty \mu(B_i)$.
 
   % Consider $\bigcup_{i=1}^\infty B_i$. It could be uncountable, since the $B_i$ could be a countable partition
@@ -91,8 +91,8 @@
   that $\sum_{i=1}^\infty \mu(B_i) = 1$. Equivalently, we want to show that exactly one of the $B_i$ is
   uncountable.
 
-  Note that $\ms A = \sigma(\ms A)$, and therefore we have by hypothesis that either $B_i$ is countable
-  or $B_i^c$ is countable, for all $i$. Clearly some $B_i$ is uncountable or else we would
+  Note that we have by hypothesis that either $B_i$ is countable or $B_i^c$ is countable, for all $i$. Clearly
+  some $B_i$ is uncountable or else we would
   have $\sum_{i=1}^\infty \mu(B_i) = \sum_{i=1}^\infty 0 = 0 \neq \mu\big(\bigcup_{i=1}^\infty B_i\big)$.
 
   Suppose for a contradiction that there exists $j \neq k$ such that $B_j$ and $B_k$ are uncountable. Note
@@ -111,30 +111,56 @@
 \end{claim*}
 
 \begin{proof}~\\
-  Let $\mc B = \sigma(\mc A \cup \mc N)$ and let $\mc C$ be the collection of sets of the specified form,
+  Define $\mc B = \sigma(\mc A \cup \mc N)$ and let $\mc C$ be the collection of sets of the specified form,
   i.e. $\mc C = \{A \cup N ~:~ A \in \mc A, N \in \mc N\}$. We want to show that $\mc B = \mc C$.
 
   To show that $\mc C \subseteq \mc B$, let $A \in \mc A$ and $N \in \mc N$. Then $A \in \mc A \cup \mc N$,
-  therefore $A \in \mc B$. And $N \in \mc A \cup \mc N$, therefore $N \in \mc B$.
-  Therefore $C = A \cup N \in \mc B$.
+  therefore $A \in \sigma(\mc A \cup \mc N) =: \mc B$. Similarly $N \in \mc A \cup \mc N$,
+  therefore $N \in \sigma(\mc A \cup \mc N) =: \mc B$.
 
-  To show that $\mc B \subseteq \mc C$, first note that $\emptyset \in \mc A$ and $\emptyset \in \mc N$,
-  therefore $\mc A \subset \mc C$ and $\mc N \subset \mc C$, therefore $\mc A \cup \mc N \subset \mc C$.
+  Let $C = A \cup N$ be an arbitrary element of $\mc C$. Since $\mc B$ is a $\sigma$-algebra and $A \in \mc B$
+  and $N \in \mc B$, we have $C \in \mc B$. Therefore $\mc C \subseteq \mc B$.
 
-  We will show that $\mc C$ is a $\sigma$-algebra. Then, since $\mc A \cup \mc N \subset \mc C$, it follows
-  that $\mc B := \sigma(\mc A \cup \mc N) \subseteq \sigma(\mc C) = \mc C$ as required.
+  To show that $\mc B \subseteq \mc C$, first note that $\emptyset \in \mc N$,
+  therefore $\mc A = \{ A \cup \emptyset ~:~ A \in \mc A \} \subseteq \mc C$. Similarly $\emptyset \in \mc A$
+  implies that $\mc N \subset \mc C$. Therefore $\mc A \cup \mc N \subset \mc C$.
+
+  Next we will show that $\mc C$ is a $\sigma$-algebra. Since $\mc A \cup \mc N \subset \mc C$, it will then
+  follow that $\mc B := \sigma(\mc A \cup \mc N) \subseteq \sigma(\mc C) = \mc C$ as required.
 
   Since $\emptyset \in \mc A$ and $\emptyset \in \mc N$, we have $\emptyset \in \mc C$.
 
   Let $A \in \mc A$ and $N \in \mc N$. Then $(A \cup N)^C = A^c \cap N^c$. Since $A^c \in \mc A$
-  and $N^c \in \mc N$, we see that $\mc C$ is closed under complements.
+  and $N^c \in \mc N$, we see that $(A \cup N)^C \in \mc C$ and thus that $\mc C$ is closed under complements.
 
-  It remains to show that $\mc C$ is closed under countable unions. So let $A_1, A_2, \ldots \in \mc A$ and
-  let $N_1, N_2, \ldots \in \mc N$, and define $C_i = A_i \cup N_i$ for all $i$. Then
+  It remains to show that $\mc C$ is closed under countable unions of pairwise disjoint collections. So
+  let $A_1, A_2, \ldots \in \mc A$ be pairwise disjoint and let $N_1, N_2, \ldots \in \mc N$ be pairwise
+  disjoint, and define $C_i = A_i \cup N_i$ for all $i$. Then
   \begin{align*}
-    \bigcup_{i=1}^\infty C_i = \bigcup_{i=1}^\infty \big(A_i \cup N_i\big) = \big(\bigcup_{i=1}^\infty A_i\big) \bigcup \big(\bigcup_{i=1}^\infty N_i \big).
+    \bigcup_{i=1}^\infty C_i
+    &= \bigcup_{i=1}^\infty \big(A_i \cup N_i\big) \\
+    &= \lim_{n\to\infty} \bigcup_{i=1}^n \big(A_i \cup N_i\big) \\
+    &= \lim_{n\to\infty} \big(\bigcup_{i=1}^n A_i\big) \bigcup \big(\bigcup_{i=1}^n N_i \big) \\
+    &= \big(\bigcup_{i=1}^\infty A_i\big) \bigcup \big(\bigcup_{i=1}^\infty N_i \big).
   \end{align*}
   Since $\big(\bigcup_{i=1}^\infty A_i\big) \in \mc A$ and $\big(\bigcup_{i=1}^\infty N_i\big) \in \mc N$ we see that $\big(\bigcup_{i=1}^\infty C_i\big) \in C$ as required.
+\end{proof}
+
+
+\begin{lemma}[A measure is finitely sub-additive]\label{lemma-3-8-subadditivity}
+  Let $\mc A$ be a $\sigma$-algebra, let $A_1, A_2 \subseteq \mc A$ and let $\mu$ be a measure on $\mc A$.
+  Then $\mu(A_1 \cup A_2) \leq \mu(A_1) + \mu(A_2)$.
+\end{lemma}
+
+\begin{proof}~\\
+  Note that $A_1, (A_2 \setminus A_1), \emptyset, \emptyset, \ldots$ is a countable pairwise disjoint
+  collection with union equal to $A_1 \cup A_2$. Therefore, using countable additivity followed by
+  monotonicity,
+  \begin{align*}
+    \mu(A_1 \cup A_2)
+    &= \mu(A_1) + \mu(A_2 \setminus A_1) + 0 + \cdots \\
+    &\leq \mu(A_1) + \mu(A_2).
+  \end{align*}
 \end{proof}
 
 \begin{claim*}
@@ -144,41 +170,34 @@
 \end{claim*}
 
 \begin{proof}~\\
-  Let $A \in \mc A$ and $N \in \mc N$ and let $B = A \cup N \in \mc B$.
+  Let $B \in \mc B$. We will show that $\bar\mu(B)$ is the same for all decompositions of the
+  form $B = A \cup N$ where $A \in \mc A$ and $N \in \mc N$.
 
-  Now let $A' \in \mc A$ and $N' \in N$ such that $B = A' \cup N'$.
-
-  Without loss of generality, suppose that $A' \subseteq A$.
+  So let $A, A' \in \mc A$ and $N, N' \in \mc N$ be such that $A \cup N = A' \cup N' = B$.
 
   We must show that $\bar{\mu}(A \cup N) = \bar{\mu}(A' \cup N')$. This is equivalent to showing
   that $\mu(A) = \mu(A')$.
 
-  Note that $\mu(A) = \mu(A \cap A') + \mu(A \setminus A')$ and that $\mu(A') = \mu(A \cap A')$.
-
-  We will show that $\mu(A \setminus A') = 0$. It will then follow that $\mu(A) = \mu(A \cap A') = \mu(A')$ as
-  required.
-
-  Let $n_1, n_2, \ldots$ be indices of null sets in $\mc A$, so that $\mu(A_{n_i}) = 0$ for all $i$.
-
-  Note that since $N$ is a null set, there exists $A_{n_i} \in \mc A$ such that $N \subseteq A_{n_i}$
-  and $\mu(A_{n_i}) = 0$. Similarly, there exists $A_{n_j} \in \mc A$ such that $N' \subseteq A_{n_j}$
-  and $\mu(A_{n_j}) = 0$.
-
-  Let $A_{n_k} = A_{n_i} \cup A_{n_j}$. Note that $\mu(A_{n_k}) = 0$
-  since $\mu(A_{n_k}) \leq \mu(A_{n_i}) + \mu(A_{n_j}) = 0 + 0 = 0$.
-
-  Now, we have $A \subseteq B \subseteq A' \cup A_{n_k}$.
-
-  Therefore, since $A' \subseteq A$, we have
+  Note that, since $N'$ is a null set, there exists $A_{N'} \in \mc A$ with $N' \subseteq A_{N'}$
+  and $\mu(A_{N'}) = 0$. Therefore we have
   \begin{align*}
-        &(A \cap A') \cup (A \setminus A') \subseteq (A \cap A') \cup A_{n_k} \\
-    \iff &(A \setminus A') \subseteq A_{n_k}.
+    A
+    &\subseteq A' \cup N' \\
+    &\subseteq A' \cup A_{N'}.
   \end{align*}
-  Therefore
+  By monotonicity of $\mu$ we have $\mu(A) \leq \mu(A' \cup A_{N'})$. And by finite sub-additivity of $\mu$
+  (see lemma \eqref{lemma-3-8-subadditivity}) we have
   \begin{align*}
-    \mu(A \setminus A') \leq \mu(A_{n_k}) = 0,
+    \mu(A)
+    &\leq \mu(A') + \mu(\cup A_{N'}) \\
+    &= \mu(A') + 0 \\
+    &= \mu(A').
   \end{align*}
-  therefore $\mu(A \setminus A') = 0$ as required.
+  Similarly, since $N$ is a null set, there exists $A_{N} \in \mc A$ with $N \subseteq A_{N}$
+  and $\mu(A_{N}) = 0$, and by an equivalent argument to the above (switch the primes on $A$ and $A'$, and
+  remove the prime from $N'$) we have $\mu(A') \leq \mu(A)$.
+
+  Therefore $\mu(A) = \mu(A')$ as required.
 \end{proof}
 
 \begin{claim*}
@@ -187,18 +206,33 @@
 
 \begin{proof}~\\
   Since $\emptyset \in \mc A$ and $\emptyset \in \mc N$ we
-  have $\bar\mu(\emptyset) = \bar\mu(\emptyset \cup \emptyset) = \mu(\emptyset) = 0$ as required.
+  have $\bar\mu(\emptyset) = \bar\mu(\emptyset \cup \emptyset) = \mu(\emptyset) = 0$ as required. It remains to
+  show that $\bar\mu$ is countably additive on $\mc B$.
 
-  It remains to show that $\bar\mu$ is countably additive on $\mc B$. So let $B_1, B_2, \ldots \in \mc B$ be
-  countable and pairwise disjoint where for each $i$ these decompose as $B_i = A_i \cup N_i$
-  with $A_i \in \mc A$ and $N_i \in \mc N$. Note that, since the $B_i$ are pairwise disjoint, so the $A_i$ are
-  pairwise disjoint (and also the $N_i$). Then
+  So let $B_1, B_2, \ldots \in \mc B$ be countable and pairwise disjoint, where for each $i$ these decompose
+  as $B_i = A_i \cup N_i$ with $A_i \in \mc A$ and $N_i \in \mc N$. Then
   \begin{align*}
-    \bar\mu\Big(\bigcup_{i=1}^\infty B_i\Big)
-    = \bar\mu\Big(\bigcup_{i=1}^\infty (A_i \cup N_i)\Big)
-    = \bar\mu\Big(\bigcup_{i=1}^\infty A_i ~\cup~ \bigcup_{i=1}^\infty N_i\Big).
+    \bigcup_{i=1}^\infty B_i
+    &= \lim_{n\to\infty}\bigcup_{i=1}^n (A_i \cup N_i) \\
+    &= \lim_{n\to\infty} \Big(\bigcup_{i=1}^n A_i ~\cup~ \bigcup_{i=1}^n N_i\Big) \\
+    &= \bigcup_{i=1}^\infty A_i ~\cup~ \bigcup_{i=1}^\infty N_i.
   \end{align*}
-  Therefore, since $\bigcup_{i=1}^\infty A_i \in \mc A$ and $\bigcup_{i=1}^\infty N_i \in \mc N$,
+  Note that $\bigcup_{i=1}^\infty A_i \in \mc A$, since $\mc A$ is a $\sigma$-algebra.
+
+  Note also that, since the $B_i$ are pairwise disjoint, so the $A_i$ are pairwise disjoint and also the $N_i$
+  are pairwise disjoint.
+
+  Using pairwise disjointness of the $N_i$ we see that $\bigcup_{i=1}^\infty N_i \in \mc N$, since
+  \begin{align*}
+    \mu\Big(\bigcup_{i=1}^\infty N_i\Big) = \sum_{i=1}^\infty \mu(N_i) = \sum_{i=1}^\infty 0 = 0.
+  \end{align*}
+  Thus we see that
+  \begin{align*}
+    \bar\mu\Big(\bigcup_{i=1}^\infty A_i ~\cup~ \bigcup_{i=1}^\infty N_i\Big) = \mu\Big(\bigcup_{i=1}^\infty A_i\Big),
+  \end{align*}
+  since the set on the left is of the form $A \cup N$ with $A \in \mc A$ and $N \in \mc N$.
+
+  Therefore, using pairwise disjointness of the $A_i$ and countable additivity of $\mu$, we have
   \begin{align*}
     \bar\mu\Big(\bigcup_{i=1}^\infty B_i\Big)
     = \mu\Big(\bigcup_{i=1}^\infty A_i\Big)
@@ -225,7 +259,7 @@
   Furthermore, since $N_2 \in \mc N$, there exists $A_2 \in \mc A$ such that $N_2 \subseteq A_2$.
   Therefore $N_1 \subseteq A_1 \cup A_2$.
 
-  But then $N_1 \in \mc N$, hence $N_1 \in \mc B$ as required.
+  But then $N_1 \in \mc N$, hence $N_1 \in \mc B := \sigma(\mc A \cup \mc N)$ as required.
 \end{proof}
 
 \begin{claim*}
@@ -241,7 +275,7 @@
   We will show that $\mc B \subseteq \mc B'$.
 
   Let $A \cup N \in \mc B$, where $A \in \mc A$ and $N \in \mc N$. We know that $N \in \mc B'$, since $\mc B'$
-  is complete. And we know that $A \in \mc B'$, since $A \in \mc A \subseteq B'$.
+  is complete. And we know that $A \in \mc B'$, since $A \in \mc A \subseteq \mc B'$.
   Therefore $A \cup N \in \mc B'$, since $\mc B'$ is closed under finite unions.
 
   Therefore $\mc B \subseteq \mc B'$, as required.
@@ -286,27 +320,6 @@
   as required.
 \end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \begin{claim*}
   Each set in $\mc A$ is $\mu^*$-measurable.
 \end{claim*}
@@ -350,20 +363,6 @@
 \end{proof}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \begin{claim*}
   $\mu^*$ agrees with the measure $\mu$ on $\mc A$.
 \end{claim*}
@@ -404,30 +403,6 @@
     &= \alpha(x) - \alpha(x-).
   \end{align*}
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
