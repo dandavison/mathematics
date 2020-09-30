@@ -389,11 +389,20 @@
 \end{mdframed}
 
 \begin{proof}~\\
-  By definition,
+  Let $\alpha: \R \to \R$ be right-continuous and increasing, and let $m$ be Lebesgue-Stieltjes measure. By
+  definition,
   \begin{align*}
-    m(\{x\}) := \inf \Big\{\sum_{i=1}^\infty l(I_i) : \Big\}
+    m(\{x\}) := \inf \Big\{\sum_{i=1}^\infty \ell(I_i) : \{x\} \subseteq \bigcup_{i=1}^\infty I_i, ~ I_i \subseteq \R \text{~for all~}i\Big\}.
   \end{align*}
-
+  Recall that for any measure $\mu$, given a sequence of sets $A_i \downarrow A$, we
+  have $\lim_{n\to\infty} \mu(A_i) = \mu(A)$. Therefore we have
+  \begin{align*}
+    m\big(\{x\}\big)
+    &= \lim_{n\to\infty} m\big((x - 1/n, x]\big) \\
+    &= \lim_{n\to\infty} \alpha(x) - \alpha(x - 1/n) \\
+    &= \alpha(x) - \lim_{n\to\infty} \alpha(x - 1/n) \\
+    &= \alpha(x) - \alpha(x-).
+  \end{align*}
 \end{proof}
 
 
