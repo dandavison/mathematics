@@ -18,7 +18,7 @@
   $A_n$ is Lebesgue measurable for all $n \in \N$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\~\\
   Since $A_n$ is a finite union of intervals of the form $(a, b]$, and since
   \begin{align*}
     (a, b] = \bigcap_{n=1}^\infty (a, b + n^{-1}),
@@ -31,7 +31,7 @@
   $\mu(A_n) > 0$ for all $n$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\~\\
   Note that $(0, 2^{-n}] \subseteq A_n$, therefore by monotonicity of measure
   \begin{align*}
     \mu(A_n) \geq \mu((0, 2^{-n}]) = 2^{-n} > 0.
@@ -42,7 +42,7 @@
   $\mu(A_n \Delta A_m) > 0$ if $n \neq m$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\~\\
   Let $m \neq n$ and suppose without loss of generality that $m < n$.
 
   Then $(0, 2^{-m}] \subseteq A_m$ and also $(2^{-n}, 2^{-(n+1)}] \subset A_m$.
@@ -53,7 +53,7 @@
   $\mu(A_n \cap A_m) = \mu(A_n)\mu(A_m)$ if $n \neq m$.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\~\\
   Let $m \neq n$ and suppose without loss of generality that $m < n$.
 
   Recall that half of the rank-$i$ dyadic intervals are contained within $A_i$ (those corresponding to
@@ -76,12 +76,12 @@
 \end{proof}
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-2e34.png}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-2e34.png}\\
 It is specified also that $\mu(E) > 0$.
 \end{mdframed}
 
 
-\begin{proof}
+\begin{proof}~\\~\\
   Let $E \subseteq \R$ be Lebesgue measurable and fix $\alpha \in (0, 1)$.
 
   Set $\eps = \mu(E)\frac{1 - \alpha}{\alpha}$. Since $E$ is Lebesgue measurable there exists an open set $O$
@@ -113,43 +113,9 @@ It is specified also that $\mu(E) > 0$.
   \begin{align*}
     \sum_{i=1}^\infty \mu(E \cap I_i) \leq \alpha \sum_{i=1}^\infty \mu(I_i),
   \end{align*}
-  a contradiction. Therefore there exists and open interval $I_i$ such that
-  $\mu(E \cap I_i) > \alpha \mu(I_i)$.
+  a contradiction.
 
-  Now, write $O$ as a countable union of disjoint open intervals $O = \bigcup_{i=1}^\infty I_i$. Then
-  \begin{align*}
-    \mu(E) = \mu\Big(E \cap \big(\bigcup_{i=1}^\infty I_i\big)\Big) > \alpha\sum_{i=1}^\infty \mu(I_i).
-  \end{align*}
-  Or rather
-  \begin{align*}
-    \mu(E)
-    &= \mu\Big(E \cap \big(\bigcup_{i=1}^\infty I_i\big)\Big) \\
-    &= \mu\Big(\bigcup_{i=1}^\infty E \cap I_i\Big) \\
-    &= \sum_{i=1}^\infty \mu(E \cap I_i) \\
-    &> \alpha \sum_{i=1}^\infty \mu(I_i).
-  \end{align*}
-
-
-
-
-  Let $I = (\inf O, \sup O) \supseteq E$. We have
-  \begin{align*}
-    \mu(I)
-    &= \mu(E \cap I) + \mu(I \setminus E) \\
-    &= \mu(E) + \mu(I \setminus E) \\
-    &> \mu(E) + \eps + \mu(I \setminus O),
-  \end{align*}
-  or equivalently
-  \begin{align*}
-    \mu(E \cap I) = \mu(E)
-    &> \mu(I) - \mu(I \setminus O) - \eps \\
-    &= \mu(O) - \eps.
-  \end{align*}
-  So we need to show that for any $\alpha \in (0, 1)$ there exists an $\eps$ such that
-  \begin{align*}
-    \mu(O) - \eps \geq \alpha \mu(I).
-  \end{align*}
-  I don't think this makes sense. Take $\alpha = 0.999999$.
+  Therefore there exists an open interval $I_i$ such that $\mu(E \cap I_i) > \alpha \mu(I_i)$.
 \end{proof}
 
 
@@ -160,153 +126,50 @@ It is specified also that $\mu(E) > 0$.
 
 \begin{remark*}
   If $A$ includes an open interval $(a, b)$ then the result easily follows on considering the
-  map $z:(a, b)^2\to [a-b, b-a]$. But $A$ may not include any interval (be nowhere dense) and still have
-  positive measure: the generalized Cantor sets are an example.
+  map $z:(a, b)^2\to [a-b, b-a]$. But $A$ may not include any interval and still have positive measure: the
+  generalized Cantor sets provide examples.
 \end{remark*}
 
-\begin{proof}
+\begin{remark*}
+  I tried for a few hours to answer this without hints but in the end followed the sequence of hints provided
+  at \url{https://math.stackexchange.com/a/1079520/397805}.
+\end{remark*}
+
+\begin{proof}~\\~\\
   Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
 
-  Let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
+  Let $F \subseteq A$ be a closed set such that $\mu(A \setminus F) < \epsilon/2$, and let $G \supseteq A$ be
+  an open set such that $\mu(G \setminus A) < \epsilon/2$. Thus we have $\mu(G) - \mu(F) > \eps$.
 
-  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
+  Let $|d| < \eps$.
 
-  Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$. qAnd
-  if $a, b \in A$ with $a \neq b$ then $b - a \in D$ and $a - b \in D$. So we need to show that there
-  exists $\epsilon > 0$ such that $(0, \eps) \subset D$.
+  Let $A + d$ denote the set of translates $\{a + d : a \in A\}$. We want to show that
+  \begin{align*}
+    (A + d) \cap A \neq \emptyset.
+  \end{align*}
+  Note that $(F + d) \subseteq G$ and $F \subseteq G$, therefore
+  \begin{align*}
+    \mu((F + d) \cup F)
+    &\leq \mu(A) + \mu(G \setminus A) \\
+    &= \mu(A) + \eps/2.
+  \end{align*}
+
+  Suppose that $(F + d) \cap F = \emptyset$.
+
+  Then $\mu((F + d) \cup F) = \mu(F + d) + \mu(F) = 2\mu(F)$ by additivity and translation invariance of
+  measure, and we have
+  \begin{align*}
+    2\mu(F) \leq \mu(A) + \eps/2.
+  \end{align*}
+  But this leads to a contradiction since we have
+  \begin{align*}
+    2\mu(F)
+    &\leq \mu(A) + \eps/2 \\
+    &=    \mu(F) + \mu(A \setminus F) + \eps/2 \\
+    &\leq \mu(F) + \eps/2 + \eps/2,
+  \end{align*}
+  which requires that $\mu(F) \leq \eps$. \red{TODO} {\bf clarify what the contradiction is}
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{proof}
-  Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
-
-  Let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
-
-  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
-
-  Note that $A$ is uncountable, since $\mu(A) > 0$.
-
-
-  Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$.
-
-  If $a, b \in A$ with $a \neq b$ then $b - a \in D$ and $a - b \in D$.
-
-  So we need to show that there exists $\epsilon > 0$ such that $(0, \eps) \subset D$.
-
-  How big might $\eps$ be?
-
-  One quantity that we have is $\mu(A)$. We can say $m := \mu(A)$.
-
-  Suppose $A \subset [0, 1]$. The maximum possible difference is $1$. Could $D = [-1, 1]$?
-
-  Define an equivalence relation on $A^2$: $(x, y) \sim (x', y')$ if $x - y = x' - y'$.
-
-  Each equivalence class is labeled with a unique signed distance $d$.
-
-  The claim is that the set of $d$ values includes an open interval around $0$.
-
-  So the equivalence classes must be uncountable.
-
-  By Bass Proposition 4.14 (2) for any $\eps > 0$ there exists a closed set $G \subseteq A$ such that $\mu(A \setminus G) < \eps$.
-
-  ... I was thinking to show that this implied the existence of an open interval included in $A$ but that's not
-  true for generalized Cantor sets so it seems like that's the real problem we need to overcome.
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{proof}
-  Now let's solve it for an example that does not contain an open interval.
-
-  Let $A$ be a generalized Cantor set with $\mu(A) > 0$.
-
-  let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
-
-  Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$.
-
-  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
-
-  We can define $z: A^2 \to (-1, 1)$. This is defined on a (complicated) closed subset of $\R^2$.
-
-  It seems like we want to show that, within the Cantor set, there is a small region that ``behaves like​'' an
-  interval, in that the image of $z$ on that region contains an open interval around the origin.
-\end{proof}
-
-
-\begin{proof}
-  Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
-
-  Let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
-
-  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
-
-  Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$.
-
-  We have that $\mu(A) > 0$. However, we cannot conclude that $A$ includes an interval (since $A$ could be, for
-  example, the Cantor set).
-
-  By Bass Proposition 4.14 (2) for any $\eps > 0$ there exists a closed set $G \subseteq A$ such that $\mu(A \setminus G) < \eps$.
-
-  ... I was thinking to show that this implied the existence of an open interval included in $A$ but that's not
-  true for generalized Cantor sets so it seems like that's the real problem we need to overcome.
-\end{proof}
-
-
-\begin{proof}
-  First let's solve a simpler version.
-
-  Let $A$ be an open set. Then $A$ contains an open interval.
-
-  Let $B = (a, b)$ and let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
-
-  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
-
-  Intuitively this is true because we can define $z:(a, b)^2 \to (-w, w)$, where $w = b - a$. The image
-  of $(a, b)^2$ under $z$ is $(-w, w)$, which contains open intervals of the desired form.
-\end{proof}
-
-
 
 
 \newpage
@@ -314,7 +177,7 @@ It is specified also that $\mu(E) > 0$.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-40cd.png}
 \end{mdframed}
 
-\begin{proof}
+\begin{proof}~\\~\\
   We will use the following facts:
   \begin{enumerate}
   \item Every open interval contains a rational.
@@ -335,6 +198,6 @@ It is specified also that $\mu(E) > 0$.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-3d2c.png}
 \end{mdframed}
 
-\begin{proof}
+\begin{proof}~\\~\\
 
 \end{proof}
