@@ -91,6 +91,70 @@ It is specified also that $\mu(E) > 0$.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-ad8b.png}
 \end{mdframed}
 
+\begin{proof}
+  Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
+
+  Let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
+
+  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
+
+  Note that $A$ is uncountable, since $\mu(A) > 0$.
+
+  If $A$ includes an open interval $(a, b)$ then the result easily follows (consider the
+  map $z:(a, b)^2\to [a-b, b-a]$), so assume $A$ includes no interval.
+
+  Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$.
+
+  If $a, b \in A$ with $a \neq b$ then $b - a \in D$ and $a - b \in D$.
+
+  So we need to show that there exists $\epsilon > 0$ such that $(0, \eps) \subset D$.
+
+  How big might $\eps$ be?
+
+  One quantity that we have is $\mu(A)$. We can say $m := \mu(A)$.
+
+  Suppose $A \subset [0, 1]$. The maximum possible difference is $1$. Could $D = [-1, 1]$?
+
+  Define an equivalence relation on $A^2$: $(x, y) \sim (x', y')$ if $x - y = x' - y'$.
+
+  Each equivalence class is labeled with a unique signed distance $d$.
+
+  The claim is that the set of $d$ values includes an open interval around $0$.
+
+  So the equivalence classes must be uncountable.
+
+  By Bass Proposition 4.14 (2) for any $\eps > 0$ there exists a closed set $G \subseteq A$ such that $\mu(A \setminus G) < \eps$.
+
+  ... I was thinking to show that this implied the existence of an open interval included in $A$ but that's not
+  true for generalized Cantor sets so it seems like that's the real problem we need to overcome.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{proof}
   Now let's solve it for an example that does not contain an open interval.
