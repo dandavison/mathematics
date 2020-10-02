@@ -82,7 +82,74 @@ It is specified also that $\mu(E) > 0$.
 
 
 \begin{proof}
+  Let $E \subseteq \R$ be Lebesgue measurable and fix $\alpha \in (0, 1)$.
 
+  Set $\eps = \mu(E)\frac{1 - \alpha}{\alpha}$. Since $E$ is Lebesgue measurable there exists an open set $O$
+  such that $E \subseteq O$ and $\mu(O \setminus E) < \eps$. Therefore
+  \begin{align*}
+    \mu(O)
+    &= \mu(O \cap E) + \mu(O \setminus E) \\
+    &= \mu(E) + \mu(O \setminus E) \\
+    &< \mu(E) + \mu(E)\frac{1 - \alpha}{\alpha} \\
+    &= \mu(E)/\alpha,
+  \end{align*}
+  that is,
+  \begin{align*}
+    \mu(E) = \mu(E \cap O) > \alpha\mu(O).
+  \end{align*}
+  Now, write $O$ as a countable union of disjoint open intervals $O = \bigcup_{i=1}^\infty I_i$. Note that
+    \begin{align*}
+    \mu(E)
+    &= \mu\Big(E \cap \big(\bigcup_{i=1}^\infty I_i\big)\Big) \\
+    &= \mu\Big(\bigcup_{i=1}^\infty E \cap I_i\Big) \\
+    &= \sum_{i=1}^\infty \mu(E \cap I_i).
+  \end{align*}
+  Also $\mu(O) = \sum_{i=1}^\infty \mu(I_i)$. Therefore we have
+  \begin{align*}
+    \mu(E) = \sum_{i=1}^\infty \mu(E \cap I_i) > \alpha \sum_{i=1}^\infty \mu(I_i).
+  \end{align*}
+  To see that this implies the desired result, suppose for a contradiction
+  that $\mu(E \cap I_i) \leq \alpha \mu(I_i)$ for all $i$. Then we have
+  \begin{align*}
+    \sum_{i=1}^\infty \mu(E \cap I_i) \leq \alpha \sum_{i=1}^\infty \mu(I_i),
+  \end{align*}
+  a contradiction. Therefore there exists and open interval $I_i$ such that
+  $\mu(E \cap I_i) > \alpha \mu(I_i)$.
+
+  Now, write $O$ as a countable union of disjoint open intervals $O = \bigcup_{i=1}^\infty I_i$. Then
+  \begin{align*}
+    \mu(E) = \mu\Big(E \cap \big(\bigcup_{i=1}^\infty I_i\big)\Big) > \alpha\sum_{i=1}^\infty \mu(I_i).
+  \end{align*}
+  Or rather
+  \begin{align*}
+    \mu(E)
+    &= \mu\Big(E \cap \big(\bigcup_{i=1}^\infty I_i\big)\Big) \\
+    &= \mu\Big(\bigcup_{i=1}^\infty E \cap I_i\Big) \\
+    &= \sum_{i=1}^\infty \mu(E \cap I_i) \\
+    &> \alpha \sum_{i=1}^\infty \mu(I_i).
+  \end{align*}
+
+
+
+
+  Let $I = (\inf O, \sup O) \supseteq E$. We have
+  \begin{align*}
+    \mu(I)
+    &= \mu(E \cap I) + \mu(I \setminus E) \\
+    &= \mu(E) + \mu(I \setminus E) \\
+    &> \mu(E) + \eps + \mu(I \setminus O),
+  \end{align*}
+  or equivalently
+  \begin{align*}
+    \mu(E \cap I) = \mu(E)
+    &> \mu(I) - \mu(I \setminus O) - \eps \\
+    &= \mu(O) - \eps.
+  \end{align*}
+  So we need to show that for any $\alpha \in (0, 1)$ there exists an $\eps$ such that
+  \begin{align*}
+    \mu(O) - \eps \geq \alpha \mu(I).
+  \end{align*}
+  I don't think this makes sense. Take $\alpha = 0.999999$.
 \end{proof}
 
 
@@ -90,6 +157,41 @@ It is specified also that $\mu(E) > 0$.
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-ad8b.png}
 \end{mdframed}
+
+\begin{remark*}
+  If $A$ includes an open interval $(a, b)$ then the result easily follows on considering the
+  map $z:(a, b)^2\to [a-b, b-a]$. But $A$ may not include any interval (be nowhere dense) and still have
+  positive measure: the generalized Cantor sets are an example.
+\end{remark*}
+
+\begin{proof}
+  Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
+
+  Let $D = \big\{ x - y ~:~ x, y \in A\big\}$.
+
+  We need to show that there exists $\epsilon > 0$ such that $(-\eps, \eps) \subseteq D$.
+
+  Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$. qAnd
+  if $a, b \in A$ with $a \neq b$ then $b - a \in D$ and $a - b \in D$. So we need to show that there
+  exists $\epsilon > 0$ such that $(0, \eps) \subset D$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{proof}
   Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
@@ -100,8 +202,6 @@ It is specified also that $\mu(E) > 0$.
 
   Note that $A$ is uncountable, since $\mu(A) > 0$.
 
-  If $A$ includes an open interval $(a, b)$ then the result easily follows (consider the
-  map $z:(a, b)^2\to [a-b, b-a]$), so assume $A$ includes no interval.
 
   Since $\mu(A) > 0$ we have that $A \neq \emptyset$. Let $a \in A$. Then $a - a = 0 \in D$.
 
