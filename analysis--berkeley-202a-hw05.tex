@@ -135,40 +135,44 @@ It is specified also that $\mu(E) > 0$.
   at \url{https://math.stackexchange.com/a/1079520/397805}.
 \end{remark*}
 
+
+\begin{intuition*}
+  The crux of this proof is that we translate the statement about the set of differences into a statement about
+  what happens when we form the union of the ``inner​'' set $F$ with a version of itself shifted by a small
+  amount. The hypothesis that the set of distances includes no interval around the origin corresponds to a
+  requirement that this union is of two disjoint sets and therefore that the measure of the union is twice the
+  measure of the original. But this reveals a contradiction since the union is itself a subset of the ``outer​''
+  set $G$.
+\end{intuition*}
+
 \begin{proof}~\\~\\
   Let $A \subset \R$ be a Borel set of $\R$ with $\mu(A) > 0$.
 
+  Let $\eps > 0$.
+
   Let $F \subseteq A$ be a closed set such that $\mu(A \setminus F) < \epsilon/2$, and let $G \supseteq A$ be
-  an open set such that $\mu(G \setminus A) < \epsilon/2$. Thus we have $\mu(G) - \mu(F) > \eps$.
+  an open set such that $\mu(G \setminus A) < \epsilon/2$. Thus we have $F \subseteq A \subseteq G$
+  and $\mu(G) - \mu(F) < \eps$.
 
-  Let $|d| < \eps$.
+  Let $d = \inf \{ x - x' ~:~ x \in F, x' \in G^c\}$.
 
-  Let $A + d$ denote the set of translates $\{a + d : a \in A\}$. We want to show that
-  \begin{align*}
-    (A + d) \cap A \neq \emptyset.
-  \end{align*}
-  Note that $(F + d) \subseteq G$ and $F \subseteq G$, therefore
-  \begin{align*}
-    \mu((F + d) \cup F)
-    &\leq \mu(A) + \mu(G \setminus A) \\
-    &= \mu(A) + \eps/2.
-  \end{align*}
+  Fix $\delta \in (0, d)$.
 
-  Suppose that $(F + d) \cap F = \emptyset$.
+  Suppose for a contradiction that there exists $r$ such that $|r| < \delta$ and $F \cap (F + r) = \emptyset$.
 
-  Then $\mu((F + d) \cup F) = \mu(F + d) + \mu(F) = 2\mu(F)$ by additivity and translation invariance of
-  measure, and we have
-  \begin{align*}
-    2\mu(F) \leq \mu(A) + \eps/2.
-  \end{align*}
-  But this leads to a contradiction since we have
-  \begin{align*}
-    2\mu(F)
-    &\leq \mu(A) + \eps/2 \\
-    &=    \mu(F) + \mu(A \setminus F) + \eps/2 \\
-    &\leq \mu(F) + \eps/2 + \eps/2,
-  \end{align*}
-  which requires that $\mu(F) \leq \eps$. \red{TODO} {\bf clarify what the contradiction is}
+  Then $\mu(F \cap (F + r)) = \mu(F) + \mu(F + r) = 2\mu(F)$ by finite additivity and translation invariance of
+  measure. Also note that $F \cup (F + r) \subseteq G$, hence $\mu(F \cap (F + r)) \leq \mu(G)$.
+
+  Therefore $\mu(F) \leq \frac{1}{2}\mu(G)$.
+
+  But recall that we have $\mu(G) - \mu(F) < \eps$, therefore $\mu(G) < \eps + \frac{1}{2}\mu(G)$ or
+  equivalently $\mu(G) < 2\eps$.
+
+  Since $A \subseteq G$ we then have $\mu(A) < 2\eps$. But $\mu(A)$ is fixed whereas $\eps$ can be chosen
+  arbitrarily small, so this is a contradiction.
+
+  Therefore, no such $r$ exists. This means that for all $r$ with $|r| < \delta$, there exist $x, x' \in F$
+  such that $x - x' = r$. And since $F \subseteq A$, we have proven the desired result.
 \end{proof}
 
 
@@ -178,26 +182,53 @@ It is specified also that $\mu(E) > 0$.
 \end{mdframed}
 
 \begin{proof}~\\~\\
-  We will use the following facts:
+  (INCOMPLETE)
+
+  Note that every open interval $I \subseteq \R$ contains a rational number.
+
+  We will construct a set $A$ with positive measure using Cantor-like sets with the following properties:
   \begin{enumerate}
-  \item Every open interval contains a rational.
-  \item A Cantor-like set includes no interval and yet has positive measure (and is uncountable).
+  \item $\Q \subset A$
+  \item No interval is a subset of $A$
   \end{enumerate}
+  Clearly, (1) has the consequence that $A \cap I \neq \emptyset$ for every open interval $I$. We will show
+  that moreover $A$ has the required property: $0 < \mu(A \cap I) < \mu(I)$ for every open interval $I$.
 
-  Basically what we want to do is construct $A$ from Cantor-like sets that contains every rational and yet
-  includes no interval. Because $A$ includes no interval we will have $\mu(A \cap I) < \mu(I)$ for every
-  interval $I$. And because $A$ is Cantor-like we will have $0 < \mu(A \cap I)$.
+  Let $q_1, q_2, \ldots$ be an enumeration of all distinct rational numbers.
 
-  Let $C: \Q \to \ms{P}(\R)$ be a function that associates with every rational a certain Cantor-like set.
-  Specifically, for $q \in \Q$ we construct $C(q)$ as follows:
+  Fix the total measure $a \in (0, 1)$. For every $i \in \N$ we will construct a Cantor-like set $A_i$ which
+  has measure $a/2^i$, contains $q_i$, and is disjoint from $A_j$ for all $j \in \N$ where $i \neq j$.
 
+  Then we define $A := \bigcup_{i=1}^\infty A_i$.
+
+  That's my hope anyway. We now need to specify a construction of these Cantor sets and prove that, when we
+  form their union, we do not create any intervals. That's slightly reminiscent of question 3, where the proof
+  involves showing that we {\it do} create an interval when we form the union of a certain set with a translated
+  version of itself. However, I haven't managed to complete this proof.
 \end{proof}
+
 
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw05-3d2c.png}
 \end{mdframed}
 
-\begin{proof}~\\~\\
+\begin{proof}
+  Let $\mc I := \big\{[x-1, x+1] ~:~ {x \in A} \big\}$, so that $\mc B = \bigcup_{I \in \mc I} I$, and define
+  \begin{align*}
+    I_x := \bigcup_{I \in \mc I, x \in I} I.
+  \end{align*}
+  Note that $I_x$ is a union of intervals all of which contain the point $x$ and hence is also an interval.
 
+  Let $q_1, q_2, \ldots \in \Q$ be an enumeration of the rationals.
+
+  Since every $I \in \mc I$ contains a rational (in fact, it contains a countable infinity of rationals), we
+  have that for all $I \in \mc I$ there exists $q$ such that $I \subseteq I_q$. Therefore
+  \begin{align*}
+    \bigcup_{i} I_{q_i} = \bigcup_{I \in \mc I} I = \mc B.
+  \end{align*}
+  Thus we have written $\mc B$ as a countable union of intervals. These intervals may be open, closed or
+  half-open. Recall (Bass proposition 2.8) that the Borel $\sigma$-algebra may be generated by a countable
+  collection of open intervals, or of closed intervals, or of half open intervals. Therefore $\mc B$ is in the
+  Borel $\sigma$-algebra, therefore $\mc B$ is Lebesgue-measurable.
 \end{proof}
