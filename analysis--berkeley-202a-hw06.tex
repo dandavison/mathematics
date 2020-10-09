@@ -5,14 +5,17 @@
 \end{mdframed}
 
 \begin{proof}
-  Let $a \in \R$. Let $Q_{>a} = \{r ~:~ r \in \Q, r > a\}$. Since $Q_{>a} \subset \Q$, it is countable. Then
+  Let $a \in \R$. Define $q_i$ to be the number formed by truncating the decimal expansion of $a$ at the $i$-th
+  digit. Then $q_1, q_2, \ldots \in \Q$ is a sequence of rationals with $\lim_{i \to \infty} q_i = a$. Therefore
   \begin{align*}
-    \{x ~:~ f(x) > a\} = \bigcup_{r \in Q_{>a}} \{x ~:~ f(x) > r\}.
+    \lim_{i \to \infty} \{x ~:~ f(x) > q_i\} = \{x ~:~ f(x) > a\},
   \end{align*}
-  Therefore $\{x ~:~ f(x) > a\}$ is a countable union of elements of $\mc A$, for all $a \in \R$.
-
-  \red{TODO} prove that the countable union is equal to the LHS. Use an explicit sequence of rationals? E.g. expansion
-  of $a$ truncated at $n$-th digit.
+  and hence
+  \begin{align*}
+    \{x ~:~ f(x) > a\} = \bigcup_{i=1}^\infty \{x ~:~ f(x) > q_i\}.
+  \end{align*}
+  Therefore $\{x ~:~ f(x) > a\}$ is a countable union of elements of $\mc A$, for all $a \in \R$. Therefore $f$
+  is $\mc A$-measurable.
 \end{proof}
 
 
@@ -113,13 +116,11 @@
   % We follow the proof of the standard theorem (see Kevin McGerty's Oxford A2 Metric Spaces notes) but
   % substituting upper semicontinuity.
 
-  Let $a \in \R$ and fix $\eps > 0$.
-
   So, fix $y \in \R$ and let $a \in f^{-1}\((-\infty, y)\)$. It suffices to show that $f^{-1}\((-\infty, y)\)$
   includes a neighborhood of $a$, since then it contains a neighborhood of all its points and therefore is
   open as required.
 
-  Since $f$ is upper semicontinuous there exists $\delta > 0$ such
+  Since $f$ is upper semicontinuous there exists $\eps > 0$ and $\delta > 0$ such
   that $(a - \delta, a + \delta) \subset f^{-1}\((-\infty, f(a) + \eps)\)$.
 
   Note that $f(a) \in (-\infty, y)$.
