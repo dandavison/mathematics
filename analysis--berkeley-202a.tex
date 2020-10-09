@@ -797,6 +797,20 @@ Is an outer measure always FA? I.e. the issue is just getting CA?
   \end{proof}
 \end{intuition*}
 
+\begin{lemma*}[A continuous function is measurable]\label{lemma-continuous-function-is-measurable}
+  Let $Y \subseteq \R$ and let $g: X \to Y$ be a continuous function.
+
+  We must show that there exists a $\sigma$-algebra such that $\{x ~:~ g(x) > y\} \in \mc A$ for all $y \in Y$.
+
+  Let $y \in Y$ and let $U = g^{-1}((y, \infty))$. Then $U$ is open in $X$ since it is the preimage of an open
+  set under a continuous function. Therefore $U$ is in the Borel $\sigma$-algebra on $X$.
+
+  Therefore the Borel $\sigma$-algebra satisfies our requirement and $g$ is measurable.
+\end{lemma*}
+
+
+
+
 \subsubsection*{Expressions involving countable unions and intersections}
 
 A singleton $\{x\}$ is a countable intersection of intervals:

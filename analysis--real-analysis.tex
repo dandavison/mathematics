@@ -944,6 +944,29 @@ scalar multiplication & mult may not be defined & $\norm{\lambda u} = \lambda \n
   \end{tabular}
 \end{table}
 
+\begin{theorem*}[Preimage of an open set under a continuous function is open]
+  $f:\R \to \R$ is continuous if and only if $f^{-1}(U)$ is open for every open subset $U \subseteq \R$.
+\end{theorem*}
+
+\begin{proof}
+  First we prove that continuity implies open preimages.
+
+  Let $B(x, r)$ denote the open interval $(x - r, x + r)$.
+
+  Let $a \in \R$ and suppose $f$ is continuous at $a$. Fix $\eps > 0$.
+
+  Since $f$ is continuous there exists $\delta > 0$ such
+  that $B(a,  \delta) \subseteq f^{-1}(B(f(a), \eps))$. Therefore $f^{-1}(B(f(a), \eps))$ is a
+  neighborhood of $a$.
+
+  Since by hypothesis $f$ is continuous at all $a \in \R$, we have that $f^{-1}(U)$ is a neighborhood of all of
+  its points. This is because:
+
+  Let $x \in f^{-1}(U)$. Then $f(x) \in U$. Since $U$ is open there exists $\eps$ such
+  that $B(f(x), \eps) \subseteq U$ and $\delta$ such that $B(x, \delta) \subseteq f^{-1}\(B(f(x), \eps)\)$ is a
+  neighborhood of $x$.
+\end{proof}
+
 
 \newpage
 \subsection{Isometries and Homeomorphisms}

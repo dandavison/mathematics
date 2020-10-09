@@ -55,18 +55,6 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-b799.png}
 \end{mdframed}
 
-\begin{lemma*}[A continuous function is measurable]\label{lemma-continuous-function-is-measurable}
-  Let $Y \subseteq \R$ and let $g: X \to Y$ be a continuous function.
-
-  We must show that there exists a $\sigma$-algebra such that $\{x ~:~ g(x) > y\} \in \mc A$ for all $y \in Y$.
-
-  Let $y \in Y$ and let $U = g^{-1}((y, \infty))$. Then $U$ is open in $X$ since it is the preimage of an open
-  set under a continuous function. Therefore $U$ is in the Borel $\sigma$-algebra on $X$.
-
-  Therefore the Borel $\sigma$-algebra satisfies our requirement and $g$ is measurable.
-\end{lemma*}
-
-
 \begin{proof}
   Let $f: X \to (0, \infty)$ be a measurable function, and let $g(x) = 1/f(x)$.
 
@@ -75,12 +63,12 @@
 
   Let $h(x) = 1/x$. Then $g = h \circ f$.
 
-  Fix $y' \in (0, \infty)$ and let $U = h^{-1}((y', \infty)) \subseteq (0, \infty)$. Since $h$ is
+  Fix $y \in (0, \infty)$ and let $U = h^{-1}((y, \infty)) \subseteq (0, \infty)$. Since $h$ is
   continuous, $U$ is open.
 
-  We want to show that $g^{-1}((y', \infty)) \in \mc A$. We have
+  We want to show that $g^{-1}((y, \infty)) \in \mc A$. We have
   \begin{align*}
-    g^{-1}((y', \infty)) = f^{-1}(h^{-1}((y', \infty))) = f^{-1}(U).
+    g^{-1}((y, \infty)) = f^{-1}(h^{-1}((y, \infty))) = f^{-1}(U).
   \end{align*}
   So what we want to show is that $f^{-1}(U) \in \mc A$, where $U \subseteq (0, \infty)$ is open.
 
@@ -97,8 +85,10 @@
     f^{-1}(U)
     &= \bigcup_{i=1}^\infty \Big(f^{-1}((a, \infty)) \setminus f^{-1}((b, \infty))\Big) \\
     &= \bigcup_{i=1}^\infty \Big(f^{-1}((a, \infty)) \cap \big(f^{-1}((b, \infty))\big)^c\Big) \\
-    &\in \mc A.
+    &\in \mc A,
   \end{align*}
+  since this is a countable union of intersections of two sets that are both in $\mc A$ (one by definition, and
+  one as the complement of a set that is in $\mc A$ by definition).
 \end{proof}
 
 
@@ -108,62 +98,37 @@
 \end{mdframed}
 
 
-
-
 \begin{proof}
-  It suffices to show that $\{x ~:~ f(x) < y\}$ is open for all $y \in \R$, since then $\{x ~:~ f(x) < y\}$ is
-  Borel-measurable.
+  It suffices to show that $f^{-1}\((-\infty, y)\)$ is open for all $y \in \R$, since
+  then $f^{-1}\((-\infty, y)\)$ is Borel-measurable, and therefore Lebesgue-measurable.
 
-  Equivalently, it suffices to show that $f^{-1}\((-\infty, y)\)$ is open for all $y \in \R$.
+  % We know that there is a theorem concerning continuous functions on metric/topological spaces: $f:\R \to \R$
+  % is
+  % continuous if and only
+  % if $f^{-1}(U)$ is open for every open subset $U \subseteq \R$.
 
-  We have:
+  % We want to prove the reverse direction of this, but assuming upper semicontinuity only. In other words, we
+  % want to prove that (upper semicontinuity) implies (preimage of $(-\infty, q)$ is open) for all $q \in \R$.
 
-  For every $x \in \R$, for every $\eps > 0$ there exists $\delta$ such that $f((x - \delta, x + \delta)) \subseteq (-\infty, f(x) + \eps)$.
+  % We follow the proof of the standard theorem (see Kevin McGerty's Oxford A2 Metric Spaces notes) but
+  % substituting upper semicontinuity.
 
-  We know that there is a theorem concerning continuous functions: $f:\R \to \R$ is continuous if and only
-  if $f^{-1}(U)$ is open for every open subset $U \subseteq \R$.
+  Let $a \in \R$ and fix $\eps > 0$.
 
-  We want to prove the reverse direction of this, but assuming upper semicontinuity only. In other words, we
-  want to prove that (upper semicontinuity) implies (preimage of $(-\infty, q)$ is open) for all $q \in \R$.
-
-  So, let's follow the proof of the standard continuity theorem and see if we get into trouble.
-
-  Let $B(x, r)$ denote the open interval $(x - r, x + r)$.
-
-  Let $a \in \R$. Fix $\eps > 0$.
+  So, fix $y \in \R$ and let $a \in f^{-1}\((-\infty, y)\)$. It suffices to show that $f^{-1}\((-\infty, y)\)$
+  includes a neighborhood of $a$, since then it contains a neighborhood of all its points and therefore is
+  open as required.
 
   Since $f$ is upper semicontinuous there exists $\delta > 0$ such
-  that $(a - \delta, a + \delta) \subseteq f^{-1}\((-\infty, f(a) + \eps)\)$.
-  Therefore $f^{-1}\((-\infty, f(a) + \eps)\)$ is a neighborhood of $a$.
+  that $(a - \delta, a + \delta) \subset f^{-1}\((-\infty, f(a) + \eps)\)$.
 
-  What we want to conclude is that $f^{-1}\((-\infty, y)\)$ is open for all $y \in \R$.
+  Note that $f(a) \in (-\infty, y)$.
+  Therefore $(a - \delta, a + \delta) \subset f^{-1}\((-\infty, y + \eps)\)$.
 
+  Since $\eps$ is arbitrary we have that $(a - \delta, a + \delta) \subseteq f^{-1}\((-\infty, y)\)$, and
+  therefore that $f^{-1}\((-\infty, y)\)$ includes a neighborhood of $a$, as required.
 \end{proof}
 
-
-
-\begin{theorem*}[Preimage of an open set under a continuous function is open]
-  $f:\R \to \R$ is continuous if and only if $f^{-1}(U)$ is open for every open subset $U \subseteq \R$.
-\end{theorem*}
-
-\begin{proof}
-  First we prove that continuity implies open preimages.
-
-  Let $B(x, r)$ denote the open interval $(x - r, x + r)$.
-
-  Let $a \in \R$ and suppose $f$ is continuous at $a$. Fix $\eps > 0$.
-
-  Since $f$ is continuous there exists $\delta > 0$ such
-  that $B(a,  \delta) \subseteq f^{-1}(B(f(a), \eps))$. Therefore $f^{-1}(B(f(a), \eps))$ is a
-  neighborhood of $a$.
-
-  Since by hypothesis $f$ is continuous at all $a \in \R$, we have that $f^{-1}(U)$ is a neighborhood of all of
-  its points. This is because:
-
-  Let $x \in f^{-1}(U)$. Then $f(x) \in U$. Since $U$ is open there exists $\eps$ such
-  that $B(f(x), \eps) \subseteq U$ and $\delta$ such that $B(x, \delta) \subseteq B(f(x), \eps)$ is a
-  neighborhood of $x$.
-\end{proof}
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-7769.png}
