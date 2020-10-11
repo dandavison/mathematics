@@ -135,6 +135,81 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-7769.png}
 \end{mdframed}
 
+Note that $f(0) = 0$, since $f(0) = f(0 + 0) = 2f(0)$, of which the only solution is $f(0) = 0$.
+
+For $a \in \R$ define $g_a(x) := f(x) - ax$ so that $\Lambda_a = \{x \geq 0 ~:~ g_a(x) \geq 0\}$.
+
+Note that $g_a$ is measurable for all $a \in \R$, and therefore $\Lambda_a$ is Lebesgue measurable for
+all $a \in \R$. To see this, for $a \in \R$ define $h_a(x) = -ax$ so that $g_a = f + h_a$. Then $h_a$ is
+clearly Lebesgue measurable for all $a \in \R$, and therefore so also is $g_a(x)$ (by Bass proposition 5.7
+which states that a function produced via elementary operations on measurable functions is measurable).
+
+\begin{align*}
+  f(4 - 3) = f(4) + f(-y)
+\end{align*}
+
+
+\begin{enumerate}
+\item
+  \begin{claim*}
+    If $a \in \R$ is such that $\mu(\Lambda_a) > 0$ then $\Lambda_a$ includes an interval $[b, \infty)$ for some $b > 0$.
+  \end{claim*}
+
+  \begin{proof}
+    Let $\eps > 0$. Since $\Lambda_a$ is Lebesgue measurable there exists an open set $G \supseteq \Lambda_a$
+    such that $\mu(G \setminus \Lambda_a) < \eps/2$ and a closed set $F \subseteq \Lambda_a$ such
+    that $\mu(\Lambda_a \setminus F) < \eps/2$. Thus we have $F \subseteq \Lambda_a \subseteq G$
+    with $\mu(G) - \mu(F) < \eps$.
+
+    We will show that for all $a \in \R$ there exists $b > 0$ such that $g_a(x) \geq 0$ for $x \in [b, \infty)$.
+
+    We must use: additivity of $f$, positive measure of $\{x ~:~ g_a(x) \geq 0\}$.
+
+    \begin{align*}
+      g_a\Big(\sum_{x \in \Lambda_a} x\Big) = \sum_{x \in \Lambda_a} g_a(x) \geq 0.
+    \end{align*}
+
+    Note that for all $n \in \N$ we have $f(nx) = f(x + x + \cdots + x) = nf(x)$. Therefore
+    \begin{align*}
+      g_a(nx)
+      &= f(nx) - anx \\
+      &= n(f(x) - ax) \\
+      &= ng_a(x).
+    \end{align*}
+    \begin{align*}
+      g_a(x + x')
+      &= f(x + x') - a(x + x') \\
+      &= g_{a}(x) + g_{a}(x').
+    \end{align*}
+    Since $\mu(\Lambda_a) > 0$ there exist $x$ and $x'$ such that $g_a(x) \geq 0$ and $g_a(x') \geq 0$
+    and $x \neq x'$.
+
+    Therefore $g_a(x + x') \geq 0$.
+
+    So what we need to do is show that some interval $[b, \infty)$ is ``spanned​'' by $x, x'$ values in $\Lambda_a$.
+
+    \begin{align*}
+      f(x + x)
+      &= f(x) + f(x) \\
+      &= 2f(x)
+    \end{align*}
+
+
+  \end{proof}
+
+\item
+  \begin{claim*}
+    If $a \in \R$ is such that $\mu(\Lambda_a) > 0$ then $\Lambda_a$ includes an interval $[0, \infty)$.
+  \end{claim*}
+
+\item
+  \begin{claim*}
+    There exists $\lambda \in \R$ such that $f(x) = \lambda x$ for all $x \geq 0$.
+  \end{claim*}
+
+
+\end{enumerate}
+
 
 \newpage
 \begin{mdframed}
