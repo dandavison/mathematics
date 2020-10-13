@@ -135,6 +135,34 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-7769.png}
 \end{mdframed}
 
+\begin{proof}
+  Let $I = (a, a + \eps)$.
+
+  Note that $\{y - y' ~:~ y, y' \in I\} = (-\eps, \eps)$.
+
+  Note also that $f^{-1}(y' - y) = f^{-1}(y') - f^{-1}(y)$. To see this, note
+  that $f^{-1}(y) + \big[f^{-1}(y') - f^{-1}(y)\big] = f^{-1}(y')$. Therefore we have
+  \begin{align*}
+    f\Big[f^{-1}(y) + \big[f^{-1}(y') - f^{-1}(y)\big]\Big] &= f\big(f^{-1}(y')\big) \\
+    f\Big(\big[f^{-1}(y') - f^{-1}(y)\big]\Big) &= y' - y \\
+    f^{-1}(y') - f^{-1}(y) &= f^{-1}(y' - y).
+  \end{align*}
+
+  Therefore
+  \begin{align*}
+    f^{-1}((-\eps, \eps))
+    &= \Big\{f^{-1}(y - y') ~:~ y, y' \in I\Big\} \\
+    &= \Big\{f^{-1}(y) - f^{-1}(y') ~:~ y, y' \in I\Big\}.
+  \end{align*}
+\end{proof}
+
+
+\url{https://math.stackexchange.com/questions/45861/show-that-fxy-fxfy-implies-f-continuous-leftrightarrow-f-measur}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-e247.png}
+\end{mdframed}
+
 Note that $f(0) = 0$, since $f(0) = f(0 + 0) = 2f(0)$, of which the only solution is $f(0) = 0$.
 
 For $a \in \R$ define $g_a(x) := f(x) - ax$ so that $\Lambda_a = \{x \geq 0 ~:~ g_a(x) \geq 0\}$.
@@ -144,16 +172,32 @@ all $a \in \R$. To see this, for $a \in \R$ define $h_a(x) = -ax$ so that $g_a =
 clearly Lebesgue measurable for all $a \in \R$, and therefore so also is $g_a(x)$ (by Bass proposition 5.7
 which states that a function produced via elementary operations on measurable functions is measurable).
 
-\begin{align*}
-  f(4 - 3) = f(4) + f(-y)
-\end{align*}
-
-
 \begin{enumerate}
 \item
   \begin{claim*}
     If $a \in \R$ is such that $\mu(\Lambda_a) > 0$ then $\Lambda_a$ includes an interval $[b, \infty)$ for some $b > 0$.
   \end{claim*}
+
+
+  \begin{proof}
+    We will show that $f$ is continuous.
+
+
+
+
+
+
+    For a set $X \subseteq \R$ we will use the notation $X - X$ to mean $\{x - x' ~:~ x \in X \}$.
+
+    Note that, since $\Lambda_a$ is measurable, we know from HW5 Q3 that there exists $\delta > 0$ such
+    that $(-\delta, \delta) \subseteq \{x - x' ~:~ x, x' \in \Lambda_a \}$.
+
+    We want to show that, for every $\eps > 0$, there exists $\delta > 0$ such that
+    if $x' \in (x - \delta, x + \delta)$ then $f(x') \in (f(x) - \eps, f(x) + \eps)$.
+
+
+  \end{proof}
+
 
   \begin{proof}
     Let $\eps > 0$. Since $\Lambda_a$ is Lebesgue measurable there exists an open set $G \supseteq \Lambda_a$
@@ -188,11 +232,6 @@ which states that a function produced via elementary operations on measurable fu
 
     So what we need to do is show that some interval $[b, \infty)$ is ``spanned​'' by $x, x'$ values in $\Lambda_a$.
 
-    \begin{align*}
-      f(x + x)
-      &= f(x) + f(x) \\
-      &= 2f(x)
-    \end{align*}
 
 
   \end{proof}
@@ -215,3 +254,17 @@ which states that a function produced via elementary operations on measurable fu
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
 \end{mdframed}
+
+\begin{enumerate}
+\item
+  \begin{proof}
+    Let $r \in \Q$, and let $(a, b) \subset [0, 1)$.
+
+    We must translate by more than $(b - a)$ and we must translate by a rational of the form $1/n$ for some $n \in \{1, 2, \ldots\}$.
+
+    So we require
+    \begin{align*}
+      \frac{1}{n} > b - a
+    \end{align*}
+  \end{proof}
+\end{enumerate}
