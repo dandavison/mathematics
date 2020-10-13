@@ -374,3 +374,25 @@ What about this one?
   expressing what we know or believe about the world. This is indeed the philosophy behind causal Bayesian
   networks.
 \end{quote}
+
+
+
+\begin{align*}
+  p(X=x|Y=2)
+  &= \frac{p(X=x) p(Y=2|X)}{p(Y=2)} \\
+  &\propto N\big(x; 0, 1\big) N\big(2; \frac{x}{3}, 1\big) \\
+  &\propto \exp\{-\frac{1}{2}\big((x^2 + (2 - x/3)^2)\big)\}.
+\end{align*}
+
+The posterior density of $X$ is
+\begin{align*}
+  p(X=x|Y=2)
+  &= \frac{p(X=x) p(Y=2|X)}{p(Y=2)} \\
+  &= \frac{N(x; 0, 1) N(2; \frac{x}{3}, 1)}{\int N(2; \frac{x}{3}, 1) \dx}.
+\end{align*}
+Therefore the posterior expectation of $X$is
+\begin{align*}
+  E(X|Y=2)
+  &= \frac{1}{C} \int x N(x; 0, 1) N(2; \frac{x}{3}, 1) \dx \\
+  &=
+\end{align*}
