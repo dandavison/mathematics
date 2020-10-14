@@ -1,24 +1,24 @@
 \section*{Math 202a - HW2 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
-Grade: 89 (100 pts possible)
-Graded Anonymously: no
-Comments:
+% Grade: 89 (100 pts possible)
+% Graded Anonymously: no
+% Comments:
 
-4.2. Your argument that $F$ is continuous has a serious issue: the $F_n$ are uniformly Cauchy, and the
-fundamental theorem of calculus *does* imply that the antiderivative of a Riemann integrable function is
-continuous, but it does not follow that the antiderivative is differentiable (in fact, it is *not*
-differentiable on the Cantor set), so you cannot conclude that the $F_n$ are Lipschitz.
+% 4.2. Your argument that $F$ is continuous has a serious issue: the $F_n$ are uniformly Cauchy, and the
+% fundamental theorem of calculus *does* imply that the antiderivative of a Riemann integrable function is
+% continuous, but it does not follow that the antiderivative is differentiable (in fact, it is *not*
+% differentiable on the Cantor set), so you cannot conclude that the $F_n$ are Lipschitz.
 
-Aidan Backus, Sep 23 at 8:09am
+% Aidan Backus, Sep 23 at 8:09am
 
-2. 10 3. 10 4. 8 5. 7
+% 2. 10 3. 10 4. 8 5. 7
 
-Ian Francis, Sep 25 at 4:42pm
+% Ian Francis, Sep 25 at 4:42pm
 
 
-On average, most students did quite well on Homework 2. Ian may have some comments about the "irrational rotation" problem, or possibly not; other than that, I think students struggled the most on problem 4, wherein one was given a mysterious function $F$, the Devil's staircase, that was somehow differentiable with zero derivative almost everywhere and yet surjective! Thus derivatives of functions which are not differentiable *everywhere* do not play nicely with measure theory. Here I think most of you had the idea of what to do, but resorted to horribly overcomplicated arguments, or worse, arguments that lacked enough detail to be complete.
+% On average, most students did quite well on Homework 2. Ian may have some comments about the "irrational rotation" problem, or possibly not; other than that, I think students struggled the most on problem 4, wherein one was given a mysterious function $F$, the Devil's staircase, that was somehow differentiable with zero derivative almost everywhere and yet surjective! Thus derivatives of functions which are not differentiable *everywhere* do not play nicely with measure theory. Here I think most of you had the idea of what to do, but resorted to horribly overcomplicated arguments, or worse, arguments that lacked enough detail to be complete.
 
-For part 4a, wherein you had to show that the Devil's staircase was well-defined, I think it would've been helpful to think of the Cantor set as the set of infinite binary strings. If the nth bit in a binary string is 0, go left; otherwise go right. Then $F_n(x)$ is determined by the first n bits in x, and for every $\varepsilon > 0$ you can choose $x_1 < x < x_2$ and an n so large that $F_n(x_2) - \varepsilon \leq F_n(x_1) \leq F(x) \leq F_n(x_2)$. (Note that $F(x)$ in general is determined by all of the bits of x, which is why it is necessary to pass to $F_n$.) Then take $\varepsilon \to 0$. After 4a the problem is smooth sailing: apply the fundamental theorem of calculus, which says that $F$ is continuous (*and no more than continuous*).
+% For part 4a, wherein you had to show that the Devil's staircase was well-defined, I think it would've been helpful to think of the Cantor set as the set of infinite binary strings. If the nth bit in a binary string is 0, go left; otherwise go right. Then $F_n(x)$ is determined by the first n bits in x, and for every $\varepsilon > 0$ you can choose $x_1 < x < x_2$ and an n so large that $F_n(x_2) - \varepsilon \leq F_n(x_1) \leq F(x) \leq F_n(x_2)$. (Note that $F(x)$ in general is determined by all of the bits of x, which is why it is necessary to pass to $F_n$.) Then take $\varepsilon \to 0$. After 4a the problem is smooth sailing: apply the fundamental theorem of calculus, which says that $F$ is continuous (*and no more than continuous*).
 
 
 \begin{mdframed}
@@ -385,13 +385,13 @@ For part 4a, wherein you had to show that the Devil's staircase was well-defined
     at $y'$ by this same $\eps$. It follows that $\orb(y)$ is dense also.
   \end{proof}
 
-  \begin{quote}
-5.2. You've got the right idea in the irrational case, but you haven't quite finished the argument. You need to
-invoke Bolzano–Weierstrass or an equivalent result to extract a convergent (hence Cauchy) subsequence of the
-orbit.
+%   \begin{quote}
+% 5.2. You've got the right idea in the irrational case, but you haven't quite finished the argument. You need to
+% invoke Bolzano–Weierstrass or an equivalent result to extract a convergent (hence Cauchy) subsequence of the
+% orbit.
 
-Ian Francis, Sep 21 at 8:57pm
-  \end{quote}
+% Ian Francis, Sep 21 at 8:57pm
+%   \end{quote}
 
 \item
 % \begin{lemma}\label{lemma-5-1}

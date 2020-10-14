@@ -136,14 +136,15 @@
 \end{mdframed}
 
 \begin{proof}
-  Let $I = (a, a + \eps)$.
+  Fix $\eps > 0$ and let $I = (a, a + \eps)$.
 
   Note that $\{y - y' ~:~ y, y' \in I\} = (-\eps, \eps)$.
 
   Note also that $f^{-1}(y' - y) = f^{-1}(y') - f^{-1}(y)$. To see this, note
   that $f^{-1}(y) + \big[f^{-1}(y') - f^{-1}(y)\big] = f^{-1}(y')$. Therefore we have
   \begin{align*}
-    f\Big[f^{-1}(y) + \big[f^{-1}(y') - f^{-1}(y)\big]\Big] &= f\big(f^{-1}(y')\big) \\
+    f\Big(f^{-1}(y) + \big[f^{-1}(y') - f^{-1}(y)\big]\Big) &= f\big(f^{-1}(y')\big) \\
+    f\Big(f^{-1}(y)\Big) + f\Big(\big[f^{-1}(y') - f^{-1}(y)\big]\Big) &= f\big(f^{-1}(y')\big) \\
     f\Big(\big[f^{-1}(y') - f^{-1}(y)\big]\Big) &= y' - y \\
     f^{-1}(y') - f^{-1}(y) &= f^{-1}(y' - y).
   \end{align*}
@@ -152,8 +153,17 @@
   \begin{align*}
     f^{-1}((-\eps, \eps))
     &= \Big\{f^{-1}(y - y') ~:~ y, y' \in I\Big\} \\
-    &= \Big\{f^{-1}(y) - f^{-1}(y') ~:~ y, y' \in I\Big\}.
+    &= \Big\{f^{-1}(y) - f^{-1}(y') ~:~ y, y' \in I\Big\} \\
+    &= \Big\{x - x' ~:~ x, x' \in f^{-1}(I)\Big\}.
   \end{align*}
+  Since $f^{-1}(I)$ we have from HW5 Q3 that there exists $\delta > 0$ such
+  that $(-\delta, \delta) \subseteq f^{-1}((-\eps, \eps))$.
+
+  Therefore $f$ is continuous.
+
+  (3) Since $f$ is additive and continuous, it follows that it is linear.
+
+  (1), (2) follow from (3).
 \end{proof}
 
 
@@ -255,10 +265,31 @@ which states that a function produced via elementary operations on measurable fu
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
 \end{mdframed}
 
+\begin{intuition*}
+  A point is in $A^*$ if it is reached starting from any point in $A$.
+
+  A point is in $(A^*)^c$ iff it is never reached, starting from any point in $A$.
+
+  If any point in $A$ reaches all points of the circle, then $\mu(A^*) = 1$.
+\end{intuition*}
+
 \begin{enumerate}
 \item
   \begin{proof}
-    Let $r \in \Q$, and let $(a, b) \subset [0, 1)$.
+    Let $r = p/q \in \Q$, where $p, q \in \Z$ are coprime.
+
+    We require $0 < \mu(A^*) < 1$.
+
+    Equivalently, $0 < \mu((A^*)^c) < 1$.
+
+
+
+
+
+
+
+
+    Let $(a, b) \subset [0, 1)$.
 
     We must translate by more than $(b - a)$ and we must translate by a rational of the form $1/n$ for some $n \in \{1, 2, \ldots\}$.
 
@@ -266,5 +297,57 @@ which states that a function produced via elementary operations on measurable fu
     \begin{align*}
       \frac{1}{n} > b - a
     \end{align*}
+  \end{proof}
+
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
+  \begin{lemma*}
+    Let $E \subseteq \R$ be Lebesgue measurable and fix $\alpha \in (0, 1)$. Then there exists an open
+    interval $I_i$ such that $\mu(E \cap I_i) > \alpha \mu(I_i)$.
+  \end{lemma*}
+
+    Let $\mu$ denote Lebesgue measure.
+
+    Note that, since $\tau_r$ is a translation on the circle, it follows from translation-invariance of measure
+    that $\tau_r$ is a measure-preserving transformation, i.e. that
+    \begin{align*}
+      \mu(\tau_r^{-1}(A)) = \mu(A).
+    \end{align*}
+
+    Let $\Omega = [0, 1)$. Then $(\Omega, \mu, \tau_r)$ is a dynamical system.
+
+
+\item
+  \begin{claim*}
+    Let $r \in [0, 1) \cap \Q$. Then there exists $A \subset [0, 1)$ of positive Lebesgue measure such that $0 < \mu(A^*) < 1$.
+  \end{claim*}
+  \begin{proof}
+    Let $r = p/q \in \Q$, where $p, q \in \Z$ are coprime.
+
+    Let $f:[0, 1) \to \C$ be defined by $f(x) = e^{2\pi ixq}$.
+
+    Note that $f$ is invariant under $\tau_r$, since we have
+    \begin{align*}
+      f(\tau_r(x)) =
+      \begin{cases}
+        e^{2\pi i (x + p/q)q} = e^{2\pi i (qx + p)} = e^{2\pi iqx}e^{2p\pi i} = f(x)  ~~~~~~~~~~~~~~~~~~~~~x + a < 1, \\
+        e^{2\pi i (x + p/q - 1)q} = e^{2\pi i (qx + p - q)} = e^{2\pi iqx}e^{2(p - q)\pi i} = f(x)  ~~~~~~~~x + a \geq 1.
+      \end{cases}
+    \end{align*}
+    Informally, $f$ is the location of a point that is moving around the unit circle with constant
+    velocity $q$.
+
+    Since $\tau_r$ is not ergodic for rational $r$,
+
+  \end{proof}
+
+\item
+  \begin{claim*}
+    Let $r \in [0, 1) \setminus \Q$. Then $\mu(A^*) = 1$ for all $A \subset [0, 1)$.
+  \end{claim*}
+  \begin{proof}
+
+    Let $A \subset [0, 1)$ have positive measure. Then for all $\eps > 0$ there exists an open interval $I$
+    such that $\mu(A \cap I) > (1 - \eps) \mu(I)$.
+
   \end{proof}
 \end{enumerate}
