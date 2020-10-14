@@ -1,7 +1,7 @@
-\section*{Math 202a - HW5 - Dan Davison - \texttt{ddavison@berkeley.edu}}
+\section*{Math 202a - HW6 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-ab56.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-ab56.png}
 \end{mdframed}
 
 \begin{proof}
@@ -22,7 +22,7 @@
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-927a.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-927a.png}
 \end{mdframed}
 
 \begin{proof}
@@ -55,7 +55,7 @@
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-b799.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-b799.png}
 \end{mdframed}
 
 \begin{proof}
@@ -97,7 +97,7 @@
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-90b1.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-90b1.png}
 \end{mdframed}
 
 
@@ -132,8 +132,17 @@
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-7769.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-7769.png}
 \end{mdframed}
+
+Note that $f(0) = 0$, since $f(0) = f(0 + 0) = 2f(0)$, of which the only solution is $f(0) = 0$.
+
+For $a \in \R$ define $g_a(x) := f(x) - ax$ so that $\Lambda_a = \{x \geq 0 ~:~ g_a(x) \geq 0\}$.
+
+Note that $g_a$ is measurable for all $a \in \R$, and therefore $\Lambda_a$ is Lebesgue measurable for
+all $a \in \R$. To see this, for $a \in \R$ define $h_a(x) = -ax$ so that $g_a = f + h_a$. Then $h_a$ is
+clearly Lebesgue measurable for all $a \in \R$, and therefore so also is $g_a(x)$ (by Bass proposition 5.7
+which states that a function produced via elementary operations on measurable functions is measurable).
 
 \begin{proof}
   Fix $\eps > 0$ and let $I = (a, a + \eps)$.
@@ -167,155 +176,29 @@
 \end{proof}
 
 
-\url{https://math.stackexchange.com/questions/45861/show-that-fxy-fxfy-implies-f-continuous-leftrightarrow-f-measur}
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-e247.png}
-\end{mdframed}
-
-Note that $f(0) = 0$, since $f(0) = f(0 + 0) = 2f(0)$, of which the only solution is $f(0) = 0$.
-
-For $a \in \R$ define $g_a(x) := f(x) - ax$ so that $\Lambda_a = \{x \geq 0 ~:~ g_a(x) \geq 0\}$.
-
-Note that $g_a$ is measurable for all $a \in \R$, and therefore $\Lambda_a$ is Lebesgue measurable for
-all $a \in \R$. To see this, for $a \in \R$ define $h_a(x) = -ax$ so that $g_a = f + h_a$. Then $h_a$ is
-clearly Lebesgue measurable for all $a \in \R$, and therefore so also is $g_a(x)$ (by Bass proposition 5.7
-which states that a function produced via elementary operations on measurable functions is measurable).
-
-\begin{enumerate}
-\item
-  \begin{claim*}
-    If $a \in \R$ is such that $\mu(\Lambda_a) > 0$ then $\Lambda_a$ includes an interval $[b, \infty)$ for some $b > 0$.
-  \end{claim*}
-
-
-  \begin{proof}
-    We will show that $f$ is continuous.
-
-
-
-
-
-
-    For a set $X \subseteq \R$ we will use the notation $X - X$ to mean $\{x - x' ~:~ x \in X \}$.
-
-    Note that, since $\Lambda_a$ is measurable, we know from HW5 Q3 that there exists $\delta > 0$ such
-    that $(-\delta, \delta) \subseteq \{x - x' ~:~ x, x' \in \Lambda_a \}$.
-
-    We want to show that, for every $\eps > 0$, there exists $\delta > 0$ such that
-    if $x' \in (x - \delta, x + \delta)$ then $f(x') \in (f(x) - \eps, f(x) + \eps)$.
-
-
-  \end{proof}
-
-
-  \begin{proof}
-    Let $\eps > 0$. Since $\Lambda_a$ is Lebesgue measurable there exists an open set $G \supseteq \Lambda_a$
-    such that $\mu(G \setminus \Lambda_a) < \eps/2$ and a closed set $F \subseteq \Lambda_a$ such
-    that $\mu(\Lambda_a \setminus F) < \eps/2$. Thus we have $F \subseteq \Lambda_a \subseteq G$
-    with $\mu(G) - \mu(F) < \eps$.
-
-    We will show that for all $a \in \R$ there exists $b > 0$ such that $g_a(x) \geq 0$ for $x \in [b, \infty)$.
-
-    We must use: additivity of $f$, positive measure of $\{x ~:~ g_a(x) \geq 0\}$.
-
-    \begin{align*}
-      g_a\Big(\sum_{x \in \Lambda_a} x\Big) = \sum_{x \in \Lambda_a} g_a(x) \geq 0.
-    \end{align*}
-
-    Note that for all $n \in \N$ we have $f(nx) = f(x + x + \cdots + x) = nf(x)$. Therefore
-    \begin{align*}
-      g_a(nx)
-      &= f(nx) - anx \\
-      &= n(f(x) - ax) \\
-      &= ng_a(x).
-    \end{align*}
-    \begin{align*}
-      g_a(x + x')
-      &= f(x + x') - a(x + x') \\
-      &= g_{a}(x) + g_{a}(x').
-    \end{align*}
-    Since $\mu(\Lambda_a) > 0$ there exist $x$ and $x'$ such that $g_a(x) \geq 0$ and $g_a(x') \geq 0$
-    and $x \neq x'$.
-
-    Therefore $g_a(x + x') \geq 0$.
-
-    So what we need to do is show that some interval $[b, \infty)$ is ``spanned​'' by $x, x'$ values in $\Lambda_a$.
-
-
-
-  \end{proof}
-
-\item
-  \begin{claim*}
-    If $a \in \R$ is such that $\mu(\Lambda_a) > 0$ then $\Lambda_a$ includes an interval $[0, \infty)$.
-  \end{claim*}
-
-\item
-  \begin{claim*}
-    There exists $\lambda \in \R$ such that $f(x) = \lambda x$ for all $x \geq 0$.
-  \end{claim*}
-
-
-\end{enumerate}
 
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
 \end{mdframed}
 
-\begin{intuition*}
-  A point is in $A^*$ if it is reached starting from any point in $A$.
+\begin{lemma*}
+  Let $E \subseteq \R$ be Lebesgue measurable and fix $\alpha \in (0, 1)$. Then there exists an open
+  interval $I_i$ such that $\mu(E \cap I_i) > \alpha \mu(I_i)$.
+\end{lemma*}
 
-  A point is in $(A^*)^c$ iff it is never reached, starting from any point in $A$.
+Let $\mu$ denote Lebesgue measure.
 
-  If any point in $A$ reaches all points of the circle, then $\mu(A^*) = 1$.
-\end{intuition*}
+Note that, since $\tau_r$ is a translation on the circle, it follows from translation-invariance of measure
+that $\tau_r$ is a measure-preserving transformation, i.e. that
+\begin{align*}
+  \mu(\tau_r^{-1}(A)) = \mu(A).
+\end{align*}
+
+Let $\Omega = [0, 1)$. Then $(\Omega, \mu, \tau_r)$ is a dynamical system.
 
 \begin{enumerate}
-\item
-  \begin{proof}
-    Let $r = p/q \in \Q$, where $p, q \in \Z$ are coprime.
-
-    We require $0 < \mu(A^*) < 1$.
-
-    Equivalently, $0 < \mu((A^*)^c) < 1$.
-
-
-
-
-
-
-
-
-    Let $(a, b) \subset [0, 1)$.
-
-    We must translate by more than $(b - a)$ and we must translate by a rational of the form $1/n$ for some $n \in \{1, 2, \ldots\}$.
-
-    So we require
-    \begin{align*}
-      \frac{1}{n} > b - a
-    \end{align*}
-  \end{proof}
-
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
-  \begin{lemma*}
-    Let $E \subseteq \R$ be Lebesgue measurable and fix $\alpha \in (0, 1)$. Then there exists an open
-    interval $I_i$ such that $\mu(E \cap I_i) > \alpha \mu(I_i)$.
-  \end{lemma*}
-
-    Let $\mu$ denote Lebesgue measure.
-
-    Note that, since $\tau_r$ is a translation on the circle, it follows from translation-invariance of measure
-    that $\tau_r$ is a measure-preserving transformation, i.e. that
-    \begin{align*}
-      \mu(\tau_r^{-1}(A)) = \mu(A).
-    \end{align*}
-
-    Let $\Omega = [0, 1)$. Then $(\Omega, \mu, \tau_r)$ is a dynamical system.
-
-
 \item
   \begin{claim*}
     Let $r \in [0, 1) \cap \Q$. Then there exists $A \subset [0, 1)$ of positive Lebesgue measure such that $0 < \mu(A^*) < 1$.
