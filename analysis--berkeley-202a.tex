@@ -462,6 +462,41 @@ and therefore
 
 \end{proof}
 
+\begin{example}[A non-measurable set]
+  Consider the unit circle $S^1$. We would like to define a countably additive, translation invariant,
+  function $\mu:\powerset(S^1) \to [0, \infty]$, which we will call a ``measure​''.
+
+  Let $r$ be irrational and define the translation $\tau(x) = (x + r) \mod 1$.
+
+  Recall that for all $x \in S_1$, the orbit of $x$ under $\tau$ is non-periodic and dense.
+
+  (Note that non-periodicity of the orbit is quite a striking property: it never hits a point twice!)
+
+  Define a set $A_0$ containing one point from every distinct orbit. (Uses some form of Axiom of Choice)
+
+  Define $A_n = \tau^n(A_0)$.
+
+  Note that $A_i$ and $A_j$ are disjoint for all $i \neq j$. (Suppose they had a point in common. Then that
+  point would either be a member of two distinct orbits, or it would be a point that occurs twice in the same
+  orbit. Neither is possible.)
+
+  Therefore, if the $A_i$ are measurable, then
+  \begin{align*}
+    \mu\Big(\bigcup_{i=0}^\infty A_i\Big) = \sum_{i=0}^\infty \mu(A_i).
+  \end{align*}
+  But note that $\bigcup_{i=0}^\infty A_i = S^1$, therefore the LHS equals 1.
+
+  However, $\tau$ is a translation, and therefore $\mu(A_i) = \mu(A_0)$ for all $i$, if $\mu$ is translation
+  invariant.
+
+  But this is a contradiction, since if $\mu(A_0) = 0$ then we have $1 = \sum_{i=0}^\infty 0 = 0$, and
+  if $\mu(A_0) > 0$ then we have $1 = \infty$.
+
+  Therefore no countably additive and translation invariant $\mu$ can be defined on the $A_i$.
+
+  Counter-examples like this motivate the restriction of measure to $\sigma$-algebras.
+\end{example}
+
 
 \subsection{sigma-algebras, Borel sets}
 
@@ -702,6 +737,7 @@ A \defn{probability measure} is a measure where $\mu(\Omega) = 1$.
 
 
 \end{enumerate}
+
 
 
 Suppose we are defining a measure $m$ on $\Omega = \R$.
