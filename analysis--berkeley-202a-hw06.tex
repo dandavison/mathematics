@@ -51,9 +51,26 @@
   Therefore $\bigcup_{i=1}^\infty U_{q_i}$ is Borel-measurable.
 \end{proof}
 
-
-
 \newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-aaf5.png}
+\end{mdframed}
+
+\begin{proof}
+
+  (Incomplete)
+
+  We know that the preimage under $f_n$ of an open set is measurable.
+
+  We want to show that $A$ is measurable. We will do that by showing that it is the preimage of an open set.
+
+  $\lim_{n \to \infty} f_n(x)$ exists if there exists $y$ such that for all $\eps$ there exists $N$ beyond
+  which $f_n(x)$ lies within $\eps$ of $y$.
+\end{proof}
+
+Sadly I was able to do this question's predecessor, but not the question I was supposed to be doing! FWIW,
+here's the predecessor:
+
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-b799.png}
 \end{mdframed}
@@ -93,6 +110,7 @@
   since this is a countable union of intersections of two sets that are both in $\mc A$ (one by definition, and
   one as the complement of a set that is in $\mc A$ by definition).
 \end{proof}
+
 
 
 \newpage
@@ -183,6 +201,14 @@ which states that a function produced via elementary operations on measurable fu
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
 \end{mdframed}
 
+\begin{intuition*}
+  A point is in $A^*$ if it is reached starting from any point in $A$.
+
+  A point is in $(A^*)^c$ iff it is never reached, starting from any point in $A$.
+
+  If any point in $A$ reaches all points of the circle, then $\mu(A^*) = 1$.
+\end{intuition*}
+
 \begin{lemma*}
   Let $E \subseteq \R$ be Lebesgue measurable and fix $\alpha \in (0, 1)$. Then there exists an open
   interval $I_i$ such that $\mu(E \cap I_i) > \alpha \mu(I_i)$.
@@ -206,6 +232,217 @@ Let $\Omega = [0, 1)$. Then $(\Omega, \mu, \tau_r)$ is a dynamical system.
   \begin{proof}
     Let $r = p/q \in \Q$, where $p, q \in \Z$ are coprime.
 
+    Let $I_i = [\frac{i}{2q}, \frac{i+1}{2q})$ and define $A = \bigcup_{i=0}^{2q-1} I_i$. We claim that $A$ has
+    the required properties.
+
+    Clearly $A$ has positive measure, since $\mu(A) = q \cdot \frac{1}{2q} = \frac{1}{2}$.
+
+    Next we need to show that $0 < \mu(A^*) < 1$, where $A^* := \bigcup_{n=0}^\infty \tau^n(A)$.
+
+    Informally, what we want to show is that the $I_i$ map to each other under $\tau$.
+
+    We have
+    \begin{align*}
+      \tau^n(I_i)
+      &= \Big[\big(\frac{i}{2q} + \frac{np}{q}\big) \mod 1, \big(\frac{i+1}{2q} + \frac{np}{q}\big) \mod 1 \Big) \\
+      &= \Big[\frac{i + 2np}{2q} \mod 1, \frac{i + 1 + 2np}{2q} \mod 1\Big) \\
+      &= \Big[\frac{(i + 2np) \mod 2q}{2q}, \frac{(i + 1 + 2np) \mod 2q}{2q}\Big) \\
+      &= I_{(i + 2np) \mod 2q} \\
+      &\subseteq A.
+    \end{align*}
+    Therefore $A^* := \bigcup_{n=0}^\infty \tau^n(A) \subseteq A$ and
+    hence $\mu(A^*) \leq \mu(A) = \frac{1}{2}$. Since $A = \tau^0(A) \subset A^*$ we have
+    \begin{align*}
+      0 < \mu(A^*) < 1,
+    \end{align*}
+    as required.
+  \end{proof}
+
+\item
+
+\begin{mdframed}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw06-9bc5.png}
+\end{mdframed}
+
+  \begin{claim*}
+    Let $r \in [0, 1) \setminus \Q$. Then $\mu(A^*) = 1$ for all $A \subset [0, 1)$.
+  \end{claim*}
+
+  \begin{intuition*}
+    If $A$ includes an interval then the result is true. Furthermore, the result is intuitively plausible
+    if $A$ does not include an interval​, as follows. We know that $A$ includes a locally dense region; the
+    iterations of the dynamical system place many copies of this dense region around the circle such that every
+    point of the circle is close to infinitely many copies of the dense region, each translated by small
+    amounts from each other. Thus it is certainly plausible that the amount of space left uncovered is
+    negligible.
+  \end{intuition*}
+
+  \begin{proof}
+    Let $r \in [0, 1) \setminus \Q$ and let $A \subseteq [0, 1)$ have positive measure.
+
+    For any subset $X \subseteq [0, 1)$ let $X^* \subseteq [0, 1)$ denote the union $\bigcup_{n=0}^\infty \tau^n(X)$.
+
+    We will show that $\mu\((A^*)^c\) = 0$.
+
+    Note that
+    \begin{align*}
+      \big(A^{*}\big)^c = \bigcap_{n=0}^\infty \big(\tau^n(A)\big)^c.
+    \end{align*}
+    Let $\eps > 0$.
+
+    Then there exists an open interval $I$ such that $\mu(A \cap I) > (1 - \eps) \mu(I)$, or equivalently
+    \begin{align*}
+      \mu(I \setminus A) < \eps\mu(I).
+    \end{align*}
+
+    Let $d = \mu(I)$, and fix an arbitrary interval $J \subset [0, 1)$ of length $d$.
+
+    We will show that $\mu(J \setminus A^*) < \epsilon d$. Since $J$ is an arbitrary interval, it follows that
+
+  \end{proof}
+
+
+
+  \begin{proof}
+    Let $r \in [0, 1) \setminus \Q$ and let $A$ be a $\tau_r$-invariant set with positive measure.
+
+    First suppose $A$ includes an interval $I$. Then $A^* = [0, 1)$. This is true because (a) the orbits are
+    dense, so for any given point $x \in [0, 1)$ we can find $x_0 \in A$ whose orbit passes close to $x$. Then
+    (b) we can look at how close it got, and find another starting point in our interval whose orbit hits $x$
+    exactly.
+
+    Suppose $A$ includes an interval $I = (a, b)$. We claim that $A^* = [0, 1)$.
+
+    Proof: Let $y \in [0, 1)$ and let $\eps < \mu(I)$. Since $\orb(a)$ is dense, there exists $x \in \orb(a)$
+    such that $|x - y| < \eps$.
+
+
+    Now suppose $A$ includes no interval. We want to show that $\mu(A^*) = 1$.
+
+    For any subset $X \subseteq [0, 1)$ let $X^*$ denote the union $\bigcup_{n=0}^\infty \tau^n(X)$.
+
+    Since $I$ is an interval, we have $I^* = [0, 1)$ and $\mu(I^*) = 1$.
+
+    We claim that $\mu((A \cap I)^*) = 1$. This implies the desired result
+    since $(A \cap I)^* \subseteq A^* \subseteq [0, 1)$.
+
+    Let $\eps > 0$.
+
+    Then there exists an open interval $I$ such that $\mu(A \cap I) > (1 - \eps) \mu(I)$, or equivalently:
+    \begin{align*}
+      \mu(I \setminus A) < \eps\mu(I).
+    \end{align*}
+
+    Recall that we want to show that $\mu((A \cap I)^*) = 1$.
+
+    We have the non-disjoint union
+    \begin{align*}
+      I^* = (A \cap I)^* \cup (I \setminus A)^*.
+    \end{align*}
+    Therefore
+    \begin{align*}
+      \mu(I^*) = 1 \leq
+    \end{align*}
+
+
+
+    Therefore we have $\mu(A \cap I) = \mu(I) - \mu(I \setminus A) > (1 - \eps)\mu(I)$,
+
+
+
+
+    We know that $\mu(\tau^k(A \cap I)) > (1 - \eps)\mu(I)$ by translation invariance.
+
+
+
+
+
+
+    We want to show that
+
+    We must use
+    \begin{enumerate}
+    \item $\mu(A^*) > 0$ -- this gives the interval theorem
+    \item Every point has a non-periodic orbit which is dense
+    \item Orbits are disjoint
+    \item $A^*$ is invariant: $\tau(A^*) = A^*$
+    \end{enumerate}
+
+    We want to show that the set of points we don't hit exactly has measure $0$.
+
+
+  \end{proof}
+
+  \begin{lemma}
+    Every $\tau_r$-invariant set with positive measure has Lebesgue measure one when $r$ is irrational.
+  \end{lemma}
+  \begin{proof}
+    Let $r \in [0, 1) \setminus \Q$ and let $A$ be a $\tau_r$-invariant set with positive measure.
+
+    First suppose $A$ includes an interval $I$. Then $A^* = [0, 1)$. This is true because (a) the orbits are
+    dense, so for any given point $x \in [0, 1)$ we can find $x_0 \in A$ whose orbit passes close to $x$. Then
+    (b) we can find another orbit that hits $x$ exactly.
+
+
+    Now suppose $A$ includes no interval. We need to show that the set of points we don't hit exactly has
+    measure 0.
+
+    We must use
+    \begin{enumerate}
+    \item $A$ is invariant: $\tau(A) = A$
+    \item $\mu(A) > 0$
+    \item Every point has a non-periodic orbit which is dense
+    \item Orbits are disjoint
+    \end{enumerate}
+
+    Then for all $\eps > 0$ there exists an open interval $I$ such that $\mu(A \cap I) > (1 - \eps) \mu(I)$.
+
+
+
+  \end{proof}
+
+  \begin{proof}
+    Let $r \in [0, 1) \setminus \Q$ and let $A \subset [0, 1)$ have positive Lebesgue measure.
+
+    Note that $A^*$ has positive measure since $A = \tau^0(A) \subset A^*$ hence $\mu(A) < \mu(A^*)$. Note also
+    that $A^*$ is invariant under $\tau$, since
+    \begin{align*}
+      \tau^{-1}(A^*)
+      &:= \{x ~:~ \tau(x) \in A^* \} \\
+      &= \{x ~:~ \tau(x) \in \bigcup_{n=0}^\infty \tau^n(A) \} \\
+      &= \bigcup_{n=0}^\infty \tau^n(A) \\
+      &=: A^*.
+    \end{align*}
+
+
+
+
+  \end{proof}
+\end{enumerate}
+
+
+
+
+
+    One option would be to prove that $\tau_r$ is ergodic with respect to Lebesgue measure. Then,
+    since $\tau^{-1}(A^*) = A^*$ we have that $\mu(A^*) = 0$ or $\mu(A^*) = 1$.
+    But $A = \tau^0(A) \subset A^*$, therefore $\mu(A^*) \neq 0$. Therefore $\mu(A^*) = 1$.
+
+
+
+
+
+    Then every point has a non-periodic orbit which is dense in $[0, 1)$.
+
+
+    Let $A \subset [0, 1)$ have positive measure.
+
+
+    Recall that every point in the circle has a periodic orbit when $r$ is rational.
+
+
+
+
     Let $f:[0, 1) \to \C$ be defined by $f(x) = e^{2\pi ixq}$.
 
     Note that $f$ is invariant under $\tau_r$, since we have
@@ -220,17 +457,3 @@ Let $\Omega = [0, 1)$. Then $(\Omega, \mu, \tau_r)$ is a dynamical system.
     velocity $q$.
 
     Since $\tau_r$ is not ergodic for rational $r$,
-
-  \end{proof}
-
-\item
-  \begin{claim*}
-    Let $r \in [0, 1) \setminus \Q$. Then $\mu(A^*) = 1$ for all $A \subset [0, 1)$.
-  \end{claim*}
-  \begin{proof}
-
-    Let $A \subset [0, 1)$ have positive measure. Then for all $\eps > 0$ there exists an open interval $I$
-    such that $\mu(A \cap I) > (1 - \eps) \mu(I)$.
-
-  \end{proof}
-\end{enumerate}
