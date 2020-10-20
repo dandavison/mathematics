@@ -881,23 +881,6 @@ Let $x, a \in \R$ and $n \in \N$. Sets of real numbers satisfying inequalities:
 
 All functions are measurable unless stated otherwise.
 
-\begin{theorem*}[MCT]
-  Let $f_n$ be a sequence of non-negative functions such that $f_1 \leq f_2 \leq \cdots$ and $f_n(x) \to f(x)$
-  for all $x$. Then
-  \begin{align*}
-    \lim \int f_n = \int f.
-  \end{align*}
-\end{theorem*}
-
-\begin{theorem*}[DCT]
-  Let $f_n$ be a sequence of functions such that $f_n(x) \to f(x)$ for all $x$. Let $g$ be a non-negative
-  integrable function such that $|f_n| \leq g$ for all $n$. Then
-  \begin{align*}
-    \lim \int f_n = \int f.
-  \end{align*}
-\end{theorem*}
-
-
 \begin{theorem*}[MCT, DCT]
   Let $f_n$ be a sequence of functions such that $f_n(x) \to f(x)$ for all $x$. Then
   \begin{align*}
@@ -906,6 +889,6 @@ All functions are measurable unless stated otherwise.
   if
   \begin{enumerate}
   \item $f_n$ are {\it non-negative} and $f_1 \leq f_2 \leq \cdots$ (MCT), or
-  \item there exists {\it non-negative} and {\it integrable} $g$ such that $|f_n| \leq g$ for all $n$ (DCT).
+  \item $|f_n| \leq g$ and $g$ is {\it non-negative} and {\it integrable} (DCT).
   \end{enumerate}
 \end{theorem*}
