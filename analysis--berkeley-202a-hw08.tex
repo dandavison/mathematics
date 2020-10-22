@@ -1,8 +1,67 @@
 \section*{Math 202A - HW8 - Dan Davison - \texttt{ddavison@berkeley.edu}}
-
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-2798.png}
 \end{mdframed}
+
+\begin{proof}
+  The required result is equivalent to
+  \begin{align*}
+    \limn \int f \ind_{A_n} = \int f \ind_A.
+  \end{align*}
+
+  Suppose first that $A_n \uparrow A$.
+
+  Note that
+  \begin{align*}
+    \limn f\ind_{A_n} = f\limn\ind_{A_n} = f\ind_A,
+  \end{align*}
+  and furthermore that $|f\ind_{A_n}| \leq f$ for all $n$ and $f$ is integrable. Therefore by the dominated
+  convergence theorem we have
+  \begin{align*}
+    \limn \int f \ind_{A_n} = \int f \ind_A,
+  \end{align*}
+  as required.
+
+  Next suppose that $A_n \downarrow A$. Thus $A_n \supseteq A$ for all $n$, and $A_n^c \uparrow A^c$. In
+  parallel with the previous argument we have
+  \begin{align*}
+    \limn f\ind_{A_n^c} = f\limn\ind_{A_n^c} = f\ind_{A^c},
+  \end{align*}
+  and furthermore $|f\ind_{A_n^c}| \leq f$ for all $n$ and $f$ is integrable.  Therefore by the dominated
+  convergence theorem we have
+  \begin{align*}
+    \limn \int f \ind_{A_n^c} = \int f \ind_{A^c}.
+  \end{align*}
+  This can be written in terms of integrals over the original (non-complemented) sets as
+  \begin{align*}
+    \limn \Bigg(\int f - \int f \ind_{A_n}\Bigg) = \int f - \int f \ind_{A},
+  \end{align*}
+  or equivalently
+  \begin{align*}
+    \int f - \limn \int f \ind_{A_n} = \int f - \int f \ind_{A}.
+  \end{align*}
+  Since $\int f < \infty$ we may subtract $\int f$ from both sides, and then multiply by $-1$, yielding
+  \begin{align*}
+    \limn \int f \ind_{A_n} = \int f \ind_{A},
+  \end{align*}
+  as required.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \begin{mdframed}
