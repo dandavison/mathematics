@@ -1,4 +1,4 @@
-\section*{Math 202a - HW7 - Dan Davison - \texttt{ddavison@berkeley.edu}}
+\section*{Math 202A - HW7 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw07-9f9b.png}
@@ -281,29 +281,22 @@
 \begin{proof}
   Since the $f_n$ are uniformly bounded, there exists $M \in \R$ such that $|f_n| < M$ for all $n$.
 
-  Let $g_n = f_n + M$. Then $g_n$ is a non-negative sequence of functions that converges
+  Let $g_n = f_n + M$ for all $n$. Then $g_n$ is a non-negative sequence of functions that converges
   pointwise to $f + M$.
 
-  Now we will create a sequence of functions $h_n$ such that $h_1(x) \leq h_2(x) \leq \cdots$ for all $x$.
-
-  For $n=1, 2, \ldots$ set $h_n(x) = \inf_{m \geq n} g_m(x)$ for all $x$.
-
-  Note that
+  Let $h_n(x) = \inf_{m \geq n} g_m(x)$ for all $x$ and for all $n$. Note that $h_n$ is an increasing sequence
+  of non-negative functions, and furthermore that
   \begin{align*}
-    \lim_{n \to \infty} h_n(x) =: \lim \inf_{n \to \infty} g_n(x) = \lim_{n \to \infty} g_n(x) = f + M.
+    \lim_{n \to \infty} h_n(x) =: \liminf_{n \to \infty} g_n(x) = \lim_{n \to \infty} g_n(x) = f + M.
   \end{align*}
-  Therefore $h_n$ is an increasing sequence of functions that converges pointwise to $f + M$. Therefore by the
-  monotone convergence theorem
+  Therefore $h_n$ is an increasing sequence of non-negative functions that converges pointwise to $f + M$. By
+  the monotone convergence theorem we have
   \begin{align*}
     \lim_{n\to\infty} \int (f_n + M) \d\mu = \int (f + M) \d\mu,
   \end{align*}
-  equivalently,
+  and by linearity of the integral we have
   \begin{align*}
-    \lim_{n\to\infty} \Bigg(\int f_n \d\mu + \int M \d\mu \Bigg) = \int f \d\mu + \int M \d\mu,
-  \end{align*}
-  equivalently,
-  \begin{align*}
-    M \mu(X) + \lim_{n\to\infty} \int f_n \d\mu = \int f \d\mu + M \mu(X).
+    \lim_{n\to\infty} \int f_n \d\mu + M \mu(X) = \int f \d\mu + M \mu(X).
   \end{align*}
   Since $\mu(X) < \infty$ we have
   \begin{align*}
