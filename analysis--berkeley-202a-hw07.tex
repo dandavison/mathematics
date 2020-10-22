@@ -4,6 +4,29 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw07-9f9b.png}
 \end{mdframed}
 
+\begin{lemma}[Finite additivity of integral]\label{lemma-finite-additivity-of-integral}
+  Let $E_1 \ldots E_n \in \mc A$ be pairwise disjoint and let $f \in \mc L^+$. Then
+  \begin{align*}
+    \int_{\bigcup_{i=1}^n E_i} f = \sum_{i=1}^n \int_{E_i}f.
+  \end{align*}
+\end{lemma}
+
+\begin{proof}
+  We have
+  \begin{align*}
+    \int_{E_1 \cup E_2} f
+    &= \int_{E_1 \cup E_2} (f\ind_{E_1} + f\ind_{E_2}) \\
+    &= \int_{E_1 \cup E_2} f\ind_{E_1} + \int_{E_1 \cup E_2} f\ind_{E_2} ~~~~~~~\text{~by linearity of the integral}\\
+    &= \int_{E_1} f + \int_{E_2} f.
+  \end{align*}
+  The result then follows by iteration, since $E_1 \cup E_2$ is disjoint from $E_3$.
+\end{proof}
+
+\begin{remark*}
+  $\int g \d\lambda$ measures the area under $g$, with weighting of the input axis according to $\lambda$, i.e.
+  according to the value of $f$.
+\end{remark*}
+
 \begin{claim*}
   $\lambda$ is a measure on $\mc A$.
 \end{claim*}
@@ -16,18 +39,18 @@
   Finally we have countable additivity since, for a pairwise disjoint collection of sets $E_1, E_2, \ldots$, we
   have
   \begin{align*}
-    \lambda\Big(\bigcup_{i=1}^\infty E_i\Big) = \int_{\bigcup_{i=1}^\infty E_i} f \d\mu = \sum_{i=1}^\infty \int_{E_i} f \d\mu = \sum_{i=1}^\infty \lambda(E_i).
+    \lambda\Big(\bigcup_{i=1}^\infty E_i\Big)
+    &= \int_{\bigcup_{i=1}^\infty E_i} f \d\mu \\
+    &= \lim_{n\to\infty}\int_{\bigcup_{i=1}^n E_i} f \d\mu \\
+    &= \lim_{n\to\infty}\sum_{i=1}^n \int_{E_i} f \d\mu ~~~~~~~\text{~by lemma \eqref{lemma-finite-additivity-of-integral}}\\
+    &= \lim_{n\to\infty}\sum_{i=1}^n \lambda(E_i) \\
+    &= \sum_{i=1}^\infty \lambda(E_i).
   \end{align*}
 \end{proof}
 
 \begin{claim*}
   $\int g \d\lambda = \int f g \d\mu$ for all $g \in \mc L^+$
 \end{claim*}
-
-\begin{intuition*}
-  $\int g \d\lambda$ measures the area under $g$, with weighting of the input axis according to $\lambda$, i.e.
-  according to the value of $f$.
-\end{intuition*}
 
 \begin{proof}
   First let $s = \sum_{i=1}^n a_i \ind_{A_i}$ where $A_1, \ldots, A_n \in \mc A$ are pairwise disjoint and $a_i > 0$ for $i \in \{1, \ldots, n\}$. Then we have
@@ -246,5 +269,45 @@
 
 \newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw07-9983.png}
+  Suppose $\mu(X) < \infty$ and $f_n$ is a sequence of uniformly bounded real-valued measurable functions that
+  converge pointwise to $f$. Prove that
+\begin{align*}
+  \lim_{n \to \infty} \Bigg( \int f_n \d\mu \Bigg) = \int f \d\mu.
+\end{align*}
+  This is sometimes called the {\it bounded convergence theorem}.
 \end{mdframed}
+
+
+\begin{proof}
+  Since the $f_n$ are uniformly bounded, there exists $M \in \R$ such that $|f_n| < M$ for all $n$.
+
+  Let $g_n = f_n + M$. Then $g_n$ is a non-negative sequence of functions that converges
+  pointwise to $f + M$.
+
+  Now we will create a sequence of functions $h_n$ such that $h_1(x) \leq h_2(x) \leq \cdots$ for all $x$.
+
+  For $n=1, 2, \ldots$ set $h_n(x) = \inf_{m \geq n} g_m(x)$ for all $x$.
+
+  Note that
+  \begin{align*}
+    \lim_{n \to \infty} h_n(x) =: \lim \inf_{n \to \infty} g_n(x) = \lim_{n \to \infty} g_n(x) = f + M.
+  \end{align*}
+  Therefore $h_n$ is an increasing sequence of functions that converges pointwise to $f + M$. Therefore by the
+  monotone convergence theorem
+  \begin{align*}
+    \lim_{n\to\infty} \int (f_n + M) \d\mu = \int (f + M) \d\mu,
+  \end{align*}
+  equivalently,
+  \begin{align*}
+    \lim_{n\to\infty} \Bigg(\int f_n \d\mu + \int M \d\mu \Bigg) = \int f \d\mu + \int M \d\mu,
+  \end{align*}
+  equivalently,
+  \begin{align*}
+    M \mu(X) + \lim_{n\to\infty} \int f_n \d\mu = \int f \d\mu + M \mu(X).
+  \end{align*}
+  Since $\mu(X) < \infty$ we have
+  \begin{align*}
+    \lim_{n\to\infty} \int f_n \d\mu = \int f \d\mu,
+  \end{align*}
+  as required.
+\end{proof}
