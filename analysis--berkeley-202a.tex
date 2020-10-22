@@ -844,9 +844,39 @@ Is an outer measure always FA? I.e. the issue is just getting CA?
   Therefore the Borel $\sigma$-algebra satisfies our requirement and $g$ is measurable.
 \end{lemma*}
 
-\subsubsection*{Lim sup and lim inf}
+\section*{Lim sup and lim inf}
 
-For a sequence of sets:
+\subsection{For a sequence of numbers}
+\begin{align*}
+  \liminf_{n\to\infty} x_n := \lim_{n\to\infty} \inf_{m \geq n} x_m
+\end{align*}
+This is the largest value below which the sequence never falls again. As we increment $n$, the tail of the
+sequence beyond $n$ has some $\inf$. These $\inf$s form an increasing sequence which converge to some value
+or $+\infty$. This value is the $\liminf$.
+
+\red{TODO} $\liminf_{n \to \infty} x_n$ can also be described as the $\inf$ of the limits of all convergent subsequences.
+
+\begin{align*}
+  \limsup_{n\to\infty} x_n := \lim_{n\to\infty} \sup_{m \geq n} x_m
+\end{align*}
+This is the smallest value above which the sequence never rises again. The $sup$s form a decreasing sequence
+which converge to some value or $-\infty$. This value is the $\limsup$.
+
+If $x_n$ has a limit (either real, or $\pm\infty$) then $\liminf x_n = \limsup x_n = \lim x_n$.
+
+\subsection*{For  a sequence of functions}
+
+$\liminf_{n\to\infty} f_n$ is the function defined by $(\liminf_{n\to\infty} f_n)(x) = \liminf_{n\to\infty} f_n(x)$.
+
+Thus for a sequence $f_n$ of well-behaved curves $\liminf_{n\to\infty} f_n$ describes a curve with the property
+that, at each point $x$, there is a point in the sequence beyond which the sequence never falls
+below $(\liminf_{n\to\infty} f_n)(x)$.
+
+\subsection{For a sequence of values of a single function}
+Let $f(x) = \sin(1/x)$. Then $\liminf_{x \to 0} f(x) = -1$ and $\limsup_{x\to 0} f(x) = +1$. The difference
+between the two is called the \defn{oscillation} of $f$ at $0$.
+
+\subsection{For a sequence of sets}
 
 lim sup: elements that always will reappear again
 
@@ -855,7 +885,7 @@ lim inf: elements that eventually never disappear again
 lim inf subset of lim sup
 
 
-\subsubsection*{Expressions involving countable unions and intersections}
+\section*{Expressions involving countable unions and intersections}
 
 A singleton $\{x\}$ is a countable intersection of intervals:
     \begin{align*}
@@ -880,6 +910,13 @@ Let $x, a \in \R$ and $n \in \N$. Sets of real numbers satisfying inequalities:
 \section{Lebesgue integral}
 
 All functions are measurable unless stated otherwise.
+
+\begin{theorem}[Fatou's lemma]
+  For a sequence of non-negative measurable functions $f_n$
+  \begin{align*}
+    \int \liminf_{n\to\infty} f_n \leq \lim_{n\to\infty} \int f_n.
+  \end{align*}
+\end{theorem}
 
 \begin{theorem*}[MCT, DCT]
   Let $f_n$ be a sequence of functions such that $f_n(x) \to f(x)$ for all $x$. Then
