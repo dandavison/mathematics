@@ -287,13 +287,19 @@
   Let $h_n(x) = \inf_{m \geq n} g_m(x)$ for all $x$ and for all $n$. Note that $h_n$ is an increasing sequence
   of non-negative functions, and furthermore that
   \begin{align*}
-    \lim_{n \to \infty} h_n(x) =: \liminf_{n \to \infty} g_n(x) = \lim_{n \to \infty} g_n(x) = f + M.
+    \lim_{n \to \infty} h_n(x) =: \liminf_{n \to \infty} g_n(x) = \lim_{n \to \infty} g_n(x) = f(x) + M.
   \end{align*}
   Therefore $h_n$ is an increasing sequence of non-negative functions that converges pointwise to $f + M$. By
   the monotone convergence theorem we have
-  \begin{align*}
+  \begin{mdframed}
+    \begin{align*}
     \lim_{n\to\infty} \int (f_n + M) \d\mu = \int (f + M) \d\mu,
+    \end{align*}
+  \red{TODO} When I first wrote this proof I wrote the line above. But it now seems to me that all we have is
+  \begin{align*}
+    \lim_{n\to\infty} \int \inf_{m \geq n} g_m \d\mu = \int (f + M) \d\mu,
   \end{align*}
+  \end{mdframed}
   and by linearity of the integral we have
   \begin{align*}
     \lim_{n\to\infty} \int f_n \d\mu + M \mu(X) = \int f \d\mu + M \mu(X).
