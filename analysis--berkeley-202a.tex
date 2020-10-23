@@ -911,12 +911,76 @@ Let $x, a \in \R$ and $n \in \N$. Sets of real numbers satisfying inequalities:
 
 All functions are measurable unless stated otherwise.
 
+\begin{theorem*}[MCT]
+  Let $f_n$ be a sequence of non-negative functions such that $f_n \to f$ pointwise
+  and $f_1 \leq f_2 \leq \cdots$. Then
+  \begin{align*}
+    \lim \int f_n = \int f.
+  \end{align*}
+\end{theorem*}
+
+
+\begin{proof}
+  $f_n$ is increasing therefore, by monotonicity of the Lebesgue integral, $\int f_n$ is an increasing sequence
+  of real numbers.
+
+  Let $L = \lim \int f_n$. We must show $L \leq \int f$ and $L \geq \int f$.
+
+  The first direction is easy: since $f_n \leq f$ for all $n$ we have $\int f_n \leq \int f$ (by monotonicity
+  of Lebesgue integral) and therefore $\lim \int f_n \leq \int f$ (since taking a limit preserves an
+  inequality).
+
+  To show $\lim \int f_n \geq \int f$ we use a simple function.
+
+  Let $0 \leq s \leq f$ be a simple function, where $s = \sum_{i=1}^k a_i\ind_{E_i}$.
+
+  Let $\eps \in (0, 1)$ and define
+  \begin{align*}
+    A_n = \{x ~:~ f_n(x) \geq (1 - \eps)s(x)\},
+  \end{align*}
+  i.e. the set of points where $f_n$ is within $\eps$ of $s$.
+
+  We will show that $\int f_n$ is always at least as big as a quantity that converges to $\int f$.
+
+  Since the $f_n \to f$ we have $A_n \uparrow X$. Therefore
+  \begin{align*}
+    \int f_n
+    \geq \int_{A_n} f_n
+    &\geq \int_{A_n} (1 - \eps)s \\
+  % &=    (1 - \eps)\int_{A_n} \sum_{i=1}^k a_i\ind_{E_i} \\
+    &=    (1 - \eps)\int \sum_{i=1}^k a_i\ind_{E_i \cap A_n} \\
+    &=    (1 - \eps)\sum_{i=1}^k a_i\mu(E_i \cap A_n) \\
+  \end{align*}
+  Now we let $n \to \infty$, obtaining
+  \begin{align*}
+    \limn \int f_n
+    &\geq (1 - \eps)\sum_{i=1}^k a_i\mu(E_i) \\
+    &= (1 - \eps)\int s.
+  \end{align*}
+  Since $\eps$ is arbitrary in $(0, 1)$ we have
+  \begin{align*}
+    \limn \int f_n \geq \int s.
+  \end{align*}
+  And since $s$ is an arbitrary simple function satisfying $0 \leq s \leq f$ we may take the supremum over all
+  such $s$ yielding
+  \begin{align*}
+    \limn \int f_n
+    &\geq \sup_{0 \leq s \leq f} \int s\\
+    &=:    \int f.
+  \end{align*}
+\end{proof}
+
+
 \begin{theorem}[Fatou's lemma]
   For a sequence of non-negative measurable functions $f_n$
   \begin{align*}
     \int \liminf_{n\to\infty} f_n \leq \lim_{n\to\infty} \int f_n.
   \end{align*}
 \end{theorem}
+
+\begin{proof}
+  \red{TODO}
+\end{proof}
 
 \begin{theorem*}[MCT, DCT]
   Let $f_n$ be a sequence of functions such that $f_n(x) \to f(x)$ for all $x$. Then
@@ -929,3 +993,74 @@ All functions are measurable unless stated otherwise.
   \item $|f_n| \leq g$ and $g$ is {\it integrable} (DCT).
   \end{enumerate}
 \end{theorem*}
+
+\begin{proof}
+  \red{TODO}
+\end{proof}
+
+\begin{theorem*}[8.2 An approximation result on $\R$]
+  Suppose $f: \R \to \R$ is a Borel-measurable function. Then for every $\eps > 0$ there exists a continuous
+  function $g$ with compact support such that
+  \begin{align*}
+    \int (f - g) < \eps.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  \red{TODO}
+\end{proof}
+
+\section{Lebesgue vs Riemann integrals}
+
+We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue integral.
+
+\begin{definition*}[Riemann integral]
+  Given a partition $P$, define the majorant approximation $U(P, f)$ to be the area under the step function
+  comprising rectangles of the form
+  \begin{align*}
+    (\sup_{x_{i-1} \leq x \leq x_i} f(x))(x_i - x_{i-1}).
+  \end{align*}
+  The minorant approximation $L(P, f)$ is the analogous thing using $\inf$.
+
+  Define
+  \begin{align*}
+    \overline{R}(f) = \inf \{ U(P, f) ~:~ P \text{~is a partition~}\}
+  \end{align*}
+  and
+  \begin{align*}
+    \underline{R}(f) = \sup \{ L(P, f) ~:~ P \text{~is a partition~}\}.
+  \end{align*}
+  The Riemann integral $R(f)$ exists if $\overline{R}(f) = \underline{R}(f)$ and is equal to the common value.
+\end{definition*}
+
+\begin{theorem*}
+  A bounded Borel-measurable function $f:[a, b]\to\R$ is Riemann integrable if and only if it is continuous
+  a.e. In that case the Lebesgue and Riemann integrals agree.
+\end{theorem*}
+
+\begin{proof}
+  For the forwards direction we show that if $f$ is Riemann integrable then $f$ is continuous a.e.
+  and $R(f) = \int f$.
+
+  Given a partition $P$ define the simple functions corresponding to the majorant and minorant approximations:
+  \begin{align*}
+    T_P(x) = \sum_{i=1}^n \Big(\sup_{[x_{i-1}, x_i]} f\Big)\ind_{[x_{i-1}, x_i)}(x)
+  \end{align*}
+  and
+  \begin{align*}
+    S_P(x) = \sum_{i=1}^n \Big(\inf_{[x_{i-1}, x_i]} f\Big)\ind_{[x_{i-1}, x_i)}(x).
+  \end{align*}
+  Note that $\int T_P = U(P, f)$ and $\int S_P = L(P, f)$.
+
+  We now argue (\red{TODO}), using sequences of partitions, that $T_P$ decreases at each point to, say, $T$, and
+  $S_P$ increases at each point to, say, $S$, and that
+  \begin{align*}
+    T = S = F \ae
+  \end{align*}
+  The proof of this equality uses the DCT (recall that $f$ is bounded):
+  \begin{align*}
+    \int (T - S) = \lim_{i \to \infty} \int (T_{P_i} - S_{P_i}) = \lim_{i\to\infty} \big(U(P_i, f) - L(P_i, f)\big) = 0.
+  \end{align*}
+
+
+\end{proof}
