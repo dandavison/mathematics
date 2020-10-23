@@ -970,6 +970,38 @@ All functions are measurable unless stated otherwise.
   \end{align*}
 \end{proof}
 
+\begin{theorem*}[linearity of Lebesgue integral]
+  If $f$ and $g$ are either
+  \begin{enumerate}
+  \item non-negative and measurable, or
+  \item integrable,
+  \end{enumerate}
+  then
+  \begin{align*}
+    \int (f + g) = \int f + \int g.
+  \end{align*}
+\end{theorem*}
+
+\begin{proof}
+  First (\red{TODO}) we show that the result holds for non-negative simple functions $s$ and $t$.
+
+  Next we suppose $f$ and $g$ are non-negative and consider sequences $(s_n)$ and $(t_n)$ of non-negative
+  simple functions increasing to $f$ and $g$ respectively. By the MCT we have
+  \begin{align*}
+    \lim_{n\to\infty} \int (s_n + t_n)
+    &= \int \lim_{n\to\infty} (s_n + t_n) \\
+    &= \int (f + g).
+  \end{align*}
+  But, using linearity of non-negative simple functions, the LHS is
+  \begin{align*}
+    \lim_{n\to\infty} \int (s_n + t_n)
+    &= \lim_{n\to\infty} \int s_n + \lim_{n\to\infty} \int t_n \\
+    &= \int f + \int g.
+  \end{align*}
+  Finally we allow $f$ and $g$ to take both positive and negative values, while being integrable. We use the
+  triangle inequality to prove that $f + g$ is integrable given that $f$ and $g$ are, then mess about with the
+  decomposition of $f$ and $g$ into $f^+, f^-, g^+, g^-$.
+\end{proof}
 
 \begin{theorem}[Fatou's lemma]
   For a sequence of non-negative measurable functions $f_n$
