@@ -1010,9 +1010,28 @@ All functions are measurable unless stated otherwise.
   \end{align*}
 \end{theorem}
 
+\begin{intuition*}
+  If $(f_n)$ is a sequence of continuous curves, $\liminf_{n\to\infty} f_n$ is a curve that you see ``at the
+  horizon​'' when viewing the $(f_n)$ sequence from underneath. At each
+  point $(\liminf_{n\to\infty} f_n)(x) := \limn (\inf_{m\geq n}f_m(x))$ is the height that the curves
+  eventually never fall below. If the $f_n$ have a pointwise limit then this will
+  be $\liminf_{n\to\infty} f_n$. If they do not have a limit, the statement one can make is that there exists a
+  point beyond which the $f_n$ curves are no smaller then the $\liminf_{n\to\infty} f_n$ curve.
+\end{intuition*}
+
 \begin{proof}
-  \red{TODO}
+  Let $g_n(x) = \inf_{m\geq n}f_m(x)$. Note that $(g_n)$ is an increasing sequence of functions.
+
+  By definition,
+  \begin{align*}
+    \int \liminf_{n\to\infty} f_n
+    &:= \int \limn \inf_{m\geq n}f_m \\
+    &=: \int \limn g_n \\
+    &= \limn \int g_n ~~~~~~~\text{(by the monotone converence theorem)}\\
+    &\leq \limn \int f_n ~~~~~~~\text{(by monotonicity of Lebesgue integral)}.
+  \end{align*}
 \end{proof}
+
 
 \begin{theorem*}[MCT, DCT]
   Let $f_n$ be a sequence of functions such that $f_n(x) \to f(x)$ for all $x$. Then
