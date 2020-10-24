@@ -1041,14 +1041,95 @@ All functions are measurable unless stated otherwise.
   \begin{align*}
     \lim \int f_n &= \int \limn f_n.
   \end{align*}
+  Furthermore the $f_n$ are integrable.
 \end{theorem*}
 
 \begin{proof}
-  We will use Fatou's lemma
+
+  (This is the proof in Bass)
+
+  Note that $g + f_n \geq 0$. Therefore by Fatou's lemma
   \begin{align*}
-    \limn \int f_n \geq \int \liminf_{n\to\infty} f_n.
+    \liminfn \int (g + f_n) \geq \int \liminfn (g + f_n),
+  \end{align*}
+  and by linearity of the integral, integrability of $g$, and convergence of the $f_n$,
+  \begin{align*}
+    \liminfn \int f_n
+    \geq \int \liminfn f_n
+    = \int f.
   \end{align*}
 
+  Similarly, $g - f_n \geq 0$, hence
+  \begin{align*}
+    \liminfn \int (g - f_n) \geq \int \liminfn (g - f_n),
+  \end{align*}
+  and
+  \begin{align*}
+    \liminfn \Big(-\int f_n\Big) \geq -\int f,
+  \end{align*}
+  or equivalently,
+  \begin{align*}
+    \limsupn \int f_n \leq \int f.
+  \end{align*}
+
+  Thus we have
+  \begin{align*}
+    \int f \leq \liminfn \int f_n \leq \limsupn \int f_n \leq \int f,
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \limn \int f_n = \int f,
+  \end{align*}
+  as required.
+\end{proof}
+
+
+This alternative proof uses triangle inequality arguments:
+
+\begin{proof}
+
+  (From Bright Side Of Mathematics video lectures; different from main proof in Bass.)
+  % Note that from monotonicity of the Lebesgue integral we have $\int |f_n| \leq \int g < \infty$ and
+  % also $\int |f| \leq \int g < \infty$.
+
+  We will show that $\lim \int |f_n - f| = 0$.
+
+  Note that $|f_n - f| \leq |f_n| + |f| \leq 2g$.
+
+  Note that $2g - |f_n - f| \geq 0$. Therefore, by Fatou's lemma,
+  \begin{align*}
+    \liminf_{n\to\infty} \int (2g - |f_n - f|) &\geq \int \liminf_{n\to\infty} (2g - |f_n - f|).
+  \end{align*}
+  Since $\int g < \infty$, and since $f_n \to f$, we have
+  \begin{align*}
+    2\int g -  \limsupn \int |f_n - f| &\geq 2\int g,
+  \end{align*}
+  therefore
+  \begin{align*}
+    \limsupn \int |f_n - f| &\leq 0.
+  \end{align*}
+  But
+  \begin{align*}
+    0 \leq \liminf \int |f_n - f| \leq \limsupn \int |f_n - f| &\leq 0,
+  \end{align*}
+  Therefore $\lim \int |f_n - f| = 0$.
+
+  But note that
+  \begin{align*}
+    0
+    &\leq \Big|\int f_n - \int f\Big| \\
+    &= \Big|\int (f_n - f)\Big| \\
+    &\leq \int |f_n - f| \to 0.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \limn \Big|\int f_n - \int f\Big| = 0,
+  \end{align*}
+  and therefore
+  \begin{align*}
+    \limn \int f_n = \lim \int f,
+  \end{align*}
+  as required.
 \end{proof}
 
 
