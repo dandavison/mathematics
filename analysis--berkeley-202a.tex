@@ -912,10 +912,10 @@ Let $x, a \in \R$ and $n \in \N$. Sets of real numbers satisfying inequalities:
 All functions are measurable unless stated otherwise.
 
 \begin{theorem*}[MCT]
-  Let $f_n$ be a sequence of non-negative functions such that $f_n \to f$ pointwise
-  and $f_1 \leq f_2 \leq \cdots$. Then
+  Let $f_n$ be an {\it increasing} sequence of non-negative functions (i.e. $f_1 \leq f_2 \leq \cdots$). Then, if
+  the $f_n$ converge pointwise, the sequence of integrals converges to the integral of the limiting function:
   \begin{align*}
-    \lim \int f_n = \int f.
+    \lim \int f_n &= \int \limn f_n.
   \end{align*}
 \end{theorem*}
 
@@ -1003,13 +1003,6 @@ All functions are measurable unless stated otherwise.
   decomposition of $f$ and $g$ into $f^+, f^-, g^+, g^-$.
 \end{proof}
 
-\begin{theorem}[Fatou's lemma]
-  For a sequence of non-negative measurable functions $f_n$
-  \begin{align*}
-    \int \liminf_{n\to\infty} f_n \leq \lim_{n\to\infty} \int f_n.
-  \end{align*}
-\end{theorem}
-
 \begin{intuition*}
   If $(f_n)$ is a sequence of continuous curves, $\liminf_{n\to\infty} f_n$ is a curve that you see ``at the
   horizon​'' when viewing the $(f_n)$ sequence from underneath. At each
@@ -1019,6 +1012,14 @@ All functions are measurable unless stated otherwise.
   point beyond which the $f_n$ curves are no smaller then the $\liminf_{n\to\infty} f_n$ curve.
 \end{intuition*}
 
+\begin{theorem}[Fatou's lemma]
+  For a sequence of non-negative measurable functions $f_n$ the limit of the sequence of integrals is at least
+  as big as the integral of the limit inferior function.
+  \begin{align*}
+    \lim_{n\to\infty} \int f_n \geq \int \liminf_{n\to\infty} f_n.
+  \end{align*}
+\end{theorem}
+
 \begin{proof}
   Let $g_n(x) = \inf_{m\geq n}f_m(x)$. Note that $(g_n)$ is an increasing sequence of functions.
 
@@ -1027,27 +1028,50 @@ All functions are measurable unless stated otherwise.
     \int \liminf_{n\to\infty} f_n
     &:= \int \limn \inf_{m\geq n}f_m \\
     &=: \int \limn g_n \\
-    &= \limn \int g_n ~~~~~~~\text{(by the monotone converence theorem)}\\
+    &= \limn \int g_n ~~~~~~~\text{(by the monotone convergence theorem)}\\
     &\leq \limn \int f_n ~~~~~~~\text{(by monotonicity of Lebesgue integral)}.
   \end{align*}
 \end{proof}
 
 
-\begin{theorem*}[MCT, DCT]
-  Let $f_n$ be a sequence of functions such that $f_n(x) \to f(x)$ for all $x$. Then
+\begin{theorem*}[dominated convergence theorem]
+  Suppose $f_n$ are a sequence of functions and there exists an integrable dominating function $g$ such
+  that$|f_n| \leq g$. Then, if the $f_n$ converge pointwise, the sequence of integrals converges to the
+  integral of the limiting function:
   \begin{align*}
-    \lim \int f_n = \int f
+    \lim \int f_n &= \int \limn f_n.
   \end{align*}
-  if
-  \begin{enumerate}
-  \item $f_n$ are {\it non-negative} and $f_1 \leq f_2 \leq \cdots$ (MCT), or
-  \item $|f_n| \leq g$ and $g$ is {\it integrable} (DCT).
-  \end{enumerate}
 \end{theorem*}
 
 \begin{proof}
-  \red{TODO}
+  We will use Fatou's lemma
+  \begin{align*}
+    \limn \int f_n \geq \int \liminf_{n\to\infty} f_n.
+  \end{align*}
+
 \end{proof}
+
+
+\begin{theorem*}[MCT, Fatou's lemma, and DCT, summarised]
+  Suppose $f_n$ are a sequence of functions that converge pointwise to some limiting function.
+
+  Consider the sequence of integrals $\int f_n$.
+
+  If either
+  \begin{enumerate}
+  \item $f_n$ are {\it non-negative} and $f_1 \leq f_2 \leq \cdots$ (MCT), or
+  \item $|f_n| \leq g$ and $g$ is {\it integrable} (DCT),
+  \end{enumerate}
+  then the sequence of integrals converges to the integral of the limiting function:
+  \begin{align*}
+    \lim \int f_n &= \int \limn f_n.
+  \end{align*}
+  Alternatively, if all we know is that the $f_n$ are non-negative, then the limit of the sequence of integrals
+  is no smaller than the integral of the limit inferior function (Fatou's lemma):
+  \begin{align*}
+  \limn \int f_n \geq \int \liminf_{n\to\infty} f_n.
+  \end{align*}
+\end{theorem*}
 
 \begin{theorem*}[8.2 An approximation result on $\R$]
   Suppose $f: \R \to \R$ is a Borel-measurable function. Then for every $\eps > 0$ there exists a continuous
