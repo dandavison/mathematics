@@ -1,5 +1,9 @@
 \section*{Math 202A - HW8 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 \begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-518d.png}
+\end{mdframed}
+
+\begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-2798.png}
 \end{mdframed}
 
@@ -51,6 +55,20 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-3203.png}
 \end{mdframed}
 
+\begin{proof}
+  Let $g = \limsupn f_n$. Then $|f_n| \leq g$, since the $f_n$ are non-negative.
+
+  This remains true if we restrict to $A$: $|f_n\ind_A| \leq g \ind_A$. Also $f_n\ind_A \to f\ind_A$. Therefore
+  by the dominated convergence theorem
+  \begin{align*}
+    \limn \int_A f_n = \limn \int f_n\ind_A = \int f\ind_A = \int_A f.
+  \end{align*}
+\end{proof}
+
+
+\begin{align*}
+  \int_A f(x) \dx = \int f\ind_A(x) \dx.
+\end{align*}
 \begin{remark*}
   We have that $\int_X f_n \to \int_X f$. What we must show is that this limit-of-integrals still holds when
   the integrals are restricted to $A \subset X$.
@@ -67,10 +85,27 @@
 \begin{proof}
   Let $A \in \mc A$.
 
-  We must show that $\int_A f_n \to \int_A f$.
+  We have
+  \begin{align*}
+    \limn \int_A f_n
+    &= \limn \int f_n\ind_A.
+  \end{align*}
+  We would like to say that
+  \begin{align*}
+    \limn \int f_n\ind_A = \int \limn f_n\ind_A,
+  \end{align*}
+  but this requires either MCT or DCT conditions.
+
+  We must show that $\limn \int_A f_n = \int_A f$.
 
   We have that $f_n \to f$ a.e. and that $f$ and the $f_n$ are non-negative and integrable, and also
   that $\int_X f_n \to \int_X f$.
+
+  We have $\int_A f_n= \int f_n \ind_A$. Since these are non-negative, we have by Fatou's lemma
+  \begin{align*}
+    \liminfn \int_A f_n \geq \int_A f
+  \end{align*}
+
 
 
   ...
@@ -82,7 +117,7 @@
     \int f_n\ind_A \to \int f\ind_A.
   \end{align*}
 
-
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -124,14 +159,72 @@
 
 \end{proof}
 
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-d0c0.png}
 \end{mdframed}
+
+\begin{intuition*}
+  $F$ is an increasing function $\R \to \R$. To say that it is continuous is to say that a small extension to
+  the interval being integrated over results in a small extension to the area. This implies that there is some
+  limit to how much area is added by a small interval $[b, b + \delta]$.
+\end{intuition*}
+
+\begin{proof}
+  Let $\eps > 0$ and let $b \in \R$.
+
+  We must show that there exists $\delta > 0$ such that if $x \in \(b - \delta, b + \delta\)$
+  then $F(x) \in \(F(b) - \eps, F(b) + \eps\)$.
+
+  Note that $F$ is an increasing function, therefore it suffices to show that there exists $\delta$ such
+  that $F(b - \delta) > F(b) - \eps$ and $F(b + \delta) < F(b) + \eps$.
+
+  First we will show that there exists $\delta > 0$ such that $F(b + \delta) < F(b) + \eps$. Note that
+  \begin{align*}
+    F(b + \delta) := \int_{[a, b + \delta]} f = F(b) + \int_{[b, b + \delta]} f,
+  \end{align*}
+  therefore it suffices to show that there exists $\delta > 0$ such that $\int_{[b, b + \delta]} f < \eps$.
+  This follows from HW7 Bass Ex. 6.4.
+
+  Secondly we will show that there exists $\delta > 0$ such that $F(b - \delta) > F(b) - \eps$. Note that
+  \begin{align*}
+    F(b) = F(b - \delta) + \int_{[b - \delta, b]} f,
+  \end{align*}
+  hence
+  \begin{align*}
+    F(b - \delta) = F(b) - \int_{[b - \delta, b]} f,
+  \end{align*}
+  therefore it suffices to show that there exists $\delta > 0$ such that $\int_{[b - \delta, b]} f < \eps$.
+  Again, this follows from HW7 Bass Ex. 6.4.
+\end{proof}
+
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-9931.png}
 \end{mdframed}
 
+\begin{proof}
+  Let $f(n) = (1 + x/n)^{-n} \log(2 + \cos(x/n))$.
+
+  Note that $2 + \cos(x/n) \geq 1$ and therefore that $f_n \geq 0$ for all $n$.
+
+  Note also that $(f_n)$ is an increasing sequence, since (\red{TODO})
+  \begin{align*}
+    \frac{f_{n}}{f_{n+1}}
+    &= \frac{(1 + x/n    )^{-n    } \log(2 + \cos(x/n   ))}
+            {(1 + x/(n+1))^{-(n+1)} \log(2 + \cos(x/(n+1)))}.
+  \end{align*}
+  Therefore by the monotone convergence theorem we have
+  \begin{align*}
+    \limn \int_0^n f_n = \int_0^n \limn f_n.
+  \end{align*}
+  We can now compute the limit:
+  \begin{align*}
+    \limn (1 + x/n)^{-n} \log(2 + \cos(x/n))
+    &= \log
+  \end{align*}
+
+\end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-6e60.png}

@@ -225,6 +225,18 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw07-610e.png}
 \end{mdframed}
 
+% https://github.com/brennier/math-problems/blob/master/Class%20Problems/Real%20Analysis%20I/Problem%20Set%208.pdf
+\begin{proof}
+  Let $\eps > 0$.
+
+  Since $|f|\ind_A \leq |f|$ we have $\int |f|\ind_A \leq \int |f| < \infty$. Therefore $|f|\ind_A$ is
+  integrable, and therefore there exists a simple function $0 \leq s \leq |f|\ind_A$ a.e. such
+  that $\int |f|\ind_A - \int s < \frac{\eps}{2}$.
+
+
+
+\end{proof}
+
 \begin{lemma}\label{lemma-integrable-fn-is-infinite-on-a-null-set}
   Suppose $f$ is integrable and let $I = \{x \in X ~:~ |f(x)| = \infty \}$. Then $\mu(I) = 0$.
 \end{lemma}
