@@ -88,27 +88,6 @@
 \end{verbatim}
 \end{proof}
 
-\begin{proof}
-  We have $f_n \to f \ae$. We need to apply the DCT to obtain the desired result.
-
-  Let $\eps > 0$.
-
-  Since $f_n \to f \ae$ there exists $n$ such that $f_m \leq f + \eps \ae$ for all $m \geq n$.
-
-
-  Let $g = \limsupn f_n$. Then $|f_n| \leq g$, since the $f_n$ are non-negative.
-
-  This remains true if we restrict to $A$: $|f_n\ind_A| \leq g \ind_A$. Also $f_n\ind_A \to f\ind_A$. Therefore
-  by the dominated convergence theorem
-  \begin{align*}
-    \limn \int_A f_n = \limn \int f_n\ind_A = \int f\ind_A = \int_A f.
-  \end{align*}
-\end{proof}
-
-
-\begin{align*}
-  \int_A f(x) \dx = \int f\ind_A(x) \dx.
-\end{align*}
 \begin{remark*}
   We have that $\int_X f_n \to \int_X f$. What we must show is that this limit-of-integrals still holds when
   the integrals are restricted to $A \subset X$.
@@ -122,82 +101,6 @@
   What we need to show is that the result does hold with the additional hypotheses.
 \end{remark*}
 
-\begin{proof}
-  Let $A \in \mc A$.
-
-  We have
-  \begin{align*}
-    \limn \int_A f_n
-    &= \limn \int f_n\ind_A.
-  \end{align*}
-  We would like to say that
-  \begin{align*}
-    \limn \int f_n\ind_A = \int \limn f_n\ind_A,
-  \end{align*}
-  but this requires either MCT or DCT conditions.
-
-  We must show that $\limn \int_A f_n = \int_A f$.
-
-  We have that $f_n \to f$ a.e. and that $f$ and the $f_n$ are non-negative and integrable, and also
-  that $\int_X f_n \to \int_X f$.
-
-  We have $\int_A f_n= \int f_n \ind_A$. Since these are non-negative, we have by Fatou's lemma
-  \begin{align*}
-    \liminfn \int_A f_n \geq \int_A f
-  \end{align*}
-
-
-
-  ...
-
-
-  Since $f_n\ind_{A}$ is a sequence of functions that converge pointwise a.e. to $f\ind_A$,
-  with $|f_n\ind_A| < b$ and $b$ is integrable, by the dominated convergence theorem we have
-  \begin{align*}
-    \int f_n\ind_A \to \int f\ind_A.
-  \end{align*}
-
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-  Let $g_n = \inf_{m \geq n} f_n$. Then $(g_n)$ is an increasing sequence of functions
-  and $g_n \to \liminf_{n \to \infty} f_n = \limn f_n = f$ a.e.
-
-  Then by the MCT we have
-  \begin{align*}
-    \int g_n \to \int f
-  \end{align*}
-  How does that help though? We're trying to prove something about $\int f_n$, not about the $\inf$.
-  ...
-
-
-
-
-
-  %%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-  We will find a dominating function and apply the dominated convergence theorem.
-
-
-
-
-
-  Let $G = \{x \in X ~:~ f_n(x) \to f(x)\}$. Note that $\mu(G) = \mu(X)$.
-
-  We have
-  \begin{align*}
-    \limn \int_A f_n
-    &= \limn \int f_n \ind_{A} \\
-    &= \limn \int (f_n \ind_{A \cap G} + f_n \ind_{A \cap (X \setminus G)}) \\
-    &= \limn \Bigg(\int f_n \ind_{A \cap G} + \int_{A \cap (X \setminus G)} f_n\Bigg) ~~~~~~~~~~~~~~~~\text{linearity of integral}\\
-    &= \limn \int f_n \ind_{A \cap G} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{integral over a measure zero set is zero}\\
-  \end{align*}
-  Note that $f_n\ind_G \to f\ind_G$ pointwise by our definition of $G$.
-
-\end{proof}
 
 
 \begin{mdframed}
