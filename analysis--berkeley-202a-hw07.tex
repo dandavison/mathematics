@@ -270,7 +270,12 @@
   Let $I = \{x \in X ~:~ |f(x)| = \infty \}$ and note that we have $\mu(I) = 0$ by lemma
   \eqref{lemma-integrable-fn-is-infinite-on-a-null-set}.
 
-  Let $c = \sup \{|f(x)| ~:~ x \in A \setminus I\}$. Then
+  Let $c = \sup \{|f(x)| ~:~ x \in A \setminus I\}$.
+
+  \red{TODO} I think this is nonsense. The supremum may still be $\infty$, even after removing points at which the
+  function evaluates to $\infty$. For example $\sup \{x^{-1} ~:~ x \in (0, 1)\} = \infty$.
+
+  Then
   \begin{align*}
     \int_A |f| &= \int_{A\setminus I} |f| \\
                &\leq c\mu(A \setminus I) \\

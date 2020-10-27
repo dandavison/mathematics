@@ -56,6 +56,46 @@
 \end{mdframed}
 
 \begin{proof}
+  Note that $\int_A f_n = \int f_n\ind_A$ and that $f_n\ind_A \to f\ind_A$ a.e. Therefore by Fatou's lemma we have
+  \begin{align*}
+    \liminfn \int_A f_n \geq \int_A f.
+  \end{align*}
+  Now, we would like to show that
+  \begin{align}
+    \limsupn \int_A f_n \leq \int_A f.
+  \end{align}
+  since then we would have
+  \begin{align*}
+    \int_A f \leq \liminfn \int_A f_n \leq \limsupn \int_A f_n \leq \int_A f,
+  \end{align*}
+  which implies that
+  \begin{align*}
+    \limn \int_A f_n = \int f,
+  \end{align*}
+  as required.
+
+  However, I'm not sure how to show (1).
+
+  What have we made use of?
+\begin{verbatim}
+  |-------------------------+-------------|
+  | non-negativity of f_n   | yes - Fatou |
+  | convergence of f_n a.e. | yes         |
+  | non-negativity of f     | no          |
+  | integrability of f      | no          |
+  | integrability of f_n    | no          |
+  | convergence of int f_n  | no          |
+\end{verbatim}
+\end{proof}
+
+\begin{proof}
+  We have $f_n \to f \ae$. We need to apply the DCT to obtain the desired result.
+
+  Let $\eps > 0$.
+
+  Since $f_n \to f \ae$ there exists $n$ such that $f_m \leq f + \eps \ae$ for all $m \geq n$.
+
+
   Let $g = \limsupn f_n$. Then $|f_n| \leq g$, since the $f_n$ are non-negative.
 
   This remains true if we restrict to $A$: $|f_n\ind_A| \leq g \ind_A$. Also $f_n\ind_A \to f\ind_A$. Therefore

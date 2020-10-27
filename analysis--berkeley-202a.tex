@@ -869,6 +869,9 @@ Thus for a sequence $f_n$ of well-behaved curves $\liminf_{n\to\infty} f_n$ desc
 that, at each point $x$, there is a point in the sequence beyond which the sequence never falls
 below $(\liminf_{n\to\infty} f_n)(x)$.
 
+
+
+
 \subsection{For a sequence of values of a single function}
 Let $f(x) = \sin(1/x)$. Then $\liminf_{x \to 0} f(x) = -1$ and $\limsup_{x\to 0} f(x) = +1$. The difference
 between the two is called the \defn{oscillation} of $f$ at $0$.
@@ -1013,9 +1016,20 @@ All functions are measurable unless stated otherwise.
   For a sequence of non-negative measurable functions $f_n$ the limit of the sequence of integrals is at least
   as big as the integral of the limit inferior function.
   \begin{align*}
-    \lim_{n\to\infty} \int f_n \geq \int \liminf_{n\to\infty} f_n.
+    \liminf_{n\to\infty} \int f_n \geq \int \liminf_{n\to\infty} f_n.
   \end{align*}
 \end{theorem}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--lebesgue-integral-a3de.png}
+\end{mdframed}
+\url{https://math.stackexchange.com/a/242930/397805}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--lebesgue-integral-70e1.png}
+\end{mdframed}
+
+% https://math.stackexchange.com/a/2748616/397805
 
 \begin{proof}
   Let $g_n(x) = \inf_{m\geq n}f_m(x)$. Note that $(g_n)$ is an increasing sequence of functions.
@@ -1029,6 +1043,11 @@ All functions are measurable unless stated otherwise.
     &\leq \limn \int f_n ~~~~~~~\text{(by monotonicity of Lebesgue integral)}.
   \end{align*}
 \end{proof}
+
+
+Since $\limsupn f_n = -\liminfn (-f_n)$
+
+A typical use of Fatou’s lemma is the following. Suppose we have $f_n \to f$ and $\sup_n \int |f_n| \leq K < \infty$.
 
 
 \begin{theorem*}[dominated convergence theorem]
