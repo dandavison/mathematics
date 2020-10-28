@@ -149,22 +149,19 @@
 \begin{proof}
   Let $f(n) = (1 + x/n)^{-n} \log(2 + \cos(x/n))$.
 
-  Note that $2 + \cos(x/n) \geq 1$ and therefore that $f_n \geq 0$ for all $n$.
+  Note that $2 + \cos(x/n) \geq 1$ and therefore that $f_n\ind_{[0, n]} \geq 0$ for all $n$.
 
-  Note also that $(f_n)$ is an increasing sequence, since (\red{TODO})
+  Note also that $f(n)\ind_{[0, n]}$ is bounded above by $g(x) = \frac{\log 3}{1 + x}$.
+
+  Therefore
   \begin{align*}
-    \frac{f_{n}}{f_{n+1}}
-    &= \frac{(1 + x/n    )^{-n    } \log(2 + \cos(x/n   ))}
-            {(1 + x/(n+1))^{-(n+1)} \log(2 + \cos(x/(n+1)))}.
-  \end{align*}
-  Therefore by the monotone convergence theorem we have
-  \begin{align*}
-    \limn \int_0^n f_n = \int_0^n \limn f_n.
-  \end{align*}
-  We can now compute the limit:
-  \begin{align*}
-    \limn (1 + x/n)^{-n} \log(2 + \cos(x/n))
-    &= \log
+    \limn \int_0^n f_n
+    &:=\limn \int f_n\ind_{(0, n)}                                        &\\
+    &= \int \limn f_n\ind_{(0, n)}                                        &\text{(by the dominated convergence theorem)}\\
+    &:= \int \limn (1 + x/n)^{-n} \log(2 + \cos(x/n))\ind_{(0, n)}(x)\dx  & \\
+    &= \log 3\int_0^\infty e^{-x} \dx                                     &\text{(by Bass prop 6.3 (c) regarding pulling a constant out of integral})\\
+%    &= -\log 3 [e^{-x}]_0^\infty \\
+    &= \log 3.                                                           &\text{(by note provided with ch 7. exercises regarding use of antiderivative to evaluate integral)}
   \end{align*}
 
 \end{proof}
@@ -173,7 +170,138 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-6e60.png}
 \end{mdframed}
 
+\begin{remark*}
+  The integrand may be unbounded. For example, take $g(x) = |x|^{-1/2}$ and $f = 1$. Then the integrand is
+  equal to $g$ and is integrable and unbounded.
+\end{remark*}
+
+\begin{proof}
+    Let $\eps > 0$.
+
+    Since $f$ is continuous at $1$ there exists $\delta > 0$ such that if $y \in (1 - \delta, 1 + \delta)$
+    then $f(y) \in (f(1) - \eps, f(1) + \eps)$.
+
+    Fix $m \in \N$ such that $1/m < \delta$.
+
+    Note that for $n \geq m$ we have that if $x \in (-n, n)$
+    then
+    \begin{align*}
+      1 + \frac{x}{n^2} \in \Big(1 - \frac{1}{n}, 1 + \frac{1}{n}\Big) \subseteq (1 - \delta, 1 + \delta),
+    \end{align*}
+    and therefore
+    \begin{align*}
+      f\Big(1 + \frac{x}{n^2}\Big) \in \big(f(1) - \eps, f(1) + \eps\big).
+    \end{align*}
+
+    Let $h_n(x) = f(1 +\frac{x}{n^{2}})g(x)$.
+
+    Then for $n \geq m$ and $x \in (-n, n)$ we have
+    \begin{align*}
+      h_n(x) \in \Big((f(1) - \eps)g(x), (f(1) + \eps)g(x)\Big).
+    \end{align*}
+    Since $\eps > 0$ is arbitrary, we have that $h_n \to f(1)g$ pointwise.
+
+    We must prove that $\limn \int h_n \ind_{(-n, n)}$ exists and determine its value.
+
+    We have (\red{TODO} make this argument solid)
+    \begin{align*}
+      \limn \int h_n \ind_{(-n, n)}
+      &= \lim_{n \geq m} \int h_n \ind_{(-n, n)} \\
+      &= f(1)\int_{-\infty}^\infty g.
+    \end{align*}
+\end{proof}
+
+\begin{intuition*}
+  Saying that a sequence of functions $(f_n)$ is uniformly integrable is a bit like saying that, while they may
+  be unbounded, they are integrable, and furthermore the control is uniform in the sense that the same $M$
+  works for all $f_n$.
+
+  Saying that a sequence of integrals is uniformly absolutely continuous is like saying that small changes in
+  measure yield small changes in area, and furthermore that the control is uniform in the sense that the
+  same $\delta$ works for all $f_n$.
+
+  The supremum condition on the RHS is similar to saying that every $f_n$ is integrable, but stronger:
+  the $f_n$ could be all integrable with the relevant sequence of integrals unbounded, but the given condition
+  states that in addition to all being integrable, the sequence of integrals has an upper bound.
+
+  So the reverse direction is a bit like saying that if (a) small changes in measure yield small changes in
+  area, and (b) if the sequence of integrals is bounded above, then the functions are integrable.
+
+  And the forwards direction is a bit like saying that if the functions are integrable (although possibly
+  unbounded), then (a) small changes in measure yield small changes in area and (b) the sequence of integrals
+  is bounded above.
+\end{intuition*}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-337f.png}
 \end{mdframed}
+
+We break the proof into three separate claims (two for the forwards direction and one for the reverse direction).
+
+\begin{claim*}
+  If the $\{f_n\}$ are uniformly integrable then $\sup \int |f_n| < \infty$.
+\end{claim*}
+
+\begin{proof}
+  Let $\eps > 0$ and let $M$ be such that for each $n$
+  \begin{align*}
+    \int_{\{x ~:~ |f_n(x)| > M\}} |f_n| < \eps.
+  \end{align*}
+
+  Let $U = \mu(X) < \infty$. Thus we have for each $n$
+  \begin{align*}
+    \int |f_n|
+    &= \int_{\{x ~:~ |f_n(x)| > M\}} |f_n| + \int_{\{x ~:~ |f_n(x)| \leq M\}} |f_n| \\
+    &< \eps +  M \mu\Big(\{x ~:~ |f_n(x)| \leq M\}\Big) \\
+    &\leq \eps + MU.
+  \end{align*}
+  Hence $\eps + MU < \infty$ is an upper bound on $\int |f_n|$ and we have $\sup \int |f_n| < \infty$.
+\end{proof}
+
+\begin{claim*}
+  If the $\{f_n\}$ are uniformly integrable then they are uniformly absolutely continuous.
+\end{claim*}
+
+\begin{proof}
+  Let $\eps > 0$ and let $M$ be such that for each $n$
+  \begin{align*}
+    \int_{\{x ~:~ |f_n(x)| > M\}} |f_n| < \frac{\eps}{2}.
+  \end{align*}
+  Set $\delta = \frac{\eps}{2M}$ and let $A \in \mc A$ with $\mu(A) < \delta$.
+
+  We have
+  \begin{align*}
+    \Bigg|\int_A f_n\Bigg|
+    &< \int_A |f_n| \\
+    &= \int_{\{x \in A ~:~ |f_n(x)| > M\}} + \int_{\{x \in A ~:~ |f_n(x)| \leq M\}} \\
+    &< \frac{\eps}{2} + M\mu(A) \\
+    &< \eps,
+  \end{align*}
+  as required.
+\end{proof}
+
+\begin{claim*}
+  If $\origsup_n \int |f_n| < \infty$ and the $\{f_n\}$ are uniformly absolutely continuous then they are
+  uniformly integrable.
+\end{claim*}
+
+\begin{proof}
+  Let $\eps > 0$.
+
+  Let $B = \origsup_{n} \int |f_n|$ and let $\delta > 0$ be such that for all $n$ and all $A \in \mc A$
+  if $\mu(A) < \delta$ then $\big|\int_A f_n\big| < \eps$.
+
+  We want to show that there exists $M$ such that for all $n$
+  \begin{align*}
+    \int_{\{x ~:~ |f_n(x)| > M\}} |f_n| < \eps.
+  \end{align*}
+  So we need to show that there exists $M$ such that
+  \begin{align*}
+    \mu\big(\{x ~:~ |f_n(x)| > M\}\big) < \delta.
+  \end{align*}
+  Note that
+  \begin{align*}
+    \mu\big(\{x ~:~ |f_n(x)| > B/\delta\}\big) B/\delta < \int_{\{x ~:~ |f_n(x)| > B/\delta\}} |f_n| \leq B,
+  \end{align*}
+  therefore $M = B/\delta$ works.
+\end{proof}
