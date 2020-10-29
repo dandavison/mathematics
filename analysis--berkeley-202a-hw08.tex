@@ -295,13 +295,16 @@ We break the proof into three separate claims (two for the forwards direction an
   \begin{align*}
     \int_{\{x ~:~ |f_n(x)| > M\}} |f_n| < \eps.
   \end{align*}
-  So we need to show that there exists $M$ such that
-  \begin{align*}
-    \mu\big(\{x ~:~ |f_n(x)| > M\}\big) < \delta.
-  \end{align*}
   Note that
   \begin{align*}
-    \mu\big(\{x ~:~ |f_n(x)| > B/\delta\}\big) B/\delta < \int_{\{x ~:~ |f_n(x)| > B/\delta\}} |f_n| \leq B,
+    \mu\big(\{x ~:~ |f_n(x)| > B/\delta\}\big) B/\delta < \int_{\{x ~:~ |f_n(x)| > B/\delta\}} |f_n| \leq B.
   \end{align*}
-  therefore $M = B/\delta$ works.
+  Set $M = B/\delta$. Then
+  \begin{align*}
+    \mu\big(\{x ~:~ |f_n(x)| > M\}\big) < \delta,
+  \end{align*}
+  and therefore
+  \begin{align*}
+    \Bigg|\int_{\{x ~:~ |f_n(x)| > M\}} f_n\Bigg| < \eps.
+  \end{align*}
 \end{proof}
