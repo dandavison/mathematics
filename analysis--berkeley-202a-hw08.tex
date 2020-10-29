@@ -1,7 +1,10 @@
 \section*{Math 202A - HW8 - Dan Davison - \texttt{ddavison@berkeley.edu}}
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-518d.png}
-\end{mdframed}
+
+\begin{comment}
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-518d.png}
+  \end{mdframed}
+\end{comment}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-2798.png}
@@ -51,10 +54,26 @@
   as required.
 \end{proof}
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-3203.png}
 \end{mdframed}
 
+\begin{comment}
+  \begin{remark*}
+    We have that $\int_X f_n \to \int_X f$. What we must show is that this limit-of-integrals still holds when
+    the integrals are restricted to $A \subset X$.
+
+    In general, this is not true. For example, let $X = [0, 1]$ and let $f(x) = 0$. Now for odd $n$, let $f_n(x)$
+    take the value $-1$ for $0 \leq x < 0.5$ and $+1$ for $0.5 \leq x \leq 1$, and for even $n$ let it take $+1$
+    on the first interval and $-1$ on the second. Then $\int_X f_n = 0 = \int_X f$ for all $n$, so the
+    hypothesis $\int_X f_n \to \int_X f$ does hold. But $\int_{[0, 0.5]} f_n$ is the
+    sequence $-\frac{1}{2}, +\frac{1}{2}, -\frac{1}{2}, \ldots$ and thus has no limit.
+
+    What we need to show is that the result does hold with the additional hypotheses.
+  \end{remark*}
+
+\end{comment}
 \begin{proof}
   Note that $\int_A f_n = \int f_n\ind_A$ and that $f_n\ind_A \to f\ind_A$ a.e. Therefore by Fatou's lemma we have
   \begin{align*}
@@ -74,7 +93,8 @@
   \end{align*}
   as required.
 
-  However, I'm not sure how to show (1).
+  However, I'm not sure how to show (1). It's tempting to think that it's a theorem that always holds -- i.e. a
+  counterpart to Fatou's lemma. But, there are counterexamples, such as $f_n = \ind_{[n, n+1]}$.
 
   What have we made use of?
 \begin{verbatim}
@@ -88,30 +108,19 @@
 \end{verbatim}
 \end{proof}
 
-\begin{remark*}
-  We have that $\int_X f_n \to \int_X f$. What we must show is that this limit-of-integrals still holds when
-  the integrals are restricted to $A \subset X$.
 
-  In general, this is not true. For example, let $X = [0, 1]$ and let $f(x) = 0$. Now for odd $n$, let $f_n(x)$
-  take the value $-1$ for $0 \leq x < 0.5$ and $+1$ for $0.5 \leq x \leq 1$, and for even $n$ let it take $+1$
-  on the first interval and $-1$ on the second. Then $\int_X f_n = 0 = \int_X f$ for all $n$, so the
-  hypothesis $\int_X f_n \to \int_X f$ does hold. But $\int_{[0, 0.5]} f_n$ is the
-  sequence $-\frac{1}{2}, +\frac{1}{2}, -\frac{1}{2}, \ldots$ and thus has no limit.
-
-  What we need to show is that the result does hold with the additional hypotheses.
-\end{remark*}
-
-
-
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-d0c0.png}
 \end{mdframed}
 
-\begin{intuition*}
-  $F$ is an increasing function $\R \to \R$. To say that it is continuous is to say that a small extension to
-  the interval being integrated over results in a small extension to the area. This implies that there is some
-  limit to how much area is added by a small interval $[b, b + \delta]$.
-\end{intuition*}
+\begin{comment}
+  \begin{intuition*}
+    $F$ is an increasing function $\R \to \R$. To say that it is continuous is to say that a small extension to
+    the interval being integrated over results in a small extension to the area. This implies that there is
+    some limit to how much area is added by a small interval $[b, b + \delta]$.
+  \end{intuition*}
+\end{comment}
 
 \begin{proof}
   Let $\eps > 0$ and let $b \in \R$.
@@ -141,7 +150,7 @@
   Again, this follows from HW7 Bass Ex. 6.4.
 \end{proof}
 
-
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-9931.png}
 \end{mdframed}
@@ -156,16 +165,17 @@
   Therefore
   \begin{align*}
     \limn \int_0^n f_n
-    &:=\limn \int f_n\ind_{(0, n)}                                        &\\
-    &= \int \limn f_n\ind_{(0, n)}                                        &\text{(by the dominated convergence theorem)}\\
-    &:= \int \limn (1 + x/n)^{-n} \log(2 + \cos(x/n))\ind_{(0, n)}(x)\dx  & \\
-    &= \log 3\int_0^\infty e^{-x} \dx                                     &\text{(by Bass prop 6.3 (c) regarding pulling a constant out of integral})\\
+    &:=\limn \int f_n\ind_{(0, n)}                                        \\
+    &= \int \limn f_n\ind_{(0, n)}                                        ~~~~~~~ \text{(by the dominated convergence theorem)}\\
+    &:= \int \limn (1 + x/n)^{-n} \log(2 + \cos(x/n))\ind_{(0, n)}(x)\dx  \\
+    &= \log 3\int_0^\infty e^{-x} \dx                                     ~~~~~~~ \text{(by Bass prop 6.3 (c) regarding pulling a constant out of integral})\\
 %    &= -\log 3 [e^{-x}]_0^\infty \\
-    &= \log 3.                                                           &\text{(by note provided with ch 7. exercises regarding use of antiderivative to evaluate integral)}
+    &= \log 3.                                                           ~~~~~~~  \text{(by note provided with ch 7. exercises regarding use of antiderivative to evaluate integral)}
   \end{align*}
 
 \end{proof}
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-6e60.png}
 \end{mdframed}
@@ -211,6 +221,11 @@
     \end{align*}
 \end{proof}
 
+\newpage
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-337f.png}
+\end{mdframed}
+
 \begin{intuition*}
   Saying that a sequence of functions $(f_n)$ is uniformly integrable is a bit like saying that, while they may
   be unbounded, they are integrable, and furthermore the control is uniform in the sense that the same $M$
@@ -231,10 +246,6 @@
   unbounded), then (a) small changes in measure yield small changes in area and (b) the sequence of integrals
   is bounded above.
 \end{intuition*}
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-337f.png}
-\end{mdframed}
 
 We break the proof into three separate claims (two for the forwards direction and one for the reverse direction).
 
@@ -275,7 +286,8 @@ We break the proof into three separate claims (two for the forwards direction an
     &< \int_A |f_n| \\
     &= \int_{\{x \in A ~:~ |f_n(x)| > M\}} + \int_{\{x \in A ~:~ |f_n(x)| \leq M\}} \\
     &< \frac{\eps}{2} + M\mu(A) \\
-    &< \eps,
+    &< \frac{\eps}{2} + M\frac{\eps}{2M} \\
+    &= \eps,
   \end{align*}
   as required.
 \end{proof}
