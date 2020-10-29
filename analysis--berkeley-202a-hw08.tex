@@ -289,7 +289,7 @@ We break the proof into three separate claims (two for the forwards direction an
   Let $\eps > 0$.
 
   Let $B = \origsup_{n} \int |f_n|$ and let $\delta > 0$ be such that for all $n$ and all $A \in \mc A$
-  if $\mu(A) < \delta$ then $\big|\int_A f_n\big| < \eps$.
+  if $\mu(A) < \delta$ then $\big|\int_A f_n\big| < \eps/2$.
 
   We want to show that there exists $M$ such that for all $n$
   \begin{align*}
@@ -297,14 +297,33 @@ We break the proof into three separate claims (two for the forwards direction an
   \end{align*}
   Note that
   \begin{align*}
-    \mu\big(\{x ~:~ |f_n(x)| > B/\delta\}\big) B/\delta < \int_{\{x ~:~ |f_n(x)| > B/\delta\}} |f_n| \leq B.
+  \mu\big(\{x ~:~ f_n(x) > B/\delta\}\big) B/\delta < \int_{\{x ~:~ f_n(x) > B/\delta\}} f_n \leq B.
   \end{align*}
   Set $M = B/\delta$. Then
   \begin{align*}
-    \mu\big(\{x ~:~ |f_n(x)| > M\}\big) < \delta,
+    \mu\big(\{x ~:~ f_n(x) > M\}\big) < \delta,
   \end{align*}
   and therefore
   \begin{align*}
-    \Bigg|\int_{\{x ~:~ |f_n(x)| > M\}} f_n\Bigg| < \eps.
+    \Bigg|\int_{\{x ~:~ f_n(x) > M\}} f_n\Bigg| = \int_{\{x ~:~ f_n(x) > M\}} f_n < \eps/2.
   \end{align*}
+  Similarly
+  \begin{align*}
+    \mu\big(\{x ~:~ f_n(x) < -B/\delta\}\big) \cdot (-B/\delta) < \int_{\{x ~:~ f_n(x) < B/\delta\}} -f_n \leq B,
+  \end{align*}
+  and so
+  \begin{align*}
+    \mu\big(\{x ~:~ f_n(x) < -M\}\big) < \delta,
+  \end{align*}
+  hence
+  \begin{align*}
+    \Bigg|\int_{\{x ~:~ f_n(x) < -M\}} -f_n\Bigg| = \int_{\{x ~:~ f_n(x) < -M\}} -f_n < \eps/2.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \int_{\{x ~:~ |f_n(x)| > M\}} |f_n|
+    &= \int_{\{x ~:~ f_n(x) > M\}} f_n + \int_{\{x ~:~ f_n(x) < -M\}} -f_n \\
+    &< \frac{\eps}{2}+ \frac{\eps}{2} = \eps,
+  \end{align*}
+  as required.
 \end{proof}
