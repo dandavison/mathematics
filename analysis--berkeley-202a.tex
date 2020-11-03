@@ -1233,6 +1233,146 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
   \begin{align*}
     \int (T - S) = \lim_{i \to \infty} \int (T_{P_i} - S_{P_i}) = \lim_{i\to\infty} \big(U(P_i, f) - L(P_i, f)\big) = 0.
   \end{align*}
+\end{proof}
+
+\section{Ch 8. Properties of the Lebesgue integral}
+
+\begin{theorem}[conditions for $f = 0$ a.e.]
+  Let $f$ be real-valued and measurable. Then $f = 0$ a.e. if
+  \begin{enumerate}
+  \item $f$ is non-negative and $\int f = 0$,
+  \item $\int_A f = 0$ on every measurable set $A$,
+  \item $\int_0^x f(u) \du = 0$ for all $x$ under Lebesgue measure.
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+  If $f$ is non-negative and $\int f = 0$ then $f = 0$ a.e.
+\end{theorem}
+
+\begin{proof}
+  Define $A_n = \{x ~:~ f(x) > \frac{1}{n}\}$. If $f$ is not equal to zero a.e. then there exists $n$ such
+  that $\mu(A_n) > 0$. But then
+  \begin{align*}
+    0 = \int f \geq \frac{1}{n} \mu(A_n),
+  \end{align*}
+  a contradiction.
+\end{proof}
+
+
+\begin{theorem}
+  If $f$ is real-valued and $\int_A f = 0$ on every measurable set $A$ then $f = 0$ a.e.
+\end{theorem}
+
+\begin{proof}
+  Let $\eps > 0$. We have
+  \begin{align*}
+    0 = \int_{\{x ~:~ f(x) > \eps\}} f \geq \eps\mu(\{x ~:~ f(x) > \eps\}),
+  \end{align*}
+  therefore $\mu(\{x ~:~ f(x) > \eps\}) = 0$. Therefore
+  \begin{align*}
+    \mu(\{x ~:~ f(x) > 0\})
+    &= \mu(\bigcup_{n=1}^\infty \{x ~:~ f(x) > \frac{1}{n}\}) \\
+    &\leq \sum_{n=1}^\infty \mu(\{x ~:~ f(x) > \frac{1}{n}\}) = 0.
+  \end{align*}
+  Similarly,
+  \begin{align*}
+    0 = \int_{\{x ~:~ f(x) < -\eps\}} f \geq \eps\mu(\{x ~:~ f(x) > y\}),
+  \end{align*}
+  leading to
+  \begin{align*}
+    \mu(\{x ~:~ f(x) < 0\}) = 0.
+  \end{align*}
+\end{proof}
+
+
+
+\begin{theorem}[approximation by continuous function]
+  Let $f: \R\to \R$ be a Lebesgue-measurable integrable function. Let $\eps > 0$. Then there exists a
+  continuous function $g$ with {\it compact support} such that
+  \begin{align*}
+    \int |f - g| < \eps.
+  \end{align*}
+\end{theorem}
+
+
+\begin{theorem}[Egorov's theorem]
+
+\end{theorem}
+
+\begin{proof}
+  Define
+  \begin{align*}
+    A_{nk} = \bigcup_n \{x ~:~ |f_n(x) - f(x)| \geq 1/k \}
+  \end{align*}
+  Thus $A_{nk}$ is the set of $x$ values for which, at some point beyond $n$, there is a value lying further than $1/k$ from $f$.
+
+  Note that $A_{nk} \to \emptyset$ as $n \to \infty$ with fixed $k$, since $f_n \to f$.
 
 
 \end{proof}
+
+\section{Signed measures}
+
+\begin{definition}
+  A \defn{signed measure} $\mu:\mc A \to (-\infty, \infty]$ satisfies countable additivity over a union of disjoint
+  sets $A_i \in \mc A$:
+  \begin{align*}
+    \mu(\bigcup_{n=1}^\infty A_i) = \sum_{n=1}^{\infty} \mu(A_i).
+  \end{align*}
+  If the measure of this union is finite then the series $\sum_{n=1}^{\infty} \mu(A_i)$ must converge
+  absolutely. This implies that the summation is well-defined (it is a theorem that for a series in a complete
+  topological space such as the reals, absolute convergence implies unconditional convergence).
+\end{definition}
+
+\begin{theorem}
+  If $A_n \uparrow A$ then $\limn \mu(A_n) = \mu(A)$.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{theorem}
+  Let $A = \bigcup_{i=1}^\infty A_i$. Then
+  \begin{align*}
+    \mu(\bigcup_{i=1}^\infty A_i) = \limn \mu(\bigcup_{i=1}^\infty A_i).
+  \end{align*}
+\end{theorem}
+
+\begin{proof}
+  (\red{TODO} the same as for unsigned measure)
+  Let $A = \bigcup_{i=1}^\infty$
+
+  \begin{align*}
+    \mu(\bigcup_{i=1}^\infty A_i)
+    &:= \mu(\lim_{n\to\infty} \bigcup_{i=1}^n A_i) .
+  \end{align*}
+
+\end{proof}
+
+\begin{definition}
+  $A$ is a \defn{positive set} if $\mu(B) \geq 0$ for all $B \subseteq A$ (where $A$ and $B$ are in the $\sigma$-algebra).
+
+  Similarly, \defn{negative set} if ...$\mu(B) \leq 0$...
+\end{definition}
+
+\begin{theorem}
+  If $\mu(E) < 0$ then there exists a negative set $F \subseteq E$ with $\mu(F) < 0$.
+\end{theorem}
+
+\begin{proof}
+  If $E$ is a negative set we are done.
+
+
+  Alternatively, there is a measurable subset of $E$ with positive measure. Let $n_1$ be the smallest positive
+  integer such that there exists measurable $E_1 \subset E$ with $\mu(E_1) \geq 1/n_1$
+\end{proof}
+
+\begin{theorem}[Hahn decomposition theorem]
+  $X$ can be partitioned as $P \cup N$ where $P$ is a positive set and $N$ is a negative set.
+\end{theorem}
+
+\begin{theorem}[Jordan decomposition theorem]
+
+\end{theorem}
