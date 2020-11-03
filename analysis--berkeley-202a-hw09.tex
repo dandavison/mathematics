@@ -38,17 +38,29 @@
 \end{mdframed}
 
 \begin{proof}
-  Let $g: [0, 1] \to \R$ be a function that is not constant a.e. and let $g^*$ be a continuous approximation
-  to $g$.
+  Let $g: [0, 1] \to \R$ be a function that is not constant a.e.
 
-  We will construct $f$ such that $\int_0^1 f = 0$ and $\int_0^1 fg \neq 0$.
+  We will construct an $f$ such that $\int_0^1 f = 0$ and $\int_0^1 fg \neq 0$, thus proving the result by
+  contradiction.
+
+  Let $f(x) = x - 1/2$. Note that $\int_0^1 f = 0$.
+
+  If $\int_0^1 fg \neq 0$ then we are done.
+
+  Alternatively, we have $\int_0^1 fg = 0$, or equivalently
+  \begin{align*}
+    \int_0^{1/2} fg + \int_{1/2}^1 fg = 0.
+  \end{align*}
+
+
+  and let $g^*$ be a continuous approximation to $g$.
+
+
 
   If $\int g^* = 0$ then we are done since $\int_0^1 fg = \int_0^1 (g^*)^2 > 0$.
 
 
 \end{proof}
-
-
 
 
 \begin{proof}
@@ -185,6 +197,10 @@ We must show
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-955c.png}
 \end{mdframed}
 
+\begin{claim*}
+  Henstock-Kurzweil $\int \ind_\Q \neq 0$
+\end{claim*}
+
 \begin{proof}
   We claim that $\int \ind_\Q = 0$.
 
@@ -193,8 +209,11 @@ We must show
   We must prove that there exists a gauge $\delta$ such that for all tagged partitions $(d, p)$ if $(d, p)$
   is $\delta$-fine then
   \begin{align*}
-    \Big|\sum_{i=1}^n (d_i - d_{i-1})\ind_\Q(p_i)\Big| < \eps.
+    \sum_{i=1}^n (d_i - d_{i-1})\ind_\Q(p_i) < \eps.
   \end{align*}
+
+
+
   Equivalently we must prove that there exists a gauge $\delta$ such that
   \begin{align*}
     \max_{(d, p) \delta\text{-fine}} \Bigg( \sum_{\{i ~:~ i \in \{1, \ldots, n\}, p_i \in \Q\}} (d_i - d_{i-1}) \Bigg) < \eps,
@@ -248,6 +267,73 @@ We must show
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-b4e1.png}
 \end{mdframed}
+
+\begin{claim*}
+  $d$ is a metric on an appropriately defined set.
+\end{claim*}
+
+\begin{proof}
+  \begin{enumerate}
+  \item {\bf identity of indiscernibles}\\
+    Note that $\frac{|f - g|}{1 + |f - g|} \geq 0$. Therefore
+    if $d(f, g) = \int\frac{|f - g|}{1 + |f - g|} = 0$ then $|f - g| = 0$ a.e., and therefore $f = g$ a.e.
+
+    Conversely, if $f = g$ a.e. then $|f - g| = 0$ a.e. and we have $d(f, g) = 0$.
+
+  \item {\bf symmetry}\\
+    $d(f, g) = \int \frac{|f - g|}{1 + |f - g|} = \int \frac{|g - f|}{1 + |g - f|} = d(g, f)$
+
+  \item {\bf triangle inequality}
+    \begin{align*}
+      d(f, h)
+      &= \int \frac{|f - h|}{1 + |f - h|} \\
+      &= \int \frac{|f - g + g - h|}{1 + |f - g + g - h|} \\
+      &\leq \int \frac{|f - g| + |g - h|}{1 + |f - g| + |g - h|} \\
+      &< \int \frac{|f - g|}{1 + |f - g|} + \int \frac{|g - h|}{1 + |g - h|} \\
+      &= d(f, g) + d(g, h)
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+
+\begin{claim*}
+  $d(f_n, f) \to 0$ if and only if $f_n \to f$ in measure.
+\end{claim*}
+
+\begin{proof}
+  Since $0 \leq \frac{|f_n - f|}{1 + |f_n - f|} \leq 1$ we may appply the dominated convergence theorem,
+  yielding
+  \begin{align*}
+    \limn d(f_n, f)
+    &= \limn \int \frac{|f_n - f|}{1 + |f_n - f|} \\
+    &= \int \limn \frac{|f_n - f|}{1 + |f_n - f|}.
+  \end{align*}
+
+  Suppose $d(f_n, f) \to 0$. Then we have
+  \begin{align*}
+    \int \limn \frac{|f_n - f|}{1 + |f_n - f|} = 0.
+  \end{align*}
+  Since the integrand is non-negative, this implies that
+  \begin{align*}
+    \limn \frac{|f_n - f|}{1 + |f_n - f|} = 0 \ae
+  \end{align*}
+  Since the denominator is strictly positive for all $n$, this implies that $\limn |f_n - f| = 0$ a.e. or in
+  other words that $f_n \to f$ a.e. Therefore, $f_n \to f$ in measure.
+
+  Conversely, suppose that $f_n \to f$ in measure. Let $\eps > 0$. Then by definition of convergence in measure
+  we have that
+  \begin{align*}
+    \limn \mu(\{x ~:~ |f_n(x) - f| \geq \eps\}) = 0.
+  \end{align*}
+
+  \red{TODO}
+
+  We want to show that there exists $N$ such that for all $n \geq N$
+  \begin{align*}
+    \int \frac{|f_n - f|}{1 + |f_n - f|} < \eps.
+  \end{align*}
+\end{proof}
+
 
 \newpage
 \begin{mdframed}
