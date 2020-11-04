@@ -269,10 +269,11 @@ We must show
 \end{mdframed}
 
 \begin{claim*}
-  $d$ is a metric on an appropriately defined set.
+  $d$ is a metric on the space of measurable functions except for the fact that $d(f, g) = 0$ implies $f = g$
+  a.e., not necessarily everywhere.
 \end{claim*}
 
-\begin{proof}
+\begin{proof}~\\
   \begin{enumerate}
   \item {\bf identity of indiscernibles}\\
     Note that $\frac{|f - g|}{1 + |f - g|} \geq 0$. Therefore
@@ -295,43 +296,66 @@ We must show
   \end{enumerate}
 \end{proof}
 
-
-\begin{claim*}
-  $d(f_n, f) \to 0$ if and only if $f_n \to f$ in measure.
-\end{claim*}
+\begin{lemma}\label{10-2-lemma}
+  $d(f_n, f) \to 0$ if and only if $f_n \to f$ a.e.
+\end{lemma}
 
 \begin{proof}
   Since $0 \leq \frac{|f_n - f|}{1 + |f_n - f|} \leq 1$ we may appply the dominated convergence theorem,
   yielding
-  \begin{align*}
+  \begin{align}
     \limn d(f_n, f)
-    &= \limn \int \frac{|f_n - f|}{1 + |f_n - f|} \\
-    &= \int \limn \frac{|f_n - f|}{1 + |f_n - f|}.
-  \end{align*}
+    &= \limn \int \frac{|f_n - f|}{1 + |f_n - f|} \nonumber\\
+    &= \int \limn \frac{|f_n - f|}{1 + |f_n - f|} \nonumber\\
+    &= \int \frac{\limn |f_n - f|}{1 + \limn |f_n - f|}. \label{10-2-eqn}
+  \end{align}
+  First suppose that $d(f_n, f) \to 0$. Then, since for all $n$ the integrand on the RHS of \eqref{10-2-eqn} is
+  non-negative, and the denominator of the integrand on the RHS of \eqref{10-2-eqn} is strictly positive, we
+  have $\limn |f_n - f| = 0$ a.e. or in other words $f_n \to f$ a.e.
 
-  Suppose $d(f_n, f) \to 0$. Then we have
-  \begin{align*}
-    \int \limn \frac{|f_n - f|}{1 + |f_n - f|} = 0.
-  \end{align*}
-  Since the integrand is non-negative, this implies that
-  \begin{align*}
-    \limn \frac{|f_n - f|}{1 + |f_n - f|} = 0 \ae
-  \end{align*}
-  Since the denominator is strictly positive for all $n$, this implies that $\limn |f_n - f| = 0$ a.e. or in
-  other words that $f_n \to f$ a.e. Therefore, $f_n \to f$ in measure.
+  Converself, suppose that $f_n \to f$ a.e. Then the integrand on the RHS of \eqref{10-2-eqn} is zero and we
+  have $d(f_n, f) \to 0$.
+\end{proof}
 
-  Conversely, suppose that $f_n \to f$ in measure. Let $\eps > 0$. Then by definition of convergence in measure
-  we have that
-  \begin{align*}
-    \limn \mu(\{x ~:~ |f_n(x) - f| \geq \eps\}) = 0.
-  \end{align*}
 
-  \red{TODO}
+\begin{claim*}
+ If $d(f_n, f) \to 0$ then $f_n \to f$ in measure.
+\end{claim*}
 
-  We want to show that there exists $N$ such that for all $n \geq N$
+\begin{proof}
+  From lemma \ref{10-2-lemma} we have $f_n \to f$ a.e. Therefore $f_n \to f$ in measure.
+\end{proof}
+
+\begin{claim*}
+  If $f_n \to f$ in measure then $d(f_n, f) \to 0$.
+\end{claim*}
+
+\begin{proof}
+  Suppose that $f_n \to f$ in measure.
+
+  Let $\eps > 0$ and define $A_{\eps, n} = \{x ~:~ |f_n(x) - f| > \eps\}$.
+
+  Since $0 \leq \ind_{A_{\eps, n}} \leq 1$ and $\int 1 = \mu(X) < \infty$ we may apply the dominated
+  convergence theorem, yielding
   \begin{align*}
-    \int \frac{|f_n - f|}{1 + |f_n - f|} < \eps.
+    0 = \limn \mu(A_{\eps, n}) = \limn \int \ind_{A_{\eps, n}} = \int \limn \ind_{A_{\eps, n}}.
   \end{align*}
+  Since the integrand $\limn \ind_{A_{\eps, n}}$ is non-negative we have
+  \begin{align*}
+    \limn \ind_{A_{\eps, n}}(x) = 0 \ae,
+  \end{align*}
+  or equivalently
+  \begin{align*}
+    \limn |f_n(x) - f(x)| \leq \eps \ae
+  \end{align*}
+  Thus since $\eps$ was arbitrary we have
+  \begin{align*}
+    \limn |f_n(x) - f(x)| = 0 \ae
+  \end{align*}
+  and therefore
+  $f_n \to f$ a.e.
+
+  The claim then follows from lemma \ref{10-2-lemma}.
 \end{proof}
 
 

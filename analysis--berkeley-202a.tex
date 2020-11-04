@@ -1277,7 +1277,7 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
   \end{align*}
   Similarly,
   \begin{align*}
-    0 = \int_{\{x ~:~ f(x) < -\eps\}} f \geq \eps\mu(\{x ~:~ f(x) > y\}),
+    0 = \int_{\{x ~:~ f(x) < -\eps\}} f \geq \eps\mu(\{x ~:~ f(x) < -\eps\}),
   \end{align*}
   leading to
   \begin{align*}
@@ -1312,7 +1312,52 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 
 \end{proof}
 
-\section{Signed measures}
+\section{10. Types of convergence}
+
+\begin{definition}
+ A sequence of functions $f_n \to f$ \defn{in measure} if for any $\eps$
+ \begin{align*}
+   \limn \mu\Big(\Big\{x ~:~ |f_n(x) - f(x)| > \eps\Big\}\Big) = 0.
+ \end{align*}
+ {\bf Intuition:} while there may not actually be convergence at any point (large values may always occur in the future),
+ as time goes on the measure of discrepant points at any given point in time gets arbitrarily small.
+\end{definition}
+
+\begin{theorem}
+  \begin{enumerate}
+  \item If $f_n \to f$ a.e. then $f_n \to f$ in measure
+  \item If $f_n \to f$ in measure then there exists a subsequence such that $f_{n_k} \to f$ a.e.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \red{TODO}
+\end{proof}
+
+\begin{remark*}
+  For a finite measure ($\mu(X) < \infty$) convergence in measure and convergence a.e. are equivalent. To prove
+  that i.m. $\implies$ a.e. one can use the DCT on the indicator
+  function $\ind_{\{x ~:~ |f_n(x) - f(x)| > \eps\}}$, since for a finite measure it is bounded above by $1$.
+\end{remark*}
+
+\begin{theorem}[Chebyshev's inequality]
+  \begin{align*}
+    \mu(\{x ~:~ |f(x)| \geq a\}) \leq \frac{\int |f|^p}{a^p}
+  \end{align*}
+    for $p \geq 1$.
+\end{theorem}
+
+\begin{proof}
+  Let $A = \{x ~:~ |f(x)| \geq a\}$. Then
+  \begin{align*}
+    \mu(A)
+    = \int \ind_A
+    \leq \int \frac{|f|}{a},
+  \end{align*}
+  and this remains true when raising the integrand to a power $p > 1$.
+\end{proof}
+
+\section{12. Signed measures}
 
 \begin{definition}
   A \defn{signed measure} $\mu:\mc A \to (-\infty, \infty]$ satisfies countable additivity over a union of disjoint
