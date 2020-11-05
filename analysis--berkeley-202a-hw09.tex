@@ -363,3 +363,102 @@ We must show
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-ea17.png}
 \end{mdframed}
+
+\begin{proof}
+  It suffices to show that the sequence $f_n$ is Cauchy a.e.
+
+  The condition for $f_n(x)$ not Cauchy is that there exists $\eps$ such that for all $N$ there
+  exists $m, n \geq N$ such that $|f_m(x) - f_n(x)| \geq \eps$.
+
+  Equivalently, there exists $\eps$ such that for all $N$ there exists $n \geq N$ such
+  that $\origsup_{m \geq n} |f_m(x) - f_n(x))| \geq \eps$.
+
+  Let $E_{n, a} = \{x ~:~ \origsup_{m \geq n} |f_m(x) - f_n(x)| \geq a\}$.
+
+  Then the condition for $f_n(x)$ not Cauchy is that there exists $\eps$ such that for all $N$ there
+  exists $n \geq N$ such that $x \in E_{n, \eps}$.
+
+  Let $F = \bigcup_{\eps > 0} \bigcap_{N=1}^\infty \bigcup_{n \geq N} E_{n, \eps}$.
+
+  Then if $x \in F$ then $f_n(x)$ is not Cauchy.
+
+  We want to show that $\mu(F) = 0$.
+
+  Since $g_n$ converges in measure to $0$ we have by definition that for all $\eps > 0$
+  \begin{align*}
+    \limn \mu(E_{n, \eps}) = 0.
+  \end{align*}
+  Equivalently for all $\eps > 0$ and $\eta > 0$ there exists $N$ such that $\mu(E_{n, \eps}) < \eta$ for
+  all $n \geq N$.
+
+  Note that $E_{n, \eps}$ includes (a) points $x$ at which the sequence $\(|f_m(x) - f_n(x)|\)_{m=n}^\infty$
+  exceeds $\eps$ in supremum finitely many times only and (b) points $x$ at which it never stops
+  exceeding $\eps$ in supremum. The latter are the $x$ at which $\(f_n(x)\)_{n=1}^\infty$ is not Cauchy.
+
+  Therefore
+
+
+
+
+  Note that if $x \in S_n$ then $x \in S_m$ for all $m \geq n$.
+
+
+
+
+
+
+  Note that if $x \in \bigcap_{n=N}^\infty E_n$
+
+  Therefore $\mu(\bigcap_{n=N}^\infty E_n) < \eta$.
+
+  Let $x \in E_N$.
+
+
+
+  We have: for each $n \geq N$, the set of points with forward-sup-from-$n$ $> \eps/2$ has measure zero.
+
+  Equivalently, for each $n \geq N$, the set of points with forward-sup-from-$n$ $\leq \eps/2$ has measure one.
+  But note that if $x$ has forward-sup-from-$N$ $\leq \eps/2$ then this will remain true for all
+  future $n \geq N$. So we actually have the statement that there is a measure $1$ set for which there exists
+  an $N$ such that the forward-sup $\leq \eps/2$ for all $n \geq N$.
+
+
+
+\end{proof}
+
+
+\begin{remark}
+  Note that if $x$ has forward-sup-from-$N$ $> \eps/2$ then it may continue to do so for all $n \geq N$, or
+  there may be a last high-water-mark, beyond which the forward-sup is small.
+
+  Alternatively, if $x$ has forward-sup-from-$N$ $\leq \eps/2$, then this will always remain true.
+
+  I'm not sure if I understand the asymmetry there.
+\end{remark}
+
+\begin{proof}
+  Let $\eps > 0$ and let $d_{m, n}(x) := |f_m(x) - f_n(x)|$.
+
+  Recall that the sequence $f_n(x)$ converges if and only if it is Cauchy. Therefore it suffices to show that
+  \begin{align*}
+    \lim_{m, n \to \infty} d_{m, n} = 0 \ae,
+  \end{align*}
+  where by this we mean that there exists $N$ such that for all $m, n \geq N$ we have $d_{m, n}(x) < \eps$ a.e.
+
+  We have
+  \begin{align*}
+    \limn \mu(\{x ~:~ \sup_{m \geq n} d_{m, n}(x) > \eps\}) = 0,
+  \end{align*}
+  therefore by definition of limit there exists $N$ such that for all $n \geq N$
+  \begin{align*}
+    \mu(\{x ~:~ \sup_{m \geq n} d_{m, n}(x) > \eps\}) = 0,
+  \end{align*}
+  or equivalently
+  \begin{align*}
+    \int \ind_{\{x ~:~ \sup_{m \geq n} d_{m, n}(x) > \eps\}} = 0.
+  \end{align*}
+  Remark: since $\mu$ is not necessarily finite we have no upper bound for this integrand. But, the sups are a decreasing sequence.
+
+  Note that if $n$ is such that $\sup_{m \geq n} d_{m, n}(x)$
+
+\end{proof}
