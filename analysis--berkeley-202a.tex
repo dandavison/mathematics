@@ -1399,7 +1399,9 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 \begin{definition}
   $A$ is a \defn{positive set} if $\mu(B) \geq 0$ for all $B \subseteq A$ (where $A$ and $B$ are in the $\sigma$-algebra).
 
-  Similarly, \defn{negative set} if ...$\mu(B) \leq 0$...
+  $A$ is a \defn{negative set} if $\mu(B) \leq 0$ ...
+
+  $A$ is a \defn{null set} if $\mu(B) = 0$ ...
 \end{definition}
 
 \begin{theorem}
@@ -1416,8 +1418,79 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 
 \begin{theorem}[Hahn decomposition theorem]
   $X$ can be partitioned as $P \cup N$ where $P$ is a positive set and $N$ is a negative set.
+
+  The decomposition is unique up to a null set. I.e. if $X = P' \cup N'$
+  then $\mu(P \Delta P') = \mu(N \Delta N') = 0$.
 \end{theorem}
+
+\begin{proof}
+  \red{TODO}
+\end{proof}
+
+\begin{definition}
+  Measures $\mu$ and $\nu$ are \defn{mutually singular} if $X$ can be partitioned as $X = E \cup F$ with
+  $\mu(E) = 0$ and $\nu(F) = 0$.
+
+  This is written $\mu \perp \nu$.
+\end{definition}
+
+\begin{example}
+  For example, let $X = [0, 1]$ and let $\mu$ and $\nu$ be Lebesgue measure restricted to $[0,\frac{1}{2}]$
+  and $[\frac{1}{2} , 1]$ respectively. Then $E = (\frac{1}{2} , 1]$ and $F = [0,\frac{1}{2}]$ shows
+  that $\mu \perp \nu$.
+\end{example}
 
 \begin{theorem}[Jordan decomposition theorem]
-
+  If $\mu$ is a signed measure then there exist positive measures $\mu^+$ and $\mu^-$ such
+  that $\mu = \mu^+ - \mu^-$ and $\mu^+ \perp \mu^-$. This decomposition is unique.
 \end{theorem}
+
+\begin{definition}
+  The measure $|\mu| := \mu^+ + \mu^-$ is called the \defn{total variation measure} of $\mu$.
+
+  $|\mu|(X)$ is called the total variation of $\mu$.
+\end{definition}
+
+The core example motivating these definitions and decomposition theorems is
+
+\begin{example}
+  Let $m$ be Lebesgue measure and define
+  \begin{align*}
+    \mu(A) = \int_A f \d m.
+  \end{align*}
+  Then $\mu$ is a measure. If $f$ takes positive and negative values then $\mu$ is a signed measure.
+
+  The \defn{Hahn decomposition} theorem states that the measure space $X$ may be partitioned as $X = P \cup M$ where
+  $P$ is a positive set (all measurable subsets have non-negative measure) and $M$ is a negative set (all
+  measurable subsets have non-positive measure).
+
+  The obvious decomposition is
+  \begin{align*}
+    M &= \{x ~:~ f(x) \leq 0\} \\
+    P &= \{x ~:~ f(x) > 0\},
+  \end{align*}
+  and this decomposition is unique except of course that $N = \{x ~:~ f(x) = 0\}$ is a null set (all measurable
+  subsets have measure zero) and different ways of apportioning $N$ to $P$ and $M$ do not affect their measure
+  (and thus their status as positive and negative sets respectively).
+
+  The \defn{Jordan decomposition} theorem states that $\mu$ can be written as $\mu = \mu^+ - \mu^-$, where
+  \begin{align*}
+    \mu^+(A) = \int_A f^+ ~~~~~~~ \text{and} ~~~~~~~ \mu^-(A) = \int_A f^-.
+  \end{align*}
+  Recall that $f^+ := \max(f, 0)$ and $f^- := \min(f, 0)$.
+\end{example}
+
+\begin{intuition}
+  So in other words, we define a measure $\mu$ by using a function $f:X \to \R$ to specify how the measure
+  weights different subsets of $X$.
+
+  The construction is natural but in general it gives rise to a signed measure $\mu$. We then note that there
+  are two natural decompositions associated with signed measures:
+
+  The Hahn decomposition partitions the measure space into one subset with purely positive measure and one with
+  purely negative measure.
+
+  The Jordan decomposition states that the measure can be written as the difference between two positive
+  measures: one reflecting weighting of the input space due to positive values of the weighting function, and
+  one reflecting weighting due to negative values of the weighting function.
+\end{intuition}
