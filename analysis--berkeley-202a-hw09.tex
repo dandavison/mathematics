@@ -29,7 +29,10 @@
 \end{mdframed}
 
 \begin{proof}
-
+  My original thought was to take the graph of $y = x^{-1/2}$ and place a copy of it over every rational,
+  scaled to fit in $\eps/2^k$ where $k$ indexes an enumeration of the rationals, somehow stitching them
+  together. However, while something like that might make the integral diverge, I actually don't think it
+  solves the limit requirement, and may well not make sense and indeed I haven't accomplished it.
 \end{proof}
 \newpage
 
@@ -38,6 +41,9 @@
 \end{mdframed}
 
 \begin{proof}
+
+  [Incomplete]
+
   Let $g: [0, 1] \to \R$ be a function that is not constant a.e.
 
   We will construct an $f$ such that $\int_0^1 f = 0$ and $\int_0^1 fg \neq 0$, thus proving the result by
@@ -52,18 +58,20 @@
     \int_0^{1/2} fg + \int_{1/2}^1 fg = 0.
   \end{align*}
 
+  I feel that it should be possible to solve the problem by contradiction like this: i.e. by specifying a
+  procedure that modifies $f$ to produce an $f^*$ such that $\int_0^1 f^*g \neq 0$, while preserving the property that $\int_0^1 f^* = 0$. In particular I note that we
+  are free to cut out two vertical strips of the graph of $f$ and exchange them: this will preserve the value
+  of the integral.
 
-  and let $g^*$ be a continuous approximation to $g$.
-
-
-
-  If $\int g^* = 0$ then we are done since $\int_0^1 fg = \int_0^1 (g^*)^2 > 0$.
-
-
+  Unfortunately I failed to complete the question again despite thinking about it for ages :) I'm including a
+  few more of the incomplete approaches to this problem that I thought about below.
 \end{proof}
 
 
 \begin{proof}
+
+  [another incomplete thought]
+
   We have that for every continuous function $f$ with $\int_0^1 f = 0$ then $\int_0^1 fg = 0$.
 
   It follows that for every continuous function $f$ with $\int_0^1 f = 0$ and for all $a, b \in \R$
@@ -72,57 +80,69 @@
   \end{align*}
   It is given that $g$ is bounded, and we see that $f$ is bounded also since it is continuous on a compact set.
 
-  Let $L, M$ be such that $L \geq |g|$ and $M \geq |f|$. Then we have that
-
-
 \end{proof}
 
 
 \begin{proof}
-  Let $f_1 \neq f_2$ be continuous with $\int_0^1 f_1 = \int_0^1 f_2 = 0$.
 
-  We have that
-  \begin{align*}
-    \int_0^1 f_1g = \int_0^1 f_2g = 0.
-  \end{align*}
+  [another incomplete thought]
 
-  For example, let $f_n(x) = n(x - 1/2)$. Then
-  \begin{align*}
-    \int_0^1 f_n(x) \dx = n\int_0^1 x \dx - \frac{n}{2} = \frac{n}{2} - \frac{n}{2} = 0.
-  \end{align*}
-  Let
-  \begin{align*}
-    g(x) =
-    \begin{cases}
-      -c & x \leq 1/2 \\
-      +c  & x > 1/2.
-  \end{cases}
-  \end{align*}
-  Then
-  \begin{align*}
-    \int_0^1 f_n(x) g(x)
-    = -cn\int_0^{1/2}(x - 1/2) \dx + cn\int_{1/2}^1(x - 1/2) \dx
-    = 0.
-  \end{align*}
+  Let $\ms F = \{f: [0, 1] \to \R ~:~ f \text{~is continuous}, \int_0^1 f(x) \dx = 0 \}$.
+
+  Is $\ms F$ (in an appropriate sense) full rank, such that if a function $g$ is orthogonal to every element
+  of $f$ then $g$ must be the zero function? (And then some argument allowing $g$ to be any constant a.e.
+  function).
 \end{proof}
 
 
+% \begin{proof}
+%   Let $f_1 \neq f_2$ be continuous with $\int_0^1 f_1 = \int_0^1 f_2 = 0$.
+
+%   We have that
+%   \begin{align*}
+%     \int_0^1 f_1g = \int_0^1 f_2g = 0.
+%   \end{align*}
+
+%   For example, let $f_n(x) = n(x - 1/2)$. Then
+%   \begin{align*}
+%     \int_0^1 f_n(x) \dx = n\int_0^1 x \dx - \frac{n}{2} = \frac{n}{2} - \frac{n}{2} = 0.
+%   \end{align*}
+%   Let
+%   \begin{align*}
+%     g(x) =
+%     \begin{cases}
+%       -c & x \leq 1/2 \\
+%       +c  & x > 1/2.
+%   \end{cases}
+%   \end{align*}
+%   Then
+%   \begin{align*}
+%     \int_0^1 f_n(x) g(x)
+%     = -cn\int_0^{1/2}(x - 1/2) \dx + cn\int_{1/2}^1(x - 1/2) \dx
+%     = 0.
+%   \end{align*}
+% \end{proof}
 
 
 
 
 
 
-\begin{remark}
-  As a sanity check note that the required behavior with continuous $f$ does obtain
-  \begin{enumerate}
-  \item if $g$ is equal to a constant a.e.: if $c \in \R$ and $g = c$ a.e. then $\int_0^1 f g = c \int_0^1 f = 0$,
-  \item if $f = 0$.
-  \end{enumerate}
-\end{remark}
+
+
+% \begin{remark}
+%   As a sanity check note that the required behavior with continuous $f$ does obtain
+%   \begin{enumerate}
+%   \item if $g$ is equal to a constant a.e.: if $c \in \R$ and $g = c$ a.e. then $\int_0^1 f g = c \int_0^1 f = 0$,
+%   \item if $f = 0$.
+%   \end{enumerate}
+% \end{remark}
 
 
 \begin{proof}
+
+  [another incomplete thought]
+
   Suppose $g: [0, 1] \to [0, \infty]$ is bounded and measurable.
 
   Let $\lambda(E) = \int_E g(x) \dx$ for a Borel set $E \subseteq [0, 1]$.
@@ -136,60 +156,52 @@
   \begin{align*}
     \int_0^1 f \d\lambda = 0.
   \end{align*}
-
 \end{proof}
 
 
 
 
-\begin{proof}
-  Let $\ms F = \{f: [0, 1] \to \R ~:~ f \text{~is continuous}, \int_0^1 f(x) \dx = 0 \}$.
-
-  Is $\ms F$ (in an appropriate sense) full rank, such that if a function $g$ is orthogonal to every element
-  of $f$ then $g$ must be the zero function? (And then some argument allowing $g$ to be any constant a.e.
-  function).
-\end{proof}
 
 
-Suppose condition A(f, g) is true whenever f satisfies condition B. Prove that g satisfies condition C.
+% Suppose condition A(f, g) is true whenever f satisfies condition B. Prove that g satisfies condition C.
 
-Claim: If (f satisfies condition B) => A(f, g), then g satisfies condition C.
+% Claim: If (f satisfies condition B) => A(f, g), then g satisfies condition C.
 
-Proof:
+% Proof:
 
-We must show
+% We must show
 
-(1) if not B(f) then C(g)
+% (1) if not B(f) then C(g)
 
-(2) if B(f) and
-
-
-\begin{claim*}
-  Suppose $g: [0, 1] \to \R$ is bounded and measurable.
-
-  Suppose further that, if $f$ is continuous and $\int_0^1 f = 0$, then
-  \begin{align*}
-    \int_0^1 f g = 0.
-  \end{align*}
-
-  Prove that $g$ is equal to a constant a.e.
-\end{claim*}
-
-\begin{intuition}
-  We have an unknown function $g: [0, 1] \to \R$.
-
-  We are told that whenever $g$ is integrated against a continuous function $f$ for which $\int_0^1 f = 0$, the
-  result is zero.
-
-  We must prove that $g$ is equal to a constant a.e.
+% (2) if B(f) and
 
 
-\end{intuition}
+% \begin{claim*}
+%   Suppose $g: [0, 1] \to \R$ is bounded and measurable.
 
-\begin{proof}
-  Suppose $g$ is not equal to a constant a.e.
+%   Suppose further that, if $f$ is continuous and $\int_0^1 f = 0$, then
+%   \begin{align*}
+%     \int_0^1 f g = 0.
+%   \end{align*}
 
-\end{proof}
+%   Prove that $g$ is equal to a constant a.e.
+% \end{claim*}
+
+% \begin{intuition}
+%   We have an unknown function $g: [0, 1] \to \R$.
+
+%   We are told that whenever $g$ is integrated against a continuous function $f$ for which $\int_0^1 f = 0$, the
+%   result is zero.
+
+%   We must prove that $g$ is equal to a constant a.e.
+
+
+% \end{intuition}
+
+% \begin{proof}
+%   Suppose $g$ is not equal to a constant a.e.
+
+% \end{proof}
 
 
 \newpage
@@ -202,6 +214,9 @@ We must show
 \end{claim*}
 
 \begin{proof}
+
+  [There is something wrong with my argument as it basically proves that $\int \ind_\Q \neq 0$]
+
   We claim that $\int \ind_\Q = 0$.
 
   Let $\eps > 0$.
@@ -211,8 +226,6 @@ We must show
   \begin{align*}
     \sum_{i=1}^n (d_i - d_{i-1})\ind_\Q(p_i) < \eps.
   \end{align*}
-
-
 
   Equivalently we must prove that there exists a gauge $\delta$ such that
   \begin{align*}
@@ -228,41 +241,42 @@ We must show
   \begin{align*}
     \max_{(d, p) \delta\text{-fine}, ~\forall i ~ p_i \in \Q} \sum_{i=1}^n (d_i - d_{i-1}) < \eps,
   \end{align*}
-
-
-
   Note that if $(d, p)$ is a tagged partition such that $p_i \notin \Q$ for all $i \in \{1, \ldots, n\}$, then
   the condition is true. Therefore we need only consider tagged partitions for which some $p_i$ are rational.
 
-  Let $\delta = c/2$ be a constant function.
-
-  Then a tagged partition $(d, p)$ is $\delta$-fine if $d_{i} - d_{i-1} < c$ for all $i$.
-
-  Let   $(d, p)$ be such that $d_{i} - d_{i-1} < c$ for all $i$.
-
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-\begin{proof}
+  In fact it seems to me that we need to show it's true for tagged partitions for which all $p_i$ are rational,
+  since this will maximises the sum. However, in that case we will simply have
   \begin{align*}
-    \hline
-    &\forall \eps > 0 ~~ \exists \delta ~~ \forall (d, p) ~~ \delta\text{-fine}(d, p) ~~ \Big|\sum_{\{i ~:~ i \in \{1, \ldots, n\}, p_i \in \Q\}} (d_i - d_{i-1})\Big| < \eps
+    \sum_{i=1}^n (d_i - d_{i-1}) = 1.
   \end{align*}
 
-\begin{align*}
-  &\eps > 0 \\
-  \hline
-  &\exists \delta ~~ \forall (d, p) ~~ \delta\text{-fine}(d, p) ~~ \Big|\sum_{\{i ~:~ i \in \{1, \ldots, n\}, p_i \in \Q\}} (d_i - d_{i-1})\Big| < \eps
-  \end{align*}
+  \red{TODO} I'm confused about how I'm misunderstanding the definition. I can see solutions to this problem online,
+  such as \url{https://www.math.unm.edu/~crisp/courses/math402/spring15/HKintegralStevenJocelyn.pdf}, which I studied but my confusion remained (the
+  presentation there is very similar to here).
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+% \begin{proof}
+%   \begin{align*}
+%     \hline
+%     &\forall \eps > 0 ~~ \exists \delta ~~ \forall (d, p) ~~ \delta\text{-fine}(d, p) ~~ \Big|\sum_{\{i ~:~ i \in \{1, \ldots, n\}, p_i \in \Q\}} (d_i - d_{i-1})\Big| < \eps
+%   \end{align*}
+
+% \begin{align*}
+%   &\eps > 0 \\
+%   \hline
+%   &\exists \delta ~~ \forall (d, p) ~~ \delta\text{-fine}(d, p) ~~ \Big|\sum_{\{i ~:~ i \in \{1, \ldots, n\}, p_i \in \Q\}} (d_i - d_{i-1})\Big| < \eps
+%   \end{align*}
+% \end{proof}
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-b4e1.png}
@@ -391,74 +405,19 @@ We must show
   Equivalently for all $\eps > 0$ and $\eta > 0$ there exists $N$ such that $\mu(E_{n, \eps}) < \eta$ for
   all $n \geq N$.
 
+  [Argh! I thought I'd be able to finish this one properly but it looks like I'm getting tired and running out
+  of time. The remainder of this proof is just a vague sketch of where I was trying to go.]
+
   Note that $E_{n, \eps}$ includes (a) points $x$ at which the sequence $\(|f_m(x) - f_n(x)|\)_{m=n}^\infty$
   exceeds $\eps$ in supremum finitely many times only and (b) points $x$ at which it never stops
-  exceeding $\eps$ in supremum. The latter are the $x$ at which $\(f_n(x)\)_{n=1}^\infty$ is not Cauchy.
+  exceeding $\eps$ in supremum. Let's denote category (b) as $E^*_{n, \eps}$. This set contains the $x$ at
+  which $\(f_n(x)\)_{n=1}^\infty$ is not Cauchy.
 
-  Therefore
+  Since $E^*_{n, \eps} \subseteq E_{n, \eps}$ we have $\mu(E^*_{n, \eps}) < \eta$, but $\eta$ was arbitrary hence $\mu(E^*_{n, \eps}) = 0$.
 
+  I was hoping to formally link $E^*_{n, \eps}$ with the set $F$ defined above.
 
-
-
-  Note that if $x \in S_n$ then $x \in S_m$ for all $m \geq n$.
-
-
-
-
-
-
-  Note that if $x \in \bigcap_{n=N}^\infty E_n$
-
-  Therefore $\mu(\bigcap_{n=N}^\infty E_n) < \eta$.
-
-  Let $x \in E_N$.
-
-
-
-  We have: for each $n \geq N$, the set of points with forward-sup-from-$n$ $> \eps/2$ has measure zero.
-
-  Equivalently, for each $n \geq N$, the set of points with forward-sup-from-$n$ $\leq \eps/2$ has measure one.
-  But note that if $x$ has forward-sup-from-$N$ $\leq \eps/2$ then this will remain true for all
-  future $n \geq N$. So we actually have the statement that there is a measure $1$ set for which there exists
-  an $N$ such that the forward-sup $\leq \eps/2$ for all $n \geq N$.
-
-
-
-\end{proof}
-
-
-\begin{remark}
-  Note that if $x$ has forward-sup-from-$N$ $> \eps/2$ then it may continue to do so for all $n \geq N$, or
-  there may be a last high-water-mark, beyond which the forward-sup is small.
-
-  Alternatively, if $x$ has forward-sup-from-$N$ $\leq \eps/2$, then this will always remain true.
-
-  I'm not sure if I understand the asymmetry there.
-\end{remark}
-
-\begin{proof}
-  Let $\eps > 0$ and let $d_{m, n}(x) := |f_m(x) - f_n(x)|$.
-
-  Recall that the sequence $f_n(x)$ converges if and only if it is Cauchy. Therefore it suffices to show that
-  \begin{align*}
-    \lim_{m, n \to \infty} d_{m, n} = 0 \ae,
-  \end{align*}
-  where by this we mean that there exists $N$ such that for all $m, n \geq N$ we have $d_{m, n}(x) < \eps$ a.e.
-
-  We have
-  \begin{align*}
-    \limn \mu(\{x ~:~ \sup_{m \geq n} d_{m, n}(x) > \eps\}) = 0,
-  \end{align*}
-  therefore by definition of limit there exists $N$ such that for all $n \geq N$
-  \begin{align*}
-    \mu(\{x ~:~ \sup_{m \geq n} d_{m, n}(x) > \eps\}) = 0,
-  \end{align*}
-  or equivalently
-  \begin{align*}
-    \int \ind_{\{x ~:~ \sup_{m \geq n} d_{m, n}(x) > \eps\}} = 0.
-  \end{align*}
-  Remark: since $\mu$ is not necessarily finite we have no upper bound for this integrand. But, the sups are a decreasing sequence.
-
-  Note that if $n$ is such that $\sup_{m \geq n} d_{m, n}(x)$
-
+  I'm also kind of concerned that there's a factor-of-two argument that I haven't used yet:
+  if $\origsup_{m\geq n} |f_m(x) - f_n(x)| < \eps$, then for independent pairs $j, k \geq n$ we
+  have $|f_j(x) - f_k(x)| < 2\eps$.
 \end{proof}
