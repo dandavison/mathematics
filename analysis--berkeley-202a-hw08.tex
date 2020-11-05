@@ -1,5 +1,7 @@
 \section*{Math 202A - HW8 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
+
+
 \begin{comment}
   \begin{mdframed}
     \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-518d.png}
@@ -59,6 +61,14 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-3203.png}
 \end{mdframed}
 
+% 7.9. This problem doesn't count towards your grade but it's good that you're thinking of a Fatou lemma for
+% limsups. In fact, if f_n is *nonpositive* on a measurable set A,
+% then $\limsup_n \int_A f \leq \int_A \limsup_n$ f_n; you can prove this by just multiplying everything in
+% Fatou's lemma by -1's and noting that when you commute a -1 with a liminf it turns into a limsup.
+
+% Aidan Backus , Nov 3 at 3:56pm
+
+
 \begin{comment}
   \begin{remark*}
     We have that $\int_X f_n \to \int_X f$. What we must show is that this limit-of-integrals still holds when
@@ -113,6 +123,8 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-d0c0.png}
 \end{mdframed}
+
+% 7.11. Your argument can be patched to work but it is false that F is an increasing function; what if f = sin? (-3)
 
 \begin{comment}
   \begin{intuition*}
@@ -179,6 +191,13 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-6e60.png}
 \end{mdframed}
+
+% 7.17. You're on the right track but are missing a lot of details. You need to justify commuting the integral
+% and the limit (dominated convergence??). I don't know where you were going with your m's and delta's either.
+% (-5)
+
+% Aidan Backus , Nov 3 at 3:54pm
+
 
 \begin{remark*}
   The integrand may be unbounded. For example, take $g(x) = |x|^{-1/2}$ and $f = 1$. Then the integrand is
