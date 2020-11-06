@@ -713,13 +713,14 @@ A \defn{probability measure} is a measure where $\mu(\Omega) = 1$.
   gives us what we want: countable additivity. The restriction of $\mu^*$ to the Lebesgue $\sigma$-algebra is
   \defn{Lebesgue measure} $\mu$.
 
-\item The above involved using interval length as our measure of the low-level subsets:
-  $\ell(I_i) = b_i - a_i$. There is an important generalization known as \defn{Lebesgue-Stieltjes measure}: we introduce a
-  real-valued increasing function $\alpha: \R \to \R$ that distorts the measures we assign to each
-  interval: $\ell(I_i) = \alpha(b_i) - \alpha(a_i)$. So an interval in a region in which $\alpha$ is increasing
-  rapidly has larger measure. Other than that, the theory for Lebesgue-Stieltjes measure is the same: we define
-  the outer measure using the low-level intervals on which $\ell$ is defined, and we restrict to the collection
-  of measurable sets, which is a $\sigma$-algebra.
+\item The above involved using interval length as our measure of the low-level
+  subsets: $\ell(I_i) = b_i - a_i$. There is an important generalization known as \defn{Lebesgue-Stieltjes measure}:
+  we introduce a real-valued increasing function $\alpha: \R \to \R$ that distorts the measures we
+  assign to each interval: $\ell(I_i) = \alpha(b_i) - \alpha(a_i)$. So an interval in a region in
+  which $\alpha$ is increasing rapidly has larger measure. Other than that, the theory for
+  Lebesgue-Stieltjes measure is the same: we define the outer measure using the low-level intervals
+  on which $\ell$ is defined, and we restrict to the collection of measurable sets, which is
+  a $\sigma$-algebra.
 
 \item The Carath\'eodory extension theorem states:
   Suppose:
@@ -1182,6 +1183,46 @@ This alternative proof uses triangle inequality arguments:
   \red{TODO}
 \end{proof}
 
+\section{Using a function to construct a measure }
+
+
+\begin{lemma}\label{lemma-integral-over-countable-disjoint-sets}
+  Let $f$ be non-negative and integrable. Then
+  \begin{align*}
+    \int_{\cupninf A_n} f  = \sumninf \int_{A_n} f.
+  \end{align*}
+\end{lemma}
+
+\begin{proof}
+  \begin{align*}
+    \int_{\cupninf A_n} f
+    &= \int f \ind_{\cupninf A_n}  \\
+    &= \int \sumninf f \ind_{A_n}  \\
+    &= \int \lim_{N \to \infty} \sum_{n=1}^N f \ind_{A_n}  \\
+    &= \lim_{N \to \infty} \int \sum_{n=1}^N f \ind_{A_n}  & \text{by the monotone convergence theorem}\\
+    &= \lim_{N \to \infty} \sum_{n=1}^N \int f \ind_{A_n}  & \text{by linearity of the integral}\\
+    &= \sum_{n=1}^\infty \int_{A_n} f  \\
+  \end{align*}
+\end{proof}
+
+\begin{theorem}
+  Let $f$ be non-negative and integrable with respect to $\mu$. Define $\nu$ by
+  \begin{align*}
+  \nu(A) := \int_A f \d\mu.
+  \end{align*}
+  Then $\nu$ is a measure.
+\end{theorem}
+
+\begin{proof}
+  {\bf Countable additivity:} Suppose $A_n$ are disjoint measurable sets. We have
+  \begin{align*}
+    \nu\(\bigcupn A_n\)
+    &:= \int_{\bigcupn A_n} f \dmu \\
+    &= \sumninf \int_{A_n} f \dmu & \text{by lemma \ref{lemma-integral-over-countable-disjoint-sets}} \\
+    &= \sumninf \nu(A_n).
+  \end{align*}
+\end{proof}
+
 \section{Lebesgue vs Riemann integrals}
 
 We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue integral.
@@ -1425,6 +1466,13 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 
 \begin{proof}
   \red{TODO}
+
+  Let $L = \inf \{\mu(A) ~:~ A \text{~is a negative set}\}$ (note that $\emptyset$ is a negative set so there is at least one).
+
+  Choose a sequence $A_n$ of negative sets such that $\mu(A_n) \to L$.
+
+  Create a sequence $B_n$ by disjointifying the $A_n$.
+
 \end{proof}
 
 \begin{definition}
@@ -1434,16 +1482,97 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
   This is written $\mu \perp \nu$.
 \end{definition}
 
+\begin{intuition*}
+  In other words, the \defn{support sets} of $\mu$ and $\mu$ are non-overlapping and partition $X$.
+
+  If we sample one value from a probability distribution formed as the mixture of measures $\mu$ and $\nu$, we
+  will know with certainty which measure generated the value.
+
+  One could be in an intermediate situation, where there is some overlap in support. In that case,
+  sometimes we will know which measure generated the value and sometimes not. But with mutual
+  singularity the support sets are mutually exclusive and we always know.
+\end{intuition*}
+
 \begin{example}
   For example, let $X = [0, 1]$ and let $\mu$ and $\nu$ be Lebesgue measure restricted to $[0,\frac{1}{2}]$
   and $[\frac{1}{2} , 1]$ respectively. Then $E = (\frac{1}{2} , 1]$ and $F = [0,\frac{1}{2}]$ shows
   that $\mu \perp \nu$.
 \end{example}
 
+\begin{example}
+  Define
+  \begin{align*}
+    f_1(x) = x
+  \end{align*}
+  \begin{align*}
+      f_2(x) =
+      \begin{cases}
+        0                         & x < 0 \\
+        \text{Cantor-Lebesgue}(x) & 0 \leq x < 1 \\
+        1                         & x \geq 1.
+      \end{cases}
+    \end{align*}
+    \begin{align*}
+      f_3(x) = \text{piecewise constant with countably many jumps of size $a_i \geq 0$ at points $x_i$}
+    \end{align*}
+
+    Define measures (``in some sense encompass all possible behaviors for positive measures on $\R$​'')
+
+    The notation $\mu_f$ means Lebesgue-Stieltjes w.r.t. $f$. ($f$ is a ``distribution function​'').
+    So the measure of an interval is determined by the change in the function over that interval.
+
+  \begin{itemize}
+  \item $\mu_1 = \mu_{f_1} = m$, Lebesgue measure on $\R$
+  \item $\mu_2 = \mu_{f_2}$
+  \item $\mu_3 = \mu_{f_3} = \sum_{i=1}^\infty a_i \delta_{x_i}$ where $a_i \geq 0$ and $\sum_{i=1}^\infty a_i < \infty$
+  \end{itemize}
+
+  \begin{claim*}
+    All three measures are mutually singular w.r.t. each other.
+  \end{claim*}
+
+  \begin{proof}
+    For $\mu_1$ vs $\mu_2$, note that if we sampled a real number from a mixture of those
+    distributions, we could examine its base-3 representation: if it has any 1s then it must have
+    come from $\mu_1$.
+
+    So the space $X = [0, 1]$ is partitioned into
+    \begin{enumerate}
+    \item the Cantor set (which is a null set, so has measure $0$ under $\mu_1$, but the C-L
+      function is increasing on that null set so it has positive measure under $\mu_2$), and
+    \item the complement of the Cantor set (on which the Cantor-Lebesgue function does not
+      increase, so all subsets of that have measure zero under $\mu_2$, but they have positive
+      measure under $\mu_1$)
+    \end{enumerate}
+    It's clear that $\mu_1 \perp \mu_3$ since $\mu_3$ assigns zero measure almost everywhere (so
+    there it is zero and $\mu_1$ is non-zero) and the complement is null so has zero measure
+    under $\mu_1$ and yet positive under $\mu_3$ since that's where the jumps are.
+
+    Finally $\mu_2$ vs $\mu_3$.
+
+  \end{proof}
+
+\end{example}
+
 \begin{theorem}[Jordan decomposition theorem]
   If $\mu$ is a signed measure then there exist positive measures $\mu^+$ and $\mu^-$ such
   that $\mu = \mu^+ - \mu^-$ and $\mu^+ \perp \mu^-$. This decomposition is unique.
 \end{theorem}
+
+\begin{intuition}
+  Note that in the mutual singularity statement $\mu^+ \perp \mu^-$, the decomposition being
+  referred to comes from a Hahn decomposition into a positive and negative set.
+\end{intuition}
+
+\begin{proof}
+  $\mu$ is signed so we can decompose into $M, P$ negative and positive. Thus for some set $A \in \mc A$
+  \begin{align*}
+    \mu^+(A) &= \mu(A \cap P) \\
+    \mu^-(A) &= -\mu(A \cap M).
+  \end{align*}
+
+  \red{TODO} uniqueness
+\end{proof}
 
 \begin{definition}
   The measure $|\mu| := \mu^+ + \mu^-$ is called the \defn{total variation measure} of $\mu$.
@@ -1487,10 +1616,108 @@ The core example motivating these definitions and decomposition theorems is
   The construction is natural but in general it gives rise to a signed measure $\mu$. We then note that there
   are two natural decompositions associated with signed measures:
 
-  The Hahn decomposition partitions the measure space into one subset with purely positive measure and one with
-  purely negative measure.
+  The Hahn decomposition partitions the measure space into one subset with purely positive measure
+  and one with purely negative measure.
 
   The Jordan decomposition states that the measure can be written as the difference between two positive
   measures: one reflecting weighting of the input space due to positive values of the weighting function, and
   one reflecting weighting due to negative values of the weighting function.
 \end{intuition}
+
+\section{13. Radon-Nikodym theorem}
+
+Analogy/example referring to notation at the beginning of Bass ch. 13:
+
+$\mu$ is a measure reporting areas of US counties.
+
+$\nu$ is a measure reporting population count of US counties.
+
+$A$ is Illinois. The definition of $\nu$ is
+
+\begin{align*}
+  \nu(A) = \int_A f \d\mu.
+\end{align*}
+Thus $f$ is the density of people/area, and $f\d\mu$ can be thought of as an infinitisemal area
+converted to population by multiplying by the local density.
+
+\begin{definition}[absolute continuity]
+  $\nu$ is absolutely continuous w.r.t. $\mu$ if $\mu(A) = 0 \implies \nu(A) = 0$.
+
+  We write $\nu \ll \mu$.
+\end{definition}
+
+\begin{intuition}
+  $\nu$ doesn't see anything that $\mu$ doesn't see​. $\mu$ might report non-zero values where
+  $\nu$ reports zero; in this sense $\nu$ is less than $\mu$, as suggested by the notation.
+\end{intuition}
+
+\begin{theorem}[Radon-Nikodym]
+  Suppose $\mu$ and $\nu$ are {\it positive} measures and $\nu \ll \mu$.
+
+  Suppose $\mu$ is $\sigma$-finite and $\nu$ is finite, on a measurable space $(X, \mc A)$.
+
+  Then there exists a {\it non-negative} function $f$ such that
+  \begin{align*}
+  \nu(A) = \int_A f \d\mu
+  \end{align*}
+  for all $A \in \mc A$.
+
+  ($f$ is $\mu$-integrable and measurable w.r.t. $\mc A$.)
+
+  If $g$ is another such function then $f = g$ $\mu$-almost everywhere.
+
+  $f$ is called the \defn{Radon-Nikodym derivative} of $\nu$ w.r.t. $\mu$ and one may write
+  $\d\nu = f\dmu$ or $f = \frac{\d\nu}{\dmu}$.
+\end{theorem}
+
+The idea of the proof is to look at the set of functions $f$ that
+satisfy $\int_A f \d\mu \leq \nu(A)$ on all subsets $A$, and choose the one that
+maximises $\int_X f \dmu$. This will turn out to turn the inequality into equality on all subsets.
+
+
+\begin{proof}~\\
+
+  \subsubsection*{Step 2: definition of $f$}
+
+  \red{TODO}
+
+  Define a class of measurable functions
+  \begin{align*}
+    \mc F = \Big\{g ~:~ g \geq 0 \text{~and~} \int_A g \d\mu \leq \nu(A) ~\text{~for all~} A\Big\}
+  \end{align*}
+  Consider the integrals of these functions across the full space $X$.
+
+  Let $L$ be the $\sup$ of those integrals. Note that  $L < \infty$ since $\nu$ is finite.
+
+  Choose a sequence $g_n$ such that the sequence of integrals $\to L$.
+
+  Set $h_n = \max\{g_1, \ldots g_n\}$.
+
+
+
+
+
+
+
+  \subsubsection*{Step 3: Prove that $f$ is the desired function}
+
+  \red{TODO}
+
+
+\end{proof}
+
+\begin{claim*}
+  If $g$ is another such function then $f = g$ $\mu$-almost everywhere.
+\end{claim*}
+
+\begin{proof}
+    Suppose $f$ and $g$ are two such functions. Then for all $A \in \mc A$ we have
+  \begin{align*}
+    \nu(A) = \int_A f \d\mu = \int_A g \d\mu
+  \end{align*}
+  therefore
+  \begin{align*}
+    \int_A (f - g) \dmu = 0.
+  \end{align*}
+  Since this holds on every measurable set $A$, we have $f = g$ $\mu$-almost everywhere.
+\end{proof}
