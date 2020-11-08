@@ -27,10 +27,8 @@ The set $E$ whose elements belong to infinitely many of the sets $A_i$ is
   \end{align*}
 \end{proof}
 
-Since base-$10$ has no special significance, we prove the following results for the general case of base $K$.
-
 We define a sequence of sets $A_1, A_2, \ldots \subseteq [0, 1)$ as follows: $x \in [0, 1)$ is an element
-of $A_n$ if each of the $K$ digits occurs exactly $n$ times in the first $Kn$ digits of the base-$K$ expansion
+of $A_n$ if each of the $10$ digits occurs exactly $n$ times in the first $10n$ digits of the decimal expansion
 of $x$.
 
 $A$ is defined to be the set whose elements are in infinitely many of the $A_n$. Therefore
@@ -43,11 +41,11 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 \end{claim*}
 
 \begin{proof}
-  We define the $i$-th $K$-adic interval for digit $k$ at rank $m$ to be the following interval containing
-  numbers whose base-$K$ expansion has a $k$ in the $m$-th position, where we choose the representation ending
+  We define the $i$-th decadic interval for digit $k$ at rank $m$ to be the following interval containing
+  numbers whose decimal expansion has a $k$ in the $m$-th position, where we choose the representation ending
   in $0$s where there is a choice:
   \begin{align*}
-    I_{m, k, i} := \Bigg[\frac{Ki + k}{K^m}, \frac{Ki + k + 1}{K^m}\Bigg).
+    I_{m, k, i} := \Bigg[\frac{10i + k}{10^m}, \frac{10i + k + 1}{10^m}\Bigg).
   \end{align*}
   % Let $B_{m, k}$ be the set of all numbers in $[0, 1)$ whose base-$K$ expansion has a $k$ in the $m$-th
   % position. At rank $m$ there are $K^m$ $K$-adic intervals each of length $K^{-m}$ and we have
@@ -62,21 +60,21 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
   % \end{align*}
 
   Recall our definition of $A_n$ as the set whose elements $x \in [0, 1)$ have the property that each of the
-  digits $0, 1, \ldots, K-1$ occur exactly $n$ times in the first $Kn$ digits of the base-$K$ expansion.
+  digits $0, 1, \ldots, 9$ occur exactly $n$ times in the first $10n$ digits of the decimal expansion.
 
-  Let $\mc I = \{I_{m, k, i} ~:~ m \geq 1, 0 \leq k < K, i \in \N\}$ be the set of all $K$-adic intervals at
-  any rank. Let $g:\mc I \to \N$ be defined by
+  Let $\mc I = \{I_{m, k, i} ~:~ m \geq 1, 0 \leq k < 10, i \in \N\}$ be the set of all decadic intervals at any
+  rank. Let $g:\mc I \to \N$ be defined by
   \begin{align*}
     g(I_{m, k, i}) = \text{~the number of occurrences of $k$ in positions $1, \ldots, m$ for $x \in I_{m, k, i}$}.
   \end{align*}
-  Note that each $K$-adic interval at rank $m$ is a subset of some $K$-adic interval at rank $m-1$. I.e. for
+  Note that each decadic interval at rank $m$ is a subset of some decadic interval at rank $m-1$. I.e. for
   all $m, k, i$ we have $I_{m+1, k, i} \subset I_{m, k', i'}$ for some $k', i'$. Therefore, when considering a
   single interval $I_{m, k, i}$ at rank $m$, the sequence of digits at positions $1, \dots, m-1$ is the same
   for all $x \in I_{m, k, i}$, and we see that $g$ is well-defined.
 
   Thus we have
   \begin{align*}
-    A_n = \bigcap_{k=0}^{K-1}\bigcup_{\substack{i\in \{0, \ldots, K^{Kn - 1} - 1\}\\g(I_{Kn, k, i}) = n}} I_{Kn, k, i}.
+    A_n = \bigcap_{k=0}^{9} ~~ \bigcup_{\substack{i\in \{0, \ldots, 10^{10n - 1} - 1\}\\g(I_{10n, k, i}) = n}} I_{10n, k, i}.
   \end{align*}
   $A_n$ is therefore in the Borel $\sigma$-algebra, since it can be written using finite intersections and
   unions of intervals. Therefore $A_n$ is Lebesgue measurable.
