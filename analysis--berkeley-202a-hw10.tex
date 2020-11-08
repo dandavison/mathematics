@@ -1,7 +1,7 @@
 \section*{Math 202A - HW10 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-7127.png}
+  \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-7127.png}
 \end{mdframed}
 
 The set $E$ whose elements belong to infinitely many of the sets $A_i$ is
@@ -74,26 +74,90 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 
   Thus we have
   \begin{align*}
-    A_n = \bigcap_{k=0}^{9} ~~ \bigcup_{\substack{i\in \{0, \ldots, 10^{10n - 1} - 1\}\\g(I_{10n, k, i}) = n}} I_{10n, k, i}.
+    A_n = \bigcap_{k=0}^{9} ~~ \bigcup_{\substack{i\in \{0, \ldots, 10^{10n} - 1\}\\g(I_{10n, k, i}) = n}} I_{10n, k, i}.
   \end{align*}
-  $A_n$ is therefore in the Borel $\sigma$-algebra, since it can be written using finite intersections and
-  unions of intervals. Therefore $A_n$ is Lebesgue measurable.
+  $A_n$ is therefore in the Borel $\sigma$-algebra, since it can be written using countable (in fact finite)
+  intersections and unions of intervals. Therefore $A_n$ is Lebesgue measurable.
 
   Therefore
   \begin{align*}
     A = \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j
   \end{align*}
-  is also Lebesgue measurable.
+  is also in the Borel $\sigma$-algebra, since it can be written using countable intersections and unions of
+  intervals, and therefore also Lebesgue measurable.
+\end{proof}
 
- \end{proof}
+\begin{claim*}
+  The Lebesgue measure of $A$ is zero.
+\end{claim*}
 
- \begin{claim*}
-   The Lebesgue measure of $A$ is zero.
- \end{claim*}
+\begin{proof}
+  Let $\mu$ be Lebesgue measure. We will show that $\sum_{n=1}^\infty \mu(A_n) < \infty$. The result then
+  follows from part (a) above.
 
- \begin{proof}
+  We may view $\mu$ as a uniform probability measure, since $\mu([0, 1)) = 1$. The set $A_n$ then corresponds
+  to the event that a sample of size $10n$ drawn uniformly with replacement from the set $\{0, 1, \ldots, 9\}$
+  contains $n$ copies of each digit. A combinatorial argument show that this probability is equal to
+  \begin{align*}
+    \mu(A_n) = P(A_n)
+    &= \frac{\prod_{i=1}^{10} {in \choose n}}{10^{10n}}.
+  \end{align*}
+  (The denominator corresponds to the fact that there are $10^{10n}$ ways of drawing a sample of size $10n$
+  uniformly with replacement from the set $\{0, 1, \ldots, 9\}$; the numerator corresponds to the fact that
+  there are ${10n \choose n}$ ways to choose the $n$ slots in which the $n$ copies of the digit $0$ go, then
+  there are ${9n \choose n}$ ways to choose the $n$ slots in which the $n$ copies of the digit $1$ go, and so
+  on.)
 
- \end{proof}
+  Simplifying this expression, we obtain
+  \begin{align*}
+  \mu(A_n)
+    &= \frac{1}{10^{10n}}\prod_{i=1}^{10}\frac{{(in)!}}{n!(in - n)!} \\
+    &< \frac{\prod_{i=1}^{10} (in)!}{10^{10n}} \\
+    &< \frac{((10n)!)^{10}}{10^{10n}}
+  \end{align*}
+  \red{TODO}
+  Therefore $\sum_{n=1}^\infty \mu(A_n) < \infty$.
+
+  \begin{minted}{wolfram} :results latex
+    (((10n)!)^10) / (10^(10n)) // FullSimplify
+  \end{minted}
+
+\begin{align*}
+10^{-10 n} ((10 n)!)^{10}
+\end{align*}
+
+\begin{align*}
+10^{-10 n} ((10 n)!)^{10}
+\end{align*}
+
+\begin{align*}
+ToExpression::sntx: Invalid syntax in or before "\frac{((10n)!)^10}{10^(10n)} // TeXForm // ToString".
+                                                 ^
+\end{align*}
+
+  \begin{minted}{wolfram} :results latex
+    2^3
+  \end{minted}
+
+\begin{align*}
+8
+\end{align*}
+
+
+  \begin{minted}{wolfram} :results latex
+    Factorial[i*n] / (Factorial[n]*Factorial[i*n - n]) // FullSimplify
+  \end{minted}
+
+\begin{align*}
+\frac{(i n)!}{n! ((i-1) n)!}
+\end{align*}
+
+
+
+
+
+
+\end{proof}
 
 \newpage
 \begin{mdframed}
