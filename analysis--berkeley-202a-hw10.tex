@@ -4,36 +4,98 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-7127.png}
 \end{mdframed}
 
-\begin{enumerate}[label=(\alph*)]
+The set $E$ whose elements belong to infinitely many of the sets $A_i$ is
+\begin{align*}
+  E = \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j =: \limsup_{i \to \infty} A_i.
+\end{align*}
+\begin{claim*}
+  If $\sum_i \mu(A_i) < \infty$ then $\mu\(E\) = 0$.
+\end{claim*}
 
-\item ~\\
+\begin{proof}
+  Since $\sum_{i=1}^\infty \mu(A_i) < \infty$ we see that only finitely many of the $A_i$ have $\mu(A_i) > 0$.
+
+  Let $N$ be such that $\mu(A_i) = 0$ for all $i \geq N$.
+
+  Note that
   \begin{align*}
-    E = \bigcup_{n \in \ms{N}} \bigcap_{i=1}^\infty A_{n_i}
+    E = \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j \subseteq \bigcup_{j=N}^\infty A_j,
   \end{align*}
+  therefore by monotonicity of measure
+  \begin{align*}
+    \mu(E) \leq \mu\(\bigcup_{j=N}^\infty A_j\) \leq \sum_{j=N}^\infty \mu(A_j) = 0.
+  \end{align*}
+\end{proof}
 
-  $E = \bigcap_{i=1}^\infty A_i$ is a set whose elements belong to infinitely many of the sets $A_i$. (There are others, for example $\bigcap_{i=2}^\infty A_i$.)
+Since base-$10$ has no special significance, we prove the following results for the general case of base $K$.
 
-  \begin{claim*}
-    If $\sum_i \mu(A_i) < \infty$ then $\mu\(\bigcap_{i=1}^\infty A_i\) = 0$.
-  \end{claim*}
+We define a sequence of sets $A_1, A_2, \ldots \subseteq [0, 1)$ as follows: $x \in [0, 1)$ is an element
+of $A_n$ if each of the $K$ digits occurs exactly $n$ times in the first $Kn$ digits of the base-$K$ expansion
+of $x$.
 
-  \begin{proof}
-    First note that $\inf \{\mu(A_i) ~:~ i \in \N\} = 0$. To see this, suppose for a contradiction
-    that $\inf \{\mu(A_i) ~:~ i \in \N\} = a > 0$; but then $\sum_i \mu(A_i) \geq \sum_i a = \infty$.
+$A$ is defined to be the set whose elements are in infinitely many of the $A_n$. Therefore
+\begin{align*}
+  A = \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j.
+\end{align*}
 
-    Let $\eps > 0$. Then, since $\inf \{\mu(A_i) ~:~ i \in \N\} = 0$, there exists $i$ such that $\mu(A_i) < \eps$.
+\begin{claim*}
+  The set $A$ is Lebesgue measurable.
+\end{claim*}
 
-    Next note that $\(\bigcap_{i=1}^\infty A_i\) \subseteq A_i$ for all $i \in \N$. Therefore by monotonicity
-    of measure we have $\mu\(\bigcap_{i=1}^\infty A_i\) \leq \mu(A_i)$ for all $i \in \N$.
+\begin{proof}
+  We define the $i$-th $K$-adic interval for digit $k$ at rank $m$ to be the following interval containing
+  numbers whose base-$K$ expansion has a $k$ in the $m$-th position, where we choose the representation ending
+  in $0$s where there is a choice:
+  \begin{align*}
+    I_{m, k, i} := \Bigg[\frac{Ki + k}{K^m}, \frac{Ki + k + 1}{K^m}\Bigg).
+  \end{align*}
+  % Let $B_{m, k}$ be the set of all numbers in $[0, 1)$ whose base-$K$ expansion has a $k$ in the $m$-th
+  % position. At rank $m$ there are $K^m$ $K$-adic intervals each of length $K^{-m}$ and we have
+  % \begin{align*}
+  %   B_{m, k} = \bigcup_{i=0}^{K^{m-1} - 1} I_{m, k, i}.
+  % \end{align*}
+  % Thus, for example, in base 10, the numbers with a $7$ in the 2nd digit of their expansion are
+  % \begin{align*}
+  %   B_{2, 7}
+  %   &= \bigcup_{i=0}^{9} \Bigg[\frac{10i + 7}{100}, \frac{10i + 7 + 1}{100}\Bigg) \\
+  %   &= \Bigg[\frac{7}{100}, \frac{8}{100}\Bigg) \cup \Bigg[\frac{17}{100}, \frac{18}{100}\Bigg) \cup \cdots \Bigg[\frac{97}{100}, \frac{98}{100}\Bigg).
+  % \end{align*}
 
-    Therefore we have $\mu\(\bigcap_{i=1}^\infty A_i\) \leq \eps$. But $\eps > 0$ is arbitrary,
-    therefore $\mu\(\bigcap_{i=1}^\infty A_i\) = 0$.
-  \end{proof}
+  Recall our definition of $A_n$ as the set whose elements $x \in [0, 1)$ have the property that each of the
+  digits $0, 1, \ldots, K-1$ occur exactly $n$ times in the first $Kn$ digits of the base-$K$ expansion.
 
-\item ~\\
+  Let $\mc I = \{I_{m, k, i} ~:~ m \geq 1, 0 \leq k < K, i \in \N\}$ be the set of all $K$-adic intervals at
+  any rank. Let $g:\mc I \to \N$ be defined by
+  \begin{align*}
+    g(I_{m, k, i}) = \text{~the number of occurrences of $k$ in positions $1, \ldots, m$ for $x \in I_{m, k, i}$}.
+  \end{align*}
+  Note that each $K$-adic interval at rank $m$ is a subset of some $K$-adic interval at rank $m-1$. I.e. for
+  all $m, k, i$ we have $I_{m+1, k, i} \subset I_{m, k', i'}$ for some $k', i'$. Therefore, when considering a
+  single interval $I_{m, k, i}$ at rank $m$, the sequence of digits at positions $1, \dots, m-1$ is the same
+  for all $x \in I_{m, k, i}$, and we see that $g$ is well-defined.
 
-\end{enumerate}
+  Thus we have
+  \begin{align*}
+    A_n = \bigcap_{k=0}^{K-1}\bigcup_{\substack{i\in \{0, \ldots, K^{Kn - 1} - 1\}\\g(I_{Kn, k, i}) = n}} I_{Kn, k, i}.
+  \end{align*}
+  $A_n$ is therefore in the Borel $\sigma$-algebra, since it can be written using finite intersections and
+  unions of intervals. Therefore $A_n$ is Lebesgue measurable.
 
+  Therefore
+  \begin{align*}
+    A = \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j
+  \end{align*}
+  is also Lebesgue measurable.
+
+ \end{proof}
+
+ \begin{claim*}
+   The Lebesgue measure of $A$ is zero.
+ \end{claim*}
+
+ \begin{proof}
+
+ \end{proof}
 
 \newpage
 \begin{mdframed}
@@ -45,6 +107,19 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-551e.png}
 \end{mdframed}
+
+\begin{intuition*}
+  $|\mu|(A)$ is the total area above or below the x-axis. So it's kind of like
+  \begin{align*}
+    \int_M
+  \end{align*}
+\end{intuition*}
+
+\begin{proof}
+  We have $|\mu| := \mu^+ + \mu^-$.
+
+
+\end{proof}
 
 
 \newpage
