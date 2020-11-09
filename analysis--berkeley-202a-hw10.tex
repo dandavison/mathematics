@@ -4,6 +4,9 @@
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-7127.png}
 \end{mdframed}
 
+\begin{enumerate}[label=(\alph*)]
+\item ~\\
+
 The set $E$ whose elements belong to infinitely many of the sets $A_i$ is
 \begin{align*}
   E = \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j =: \limsup_{i \to \infty} A_i.
@@ -26,6 +29,8 @@ The set $E$ whose elements belong to infinitely many of the sets $A_i$ is
     \mu(E) \leq \mu\(\bigcup_{j=N}^\infty A_j\) \leq \sum_{j=N}^\infty \mu(A_j) = 0.
   \end{align*}
 \end{proof}
+
+\item ~\\
 
 We define a sequence of sets $A_1, A_2, \ldots \subseteq [0, 1)$ as follows: $x \in [0, 1)$ is an element
 of $A_n$ if each of the $10$ digits occurs exactly $n$ times in the first $10n$ digits of the decimal expansion
@@ -87,6 +92,8 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
   intervals, and therefore also Lebesgue measurable.
 \end{proof}
 
+~\\
+\item ~\\
 \begin{claim*}
   The Lebesgue measure of $A$ is zero.
 \end{claim*}
@@ -97,7 +104,8 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 
   We may view $\mu$ as a uniform probability measure, since $\mu([0, 1)) = 1$. The set $A_n$ then corresponds
   to the event that a sample of size $10n$ drawn uniformly with replacement from the set $\{0, 1, \ldots, 9\}$
-  contains $n$ copies of each digit. A combinatorial argument show that this probability is equal to
+  contains $n$ copies of each digit. A combinatorial argument shows that the probability of this event is equal
+  to
   \begin{align*}
     \mu(A_n) = P(A_n)
     &= \frac{\prod_{i=1}^{10} {in \choose n}}{10^{10n}}.
@@ -112,52 +120,26 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
   \begin{align*}
   \mu(A_n)
     &= \frac{1}{10^{10n}}\prod_{i=1}^{10}\frac{{(in)!}}{n!(in - n)!} \\
-    &< \frac{\prod_{i=1}^{10} (in)!}{10^{10n}} \\
-    &< \frac{((10n)!)^{10}}{10^{10n}}
+    &= \frac{1}{10^{10n}n!}\prod_{i=1}^{10}\frac{{(in)!}}{((i - 1)n)!} \\
+    &= \frac{1}{10^{10n}n!}\prod_{i=1}^{10} (in)(in -1)(in - 2)\cdots(in - n + 1) \\
+    &= \frac{1}{10^{10n}n~n!}\prod_{i=1}^{10} (i)(i -1/n)(i - 2/n)\cdots(i - 1 + 1/n).
+%    &< \frac{1}{10^{10n}n!}\prod_{i=1}^{10} (in)^n \\
+%    &= \frac{n^n}{10^{10n}n!}\prod_{i=1}^{10} i^n \\
+%    &= \frac{n^n}{n!} \frac{3628800^n}{10^{10n}} \\
+%    &< \frac{n^n}{1} \frac{3628800^n}{10^{10n}} \\
   \end{align*}
-  \red{TODO}
-  Therefore $\sum_{n=1}^\infty \mu(A_n) < \infty$.
 
-  \begin{minted}{wolfram} :results latex
-    (((10n)!)^10) / (10^(10n)) // FullSimplify
-  \end{minted}
+  The ratio test confirms that the series $\sum_{n=1}^\infty \mu(A_n)$ converges:
+  \begin{align*}
+    &\lim_{n\to\infty} \Bigg|\frac{\prod_{i=1}^{10} (i)(i -\frac{1}{(n+1)} )\cdots(i - 1 +\frac{1}{(n+1)} )}{10^{10(n+1)}(n+1)~(n+1)!}     \frac{10^{10n}n~n!}{\prod_{i=1}^{10} (i)(i -\frac{1}{n} )\cdots(i - 1 +\frac{1}{n} )}\Bigg| \\
+    = &10^{-10}\lim_{n\to\infty} \frac{\prod_{i=1}^{10} (i)(i -\frac{1}{(n+1)} )\cdots(i - 1 +\frac{1}{(n+1)} )}{\prod_{i=1}^{10} (i)(i -\frac{1}{n} )\cdots(i - 1 +\frac{1}{n} )}     \frac{n}{(n+1)~(n+1)} \\
+    = &10^{-10}\frac{\prod_{i=1}^{10} (i)(i )\cdots(i - 1  )}{\prod_{i=1}^{10} (i)(i )\cdots(i - 1 )}   \cdot  0 \\
+    = &0.
+  \end{align*}
 
-\begin{align*}
-10^{-10 n} ((10 n)!)^{10}
-\end{align*}
-
-\begin{align*}
-10^{-10 n} ((10 n)!)^{10}
-\end{align*}
-
-\begin{align*}
-ToExpression::sntx: Invalid syntax in or before "\frac{((10n)!)^10}{10^(10n)} // TeXForm // ToString".
-                                                 ^
-\end{align*}
-
-  \begin{minted}{wolfram} :results latex
-    2^3
-  \end{minted}
-
-\begin{align*}
-8
-\end{align*}
-
-
-  \begin{minted}{wolfram} :results latex
-    Factorial[i*n] / (Factorial[n]*Factorial[i*n - n]) // FullSimplify
-  \end{minted}
-
-\begin{align*}
-\frac{(i n)!}{n! ((i-1) n)!}
-\end{align*}
-
-
-
-
-
-
+  Thus $\sum_{n=1}^\infty \mu(A_n) < \infty$ and from part (a) it follows that $\mu(A) = 0$.
 \end{proof}
+\end{enumerate}
 
 \newpage
 \begin{mdframed}
