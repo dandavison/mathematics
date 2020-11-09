@@ -870,20 +870,24 @@ Thus for a sequence $f_n$ of well-behaved curves $\liminf_{n\to\infty} f_n$ desc
 that, at each point $x$, there is a point in the sequence beyond which the sequence never falls
 below $(\liminf_{n\to\infty} f_n)(x)$.
 
-
-
-
 \subsection{For a sequence of values of a single function}
 Let $f(x) = \sin(1/x)$. Then $\liminf_{x \to 0} f(x) = -1$ and $\limsup_{x\to 0} f(x) = +1$. The difference
 between the two is called the \defn{oscillation} of $f$ at $0$.
 
 \subsection{For a sequence of sets}
 
-lim sup: elements that always will reappear again
+Let $A_1, A_2, \ldots$ be a sequence of sets.
 
-lim inf: elements that eventually never disappear again
+$\liminfn A_n$ are the elements that eventually never disappear again:
+\begin{align*}
+  \liminfn A_n := \bigcup_{i=1}^\infty \bigcap_{j=i}^\infty A_j
+\end{align*}
+$\limsupn A_n$ are the elements that always will reappear again:
+\begin{align*}
+  \limsupn A_n := \bigcap_{i=1}^\infty \bigcup_{j=i}^\infty A_j.
+\end{align*}
 
-lim inf subset of lim sup
+We have $\liminfn A_n \subseteq \limsupn A_n$.
 
 
 \section*{Expressions involving countable unions and intersections}
@@ -1624,6 +1628,7 @@ The core example motivating these definitions and decomposition theorems is
   one reflecting weighting due to negative values of the weighting function.
 \end{intuition}
 
+
 \section{13. Radon-Nikodym theorem}
 
 Analogy/example referring to notation at the beginning of Bass ch. 13:
@@ -1677,7 +1682,7 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
 
 \begin{proof}~\\
 
-  \subsubsection*{Step 2: definition of $f$}
+  \subsubsection*{Step 2: definition of f}
 
   \red{TODO}
 
@@ -1693,18 +1698,70 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
 
   Set $h_n = \max\{g_1, \ldots g_n\}$.
 
+  Prove that $h_2 = \max(g_1, g_2)$ is in $\mc F$. This is fairly straightforward: split into a subset
+  where $g_1$ is greater, and the complement where $g_2$ is greater.
+
+  Therefore $h_n \in \mc F$ by induction.
+
+  The $h_n$ increase. Let $f$ be the limiting function.
+
+  \red{TODO} How do we know there's a limiting function? Etc
 
 
 
+  \subsubsection*{Step 3: Prove that f is the desired function}
 
+  We need to prove that $\nu(A) = \int_A f \dmu$ for all $A \in \mc A$.
 
+  Define a measure $\lambda$ by
+  \begin{align*}
+    \lambda(A) = \nu(A) - \int_A f \dmu.
+  \end{align*}
+  Thus we need to show that $\lambda(A) = 0$ for all $A$.
 
-  \subsubsection*{Step 3: Prove that $f$ is the desired function}
+  Note that $\lambda$ is a positive measure, since $f \in \mc F$.
 
-  \red{TODO}
+  Suppose for a contradiction that $\lambda$ is not mutually singular to $\mu$.
 
+  By the lemma, there exists $\eps$ and $G \in \mc A$ such that $\mu(G) > 0$ and $G$ is a positive set
+  for $\lambda - \eps\mu$.
 
+  Then for any $A \in \mc A$ we have
+  \begin{align*}
+    \nu(A) - \int_A f \dmu
+    &= \lambda(A) \\
+    &\geq \lambda(A \cap G) \\
+    &\geq \eps\mu(A \cap G) &\text{since $G$ is a positive set for $\lambda - \eps\mu$} \\
+    &=\int_A \eps\ind_{G} \dmu,
+  \end{align*}
+  or equivalently
+  \begin{align*}
+    \nu(A) = \int_A (f + \eps\ind_G) \dmu.
+  \end{align*}
+
+  Therefore $f + \eps\ind_G \in \mc F$. But
+  \begin{align*}
+    \int_X (f + \eps\ind_G) \dmu = L + \int_X\eps\ind_G \dmu > L.
+  \end{align*}
+  Yet $L := \sup \{\int_X g \dmu ~:~ g \in \mc F\}$, so this is a contradiction.
+
+  Therefore $\lambda \perp \mu$.
+
+  Therefore $\lambda(A) = 0$ whenever $\mu(A) > 0$.
+
+  But $0 \leq \lambda < \nu \ll \mu$, so $\lambda(A) = 0$ whenever $\mu(A) = 0$.
+
+  Therefore $\nu(A) = \int_A f \dmu$ for all $A \in \mc A$, as required.
 \end{proof}
+
+
+
+
+
+
+
+
+
 
 \begin{claim*}
   If $g$ is another such function then $f = g$ $\mu$-almost everywhere.
