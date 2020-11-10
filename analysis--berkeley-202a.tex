@@ -1703,11 +1703,9 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
 
   Therefore $h_n \in \mc F$ by induction.
 
-  The $h_n$ increase. Let $f$ be the limiting function.
+  The $h_n$ increase. Let $f$ be the limiting function (may be infinite, but this will have to be on a null set).
 
-  \red{TODO} How do we know there's a limiting function? Etc
-
-
+  Note: we haven't used abs. cont. yet.
 
   \subsubsection*{Step 3: Prove that f is the desired function}
 
@@ -1721,7 +1719,7 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
 
   Note that $\lambda$ is a positive measure, since $f \in \mc F$.
 
-  Suppose for a contradiction that $\lambda$ is not mutually singular to $\mu$.
+  Suppose for a contradiction that $\lambda$ is not mutually singular w.r.t. $\mu$.
 
   By the lemma, there exists $\eps$ and $G \in \mc A$ such that $\mu(G) > 0$ and $G$ is a positive set
   for $\lambda - \eps\mu$.
@@ -1732,7 +1730,7 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
     &= \lambda(A) \\
     &\geq \lambda(A \cap G) \\
     &\geq \eps\mu(A \cap G) &\text{since $G$ is a positive set for $\lambda - \eps\mu$} \\
-    &=\int_A \eps\ind_{G} \dmu,
+    &=\int_A \eps\ind_{G} \dmu, &\text{~an "extra piece"!}
   \end{align*}
   or equivalently
   \begin{align*}
@@ -1748,6 +1746,10 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
   Therefore $\lambda \perp \mu$.
 
   Therefore $\lambda(A) = 0$ whenever $\mu(A) > 0$.
+
+  (Note again: we haven't used abs. cont. yet. So at this point we are close to the proof of Lebesgue
+  decomposition theorem: we have decomposed $\nu$ into an absolutely cont piece $\int_A f \dmu$ and a mutually
+  singular piece $\lambda$)
 
   But $0 \leq \lambda < \nu \ll \mu$, so $\lambda(A) = 0$ whenever $\mu(A) = 0$.
 

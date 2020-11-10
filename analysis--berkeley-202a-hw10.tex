@@ -146,6 +146,32 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-5e9e.png}
 \end{mdframed}
 
+\begin{proof}
+  Let $h_1, h_2, ...$ be a sequence converging to $0$, and define
+  \begin{align*}
+    g_n(x) := \Big|f(x + h_n) - f(x)\Big|.
+  \end{align*}
+  Note that $g_n \to 0$ pointwise. We must show that $\int g_n \to 0$.
+
+  Suppose that we can show that $|g_n|$ is bounded above by some function $b$. Then by the dominated
+  convergence theorem we have
+  \begin{align*}
+    \limninf \int g_n
+    = \int \limninf g_n
+    = 0.
+  \end{align*}
+  How can we show that $g_n(x) := \Big|f(x + h_n) - f(x)\Big|$ is bounded?
+
+  Let $B = \origsup_\R \Big|f(x + h) - f(x)\Big|$.
+
+  Let $B = \int |f| < \infty$. We have
+  \begin{align*}
+    \int \Big|f(x + h_n) - f(x)\Big| \d m(x)
+    \leq \int \Big|f(x + h_n)\Big| + \int \Big|f(x)\Big| \d m(x)
+    = 2B.
+  \end{align*}
+
+\end{proof}
 
 \newpage
 \begin{mdframed}
