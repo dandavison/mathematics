@@ -120,9 +120,9 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
   \begin{align*}
   \mu(A_n)
     &= \frac{1}{10^{10n}}\prod_{i=1}^{10}\frac{{(in)!}}{n!(in - n)!} \\
-    &= \frac{1}{10^{10n}n!}\prod_{i=1}^{10}\frac{{(in)!}}{((i - 1)n)!} \\
+%    &= \frac{1}{10^{10n}n!}\prod_{i=1}^{10}\frac{{(in)!}}{((i - 1)n)!} \\
     &= \frac{1}{10^{10n}n!}\prod_{i=1}^{10} (in)(in -1)(in - 2)\cdots(in - n + 1) \\
-    &= \frac{1}{10^{10n}n~n!}\prod_{i=1}^{10} (i)(i -1/n)(i - 2/n)\cdots(i - 1 + 1/n).
+    &= \frac{n^{10}}{10^{10n}n!}\prod_{i=1}^{10} (i)(i -1/n)(i - 2/n)\cdots(i - 1 + 1/n).
 %    &< \frac{1}{10^{10n}n!}\prod_{i=1}^{10} (in)^n \\
 %    &= \frac{n^n}{10^{10n}n!}\prod_{i=1}^{10} i^n \\
 %    &= \frac{n^n}{n!} \frac{3628800^n}{10^{10n}} \\
@@ -131,8 +131,8 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 
   The ratio test confirms that the series $\sum_{n=1}^\infty \mu(A_n)$ converges:
   \begin{align*}
-    &\lim_{n\to\infty} \Bigg|\frac{\prod_{i=1}^{10} (i)(i -\frac{1}{(n+1)} )\cdots(i - 1 +\frac{1}{(n+1)} )}{10^{10(n+1)}(n+1)~(n+1)!}     \frac{10^{10n}n~n!}{\prod_{i=1}^{10} (i)(i -\frac{1}{n} )\cdots(i - 1 +\frac{1}{n} )}\Bigg| \\
-    = &10^{-10}\lim_{n\to\infty} \frac{\prod_{i=1}^{10} (i)(i -\frac{1}{(n+1)} )\cdots(i - 1 +\frac{1}{(n+1)} )}{\prod_{i=1}^{10} (i)(i -\frac{1}{n} )\cdots(i - 1 +\frac{1}{n} )}     \frac{n}{(n+1)~(n+1)} \\
+    &\lim_{n\to\infty} \Bigg|\frac{(n+1)^{10}\prod_{i=1}^{10} (i)(i -\frac{1}{(n+1)} )\cdots(i - 1 +\frac{1}{(n+1)} )}{10^{10(n+1)}(n+1)!}     \frac{10^{10n}n!}{n^{10}\prod_{i=1}^{10} (i)(i -\frac{1}{n} )\cdots(i - 1 +\frac{1}{n} )}\Bigg| \\
+    = &10^{-10}\lim_{n\to\infty} \frac{\prod_{i=1}^{10} (i)(i -\frac{1}{(n+1)} )\cdots(i - 1 +\frac{1}{(n+1)} )}{\prod_{i=1}^{10} (i)(i -\frac{1}{n} )\cdots(i - 1 +\frac{1}{n} )}     \frac{(n+1)^{9}}{n^{10}} \\
     = &10^{-10}\frac{\prod_{i=1}^{10} (i)(i )\cdots(i - 1  )}{\prod_{i=1}^{10} (i)(i )\cdots(i - 1 )}   \cdot  0 \\
     = &0.
   \end{align*}
