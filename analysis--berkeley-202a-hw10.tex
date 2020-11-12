@@ -147,7 +147,7 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 \end{mdframed}
 
 \begin{proof}
-  Let $h_1, h_2, ...$ be a sequence converging to $0$, and define
+  Let $h_1, h_2, ...$ be a sequence converging to $0$ from above, and define
   \begin{align*}
     g_n(x) := f(x + h_n) - f(x).
   \end{align*}
@@ -156,11 +156,27 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
   \begin{align*}
     \limninf \int |g_n| = 0.
   \end{align*}
-  First suppose $f$ is differentiable everywhere with bounded first derivative such
-  that $0 \leq f' \leq M < \infty$. Then the result follows from the dominated convergence theorem: $|g_n|$ is
-  bounded above by $Mh_n$ and therefore $\limninf \int |g_n| = \int \limninf |g_n| = \int 0 = 0$.
+  Suppose $f$ is Lipschitz continuous with compact support, such that for all $x, x' \in \R$ we
+  have $|f(x') - f(x)| \leq M|x' - x|$. Let $A = \{x \in \R ~:~ |f(x)| > 0 \}$. Then the result follows from
+  the dominated convergence theorem: $|g_n|$ is bounded above by $Mh_n\ind_A$ and therefore
+  \begin{align*}
+    \limninf \int |g_n| = \int \limninf |g_n| = \int 0 = 0.
+  \end{align*}
+  Let $\eps > 0$. We know (hint from @kshitij in Slack) from the approximation theorem Bass 8.4 that there
+  exists a continuous function $\bar f$ with compact support such that
+  \begin{align*}
+    \int |f - \bar f| < \eps.
+  \end{align*}
+  I think that to complete this proof I need to do something similar to the following:
 
+  \begin{enumerate}
+  \item Show that $\bar f$ is Lipschitz
+  \item Show that, because $f$ and $\bar f$ are close in the sense that $\int |f - \bar f| < \eps$, the result
+    holds for $f$ as well as $\bar f$.
+  \end{enumerate}
+  Since $\bar f$ is continuous with compact support there exists $B > 0$ such that $|\bar f| \leq B$.
 
+  However I'm not sure how to proceed.
 \end{proof}
 
 
