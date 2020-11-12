@@ -149,11 +149,53 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 \begin{proof}
   Let $h_1, h_2, ...$ be a sequence converging to $0$, and define
   \begin{align*}
-    g_n(x) := \Big|f(x + h_n) - f(x)\Big|.
+    g_n(x) := f(x + h_n) - f(x).
   \end{align*}
-  Note that $g_n \to 0$ pointwise. We must show that $\int g_n \to 0$.
+  Note that $g_n \to 0$ pointwise as $h \to 0$ and that $g_n$ is the difference of two integrable functions and
+  therefore integrable. We must show that
+  \begin{align*}
+    \limninf \int |g_n| = 0.
+  \end{align*}
+  First suppose $f$ is differentiable everywhere with bounded first derivative such
+  that $0 \leq f' \leq M < \infty$. Then the result follows from the dominated convergence theorem: $|g_n|$ is
+  bounded above by $Mh_n$ and therefore $\limninf \int |g_n| = \int \limninf |g_n| = \int 0 = 0$.
 
-  Suppose that we can show that $|g_n|$ is bounded above by some function $b$. Then by the dominated
+
+\end{proof}
+
+
+
+\begin{proof}
+  Let $h_1, h_2, ...$ be a sequence converging to $0$, and define
+  \begin{align*}
+    g_n(x) := f(x + h_n) - f(x).
+  \end{align*}
+  Note that $g_n \to 0$ pointwise and that $g_n$ is the difference of two integrable functions and therefore
+  integrable. We must show that $\int |g_n| \to 0$.
+
+  Let $\eps > 0$. By Bass proposition XXX for every $n$ there exists a continuous function $\varphi$ with
+  compact support such that
+  \begin{align*}
+    \int |g_n - \varphi| < \eps.
+  \end{align*}
+
+
+
+  Let $\eps > 0$ and let $h \in \R$. By Bass proposition XXX there exists a continuous
+  function $\varphi$ with compact support such that
+  \begin{align*}
+    \int \Big|\big|f(x + h) - f(x)\big| - \varphi(x)\Big| \d m(x) < \eps.
+  \end{align*}
+  We must show that
+  \begin{align*}
+    \lim_{h\to 0}\int \big|f(x + h) - f(x)\big| \d m(x) = 0.
+  \end{align*}
+
+
+
+
+
+  Suppose that we can show that $g_n$ is bounded above by some function $b$. Then by the dominated
   convergence theorem we have
   \begin{align*}
     \limninf \int g_n
@@ -178,17 +220,55 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw10-551e.png}
 \end{mdframed}
 
-\begin{intuition*}
-  $|\mu|(A)$ is the total area above or below the x-axis. So it's kind of like
-  \begin{align*}
-    \int_M
-  \end{align*}
-\end{intuition*}
-
 \begin{proof}
-  We have $|\mu| := \mu^+ + \mu^-$.
+  Let $X = P \cup N$ be a Hahn decomposition of $X$, such that $P$ is a $\mu$-positive set and $N$ is
+  a $\mu$-negative set, and let $\mu = \mu^+ - \mu^-$ be a Jordan decomposition of $\mu$ such that for
+  every $E \in \mc A$
+  \begin{align*}
+    \mu^+(E) &= \mu(E \cap P) \\
+    \mu^-(E) &= -\mu(E \cap N).
+  \end{align*}
+  Then $|\mu| = \mu^+ + \mu^-$ and we have
+  \begin{align*}
+    |\mu|(A)
+    &= \int_A 1 \d(\mu^+ + \mu^-) \\
+    &=\int_{A\cap P} 1 \dmu - \int_{A \cap N} 1 \dmu \\
+    &=\Bigg|\int_{A\cap P} 1 \dmu\Bigg| + \Bigg|\int_{A \cap N} 1 \dmu\Bigg|.
+  \end{align*}
+  Let $\ms F = \big\{f: X \to [-1, 1]\big\}$ and define $g \in \ms F$ by
+  \begin{align*}
+    g(x) =
+    \begin{cases}
+      1  & x \in P \\
+      -1 & x \in N.
+    \end{cases}
+  \end{align*}
+  Then
+  \begin{align*}
+    |\mu|(A) = \int_A g \dmu = \Bigg|\int_A g \dmu\Bigg|.
+  \end{align*}
+  Let $f \in \ms F$ where $f \neq g$ and note that
 
+  \begin{align*}
+    -\int_{A \cap N} g \dmu \leq \int_{A \cap N} f \dmu \leq \int_{A \cap N} g \dmu,
+  \end{align*}
+  and
+  \begin{align*}
+    -\int_{A \cap P} g \dmu \leq \int_{A \cap P} f \dmu \leq \int_{A \cap P} g \dmu.
+  \end{align*}
 
+  Therefore
+  \begin{align*}
+    \Big|\int_A f \dmu\Big|
+    &= \Big|\int_{A \cap P} f \dmu + \int_{A \cap N} f \dmu\Big| \\
+    &\leq \Big|\int_{A \cap P} f \dmu\Big| + \Big|\int_{A \cap N} f \dmu\Big| \\
+    &\leq \Big|\int_{A \cap P} g \dmu\Big| + \Big|\int_{A \cap N} g \dmu\Big| \\
+    &= \Big|\int_{A} g \dmu\Big|.
+  \end{align*}
+  Therefore
+  \begin{align*}
+    \Big|\int_{A} g \dmu\Big| = \sup\Bigg\{ \Big|\int_A f \dmu\Big| : |f| \leq 1 \Bigg\}.
+  \end{align*}
 \end{proof}
 
 
