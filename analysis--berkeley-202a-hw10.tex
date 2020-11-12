@@ -222,18 +222,9 @@ $A$ is defined to be the set whose elements are in infinitely many of the $A_n$.
 
 \begin{proof}
   Let $X = P \cup N$ be a Hahn decomposition of $X$, such that $P$ is a $\mu$-positive set and $N$ is
-  a $\mu$-negative set, and let $\mu = \mu^+ - \mu^-$ be a Jordan decomposition of $\mu$ such that for
-  every $E \in \mc A$
+  a $\mu$-negative set. Then
   \begin{align*}
-    \mu^+(E) &= \mu(E \cap P) \\
-    \mu^-(E) &= -\mu(E \cap N).
-  \end{align*}
-  Then $|\mu| = \mu^+ + \mu^-$ and we have
-  \begin{align*}
-    |\mu|(A)
-    &= \int_A 1 \d(\mu^+ + \mu^-) \\
-    &=\int_{A\cap P} 1 \dmu - \int_{A \cap N} 1 \dmu \\
-    &=\Bigg|\int_{A\cap P} 1 \dmu\Bigg| + \Bigg|\int_{A \cap N} 1 \dmu\Bigg|.
+    |\mu|(A) =\int_{A\cap P} 1 \dmu + \int_{A \cap N} -1 \dmu.
   \end{align*}
   Let $\ms F = \big\{f: X \to [-1, 1]\big\}$ and define $g \in \ms F$ by
   \begin{align*}
