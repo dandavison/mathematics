@@ -20,6 +20,7 @@
 \usepackage{color}
 \usepackage{commath}
 \usepackage{comment}
+\usepackage{dsfont}  % mathds
 \usepackage[shortlabels]{enumitem}
 \usepackage{footnote}
 \usepackage{fullpage}
@@ -31,8 +32,8 @@
 \usepackage{mathrsfs}
 \usepackage{mathtools}
 \usepackage{mdframed}
-\usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
-\usepackage{MnSymbol} % \upmodels
+%\usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
+%\usepackage{MnSymbol} % \upmodels
 \usepackage{parskip}
 \usepackage{relsize} % \mathlarger
 \usepackage{verbatim}
@@ -179,8 +180,18 @@
 \newcommand{\bvecc}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
 \newcommand{\pvecc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
 \newcommand{\indep}{\mathlarger{\mathlarger{\upmodels}}}
+
 \let\origlim\lim
 \renewcommand{\lim}{\origlim\limits}
+\let\originf\inf
+\renewcommand{\inf}{\originf\limits}
+\let\origliminf\liminf
+\renewcommand{\liminf}{\origliminf\limits}
+\let\origsup\sup
+\renewcommand{\sup}{\origsup\limits}
+\let\origlimsup\limsup
+\renewcommand{\limsup}{\origlimsup\limits}
+
 \newcommand{\cvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}  % TODO: delete
 
 \renewcommand{\deg}{^\circ}
@@ -195,12 +206,14 @@
 \newcommand{\df}{\dif f}
 \newcommand{\dg}{\dif g}
 \newcommand{\dl}{\dif l}
+\newcommand{\dm}{\dif m}
 \newcommand{\dr}{\dif r}
 \newcommand{\ds}{\dif s}
 \newcommand{\dtheta}{\dif \theta}
 \newcommand{\dt}{\dif t}
 \newcommand{\dT}{\dif T}
 \newcommand{\du}{\dif u}
+\newcommand{\dmu}{\dif \mu}
 \newcommand{\dx}{\dif x}
 \newcommand{\dy}{\dif y}
 \newcommand{\dz}{\dif z}
@@ -293,9 +306,12 @@
 \let\<\undefined\newcommand{\<}{\langle}
 \let\>\undefined\newcommand{\>}{\rangle}
 \newcommand{\Intuition}[1]{}
+\newcommand{\ind}{\mathds{1}}
 \newcommand{\hlinee}{\\\rule{400pt}{0.1pt}\\}
 \newcommand{\limk}{\lim_{k \to \infty}}
 \newcommand{\limn}{\lim_{n \to \infty}}
+\newcommand{\liminfn}{\liminf_{n \to \infty}}
+\newcommand{\limsupn}{\limsup_{n \to \infty}}
 \newcommand{\limxa}{\lim_{x \to a}}
 \newcommand{\mih}[1]{\mintinline{haskell}{#1}}
 
@@ -334,9 +350,18 @@
 \newcommand{\scvec}[2]{\tiny{\cvec{#1}{#2}}}
 \newcommand{\smatt}[9]{\tiny{\matt{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}}
 \newcommand{\smat}[4]{\tiny{\matMMxNN{#1}{#2}{#3}{#4}}}
+
+
+\newcommand{\cupninf}{\bigcup_{n=1}^{\infty}}
+\newcommand{\limninf}{\lim_{n \to \infty}}
+\newcommand{\sumninf}{\sum_{n=1}^{\infty}}
+
+% TODO: replace these
 \newcommand{\sumn}{\sum_{n=1}^{\infty}}
+\newcommand{\bigcupn}{\bigcup_{n=1}^{\infty}}
 \newcommand{\sumim}{\sum_{i=1}^{m}}
 \newcommand{\sumin}{\sum_{i=1}^{n}}
+
 \newcommand{\s}{\vec s}
 \newcommand{\textbfit}[1]{\textbf{\textit{#1}}}
 \renewcommand{\u}{\vec u}
@@ -398,3 +423,4 @@
 \DeclareMathOperator{\diam}{\mathrm{diam}}
 
 \newcommand{\orb}{\text{Orb}}
+\let\ae\undefined\newcommand{\ae}{\text{~~a.e.}}

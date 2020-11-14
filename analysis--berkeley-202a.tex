@@ -912,6 +912,7 @@ Let $x, a \in \R$ and $n \in \N$. Sets of real numbers satisfying inequalities:
   A measure $\mu$ is $f$-ergodic if $f^{-1}(A) = A$ implies $\mu(A) = 0$ or $\mu(A) = 1$.
 \end{definition}
 
+
 \section{Lebesgue integral}
 
 All functions are measurable unless stated otherwise.
@@ -1034,7 +1035,8 @@ All functions are measurable unless stated otherwise.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--lebesgue-integral-70e1.png}
 \end{mdframed}
 
-% https://math.stackexchange.com/a/2748616/397805
+
+ https://math.stackexchange.com/a/2748616/397805
 
 \begin{proof}
   Let $g_n(x) = \inf_{m\geq n}f_m(x)$. Note that $(g_n)$ is an increasing sequence of functions.
@@ -1175,6 +1177,124 @@ This alternative proof uses triangle inequality arguments:
   \end{align*}
 \end{theorem*}
 
+\begin{lemma}[Disjoint closed and compact sets have positive separation]\label{closed-compact-separation-lemma}
+ Let $(Z, d)$ be a metric space. Let $A, B \subseteq Z$ be disjoint with $A$ closed and $B$ compact. We define
+ \begin{align*}
+   d(A, B) := \inf \{d(a, b) ~:~ a \in A, b \in B\}.
+ \end{align*}
+ Then $d(A, B) > 0$.
+\end{lemma}
+
+\begin{remark*}
+  This is not true if both sets are merely {\it closed}. But compact is a stronger statement than closed (compact
+  implies closed but the converse is not true).
+\end{remark*}
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--every-function-(in-l^p)-is-nearly-continuous-6fed.png}
+\end{mdframed}
+
+\begin{proof}
+  $A$ and $B$ are disjoint so we have
+  \begin{align*}
+    d: A \times B \to (0, \infty).
+  \end{align*}
+  This is a continuous function. (\red{TODO} prove. Triangle ineq?)
+
+  Suppose $A$ and $B$ are compact. Then the product $A \times B$ is also compact.
+
+  Recall that a continuous function on a compact set attains its infimum and supremum. Therefore there
+  exist $a, b$ such that $d(a, b) = d(A, B)$. Therefore $d(A, B) > 0$.
+
+  Now suppose $A$ is merely closed but not compact. We need to identify a compact subset of $A$. We do this by
+  picking some constant $c$ and defining
+  \begin{align*}
+    A_{\text{far}} &= \{x \in A ~:~ d(x, B) \geq c\} \\
+    A_{\text{near}} &= \bar{A \setminus A_{\text{far}}},
+  \end{align*}
+  (where the bar indicates closure of a set).
+
+  Then $A_{\text{near}}$ is compact (i.e. closed and bounded, since we are in $\R^n$) and the result follows from the
+  result for two compact sets above.
+\end{proof}
+
+
+\section{Every function (in L^p) is nearly continuous}
+
+\begin{theorem}[Lusin's theorem]
+  Let $f:[0, 1] \to \R$ be Lebesgue-measurable. For every $\eps > 0$ there exists a closed
+  set $F \subseteq [0, 1]$ with $m(F) > 1 - \eps$ such that $f|_F$ is continuous.
+\end{theorem}
+
+\begin{remark*}
+  Note that $f|_F$ continuous means it's continuous when viewed as a function $F \to \R$: it might in fact be
+  continuous nowhere on $[0, 1]$. An example is $f = \ind_{[0,1] \setminus \Q}$, which is discontinuous
+  everywhere, since in every neighborhood both $0$ and $1$ occur as the function's value. However we can
+  construct a restriction of $f$ which is continuous: take an enumeration of the rationals and cover rational $i$
+  with an interval of length $\eps/2^i$. The union of those intervals has measure at most $\eps$ (not equal
+  because there is a lot of overlap). Therefore the complement of the union of those intervals is a set of
+  measure at least $1 - \eps$ and contains only irrationals. Hence $f = 1$ on that set and therefore the
+  restriction of $f$ to that is continuous.
+\end{remark*}
+
+The proof has three parts: we prove it for $f$ a characteristic (indicator) function, then $f$ a simple
+function, then $f$ measurable.
+
+\begin{claim*}
+  Let $f = \ind_A$ where $A \subseteq [0, 1]$. Then there exists $F$ such that $f|_F$ is continuous.
+\end{claim*}
+
+\begin{intuition}
+  This is true because we can make an indicator function continuous by removing a null set. E.g. for an
+  indicator function on intervals we remove the endpoints; for an indicator function on the irrationals we
+  remove rationals.
+
+  For a general indicator function, we take a closed approximating ``inner​'' subset $E$ and an open approximating
+  ``outer​'' superset $G$ and restrict ourselves to $E \cup G^c$.
+\end{intuition}
+
+\begin{proof}
+  From a previous theorem there exist $E \subseteq A \subseteq G$ such that $E$ is closed and $G$ is open
+  and $m(G \setminus A) < \eps/2$ and $m(A \setminus E) < \eps/2$.
+
+  We will focus on a subset on which the indicator function is ``well-behaved​''. Specifically,
+  consider $E \cup (G^c \cap [0, 1])$ (hereafter $E \cup G^c$). This has measure
+  \begin{align*}
+    \mu(E \cup G^c) = 1 - m(G \setminus A) - m(A \setminus E) = 1 - \eps.
+  \end{align*}
+
+  Since $E \subseteq [0, 1]$ it is compact. Also $G^c$ is closed and so from lemma
+  \ref{closed-compact-separation-lemma} we have that the infimum of the separation distances between $E$
+  and $G^c$ is positive:
+  \begin{align*}
+    \delta := d(E, G^c) > 0,
+  \end{align*}
+  where $d(A, B) = \inf \{ |b - a| ~:~ a \in A, b \in B\}$.
+
+  Recall that we have $f = \ind_A$ hence $f = 1$ on $E$ and $f = 0$ on $G^c$. We now define a function $g$ that
+  agrees with $f$ on $E \cup G^c$.
+
+  Specifically, define
+  \begin{align*}
+    g(x) = \(1 - \frac{d(x, E)}{\delta}\)^+,
+  \end{align*}
+  where $y^+ = \max(y, 0)$ and $d(x, E) = \inf \{ |e - x| ~:~ e \in E\}$.
+
+  Note that $g$ agrees with $f$ on $E \cup G^c$: for $x \in G^c$ we have $g(x) = 0 = f(x)$,
+  since $d(x, E) \geq \delta$. And for $x \in E$ we have $g(x) = 1 = f(x)$.
+\end{proof}
+
+
+\begin{claim*}
+  Let $f$ be a simple function. Then there exists $F$ such that $f|_F$ is continuous.
+\end{claim*}
+
+
+\begin{claim*}
+  Let $f$ be a measurable function. Then there exists $F$ such that $f|_F$ is continuous.
+\end{claim*}
+
+
 \begin{theorem*}[8.2 An approximation result on $\R$]
   Suppose $f: \R \to \R$ is a Borel-measurable function. Then for every $\eps > 0$ there exists a continuous
   function $g$ with compact support such that
@@ -1186,6 +1306,8 @@ This alternative proof uses triangle inequality arguments:
 \begin{proof}
   \red{TODO}
 \end{proof}
+
+
 
 \section{Using a function to construct a measure }
 
@@ -1340,6 +1462,11 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
   \end{align*}
 \end{theorem}
 
+% Therefore
+% \begin{align*}
+%   \int f - g < \int |f - g| < \eps.
+% \end{align*}
+
 
 \begin{theorem}[Egorov's theorem]
 
@@ -1420,7 +1547,7 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 \end{theorem}
 
 \begin{proof}
-
+  \red{TODO}
 \end{proof}
 
 \begin{theorem}
@@ -1487,7 +1614,7 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 \end{definition}
 
 \begin{intuition*}
-  In other words, the \defn{support sets} of $\mu$ and $\mu$ are non-overlapping and partition $X$.
+  In other words, the \defn{support sets} of $\mu$ and $\nu$ are non-overlapping and partition $X$.
 
   If we sample one value from a probability distribution formed as the mixture of measures $\mu$ and $\nu$, we
   will know with certainty which measure generated the value.
@@ -1568,6 +1695,10 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
   referred to comes from a Hahn decomposition into a positive and negative set.
 \end{intuition}
 
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--12.-signed-measures-b561.png}
+\end{mdframed}
+
 \begin{proof}
   $\mu$ is signed so we can decompose into $M, P$ negative and positive. Thus for some set $A \in \mc A$
   \begin{align*}
@@ -1593,17 +1724,17 @@ The core example motivating these definitions and decomposition theorems is
   \end{align*}
   Then $\mu$ is a measure. If $f$ takes positive and negative values then $\mu$ is a signed measure.
 
-  The \defn{Hahn decomposition} theorem states that the measure space $X$ may be partitioned as $X = P \cup M$ where
-  $P$ is a positive set (all measurable subsets have non-negative measure) and $M$ is a negative set (all
+  The \defn{Hahn decomposition} theorem states that the measure space $X$ may be partitioned as $X = P \cup N$ where
+  $P$ is a positive set (all measurable subsets have non-negative measure) and $N$ is a negative set (all
   measurable subsets have non-positive measure).
 
   The obvious decomposition is
   \begin{align*}
-    M &= \{x ~:~ f(x) \leq 0\} \\
+    N &= \{x ~:~ f(x) \leq 0\} \\
     P &= \{x ~:~ f(x) > 0\},
   \end{align*}
-  and this decomposition is unique except of course that $N = \{x ~:~ f(x) = 0\}$ is a null set (all measurable
-  subsets have measure zero) and different ways of apportioning $N$ to $P$ and $M$ do not affect their measure
+  and this decomposition is unique except of course that $Z = \{x ~:~ f(x) = 0\}$ is a null set (all measurable
+  subsets have measure zero) and different ways of apportioning $Z$ to $P$ and $N$ do not affect their measure
   (and thus their status as positive and negative sets respectively).
 
   The \defn{Jordan decomposition} theorem states that $\mu$ can be written as $\mu = \mu^+ - \mu^-$, where
@@ -1759,12 +1890,6 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
 
 
 
-
-
-
-
-
-
 \begin{claim*}
   If $g$ is another such function then $f = g$ $\mu$-almost everywhere.
 \end{claim*}
@@ -1780,3 +1905,109 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
   \end{align*}
   Since this holds on every measurable set $A$, we have $f = g$ $\mu$-almost everywhere.
 \end{proof}
+
+
+\section{Differentiation}
+
+The Radon-Nikodym theorem gives a derivative for one measure $\nu$ with respect to another measure $\mu$.
+Specifically, as long as $\nu \ll \mu$, it says that there exists $f$ such that
+\begin{align*}
+  \nu(A) = \int_A f \dmu.
+\end{align*}
+These measures are of course set-functions, in an abstract setting. We now focus on $\R^n$ and Lebesgue
+measure. The statement above involving the derivative function $f$ is analogous (let $A = [a, b]$) to
+\begin{align*}
+  y(b) - y(a) = \int_a^b \dydx \dx.
+\end{align*}
+Here the measure $\nu$ has been replaced by a function $y$ which determines a new length for the
+interval $[a, b]$.
+
+The $f$ from Radon-Nikodym is referred to as $\frac{\d\nu}{\dmu}$. (And as a mnemonic at least, perhaps we can
+think of the requirement for $\nu \ll \mu$ as not wanting this fraction to be zero below and non-zero above.)
+
+$m$ is Lebesgue measure.
+
+\begin{lemma}[A covering lemma]
+  If $E \subset \R^n$ is covered by a collection $\mc B$ of open balls and the diameter of every ball is
+  bounded by $R < \infty$, then there exists a disjoint collection of balls $B_1, \ldots$ such
+  that $m(E) \leq 3^n \sum_i m(B_i)$.
+\end{lemma}
+
+If you have a collection of covering balls, you can extract a disjoint set that still covers a certain fraction.
+
+\begin{definition*}[Locally integrable]
+  $f: \R^n \to \R$ is \defn{locally integrable} if $\int_K |f| \dmu < \infty$ for all bounded (compact) sets $K$.
+
+  The set of locally integrable functions is $L^1_{loc}$.
+\end{definition*}
+
+\begin{definition}[Average value of a function]
+  If $f \in L^1_{loc}$ then the \defn{average value} of $f$ on a ball $B(x, r)$ is
+  \begin{align*}
+  A_r f(x) := \frac{1}{m(B(x, r))} \int_{B(x, r)} f \dm
+\end{align*}
+\end{definition}
+
+
+\begin{definition}[Maximal function]
+  If $f \in L^1_{loc}$ the \defn{maximal function} of $f$ is
+  \begin{align*}
+    M f(x) := \sup_r A_r |f|(x).
+  \end{align*}
+  Informally, $M f(x)$ is the supremum of the values you get when comparing regions centred at $x$ according to
+  the average absolute value of $f$ in that region.
+\end{definition}
+
+\begin{lemma}
+  If $f \in L^1_{loc}$ the average value $A_r f(x)$ is jointly continuous in $r$ and $x$.
+\end{lemma}
+
+\begin{proof}
+  Let $c = m(B(0, 1))$ and define $S(x, r) = \{y ~:~ |y - x| = r\}$ to be the sphere at $x$. We have $m(S(x, r)) = 0$.
+
+  From (polar coordinates section of Folland) we know that $m(B(x, r)) = cr^n$.
+
+  $\ind_{B(x, r)} \to \ind_{B(x_0, r_0)}$ a.e. Note that $|\ind_|$
+\end{proof}
+
+\begin{theorem}[Maximal theorem]
+  For all $f \in L^1$ there exists a constant $C > 0$ such that for all $\alpha > 0$
+  \begin{align*}
+    m(\{x ~:~ M f(x) > \alpha\}) \leq \frac{C}{\alpha}\int |f|.
+  \end{align*}
+\end{theorem}
+
+\begin{intuition*}
+  So, this is an upper bound on how many places the average value of $|f|$ (over a local ball of any size) can
+  exceed a value $\alpha$, and the bound is proportional to $\frac{\int |f|}{\alpha}$.
+
+  Does this make sense? So there's a total amount $\int |f|$ of stuff, and there's a bound on how often the
+  average value of stuff seen from a given point can exceed some amount.
+
+  Say $f = c$ is constant and positive. Then $M f = c$ everywhere. But such an $f$ is not Lebesgue integrable,
+  i.e. not in $L^1$.
+
+  OK, so say $f = c$ in some ball of measure $b$ and $0$ elsewhere. Then $Mf = c$ everywhere in the ball and decreases away
+  from the ball. The measure of places where $Mf > c$ is zero, so yes, that is bounded above by whatever
+  positive number. The measure of places where $Mf \geq c$ should be $b$, and we have $\int |f| = cb$ So the theorem says that
+  \begin{align*}
+    b \leq \frac{C}{c} cb,
+  \end{align*}
+  which is true.
+\end{intuition*}
+
+\begin{proof}
+  Let $E_\alpha = \{x ~:~ M f(x) > \alpha\}$.
+
+  For every $x \in E_\alpha$ there exists $r_x$ such that $A_{r_x} |f|(x) > \alpha$.
+
+  The balls $B(x, r_x)$ cover $E_\alpha$.
+
+
+\end{proof}
+
+
+\section{Questions}
+
+- For the purposes of applied mathematics, is a theory based on the infinitely divisible reals necessary? Or
+would a theory based on an arbitrarily fine finite mesh suffice?
