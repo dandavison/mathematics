@@ -610,6 +610,41 @@ A \defn{probability measure} is a measure where $\mu(\Omega) = 1$.
 
 \section{Non-measurable sets}
 
+But, presumably, the density of $T$ is $0.5$ on every subset of $[0, 1]$. This is a contradiction, proving
+that $T$ is not Lebesgue measurable.
+
+\newpage
+\begin{example}[Random set]
+
+  Suppose we can construct a set $T \subseteq [0, 1]$ by accepting each element $x \in [0, 1]$ independently
+  with probability $0.5$.
+
+  Suppose for a contradiction that $T$ is Lebesgue measurable. Let $\eps > 0$. Then there exists an open
+  set $O \supseteq T$ such that $m(O \setminus T) < \eps$.
+
+  Specifically the density of $T$ in $O$ is
+  \begin{align*}
+    \frac{m(T \cap O)}{m(O)} > \frac{m(T)}{m(T) + \eps},
+  \end{align*}
+  which can be made arbitrarily high, say 0.99, by taking $\eps$ small.
+
+  We can also write $O$ as a countable union of open intervals $O = \bigcup_{i=1}^\infty O_i$, and thus write
+  the density of $T$ in $O$ as a weighted average of local densities in each interval $O_i$:
+  \begin{align*}
+    \frac{m(T \cap O)}{m(O)} = \sum_{i=1}^\infty \frac{m(O_i)}{m(O)} \frac{m(T_i)}{m(O_i)},
+  \end{align*}
+  where $T_i = T \cap O_i$ are the points of $T$ ``covered​'' by $O_i$.
+
+  But if the density of $T$ is $0.5$ on every subset of $[0, 1]$ then $m(T_i)/m(O_i) = 0.5$ and we have
+  \begin{align*}
+    0.99 = \frac{m(T \cap O)}{m(O)} = 0.5\sum_{i=1}^\infty \frac{m(I_i)}{m(O)} = 0.5.
+  \end{align*}
+  \red{I don't think we can say the density of $T$ is $0.5$ on every interval $O_i$ because $T$ was known at
+    the time when the $O_i$ were chosen, and thus they could be arbitrarily efficient covers of $T$. Of course,
+    we know one set on which the density of $T$ is $1$: $T$ itself.}
+\end{example}
+
+
 \begin{example}[Irrational rotation orbits]
   Consider the unit circle $S^1$. We would like to define a countably additive, translation invariant,
   function $\mu:\powerset(S^1) \to [0, \infty]$, which we will call a ``measure​''.
@@ -1223,7 +1258,7 @@ This alternative proof uses triangle inequality arguments:
 \end{proof}
 
 
-\section{Every function (in L^p) is nearly continuous}
+\section{Every function (in $L^p$) is nearly continuous}
 
 \begin{theorem}[Lusin's theorem]
   Let $f:[0, 1] \to \R$ be Lebesgue-measurable. For every $\eps > 0$ there exists a closed
@@ -1790,7 +1825,7 @@ We use $R(f)$ to denote the Riemann integral and $\int f$ to denote the Lebesgue
 \end{intuition}
 
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--12.-signed-measures-b561.png}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--12-signed-measures-b561.png}
 \end{mdframed}
 
 \begin{proof}

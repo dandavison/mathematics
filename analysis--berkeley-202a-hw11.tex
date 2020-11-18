@@ -4,6 +4,43 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-8650.png}
 \end{mdframed}
 
+\begin{lemma}[Dirichlet's test for improper integrals]
+  Let $I = \int_a^\infty f(x) g(x) \dx$ where $\int$ denotes the Riemann integral. Then $I$ converges if all
+  the following are true
+  \begin{enumerate}
+  \item $f$ is continuous on $[a, \infty]$
+  \item $\int_a^x f(t) \dt$ is bounded on $[a, \infty]$
+  \item $g$ is differentiable on $[a, \infty]$ with $g' \leq 0$ and $\lim_{x\to\infty} g(x) = 0$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Note that $f_\kappa$ is an even function, therefore (hint from @ankit in
+  Slack) $\int_{-R}^R f_{\kappa}(x) \dx = 2\int_{0}^R f_\kappa(x)$ and
+  therefore $I_\infty = \frac{1}{2}\int_0^\infty f_{\kappa}(x) \dx$, if this limit (in the upper bound of the
+  integral) exists.
+
+  We now (hint from Piazza) invoke Dirichlet's test with $a = 0$, $g(x) = 1/(1 + x)$,
+  and $f(x) = \cos(\kappa x)$, where these variable names refer to the statement in the lemma. We see that $f$
+  is continuous on $[0, \infty]$ as required; we see that $\int_0^x f_{\kappa}(t) \dt = \sin(\kappa t)$ is
+  bounded on $[0, \infty]$; and we see that $g$ is differentiable on $[0, \infty]$ with $g'(x) = -1/(1 + x)^2$
+  and that $g(x) \to 0$ as $x \to \infty$. Therefore we conclude that $\int_0^\infty f_{\kappa}(x) \dx$
+  converges and therefore that $f_{\kappa}$ is Riemann integrable for all $\kappa$.
+
+  By definition, $f_{\kappa}$ is Lebesgue integrable if $\int_{-\infty}^\infty |f_{\kappa}| < \infty$.
+  Since $|f_{\kappa}|$ is even and non-negative, $f_{\kappa}$ is Lebesgue integrable if and only
+  if $\int_{0}^\infty |f_{\kappa}| < \infty$.
+
+  Note that (by considering the graphs of $|\cos(\kappa x)|$ and $1/(1 + x)$)
+  \begin{align*}
+    \int_{0}^\infty |f_{\kappa}|
+    = \int_0^\infty \frac{|\cos(\kappa x)|}{1 + x}
+    > \(\int_0^{2\pi}|\cos(\kappa x)|\) \sum_{n=1}^\infty \frac{1}{1 + 2n\pi}.
+  \end{align*}
+  Clearly $\int_0^{2\pi}|\cos(\kappa x)| > 0$. But $\sum_{n=1}^\infty \frac{1}{1 + 2n\pi}$ is a divergent
+  series, therefore $f_{\kappa}$ is not Lebesgue integrable for any value of $\kappa$.
+\end{proof}
+
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-b6a3.png}
@@ -30,6 +67,16 @@ Why should that be? Why, for example, can't each orbit have its own constant val
   value has measure $0$.
 
   We must use the fact that $\phi$ is integrable to show that $\phi$ is constant a.e.
+
+  Let $\eps > 0$ and let $g: [0, 1] \to \R$ be a continuous function such that
+  \begin{align*}
+    \int |g - \phi| < \eps.
+  \end{align*}
+
+
+
+
+
 
   Let $\eps > 0$. According to Lusin's theorem there exists a closed set $F \subseteq [0, 1]$
   with $m(F) > 1- \eps$ such that $\phi|_F$ is continuous. So let $F \subseteq [0, 1]$ be such that $m(F) = 1$
@@ -75,6 +122,55 @@ Why should that be? Why, for example, can't each orbit have its own constant val
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-f2c0.png}
 \end{mdframed}
 
+
+\begin{claim*}
+  $\rho \ll \mu$
+\end{claim*}
+\begin{proof}
+  We must show that $\rho(A) = 0$ whenever $\mu(A) = 0$ and $A$ is in the $\sigma$-algebra.
+
+  Let $A$ be in the $\sigma$-algebra such that $\mu(A) = 0$. Then $\nu(A) = 0$, since $\nu \ll \mu$.
+  Therefore $\rho(A) = 0$, since $\rho \ll \nu$.
+\end{proof}
+
+\begin{claim*}
+  \begin{align*}
+    \frac{\d\rho}{\d\mu} = \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \ae
+  \end{align*}
+\end{claim*}
+
+\begin{lemma}
+  For any set $A$ in the $\sigma$-algebra,
+  \begin{align*}
+    \int_A g
+  \end{align*}
+\end{lemma}
+
+\begin{proof}
+  By definition, $\frac{\d\rho}{\d\mu}$ is a function satisying the following for any set $A$ in
+  the $\sigma$-algebra:
+  \begin{align*}
+    \rho(A) = \int_A \frac{\d\rho}{\d\mu} \d\mu.
+  \end{align*}
+  We would like to show that
+  \begin{align*}
+    \int_A \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \d\mu = \rho(A),
+  \end{align*}
+  since then we would have
+  \begin{align*}
+    \int_A \frac{\d\rho}{\d\mu}  - \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \d\mu = 0,
+  \end{align*}
+  from which the result follows.
+
+  We have that
+  \begin{align*}
+    \rho(A) = \int_A \frac{\d\rho}{\d\nu} \d\nu,
+  \end{align*}
+  and
+  \begin{align*}
+    \nu(A) = \int_A \frac{\d\nu}{\d\mu} \d\mu.
+  \end{align*}
+\end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-c5a4.png}

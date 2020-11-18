@@ -1,5 +1,31 @@
 \section*{Math 202A - HW9 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
+% In Bass 8.5, most of you guessed the counterexample f(x)=−(xlogx)−1 or some similar variant. To motivate this
+% counterexample, note that x↦x−1 is not integrable near 0 but x↦x−1+ε is. You want something which is not
+% integrable, but which is "weakly integrable" (in the sense that it satisfies the conclusion of Bass 8.4). So
+% the natural thing to do is search for functions whose growth rate is between x−1 and x−1+ε near the origin,
+% which is what this counterexample gives.
+
+% However, when it came time to actually integrate f, a lot of you struggled, and came up with complicated
+% solutions. The good news, that some of you picked up on, is Theorem 9.1 in Bass: the Lebesgue and Riemann
+% integrals agree whenever both exist. A short proof of this for f: since we're taking an improper Riemann
+% integral, we can restrict to the domain I=[δ,1] and take δ→0. Since the Riemann integral exists (since f is
+% continuous on the compact set I) it is equal to the limit of lower Riemann sums ∫fη as the mesh |η| of a
+% partition η tends to 0. But fη→f pointwise, since fη was sampled from a continuous function (so if |η| is small
+% then |f−fη| is also small; this is a typical epsilon-delta argument). But f was Lebesgue integrable on I and
+% dominated the fη, so that implies that ∫fη→∫f.
+
+% Another issue here is that some folks recognized that integrating f amounts to computing the Riemann integral,
+% but then fumbled on computing the antiderivative. It is not F(x)=loglogx as you might naively expect, since F
+% blows up at 1 and is ill-defined (complex-valued and depends on a choice of branch) on [0,1). This can be fixed
+% with some calculus, however.
+
+% As for Bass 10.2, let me emphasize that convergence in the metric d that we introduced is not equivalent to
+% convergence almost everywhere. It is true that convergence almost everywhere implies convergence in measure
+% (hence in the metric d), and convergence in measure (hence in the metric d) implies convergence almost
+% everywhere along a subsequence, but the typewriter sequence is a counterexample that prevents us from promoting
+% this convergence on a subsequence to convergence almost everywhere.
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-210c.png}
 \end{mdframed}

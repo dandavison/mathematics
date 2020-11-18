@@ -702,11 +702,20 @@ Equivalent notation: $f(x) \to L$ as $x \to a$
 \subsection{Continuity of a function $f$}
 
 \begin{definition*}
-$f$ is continuous at $a$ if $\lim_{x \to a} f(x) = f(a)$.
+  $f$ is continuous at $a$ if $\lim_{x \to a} f(x) = f(a)$.
 \end{definition*}
 
-Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$
-there exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+Therefore, using the definition of limit, $f$ is continuous at $a$ iff for all $\epsilon > 0$ there
+exists $\delta > 0$ such that $|x - a| < \delta \implies |f(x) - f(a)| < \epsilon$.
+
+Note: if the domain of a function is a set of isolated points in a metric space (e.g. $\Z \subset \R$) then the
+function is continuous.
+
+Also \red{TODO}: Is it a theorem that a restriction of a continuous function is continuous? I think so.
+\url{https://math.stackexchange.com/questions/1826827/topology-show-restriction-of-continuous-function-is-continuous-and-restriction}
+\url{https://planetmath.org/restrictionofacontinuousmappingiscontinuous}
+\url{https://proofwiki.org/wiki/Restriction_of_Continuous_Mapping_is_Continuous}
+
 
 \subsection{Uniform convergence and uniform continuity}
 
