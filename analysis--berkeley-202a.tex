@@ -459,42 +459,6 @@ and therefore
 
 \end{proof}
 
-\begin{example}[A non-measurable set]
-  Consider the unit circle $S^1$. We would like to define a countably additive, translation invariant,
-  function $\mu:\powerset(S^1) \to [0, \infty]$, which we will call a ``measure​''.
-
-  Let $r$ be irrational and define the translation $\tau(x) = (x + r) \mod 1$.
-
-  Recall that for all $x \in S_1$, the orbit of $x$ under $\tau$ is non-periodic and dense.
-
-  (Note that non-periodicity of the orbit is quite a striking property: it never hits a point twice!)
-
-  Define a set $A_0$ containing one point from every distinct orbit. (Uses some form of Axiom of Choice)
-
-  Define $A_n = \tau^n(A_0)$.
-
-  Note that $A_i$ and $A_j$ are disjoint for all $i \neq j$. (Suppose they had a point in common. Then that
-  point would either be a member of two distinct orbits, or it would be a point that occurs twice in the same
-  orbit. Neither is possible.)
-
-  Therefore, if the $A_i$ are measurable, then
-  \begin{align*}
-    \mu\Big(\bigcup_{i=0}^\infty A_i\Big) = \sum_{i=0}^\infty \mu(A_i).
-  \end{align*}
-  But note that $\bigcup_{i=0}^\infty A_i = S^1$, therefore the LHS equals 1.
-
-  However, $\tau$ is a translation, and therefore $\mu(A_i) = \mu(A_0)$ for all $i$, if $\mu$ is translation
-  invariant.
-
-  But this is a contradiction, since if $\mu(A_0) = 0$ then we have $1 = \sum_{i=0}^\infty 0 = 0$, and
-  if $\mu(A_0) > 0$ then we have $1 = \infty$.
-
-  Therefore no countably additive and translation invariant $\mu$ can be defined on the $A_i$.
-
-  Counter-examples like this motivate the restriction of measure to $\sigma$-algebras.
-\end{example}
-
-
 \subsection{sigma-algebras, Borel sets}
 
 \url{https://en.wikipedia.org/wiki/Outcome_(probability)}
@@ -643,6 +607,46 @@ $\mc A$ such that $(\Omega, \bar{\mc A}, \bar \mu)$ is a complete measure space,
 extension of $\mu$ from $\mc A$ to $\bar{\mc A}$.
 
 A \defn{probability measure} is a measure where $\mu(\Omega) = 1$.
+
+\section{Non-measurable sets}
+
+\begin{example}[Irrational rotation orbits]
+  Consider the unit circle $S^1$. We would like to define a countably additive, translation invariant,
+  function $\mu:\powerset(S^1) \to [0, \infty]$, which we will call a ``measure​''.
+
+  Let $r$ be irrational and define the translation $\tau(x) = (x + r) \mod 1$.
+
+  Recall that for all $x \in S_1$, the orbit of $x$ under $\tau$ is non-periodic and dense.
+
+  (Note that non-periodicity of the orbit is quite a striking property: it never hits a point twice!)
+
+  Define a set $A_0$ containing one point from every distinct orbit. (Uses some form of Axiom of Choice)
+
+  Define $A_n = \tau^n(A_0)$.
+
+  Note that $A_i$ and $A_j$ are disjoint for all $i \neq j$. (Suppose they had a point in common. Then that
+  point would either be a member of two distinct orbits, or it would be a point that occurs twice in the same
+  orbit. Neither is possible.)
+
+  Therefore, if the $A_i$ are measurable, then
+  \begin{align*}
+    \mu\Big(\bigcup_{i=0}^\infty A_i\Big) = \sum_{i=0}^\infty \mu(A_i).
+  \end{align*}
+  But note that $\bigcup_{i=0}^\infty A_i = S^1$, therefore the LHS equals 1.
+
+  However, $\tau$ is a translation, and therefore $\mu(A_i) = \mu(A_0)$ for all $i$, if $\mu$ is translation
+  invariant.
+
+  But this is a contradiction, since if $\mu(A_0) = 0$ then we have $1 = \sum_{i=0}^\infty 0 = 0$, and
+  if $\mu(A_0) > 0$ then we have $1 = \infty$.
+
+  Therefore no countably additive and translation invariant $\mu$ can be defined on the $A_i$.
+
+  Counter-examples like this motivate the restriction of measure to $\sigma$-algebras.
+\end{example}
+
+
+
 
 \subsection{Bass 4.  Construction of measures}
 
@@ -1241,7 +1245,8 @@ The proof has three parts: we prove it for $f$ a characteristic (indicator) func
 function, then $f$ measurable.
 
 \begin{claim*}
-  Let $f = \ind_A$ where $A \subseteq [0, 1]$. Then there exists $F$ such that $f|_F$ is continuous.
+  Let $f = \ind_A$ where $A \subseteq [0, 1]$. Then there exists closed $F$ of arbitrarily large measure such
+  that $f|_F$ is continuous.
 \end{claim*}
 
 \begin{intuition}
@@ -1250,7 +1255,7 @@ function, then $f$ measurable.
   remove rationals.
 
   For a general indicator function, we take a closed approximating ``inner​'' subset $E$ and an open approximating
-  ``outer​'' superset $G$ and restrict ourselves to $E \cup G^c$.
+  ``outer​'' superset $G$ and restrict the indicator function to $E \cup G^c$.
 \end{intuition}
 
 \begin{proof}
@@ -1271,8 +1276,8 @@ function, then $f$ measurable.
   \end{align*}
   where $d(A, B) = \inf \{ |b - a| ~:~ a \in A, b \in B\}$.
 
-  Recall that we have $f = \ind_A$ hence $f = 1$ on $E$ and $f = 0$ on $G^c$. We now define a function $g$ that
-  agrees with $f$ on $E \cup G^c$.
+  Recall that we have $f = \ind_A$ hence $f = 1$ on $E$ and $f = 0$ on $G^c$. We now define a continuous
+  function $g$ that agrees with $f$ on $E \cup G^c$.
 
   Specifically, define
   \begin{align*}
@@ -1280,32 +1285,121 @@ function, then $f$ measurable.
   \end{align*}
   where $y^+ = \max(y, 0)$ and $d(x, E) = \inf \{ |e - x| ~:~ e \in E\}$.
 
-  Note that $g$ agrees with $f$ on $E \cup G^c$: for $x \in G^c$ we have $g(x) = 0 = f(x)$,
+  Note that $g$ is continuous and agrees with $f$ on $E \cup G^c$: for $x \in G^c$ we have $g(x) = 0 = f(x)$,
   since $d(x, E) \geq \delta$. And for $x \in E$ we have $g(x) = 1 = f(x)$.
 \end{proof}
 
-
 \begin{claim*}
-  Let $f$ be a simple function. Then there exists $F$ such that $f|_F$ is continuous.
+  Let $f$ be a simple function. Then there exists closed $F$ of arbitrarily large measure such that $f|_F$ is
+  continuous.
 \end{claim*}
 
+\begin{proof}
+  Let $f = \sum_{i=1}^M a_i\ind_{A_i}$ where the $A_i$ are Lebesgue measurable and the $a_i \geq 0$.
+
+  For each $i$ take $F_i$ closed such that $\ind_{A_i}|_F$ is continuous, and $m([0, 1] \setminus F_i) < \eps/M$.
+
+  Let $F = \bigcap F_i$. Then $m([0, 1] \setminus F) < \eps$ and $f|_F$ is continuous.
+\end{proof}
 
 \begin{claim*}
-  Let $f$ be a measurable function. Then there exists $F$ such that $f|_F$ is continuous.
+  Let $f$ be non-negative and bounded by $K$. Then there exists closed $F$ of arbitrarily large measure such
+  that $f|_F$ is continuous.
 \end{claim*}
-
-
-\begin{theorem*}[8.2 An approximation result on $\R$]
-  Suppose $f: \R \to \R$ is a Borel-measurable function. Then for every $\eps > 0$ there exists a continuous
-  function $g$ with compact support such that
-  \begin{align*}
-    \int (f - g) < \eps.
-  \end{align*}
-\end{theorem*}
 
 \begin{proof}
   \red{TODO}
+  \begin{enumerate}
+  \item Take a simple function approximation to $f$
+  \item Set $F = \cap_{n=0}^\infty F_n$ where $F_n$ of large measure
+  \item Use it to define a sequence of functions converging uniformly to $f$ on $F$
+  \item Uniform limit of continuous functions is continuous
+  \end{enumerate}
 \end{proof}
+
+\begin{claim*}
+  Let $f$ be an arbitrary measurable function. Then there exists closed $F$ of arbitrarily large measure such
+  that $f|_F$ is continuous.
+\end{claim*}
+
+\begin{proof}
+  Write $f = f^+ - f^-$...
+\end{proof}
+
+\begin{theorem*}[8.2 An approximation result on $\R$]
+  Suppose $f: \R \to \R$ is Lebesgue integrable. Then for every $\eps > 0$ there exists a continuous
+  function $g$ {\it with compact support} such that
+  \begin{align*}
+    \int |f - g| < \eps.
+  \end{align*}
+\end{theorem*}
+
+\begin{remark*}
+  Continuous functions are dense in integrable functions when distance measured in a certain way.
+\end{remark*}
+
+\begin{proof}
+
+  [Alan Hammond proof]
+
+  \begin{enumerate}
+  \item Prove it for $f = \ind_{(a, b)}$ \\
+
+    Replace the discontinuities at endpoints with a sloping line. If regions of slope have total
+    width $4\delta$, choose $\delta < \eps/4$.
+
+  \item Prove it for $f$ indicator on finite union of intervals \\
+
+    Do the same finitely many times.
+
+  \item Prove it for $f$ indicator on any bounded open set (countable union of open sets) \\
+
+    Let $O = \bigcup_i I_i$ be an open set written as a countable union of intervals. Arrange them so that the
+    tail has total length $< \eps/2$. Use the above on the finite head of the sequence to get an approxmiation
+    within $\eps/2$ for the head; together with the error on the tail that gives error $< \eps$.
+
+  \item Prove it for $f$ indicator on any bounded Borel set \\
+
+    Let $O$ be a bounded Borel set.
+
+    Take $E \subseteq O$ with $m(O \setminus E) < \eps$
+
+
+  \item Prove it for $f$ any bounded simple function (finite linear combination of indicators on Borel sets) \\
+
+    We have a vector space of functions with a spanning set formed by indicators on Borel sets. If $g_1$
+    approximates $f_1$ and $g_2$ approximates $f_2$ then $g_1 + g_2$ approximates $f_1 + f_2$, and
+    similarly $ag$ approximates $af$.
+
+  \item Prove it for $f$ non-negative measurable bounded (in $y$ axis) with compact support (i.e. bounded on $x$ axis) (use MCT) \\
+
+    Take $s_n \uparrow f$ pointwise.
+
+    From MCT
+
+
+
+  \item Prove it for $f$ integrable $f = f^+ - f^-$
+  \end{enumerate}
+\end{proof}
+
+
+
+
+
+
+\begin{proof}
+  We may assume $f \geq 0$, for the following reason. Suppose $f$ takes some negative values. Then we
+  write $f = f^+ - f^-$. If we can find continuous $g_1$ and $g_2$ such that $\int |f^+ - g_1| < \eps/2$
+  and $\int |f^- - g_2| < \eps/2$, then we can define $g = g_1 - g_2$ and we have... \red{TODO}.
+
+  By the MCT, $\limninf \int f\ind_{[-n, n]} = \int f$ and this is finite since $f$ is integrable. Hence we can
+  take $N$ large enough that $\int (f - f\ind_{[-N, N]}) < \eps$.
+
+  Then we find
+
+\end{proof}
+
 
 
 
@@ -1909,6 +2003,9 @@ maximises $\int_X f \dmu$. This will turn out to turn the inequality into equali
 
 \section{Differentiation}
 
+Bass for Radon Nik then
+Folland section 3.4
+
 The Radon-Nikodym theorem gives a derivative for one measure $\nu$ with respect to another measure $\mu$.
 Specifically, as long as $\nu \ll \mu$, it says that there exists $f$ such that
 \begin{align*}
@@ -2005,6 +2102,11 @@ If you have a collection of covering balls, you can extract a disjoint set that 
 
 
 \end{proof}
+
+
+\section{Topology}
+
+
 
 
 \section{Questions}
