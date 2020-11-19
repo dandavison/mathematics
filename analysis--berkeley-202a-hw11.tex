@@ -135,40 +135,55 @@ Why should that be? Why, for example, can't each orbit have its own constant val
 
 \begin{claim*}
   \begin{align*}
-    \frac{\d\rho}{\d\mu} = \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \ae
+    \frac{\d\nu}{\d\lambda} = \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \ae
   \end{align*}
 \end{claim*}
 
-\begin{lemma}
-  For any set $A$ in the $\sigma$-algebra,
-  \begin{align*}
-    \int_A g
-  \end{align*}
-\end{lemma}
-
 \begin{proof}
-  By definition, $\frac{\d\rho}{\d\mu}$ is a function satisying the following for any set $A$ in
-  the $\sigma$-algebra:
+  By definition, $\frac{\d\nu}{\d\lambda}$ is a function such that for any measurable set $E$
   \begin{align*}
-    \rho(A) = \int_A \frac{\d\rho}{\d\mu} \d\mu.
+    \nu(E) = \int_E \frac{\d\nu}{\d\lambda} \d\lambda.
   \end{align*}
-  We would like to show that
+  We will first show that the function $\frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda}$ also serves as a derivative
+  of $\nu$ with respect to $\lambda$, i.e. that for any measurable set $E$
   \begin{align*}
-    \int_A \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \d\mu = \rho(A),
+    \nu(E) = \int_E \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \d\lambda.
   \end{align*}
-  since then we would have
-  \begin{align*}
-    \int_A \frac{\d\rho}{\d\mu}  - \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \d\mu = 0,
-  \end{align*}
-  from which the result follows.
+  Let $E$ be a measurable set.
 
-  We have that
+  First note that
+
+  Write $f = \frac{\d\nu}{\d\mu}$ and let $f_n$ be a sequence of increasing simple functions converging
+  pointwise to $f$. Let $F$ be a measurable set and note that
   \begin{align*}
-    \rho(A) = \int_A \frac{\d\rho}{\d\nu} \d\nu,
+    \int_E \ind_F \d\mu
+    = \mu(E \cap F)
+    = \int_{E \cap F} \frac{\d\mu}{\d\lambda} \d\lambda
+    = \int_E \ind_F \frac{\d\mu}{\d\lambda} \d\lambda.
   \end{align*}
-  and
+  Therefore by linearity of the integral
   \begin{align*}
-    \nu(A) = \int_A \frac{\d\nu}{\d\mu} \d\mu.
+    \int_E f_n \d\mu = \int_{E} f_n \frac{\d\mu}{\d\lambda}\d\lambda,
+  \end{align*}
+  and taking the limit as $n \to \infty$ (\red{I think I should be using MCT somewhere, could you tell me where?})
+  \begin{align*}
+    \int_E f \d\mu = \int_{E} f \frac{\d\mu}{\d\lambda}\d\lambda.
+  \end{align*}
+  Substituting its definition $\frac{\d\nu}{\d\mu}$ in place of the symbol $f$ we have
+  \begin{align*}
+    \int_E \frac{\d\nu}{\d\mu} \d\mu
+    = \nu(E)
+    = \int_E \frac{\d\nu}{\d\lambda} \d\lambda
+    = \int_{E} \frac{\d\nu}{\d\mu} \frac{\d\mu}{\d\lambda}\d\lambda.
+  \end{align*}
+
+  Therefore
+  \begin{align*}
+    \int_E \frac{\d\nu}{\d\lambda}  - \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \d\lambda = 0,
+  \end{align*}
+  and therefore
+  \begin{align*}
+    \frac{\d\nu}{\d\lambda} = \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \ae
   \end{align*}
 \end{proof}
 
