@@ -41,7 +41,7 @@
   series, therefore $f_{\kappa}$ is not Lebesgue integrable for any value of $\kappa$.
 \end{proof}
 
-
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-b6a3.png}
 \end{mdframed}
@@ -49,13 +49,13 @@
 \begin{proof}
   We will prove this by contradiction. Let $P$ be the proposition
   \begin{quote}
-    There exists $y \in \R$ such that $m(\{x \in [0, 1] ~:~ \phi(x) < y\}) > 0$ and $m(\{x \in [0, 1] ~:~ \phi(x) > y\}) > 0$.
+    {\it There exists $y \in \R$ such that $m(\{x \in [0, 1] ~:~ \phi(x) < y\}) > 0$ and $m(\{x \in [0, 1] ~:~ \phi(x) > y\}) > 0$.}
   \end{quote}
   Since $\phi$ is integrable, it is measurable, and therefore these preimages are measurable sets.
 
   The statement
   \begin{quote}
-    ​$\phi(x)$ equals a constant a.e.
+    ​{\it $\phi(x)$ equals a constant a.e.}
   \end{quote}
   is false if and only if $P$ is true. Therefore we suppose, for a contradiction, that $P$ is true.
 
@@ -66,12 +66,12 @@
   But recall from HW6 Q6 that $\mu(\bigcup_{n=0}^\infty \tau^n(E)) = 1$ for every set $E \subseteq [0, 1]$,
   where $\tau^n(E)$ is the image of $E$ under the $n$-th iterate of $\tau$.
 
-  Therefore $\mu(\bigcup_{n=0}^\infty \tau^n(A)) = 1$. But we have $\phi(x) = \phi(x + \alpha)$ a.e. therefore
-  (should justify this better) $m(\{x \in \bigcup_{n=0}^\infty \tau^n(A) ~:~ \phi(x) < y\}) = 1$.
+  Therefore $\mu(\bigcup_{n=0}^\infty \tau^n(A)) = 1$. But we have $\phi(x) = \phi(x + \alpha)$ a.e.
+  therefore $m(\{x \in \bigcup_{n=0}^\infty \tau^n(A) ~:~ \phi(x) < y\}) = 1$. %  (should justify this better)
 
   Similarly $\mu(\bigcup_{n=0}^\infty \tau^n(B)) = 1$ and $m(\{x \in \bigcup_{n=0}^\infty \tau^n(A) ~:~ \phi(x) > y\}) = 1$.
 
-  But this is a contradiction, since simultaneously have $\phi(x) < y$ a.e. and $\phi(x) > y$ a.e., which
+  But this is a contradiction, since we simultaneously have $\phi(x) < y$ a.e. and $\phi(x) > y$ a.e., which
   violates countable additivity of $m$.
 \end{proof}
 
@@ -104,11 +104,6 @@
 %     \int |g - \phi| < \eps.
 %   \end{align*}
 
-
-
-
-
-
 %   Let $\eps > 0$. According to Lusin's theorem there exists a closed set $F \subseteq [0, 1]$
 %   with $m(F) > 1- \eps$ such that $\phi|_F$ is continuous. So let $F \subseteq [0, 1]$ be such that $m(F) = 1$
 %   and $\phi|_F$ is continuous.
@@ -124,15 +119,6 @@
 
 %   - Pick $x$. With probability $p_c$ we have $\phi(x) = c$ and also $\phi(x + \alpha) = c$.
 
-
-
-
-
-
-
-
-
-
 %   Why might $\phi$ be constant a.e.?
 
 %   - Each orbit is countable, so if one orbit is constant, that's just a measure zero set.
@@ -143,6 +129,7 @@
 
 % \end{proof}
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-3704.png}
 \end{mdframed}
@@ -175,11 +162,12 @@
     = 0,
   \end{align*}
   hence $\nu \ll \mu$. Finally, if $A \in \mc A$ and $\nu(A) = 0$ then $\mu(A \cap X_i) = 0$ for all $i$,
-  therefore $\mu(A) = \sum_{i=1}^\infty \mu(A \cap X_i) = 0$, since the $X_i$ partition $X$.
+  therefore $\mu(A) = \sum_{i=1}^\infty \mu(A \cap X_i) = 0$, since the $X_i$ partition $X$,
+  hence $\mu \ll \nu$.
 \end{proof}
 
 
-
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-f2c0.png}
 \end{mdframed}
@@ -247,7 +235,14 @@
   \end{align*}
 \end{proof}
 
+\newpage
 \begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-c5a4.png}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-c5a4.png}\\
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw11-3974.png}
 \end{mdframed}
+
+\begin{proof}
+
+  [Not attempted -- out of time]
+
+\end{proof}
