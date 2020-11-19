@@ -135,55 +135,53 @@ Why should that be? Why, for example, can't each orbit have its own constant val
 
 \begin{claim*}
   \begin{align*}
-    \frac{\d\nu}{\d\lambda} = \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \ae
+    \frac{\d\rho}{\d\mu} = \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \ae
   \end{align*}
 \end{claim*}
 
 \begin{proof}
-  By definition, $\frac{\d\nu}{\d\lambda}$ is a function such that for any measurable set $E$
+  By definition, $\frac{\d\rho}{\d\mu}$ is a function such that for any measurable set $E$
   \begin{align*}
-    \nu(E) = \int_E \frac{\d\nu}{\d\lambda} \d\lambda.
+    \rho(E) = \int_E \frac{\d\rho}{\d\mu} \d\mu.
   \end{align*}
-  We will first show that the function $\frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda}$ also serves as a derivative
-  of $\nu$ with respect to $\lambda$, i.e. that for any measurable set $E$
+  We will first show that the function $\frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu}$ also serves as a derivative
+  of $\rho$ with respect to $\mu$, i.e. that for any measurable set $E$
   \begin{align*}
-    \nu(E) = \int_E \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \d\lambda.
+    \rho(E) = \int_E \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \d\mu.
   \end{align*}
   Let $E$ be a measurable set.
 
-  First note that
-
-  Write $f = \frac{\d\nu}{\d\mu}$ and let $f_n$ be a sequence of increasing simple functions converging
+  Write $f = \frac{\d\rho}{\d\nu}$ and let $f_n$ be a sequence of increasing simple functions converging
   pointwise to $f$. Let $F$ be a measurable set and note that
   \begin{align*}
-    \int_E \ind_F \d\mu
-    = \mu(E \cap F)
-    = \int_{E \cap F} \frac{\d\mu}{\d\lambda} \d\lambda
-    = \int_E \ind_F \frac{\d\mu}{\d\lambda} \d\lambda.
+    \int_E \ind_F \d\nu
+    = \nu(E \cap F)
+    = \int_{E \cap F} \frac{\d\nu}{\d\mu} \d\mu
+    = \int_E \ind_F \frac{\d\nu}{\d\mu} \d\mu.
   \end{align*}
-  Therefore by linearity of the integral
+  By linearity of the integral this result applies to the simple functions $f_n$ and we have
   \begin{align*}
-    \int_E f_n \d\mu = \int_{E} f_n \frac{\d\mu}{\d\lambda}\d\lambda,
+    \int_E f_n \d\nu = \int_{E} f_n \frac{\d\nu}{\d\mu}\d\mu,
   \end{align*}
-  and taking the limit as $n \to \infty$ (\red{I think I should be using MCT somewhere, could you tell me where?})
+  and on taking the limit $n \to \infty$ inside the integral (\red{I think I should be using MCT somewhere, could you tell me where?})
   \begin{align*}
-    \int_E f \d\mu = \int_{E} f \frac{\d\mu}{\d\lambda}\d\lambda.
+    \int_E f \d\nu = \int_{E} f \frac{\d\nu}{\d\mu}\d\mu.
   \end{align*}
-  Substituting its definition $\frac{\d\nu}{\d\mu}$ in place of the symbol $f$ we have
+  Substituting its definition $\frac{\d\rho}{\d\nu}$ in place of the symbol $f$ we have
   \begin{align*}
-    \int_E \frac{\d\nu}{\d\mu} \d\mu
-    = \nu(E)
-    = \int_E \frac{\d\nu}{\d\lambda} \d\lambda
-    = \int_{E} \frac{\d\nu}{\d\mu} \frac{\d\mu}{\d\lambda}\d\lambda.
+    \int_E \frac{\d\rho}{\d\nu} \d\nu
+    = \rho(E)
+    = \int_E \frac{\d\rho}{\d\mu} \d\mu
+    = \int_{E} \frac{\d\rho}{\d\nu} \frac{\d\nu}{\d\mu}\d\mu.
   \end{align*}
 
   Therefore
   \begin{align*}
-    \int_E \frac{\d\nu}{\d\lambda}  - \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \d\lambda = 0,
+    \int_E \frac{\d\rho}{\d\mu}  - \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \d\mu = 0,
   \end{align*}
-  and therefore
+  and therefore by Bass proposition 8.2
   \begin{align*}
-    \frac{\d\nu}{\d\lambda} = \frac{\d\nu}{\d\mu}\frac{\d\mu}{\d\lambda} \ae
+    \frac{\d\rho}{\d\mu} = \frac{\d\rho}{\d\nu}\frac{\d\nu}{\d\mu} \ae
   \end{align*}
 \end{proof}
 
