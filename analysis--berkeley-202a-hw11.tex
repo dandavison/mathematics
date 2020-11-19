@@ -148,8 +148,34 @@
 \end{mdframed}
 
 \begin{proof}
-  Since $\mu$ is $\sigma$-finite we have that $X = \bigcup_{i=1}^\infty X_i$ where $\mu(X_i) < \infty$ for all $i$.
+  Since $\mu$ is $\sigma$-finite we can write $X$ as a countable disjoint union $X = \bigcup_{i=1}^\infty X_i$
+  with $\mu(X_i) < \infty$ for all $i$.
 
+  Let $\nu$ be a set function such that for every $A \in \mc A$
+  \begin{align*}
+    \nu(A) = \sum_{i=1}^\infty 2^{-i} \frac{\mu(A \cap X_i)}{\mu(X_i)}.
+  \end{align*}
+  We claim that $\nu$ is a measure. We have $\nu(\emptyset) = 0$. Let $A_1, A_2, \ldots \in \mc A$ be pairwise
+  disjoint. We see that $\nu$ is countable additive since
+  \begin{align*}
+    \nu\(\bigcup_{j=1}^\infty A_j\)
+    &= \sum_{i=1}^\infty 2^{-i} \frac{\mu\(\(\bigcup_{j=1}^\infty A_j\) \cap X_i\)}{\mu(X_i)} \\
+    &= \sum_{i=1}^\infty 2^{-i} \frac{\mu\(\bigcup_{j=1}^\infty \(A_j \cap X_i\)\)}{\mu(X_i)} \\
+    &= \sum_{i=1}^\infty 2^{-i} \sum_{j=1}^\infty\frac{\mu\(A_j \cap X_i\)}{\mu(X_i)} \\
+    &= \sum_{j=1}^\infty \sum_{i=1}^\infty 2^{-i}\frac{\mu\(A_j \cap X_i\)}{\mu(X_i)} \\
+    &= \sum_{j=1}^\infty \nu(A_j).
+  \end{align*}
+  Therefore $\nu$ is a measure. Furthermore $\nu$ is finite since $\nu(X) = \sum_{i=1}^\infty 2^{-i} = 1$.
+
+  If $A \in \mc A$ and $\mu(A) = 0$ then
+  \begin{align*}
+    0 \leq \nu(A)
+    = \sum_{i=1}^\infty 2^{-i} \frac{\mu(A \cap X_i)}{\mu(X_i)}
+    < \sum_{i=1}^\infty 2^{-i} \frac{\mu(A)}{\mu(X_i)}
+    = 0,
+  \end{align*}
+  hence $\nu \ll \mu$. Finally, if $A \in \mc A$ and $\nu(A) = 0$ then $\mu(A \cap X_i) = 0$ for all $i$,
+  therefore $\mu(A) = \sum_{i=1}^\infty \mu(A \cap X_i) = 0$, since the $X_i$ partition $X$.
 \end{proof}
 
 
