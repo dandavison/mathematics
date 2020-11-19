@@ -2069,13 +2069,118 @@ think of the requirement for $\nu \ll \mu$ as not wanting this fraction to be ze
 
 $m$ is Lebesgue measure.
 
+In the context of $\R$ under Lebesgue measure we can define a {\it pointwise} derivative
+
+which in $\R$ would be like
+\begin{align*}
+  f^* = \lim_{r \to 0}\frac{\nu([x,x + r])}{r}.
+\end{align*}
+
+If $\nu \ll m$ then the Radon-Nikodym derivative $f$ exists such that
+\begin{align*}
+  \nu([x,x + r] = \int_{x}^{x+r} f \dm.
+\end{align*}
+In this case $\frac{\nu([x,x + r])}{r}$ is the average value of $f$ on the interval, and we would hope
+that $f^* = f$ $m$-a.e, which is true as long as $\nu$ assigns a finite measure to all intervals (theorem
+\ref{folland-3-18-limit-of-average}; the locally integrable requirement is stronger than ``assigns finite
+measure to all intervals​'' since if $\int |f|$ is finite then so is $\int f$).
+
+\begin{quote}
+  From the point of view of $f$ this may be regarded as a generalisation of the FTC: the derivative of the
+  indefinite integral of $f$ (namely, $\nu$) is $f$.
+\end{quote}
+
+In other words,
+\begin{align*}
+  \lim_{r \to 0}\frac{\nu([x,x + r])}{r} = f,
+\end{align*}
+is an FTC-like statement since the numerator -- the measure of an interval -- is the change in value of an
+accumulation function:
+\begin{align*}
+  \nu([x, x + r]) = \int_x^{x + r} f \dm = \int_0^{x + r} f \dm - \int_0^{x} f \dm,
+\end{align*}
+and therefore what we are saying is that the derivative of the $f$-accumulation function is $f$ itself.
+
+
+So what we are saying is
+\begin{enumerate}
+\item If you define the accumulation function $\int_0^x f \dm$ where $f$ is the Radon-Nikodym derivative, then the
+  derivative of the accumulation function is $f$.
+\item ... I'm not sure that's quite the right statement
+\end{enumerate}
+
+In $\R^n$ these become
+
+\begin{align*}
+  f^* = \lim_{r \to 0} \frac{\nu(B(x, r))}{m(B(x, r))},
+\end{align*}
+and $\nu(B(x, r)) = \int_{B(x, r)} f \dm$.
+
+So the theorem below (\ref{folland-3-18-limit-of-average}) tells us that
+\begin{align*}
+  \lim_{r \to 0} \frac{\nu(B(x, r))}{m(B(x, r))} = f.
+\end{align*}
+
+(The connection to theorem \ref{folland-3-18-limit-of-average} is
+that $\frac{\nu(B(x, r))}{m(B(x, r))} = (A_r f)(x)$.)
+
+Now, in the one-dimensional case we could interpret $\nu([x, x + r])$ as a difference between accumulation
+function values at two points $x$ and $x + r$, which allows us to
+interpret $\lim_{r \to 0}\frac{\nu([x,x + r])}{r}$ as a derivative of an accumulation function.
+
+But what about $\lim_{r \to 0} \frac{\nu(B(x, r))}{m(B(x, r))} = \lim_{r \to 0} (A_r f)(x)$? Can we interpret this as
+\begin{align*}
+  \nu(B(x, r)) = \int_{B(x, r)} f \dm
+\end{align*}
+
+\begin{question*}
+  I think I understand the connection in the one-dimensional case, but not in higher dimensions.
+
+  In one dimension ($\mathbb{R}$) under Lebesgue measure $m$, the connection is this:
+
+  Suppose we have a measure $\nu$ and the Radon-Nikodym derivative w.r.t. $m$ exists. Then for an interval $[x, x + r]$ we have
+  \begin{align*}
+    \nu([x,x + r] = \int_{x}^{x+r} f dm.
+  \end{align*}
+  But this integral can be regarded as the difference between two integrals:
+  \begin{align*}
+    \nu([x, x + r]) = \int_0^{x + r} f dm - \int_0^{x} f dm,
+  \end{align*}
+  and thus $f^* = \lim_{r \to 0}\frac{\nu([x,x + r])}{r}$ is a derivative of the function $F(x) = \int_0^x f dm$.
+
+  We also note that $\nu([x, x + r])$ is the average value of $f$ on the interval, so then the point of Folland
+  theorem 3.18 is that it tells us that $f^* = f$ a.e. which is an FTC-like statement: the derivative of the
+  ``area-so-far​'' function $F$ is $f$ itself.
+
+  Now, how does this extend to the higher-dimensional context in which the Folland chapter is written? We have
+  \begin{align*}
+    f^* = \lim_{r \to 0} \frac{\nu(B(x, r))}{m(B(x, r))},
+  \end{align*}
+  and $\nu(B(x, r)) = \int_{B(x, r)} f dm$, but what I don't see is how we can make a statement analogous to
+  \begin{align*}
+    \nu([x, x + r]) = \int_0^{x + r} f dm - \int_0^{x} f dm,
+  \end{align*}
+  regarding the ball $B(x, r)$ in $\mathbb{R}^n$ for $n > 1$.
+
+  (In standard multivariable calculus I gather that Green's / Stokes' theorems are relevant? But that's not something I've studied yet.)
+\end{question*}
+
+
 \begin{lemma}[A covering lemma]
   If $E \subset \R^n$ is covered by a collection $\mc B$ of open balls and the diameter of every ball is
   bounded by $R < \infty$, then there exists a disjoint collection of balls $B_1, \ldots$ such
   that $m(E) \leq 3^n \sum_i m(B_i)$.
 \end{lemma}
 
-If you have a collection of covering balls, you can extract a disjoint set that still covers a certain fraction.
+If you have a collection of covering balls, you can extract a disjoint set that still covers a certain
+fraction.
+
+\begin{remark*}
+  In the following, it is worth considering that the function $f$ could be a Radon-Nikodym derivative of a
+  measure $\nu$ with respect to $\mu$. If it is, then the statement ``$f$ is locally integrable​'' implies
+  that $\nu$ assigns a finite measure to bounded compact sets. And ``$f$ is integrable​'' implies that $\nu$ is a
+  finite measure.
+\end{remark*}
 
 \begin{definition*}[Locally integrable]
   $f: \R^n \to \R$ is \defn{locally integrable} if $\int_K |f| \dmu < \infty$ for all bounded (compact) sets $K$.
@@ -2086,7 +2191,7 @@ If you have a collection of covering balls, you can extract a disjoint set that 
 \begin{definition}[Average value of a function]
   If $f \in L^1_{loc}$ then the \defn{average value} of $f$ on a ball $B(x, r)$ is
   \begin{align*}
-  A_r f(x) := \frac{1}{m(B(x, r))} \int_{B(x, r)} f \dm
+    (A_r f)(x) := \frac{1}{m(B(x, r))} \int_{B(x, r)} f \dm
 \end{align*}
 \end{definition}
 
@@ -2094,7 +2199,7 @@ If you have a collection of covering balls, you can extract a disjoint set that 
 \begin{definition}[Maximal function]
   If $f \in L^1_{loc}$ the \defn{maximal function} of $f$ is
   \begin{align*}
-    M f(x) := \sup_r A_r |f|(x).
+    M f(x) := \sup_r (A_r |f|)(x).
   \end{align*}
   Informally, $M f(x)$ is the supremum of the values you get when comparing regions centred at $x$ according to
   the average absolute value of $f$ in that region.
@@ -2149,8 +2254,40 @@ If you have a collection of covering balls, you can extract a disjoint set that 
 \end{proof}
 
 
-\section{Topology}
+\subsection{Lebesgue differentiation theorems}
 
+\begin{theorem}\label{folland-3-18-limit-of-average}
+
+  \begin{align*}
+    \lim_{r \to 0} (A_r f)(x) = f(x) \ae
+  \end{align*}
+\end{theorem}
+The point here is that if $f = \frac{\d\nu}{\dm}$ then
+\begin{align*}
+  (A_r f)(x)
+  &= \frac{1}{m(B(x, r))} \int_{B(x, r)} f \dm \\
+  &= \frac{\nu(B(x, r))}{m(B(x, r))},
+\end{align*}
+and so the theorem is actually saying that the derivative of some sort of function based on $\int_{B(x, r)} f \dm$ is $f$ a.e.
+
+The theorem can be written differently:
+\begin{align*}
+  \lim_{r \to 0} \frac{1}{m(B(x, r))} \int_{B(x, r)} (f(y) - f(x)) \dy = 0 \ae
+\end{align*}
+and in fact a stronger statement is true with the integrand replaced by its absolute value. We define the \defn{Lebesgue set}
+of $f$ to be
+\begin{align*}
+  L_f := \Big\{ x ~:~  \lim_{r \to 0} \frac{1}{m(B(x, r))} \int_{B(x, r)} |f(y) - f(x)| \dy = 0\Big\}.
+\end{align*}
+Then
+\begin{theorem*}
+  $m(L_f^c) = 0$.
+\end{theorem*}
+
+the Lebesgue set of $f$ are the points at which the derivative of $F(x) = \int_0^x f dm$ equals $f$, or rather,
+the equivalent statement for balls in $R^n$, and I'm not sure quite what that statement is.
+
+Anyway, the point is that this FTC-like statement is true a.e.
 
 
 
