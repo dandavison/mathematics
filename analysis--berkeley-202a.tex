@@ -610,9 +610,6 @@ A \defn{probability measure} is a measure where $\mu(\Omega) = 1$.
 
 \section{Non-measurable sets}
 
-But, presumably, the density of $T$ is $0.5$ on every subset of $[0, 1]$. This is a contradiction, proving
-that $T$ is not Lebesgue measurable.
-
 \newpage
 \begin{example}[Random set]
 
@@ -628,20 +625,19 @@ that $T$ is not Lebesgue measurable.
   \end{align*}
   which can be made arbitrarily high, say 0.99, by taking $\eps$ small.
 
-  We can also write $O$ as a countable union of open intervals $O = \bigcup_{i=1}^\infty O_i$, and thus write
-  the density of $T$ in $O$ as a weighted average of local densities in each interval $O_i$:
+  We can also write $O$ as a countable union of open intervals $O = \bigcup_{i=1}^\infty I_i$, and thus write
+  the density of $T$ in $O$ as a weighted average of local densities in each interval $I_i$:
   \begin{align*}
-    \frac{m(T \cap O)}{m(O)} = \sum_{i=1}^\infty \frac{m(O_i)}{m(O)} \frac{m(T_i)}{m(O_i)},
+    \frac{m(T \cap O)}{m(O)} = \sum_{i=1}^\infty \frac{m(I_i)}{m(O)} \frac{m(T_i)}{m(I_i)},
   \end{align*}
-  where $T_i = T \cap O_i$ are the points of $T$ ``covered​'' by $O_i$.
+  where $T_i = T \cap I_i$ are the points of $T$ ``covered​'' by $I_i$.
 
-  But if the density of $T$ is $0.5$ on every subset of $[0, 1]$ then $m(T_i)/m(O_i) = 0.5$ and we have
+  But (presumably!) the density of $T$ is $0.5$ in every interval, or at least, every one of the countably many
+  intervals with rational endpoints. Therefore $m(T_i)/m(I_i) = 0.5$ and we have
   \begin{align*}
     0.99 = \frac{m(T \cap O)}{m(O)} = 0.5\sum_{i=1}^\infty \frac{m(I_i)}{m(O)} = 0.5.
   \end{align*}
-  \red{I don't think we can say the density of $T$ is $0.5$ on every interval $O_i$ because $T$ was known at
-    the time when the $O_i$ were chosen, and thus they could be arbitrarily efficient covers of $T$. Of course,
-    we know one set on which the density of $T$ is $1$: $T$ itself.}
+  This is a contradiction, proving that such a $T$ is not Lebesgue measurable.
 \end{example}
 
 
