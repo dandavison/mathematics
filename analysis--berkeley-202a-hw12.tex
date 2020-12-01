@@ -1,20 +1,20 @@
 \section*{Math 202A - HW12 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
-Recall that for locally integrable $f$, the average value of $f$ on a ball centered at $x$ is
-\begin{align*}
-  (A_r f)(x) = \frac{1}{m(B(x, r))} \int_{B(x, r)} f,
-\end{align*}
-and that the maximal function $(H f)(x) := \origsup_r (A_r |f|)(x)$ is the maximum average value of $|f|$ over
-balls of any size centered at $x$.
+% Recall that for locally integrable $f$, the average value of $f$ on a ball centered at $x$ is
+% \begin{align*}
+%   (A_r f)(x) = \frac{1}{m(B(x, r))} \int_{B(x, r)} f,
+% \end{align*}
+% and that the maximal function $(H f)(x) := \origsup_r (A_r |f|)(x)$ is the maximum average value of $|f|$ over
+% balls of any size centered at $x$.
 
-The main theorem concerning $H f$ is
+% The main theorem concerning $H f$ is
 
-\begin{theorem}[Maximal theorem]
-  For any $f \in L^1$ there exists a constant $C > 0$ such that for all $a > 0$
-  \begin{align*}
-    m\(\{x ~:~ (H f)(x) > a\}\) \leq \frac{C}{a} \int |f|.
-  \end{align*}
-\end{theorem}
+% \begin{theorem}[Maximal theorem]
+%   For any $f \in L^1$ there exists a constant $C > 0$ such that for all $a > 0$
+%   \begin{align*}
+%     m\(\{x ~:~ (H f)(x) > a\}\) \leq \frac{C}{a} \int |f|.
+%   \end{align*}
+% \end{theorem}
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw12-1ffa.png}
 \end{mdframed}
@@ -24,28 +24,32 @@ from a point further from the origin is capable of being lower than that seen fr
 origin. Why would this be? Suppose we have points $x_1$ and $x_2$ with $|x_2| > |x_1|$, and that we are located
 at $x_2$.
 
-I think the intuition is this: since $0 < \int |f| < \infty$, there must exist some distance $U$ such
-that $|f(x)|$ is small/decaying rapidly to zero for all $|x| > U$. Viewed from out there, $(H f)(x)$ is
-determined by what proportion the bulk of the mass (closer to the origin) makes up, and this decreases
-as $|x|^{-n}$.
 
 
 
 
 \begin{proof}
+
+  [incomplete]
+
   We must show that $(H f)(x) \geq C|x|^{-n}$ for $|x| > R$, where $C$ and $R$ are constants to be determined.
 
   Let $M = \int |f| \in (0, \infty)$.
 
+  I think the intuition is this: since $0 < \int |f| < \infty$, there must exist some distance $U$ such
+  that $|f(x)|$ is small/decaying rapidly to zero for all $|x| > U$. Viewed from out there, $(H f)(x)$ is
+  determined by what proportion the bulk of the mass (closer to the origin) makes up, and this decreases
+  as $|x|^{-n}$.
+
   Let $\eps > 0$.
 
-  First suppose $f = M\ind_{[-\eps, \eps]}$.
+  First suppose $f = M\ind_{B(\mathbf{0}, \eps)}$.
 
   Then we have $(H f)(x) \to C|x|^{-n}$ as $|x|\eps^{-1} \to \infty$, where $C$ is a constant that reflects
   both $M$ (the mass near the origin) and the volume of a ball of radius $|x|$.
 
   \red{TODO} give an explicit expression for the volume
-
+  \red{TODO} incomplete
 \end{proof}
 
 \newpage
@@ -65,7 +69,7 @@ as $|x|^{-n}$.
   \end{align*}
   and
   \begin{align*}
-    (H* f)(x) := \origsup V(x).
+    (H^* f)(x) := \origsup V(x).
   \end{align*}
   Note that $U(x) \subseteq V(x)$ for all $x$. Therefore $H f \leq H^* f$.
 
@@ -162,25 +166,25 @@ as $|x|^{-n}$.
       &= \lim_{r \to 0} \frac{\alpha\pi r^2}{\pi r^2} \\
       &= \alpha.
     \end{align*}
-    For $n > 1$ in general, we can do the same thing: we have an $(n-1)$-dimensional hypersphere, and we select
-    a hyperspherical sector whose volume relative to the volume of the hypersphere is $\alpha$. We define $E$
-    to be the set of points in that hyperspherical sector.
+    For $n > 2$, we can do the same thing: we have an $(n-1)$-dimensional hypersphere, and we select a
+    hyperspherical sector whose volume relative to the volume of the hypersphere is $\alpha$. We define $E$ to
+    be the set of points in that hyperspherical sector.
+
+    [It was pointed out to me on Slack that a complicated expression for the hyperspherical sector is not
+    needed for $n > 2$: we can just demand that the first two coordinates are as given above and then we don't
+    have to explicity specify the boundary of the set in the other coordinates.]
   \end{proof}
 
   \begin{remark*}
-    One could make a probabilistic construction in which each point $x$ is included in $E$ with
-    probability equal to $|x|$:
-    \begin{align*}
-      E := \{x \in \R^n ~:~ |x| < \text{Bern}(|x|), |x| \leq 1\}.
-    \end{align*}
-    For such an $E$ it would (I claim) be true almost surely that $D_E(x) = \alpha$ for all $x$ such
-    that $|x| = \alpha$, but such an $E$ would not (in general?) be a Borel set.
+    For $n=1$ one could make a probabilistic construction in which each point $x$ is included in $E$ with
+    probability equal to $|x|$. For such an $E$ it would (I claim) be true almost surely that $D_E(x) = \alpha$
+    for all $x$ such that $|x| = \alpha$, but such an $E$ would not in general be a Borel set.
 
-    Recall that it is not possible to construct a measurable set with measure $\alpha \in (0, 1)$ everywhere.
-    The proof is by contradiction: we can cover our set with an open set to arbitrarily high efficiency; but
-    this open set can be written as the countable union of intervals, and so this arbitrarily high density can
-    be written as a weighted average of densities in intervals, and yet the density in each interval
-    is $\alpha$.
+    % Recall that it is not possible to construct a measurable set with measure $\alpha \in (0, 1)$ everywhere.
+    % The proof is by contradiction: we can cover our set with an open set to arbitrarily high efficiency; but
+    % this open set can be written as the countable union of intervals, and so this arbitrarily high density can
+    % be written as a weighted average of densities in intervals, and yet the density in each interval
+    % is $\alpha$.
   \end{remark*}
 
 
@@ -190,7 +194,9 @@ as $|x|^{-n}$.
   \end{claim*}
 
   \begin{proof}
-    Let $E = \{u \in \R ~:~ \sin(|u|^{-1}) > 0\}$ and let $x = 0$.
+
+    [not attempted]
+    % Let $E = \{u \in \R ~:~ \sin(|u|^{-1}) > 0\}$ and let $x = 0$.
   \end{proof}
 \end{enumerate}
 
@@ -205,5 +211,8 @@ as $|x|^{-n}$.
 \end{mdframed}
 
 \begin{proof}
+
+  [Not attempted]
+
   Some modification of the Cantor-Lebesgue function?
 \end{proof}
