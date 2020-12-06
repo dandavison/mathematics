@@ -10,40 +10,68 @@ Therefore a set is both open and closed (clopen) iff it is open and its compleme
 
 Therefore (no non-trivial clopen sets) $\iff$ (cannot be partitioned into two disjoint open sets)
 
-\begin{claim*}
-  $A \union B$ is connected.
-\end{claim*}
+\begin{enumerate}
+\item
+  \begin{claim*}
+    $A \union B$ is connected.
+  \end{claim*}
 
-\begin{proof}
-  We must show that $A \union B$ cannot be written as the union of two disjoint non-empty open sets.
+  \begin{proof}
+    We must show that $A \union B$ cannot be written as the union of two disjoint non-empty open sets.
 
-  Suppose for a contradiction that $U$ and $V$ are disjoint open sets such that $U \union V = A \cup B$.
-  Let $z \in B$ and without loss of generality suppose that $z \in V$. Then $B \subseteq V$ (since $B$ is
-  connected). Note that the open ball at $(0, 0)$ contains a point of $B$. But $U$ and $V$ are disjoint,
-  therefore $(0, 0) \in V$. But $(0, 0) \in A$ and $A$ is connected, so $A \subseteq V$.
-  Therefore $A \union B = V$. But this is a contradiction since $U$ and $V$ are disjoint and non-empty.
-  Therefore $A \union B$ are connected.
-\end{proof}
+    Suppose for a contradiction that $U$ and $V$ are disjoint open sets such that $U \union V = A \cup B$.
+    Let $z \in B$ and without loss of generality suppose that $z \in V$. Then $B \subseteq V$ (since $B$ is
+    connected). Note that the open ball at $(0, 0)$ contains a point of $B$. But $U$ and $V$ are disjoint,
+    therefore $(0, 0) \in V$. But $(0, 0) \in A$ and $A$ is connected, so $A \subseteq V$.
+    Therefore $A \union B = V$. But this is a contradiction since $U$ and $V$ are disjoint and non-empty.
+    Therefore $A \union B$ are connected.
+  \end{proof}
 
 
-\begin{claim*}
-  $A \union B$ is not path-connected.
-\end{claim*}
+  \begin{claim*}
+    $A \union B$ is not path-connected.
+  \end{claim*}
 
-\begin{proof}
-  Suppose for a contradiction that there exists a continuous function $f: [0, 1] \to A \union B$ such
-  that $f(0) = (0, 0)$ and $f(1) = (0, 1)$.
+  \begin{proof}
+    Suppose for a contradiction that there exists a continuous function $f: [0, 1] \to A \union B$ such
+    that $f(0) = (0, 0)$ and $f(1) = (0, 1)$.
 
-  Suppose for a contradiction that there exists a continuous function $f: [0, 1] \to A \union B$ such
-  that $f(0) = (0, 1)$ and $f(1) = (0, 0)$.
+    Suppose for a contradiction that there exists a continuous function $f: [0, 1] \to A \union B$ such
+    that $f(0) = (0, 1)$ and $f(1) = (0, 0)$.
 
-  Write $f = (f_x, f_y)$ where $f_x: [0, 1] \to [0, 1]$ and $f_y: [0, 1] \to [-1, 1]$ give the coordinates of $f$.
+    Write $f = (f_x, f_y)$ where $f_x: [0, 1] \to [0, 1]$ and $f_y: [0, 1] \to [-1, 1]$ give the coordinates of $f$.
 
-  Let $\eps > 0$ and let $(t_n)_{n=1}^\infty$ be an increasing sequence with $0 < t_n < 1$ and $t_n \to 1$.
-  Then $f_y(t_n) \to 0$ since $f$ is continuous. Let $N$ be such that $f_y(t_n) < \eps$ for all $n \geq N$. But
-  this is a contradiction since $f_y (t_n))$ is oscillating between $-1$ and $1$ but $\eps$ is arbitrary.
-  Therefore no such continuous function $f$ exists.
-\end{proof}
+    Let $\eps > 0$ and let $(t_n)_{n=1}^\infty$ be an increasing sequence with $0 < t_n < 1$ and $t_n \to 1$.
+    Then $f_y(t_n) \to 0$ since $f$ is continuous. Let $N$ be such that $f_y(t_n) < \eps$ for all $n \geq N$. But
+    this is a contradiction since $f_y (t_n))$ is oscillating between $-1$ and $1$ but $\eps$ is arbitrary.
+    Therefore no such continuous function $f$ exists.
+  \end{proof}
+\item
+  \begin{claim*}
+
+    (No, this is wrong, the rationals are disconnected.)
+
+    $(\Q \cap [0, 1]) \times [0, 1]$ is a bounded connected subset of $\R^2$ that has infinitely many
+    path-connected components and for which infinitely many of these components take the form of vertical
+    intervals of unit length.
+  \end{claim*}
+
+  \begin{proof}
+    Let $U = (\Q \cap [0, 1]) \times [0, 1]$.
+
+    $U$ is a bounded subset of $\R^2$, since $U \subset [0, 1] \times [0, 1] \subset \R^2$.
+
+    To see that $U$ is connected, let $G, H$ be disjoint non-empty open sets such that $G \union H = U$.
+    Let $x \in \Q \cap [0, 1]$. Assume without loss of generality that $x \in G$.
+
+    Let $x \in \Q \cap [0, 1]$. We have that $I = \{x\} \times [0, 1] \subset U$ is a vertical interval of unit
+    length. Let $(x, y_1), (x, y_2) \in I$ and without loss of generality suppose that $y_1 < y_2$.
+    Then $f: [0, 1] \to I$ defined by $f(t) = (x, y_1 + t(y_2 - y_1))$ has the property that $f(0) = (x, y_1)$
+    and $f(1) = (x, y_2)$. Therefore $I$ is path-connected. Furthermore, there are infinitely many subsets of
+    the form $\{x\} \times [0, 1] \subset U$ for $x \in \Q \cap [0, 1]$.
+  \end{proof}
+\end{enumerate}
+
 
 
 \newpage
