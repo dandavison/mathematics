@@ -224,49 +224,34 @@ from $0$ to $1$, the loop continuously deforms from $f$ into $g$.
     Let $\mc L = \{f_\gamma ~:~ \gamma \in \Gamma\}$ be the collection of loops in $A$.
 
     Let $K_\gamma = \big|\{t \in [0, 1) ~:~ f_\gamma(t) = (0, 0) \}\big|$ be the number of times
-    loop $f_\gamma$ passes through $(0, 0)$ before $t = 1$. We have $K_\gamma \geq 1$ because each loop starts
+    loop $f_\gamma$ passes through $(0, 0)$ before $t = 1$, if this is finite. If the loop follows infinitely
+    many circles then set $K_\gamma = \infty$. We have $K_\gamma \geq 1$ because each loop starts
     at $(0, 0)$.
 
     Note that a circle may be followed in one of two ``orientations​'': clockwise or anticlockwise.
     Let $\rho_{\gamma, k}$ be the orientation of the $k$-th circle in loop $\gamma$.
 
+    If $K_\gamma < \infty$ then set $\rho_{\gamma, k} = 0$ for all $k > K_\gamma$. Thus every loop $f_\gamma$
+    is associated with an infinite sequence $\rho_1, \rho_2, \ldots$.
+
     Define the relation $f \sim g$ to mean $f$ is deformable into $g$. We have seen above that this is an
     equivalence relation.
 
     Let $\lambda, \gamma \in \Gamma$. We claim that $f_\gamma \sim f_\lambda$ if and only
-    if $K_\gamma = K_\lambda$ and $\rho_{\gamma, k} = \rho_{\lambda, k}$ for all $k \in 1, \ldots, K_\gamma$.
+    if $\rho_{\gamma, k} = \rho_{\lambda, k}$ for all $k \in \N$. In other words, two loops are equivalent if
+    and only if the sequences of orientations of their circles are the same.
 
-    Therefore the set of equivalence classes under $\sim$ is in bijection with the
-    set $\{(K, (\rho_1, \ldots, \rho_K)) ~:~ K \in \N, \rho_k \in \{0, 1\}\}$. Furthermore, there is a
-    bijection between this set and the uncountable set $[0, 1] \subset \R$: let $\omega \in [0, 1]$ and
+    \red{TODO}: make this topological argument.
+
+    (Careful: there are finite loops (for which we have assigned an infinite tail of zeros), and also infinite
+    loops which happen to have a tail of zeros.)
+
+    Therefore the set of equivalence classes under $\sim$ is in bijection with the set of infinite binary
+    sequences $\{(\rho_1, \rho_2, \ldots) ~:~ \rho_k \in \{0, 1\}\}$. Clearly, this is uncountable, since it is
+    in bijection with the uncountable set $[0, 1] \subset \R$. Explicitly, let $\omega \in [0, 1]$ and
     let $d_1, d_2, \ldots$ be the binary expansion of the fractional part of $\omega$. If this expansion
-    terminates after finitely many, say $J$, places, then we assign
-    \begin{align*}
-      \omega \mapsto (J, )
-    \end{align*}
-
-
-    Note that loop $f_\gamma$ corresponds to a sequence of circles $(A_{n_k})_{k=1}^{K_\gamma}$. More formally,
-    there exists a bijection
-    \begin{align*}
-      \varphi:([0, 1] \to \R^2) &\xrightarrow{\rm \cong} \{A_i ~:~ i \in \N\}^\N \\
-      f_\gamma &\mapsto (A_{n_k})_{k=1}^{K_\gamma},
-    \end{align*}
-    where $(n_k)$ is a sequence of indices identifying which circle the loop $f_\gamma$ follows after
-    passing $(0, 0)$ for the $k$-th time. (If the loop follows finitely many circles then the sequence of
-    indices repeats the final index indefinitely.)
-
-
-
-
-
-
-    is countable because we may view $[0, 1]$ as a time parameter and thus enumerate the events of
-    hitting $(0, 0)$. (Here, $\N$ excludes $0$.)
-
-    Let $\rho$
-
-
+    terminates after finitely many, say $J$, places, then set $d_j = 0$ for all $j > J$. Then we
+    assign $\omega \mapsto (d_j)_{j=1}^\infty$. This is clearly injective, and also surjective since every
+    possible binary expansion is realised by some $\omega \in [0, 1]$.
   \end{proof}
-
 \end{enumerate}
