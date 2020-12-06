@@ -168,3 +168,105 @@ following table excludes topologies that differ only by a relabeling of the elem
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-aa83.png}\\
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-f49f.png}
 \end{mdframed}
+
+Note that $H$ offers a continuous deformation of the loop $f$ into the loop $g$, in the sense that each
+function $y \to H(0, y)$, for $y$
+
+Note that $H$ offers a continuous deformation of the loop $f$ into the loop $g$, in the sense that each
+function $y \mapsto H(x, y)$, for $y \in [0, 1]$, is a loop. For $x = 0$ this is the loop $f$, and as $x$ rises
+from $0$ to $1$, the loop continuously deforms from $f$ into $g$.
+
+\begin{enumerate}[label=(\alph*)]
+
+\item
+  \begin{claim*}
+    The relation $f$ is deformable into $g$ is an equivalence relation on the collection of loops in $X$.
+  \end{claim*}
+
+  \begin{proof}
+    Let $\sim$ be the relation: $f$ is deformable into $g$.
+    \begin{enumerate}
+
+    \item {\it Reflexive}: yes, $f \sim f$ since we may take $H(x, y) = f(y)$ for all $x$.
+
+    \item {\it Symmetric}: Let $H_{f,g}: [0, 1]^2 \to X$ be a function such that $f \sim g$.
+      Then $H_{g,f} = \{((1 - x, y), H(x, y)) ~:~ x \in [0, 1], y \in [0, 1]\}$ is a function such
+      that $g \sim f$.
+
+    \item {\it Transitive}: Let $H_{f,g}: [0, 1]^2 \to X$ be such that $f \sim g$, and let
+      $H_{g,h}: [0, 1]^2 \to X$ be such that $g \sim h$. Then
+      \begin{align*}
+        H_{f, h} =
+        ~~~~&\{ (x, y, H_{f, g}) ~:~ x \in [0, 0.5), y \in [0, 1]\} \\
+        ~~~~\union ~&\{ (x, y, H_{g, h}) ~:~ x \in [0.5, 1], y \in [0, 1]\}
+      \end{align*}
+      is a function such that $f \sim h$.
+    \end{enumerate}
+  \end{proof}
+
+\item
+  \begin{claim*}
+    There are uncountably many equivalence classes for the collection of loops in $A$.
+  \end{claim*}
+
+
+  Informally: each loop corresponds to a countable sequence of circles each of which may be followed in one of
+  two orientations (clockwise and anticlockwise). Loop $f$ is deformable into loop $g$ if their sequence of
+  circles are the same and their sequence of orientations are the same. The number of circles involved in a
+  single loop is countably infinite (though possibly finite), therefore the set of oriented loops has
+  cardinality equal to the powerset of the natural numbers, and this is also the cardinality of the set of
+  equivalence classes.
+
+  \begin{proof}
+    We define a loop in $A$ to be a continuous function $f: [0, 1] \to \R^2$ satisfying $f(0) = f(1) = (0, 0)$
+    and $f([0, 1]) \subseteq A$.
+
+    Let $\mc L = \{f_\gamma ~:~ \gamma \in \Gamma\}$ be the collection of loops in $A$.
+
+    Let $K_\gamma = \big|\{t \in [0, 1) ~:~ f_\gamma(t) = (0, 0) \}\big|$ be the number of times
+    loop $f_\gamma$ passes through $(0, 0)$ before $t = 1$. We have $K_\gamma \geq 1$ because each loop starts
+    at $(0, 0)$.
+
+    Note that a circle may be followed in one of two ``orientations​'': clockwise or anticlockwise.
+    Let $\rho_{\gamma, k}$ be the orientation of the $k$-th circle in loop $\gamma$.
+
+    Define the relation $f \sim g$ to mean $f$ is deformable into $g$. We have seen above that this is an
+    equivalence relation.
+
+    Let $\lambda, \gamma \in \Gamma$. We claim that $f_\gamma \sim f_\lambda$ if and only
+    if $K_\gamma = K_\lambda$ and $\rho_{\gamma, k} = \rho_{\lambda, k}$ for all $k \in 1, \ldots, K_\gamma$.
+
+    Therefore the set of equivalence classes under $\sim$ is in bijection with the
+    set $\{(K, (\rho_1, \ldots, \rho_K)) ~:~ K \in \N, \rho_k \in \{0, 1\}\}$. Furthermore, there is a
+    bijection between this set and the uncountable set $[0, 1] \subset \R$: let $\omega \in [0, 1]$ and
+    let $d_1, d_2, \ldots$ be the binary expansion of the fractional part of $\omega$. If this expansion
+    terminates after finitely many, say $J$, places, then we assign
+    \begin{align*}
+      \omega \mapsto (J, )
+    \end{align*}
+
+
+    Note that loop $f_\gamma$ corresponds to a sequence of circles $(A_{n_k})_{k=1}^{K_\gamma}$. More formally,
+    there exists a bijection
+    \begin{align*}
+      \varphi:([0, 1] \to \R^2) &\xrightarrow{\rm \cong} \{A_i ~:~ i \in \N\}^\N \\
+      f_\gamma &\mapsto (A_{n_k})_{k=1}^{K_\gamma},
+    \end{align*}
+    where $(n_k)$ is a sequence of indices identifying which circle the loop $f_\gamma$ follows after
+    passing $(0, 0)$ for the $k$-th time. (If the loop follows finitely many circles then the sequence of
+    indices repeats the final index indefinitely.)
+
+
+
+
+
+
+    is countable because we may view $[0, 1]$ as a time parameter and thus enumerate the events of
+    hitting $(0, 0)$. (Here, $\N$ excludes $0$.)
+
+    Let $\rho$
+
+
+  \end{proof}
+
+\end{enumerate}
