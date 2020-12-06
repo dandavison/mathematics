@@ -4,12 +4,6 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-26dd.png}
 \end{mdframed}
 
-Recall that a set is closed by definition if its complement is open.
-
-Therefore a set is both open and closed (clopen) iff it is open and its complement is open.
-
-Therefore (no non-trivial clopen sets) $\iff$ (cannot be partitioned into two disjoint open sets)
-
 \begin{enumerate}
 \item
   \begin{claim*}
@@ -47,28 +41,67 @@ Therefore (no non-trivial clopen sets) $\iff$ (cannot be partitioned into two di
     Therefore no such continuous function $f$ exists.
   \end{proof}
 \item
-  \begin{claim*}
 
-    (No, this is wrong, the rationals are disconnected.)
+  Informally, we will take vertical intervals positioned at each point of a countably infinite sequence of
+  rationals and between each successive pair, place a variant of the ``topologist's sine curve​'' constructed so
+  that it ``speeds up​'' in both directions. The resulting topological space will be connected but not
+  path-connected, because we have seen above that that is what happens when the topologist's sine curve
+  approaches a vertical interval.
 
-    $(\Q \cap [0, 1]) \times [0, 1]$ is a bounded connected subset of $\R^2$ that has infinitely many
-    path-connected components and for which infinitely many of these components take the form of vertical
-    intervals of unit length.
-  \end{claim*}
+  Let $\N$ be the natural numers excluding $0$.
+
+  Let $q_n = \sum_{i=1}^n 2^{-n} \in \Q \cap [\frac{1}{2}, 1)$. Then $\{q_n ~:~ n \in \N\}$ is a countably
+  infinite set of rationals in $[\frac{1}{2}, 1)$.
+
+  Let $I_n = \{q_n\} \times [0, 1] \subset U$. This is a vertical interval of unit length.
+
+  Let $m_n = (q_{n+1} - q_n)/2$ and let $S_n = \{\sin\((|x - m_n| - m_n)^{-1}\) ~:~ x \in (q_n, q_{n+1})\}$. We
+  will refer to this as a ``bidirectional topologist's sine curve​''.
+
+  Finally, let $U = \{I_n ~:~ n \in \N\} \union \{S_n ~:~ n \in \N\}$.
+
+  Informally, $U$ consists of a countable collection of vertical intervals together with a ``bidirectional
+  topologist's sine curve​'' between each successive pair of vertical intervals.
+
+
+  \begin{claim}
+    $U$ is a bounded and connected subset of $\R^2$.
+  \end{claim}
 
   \begin{proof}
-    Let $U = (\Q \cap [0, 1]) \times [0, 1]$.
+    $U \subset [0, 1]^2 \subset \R^2$ therefore $U$ is a bounded subset of $\R^2$.
 
-    $U$ is a bounded subset of $\R^2$, since $U \subset [0, 1] \times [0, 1] \subset \R^2$.
+    Recall that we proved above that $V := \(\{0\} \times [0, 1]\) \union \{\sin(1/x) ~:~ x \in (0, 1]\}$ is a
+    connected topological space.
 
-    To see that $U$ is connected, let $G, H$ be disjoint non-empty open sets such that $G \union H = U$.
-    Let $x \in \Q \cap [0, 1]$. Assume without loss of generality that $x \in G$.
+    It follows that $I_n \union S_n$ is connected for all $n$ (formally, I believe we can prove this by
+    exhibiting a homeomorphism between $V$ and $I_n \union S_n$ and noting that a topological space is
+    connected if it is homeomorphic to a different connected topological space. Or possibly I would have to use
+    just the ``first half​'' of $S_n$, i.e. $I_n \cup \(S_n \cap \((q_n, m_n) \times [0, 1]\)\)$)
 
-    Let $x \in \Q \cap [0, 1]$. We have that $I = \{x\} \times [0, 1] \subset U$ is a vertical interval of unit
-    length. Let $(x, y_1), (x, y_2) \in I$ and without loss of generality suppose that $y_1 < y_2$.
-    Then $f: [0, 1] \to I$ defined by $f(t) = (x, y_1 + t(y_2 - y_1))$ has the property that $f(0) = (x, y_1)$
-    and $f(1) = (x, y_2)$. Therefore $I$ is path-connected. Furthermore, there are infinitely many subsets of
-    the form $\{x\} \times [0, 1] \subset U$ for $x \in \Q \cap [0, 1]$.
+    Similarly, it follows that $S_n \cup I_{n+1}$ is connected for all $n$ (the geometry is identical but with
+    left-right orientation reversed).
+
+    It then follows by induction that $U$ is connected.
+  \end{proof}
+
+  \begin{claim}
+    $U$ has infinitely many path-connected components and infinitely many of these take the form of a vertical
+    interval of unit length.
+  \end{claim}
+
+  \begin{proof}
+    Let $I_n = \{q_n\} \times [0, 1] \subset U$. This is a vertical interval of unit length. Clearly, $I_n$ is
+    path-connected. To see this, let $(q_n, y_1), (q_n, y_2) \in I_n$ and without loss of generality suppose
+    that $y_1 < y_2$. - Then $f: [0, 1] \to I_n$ defined by $f(t) = (q_n, y_1 + t(y_2 - y_1))$ has the property
+    that $f(0) = (q_n, y_1)$ and $f(1) = (q_n, y_2)$.
+
+    Recall that $S_n$ is a ``bidirectional topologist's sine curve​'' in the current construction, and recall also
+    that we proved above that $\(\{0\} \times [0, 1]\) \union \{\sin(1/x) ~:~ x \in (0, 1]\}$ is not path
+    connected. It follows that neither $I_n \union S_n$ nor $I_n \union S_{n-1}$ is path-connected, and it
+    follows from this that $I_n \union I_{m}$ is not path-connected for all $n \neq m$. We
+    have $\bigcup_{n \in \N} I_n \subset U$, therefore $U$ contains infinitely many path-connected components
+    which take the form of a vertical interval of unit length.
   \end{proof}
 \end{enumerate}
 
