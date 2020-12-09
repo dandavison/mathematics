@@ -4,7 +4,7 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-26dd.png}
 \end{mdframed}
 
-\begin{enumerate}
+\begin{enumerate}[label=(\alph*)]
 \item
   \begin{claim*}
     $A \union B$ is connected.
@@ -28,9 +28,6 @@
 
   \begin{proof}
     Suppose for a contradiction that there exists a continuous function $f: [0, 1] \to A \union B$ such
-    that $f(0) = (0, 0)$ and $f(1) = (0, 1)$.
-
-    Suppose for a contradiction that there exists a continuous function $f: [0, 1] \to A \union B$ such
     that $f(0) = (0, 1)$ and $f(1) = (0, 0)$.
 
     Write $f = (f_x, f_y)$ where $f_x: [0, 1] \to [0, 1]$ and $f_y: [0, 1] \to [-1, 1]$ give the coordinates of $f$.
@@ -39,6 +36,8 @@
     Then $f_y(t_n) \to 0$ since $f$ is continuous. Let $N$ be such that $f_y(t_n) < \eps$ for all $n \geq N$. But
     this is a contradiction since $f_y (t_n))$ is oscillating between $-1$ and $1$ but $\eps$ is arbitrary.
     Therefore no such continuous function $f$ exists.
+
+    \red{TODO} make this rigorous.
   \end{proof}
 \item
 
@@ -112,6 +111,113 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-e2f7.png}
 \end{mdframed}
 
+Note: the notation $(a, b)$ refers to a point in $[0, 1]^2$ throughout; never an open interval.
+
+Let $A \subset [0, 1]$ be a strict subset of $[0, 1]$.
+
+\begin{definition*}
+  We define, in the context of this problem, a {\em path} between points $(x_1, y_1)$ and $(x_2, y_2)$ to be a
+  continuous function $f:[0, 1] \to \([0, 1]^2 \setminus (A \times A)\)$ such that that $f(0) = (x_1, y_1)$
+  and $f(1) = (x_2, y_2)$.
+
+  Suppose $f$ is a path ending at $a$ and $g$ is a path starting at $a$. Then we define the {\em concatenation}
+  of paths $f$ and $g$ to be the function $f \oplus g$ defined by
+  \begin{align*}
+    (f \oplus g)(t) =
+    \begin{cases}
+      f(2t)           &t < 0.5 \\
+      g(2t - 1)   &t \geq 0.5.
+    \end{cases}
+  \end{align*}
+  We define a {\em crossroad point} to be a point $(x, y)$ such that $x \in [0, 1] \setminus A$
+  and $y \in [0, 1] \setminus A$.
+\end{definition*}
+
+We now prove the main claim; the necessary lemmas are proved below.
+
+\begin{proof}
+  Let $(x_1, y_1)$ and $(x_2, y_2)$ be two arbitrary points of $[0, 1]^2 \setminus (A \times A)$.
+
+  Let $u$ and $v$ be crossroad points. Then there exists a path $f$ from $(x_1, y_1)$ to $u$, a path $g$
+  from $u$ to $v$, and a path $h$ from $v$ to $(x_2, y_2)$, by lemmas \ref{point-to-crossroad},
+  \ref{crossroad-to-crossroad}, and \ref{symmetry}.
+
+  Therefore $(f \oplus g) \oplus h$ is a path between $(x_1, y_1)$ and $(x_2, y_2)$.
+
+  Therefore $[0, 1]^2 \setminus (A \times A)$ is path-connected for any strict subset $A \subset [0, 1]$.
+  Therefore it is true for the particular choice of $A = C$, the middle-thirds Cantor set.
+\end{proof}
+
+
+\begin{lemma}\label{concatenation}
+  The concatenation of two paths is a path.
+\end{lemma}
+
+\begin{proof}
+  Let $f$ be a path from $a$ to $b$ and let $g$ be a path from $b$ to $c$. Then we
+  have $(f \oplus g)(0) = f(0) = a$ and $(f \oplus g)(1) = g(1) = c$.
+
+  We must show continuity. We have that $f \oplus g$ is continuous at all
+  points $t \in [0, 1] \setminus \{0.5\}$, since $f$ and $g$ are continuous (therefore for a given $t$,
+  any $\delta < |t - 0.5|$ will do.) Let $t = 0.5$. Then $f \oplus g$ is continuous at $t$ from the left due to
+  the continuity of $f$ and continuous at $t$ from the right due to the continuity of $g$. Let $\delta_L$ be
+  the $\delta$ that works to the left and $\delta_R$ be the $\delta$ that works to the right.
+  Then $\min(\delta_L, \delta_R)$ works at $t$.
+
+  Therefore $f \oplus g$ is a path from $a$ to $c$.
+\end{proof}
+
+\begin{lemma}\label{symmetry}
+  If there exists a path from $a$ to $b$ then there exists a path from $b$ to $a$.
+\end{lemma}
+
+\begin{proof}
+  Let $f$ be a path from $a$ to $b$. Then $g(t) = f(1 - t)$ satisfies $g(0) = b$ and $g(1) = a$ and is
+  continuous since $f$ is continuous.
+\end{proof}
+
+\begin{lemma}\label{crossroad-to-same-row-column}
+  Let $(x_1, y_1)$ be a crossroad point. Then a path exists connecting $(x_1, y_1)$ to $(x_1, y)$ for
+  every $y \in [0, 1]$. Similarly, a path exists connecting $(x_1, y_1)$ to $(x, y_1)$ for
+  every $x \in [0, 1]$.
+\end{lemma}
+
+\begin{proof}
+  Let $y \in [0, 1]$. Then $f:[0, 1] \to \([0, 1]^2 \setminus (A \times A)\)$ defined by
+  \begin{align*}
+    f(t) = \(x_1, (y_1 + t(y - y_1))\)
+  \end{align*}
+  is clearly continuous and thus a path connecting $(x_1, y_1)$ to $(x_1, y)$.
+
+  Similarly, let $x \in [0, 1]$. Then
+  \begin{align*}
+    f(t) = \(x_1 + t(x - x_1), y_1\)
+  \end{align*}
+  is a path connecting $(x_1, y_1)$ to $(x, y_1)$.
+\end{proof}
+
+\begin{lemma}\label{crossroad-to-crossroad}
+  A path exists connecting any two crossroad points $(x_1, y_1)$ and $(x_2, y_2)$.
+\end{lemma}
+
+\begin{proof}
+  By lemma \ref{crossroad-to-same-row-column} a path $f$ exists from $(x_1, y_1)$ to $(x_1, y_2)$ and a
+  path $g$ exists from $(x_2, y_2)$ to $(x_1, y_2)$. Then $f \oplus g$ is a path connecting the two crossroad
+  points.
+\end{proof}
+
+\begin{lemma}\label{point-to-crossroad}
+  Let $(x, y) \in \([0, 1]^2 \setminus (A \times A)\)$. Then there exists a path from $(x, y)$ to a
+  crossroad point.
+\end{lemma}
+
+\begin{proof}
+  We have that $x \in [0, 1] \setminus A$ or $y \in [0, 1] \setminus A$. Suppose without loss of generality
+  that $x \in [0, 1] \setminus A$. Pick a point $y' \in [0, 1] \setminus A$. Then $(x, y')$ is a crossroad
+  point and there exists a path from $(x, y)$ to $(x, y')$ by lemma \ref{crossroad-to-same-row-column}
+\end{proof}
+
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-983a.png}
@@ -119,7 +225,7 @@
 
 \begin{proof}
   This is theorem 20.30 of Bass; the proof is given there. The theorem states that if $X$ is compact Hausdorff
-  then $X$ is normal, and the conditions asked for here are part of the definition of normal.\\
+  then $X$ is normal, and the conditions asked for here are satisfied by the definition of normal.\\
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-7531.png}
 \end{proof}
 
@@ -131,6 +237,8 @@
 
 First, let's examine some small finite sets and the possible topologies that meet the specified condition. The
 following table excludes topologies that differ only by a relabeling of the elements in the underlying set.
+
+[Incomplete, table is incomplete and I didn't figure out what the pattern was.]
 
 \begin{tabular}{l|l|l}
   set&non-trivial&non-trivial\\
@@ -197,8 +305,8 @@ from $0$ to $1$, the loop continuously deforms from $f$ into $g$.
       $H_{g,h}: [0, 1]^2 \to X$ be such that $g \sim h$. Then
       \begin{align*}
         H_{f, h} =
-        ~~~~&\{ (x, y, H_{f, g}) ~:~ x \in [0, 0.5), y \in [0, 1]\} \\
-        ~~~~\union ~&\{ (x, y, H_{g, h}) ~:~ x \in [0.5, 1], y \in [0, 1]\}
+        ~~~~&\Bigg\{ \(\(\frac{x}{2}, y\), H_{f, g}(x, y)\) ~:~ x \in [0, 1), y \in [0, 1]\Bigg\} \\
+        ~~~~\union ~&\Bigg\{ \(\(\frac{1}{2} + \frac{x}{2}, y\), H_{g, h}(x, y)\) ~:~ x \in [0, 1], y \in [0, 1]\Bigg\}
       \end{align*}
       is a function such that $f \sim h$.
     \end{enumerate}
@@ -212,10 +320,8 @@ from $0$ to $1$, the loop continuously deforms from $f$ into $g$.
 
   Informally: each loop corresponds to a countable sequence of circles each of which may be followed in one of
   two orientations (clockwise and anticlockwise). Loop $f$ is deformable into loop $g$ if their sequence of
-  circles are the same and their sequence of orientations are the same. The number of circles involved in a
-  single loop is countably infinite (though possibly finite), therefore the set of oriented loops has
-  cardinality equal to the powerset of the natural numbers, and this is also the cardinality of the set of
-  equivalence classes.
+  orientations are the same. This is in general a countably infinite binary sequence and hence there are
+  uncountably many equivalence classes.
 
   \begin{proof}
     We define a loop in $A$ to be a continuous function $f: [0, 1] \to \R^2$ satisfying $f(0) = f(1) = (0, 0)$
