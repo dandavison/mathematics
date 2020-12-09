@@ -26,18 +26,15 @@
 % everywhere along a subsequence, but the typewriter sequence is a counterexample that prevents us from promoting
 % this convergence on a subsequence to convergence almost everywhere.
 
+% 8.5. I don't think this works (I don't even see why that would make the integral diverge). The motivation here is the condition here *almost* holds for 1/x, if we were to just perturb it slightly -- so the correct answer is something like -1/x log x. (-8)
+% Aidan Backus, Nov 14 at 9:57am
+% 10.2. Small nitpick on the triangle inequality -- you definitely want < rather than \leq. Much more egregiously, convergence in measure is not equivalent to convergence a.e. Since \mu(X) < \infty, convergence a.e. implies convergence in measure, but you can only get the converse along a subsequence (the counterexample is a typewriter sequence). (-4)
+% Aidan Backus, Nov 15 at 10:15am
+% 8.4) 10 8.5) 2 10.2) 6 10.7) 6
+% Ian Francis, Nov 24 at 1:44am
+% 10.7) (edited) For the ending concern about 2eps, this is not an issue: If 0 \leq x < 2\eps for all \eps, then x=0. It seems like you're heading in the right direction, but, one comment: - When you define your set F, you want to make it a countable union of countable intersections of unions, but \cup_{\eps>0} is an uncountable union, so you wouldn't be able to conclude that \mu(F) = 0 just because each E_{n, \eps} has measure 0. Instead of \eps, use 1/k. This would make it countable. A countable union of measure zero sets necessarily has measure 0 by sub-additivity. (-4) Otherwise you have a lot of the key ingredients here. But, you could simplify it quite a bit, and that would probably lead to less self-confusion.
+% Ian Francis, Nov 24 at 2:19am
 
-
-% 8.5. I don't think this works (I don't even see why that would make the integral diverge). The motivation here
-% is the condition here *almost* holds for 1/x, if we were to just perturb it slightly -- so the correct answer
-% is something like -1/x log x. (-8)
-
-% Aidan Backus , Nov 14 at 9:57am 10.2. Small nitpick on the triangle inequality -- you definitely want < rather
-% than \leq.
-
-% Much more egregiously, convergence in measure is not equivalent to convergence a.e. Since \mu(X) < \infty,
-% convergence a.e. implies convergence in measure, but you can only get the converse along a subsequence (the
-% counterexample is a typewriter sequence). (-4)
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-210c.png}
@@ -66,6 +63,11 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-b0e8.png}
 \end{mdframed}
+
+% 8.5. I don't think this works (I don't even see why that would make the integral diverge). The motivation
+% here is the condition here *almost* holds for 1/x, if we were to just perturb it slightly -- so the correct
+% answer is something like -1/x log x. (-8)
+
 
 \begin{proof}
   My original thought was to take the graph of $y = x^{-1/2}$ and place a copy of it over every rational,
@@ -321,6 +323,13 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-b4e1.png}
 \end{mdframed}
 
+% 10.2. Small nitpick on the triangle inequality -- you definitely want < rather than \leq.
+
+% Much more egregiously, convergence in measure is not equivalent to convergence a.e. Since \mu(X) < \infty,
+% convergence a.e. implies convergence in measure, but you can only get the converse along a subsequence (the
+% counterexample is a typewriter sequence). (-4)
+
+
 \begin{claim*}
   $d$ is a metric on the space of measurable functions except for the fact that $d(f, g) = 0$ implies $f = g$
   a.e., not necessarily everywhere.
@@ -416,6 +425,14 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw09-ea17.png}
 \end{mdframed}
+
+% 10.7) (edited) For the ending concern about 2eps, this is not an issue: If 0 \leq x < 2\eps for all \eps, then
+% x=0. It seems like you're heading in the right direction, but, one comment: - When you define your set F, you
+% want to make it a countable union of countable intersections of unions, but \cup_{\eps>0} is an uncountable
+% union, so you wouldn't be able to conclude that \mu(F) = 0 just because each E_{n, \eps} has measure 0. Instead
+% of \eps, use 1/k. This would make it countable. A countable union of measure zero sets necessarily has measure
+% 0 by sub-additivity. (-4) Otherwise you have a lot of the key ingredients here. But, you could simplify it
+% quite a bit, and that would probably lead to less self-confusion.
 
 \begin{proof}
   It suffices to show that the sequence $f_n$ is Cauchy a.e.
