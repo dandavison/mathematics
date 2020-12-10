@@ -208,14 +208,58 @@ to Lebesgue-null sets in a countably additive manner.
 
   I wonder whether we can discard a null set from $V$ so that our point $x$ is necessarily
 \end{proof}
+
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-246a.png}
 \end{mdframed}
 
+\begin{proof}
+  $\mu$ is not a measure because it is not countably additive.
+
+  To see this, let $I_n = (-n, -(n - 1)] \union [n-1, n)$, and let $\mc I = \{I_n ~:~ n \in \N\}$. Then $\mc I$
+  is a pairwise disjoint, countable collection of sets and $\bigcup_{n=1}^\infty \mc I = \R$,
+  therefore $\mu\(\bigcup_{n=1}^\infty \mc I\) = 1$ since $\R$ is unbounded.
+
+  However $I_n$ is bounded for all $n$ and
+  so $\sum_{n=1}^\infty \mu(I_n) = \sum_{n=1}^\infty 0 = 0 \neq \mu\(\bigcup_{n=1}^\infty \mc I\)$.
+\end{proof}
+
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-cd70.png}
 \end{mdframed}
+
+\begin{proof}
+  Note that $f$ is continuous with compact support and so $f$ attains its bounds. Let $A = \inf f$
+  and $B = \sup f$.
+
+  Note that the integrand is bounded above by the constant integrable function $h(x) = B$ defined on $[0, 1]$.
+  Therefore we may apply the dominated convergence theorem, yielding
+  \begin{align*}
+    \limninf \int_{[0, 1]} f(g(x)^n) \dx = \int_{[0, 1]} \limninf  f(g(x)^n) \dx.
+  \end{align*}
+  Let $U = g^{-1}(\{1\})$. We have $0 \leq g(x) \leq 1$ and therefore
+  \begin{align*}
+    \limninf g(x)^n =
+    \begin{cases}
+      1 & x \in U \\
+      0 & \text{otherwise}.
+    \end{cases}
+  \end{align*}
+  Since $g$ is measurable, $U$ is measurable, since it is a preimage of a measurable set. Let $\alpha = m(U)$.
+  I believe that ``measurable​'' in the question refers to Lebesgue measure, so we have that $m([0, 1]) = 1$
+  and $0 \leq \alpha \leq 1$. Therefore
+  \begin{align*}
+    \int_{[0, 1]} \limninf  f(g(x)^n) \dx
+    &= \int_U \limninf  f(g(x)^n) \dx + \int_{[0, 1] \setminus U} \limninf  f(g(x)^n) \dx \\
+    &= \int_U f(1) + \int_{[0, 1] \setminus U} f(0) \\
+    &= \alpha f(1) + (1 - \alpha) f(0) \\
+    &\in [f(0), f(1)].
+  \end{align*}
+\end{proof}
+
 
 \newpage
 \begin{mdframed}
