@@ -1,16 +1,27 @@
 \section{Math 202A - HW8 - Dan Davison - \texttt{ddavison@berkeley.edu}}
 
-% 7.17. You're on the right track but are missing a lot of details. You need to justify commuting the integral and the limit (dominated convergence??). I don't know where you were going with your m's and delta's either. (-5)
-% Aidan Backus, Nov 3 at 3:54pm
-% 7.9. This problem doesn't count towards your grade but it's good that you're thinking of a Fatou lemma for limsups. In fact, if f_n is *nonpositive* on a measurable set A, then \limsup_n \int_A f \leq \int_A \limsup_n f_n; you can prove this by just multiplying everything in Fatou's lemma by -1's and noting that when you commute a -1 with a liminf it turns into a limsup.
-% Aidan Backus, Nov 3 at 3:56pm
-% 7.11. Your argument can be patched to work but it is false that F is an increasing function; what if f = sin? (-3)
-% Aidan Backus, Nov 4 at 8:37am
-% 4. Your g(x) is not integrable, so you cannot apply DCT. The dominating function you should try would bound (1+x/n)^-n by exp(-x/2), or something similar. This "slows down" the decay of g(x) enough to be dominating, but without introducing a constant that makes g non-integrable. (-7)
-% Ian Francis, Nov 24 at 1:01am
-% 7.11) 7 7.13) 3 7.17) 5 7.21) 10
-% Ian Francis, Nov 24 at 1:01am
 
+\begin{verbatim}
+7.17. You're on the right track but are missing a lot of details. You need to justify commuting the integral
+and the limit (dominated convergence??). I don't know where you were going with your m's and delta's either.
+(-5) Aidan Backus, Nov 3 at 3:54pm
+
+7.9. This problem doesn't count towards your grade but it's good that you're thinking of a Fatou lemma for
+limsups. In fact, if f_n is *nonpositive* on a measurable set A, then \limsup_n \int_A f \leq \int_A
+\limsup_n f_n; you can prove this by just multiplying everything in Fatou's lemma by -1's and noting that
+when you commute a -1 with a liminf it turns into a limsup. Aidan Backus, Nov 3 at 3:56pm
+
+7.11. Your argument can be patched to work but it is false that F is an increasing function; what if f = sin?
+(-3) Aidan Backus, Nov 4 at 8:37am
+
+4. Your g(x) is not integrable, so you cannot apply DCT. The dominating function you should try would bound
+(1+x/n)^-n by exp(-x/2), or something similar. This "slows down" the decay of g(x) enough to be dominating,
+but without introducing a constant that makes g non-integrable. (-7)
+
+Ian Francis, Nov 24 at 1:01am
+7.11) 7 7.13) 3 7.17) 5 7.21) 10
+Ian Francis, Nov 24 at 1:01am
+\end{verbatim}
 
 \begin{comment}
   \begin{mdframed}
@@ -71,13 +82,14 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-3203.png}
 \end{mdframed}
 
-% 7.9. This problem doesn't count towards your grade but it's good that you're thinking of a Fatou lemma for
-% limsups. In fact, if f_n is *nonpositive* on a measurable set A,
-% then $\limsup_n \int_A f \leq \int_A \limsup_n$ f_n; you can prove this by just multiplying everything in
-% Fatou's lemma by -1's and noting that when you commute a -1 with a liminf it turns into a limsup.
+\begin{verbatim}
+7.9. This problem doesn't count towards your grade but it's good that you're thinking of a Fatou lemma for
+limsups. In fact, if f_n is *nonpositive* on a measurable set A,
+then $\limsup_n \int_A f \leq \int_A \limsup_n$ f_n; you can prove this by just multiplying everything in
+Fatou's lemma by -1's and noting that when you commute a -1 with a liminf it turns into a limsup.
 
-% Aidan Backus , Nov 3 at 3:56pm
-
+Aidan Backus , Nov 3 at 3:56pm
+\end{verbatim}
 
 \begin{comment}
   \begin{remark*}
@@ -134,7 +146,10 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-d0c0.png}
 \end{mdframed}
 
-% 7.11. Your argument can be patched to work but it is false that F is an increasing function; what if f = sin? (-3)
+\begin{verbatim}
+7.11. Your argument can be patched to work but it is false that F is an increasing function; what if f = sin?
+(-3)
+\end{verbatim}
 
 \begin{comment}
   \begin{intuition*}
@@ -177,9 +192,11 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-9931.png}
 \end{mdframed}
 
-% 4. Your g(x) is not integrable, so you cannot apply DCT. The dominating function you should try would bound
-% (1+x/n)^-n by exp(-x/2), or something similar. This "slows down" the decay of g(x) enough to be dominating,
-% but without introducing a constant that makes g non-integrable. (-7)
+\begin{verbatim}
+4. Your g(x) is not integrable, so you cannot apply DCT. The dominating function you should try would bound
+(1+x/n)^-n by exp(-x/2), or something similar. This "slows down" the decay of g(x) enough to be dominating, but
+without introducing a constant that makes g non-integrable. (-7)
+\end{verbatim}
 
 \begin{proof}
   Let $f(n) = (1 + x/n)^{-n} \log(2 + \cos(x/n))$.
@@ -206,12 +223,13 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw08-6e60.png}
 \end{mdframed}
 
-% 7.17. You're on the right track but are missing a lot of details. You need to justify commuting the integral
-% and the limit (dominated convergence??). I don't know where you were going with your m's and delta's either.
-% (-5)
+\begin{verbatim}
+7.17. You're on the right track but are missing a lot of details. You need to justify commuting the integral
+and the limit (dominated convergence??). I don't know where you were going with your m's and delta's either.
+(-5)
 
-% Aidan Backus , Nov 3 at 3:54pm
-
+Aidan Backus , Nov 3 at 3:54pm
+\end{verbatim}
 
 \begin{remark*}
   The integrand may be unbounded. For example, take $g(x) = |x|^{-1/2}$ and $f = 1$. Then the integrand is
