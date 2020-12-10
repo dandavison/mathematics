@@ -30,9 +30,65 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-04b9.png}
 \end{mdframed}
 
+\begin{theorem}[Bass proposition 8.1]\label{bass-8.1}
+  If $f$ is real-valued, non-negative, and measurable, and $\int f = 0$, then $f = 0$ a.e.
+\end{theorem}
+
+\begin{proof}
+  Let $f_n: [0, 1] \to \R$, $n \in \N$, converge to $f: [0, 1] \to \R$ in $L^1$. Thus, by definition,
+  \begin{align*}
+    \limninf \int |f_n - f| = 0.
+  \end{align*}
+  We want to prove or disprove the statement
+  \begin{align*}
+    \limn f_n = f \ae
+  \end{align*}
+  Suppose we could bring the limit inside. Then
+  \begin{align*}
+    \int \limninf |f_n - f| = 0,
+  \end{align*}
+  therefore by Bass proposition 8.1 $\limninf |f_n - f| = 0$ a.e. and thus $f_n$ converges almost everywhere to $f$.
+
+  But bringing the limit inside is justified by neither MCT nor DCT. So let's look for a counter-example based
+  on not satisfying DCT conditions.
+
+  \red{TODO}
+\end{proof}
+
+This is reminiscent of HW8 7.13
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-final-5921.png}
+\end{mdframed}
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-96cc.png}
 \end{mdframed}
+
+\begin{proof}
+  Note that the integrand is non-negative.
+
+  We want a dominating function. What about $x^ne^{-x/2}$? Is this integrable? It's continuous so we can use
+  traditional Riemann / high-school integration techniques. I think it can be done by integration py parts and
+  induction/recurrence.
+
+  We may apply the DCT since the integrand is non-negative and bounded above by the integrable
+  function $x^ne^{-x/2}$. Therefore
+  \begin{align*}
+    \lim_{k \to \infty} \int_0^k x^n (1 - x/k)^k \dx
+    &= \int_0^k x^n \lim_{k \to \infty} (1 - x/k)^k \dx \\
+    &= \int_0^k x^n e^{-x} \dx \\
+  \end{align*}
+  \red{TODO} how am I dealing with the $k$ in the upper integral bound?
+\end{proof}
+
+\begin{minted}{wolfram} :results latex
+ Integrate[x^n * Exp[-x/2], {x, 0, Infinity}]
+\end{minted}
+
+\begin{align*}
+\text{ConditionalExpression}\left[2^{n+1} \Gamma (n+1),\Re(n)>-1\right]
+\end{align*}
 
 
 
@@ -40,16 +96,118 @@
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-c137.png}
 \end{mdframed}
 
+\begin{proof}
+  \red{TODO}
+  bound the integral above?
+\end{proof}
+
+
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-ef68.png}
 \end{mdframed}
+
+% I'm pretty sure how small r is should be independent of what x is, so you choose δ and r′ such that for every
+% x and every r<r′, there exists y such that ...
+
+% https://www.wikiwand.com/en/Porous_set
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-final-b463.png}
+\end{mdframed}
+
+\begin{proof}
+
+  Notice that in the definition, the same $\delta$ and $r_0$ work everywhere:
+
+  For every ball smaller than $r_0$, there exists a ball that is smaller still by a factor of $\delta$ that
+  fits in the first ball and avoids every point of $A$.
+
+  So consider an outer ball of size $r < r_0$. There exists an inner ball of size $\delta r$ that works.
+  Furthermore this inner ball works for all larger outer balls.
+\end{proof}
+
+\begin{claim}
+  The middle-thirds Cantor set is porous.
+
+  This implies that there exist uncountable porous sets, since the middle-thirds Cantor set is uncountable.
+\end{claim}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{claim}
+  Every porous set has zero Lebesgue measure.
+\end{claim}
+
+\begin{proof}
+  We must show that every porous set can be covered by a set of arbitrarily small measure.
+\end{proof}
+
+
 
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-21a6.png}
 \end{mdframed}
 
+Let $m$ denote Lebesgue measure.
+
+I am assuming that the question is saying that $\mu$ and $m$ are mutually singular with respect to the
+Borel $\sigma$-algebra.
+
+Intuition: in some sense this question is asking us to show that the Radon-Nikodym derivative does not exist,
+because they are singular, which is sort of the opposite of absolutely continuous.
+
+Intuition: $\mu$ assigns positive measure to a $m$-null set. Clearly we need to show that $\mu$ assigns greater
+measure to certain intervals than $m$ does. Why is that true? Perhaps because the interval contains parts of
+an $m$-null set.
+
+In fact, $\mu$ only has positive measure on Lebesgue null sets. But $\mu$ does not assign positive measure to
+every singleton, since $\mu$ is finite. If we could show that $\mu$-almost every $x$ is ``surrounded by an
+arbitrarily small Lebesgue null set​'' that would do it. Perhaps the only way that makes sense is if
+$\mu$-almost every $x$ is a singleton with positive measure under $\mu$. Can we show that?
+
+$V$ contains no intervals, since it is Lebesgue-null. And $\mu(V) = L > 0$. This total measure $L$ is assigned
+to Lebesgue-null sets in a countably additive manner.
+
+\begin{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a-final-fe0f.png}
+\end{mdframed}
+
+\begin{proof}
+  Since $\mu$ is singular with respect to Lebesgue measure, there exist disjoint Borel sets $U$ and $V$ such
+  that $U$ is $\mu$-null and $V$ is $m$-null, and $\R = U \union V$.
+
+  Let $0 < \mu(\R) = L < \infty$. We have
+  \begin{align*}
+    &\mu(U) = 0     & \mu(V) = L \\
+    &m(U) = \infty & m(V) = 0,
+  \end{align*}
+  since by countable additivity $\infty = m(\R) = m(U) + m(V) = m(U)$,
+  and $L = \mu(\R) = \mu(U) + \mu(V) = \mu(V)$.
+
+  Note that any property that holds for all $x \in V$ holds $\mu$-almost everywhere. So let $x \in V$. We would
+  like to show that
+  \begin{align*}
+    \lim_{\eps \searrow 0} \frac{\mu([x - \eps, x + \eps])}{2\eps} = +\infty.
+  \end{align*}
+  Let $\eps_n$ be a sequence converging to zero from above, let $I_n = [x - \eps_n, x + \eps_n]$, and
+  let $B > 0$. We would like to show that there exists $N$ such that $\frac{\mu(I_n)}{2\eps_n} > B$ for
+  all $n \geq N$.
+
+  We have $\mu(I_n) = \mu(I_n \isect V) + \mu(I_n \isect U) = \mu(I_n \isect V)$, since $U$ is a null set
+  under $\mu$. And since $x \in V$ we have $I_n \isect V \neq \emptyset$.
+
+  My intuition is that as the interval $I_n$ gets smaller, it becomes enriched for points of $V$, which
+  contribute positive measure to the numerator, and cause it to decrease more slowly than the denominator, in
+  such a way that, for small enough $\eps$, the ratio exceeds any positive quantity $B$.
+
+  If we could show that there exists $N$ and $l > 0$ such that $\mu(I_n) > l$ for all $n > N$ then we
+  would be done, but that may not be true.
+
+  I wonder whether we can discard a null set from $V$ so that our point $x$ is necessarily
+\end{proof}
 \newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-246a.png}
