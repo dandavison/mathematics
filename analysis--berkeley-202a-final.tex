@@ -246,9 +246,9 @@ this inner ball works for all larger outer balls.
 
 I used the following sources in answering this question
 
-\url{https://www.wikiwand.com/en/Porous_set}
-\url{https://math.stackexchange.com/questions/1362464/porous-sets-why-measure-zero}
-\url{https://www.wikiwand.com/en/Lebesgue%27s_density_theorem}
+\url{https://www.wikiwand.com/en/Porous_set}\\
+\url{https://math.stackexchange.com/questions/1362464/porous-sets-why-measure-zero}\\
+\url{https://www.wikiwand.com/en/Lebesgue%27s_density_theorem}\\
 
 \begin{proof}
   \red{TODO} (partial)
@@ -291,28 +291,6 @@ I used the following sources in answering this question
 
 Let $m$ denote Lebesgue measure.
 
-I am assuming that the question is saying that $\mu$ and $m$ are mutually singular with respect to the
-Borel $\sigma$-algebra.
-
-Intuition: in some sense this question is asking us to show that the Radon-Nikodym derivative does not exist,
-because they are singular, which is sort of the opposite of absolutely continuous.
-
-Intuition: $\mu$ assigns positive measure to a $m$-null set. Clearly we need to show that $\mu$ assigns greater
-measure to certain intervals than $m$ does. Why is that true? Perhaps because the interval contains parts of
-an $m$-null set.
-
-In fact, $\mu$ only has positive measure on Lebesgue null sets. But $\mu$ does not assign positive measure to
-every singleton, since $\mu$ is finite. If we could show that $\mu$-almost every $x$ is ``surrounded by an
-arbitrarily small Lebesgue null set​'' that would do it. Perhaps the only way that makes sense is if
-$\mu$-almost every $x$ is a singleton with positive measure under $\mu$. Can we show that?
-
-$V$ contains no intervals, since it is Lebesgue-null. And $\mu(V) = L > 0$. This total measure $L$ is assigned
-to Lebesgue-null sets in a countably additive manner.
-
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-final-fe0f.png}
-\end{mdframed}
-
 \begin{proof}
   \red{TODO} (partial)
 
@@ -339,17 +317,46 @@ to Lebesgue-null sets in a countably additive manner.
   We have $\mu(I_n) = \mu(I_n \isect V) + \mu(I_n \isect U) = \mu(I_n \isect V)$, since $U$ is a null set
   under $\mu$. And since $x \in V$ we have $I_n \isect V \neq \emptyset$.
 
+  If we could show that $\mu$-almost every singleton set included in $V$ has positive measure under $\mu$ then
+  we would be done, since the property would hold at all of them. I think if we could show $V$ were countable
+  then we'd be done for this same reason. But we can't -- e.g. the Cantor set has zero Lebesgue measure and yet
+  is uncountable.
+
+  Similarly, if we could show that there exists $N$ and $l > 0$ such that $\mu(I_n) > l$ for all $n > N$ then
+  we would be done.
+
+  Note that every interval around $x$ is not in $V$, because it has positive Lebesgue measure. In other
+  words, $V$ includes no intervals. But this is true of the Cantor set also.
+
   My intuition is that as the interval $I_n$ gets smaller, it becomes enriched for points of $V$, which
   contribute positive measure to the numerator, and cause it to decrease more slowly than the denominator, in
   such a way that, for small enough $\eps$, the ratio exceeds any positive quantity $B$.
 
-  If we could show that there exists $N$ and $l > 0$ such that $\mu(I_n) > l$ for all $n > N$ then we
-  would be done, but that may not be true.
-
-  \red{TODO} Finish this. I think that last thought may be the way forward?
-
-  I wonder whether we can discard a null set from $V$ so that our point $x$ is necessarily
+  \red{TODO} Finish this.
 \end{proof}
+
+% I am assuming that the question is saying that $\mu$ and $m$ are mutually singular with respect to the
+% Borel $\sigma$-algebra.
+
+% Intuition: in some sense this question is asking us to show that the Radon-Nikodym derivative does not exist,
+% because they are singular, which is sort of the opposite of absolutely continuous.
+
+% Intuition: $\mu$ assigns positive measure to a $m$-null set. Clearly we need to show that $\mu$ assigns greater
+% measure to certain intervals than $m$ does. Why is that true? Perhaps because the interval contains parts of
+% an $m$-null set.
+
+% In fact, $\mu$ only has positive measure on Lebesgue null sets. But $\mu$ does not assign positive measure to
+% every singleton, since $\mu$ is finite. If we could show that $\mu$-almost every $x$ is ``surrounded by an
+% arbitrarily small Lebesgue null set​'' that would do it. Perhaps the only way that makes sense is if
+% $\mu$-almost every $x$ is a singleton with positive measure under $\mu$. Can we show that?
+
+% $V$ contains no intervals, since it is Lebesgue-null. And $\mu(V) = L > 0$. This total measure $L$ is assigned
+% to Lebesgue-null sets in a countably additive manner.
+
+% \begin{mdframed}
+% \includegraphics[width=200pt]{img/analysis--berkeley-202a-final-fe0f.png}
+% \end{mdframed}
+
 
 
 \newpage
@@ -450,10 +457,11 @@ to Lebesgue-null sets in a countably additive manner.
 My first thought was to attempt to prove this by proving it for $f$ simple, then for $f$ measurable, etc. But I
 have now seen the following resources and am submitting a proof based on them.
 
-\url{https://www.wikiwand.com/en/Lp_space#/The_p-norm_in_infinite_dimensions_and_%E2%84%93p_spaces}
-\url{https://www.wikiwand.com/en/Essential_supremum_and_essential_infimum}
-\url{https://math.stackexchange.com/questions/242779/limit-of-lp-norm}
-\url{https://math.stackexchange.com/questions/678884/if-f-in-l-infty-and-exists-r-infty-so-that-f-r-infty-show?noredirect=1&lq=1}
+\url{https://www.wikiwand.com/en/Lp_space#/The_p-norm_in_infinite_dimensions_and_%E2%84%93p_spaces}\\
+\url{https://www.wikiwand.com/en/Essential_supremum_and_essential_infimum}\\
+\url{https://math.stackexchange.com/questions/242779/limit-of-lp-norm}\\
+\url{https://math.stackexchange.com/questions/678884/if-f-in-l-infty-and-exists-r-infty-so-that-f-r-infty-show?noredirect=1&lq=1}\\
+
 
 \begin{proof}
   \red{TODO} (partial)
