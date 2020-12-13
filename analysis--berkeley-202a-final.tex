@@ -113,6 +113,8 @@
 
   I think that's not possible and therefore a contradiction proving that $f_n \to f$ almost everywhere.
 
+  (No, this is wrong -- see above)
+
   One might think that the sequences $f_n(x)$ for $x \in E$ could contrive to, at every generation $n$, almost
   all be exactly equal to $f(x)$, except for a negligible set, with membership of this negligible set changing
   over time such that every $x \in E$ will at some point in the future be a member of the error set again, in
@@ -149,43 +151,79 @@
 %   But bringing the limit inside is justified by neither MCT nor DCT. So let's look for a counter-example based
 %   on not satisfying DCT conditions.
 % \end{proof}
+I think my proof is put on a slightly firmer basis if I say at the outset that the syntax $e^{-x}$
+is defined to mean the Maclaurin expansion: $e^{-x} := \sum_{j=0}^\infty (-1)^j ~ \frac{x^j}{j!}$.
 
-\begin{mdframed}
-\includegraphics[width=400pt]{img/analysis--berkeley-202a-final-5921.png}
-\end{mdframed}
+\begin{lemma}\label{gamma-function}
+  Define Euler's gamma function $\Gamma: \R \to \R$
+  by $\Gamma(y + 1) = \int_0^\infty x^y e^{-x} \dx$ and note that integration by parts
+  (with $u = x^n$, $\dvdx = e^{-x}$) yields
+  \begin{align*}
+    \Gamma(y + 1)
+    &= \big[-x^ye^{-x}\big]_0^\infty + y\int_0^\infty x^{y-1}e^{-x} \dx \\
+    &= y\Gamma(y),
+  \end{align*}
+  since $x^ye^{-x} \to 0$ as $x \to \infty$.
+
+  Note that $\Gamma(1) = \int_0^\infty e^{-x} \dx = 1$, and therefore $\Gamma(n + 1) = n!$
+  for $n \in \N$. (Since these are continuous functions, Lebesgue and Riemann integrals coincide
+  and we freely use standard results for antiderivatives and derivatives from introductory
+  calculus).
+\end{lemma}
+
+\begin{lemma}\label{exponential-limit}
+  $(1 - x/k)^k < e^{-x}$ for all $k \in \N$ and all $x \in \R$
+  and $\lim_{k \to \infty} \(1 - \frac{x}{k}\)^k = e^{-x}$.
+\end{lemma}
+
+\begin{proof}
+  Recall the Maclaurin expansion $e^{-x} = \sum_{j=0}^\infty (-1)^j ~ \frac{x^j}{j!}$ and observe that
+  \begin{align*}
+    \(1 - \frac{x}{k}\)^k
+    &= \sum_{j=0}^k {k \choose j} \(\frac{-x}{k}\)^j \\
+    &= \sum_{j=0}^k (-1)^j \frac{x^j}{j!} \(\frac{k!/(k-j)!}{k^j} \) \\
+    & <\sum_{j=0}^k (-1)^j \frac{x^j}{j!}.
+  \end{align*}
+  Therefore $(1 - x/k)^k < e^{-x}$ for all $k \in \N$ and all $x \in \R$.
+
+  Furthermore we have
+  \begin{align*}
+    \lim_{k \to \infty} \(1 - \frac{x}{k}\)^k
+    &= \sum_{j=0}^\infty (-1)^j \frac{x^j}{j!} \(\lim_{k \to \infty} \frac{k!/(k-j)!}{k^j} \).
+  \end{align*}
+  Note that
+  \begin{align*}
+    \lim_{k \to \infty} \frac{k!/(k-j)!}{k^j}
+    &= \lim_{k \to \infty} \frac{k   (k - 1)     (k - 2)       \cdots (k - (j - 1))}{k^j} \\
+    &= \lim_{k \to \infty} \frac{k^j (1 - k^{-1}) (k - 2k^{-1}) \cdots (1 - (j - 1)k^{-1})}{k^j} \\
+    &= 1,
+  \end{align*}
+  therefore $\lim_{k \to \infty} \(1 - \frac{x}{k}\)^k = e^{-x}$.
+\end{proof}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-96cc.png}
 \end{mdframed}
 
 \begin{proof}
-  \red{TODO}
+  \green{DONE}
 
-  Note that the integrand is non-negative.
+  We may apply the dominated convergence theorem, since the integrand $x^n (1 - x/k)^k$ is
+  non-negative and by lemma \ref{exponential-limit} is bounded above by $x^ne^{-x}$ which as shown
+  in lemma \ref{gamma-function} is integrable.
 
-  We want a dominating function. What about $x^ne^{-x/2}$? Is this integrable? It's continuous so we can use
-  traditional Riemann / high-school integration techniques. I think it can be done by integration py parts and
-  induction/recurrence.
-
-  We may apply the DCT since the integrand is non-negative and bounded above by the integrable
-  function $x^ne^{-x/2}$. Therefore
+  Therefore
   \begin{align*}
     \lim_{k \to \infty} \int_0^k x^n (1 - x/k)^k \dx
-    &= \int_0^k x^n \lim_{k \to \infty} (1 - x/k)^k \dx \\
-    &= \int_0^k x^n e^{-x} \dx \\
+    &= \lim_{k \to \infty} \int_0^\infty x^n (1 - x/k)^k\ind_{[0, k]} \dx \\
+    &= \int_0^\infty x^n \lim_{k \to \infty} (1 - x/k)^k\ind_{[0, k]} \dx & \text{by the dominated convergence theorem}\\
+    &= \int_0^\infty x^n e^{-x} \dx & \text{by lemma \ref{exponential-limit}}\\
+    &=: \Gamma(n + 1) \\
+    &= n!  & \text{by lemma \ref{gamma-function}}.\\
   \end{align*}
-  \red{TODO} how am I dealing with the $k$ in the upper integral bound? This is reminiscent of HW8 7.13 (above)
 \end{proof}
 
-% \begin{minted}{wolfram} :results latex
-%  Integrate[x^n * Exp[-x/2], {x, 0, Infinity}]
-% \end{minted}
-
-% \begin{align*}
-% \text{ConditionalExpression}\left[2^{n+1} \Gamma (n+1),\Re(n)>-1\right]
-% \end{align*}
-
-
+\red{TODO: What did this have to do with part (a)?}
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-c137.png}
@@ -522,8 +560,36 @@ Then $\(\int |f|^p \dmu\)^{1/p} = \(0.9^p\int 1 \dmu\)^{1/p} = 0.9$, so that is 
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-8aed.png}
 \end{mdframed}
 
+This question involves an averaging construction similar to that associated with Hardy-Littlewood maximal
+function theory and the Lebesgue differentiation theorem (Folland section 3.4). However, the theory in Folland
+3.4 concerns $\R^n$, whereas this question is about an abstract measure space. It doesn't look like extensions
+of that theory to abstract measure spaces are well-known, or at least not standard graduate-level material.
+Wikipedia (\url{https://en.wikipedia.org/wiki/Lebesgue_differentiation_theorem}) mentions that the Lebesgue differentiation theorem holds for a
+``finite Borel measure on a separable metric space​'' obeying certain conditions and references Federer 1969, but
+we don't have that.
+
+We are however given a finite measure space $\mu(X) < \infty$; that may be a clue. Also we have a measurable
+function to $\R \union \{\infty\}$. I wonder whether we can transfer some of the results over from $\R^n$
+somehow.
+
+
 \begin{proof}
-  \red{TODO} (partial)
+  \red{TODO}
+  If $\mu(X) = 0$ then the result is trivially true so we assume $\mu(X) > 0$.
+
+  We would like to show that for almost every $x$ a sequence of sets $E_n$ exists, each of positive measure,
+  such that $A_{E_n}(f) \to f(x)$. Then, since $S$ is closed, it contains the limit of every convergent
+  sequence in $S$, and hence we would have $f(x) \in S$ for every $x \in X$.
+
+  \begin{itemize}
+  \item We must use that $\mu(X) < \infty$.
+  \item We must use that $\int |f| \dmu < \infty$.
+  \item We are asked only for almost every $x \in X$
+  \end{itemize}
+\end{proof}
+
+\begin{proof}
+  \red{TODO} No, this is wrong. The measure space is not necessarily $\R^n$.
 
   Since $f$ is integrable, it is locally integrable. So from Folland 3.18 we have
   that $\lim_{r \to 0} A_{B(x, r)}(f) = f(x)$ for a.e. $x \in \R$. Let $x$ be such a point and
