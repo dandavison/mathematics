@@ -79,7 +79,7 @@ compared to Stirling II number and stars-and-bars count configurations?}
 \begin{theorem*}
   The number of $k$-tuples that can be formed from $\{1, 2, \ldots, n\}$ is
   \begin{align*}
-    P(n, k) = n_{(k)} = n(n-1)(n-2)\cdots(n-k+1).
+    P(n, k) = n_{(k)} = n(n-1)(n-2)\cdots(n-k+1) = \frac{n!}{(n - k)!}.
   \end{align*}
   The number of sets of size $k$ that can be formed from $\{1, 2, \ldots, n\}$ is
   \begin{align*}
@@ -90,6 +90,18 @@ compared to Stirling II number and stars-and-bars count configurations?}
 \section{Binomial theorem}
 \begin{align*}
   (a + b)^n = \sum_{k=0}^n{n \choose k}a^{n-k}b^k
+\end{align*}
+
+\section{Taylor expansions}
+
+Suppose that any function of a real number $f(x)$ can be represented by a "power series" with certain coefficients $c_i$
+\begin{align*}
+  f(x) = c_0 + c_1x^1 + c_2x^2 + c_3x^3 + c_4x^4 + ...
+\end{align*}
+Examining successive derivatives shows that $c_n = \frac{f^{(n)}(0)}{n!}$ (\red{TODO} explain why evaluating at zero).
+For example, the Maclaurin expansion of $e^{x}$ is
+\begin{align*}
+  e^x = e^{0} + \frac{xe^0}{1!} + \frac{x^2e^0}{2!} + \cdots = \sum_{n=0}^\infty \frac{x^n}{n!}
 \end{align*}
 
 \section{Triangle inequalities}

@@ -276,11 +276,24 @@ Continuing like that it becomes clear that each coefficient is equal to an $\nth
 
 and in general $c_n = \frac{f^{(n)}(0)}{n!}$.
 
-For example, take $f(x) = e^x$. The derivatives are all the same of course: $f^{(n)}(x) = e^x$. And $e^0 = 1$, so
+For example, take $f(x) = e^x$. The derivatives are all the same of course: $f^{(n)}(x) = e^x$. And $e^0 = 1$, so the Maclaurin expansion of $e^{x}$ is
+\begin{align*}
+  e^x = e^{0} + \frac{xe^0}{1!} + \frac{x^2e^0}{2!} + \cdots = \sum_{n=0}^\infty \frac{x^n}{n!}
+\end{align*}
+The Maclaurin expansion of $e^{-x}$ is
+\begin{align*}
+  e^{-x} = e^{0} - \frac{xe^0}{1!} + \frac{x^2e^0}{2!} - \cdots = \sum_{n=0}^\infty (-1)^{n}\frac{x^n}{n!}.
+\end{align*}
 
 \begin{align*}
-  e^x = 1 + \frac{x}{1} + \frac{x^2}{2!} + \frac{x^3}{3!} + ... = \sum_{i=0}^\infty \frac{x^i}{i!}
+  \lim_{n \to \infty} \(1 + \frac{x}{n}\)^n
+  &= \lim_{n \to \infty} \sum_{k=0}^n {n \choose k} \(\frac{x}{n}\)^k \\
+  &= \lim_{n \to \infty} \sum_{k=0}^n \frac{n!}{(n-k)!k!} \(\frac{x}{n}\)^k \\
 \end{align*}
+... \red{TODO} prove this is $e^x$.
+
+
+
 
 \section{Exercises}
 
