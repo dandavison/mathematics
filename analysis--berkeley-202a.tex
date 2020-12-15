@@ -677,6 +677,68 @@ A \defn{probability measure} is a measure where $\mu(\Omega) = 1$.
 \end{example}
 
 
+\section{Theorems covered}
+
+\begin{enumerate}
+\item Bass 3.5
+\end{mdframed}
+\includegraphics[width=400pt]{img/analysis--berkeley-202a--billingsley-section-1--theorems-covered-0fb2.png}
+\end{mdframed}
+\item 4.6 Caratheodory's extension theorem
+\item Littlewood's three principles
+  \begin{enumerate}
+  \item {\it Any measurable set is almost an open set / a finite union of open intervals} (Bass 4.14) \\
+    Because inner and outer measurabe coincide for a measurable set
+  \item {\it Any measurable/integrable function is almost continuous} (Bass 5.2) \\
+    Lusin's theorem, density on $L^1$ of continuous fns.
+  \item Every convergent sequence of fns is nearly uniformly convergent if $\mu(X) < \infty$. \\
+    Egorov's thm
+  \end{enumerate}
+\item Bass 5.6: continuous function on metric space is measurable
+\item measurable functions closed under various combinations and limits
+\item {\it Any measurable function is almost continuous} (Bass 5.2), Lusin's theorem
+\item MCT, DCT, Fatou's lemma
+\item Vitali covering lemma
+\item Bass 7.5: $\int \sumninf f_n = \sumninf \int f_n$ for $f_n \geq 0$
+\item Bass 8 when is a function zero a.e.
+\item Bass 8.4. Approximation result: for integrable $f$ there exists continuous $g$ with compact
+  support $\int |f - g| < \eps$
+\item Folland section 2.4 Egorov's theorem, modes of convergence, Cauchy in measure
+\item Folland 2.32 If $f_n \to f$ in $L^1$ then there exists a subsequence which converges a.e.
+\item Folland 2.33 Egorov's thm: finite measure space, sequence $f_n \to f$ a.e. then there $f_n \to f$ uniformly
+  on an arbitrarily large strict subset.
+\item Signed measures: Bass 12.4, 12.5 Hahn decomposition theorem, 12.8 Jordan decomposition thm
+\item Bass 13: Radon-Nikodym: for two absolutely continuous measures, there exists a function $f$ such that
+  $\nu$ can be written as $\nu(A) = \int_A f$.
+\item Folland section 3.4
+  \begin{enumerate}
+  \item Covering lemma
+  \item average of function, $A_r f$ is continuous for locally-integrable $L^1_{loc}$,
+  \item maximal theorem: limit on measure of points with large maximal fn value
+  \item 3.18 limit of average in balls is fn value at point
+  \item measure of complement of Lebesgue set is zero
+  \end{enumerate}
+\item Topology
+  \begin{enumerate}
+  \item Equivalence of ($f$ is continuous) and (maps neighborhood into ndb)
+  \item Equivalence of open in metric space concepts
+  \item Any compact Hausdorff t.s. is normal
+  \item Bass 20.31 Uryohn's lemma (normal spaces have plenty of cont fns): if $X$ is normal and $E$ and $F$ disjoint closed then there exists a continuous
+    fn $f: X \to [0, 1]$ with $f|_E = 0$ and $f|_F = 1$.
+  \item Tietze extension: normal t.s. $F \subset X$ closed, $f: F \to [a, b]$ continuous. There exists
+    continuous $\bar f: X \to [a, b]$ s.t. $\bar f|_f = f$.
+  \item uniform limit of continuous fns is continuous
+  \item continuous image of compact set is compact
+  \item Bass 20.23 compact subset iff complete and totally bounded
+  \item Arzela-Ascoli thm: $X$ compact Hausdorff, subset $\mc F$ of continuous fns is compact iff $\mc F$ is closed
+    and all have finite sup norm and $\mc F$ is equicontinuous.
+  \item Stone-Weierstrass special case: polynomials are dense in continuous fns
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
 
 
 \subsection{Bass 4.  Construction of measures}
@@ -2287,6 +2349,98 @@ the Lebesgue set of $f$ are the points at which the derivative of $F(x) = \int_0
 the equivalent statement for balls in $R^n$, and I'm not sure quite what that statement is.
 
 Anyway, the point is that this FTC-like statement is true a.e.
+
+\section{Arzeli-Ascola}
+
+$X$ is compact Hausdorff.
+
+Consider continuous functions under supremum norm.
+\begin{align*}
+  d(f, g) = \origsup_{x \in [0, 1]} |f(x) - g(x)|.
+\end{align*}
+It is complete: every Cauchy sequence converges. (Work pointwise, complete it in the real line,
+check the resulting fn is a unif limit of the sequence in question)
+
+Question: when is a collection of continuous functions compact?
+
+Compactness in a metric space:
+
+$\R$ is not compact because it is too big: can't cover it with finite subcover.
+
+$\Q \isect (0, 1)$ problem is at finest scale: it is not complete, you can leave the set at $1/\sqrt(2)$.
+
+We will see that a subspace of a metric space is compact if two conditions hold: (1) not too big and (2)
+complete.
+
+(1) is total boundedness:
+
+$(X, d)$ is a metric space. An $\eps$-net for $A$ is a countable set $\{x_i ~:~ i \in \N\} \subseteq X$ such
+that $A \subset \union B(x_i, \eps)$: everyone in $A$ is within $\eps$ of one of the points.
+
+$A$ is \defn{totally bounded} if for all $\eps > 0$ there exists a finite $\eps$-net for $A$.
+
+Bass 20.23
+
+A subset $A$ of a metric space is compact iff
+\begin{enumerate}
+\item it is complete, and
+\item it is totally bounded.
+\end{enumerate}
+
+
+How might a space of continuous functions not be compact?
+
+\begin{enumerate}
+\item The functions may ``go off to infinity​'' - not totally bounded.
+\item
+  Consider $f_n(x) = \sin(nx)$. (``weakly convergent​'') but doesn't converge to a valid function
+\item or a point could be removed, e.g. $f_n = 1/n$ is not compact because does not contain $0$.
+\end{enumerate}
+
+We need a notion of uniformity of convergence that doesn't rely on a $\delta$ in the domain (because we are
+considering topological spaces hence the domain is not necessarily a metric space.) I.e. ``simultaneous​'' or
+``uniform​'' continuity for the whole system of functions.
+
+\begin{definition*}
+  A subset $\mc F \subseteq \mc C(X)$ is \defn{equicontinuous} if $\forall~ \eps > 0$ and
+  $\forall~ x \in X$ there exists an open set $G$ containing $x$ such
+  that $|f(x) - f(y)| < \eps$ $\forall~ f \in \mc F$ and $\forall~ y \in G$.
+\end{definition*}
+
+Note that the same $G$ works for all $f$.
+
+So this is the defn of continuity for a single function $f$. The question is whether $\delta$ can
+be chosen uniformly for all functions in the collection. Or rather, since this is a topological
+space, can the open set $G$ be chosen uniformly for all $f$? This means for a given $x$, does the
+same $G$ work for all $f$?
+
+Consider $\sin(nx)$. This collection is not equicontinuous. The reason is that for any {\it given}
+$\delta$ (open interval $G$), we can always find a function further along in the sequence whose
+vertical movement is so fast that it moves more than $\eps$. So, for any {\it given} one of those
+functions, for any $\eps$, we will be able to find a $\delta$ within which the movement is
+constrained to stay within $\eps$. However, there'll always be another function in the family where
+that's not true. Thus the family as a whole fails the equicontinuity criterion.
+
+
+
+\begin{theorem}[Arzeli-Ascoli]
+  $X$ is compact Hausdorff. A subset $\mc F \subseteq \mc C(X)$ is compact iff all the following hold
+  \begin{enumerate}
+  \item $\mc F$ is closed
+  \item for all $x \in X$, we have $\origsup_{f \in \mc F} |f(x)| < \infty$
+  \item $\mc F$ is equicontinuous
+  \end{enumerate}
+\end{theorem}
+
+More examples:
+
+Consider functions $\mc C \to \R$ ($\mc C$ under supremum norm topology and $\R$ under standard Euclidean
+metric topology).
+
+Consider the pointwise evaluation map for a point $x$ i.e. $f \mapsto f(x)$. This is continuous:
+domain space is under supremum norm; if two fns are close under sup norm then they are close at
+every point. This continuity is the reason why in A-A the compactness of $\mc F$ implies (2) above
+(continuous image of compact set is compact).
 
 
 
