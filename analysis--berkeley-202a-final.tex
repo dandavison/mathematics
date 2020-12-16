@@ -32,10 +32,10 @@
 \end{lemma}
 
 \begin{proof}
-  Let $k_1, k_2 \in K \subset \R$ with $k_1 \neq k_2$. Without loss of generality suppose that $k_1 < k_2$.
-  Then there exists $x \in K^c$ such that $k_1 < x < k_2$ (\red{TODO} I hope we proved this in class?).
-  Then $[k_1, x) \isect K$ and $(x, k_2] \isect K$ are non-empty open subsets of $K$ whose union
-  equals $[k_1, k_2]$, therefore $[k_1, k_2]$ is disconnected.
+  Let $k_1, k_2 \in K \subset \R$ with $k_1 \neq k_2$. Without loss of generality suppose
+  that $k_1 < k_2$. Then, since the Cantor set includes no intervals, there exists $x \in K^c$ such
+  that $k_1 < x < k_2$. Then $[k_1, x) \isect K$ and $(x, k_2] \isect K$ are non-empty open subsets
+  of $K$ whose union equals $[k_1, k_2]$, therefore $[k_1, k_2]$ is disconnected.
 \end{proof}
 
 \begin{proof}
@@ -108,8 +108,8 @@
     &= \mathbb{E}(X)\mathbb{E}(Y).
   \end{align*}
   However, in order for this line of thinking to be relevant, we would need to explain the
-  connection between continuity of $f$ and $g$ and their independence as random variables. But of
-  course we could have $f = g$ and then they wouldn't be independent. It's like we're looking for
+  connection between continuity of $f$ and $g$ and their independence as random variables. Of
+  course we could take $f = g$ and then they wouldn't be independent. It's like we're looking for
   probability measures under which every random variable is independent.
 
   So an example of a measure that does satisfy these conditions is the Dirac measure: for
@@ -126,8 +126,8 @@
   \end{align*}
   for every pair $f, g: \R \to \R$ of continuous functions. But I'm not sure where to go from here.
 
-  I'm going to conjecture without proof that there is an equivalence relation on the collection of
-  measures specified in the question and that every equivalence class has a canonical
+  I'm going to conjecture without proof that there exists an equivalence relation on the collection
+  of measures specified in the question such that every equivalence class has a canonical
   representative which is a probability measure with the property that every pair of random
   variables is independent (even two copies of the same random variable), and that in fact the
   Dirac measure is the only such probability measure.
@@ -356,10 +356,9 @@ is defined to mean the Maclaurin expansion: $e^{-x} := \sum_{j=0}^\infty (-1)^j 
 \end{mdframed}
 \green{COMPLETE}
 
-
-\begin{mdframed}
-  \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-b463.png}
-\end{mdframed}
+% \begin{mdframed}
+%   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-b463.png}
+% \end{mdframed}
 
 Informally, here is what the definition says:
 
@@ -371,8 +370,8 @@ Informally, here is what the definition says:
 
 Notice that in the definition, the same $\delta$ and $r_0$ work everywhere.
 
-Consider an outer ball of size $r < r_0$. There exists an inner ball of size $\delta r$ that works. Furthermore
-this inner ball works for all larger outer balls.
+% Consider an outer ball of size $r < r_0$. There exists an inner ball of size $\delta r$ that works. Furthermore
+% this inner ball works for all larger outer balls.
 
 \begin{claim}
   There exist uncountable porous sets.
@@ -534,8 +533,9 @@ Let $m$ denote Lebesgue measure.
   Note that $f$ is continuous with compact support and so $f$ attains its bounds. Let $A = \inf f$
   and $B = \sup f$.
 
-  Note that the integrand is bounded above by the constant integrable function $h(x) = B$ defined on $[0, 1]$.
-  Therefore we may apply the dominated convergence theorem, yielding
+  Note that the integrand is bounded in absolute value by the integrable constant
+  function $h(x) = \max(\{|A|, |B|\})$ defined on $[0, 1]$. Therefore we may apply the dominated
+  convergence theorem, yielding
   \begin{align*}
     \limninf \int_{[0, 1]} f(g(x)^n) \dx = \int_{[0, 1]} \limninf  f(g(x)^n) \dx.
   \end{align*}
