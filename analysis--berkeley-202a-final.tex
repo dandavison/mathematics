@@ -78,6 +78,7 @@
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-0bf8.png}
 \end{mdframed}
+\red{INCOMPLETE}
 
 % https://math.stackexchange.com/questions/2250993/when-the-integral-of-products-is-the-product-of-integrals
 
@@ -148,7 +149,7 @@
   \end{mdframed}
 \end{proof}
 
-\red{The above counterexample from Bass is the correct answer. However here is some thinking I
+\blue{The above counterexample from Bass is the correct answer. However here is some thinking I
   did about this independently prior to consulting Bass.}
 
 Let $f_n: [0, 1] \to \R$ be a sequence of functions converging to $f: [0, 1] \to \R$ in $L^1$.
@@ -175,30 +176,6 @@ So it seems that this might be a contradiction, but we need to prove it.
 
 Set $d_n = |f_n - f|$ and let $\eps > 0$. Since $\int_E d_n \to 0$ there exists $N$ such
 that $\int_E d_n < \eps$ for all $n \geq N$. Let $n \geq N$. \red{(incomplete, and doomed; see above.)}
-
-% \begin{theorem}[Bass proposition 8.1]\label{bass-8.1}
-%   If $f$ is real-valued, non-negative, and measurable, and $\int f = 0$, then $f = 0$ a.e.
-% \end{theorem}
-
-% \begin{proof}
-%   \red{TODO}
-%   Let $f_n: [0, 1] \to \R$, $n \in \N$, converge to $f: [0, 1] \to \R$ in $L^1$. Thus, by definition,
-%   \begin{align*}
-      %       \limninf \int |f_n - f| = 0.
-      %     \end{align*}
-      %       We want to prove or disprove the statement
-      %       \begin{align*}
-      %       \limn f_n = f \ae
-      %     \end{align*}
-      %       Suppose we could bring the limit inside. Then
-      %       \begin{align*}
-      %       \int \limninf |f_n - f| = 0,
-      %     \end{align*}
-      %       therefore by Bass proposition 8.1 $\limninf |f_n - f| = 0$ a.e. and thus $f_n$ converges almost everywhere to $f$.
-
-      %       But bringing the limit inside is justified by neither MCT nor DCT. So let's look for a counter-example based
-      %       on not satisfying DCT conditions.
-      %       \end{proof}
 
 \newpage
 \begin{mdframed}
@@ -285,7 +262,7 @@ is defined to mean the Maclaurin expansion: $e^{-x} := \sum_{j=0}^\infty (-1)^j 
   \end{align*}
 \end{proof}
 
-\red{TODO: What did this have to do with part (a)?}
+\blue{What did this have to do with part (a)?}
 
 \newpage
 \begin{mdframed}
@@ -427,8 +404,6 @@ I used the following sources in answering this question
 \url{https://www.wikiwand.com/en/Lebesgue\%27s_density_theorem}\\
 
 \begin{proof}
-  \red{TODO} (partial)
-
   Let $A \subseteq \R^n$ be porous, parametrized by $\delta > 0$ and $r_0 > 0$.
 
   Let $x \in A$ and let $y$ be such that for all $0 < r \leq r_0$ we have $B(y, \delta r) \subseteq B(x, r)$
@@ -454,7 +429,7 @@ I used the following sources in answering this question
   above that $\frac{m(A \isect B(x, r))}{m(B(x, r))} < 1 - \delta^n$.
 \end{proof}
 
-\red{TODO: Is it correct that the Lebesgue density theorem requires the set to have positive
+\blue{Is it correct that the Lebesgue density theorem requires the set to have positive
   measure? It seems obviously true but I couldn't see that in statements of the theorem.}
 
 
@@ -462,12 +437,12 @@ I used the following sources in answering this question
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-21a6.png}
 \end{mdframed}
+\red{INCOMPLETE}
+
 
 Let $m$ denote Lebesgue measure.
 
 \begin{proof}
-  \red{TODO} (partial)
-
   Since $\mu$ is singular with respect to Lebesgue measure, there exist disjoint Borel sets $U$ and $V$ such
   that $U$ is $\mu$-null and $V$ is $m$-null, and $\R = U \union V$.
 
@@ -502,7 +477,8 @@ Let $m$ denote Lebesgue measure.
   Note that every interval around $x$ is not in $V$, because it has positive Lebesgue measure. In other
   words, $V$ includes no intervals. But this is true of the Cantor set also.
 
-  \red{TODO} I don't know how to finish this.
+  I don't know how to finish this.
+  \red{INCOMPLETE}
 \end{proof}
 
 % I am assuming that the question is saying that $\mu$ and $m$ are mutually singular with respect to the
@@ -702,6 +678,7 @@ Let $m$ denote Lebesgue measure.
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-0000.png}
 \end{mdframed}
+\red{INCOMPLETE}
 
 % \begin{itemize}
 % \item \url{https://www.wikiwand.com/en/Lp_space#/The_p-norm_in_infinite_dimensions_and_\%E2\%84\%93p_spaces}
@@ -723,9 +700,6 @@ Let $m$ denote Lebesgue measure.
 
 
 \begin{proof}
-
-  [incomplete]
-
   Let $L = \lim_{p \to \infty} \(\int |f|^p \dmu\)^{1/p}$.
 
   First consider $f$ simple, say $f = \sum_{j=1}^J a_j \ind_{E_j}$. Then
@@ -746,7 +720,7 @@ Let $m$ denote Lebesgue measure.
   First we will show that $L \geq \norm{f}_\infty$.
 
   Finally we show that $L \leq \norm{f}_\infty$.
-  \red{TODO}
+  \red{INCOMPLETE}
 \end{proof}
 
 I didn't get far with that. FWIW, here (\url{https://math.stackexchange.com/questions/242779/limit-of-lp-norm}) is a proof from
@@ -763,6 +737,7 @@ intuition for.
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-8aed.png}
 \end{mdframed}
+\red{INCOMPLETE}
 
 First, we prove this for $X = \R^n$.
 
@@ -804,6 +779,7 @@ it.
     \mu(\{x\}) = \limninf \mu(E_n)
   \end{align*}
   I don't know how to proceed.
+  \red{INCOMPLETE}
 \end{proof}
 
 Some notes:
