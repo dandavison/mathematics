@@ -235,8 +235,37 @@ We now prove the main claim; the necessary lemmas are proved below.
 \includegraphics[width=400pt]{img/analysis--berkeley-202a-hw13-9356.png}
 \end{mdframed}
 
-First, let's examine some small finite sets and the possible topologies that meet the specified condition. The
-following table excludes topologies that differ only by a relabeling of the elements in the underlying set.
+% From Aidan Backus (grader):
+
+% Recall that a directed graph is "transitive" if given edges x→y→z we can compose them to get an
+% edge x→z. The key point is that if X is a finite topological space then we can think of X as (the
+% vertices of) a transitive directed graph. Namely, if x,y∈X then we define an edge x→y iff x is in
+% the closure of y. Conversely, if X is a transitive directed graph we can put a topology on (the
+% vertices of) X by saying that the open sets are the sets which are closed upwards.
+
+% The following are equivalent: X is connected (in the sense of topological spaces); and X is
+% graph-theoretically connected. Indeed, every graph-theoretically connected component of X is a
+% closed subset of X, so it is clopen since its complement is closed; the converse is similar.
+
+% If X is as in the problem and there is an edge x→y then either x=y or there is no edge y→x. Suppose
+% that there are edges x→y→x. Then x, y have the same closure, so x, y are indiscernible. Therefore
+% {x} is not open, so it is closed, so it is the closure of x, so x=y.
+
+% Suppose that every proper nonempty subset of X is either open or closed but not open. Then X has no
+% proper nonempty clopen subsets, so X is connected, and hence graph-theoretically connected. By the
+% previous paragraph, X has no cycles except for the trivial edges x→x. I think that one can now show
+% that there is a unique vertex x such that either x is initial or x is final. To do this, you first
+% might show that X is the transitive closure of a directed tree.
+
+% If x is initial, then x is in the closure of every point. So every set that contains x is open and
+% every other set is closed. Otherwise, x is final; by symmetry (since we're in a finite topological
+% space, the set of closed sets is also a topology!) every set that contains x is closed and every
+% other set is open.
+
+
+First, let's examine some small finite sets and the possible topologies that meet the specified
+condition. The following table excludes topologies that differ only by a relabeling of the elements
+in the underlying set.
 
 [Incomplete, table is incomplete and I didn't figure out what the pattern was.]
 
@@ -333,6 +362,11 @@ from $0$ to $1$, the loop continuously deforms from $f$ into $g$.
     loop $f_\gamma$ passes through $(0, 0)$ before $t = 1$, if this is finite. If the loop follows infinitely
     many circles then set $K_\gamma = \infty$. We have $K_\gamma \geq 1$ because each loop starts
     at $(0, 0)$.
+
+    Note that a loop can follow infinitely many circles without needing to ``move at infinite
+    speed'': for example, viewing $t \in [0, 1)$ as a time parameter, we may divide $t$ up
+    as $\sum_{n=1}^\infty \frac{1}{2^n}$, i.e. specify that the particle spends a fraction $2^{-n}$
+    of the total time traversing the $n$-th circle.
 
     Note that a circle may be followed in one of two ``orientations​'': clockwise or anticlockwise.
     Let $\rho_{\gamma, k}$ be the orientation of the $k$-th circle in loop $\gamma$.

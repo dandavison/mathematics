@@ -3,6 +3,8 @@
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-c9d2.png}
 \end{mdframed}
+
+
 \green{COMPLETE}
 
 \begin{proof}
@@ -436,6 +438,54 @@ I used the following sources in answering this question
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-21a6.png}
 \end{mdframed}
+% Problem 4
+% How did people do 4 on final? I don't know how to say anything about the "singular continuous case", e.g. if μ is Cantor-Lebesgue measure.
+
+% Or in other words what I mean is, the condition is pretty obvious if we are testing at a point x such that μ({x})>0, because the numerator of the limit is bounded below when ε→0. We only need to check μ-almost every x, so this sort of close to solving it but not there, because there could be an uncountable, Lebesgue measure zero set T such that μ(x)=0 for all x∈T but μ(T)>0. Indeed this is the case if μ is the measure derived from the Cantor-Lebesgue function; I think T could be any uncountable subset of the Cantor set, and certainly the whole thing. What can we say about that quotient if x∈T?
+
+
+% exam
+% edit·good question1Updated 8 hours ago by HUGO A JENKINS
+% the students' answer,where students collectively construct a single answer
+% Click to start off the wiki answer
+% followup discussionsfor lingering questions and comments
+% Resolved Unresolved
+% Anonymous Scale
+% Anonymous Scale 8 hours ago
+% I was only able to show that limsupϵ>0(μ([x−ϵ,x+ϵ])2ϵ)=+∞ for μ-almost every x∈R, so I would also be curious to see how others did it.
+
+% What I did was take an arbitrary α>0, then for each n∈N, cover the Lebesgue measure zero set whose complement is μ measure zero with intervals of total length less than 4−nα, throw out all intervals with μ value less than their length multiplied by 2n, and let An be the union of the remaining intervals. Then, let A be the intersection of all An. At this point, μ(AC)<α, and for any x∈A, the limsup goes to infinity. Then because α is arbitrary, the limsup goes to infinity μ-almost everywhere. I couldn't find a way to control the liminf, however.
+
+% helpful! 0
+% Reply to this followup discussion
+% Resolved Unresolved
+% HUGO A JENKINS
+% HUGO A JENKINS 8 hours ago
+% How do you have μ(Ac)<α? Or even μ(Acn)<α? I do not see how α controls μ of anything; as in when you throw away intervals, you are only adding μ-value to these complements
+
+% helpful! 0
+% Anonymous Scale
+% Anonymous Scale 7 hours ago The total length of the intervals is less than 4−nα, so when you throw out the intervals whose μ value is less than 2n times their length, the total μ value you've gotten rid of is less than 2−nα.
+% helpful! 1
+% HUGO A JENKINS
+% HUGO A JENKINS 7 hours ago
+% Ah I see. Great.
+
+% But why does the limsup go to infinity for any x∈A? Could x just happen to be in every An, but if you center at x and then take the limit it stays bounded….?
+
+% helpful! 0
+% HUGO A JENKINS
+% HUGO A JENKINS 7 hours ago
+% Ah no I see, sorry. Great.
+
+% Maybe we can institute more strict requirements to not be chucked out when forming An. Like neither of your left or right half subintervals can have μ-density less than 2n
+% helpful! 0
+% Harsh Srivastav
+% Harsh Srivastav 3 hours ago I used a similar treatment as Bass Chapter 14.3, essentially replacing the lim sup with a lim inf and replacing λ with m wherever I found it, as well as the appropriate conditions; it seemed to give me what I wanted.
+% helpful! 0
+
+
+
 \red{INCOMPLETE}
 
 
@@ -737,6 +787,18 @@ intuition for.
 \begin{mdframed}
   \includegraphics[width=400pt]{img/analysis--berkeley-202a-final-8aed.png}
 \end{mdframed}
+
+% You want to make use of the fact that the complement of $S$ is open in $\mathbb R$, meaning
+% that it is a disjoint finite or countable union of open intervals, say $(a_n, b_n)$. Let $P_n$
+% be the preimage under $f$ of $(a_n, b_n)$. Then we must have $\mu(P_n) = 0$, as otherwise,
+% the given condition (only applicable to sets with $\mu > 0$) would give us
+% $a_n < \frac1{\mu(P_n)} \int_{P_n} f \, d\mu < b_n$.
+
+
+
+
+which contradicts that $$A_{P_n}(f) \in S$$. Since the preimage of $$(a_n, b_n)$$ under $$f$$ has measure 0, the preimage of the union of $$(a_n, b_n)$$ over $$n$$ has measure 0 as well, whence $$f(x) \in S$$ for $$\mu$$-almost all $$x$$.
+
 \red{INCOMPLETE}
 
 First, we prove this for $X = \R^n$.
