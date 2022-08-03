@@ -881,23 +881,317 @@ is a basis; $\{1, i\}$ are no longer linearly independent.
   form as an inner product.
 \end{definition*}
 
+\section{Computing the n-th Fibonacci number: generating function}
+
+\begin{definition}
+  The Fibonacci sequence is defined by $f_0 = f_1 = 1$ and $f_n = f_{n-2} + f_{n-1}$:
+  \begin{align*}
+    f_0 &= 1\\
+    f_1 &= 1\\
+    f_2 &= 2\\
+    f_3 &= 3\\
+    f_4 &= 5\\
+    f_5 &= 8\\
+    &\ldots.
+  \end{align*}
+\end{definition}
+
+Our aim is to find a formula for the $n$-th Fibonacci number $f_n$. Here are two proofs:
+
+
+\begin{proof}
+  The first proof is based on constructing a matrix
+  \begin{align*}
+    A &= \matMMxNN{0}{1}
+                  {1}{1}
+  \end{align*}
+  whose successive powers produce the Fibonacci sequence in the off-diagonal elements:
+\begin{align*}
+A^{2} &= \matMMxNN{1}{1}
+                  {1}{2}
+\\
+A^{3} &= \matMMxNN{1}{2}
+                  {2}{3}
+\\
+A^{4} &= \matMMxNN{2}{3}
+                  {3}{5}.
+\end{align*}
+We can then obtain a formula for the $n$-th Fibonacci number by computing the $n$-th power of
+the matrix using the standard eigenvector change-of-basis technique.
+
+The eigenvectors are $\scvec{2}{1+\sqrt 5}$ and $\scvec{2}{1-\sqrt 5}$, and we end up with the same result:
+\begin{align*}
+f_n &= \frac{1}{\sqrt 5}\(\(\frac{1 + \sqrt 5}{2}\)^n - \(\frac{1 - \sqrt 5}{2}\)^n\) \\
+    &= \frac{1}{\sqrt 5}\(\phi^n - (-\phi^{-1})^n\)
+\end{align*}
+\end{proof}
+
+
+\begin{proof}
+  The second proof is based on considering the following power series with coefficients given by the
+  Fibonacci numbers:
+  \begin{align*}
+    F(x) &= 1 + x + 2x^2 + 3x^3 + 5x^4 + 8x^5 + \ldots.
+  \end{align*}
+  Specifically, we're going to find a closed-form (i.e. not involving an infinite summation)
+  expression for the coefficient of $x^n$ in this power series: this will then be the desired formula
+  for the $n$-th Fibonacci number.
+
+  The first result we use is that $F(x)$ can be written in closed form
+  as $F(x) = \frac{1}{1 - x - x^2}$ (proof below). This is significant progress: we've replaced the
+  infinite series (whose coefficients we lack a formula for) with a simple closed-form expression.
+  To complete the proof we need to find a way to re-expand this as a power series where the
+  coefficient of $x^n$ is given by some expression involving $n$.
+
+  Define $\varphi = \frac{1}{2}(1 + \sqrt{5})$ (this is the ``golden ratio​''). Note that its reciprocal is $\varphi^{-1} = -\frac{1}{2}(1 - \sqrt{5})$.
+
+  The quadratic expression on the bottom of $\frac{1}{1 - x - x^2}$ factors
+  as $(1 - \varphi x)(1 + \varphi^{-1}x)$, and thus (proof below) we are able to write $F(x)$ as the
+  sum of two quantities:
+  \begin{align*}
+  F(x) &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} + \frac{\phi^{-1}}{1 + \varphi^{-1}x}\).
+  \end{align*}
+  The key point is that each of these quantities is itself equal to a geometric series:
+  \begin{align*}
+    \frac{1}{1 - \varphi x} &= 1 + \varphi x + \varphi^2x^2 + \varphi^3x^3 + \ldots
+  \end{align*}
+  and
+  \begin{align*}
+    \frac{1}{1 + \varphi^{-1}} &= 1 - \varphi^{-1}x + \varphi^{-2}x^2 - \varphi^{-3}x^3 + \ldots.
+  \end{align*}
+  Thus we've achieved our aim: we can now find a closed-form expression for the coefficient of $x^n$ in
+  our original power series $F(x)$:
+  \begin{align*}
+    f_n = \frac{1}{\sqrt 5}\(\varphi^{n+1} + (-\varphi)^{-(n+1)}\).
+  \end{align*}
+  By the definition of our power series, this is the $n$-th Fibonacci number.
+\end{proof}
+
+
+
+The two proofs seem quite different. The first obtains the $n$-th Fibonacci number by computing a
+matrix power in a diagonalizing eigenbasis. The second is a bit harder to summarize: it does it by
+finding a closed-form expression for the generating power series with Fibonacci coefficients, and
+then decomposing that function as the sum of two power series whose $x^n$ coefficients are known as a
+function of $n$.
+
+Is there anything interesting that can be said about the fact that these two techniques solve the
+same problem? Do they have anything in common, or can one or other be seen in a different way that
+reveals them to be more similar than they appear?
+
+The first works with the Fibonacci sequence directly. The second does not; instead it works with a
+function which, when represented as a power series, contains the Fibonacci sequence as its
+coefficients.
+
+Consider the function space $\mathcal F$ defined by the basis $\{x^0, x^1, x^2, \ldots\}$ and
+define $\mathcal F^{(k)} \subset \mathcal F$ to be the subspace spanned by the first $k$ basis
+vectors.
+
+The Fibonacci generating function is an element of $\mathcal F$:
+\begin{align*}
+    F(x) &= 1 + x + 2x^2 + 3x^3 + 5x^4 + 8x^5 + \ldots \in \mathcal F.
+  \end{align*}
+The first proof involves computing $A^n$.
+
+The second proof involves decomposing $F \in \mathcal F$ as the sum of two power
+series: $F = P + Q \in \mathcal F$.
+
+The question we're trying to answer is whether there's any connection between those two techniques.
+
+We know that the off-diagonal elements of $A^n$ are equal to the $n$-th coordinate
+of $F(x) \in \mathcal F$. In other words, the sequence $A^0, A^1, A^2, \ldots, A^n$ corresponds to the
+projection of $\mathcal F$ onto the finite-dimensional
+subspace $\mathcal F^{(n)} \subset \mathcal F$.
+
+Maybe we should think about the corresponding projection of $P$ and $Q$?
+
+
+
+{\bf Check:}
+
+We have
+\begin{align*}
+  \varphi &= \frac{1}{2}(1 + \sqrt{5}) \\
+  \varphi^2 &= \frac{1}{4}(1 + 2\sqrt 5 + 5) = \frac{1}{2}(3 + \sqrt{5}) \\
+  \varphi^3 &= \frac{1}{4}(3 + 4\sqrt 5 + 5) = \frac{1}{2}(4 + 2\sqrt 5) \\
+  \varphi^4 &= \frac{1}{8}(28 + 12\sqrt 5) = \frac{1}{2}(7 + 3\sqrt 5),
+\end{align*}
+and
+\begin{align*}
+  \varphi^{-1} &= -\frac{1}{2}(1 - \sqrt 5) \\
+  \varphi^{-2} &= \frac{1}{4}(6 - 2\sqrt 5) = \frac{1}{2}(3 - \sqrt 5) \\
+  \varphi^{-3} &= -\frac{1}{4}(8 - 4\sqrt 5) = -\frac{1}{2}(4 - 2\sqrt{5}) \\
+  \varphi^{-4} &= \frac{1}{4}(14 - 6\sqrt 5) = \frac{1}{2}(7 - 3\sqrt 5),
+\end{align*}
+and
+\begin{align*}
+  A + B &= 1 \\
+  A - B &= \frac{1 + \varphi^2 - 1 - \varphi^{-2}}{(1 + \varphi^{-2})(1 + \varphi^2)}
+        = \frac{\varphi^2 - \varphi^{-2}}{2 + \varphi^2 + \varphi^{-2}}
+        = \frac{4\sqrt 5}{8 + 12} \\
+        &= \frac{1}{\sqrt 5}
+\end{align*}
+hence from
+\begin{align*}
+  f_n = A\varphi^n + (-1^n)B\varphi^{-n}
+\end{align*}
+we have
+\begin{align*}
+  f_0 &= A + B = 1 ~ \checkmark \\
+  f_1 &= A\varphi - B\varphi^{-1} = \frac{1}{2}\(A + A\sqrt{5} + B - B\sqrt{5}\) = \frac{1}{2}\(1 + 1\) = 1 ~ \checkmark \\
+  f_2 &= A\varphi^2 + B\varphi^{-2} = \frac{1}{2}\(3A + A\sqrt 5 + 3B - B\sqrt 5\) = \frac{1}{2}\(3 + 1\) = 2 ~ \checkmark \\
+  f_3 &= A\varphi^3 - B\varphi^{-3} = \frac{1}{2}\(4A + 2A\sqrt 5 +4B - 2B\sqrt 5\) = \frac{1}{2}\(4 + 2\) = 3 ~ \checkmark \\
+  f_4 &= A\varphi^4 + B\varphi^{-4} = \frac{1}{2}\(7A + 3A\sqrt 5 + 7B - 3B\sqrt 5\) = \frac{1}{2}\(7 + 3\) = 5 ~ \checkmark
+\end{align*}
+
+
+\begin{claim}
+  Let $f_n$ be the $n$-th Fibonacci number. Then
+  \begin{align*}
+    \sum_{n=0}^\infty f_n x^n = \frac{1}{1 - x - x^2}.
+  \end{align*}
+\end{claim}
+
+\begin{proof}
+First note that for $|x| < 1$ (geometric series)
+\begin{align*}
+  1 + (x + x^2) + (x + x^2)^2 + (x + x^2)^3 + (x + x^2)^4 + \cdots &= \frac{1}{1 - (x + x^2)}.
+\end{align*}
+Consider, for example, the expression $(x + x^2)^4$:
+\begin{align*}
+  (x + x^2)(x + x^2)(x + x^2)(x + x^2)
+\end{align*}
+Each of the $16$ terms that this contributes to the polynomial corresponds to a length-$4$ sequence
+of $1$s and $2$s, and the sum of that sequence is the exponent of the corresponding term in the
+expanded power series. For example, the sequence $(1,1,1,1)$ corresponds to picking the first term
+from each parenthesized expression, and corresponds to one way in which $x^4$ is contributed to the
+power series. The other ways are $(1,1,2)$, $(1,2,1)$, and $(2,1,1)$ from the expansion
+of $(x + x^2)^3$, and $(2,2)$ from the expansion of $(x + x^2)^2$.
+
+Thus we see that the coefficient of $x^4$ in the power series is $5$, and in general that the
+coefficient of $x^n$ is equal to the number of sequences of $1$s and $2$s that sum to $n$. But the
+number of sequences of $1$s and $2$s that sum to $n$ is equal to the $n$-th Fibonacci number $f_n$
+(proof below).
+\end{proof}
+
+
+\begin{claim}
+ The $n$-th Fibonacci number $f_n$ is equal to the number of sequences of $1$s and $2$s that sum to $n$.
+\end{claim}
+
+\begin{proof}
+  The claim is true for $n=0$ and $n=1$, since the only way to form these is as the sum of the empty sequence $()$ and the sum of the sequence $(1)$ respectively.
+
+  Assume for induction that the claim is true for all $n < k$. Note that the sequences of $1$s
+  and $2$s summing to $k$ fall into two mutually exclusive sets:
+  \begin{enumerate}
+  \item The set of sequences used in forming $k-1$, each with a $1$ appended
+  \item The set of sequences used in forming $k-2$, each with a $2$ appended
+  \end{enumerate}
+  By the induction hypothesis, these sets have $f_{k-1}$ and $f_{k-2}$ elements respectively. Hence
+  the number of sequences of $1$s and $2$s that sum to $k$ is equal to $f_{k-2} + f_{k-1}$ which is
+  equal to the $k$-th Fibonacci number $f_k$ by definition.
+\end{proof}
+
+\begin{claim}
+  Define $\varphi = \frac{1}{2}(1 + \sqrt{5})$. Then
+  \begin{align*}
+  \frac{1}{1 - x - x^2} &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} + \frac{\phi^{-1}}{1 + \varphi^{-1}x}\).
+  \end{align*}
+\end{claim}
+
+\begin{proof}
+  We have $\varphi^{-1} = 2\frac{1 - \sqrt{5}}{-4} = -\frac{1}{2}(1 - \sqrt{5})$ and $\varphi - \varphi^{-1} = 1$, and
+  \begin{align*}
+    (1 - \varphi x)(1 + \varphi^{-1}x) &= 1 - x(\varphi - \varphi^{-1}) - x^2 = 1 - x - x^2.
+  \end{align*}
+  Therefore (partial fractions)
+  \begin{align*}
+    \frac{1}{1 - x - x^2}
+         &= \frac{A}{1 - \varphi x} + \frac{B}{1 + \varphi^{-1}x} \\
+         &\begin{cases}
+           A + B = 1 \\
+           A\varphi^{-1} - B\varphi &= 0
+         \end{cases} \\
+        A\varphi^{-1} - \varphi + A\varphi &= 0 \\
+        A &= \frac{\varphi}{\varphi + \varphi^{-1}}
+          = \frac{1}{1 + \varphi^{-2}}
+          = \frac{2}{\sqrt 5(\sqrt 5 - 1)}
+          = \frac{1}{\sqrt 5}\varphi\\
+    B &= \frac{\varphi^{-2}}{1 + \varphi^{-2}} = \frac{1}{1 + \varphi^{2}} = \frac{2}{\sqrt 5(\sqrt 5 + 1)} = \frac{1}{\sqrt 5}\varphi^{-1} \\
+    \frac{1}{1 - x - x^2}
+         &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} + \frac{\phi^{-1}}{1 + \varphi^{-1}x}\)
+  \end{align*}
+
+
+
+
+
+\begin{align*}
+  \varphi &:= \frac{1 + \sqrt 5}{2} \\~\\
+  \varphi^{-1} &= \frac{2}{1 + \sqrt 5}
+               = \frac{2(1 - \sqrt 5)}{-4}
+               = \frac{\sqrt 5 - 1}{2} \\~\\
+  \varphi &= \frac{1 + \sqrt 5}{2} = (\varphi^{-1})^{-1} = \frac{2}{\sqrt 5 - 1}
+\end{align*}
+
+\end{proof}
+
+
+https://math.stackexchange.com/a/338748/397805
+\begin{mdframed}
+\includegraphics[width=400pt]{img/linear-algebra--vector-spaces-and-fields--computing-the-n-th-fibonacci-number-generating-function-d6da.png}
+\end{mdframed}
+
+
+
+Let $f_n$ be the $n$-the Fibonacci number, and define
+\begin{align*}
+F(x) &= \sum_{n=0}^\infty F_n(x) \\
+     &= \sum_{n=0}^\infty f_nx^n \\
+     &= 0 + 1x^1 + 1x^2 + 2x^3 + 3x^4 + 5x^5 + 8x^6 + \cdots.
+\end{align*}
+
+Note that for $n > 1$ we have $F_n(x) = x^2F_{n-2}(x) + xF_{n-1}(x)$, hence we see that the
+polynomial can be written in a way involving a weighted sum of two copies of itself:
+\begin{align*}
+  F(x) &= x^2F(x) + xF(x) + x, \\
+       &= \frac{x}{1 - x - x^2}.
+\end{align*}
+Let $\varphi$ be such that $1 - x - x^2 = (1 - \varphi x)(1 + \frac{1}{\varphi}x)$. Then (partial fractions)
+\begin{align*}
+  \frac{A}{1 - \varphi x} + \frac{B}{1 + \varphi^{-1}x} &= F(x) \\
+  A + A\varphi^{-1}x + B - B\varphi x &= x \\
+  \begin{cases}
+    A + B = 0 \\
+    A\varphi^{-1} - B\varphi = 1 \\
+  \end{cases} \\
+  A = \frac{1}{\varphi^{-1} - \varphi}
+\end{align*}
+Thus
+\begin{align*}
+  F(x) = \frac{1}{(\varphi^{-1} - \varphi)(1 - \varphi x)} + \frac{1}{(\varphi^{-1} - \varphi)(1 + \varphi^{-1} x)}
+\end{align*}
+
+
 
 \section{Finding the nth Fibonacci number via an eigenvector change of basis}
 
 
-This is the problem given at the end of the eigenvectors video in the
-Essence of Linear Algebra\footnote{\url{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}}
-series by 3blue1brown\footnote{\url{http://www.3blue1brown.com/}}.
+This problem is given at the end of the eigenvectors video in the Essence of Linear
+Algebra\footnote{\url{https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab}} series by 3blue1brown\footnote{\url{http://www.3blue1brown.com/}}.
 
 
 \subsection*{Introduction}
 
-Consider the matrix
+The Fibonacci sequence is the sequence you get by starting with $0, 1$ and after that always
+forming the next number by adding the two previous ones: $0, 1, 1, 2, 3, 5, 8, 13, ...$.
 
-$$
+Consider the matrix
+\[
 A = \matMMxNN{0}{1}
         {1}{1}
-$$
+\]
 
 The first few powers are
 
@@ -921,15 +1215,13 @@ The first few powers are
                                       {3}{5}
 \end{align*}
 
-The Fibonacci sequence is the sequence you get by starting with $0,
-1$ and after that always forming the next number by adding the two previous ones:
-$F_0, F_1, F_2, F_3, F_4, F_5, F_6, F_7, ...$ = $0, 1, 1, 2, 3, 5, 8, 13, ...$.
-
 The matrix powers are generating the Fibonacci sequence:
 \begin{align*}
   A^{n} = \matMMxNN{F_{n-1} }{F_n      }
   {F_n     }{F_{n+1} }
 \end{align*}
+
+
 So if there were a way to compute the $\nth$ power of that matrix ``directly'',
 that would also be a way to compute the $\nth$ Fibonacci number ``directly'',
 i.e. without computing all the preceding Fibonacci numbers \textit{en route}.
@@ -1115,11 +1407,11 @@ golden ratio (\url{https://en.wikipedia.org/wiki/Golden_ratio}).
 
 \subsubsection{1. Find the eigenvectors}
 We follow the textbook approach: We have
-$$
+
+\begin{align*}
 A = \matMMxNN{0}{1}
         {1}{1}
-$$
-
+\end{align*}
 An eigenvector $v$ satisfies $Av = \lambda v$ for some scalar $\lambda$. That
 equation can be rearranged as follows
 
@@ -1174,12 +1466,12 @@ To find eigenvectors associated with the eigenvalues, go back to the equations
 Let an eigenvector $v$ be $\scvec{v_1}{v_2}$. The matrix equation corresponds
 to this system of equations:
 
-$$
+\begin{align*}
 \begin{cases}
 -\lambda v_1 + v_2               &= 0\\
 v_1          + (1 - \lambda) v_2 &= 0
 \end{cases}
-$$
+\end{align*}
 
 From the first equation we have $v_2 = \lambda v_1$. There are infinitely many
 eigenvectors (a line of them) associated with any given eigenvalue, so we can
@@ -1187,23 +1479,23 @@ pick an arbitrary value for $v_1$. If we choose $v_1=2$ then we have
 eigenvectors $\scvec{2}{1+\sqrt 5}$ and $\scvec{2}{1-\sqrt 5}$. The matrix
 containing the eigenvectors is
 
-$$
+\begin{align*}
 V = \matMMxNN{2          }{2          }
         {1 + \sqrt 5}{1 - \sqrt 5}
-$$
-
+\end{align*}
 
 \subsubsection{2. Find inverse of $V$}
 
 The inverse of a 2x2 matrix is given by
 
-$$
+
+\begin{align*}
 \matMMxNN{a}{c}
     {b}{d} ^ {-1}
 =
 \frac{1}{\text{det}} \matMMxNN{d}{-c}
                          {-b}{a}
-$$
+\end{align*}
 
 where $\text{det} = ad - cb$. Therefore
 
