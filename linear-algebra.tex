@@ -896,11 +896,81 @@ is a basis; $\{1, i\}$ are no longer linearly independent.
   \end{align*}
 \end{definition}
 
-Our aim is to find a formula for the $n$-th Fibonacci number $f_n$. Here are two proofs:
+Our aim is to find a formula for the $n$-th Fibonacci number $f_n$. Some proofs follow below.
 
+
+\begin{definition}
+  The ``golden ratio​'' is $\varphi = \frac{1}{2}(1 + \sqrt 5)$.
+
+  Also define $\psi = 1 - \varphi = \frac{1}{2}(1 - \sqrt 5)$.
+\end{definition}
+
+Note that $\varphi^2 = 1 + \varphi$ and $\psi^2 = 1 + \psi$. It follows that for both $\varphi$ and
+$\psi$, the $n$-th powers are related to the $(n-1)$-th and $n$-th Fibonacci numbers:
+  \begin{align*}
+    \varphi^2  &= 1 + \varphi \\
+    \varphi^3  &= \varphi + \varphi^2 = 1 + 2\varphi \\
+    \varphi^4 &= \varphi + 2\varphi^2 = 2 + 3\varphi \\
+    \varphi^5 &= 2\varphi + 3\varphi^2 = 3 + 5\varphi \\
+    \varphi^6 &= 3\varphi + 5\varphi^2 = 5 + 8\varphi \\
+    \vdots
+  \end{align*}
+
+\begin{claim}
+  The $n$-th Fibonacci number is given by
+  \begin{align*}
+    f_n = \frac{1}{\sqrt5}(\varphi^n - \psi^n).
+  \end{align*}
+\end{claim}
 
 \begin{proof}
-  The first proof is based on constructing a matrix
+  We have (lemma proved below)
+\begin{align*}
+  \varphi^n &= f_{n-1} + f_n\varphi \\
+  \psi^n &= f_{n-1} + f_n\psi.
+\end{align*}
+  Note also that $\varphi - \psi = 2\varphi - 1 = \sqrt 5$. Therefore $\varphi^n - \psi^n = f_n(\varphi - \psi) = f_n\sqrt5$.
+\end{proof}
+
+\begin{lemma}
+  \begin{align*}
+  \varphi^n &= f_{n-1} + f_n\varphi \\
+  \psi^n &= f_{n-1} + f_n\psi.
+\end{align*}
+\end{claim}
+
+\begin{proof}
+  If we define $f_0 = 0$ then the $\varphi$ claim is true for $n=1$ ($\varphi^1 = 0 + 1\varphi$). It's also true for $n=2$ ($\varphi^2 = 1  + 1\varphi$).
+
+  Suppose it's true for $n=k$. Then it's true for $n = k+1$ since
+  \begin{align*}
+    \varphi^{k+1} &= \varphi\varphi^k \\
+            &= \varphi f_{k-1} + f_k\varphi^2 \\
+            &=  \varphi f_{k-1} + f_k(1 + \varphi) \\
+            &= f_k + (f_k + f_{k-1})\varphi \\
+            &= f_k + f_{k+1}\varphi,
+  \end{align*}
+  and so the lemma is proved by induction.
+
+  The above holds for $\psi$ also since it relies only on $\psi^1 = 0 + 1\psi$ and
+  $\psi^2 = 1 + 1\psi$, which are true for $\psi$, as they are for $\varphi$.
+\end{proof}
+
+That's not very satisfying: how did we hit upon $\varphi$ and $\psi$ in the first place? However, it does
+show that the reason that $f_n \propto \varphi^n - \psi^n$ is that for both $\varphi$ and $\psi$, the
+$n$-th power is related to the $(n-1)$-th and $n$-th Fibonacci numbers:
+\begin{align*}
+  \varphi^n &= f_{n-1} + f_n\varphi \\
+  \psi^n &= f_{n-1} + f_n\psi.
+\end{align*}
+
+The next proof uses linear algebra. It constructs a matrix whose powers generate the Fibonacci
+sequence, and then finds an expression for the $n$-th power of the matrix by using standard
+eigenvector techniques. $\varphi$ and $\psi$ appear as the eigenvalues and as the $\tan$ of the
+eigenvectors' angles.
+
+\begin{proof}
+  Define the matrix
   \begin{align*}
     A &= \matMMxNN{0}{1}
                   {1}{1}
@@ -919,10 +989,11 @@ A^{4} &= \matMMxNN{2}{3}
 We can then obtain a formula for the $n$-th Fibonacci number by computing the $n$-th power of
 the matrix using the standard eigenvector change-of-basis technique.
 
-The eigenvectors are $\scvec{2}{1+\sqrt 5}$ and $\scvec{2}{1-\sqrt 5}$, and we end up with the same result:
+Define $\varphi = \frac{1}{2}(1 + \sqrt 5)$ and $\psi = \frac{1}{2}(1 - \sqrt 5)$. ($\varphi$ is the ``golden ratio​'' and $\psi = -\varphi^{-1}$).
+
+Then the eigenvectors are $\scvec{1}{\varphi}$ and $\scvec{1}{1-\psi}$, and we end up with the same result:
 \begin{align*}
-f_n &= \frac{1}{\sqrt 5}\(\(\frac{1 + \sqrt 5}{2}\)^n - \(\frac{1 - \sqrt 5}{2}\)^n\) \\
-    &= \frac{1}{\sqrt 5}\(\phi^n - (-\phi^{-1})^n\)
+f_n &= \frac{1}{\sqrt 5}\(\varphi^n - \psi^n\)
 \end{align*}
 \end{proof}
 
@@ -943,37 +1014,58 @@ f_n &= \frac{1}{\sqrt 5}\(\(\frac{1 + \sqrt 5}{2}\)^n - \(\frac{1 - \sqrt 5}{2}\
   To complete the proof we need to find a way to re-expand this as a power series where the
   coefficient of $x^n$ is given by some expression involving $n$.
 
-  Define $\varphi = \frac{1}{2}(1 + \sqrt{5})$ (this is the ``golden ratio​''). Note that its reciprocal is $\varphi^{-1} = -\frac{1}{2}(1 - \sqrt{5})$.
+  Define $\varphi = \frac{1}{2}(1 + \sqrt 5)$ and $\psi = \frac{1}{2}(1 - \sqrt 5)$. ($\varphi$ is the ``golden ratio​'' and $\psi = -\varphi^{-1}$).
 
   The quadratic expression on the bottom of $\frac{1}{1 - x - x^2}$ factors
-  as $(1 - \varphi x)(1 + \varphi^{-1}x)$, and thus (proof below) we are able to write $F(x)$ as the
+  as $(1 - \varphi x)(1 - \psi x)$, and thus (proof below) we are able to write $F(x)$ as the
   sum of two quantities:
   \begin{align*}
-  F(x) &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} + \frac{\phi^{-1}}{1 + \varphi^{-1}x}\).
+  F(x) = \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} - \frac{\psi}{1 - \psi x}\).
   \end{align*}
   The key point is that each of these quantities is itself equal to a geometric series:
   \begin{align*}
     \frac{1}{1 - \varphi x} &= 1 + \varphi x + \varphi^2x^2 + \varphi^3x^3 + \ldots
   \end{align*}
   and
-  \begin{align*}
-    \frac{1}{1 + \varphi^{-1}} &= 1 - \varphi^{-1}x + \varphi^{-2}x^2 - \varphi^{-3}x^3 + \ldots.
+\begin{align*}
+    \frac{1}{1 - \psi x} &= 1 + \psi x + \psi^2x^2 + \psi^3x^3 + \ldots
   \end{align*}
+
   Thus we've achieved our aim: we can now find a closed-form expression for the coefficient of $x^n$ in
   our original power series $F(x)$:
   \begin{align*}
-    f_n = \frac{1}{\sqrt 5}\(\varphi^{n+1} + (-\varphi)^{-(n+1)}\).
+    f_n = \frac{1}{\sqrt 5}\(\varphi^{n} - \psi^n\).
   \end{align*}
   By the definition of our power series, this is the $n$-th Fibonacci number.
 \end{proof}
 
 
 
-The two proofs seem quite different. The first obtains the $n$-th Fibonacci number by computing a
-matrix power in a diagonalizing eigenbasis. The second is a bit harder to summarize: it does it by
-finding a closed-form expression for the generating power series with Fibonacci coefficients, and
-then decomposing that function as the sum of two power series whose $x^n$ coefficients are known as a
-function of $n$.
+The two proofs seem to take quite different routes to the answer.
+
+The first obtains the $n$-th Fibonacci number by computing a matrix power in a diagonalizing
+eigenbasis. Basically it seems to be saying that there are eigenvectors associated with $\varphi$
+and $\psi$, and that the $n$-th Fibonacci number is related to the distance between the points reached
+by taking $n$ steps in these two directions.
+
+The second proof is based on considering the space of power series functions defined by the
+basis $\{x^0, x^1, x^2, \ldots\}$. We consider the point in this space with coordinates given by the
+Fibonacci numbers: this is the ''generating function​'' for the Fibonacci sequence.
+
+Then there are two steps:
+
+1. First, we find a closed-form expression for the generating function.
+
+2. Second, we see that this can be written as the difference between two geometric series, with ratios $\varphi$ and $\psi$.
+
+Thus the $n$-th Fibonacci number is related to the difference between $\varphi^n$ and $\psi^n$.
+
+So there is some similarity: $\varphi$ and $\psi$ play a role as eigenvectors in the first proof, and in
+some sense taking $n$ steps in one of those directions and $n$ in the other, gets you to a location
+related to the $n$-th Fibonacci number.
+
+In the second proof, $\varphi$ and $\psi$ are the ratios that define two geometric series, and the
+difference between these two geometric series gives the Fibonacci sequence.
 
 Is there anything interesting that can be said about the fact that these two techniques solve the
 same problem? Do they have anything in common, or can one or other be seen in a different way that
@@ -1080,7 +1172,8 @@ number of sequences of $1$s and $2$s that sum to $n$ is equal to the $n$-th Fibo
 \end{claim}
 
 \begin{proof}
-  The claim is true for $n=0$ and $n=1$, since the only way to form these is as the sum of the empty sequence $()$ and the sum of the sequence $(1)$ respectively.
+  The claim is true for $n=0$ and $n=1$, since the only way to form these is as the sum of the
+  empty sequence $()$ and the sum of the sequence $(1)$ respectively.
 
   Assume for induction that the claim is true for all $n < k$. Note that the sequences of $1$s
   and $2$s summing to $k$ fall into two mutually exclusive sets:
@@ -1094,84 +1187,42 @@ number of sequences of $1$s and $2$s that sum to $n$ is equal to the $n$-th Fibo
 \end{proof}
 
 \begin{claim}
-  Define $\varphi = \frac{1}{2}(1 + \sqrt{5})$. Then
+  Define $\varphi = \frac{1}{2}(1 + \sqrt 5)$ and $\psi = \frac{1}{2}(1 - \sqrt 5)$. Then
   \begin{align*}
-  \frac{1}{1 - x - x^2} &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} + \frac{\phi^{-1}}{1 + \varphi^{-1}x}\).
+  \frac{1}{1 - x - x^2} &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} - \frac{\psi}{1 - \psi x}\).
   \end{align*}
 \end{claim}
 
 \begin{proof}
-  We have $\varphi^{-1} = 2\frac{1 - \sqrt{5}}{-4} = -\frac{1}{2}(1 - \sqrt{5})$ and $\varphi - \varphi^{-1} = 1$, and
+  Note that $\varphi + \psi = 1$ and $\psi = -\varphi^{-1}$, therefore
   \begin{align*}
-    (1 - \varphi x)(1 + \varphi^{-1}x) &= 1 - x(\varphi - \varphi^{-1}) - x^2 = 1 - x - x^2.
+    (1 - \varphi x)(1 - \psi x) = 1 - x - x^2.
   \end{align*}
-  Therefore (partial fractions)
+  Also $\varphi - \psi = 2\varphi - 1 = \sqrt5$.
+
+  Partial fractions:
   \begin{align*}
+      \frac{1}{1 - x - x^2}
+         &= \frac{A}{1 - \varphi x} + \frac{B}{1 - \psi x} \\
+    \begin{cases}
+      A + B = 1 \\
+      -\psi A - \varphi B = 0 \\
+    \end{cases} \\
+    -\psi A - \varphi(1 - A ) &= 0\\
+    \varphi A -\psi A &= \varphi \\
+    A &= \frac{\varphi}{\varphi - \psi} \\
+    B &= \frac{-\psi}{\varphi - \psi} \\
     \frac{1}{1 - x - x^2}
-         &= \frac{A}{1 - \varphi x} + \frac{B}{1 + \varphi^{-1}x} \\
-         &\begin{cases}
-           A + B = 1 \\
-           A\varphi^{-1} - B\varphi &= 0
-         \end{cases} \\
-        A\varphi^{-1} - \varphi + A\varphi &= 0 \\
-        A &= \frac{\varphi}{\varphi + \varphi^{-1}}
-          = \frac{1}{1 + \varphi^{-2}}
-          = \frac{2}{\sqrt 5(\sqrt 5 - 1)}
-          = \frac{1}{\sqrt 5}\varphi\\
-    B &= \frac{\varphi^{-2}}{1 + \varphi^{-2}} = \frac{1}{1 + \varphi^{2}} = \frac{2}{\sqrt 5(\sqrt 5 + 1)} = \frac{1}{\sqrt 5}\varphi^{-1} \\
-    \frac{1}{1 - x - x^2}
-         &= \frac{1}{\sqrt 5}\(\frac{\phi}{1 - \phi x} + \frac{\phi^{-1}}{1 + \varphi^{-1}x}\)
+         &= \frac{\varphi}{(\varphi - \psi)(1 - \varphi x)} - \frac{\psi}{(\varphi - \psi)(1 - \psi x)} \\
+         &= \frac{1}{\sqrt 5}\(\frac{\varphi}{1 - \varphi x} - \frac{\psi}{1 - \psi x} \) \\
   \end{align*}
-
-
-
-
-
-\begin{align*}
-  \varphi &:= \frac{1 + \sqrt 5}{2} \\~\\
-  \varphi^{-1} &= \frac{2}{1 + \sqrt 5}
-               = \frac{2(1 - \sqrt 5)}{-4}
-               = \frac{\sqrt 5 - 1}{2} \\~\\
-  \varphi &= \frac{1 + \sqrt 5}{2} = (\varphi^{-1})^{-1} = \frac{2}{\sqrt 5 - 1}
-\end{align*}
-
 \end{proof}
-
 
 https://math.stackexchange.com/a/338748/397805
 \begin{mdframed}
 \includegraphics[width=400pt]{img/linear-algebra--vector-spaces-and-fields--computing-the-n-th-fibonacci-number-generating-function-d6da.png}
 \end{mdframed}
 
-
-
-Let $f_n$ be the $n$-the Fibonacci number, and define
-\begin{align*}
-F(x) &= \sum_{n=0}^\infty F_n(x) \\
-     &= \sum_{n=0}^\infty f_nx^n \\
-     &= 0 + 1x^1 + 1x^2 + 2x^3 + 3x^4 + 5x^5 + 8x^6 + \cdots.
-\end{align*}
-
-Note that for $n > 1$ we have $F_n(x) = x^2F_{n-2}(x) + xF_{n-1}(x)$, hence we see that the
-polynomial can be written in a way involving a weighted sum of two copies of itself:
-\begin{align*}
-  F(x) &= x^2F(x) + xF(x) + x, \\
-       &= \frac{x}{1 - x - x^2}.
-\end{align*}
-Let $\varphi$ be such that $1 - x - x^2 = (1 - \varphi x)(1 + \frac{1}{\varphi}x)$. Then (partial fractions)
-\begin{align*}
-  \frac{A}{1 - \varphi x} + \frac{B}{1 + \varphi^{-1}x} &= F(x) \\
-  A + A\varphi^{-1}x + B - B\varphi x &= x \\
-  \begin{cases}
-    A + B = 0 \\
-    A\varphi^{-1} - B\varphi = 1 \\
-  \end{cases} \\
-  A = \frac{1}{\varphi^{-1} - \varphi}
-\end{align*}
-Thus
-\begin{align*}
-  F(x) = \frac{1}{(\varphi^{-1} - \varphi)(1 - \varphi x)} + \frac{1}{(\varphi^{-1} - \varphi)(1 + \varphi^{-1} x)}
-\end{align*}
 
 
 
@@ -1395,22 +1446,22 @@ than a century earlier. It can be derived without using linear algebra
 techniques; I don't know when the style of proof attempted here would first
 have been done. The result can be written as
 
-$$
-F_n = \frac{\phi^n - (1-\phi)^n}{\sqrt{5}}
-$$
+\begin{align*}
+F_n = \frac{\varphi^n - \psi^n}{\sqrt{5}}
+\end{align*}
 
-where $\phi = \frac{1+\sqrt{5}}{2}$ is the
-golden ratio (\url{https://en.wikipedia.org/wiki/Golden_ratio}).
+where $\varphi = \frac{1+\sqrt{5}}{2}$ is the
+golden ratio (\url{https://en.wikipedia.org/wiki/Golden_ratio}) and $\psi = 1 - \varphi = \frac{1 - \sqrt{5}}{2}$.
 
 
 \subsection*{Calculations}
 
 \subsubsection{1. Find the eigenvectors}
-We follow the textbook approach: We have
+We have
 
 \begin{align*}
 A = \matMMxNN{0}{1}
-        {1}{1}
+        {1}{1}.
 \end{align*}
 An eigenvector $v$ satisfies $Av = \lambda v$ for some scalar $\lambda$. That
 equation can be rearranged as follows
@@ -1451,7 +1502,7 @@ Using the quadratic formula we have $a=1, b=-1, c=-1$ and
 = \frac{1 \pm \sqrt{5}}{2}
 \end{align*}
 
-which are the two eigenvalues.
+which are the two eigenvalues: $\varphi$ and $\psi$.
 
 To find eigenvectors associated with the eigenvalues, go back to the equations
 
@@ -1475,20 +1526,19 @@ v_1          + (1 - \lambda) v_2 &= 0
 
 From the first equation we have $v_2 = \lambda v_1$. There are infinitely many
 eigenvectors (a line of them) associated with any given eigenvalue, so we can
-pick an arbitrary value for $v_1$. If we choose $v_1=2$ then we have
-eigenvectors $\scvec{2}{1+\sqrt 5}$ and $\scvec{2}{1-\sqrt 5}$. The matrix
+pick an arbitrary value for $v_1$. If we choose $v_1 = 1$ then we have
+eigenvectors $\scvec{1}{\varphi}$ and $\scvec{1}{\psi}$. The matrix
 containing the eigenvectors is
 
 \begin{align*}
-V = \matMMxNN{2          }{2          }
-        {1 + \sqrt 5}{1 - \sqrt 5}
+V = \matMMxNN{1}{1}
+             {\varphi}{\psi}
 \end{align*}
 
 \subsubsection{2. Find inverse of $V$}
 
+
 The inverse of a 2x2 matrix is given by
-
-
 \begin{align*}
 \matMMxNN{a}{c}
     {b}{d} ^ {-1}
@@ -1496,22 +1546,17 @@ The inverse of a 2x2 matrix is given by
 \frac{1}{\text{det}} \matMMxNN{d}{-c}
                          {-b}{a}
 \end{align*}
-
-where $\text{det} = ad - cb$. Therefore
-
+where $\text{det} = ad - cb$. We have $\varphi - \psi = \sqrt5$ therefore
 \begin{align*}
 V^{-1}
-&= \frac{1}{2(1 - \sqrt 5) - 2(1 + \sqrt 5)} \matMMxNN{1 - \sqrt 5 }{-2}
-                                                 {-(1 + \sqrt 5)}{2}
-\\\\
-&= \frac{-1}{4\sqrt 5} \matMMxNN{1 - \sqrt 5 }{-2}
-                           {-(1 + \sqrt 5)}{2}
+&= \frac{-1}{\sqrt5} \matMMxNN{\psi}{-1}
+                          {-\phi}{1}
 \end{align*}
 
 
-\subsubsection{3. Find the matrix product $V^{-1}AV$}
+\subsubsection{3. Find the matrix product $V^{-1}AV$
 
-Before we get lost in the calculation, let's remember what this is. It's a
+Before getting lost in calculations, let's remember what this is. It's a
 matrix that does the $A$ transformation, but \textit{in the coordinate system defined
 by $A$'s eigenvectors}. So, the resulting matrix \textit{must} do nothing other than
 stretch space in the direction of one or both basis vectors in that coordinate
@@ -1527,54 +1572,51 @@ diagonal.
 
 \begin{align*}
 V^{-1}AV &=
-\frac{-1}{4\sqrt 5}
-\matMMxNN{1 - \sqrt 5 }{-2}
-    {-(1 + \sqrt 5)}{2}
+\frac{1}{\sqrt5}
+\matMMxNN{-\psi}{1}
+         {\phi }{-1}
 \matMMxNN{0}{1}
-    {1}{1}
-\matMMxNN{2          }{2          }
-    {1 + \sqrt 5}{1 - \sqrt 5}
+         {1}{1}
+\matMMxNN{1}{1}
+         {\varphi}{\psi}
 \\\\
 &=
-\frac{-1}{4\sqrt 5}
-\matMMxNN{1 - \sqrt 5 }{-2}
-    {-(1 + \sqrt 5)}{2}
-\matMMxNN{1 + \sqrt 5}{1 - \sqrt 5}
-    {3 + \sqrt 5}{3 - \sqrt 5}
+\frac{1}{\sqrt5}
+\matMMxNN{-\psi}{1 }
+         {\varphi }{-1}
+\matMMxNN{\varphi    }{\psi    }
+         {1 + \varphi}{1 + \psi}
 \\\\
 &=
-\frac{-1}{4\sqrt 5}
-\matMMxNN{-4 - 2(3 + \sqrt 5)             }{6 - 2\sqrt 5 - 2(3 - \sqrt 5)}
-    {-(6 + 2\sqrt 5) + 2(3 + \sqrt 5)}{4 + 2(3 - \sqrt 5)}
+\frac{1}{\sqrt5}
+\matMMxNN{-\varphi\psi + (1 + \varphi)}{-\psi^2 + (1 + \psi)}
+         {\varphi^2 - (1 + \varphi)}{\varphi\psi - (1 + \psi)}
 \\\\
 &=
-\frac{-1}{2\sqrt 5}
-\matMMxNN{-2 - 3 - \sqrt 5}{3 - \sqrt 5 - 3 + \sqrt 5}
-    {-3 - \sqrt 5 + 3 + \sqrt 5}{2 + 3 - \sqrt 5}
-\\\\
-&=
-\frac{-1}{2\sqrt 5}
-\matMMxNN{-5 - \sqrt 5}{0          }
-    {0           }{5 - \sqrt 5}
-\\\\
-&=
-\frac{1}{2}
-\matMMxNN{1 + \sqrt 5}{0          }
-    {0          }{1 - \sqrt 5}
+\frac{1}{\sqrt5}
+\matMMxNN{\varphi}{0}
+         {0}{-\psi}
 \end{align*}
+
+Where we have used $\varphi\psi = 1$, and $\varphi^2 = 1 + \varphi$, and $\psi^2 = 1 + \psi$.
+
+
 
 \subsubsection{4. Compute $(V^{-1}AV)^n$}
 
-The matrix is diagonal so this is straightforward. Note that this is the whole
-point of converting to the eigenbasis: the exponentiation at this step just
-involves the usual operations of raising scalar numbers to a power; no need to
-multiply matrices together. A computer will be able to compute the $\nth$ power
-of a diagonal matrix much faster than that of a non-diagonal matrix.
+The matrix is diagonal so this is straightforward:
 
-$$
-(V^{-1}AV)^n = \frac{1}{2^n} \matMMxNN{(1 + \sqrt 5)^n}{0          }
-                                 {0              }{(1 - \sqrt 5)^n}
-$$
+\begin{align*}
+(V^{-1}AV)^n = \frac{1}{\sqrt{5}^n} \matMMxNN{\varphi^n}{0    }
+                                       {0 }{(-\psi)^n}
+\end{align*}
+
+Note that this is the whole point of converting to the eigenbasis: the exponentiation at this step
+just involves the usual operations of raising scalar numbers to a power; no need to multiply
+matrices together. A computer will be able to compute the $\nth$ power of a diagonal matrix much
+faster than that of a non-diagonal matrix.
+
+
 
 \subsubsection{5. Plug the $\nth$ power into the overall expression}
 
@@ -1613,6 +1655,7 @@ V \Big(V^{-1}AV\Big)^n V^{-1}
 \matMMxNN{\frac{\big((1 + \sqrt 5)^{n-1} - (1 - \sqrt 5)^{n-1}\big)}{2^{n-1}\sqrt 5}}{\frac{\big((1 + \sqrt 5)^n     - (1 - \sqrt 5)^n    \big)}{2^n    \sqrt 5}}
     {\frac{\big((1 + \sqrt 5)^n     - (1 - \sqrt 5)^n    \big)}{2^n    \sqrt 5}}{\frac{\big((1 + \sqrt 5)^{n+1} - (1 - \sqrt 5)^{n+1}\big)}{2^{n+1}\sqrt 5}}
 \end{align*}
+
 
 \newpage
 \section{Polynomials, rings, minimal and characteristic polynomials}
