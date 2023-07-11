@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+
+\title{War or Peace}
+\author{William Davison}
+\date{June 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{align*}
+\sum_{i \in \{2, 7\}} i &= 2 + 7 = 9 \\
+\sum_{i \in \{2, 7\}} \sum_{j \in \{3, 5\}} i \times j &= (2 \times 3) + (2 \times 5) + (7 \times 3) + (7 \times 5) = 72 \\
+\sum_{i \in \{1, 2, 3, \ldots, \infty\}} \frac{1}{2^i} = 1
+\end{align*}
+
+
+
+
+\section{Introduction}
+
+In the aftermath of the 3 November 2022 Pretoria peace agreement between Ethiopia's federal government and the Tigray People's Liberation Front (TPLF), the exercise was to assign probabilities to various possible outcomes of the ensuing political process.  Primarily this meant the chances of peace being consolidated in Tigray, or of a return to conflict occurring.
+
+\section{Methodology}
+
+ Four random variables were introduced that represent events or processes that either do or do not happen on the path to peace or war. Let $E_i$ be the event that occurs at stage $i$. $E_i$  either has a peace-promoting outcome, or not (the war-promoting outcome). The probability of the event/process occurring is $P(E_i)$ and The probability of the event/process not occurring is $P(-E_i)$ . The probability of peace is the probability that the peaceful outcome occurs at stage 4, i.e. $P(E_4)$. The  probability of war is the probability that the peaceful outcome does not occur at stage 4, i.e. $P(-E_4)$. At each point we can  consider the conditional probability of the  outcome, conditional on the path of events leading to that point.
+
+\textbf{The 8 pathways to Peace:}\\
+
+\begin{align*}
+\textbf{Pathway 1:} &\quad P(E_4 \mid E_3, E_2, E_1) = \text{Peace} \\
+\textbf{Pathway 3:} &\quad P(E_4 \mid -E_3, E_2, E_1) = \text{Peace} \\
+\textbf{Pathway 5:} &\quad P(E_4 \mid E_3, -E_2, E_1) = \text{Peace} \\
+\textbf{Pathway 7:} &\quad P(E_4 \mid -E_3, -E_2, E_1) = \text{Peace} \\
+\textbf{Pathway 9:} &\quad P(E_4 \mid E_3, E_2, -E_1) = \text{Peace} \\
+\textbf{Pathway 11:} &\quad P(E_4 \mid -E_3, E_2, -E_1) = \text{Peace} \\
+\textbf{Pathway 13:} &\quad P(E_4 \mid E_3, -E_2, -E_1) = \text{Peace} \\
+\textbf{Pathway 15:} &\quad P(E_4 \mid -E_3, -E_2, -E_1) = \text{Peace}\\
+\end{align*}
+
+\textbf{The 8 pathways to War}\\
+
+\begin{align*}
+\textbf{Pathway 2:} &\quad P(-E_4 \mid E_3, E_2, E_1) = \text{War} \\
+\textbf{Pathway 4:} &\quad P(-E_4 \mid -E_3, E_2, E_1) = \text{War} \\
+\textbf{Pathway 6:} &\quad P(-E_4 \mid E_3, -E_2, E_1) = \text{War} \\
+\textbf{Pathway 8:} &\quad P(-E_4 \mid -E_3, -E_2, E_1) = \text{War} \\
+\textbf{Pathway 10:} &\quad P(-E_4 \mid E_3, E_2, -E_1) = \text{War} \\
+\textbf{Pathway 12:} &\quad P(-E_4 \mid -E_3, E_2, -E_1) = \text{War} \\
+\textbf{Pathway 14:} &\quad P(-E_4 \mid E_3, -E_2, -E_1) = \text{War} \\
+\textbf{Pathway 16:} &\quad P(-E_4 \mid -E_3, -E_2, -E_1) = \text{War}
+\end{align*}\\
+
+\textbf{Overall Chance of Peace and War:}\\
+
+The probability of Peace is the sum of the probabilities of each of the eight pathways to Peace.
+
+\begin{align*}
+P(peace) = &P(E_4 \mid E_3, E_2, E_1) \\
+         + &P(E_4 \mid -E_3, E_2, E_1) \\
+         + &P(E_4 \mid E_3, -E_2, E_1) \\
+         + &P(E_4 \mid -E_3, -E_2, E_1) \\
+         + &P(E_4 \mid E_3, E_2, -E_1) \\
+         + &P(E_4 \mid -E_3, E_2, -E_1) \\
+         + &P(E_4 \mid E_3, -E_2, -E_1) \\
+         + &P(E_4 \mid -E_3, -E_2, -E_1)
+\end{align*}
+
+
+~\\~\\
+The probability of War is the sum of the probabilities of each of the eight pathways to War:
+
+\begin{align*}
+P(war) = &P(-E_4 \mid E_3, E_2, E_1) \\
+       + &P(-E_4 \mid -E_3, E_2, E_1) \\
+       + &P(-E_4 \mid E_3, -E_2, E_1) \\
+       + &P(-E_4 \mid -E_3, -E_2, E_1) \\
+       + &P(-E_4 \mid E_3, E_2, -E_1) \\
+       + &P(-E_4 \mid -E_3, E_2, -E_1) \\
+       + &P(-E_4 \mid E_3, -E_2, -E_1) \\
+       + &P(-E_4 \mid -E_3, -E_2, -E_1)
+\end{align*}
+
+\newcommand{\peace}{\texttt{peace}}
+\newcommand{\war}{\texttt{war}}
+\newcommand{\positive}{\texttt{positive}}
+\newcommand{\negative}{\texttt{negative}}
+
+\begin{align*}
+P(\war) &= P(E_4 = \negative) \\
+        &= P(E_1, E_2, E_3, E_4) + P(-E_1, E_2, E_3, E_4) + \ldots \\
+        &\text{Now switching to P(RV=outcome) notation}\\
+        &= \sum_{e_1 \in \{\positive, \negative\} \sum_{e_2 \in \{\positive,\negative\} \sum_{e_3 \in \{\positive, \negative\} P(E_1=e_1, E_2=e_2, E_3=e_3, E_4=\negative)
+\end{align*}
+
+
+\begin{align*}
+P(\texttt{cold\_tomorrow}) =
+\sum_{\texttt{w} \in \{\texttt{rain}, \texttt{not\_rain}\}}
+P(\texttt{cold\_tomorrow}, \texttt{WEATHER=w})
+\end{align*}
+
+
+
+\end{document}
+
+
+\end{align*}
