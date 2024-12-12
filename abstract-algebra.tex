@@ -739,12 +739,11 @@ same result.)
 
 \subsection{Modular arithmetic}
 
-The canonical example of a quotient group comes from "modular arithmetic" on
-the integers. For example, consider the integers, mod 4. This means that every
-integer is mapped to whatever its remainder is after dividing by 4. The
-integers mod 4 is a group, which contains 4 elements: $\{\bar 0, \bar 1, \bar
-2, \bar 3\}$. So $5 \rightarrow \bar 1$, $14 \rightarrow \bar 2$, $-1
-\rightarrow \bar 3$, etc.
+The canonical example of a quotient group comes from "modular arithmetic" on the integers. For
+example, consider the integers, mod 4. This means that every integer is mapped to whatever its
+remainder is after dividing by 4. The integers mod 4 is a group under addition, which contains 4
+elements: $\{\bar 0, \bar 1, \bar 2, \bar 3\}$.
+So $5 \rightarrow \bar 1$, $14 \rightarrow \bar 2$, $-1 \rightarrow \bar 3$, etc.
 
 We said that the integers mod 4 are a group, so what is the group operation?
 The answer is that we define an addition law on the elements: for example,
@@ -777,6 +776,10 @@ of which integers you pick in step (1). In this case that is true.
 So we have an example of a ``quotient group'': $\{\bar 0, \bar 1, \bar 2, \bar
 3\}$ under this addition operation. Let's recap and start putting this in group
 theoretic terminology.
+
+
+But note that ($\Z/n\Z)^\times$ is defined to be the set of ``residue classes​'' that have a multiplicative
+inverse: this turns out to be those that are relatively prime to $n$.
 
 \footnotetext{Multiplication preserves structure also: $\Z/n\Z$ is a field iff
   $n$ is prime.}
