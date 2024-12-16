@@ -21,6 +21,3 @@ build:
 	cd $(BUILD_DIR) && ln -sf ../img
 	cd $(BUILD_DIR) && ln -sf ../mathematics.sty
 	cd $(BUILD_DIR) && for f in ../*.{tex,pdf}; do ln -sf $$f; done
-
-
-test:

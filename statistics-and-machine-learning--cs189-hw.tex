@@ -4,8 +4,8 @@
 \renewcommand{\N}{\mathcal{N}}
 \newcommand{\Pbf}{\textbf{P}}
 \renewcommand{\R}{\mathbb{R}}
-\newcommand{\Var}{\text{Var}}
-\newcommand{\Cov}{\text{Cov}}
+\renewcommand{\Var}{\text{Var}}
+\renewcommand{\Cov}{\text{Cov}}
 \renewcommand{\mat}{\mathbf}
 
 \section{Homework 2}
@@ -609,8 +609,8 @@ $P(\omega_1) = P(\omega_2) = 1/2$, and $\mu_2 > \mu_1$.
 
 \newpage
 \subsection{Maximum Likelihood Estimation}
-Let $X$ be a discrete random variable which takes values in $\{1, 2, 3\}$ with probabilities $P(X = 1) = p_1, P(X=2) = p_2,$ and $P(X = 3) = p_3$, where $p_1 + p_2 + p_3 = 1$.  Show how to use the method of maximum likelihood to estimate $p_1, p_2,$ and $p_3$ from $n$ observations of $X: x_1, \ldots, x_n$. Express your answer in terms of the counts $$k_1 = \sum_{i=1}^n \mathbbm{1}(x_i = 1), k_2 = \sum_{i=1}^n \mathbbm{1}(x_i = 2), \text{ and }k_3 = \sum_{i=1}^n \mathbbm{1}(x_i = 3),$$ where
-$$\mathbbm{1}(x = a) =
+Let $X$ be a discrete random variable which takes values in $\{1, 2, 3\}$ with probabilities $P(X = 1) = p_1, P(X=2) = p_2,$ and $P(X = 3) = p_3$, where $p_1 + p_2 + p_3 = 1$.  Show how to use the method of maximum likelihood to estimate $p_1, p_2,$ and $p_3$ from $n$ observations of $X: x_1, \ldots, x_n$. Express your answer in terms of the counts $$k_1 = \sum_{i=1}^n \mathbb{1}(x_i = 1), k_2 = \sum_{i=1}^n \mathbb{1}(x_i = 2), \text{ and }k_3 = \sum_{i=1}^n \mathbb{1}(x_i = 3),$$ where
+$$\mathbb{1}(x = a) =
 \begin{cases}
 1 & \text{if } x = a \\
 0 & \text{if } x \neq a.
@@ -2217,4 +2217,3 @@ derivations!)
 \begin{mdframed}
   kaggle: \texttt{dandavison7} 0.88577
 \end{mdframed}
-

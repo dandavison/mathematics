@@ -14,7 +14,8 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{array}
-\usepackage{bbm}
+% \usepackage{bbm}
+\usepackage{braket}
 \usepackage{caption}
 \usepackage{centernot}
 \usepackage{xcolor}
@@ -32,11 +33,12 @@
 \usepackage{mathrsfs}
 \usepackage{mathtools}
 \usepackage{mdframed}
-%\usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
-%\usepackage{MnSymbol} % \upmodels
+\usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
+\usepackage{MnSymbol} % \upmodels
 \usepackage{parskip}
 \usepackage{relsize} % \mathlarger
 \usepackage{ulem} % sout
+% \usepackage{upgreek}
 \usepackage{verbatim}
 \usepackage{tikz}
 \usetikzlibrary{graphs,graphdrawing}
@@ -406,6 +408,9 @@
 \newcommand{\ubar}[1]{\text{\b{$#1$}}}
 \newcommand{\correct}{\red{\checkmark}}
 \newcommand{\grad}{\nabla}
+
+\newcommand{\va}[1]{\overrightarrow{#1}}
+
 
 % https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix$
 \newenvironment{amatrix}[1]{%
