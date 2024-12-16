@@ -13,6 +13,11 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+
+\let\originallhook\lhook
+\usepackage{MnSymbol} % \upmodels
+\let\lhook\originallhook
+
 \usepackage{array}
 % \usepackage{bbm}
 \usepackage{braket}
@@ -34,7 +39,6 @@
 \usepackage{mathtools}
 \usepackage{mdframed}
 \usepackage[outputdir=.build]{minted} \setminted{fontsize=\footnotesize}
-\usepackage{MnSymbol} % \upmodels
 \usepackage{parskip}
 \usepackage{relsize} % \mathlarger
 \usepackage{ulem} % sout
