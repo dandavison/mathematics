@@ -2,16 +2,11 @@
 
 \section{Thoughts}
 
-\subsection{0}
-
-I think that the elements of a group should typically be thought of as functions, with the group operation
+\begin{itemize}
+\item It seems that the elements of a group can be thought of both as permutations/mappings, and also ``configurations​'' or ``states​'' of a certain system. The correspondence is that a given mapping is the mapping from an agreed initial​ state to its corresponding state.
+\item I think that the elements of a group should typically be thought of as functions, with the group operation
 being composition.
-
-
-
-
-\subsection{1}
-The elements of a group represent permutations, and the group operation is composition.
+\item The elements of a group represent permutations, and the group operation is composition.
 
 So what is a group under addition? Do its elements also represent permutations?
 
@@ -20,6 +15,9 @@ of the element $\bar k$ as an action that advance each element $k$ positions, wi
 So we can certainly think of the elements as permutations and addition as composition.
 
 What about $\R^\times$? I think we can think of that as a permutation of $\R$ also.
+\end{itemize}
+
+
 
 
 
@@ -410,6 +408,19 @@ Consider a set $A$ with $n$ elements.
 
   The order of $\gamma$ is 6.
 \end{example*}
+
+\begin{theorem*}
+  The order of a permutation is equal to the $\lcm$ of the lengths (i.e. orders) of the cycles in
+  its cycle decomposition.
+\end{theorem*}
+
+\begin{intuition*}
+  The first time we hit the identity is the first time that all component cycles hit identity
+  simultaneously. A given $m$-cycle will hit identity every $m$ iterations. Therefore the first
+  iteration at which the overall permutation hits identity is the first iteration that's a multiple
+  of all the component cycle orders.
+\end{intuition*}
+
 
 \section{Examples of groups, homomorphisms and quotients}
 
