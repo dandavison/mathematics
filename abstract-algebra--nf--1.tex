@@ -27,10 +27,11 @@
   procedure, and it is closed on $G$, therefore $\star$ is a well-defined binary operation on $G$.
 
   {\bf Existence of identity:}\\
-  $0$ is an identity under $\star$ since $x \star 0 = r(x + 0) = r(x) \in [0, 1)$ for all $x \in [0, 1)$.
+  $0$ is an identity under $\star$ since $x \star 0 = r(x + 0) = r(x) = x$ for all $x \in [0, 1)$.
 
   {\bf Existence of inverses:}\\
-  For all $x \in [0, 1)$ we have $x^{-1} = 1 - x$, since $x \star (1 - x) = r(x + 1 - x) = r(1) = 0$.
+  $0^\1 = 0$ since $0 \star 0 = r(0 + 0) = 0$.
+  For $x \in (0, 1)$ we have $x^{-1} = 1 - x$, since $x \star (1 - x) = r(x + 1 - x) = r(1) = 0$.
 
   {\bf Associativity:}\\
   Let $x, y, z \in [0, 1)$. We have
@@ -80,15 +81,19 @@ Therefore $\star$ is associative.
 \end{mdframed}
 
 \begin{proof}
-First note that the elements of $\Z/36\Z$ are $\{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\}$.
+  First note that the elements of $(\Z/36\Z)^\times$ are the residue classes given by integers that are
+  coprime
+  with
+  $36$:
+  $\{\bar{1}, \bar{5}, \bar{7}, \bar{11}, \bar{13}, \bar{17}, \bar{19}, \bar{23}, \bar{25}, \bar{29}, \bar{31}, \bar{35}\}$.
+  (The residue class of an integer that shares a common factor with $36$ is not in the group
+  because some power of that integer equals $0 \mod 36$ and $0$ has no multiplicative inverse.)
 
-There are $12$ elements, and we can compute the order of an element $x$ by doing calculations like
-% \begin{minted}{python3}
-%   [(i, (x ** i) % 36) for i in range(1, 12+1)]
-% \end{minted}
-and observing when we first see a $1$.
-
-
+  There are $12$ elements, and we can compute the order of an element $x$ by doing calculations like
+  % \begin{minted}{python3}
+  % [(i, (x ** i) % 36) for i in range(1, 12+1)]
+  % \end{minted}
+  and observing when we first see a $1$.
 
   $|\bar{1}| = 1$ since $\bar{1}$ is the identity.
 
@@ -96,7 +101,8 @@ and observing when we first see a $1$.
 
   Powers of $5$ (mod $36$) are $5, 25, 17, 13, 29, 1$ so $|\bar{5}| = 6$.
 
-  Powers of $13$ (mod $36$) are $13, 25, 1$ so $\bar{13} = 3$.
+  Note that $13 = 5^4 \mod 36$. Therefore powers of $13$ (mod $36$) are $13, 5^8 = 25, 5^{12} = 1$
+  so $\bar{13} = 3$.
 
   $|\bar{-13}| = |\bar{23}|$, and powers of $23$ (mod $36$) are $23, 25, 25, 13, 11, 1$ so $|\bar{-13}| = 6$.
 
@@ -117,23 +123,17 @@ and observing when we first see a $1$.
 \begin{proof}
   First note that for $k \in \N$ we have $(g^{-1}xg)^k = g^{-1}xgg^{-1}xg \cdots g^{-1}xg = g^{-1}x^kg$.
 
-  Suppose $|x| = k$. Then $(g^{-1}xg)^k = g^{-1}eg = e$, therefore $|g^{-1}xg| = k$.
+  Let $|x| = k$. Then $(g^{-1}xg)^k = g^{-1}eg = e$. Now suppose $(g^{-1}xg)^j = e$ for
+  some $j < k$. Then we have $g^\1x^jg = e$. But multiplying on the left by $g$ and on the right
+  by $g^\1$ yields $x^j = geg^\1 = e$, which contradicts $|x| = k$, therefore no such $j$ exists
+  and we conclude that $|g^{-1}xg| = k$.
+
 
   Alternatively, suppose $x$ has infinite order. Then for all $k$ we have $x^k \neq e$,
   therefore $x^kg \neq g$ and $g^{-1}x^kg \neq e$. Therefore $g^{-1}xg$ is also of infinite order.
 
 
-  Finally, we wish to use the result $|x| = |g^{-1}xg|$ (1) to show that the order of $ab$ and $ba$ is
-  always the same.
-
-  First note that $(ab)^k = b^{-1}(ba)^kb = \(b^{-1}(ba)b\)^k$.
-
-  Therefore if $ab$ is of finite order $k$ then so is $b^{-1}(ba)b$, and so from (1) $ba$ is also
-  of order $k$.
-
-  Alternatively, suppose $ab$ has infinite order. Then there exists no $k$ such
-  that $\(b^{-1}(ba)b\)^k = e$, which shows that $b^{-1}(ba)b$ is of infinite order, and therefore
-  from (1) so is $ba$.
+  Finally, we see from the result just proved that $|ab| = |a^\1(ab)a| = |ba|$ for all $a,b \in G$.
 \end{proof}
 
 \begin{remark*}
@@ -183,7 +183,7 @@ Now we prove that every finite group $G$ of even order contains an element of or
   Now consider the set $G - t(G) = \{g \in G | g = g^\1\}$. Since both $G$ and $t(G)$ are of even
   order, so is $G - t(G)$. But note that the identity $e$ is in $G - t(G)$ since $e^{-1} = e$,
   therefore there must also exist a non-identity element in $G - t(G)$. This element has order 2
-  since for any such element $g$ we have $g^2 = gg^\1 = e$.
+  since for any such element $g$ we have $g^2 = gg^\1 = e$ and $g^1 \neq e$ since it's not the identity.
 \end{proof}
 
 
@@ -220,10 +220,9 @@ Now we prove that every finite group $G$ of even order contains an element of or
 \end{mdframed}
 
 \begin{proof}
-  Let $G$ be a non-empty group and $x \in G$ be an element of finite order $n$. We wish to show
-  that $x^i \in \{1, x, x^2, \ldots, x^{n-1}\}$ for all $i \in \Z$.
+  Let $x \in G$ be an element of finite order $n$. We wish to show
+  that $x^a \in \{1, x, x^2, \ldots, x^{n-1}\}$ for all $i \in \Z$.
 
-  It's true for $i = 0$, so let $i \neq 0$. By the Division Algorithm there exist unique $q, r$ such
-  that $i = qn + r$ where $0 \leq r < n$.
-  Therefore $x^i = x^{qn}x^r = (x^n)^qx^r = x^r \in \{1, x, x^2, \ldots, x^{n-1}\}$.
+  By the Division Algorithm there exist unique $q, r$ such that $a = qn + r$ where $0 \leq r < n$.
+  Therefore $x^a = x^{qn}x^r = (x^n)^qx^r = x^r \in \{1, x, x^2, \ldots, x^{n-1}\}$.
 \end{proof}
