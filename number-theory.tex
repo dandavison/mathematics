@@ -88,6 +88,39 @@ The $\gcd$ of $2^2\cdot 3$ and $2\cdot 3^2$ is $2\cdot 3$.
 \end{intuition*}
 
 
+\begin{theorem*}
+  If $a|b$ then every prime factor of $a$ is a prime factor of $b$ and the associated exponent
+  in $b$ is at least that in $a$.
+\end{theorem*}
+
+\begin{proof}
+  By the Fundamental Theorem of Arithmetic any integer greater than $1$ can be written uniquely as
+  a product of prime factors each raised to some exponent. The claim is true for $a=1$ so
+  assume $a > 1$.
+
+  Let $a = p_1p_2\cdots p_A$ and $b = q_1q_2\cdots q_B$ where $p_i$ and $q_j$ are prime for all
+  $i = 1,2,\ldots,A$ and $j =1,2,\ldots,B$. Note that the $p$s and $q$s may have repeated values.
+
+  Since $a|b$ we have $b = ka$ for some $k > 0$. Now suppose $p_i$ is a prime factor of $a$ that is not als
+
+\end{proof}
+
+
+\begin{theorem*}
+  Let $a > 0$ and $b > 0$ with $a$ odd and $a | 2b$. Then $a | b$.
+\end{theorem*}
+
+\begin{proof}
+
+  Since $a|2b$ we have $2b = ka$ for some $k > 0$
+
+
+  Since $a|2b$ all the prime factors of $a$ are factors of $2b$. And since $a$ is odd, $2$ is not a
+  factor of $a$. Therefore all the prime factors of $a$ are prime factors of $b$. Therefore $a|b$.
+\end{proof}
+
+
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/foundations--set-theory--number-theory-82fa.png}
 \includegraphics[width=400pt]{img/foundations--set-theory--number-theory-179a.png}
