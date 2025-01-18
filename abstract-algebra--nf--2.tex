@@ -284,6 +284,40 @@ For example, the transposition $(1, 4)$ has $5$ inversions:
 \includegraphics[width=400pt]{img/algebra--nf--2-179c.png}
 \end{mdframed}
 
+\begin{proof}
+  Let $\sigma \in S_n$ and define $a_i = \sigma(i)$ for $i = 1, 2, \ldots, n$. Let
+  $\tau = \tau_{ij} \in S_n$ be the transposition of the $i$-th and $j$-th elements.
+
+  For all $\rho \in S_n$ and all $1 \leq a < b \leq n$ define
+  \begin{align*}
+    \delta^{(\rho)}_{a,b} =
+    \begin{cases}
+      1 &~~~\text{if}~(a, b)~\text{is an inversion of}~\rho\\
+      0 &~~~\text{otherwise}.
+    \end{cases}
+  \end{align*}
+
+  Since $\tau_{ab} = \tau_{ba}$ and $\delta^{\rho}_{ab} = \delta^{(\rho)}_{ba}$ we will WLOG consider only ordered
+  pairs $(a, b)$ where $a < b$ WLOG.
+
+
+  We will consider every ordered pair $(a, b)$ such that $a < b$.
+
+  \begin{align*}
+    \delta^{(\tau\sigma)}_{ab}
+  \end{align*}
+
+  Cases:
+
+
+
+  \begin{enumerate}
+  \item $b < i$ \\
+    $\delta^{(\tau\sigma)}_{ab} = \delta^{(\sigma)}_{ab}$
+  \item
+  \end{enumerate}
+\end{proof}
+
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--2-4dc0.png}
 \end{mdframed}
