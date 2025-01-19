@@ -6,9 +6,18 @@
 \includegraphics[width=400pt]{img/algebra--nf--2-179c.png}
 \end{mdframed}
 
-[I'll let you know when I've updated this document with this answer.]
+% \begin{intuition}
+%   Visualize index positions $1, 2, \ldots n$ as fixed positions, arrayed left to right. Each position
+%   holds a value, initially equal to the index position. After applying $\sigma$, the values in the
+%   positions may no longer match the indices of the positions; we say that two positions are
+%   inverted if the left position now holds a larger value than the right position.
 
-~\\~\\
+%   We now ask what the effect is of $\tau$ on the number of inverted positions.
+% \end{intuition}
+
+
+
+\newpage
 {\bf Section 1.6}\\
 
 \begin{mdframed}
@@ -40,12 +49,20 @@
 In the forwards direction it was sufficient for $\varphi$ to be a surjective homomorphism; we didn't
 require it to be an isomorphism (injective).
 
-~\\~\\
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--3-89f3.png}
 \end{mdframed}
 
-[I'll let you know when I've updated this document with this answer.]
+{\it I didn't have time to think about this question and looked online. I believe this argument is
+correct (\url{https://math.stackexchange.com/a/620560/397805}), although perhaps it needs to do more to justify
+that $1_\Z = x + x$ for $x \in \Z$ is a contradiction since as written the final step appears to
+appeal to division/multiplication yet the group is additive and no division or multiplication is
+defined.}
+\begin{mdframed}
+\includegraphics[width=400pt]{img/abstract-algebra--nf--3-8b25.png}
+\end{mdframed}
+
 
 \begin{mdframed}
 \newpage
@@ -105,6 +122,12 @@ require it to be an isomorphism (injective).
 \end{mdframed}
 
 \begin{proof}
+  We will use the following fact (as yet unproved) from Dummit \& Foote:
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/abstract-algebra--nf--3-684a.png}\\
+    \includegraphics[width=400pt]{img/abstract-algebra--nf--3-2808.png}
+  \end{mdframed}
+
   A presentation for $Q_8$ is
   \begin{align*}
     Q_8 = \big\langle i, j ~\big|~ i^2 = -1, ~ i^3 = -i, ~ i^2j = -j, ~ ij = k, ~ i^3j = -k \big\rangle.
@@ -118,9 +141,11 @@ require it to be an isomorphism (injective).
                                                                     {-\alpha}{0} \\
   \end{align*}
 
- We see that
+  We see that
   \begin{align*}
-    \varphi(i)^2 &= -I \\
+    \varphi(i)^2 &= \matMMxNN{\alpha}{0}
+                      {0}{-\alpha}^2 = \matMMxNN{-1}{0}
+                                           {0}{-1} = -I \\
 ~\\
     \varphi(i)^3 &= -iI \\
 ~\\
@@ -130,65 +155,44 @@ require it to be an isomorphism (injective).
 ~\\
     \varphi(i)\varphi(j) &= \varphi(k) \\
 ~\\
+    \varphi(i)^3\varphi(j) &= -iI\matMMxNN{0}{-1}
+                              {1}{0} = \matMMxNN{0}{i}
+                                                 {-i}{0}\\
+~\\
     \varphi(j^2) &= \matMMxNN{0}{-1}
                       {1}{0}^2 = \matMMxNN{-1}{0}
                                           {0}{-1} = -I \\
   \end{align*}
 
+  Thus we have a presentation for $Q_8$ comprising two generators $i$ and $j$, and we have
+  identified two elements $\varphi(i)$ and $\varphi(j)$ of $GL_2(\C)$ that satisfy the same relations
+  in $GL_2(\C)$ as $i$ and $j$ do in $Q_8$. Using the theorem from Dummit \& Foote it follows
+  that $\varphi$ extends to a homomorphism.
 
-  Note that we can write an arbitrary element $x \in Q_8$ as $x = i^aj^b$ for
-  some $a, b \in \{0, 1, 3\}$:
+  To recap, we have a homomorphism from a group of order 8 to an infinite group. Such a mapping is
+  clearly not surjective. To see that it is injective, we could (from Q.14 above) show that the
+  kernel is $\{1\}$. However I haven't yet seen a way to do that without simply writing out the
+  mapping explicitly, so we do that:
   \begin{align*}
-    1,~ -1 = i^2,~ i,~ -i = i^3,~ j,~ -j = i^2j,~ k = ij,~ -k = i^3j.
+    \varphi(1) &= \varphi(-1^2) =  \varphi(i^2)^2 = (-I)^2 = I\\
+    \varphi(-1) &= \varphi(i^2) = \varphi(i)^2 = -I \\
+    \varphi(i) &= \matMMxNN{\alpha}{0}
+                      {0}{-\alpha} \\
+    \varphi(-i) &= \varphi(-1 \cdot i) = \varphi(-1)\varphi(i) = -I\matMMxNN{\alpha}{0}
+                                                {0}{-\alpha} = \matMMxNN{-\alpha}{0}
+                                                                   {0}{\alpha}\\
+    \varphi(j) &= \matMMxNN{0}{-1}
+                     {1}{0} \\
+    \varphi(-j) &= \varphi(-1 \cdot j) = \varphi(-1) \varphi(j) = -I\matMMxNN{0}{-1}
+                                                  {1}{0} = \matMMxNN{0}{1}
+                                                                    {-1}{0}\\
+    \varphi(k) &= \matMMxNN{0}{-\alpha}
+                    {-\alpha}{0} \\
+    \varphi(-k) &=  \varphi(-1 \cdot k) = \varphi(-1) \varphi(k) = -I\matMMxNN{0}{-\alpha}
+                                                  {\alpha}{0} = \matMMxNN{0}{\alpha}
+                                                                    {-\alpha}{0}.
   \end{align*}
 
-
-
-  We must show that $\varphi$ defined as above on $i$ and $j$ can be extended such
-  that $\varphi(xy) = \varphi(x)\varphi(y)$ for all $x, y \in Q_8$.
-
-  Let $\alpha = \sqrt{-1} \in \C$, and let $I \in GL_2(\C)$ be the identity matrix, and define $\varphi$ by
-
-  \begin{align*}
-    1 &\mapsto I \\
-    ~\\
-    -1 &\mapsto -I\\
-    ~\\
-    i &\mapsto \matMMxNN{\alpha}{0}
-                  {0}{-\alpha} \\
-    ~\\
-    -i &\mapsto \matMMxNN{-\alpha}{0}
-                   {0}{\alpha} \\
-    ~\\
-    j &\mapsto \matMMxNN{0}{-1}
-                  {1}{0} \\
-    ~\\
-    -j &\mapsto \matMMxNN{0}{1}
-                   {-1}{0} \\
-    ~\\
-    k &\mapsto \matMMxNN{0}{-\alpha}
-                   {-\alpha}{0} \\
-    ~\\
-    -k &\mapsto \matMMxNN{0}{\alpha}
-                   {\alpha}{0}
-  \end{align*}
-
-  We see that
-  \begin{align*}
-    \varphi(i)^2 = \varphi(j)^2 = -I
-    \varphi(i)^2 &= \matMMxNN{\alpha}{0}
-                      {0}{-\alpha}^2 = \matMMxNN{-1}{0}
-                                           {0}{-1} = -I \\
-    \varphi(j^2) &= \matMMxNN{0}{-1}
-                      {1}{0}^2 = \matMMxNN{-1}{0}
-                                          {0}{-1} = -I \\
-  \end{align*}
-
-
-
-  Thus $\varphi(xy) = \varphi(i^aj^bi^cj^d)$ for some $a, b, c, d \in \{0, 1, 3\}$.
-
-
-
-
+  Thus we see that indeed no two elements are sent to the same image (and that the kernel
+  is $\{1\}$ as it must be).
 \end{proof}
