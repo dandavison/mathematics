@@ -298,26 +298,84 @@ For example, the transposition $(1, 4)$ has $5$ inversions:
 \end{mdframed}
 
 \begin{intuition}
-  Visualize index positions $1, 2, \ldots n$ as fixed positions, arrayed left to right. Each position
-  holds a value, initially equal to the index position. After applying $\sigma$, the values in the
-  positions may no longer match the indices of the positions; we say that two positions are
-  inverted if the left position now holds a larger value than the right position.
+  Visualize positions $1, 2, \ldots n$ as a fixed sequence of slots, linearly arrayed left to right.
+  Each position has a removable label on which is written the number of that position. Thus
+  initially, the labels are in order. A ``permutation​'' rearranges the labels so that they may no
+  longer be in order. Viewed as a function, permutation $\sigma$ maps position $i$ to the new position
+  of the label that was in position $i$. For example, after applying $\sigma$ to the initial state, the
+  label numbered $i$ is in position $\sigma(i)$.
+
+  \begin{mdframed}
+    \includegraphics[width=400pt]{img/abstract-algebra--nf--2-d7ca.png}
+  \end{mdframed}
+
+  We say that two positions are inverted if the label in the position to the left holds a larger
+  value than that to the right.
+
 
   We now ask what the effect is of $\tau$ on the number of inverted positions.
 \end{intuition}
 
 \begin{proof}
-  Let $\sigma \in S_n$ be any permutation and let $\tau$ be the transposition of the values in the
-  $i$-th and $j$-th positions, where (WLOG) $i < j$.
+  Let $\sigma \in S_n$ be any permutation. Recall that this means that $\sigma(a)$ is the new position at which
+  the value $a$ is located, for any $a = 1, 2, \ldots, n$.
 
-  We will determine the parity of the difference between the number of pairs of index positions
-  that are inverted under $\tau\sigma$, and the number inverted under $\sigma$.
+  Let $\tau \in S_n$ be the transposition of positions $i$ and $j$, where (WLOG) $i < j$. Note
+  that $i = \sigma^{-1}(c)$ and $j = \sigma^{-1}(d)$ for some $c \neq d$. In other words, there exists some
+  $c$ that is sent to $i$ by $\sigma$, and some $d \neq c$ that is sent to $j$ by $\sigma$.
 
-  First note that if neither $a$ nor $b$ is $i$ or $j$ then $(a, b)$ is inverted under $\tau\sigma$ if and
-  only if it is inverted under $\sigma$. Therefore, it suffices to examine the change in inversion count
-  due to pairs $(a, b)$ where (WLOG) $a < b$ and either $a$ or $b$ is $i$ or $j$.
+  We are interested in how the number of pairs of inverted positions changes as we move from
+  $\sigma$ to $\tau\sigma$. Specifically, we will determine the parity of the difference between the number of
+  pairs of index positions that are inverted under $\tau\sigma$, and the number inverted under $\sigma$.
+
+  Let $a, b$ be any pair of positions with $a < b$.
+
+  Note that if neither $a$ nor $b$ are $\sigma^{-1}(i)$ or $\sigma^{-1}(j)$ then the inversion status
+  of $(a, b)$ is unchanged. Therefore we need only consider pairs $(a, b)$ where $a < b$ and
+  either $a$ or $b$ are $\sigma^{-1}(i)$ or $\sigma^{-1}(j)$
+
+  Next suppose $\sigma(a) = i$ and $\sigma(b) = j$. Then $(a, b)$ were not inverted under $\sigma$ but become
+  inverted under $\tau\sigma$. Alternatively suppose $\sigma(b) = i$ and $\sigma(a) = j$. Then
+  $(a, b)$ were inverted under $\sigma$ and that inversion is lost under $\tau\sigma$. Therefore there exists a
+  pair $(\sigma(a), \sigma(b))$ that changes the inversion count by $\pm1$.
+
+
+  It remains to examine pairs where exactly one of $i$ or $j$ is $\sigma(a)$ or $\sigma(b)$.
+
+
+
+
+
+ This means
+  that
+  \begin{align*}
+    \tau(a) =
+    \begin{cases}
+      j &\text{if}~a = i\\
+      i &\text{if}~a = j\\
+      a &\text{otherwise}.
+    \end{cases}
+  \end{align*}
+
+
+
+
+  Suppose positions $(a, b)$ are inverted under $\sigma$, i.e. $a < b$ and $\sigma(b) < \sigma(a)$. If neither
+  $i$ nor $j$ are $\sigma(a)$ or $\sigma(b)$ then $(a, b)$ remains inverted under $\tau\sigma$.
+
+
+  Therefore, it suffices to examine the change in inversion count due to pairs $(a, b)$ where
+  (WLOG) $a < b$ and either $\sigma(a)$ or $\sigma(b)$ is $i$ or $j$.
 
   Define $I_\rho$ to be the set of inversions of $\rho \in S_n$.
+
+
+
+
+
+
+
+
 
   Next note that the pair $(i, j)$ contributes a change of $\pm 1$, since
   $(i, j) \in I_{\tau\sigma}$ iff $(i, j) \notin I_\sigma$.
