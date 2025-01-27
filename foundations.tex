@@ -1,10 +1,54 @@
 \section{Set theory}
 
-\begin{definition}[map, function]
+\begin{definition}[map, function, injection, surjection]
   A \defn{map} (or \defn{function}) $f: A \to B$ is a subset of $A \times B$ such that each $a \in A$ has precisely one entry.
+
+  A map is an \defn{injection} if every $a$ is sent to a distinct $b$.
+
+  A map is a \defn{surjection} if every $b$ has some $a$ that is sent to it.
+
+  A \defn{fiber} over $b$ is the set of $a$s that are sent to $b$.
+
+  A map need be neither injective nor surjective: it could have non-trivial fibers and not cover the whole of $B$.
+
+  A \defn{left inverse} (``post-inverse​'') is a function $g: B \to A$ such that $gf = 1_A$, i.e. $g$ sends things back to where they came from.
+
+  A \defn{right inverse} (``pre-inverse​'') is a function $g: A \to B$ such that $fg = 1_B$, i.e. $g$ sends things to places such that $f$ will send them back to where they came from.
 
   $B^A$ is the set of maps $A \to B$.
 \end{definition}
+
+\begin{theorem*}
+
+  If $f$ is not injective then it has no left inverse: you can't send one thing back to two places.
+
+  If $f$ is not surjective then it has no right inverse: you can't get back to where you came from
+  if there's no arrow to that place.
+
+  TODO: these are equivalencies:
+  \begin{itemize}
+  \item $f$ has a left inverse iff it is injective.
+  \item $f$ has a right inverse iff it is surjective.
+  \end{itemize}
+
+  $f$ is a bijection if there exists a $g$ that is both a left and a right inverse, in which case
+  it is injective and surjective.
+
+  As stated, to have a right inverse $f$ must be surjective. Now, if $f$ is also injective then it
+  has precisely one right inverse. But if $f$ is non-injective then it has multiple right inverses:
+  the non-injectivity gives multiple arrows back to where you came from.
+
+  Finally, as stated, to have a left inverse $f$ must be injective, and if $f$ is also surjective
+  then it has precisely one left inverse. But if $f$ is non-surjective then there are multiple left
+  inverses: it doesn't matter where the non-hit elements are sent to.
+\end{theorem*}
+
+
+
+
+
+
+
 
 \begin{definition}[disjoint union]
   The \defn{disjoint union} of a collection of sets $\{A_i\}_{i \in I}$ is
