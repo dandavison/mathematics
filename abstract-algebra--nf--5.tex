@@ -7,10 +7,26 @@
 \begin{proof}
   $D_{14}$ is the group of $14$ symmetries of a regular heptagon.
 
-  Suppose $\varphi: D_{14} \to S_A$ is a faithful action of $D_{14}$ on a set $A$.
-
+  Suppose $\varphi: D_{14} \to S_A$ is a faithful action of $D_{14}$ on a set $A$. Then
+  $\Im \varphi$ is a subgroup of $S_A$ of size $14$ (since $\varphi$ is injective and the image of a group
+  homomorphism is a subgroup of the codomain). Therefore $|S_A| = (|A|)!$ is a multiple of $14$,
+  the prime factorization of which is $2 \times 7$, therefore it is a multiple of $7$. Therefore,
+  since $7$ is prime, $|A| \geq 7$.
 \end{proof}
 
+{\bf (b)}\\
+\begin{proof}
+  Let $A$ be a set with $5$ elements, so that $|S_A| = 120$.
+
+  We seek an injective homomorphism $\varphi: D_{12} \to S_A$ with $|\Im \varphi| = 12$.
+
+  Consider the integers in $0, 1, \ldots, 119$ that are congruent to $0 \mod 10$.
+\end{proof}
+
+{\bf (c)}\\
+\begin{proof}
+  Because the prime factorization of $12$ is $2^23$.
+\end{proof}
 
 
 \begin{mdframed}
@@ -22,11 +38,78 @@
 \includegraphics[width=400pt]{img/abstract-algebra--nf--5-7356.png}
 \end{mdframed}
 
+\begin{proof}
+  Picture a regular tetrahedron at rest with its base (vertices $1, 2, 3$) on a horizontal surface,
+  and vertex $4$ pointing upwards. We will use ``rotating a face​'' to mean rotating through
+  $120\deg$ around a line that passes through the center of the face and the opposite vertex,
+  clockwise when looking at the face.
+
+  The rigid motions of the tetrahedron can be achieved by
+  \begin{enumerate}
+  \item choosing a vertex to go at the top by either doing nothing or rotating one of the $3$ side
+    faces ($4$ choices), and then
+  \item choosing the configuration of the base vertices by either doing nothing or rotating the base
+    face ($3$ choices).
+  \end{enumerate}
+  We thus see that there are $12$ rigid motions of the tetrahedron, and that each one can be
+  achieved as a product of $2$ face rotations (either or both of which might be the identity).
+
+  Each face rotation acts on the set of $4$ vertices as a $3$-cycle, which is an even permutation,
+  since it can be written as a product of $2$ transpositions. The identity also acts on the set of
+  vertices as an even permutation. Therefore every rigid motion of the tetrahedron acts on the
+  vertices as a product of even permutations, and so acts as an even permutation.
+
+  Thus the group of rigid motions of the tetrahedron, viewed as permutations, is a subset of $S_4$,
+  of size $12$, all even.
+
+  Furthermore, $|A_4| = 12$, since $|S_4| = 4! = 24$, half of which are even (proof needed), so
+
+
+
+\end{proof}
+
 
 
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--5-23d3.png}
 \end{mdframed}
+
+\begin{intuition*}
+  One thing the theorem is saying is that stabilizers are always of a size that divides the group
+  size. Furthermore, they contain the identity. These two facts suggest that they are subgroups
+  (they are).
+
+  If a group $G$ acts on a set $X$, then once you know how many ways there are of sending an element $x$
+  of $X$ to itself, you also know how many ways there are of sending it to any other element in its
+  orbit.
+\end{intuition*}
+
+\begin{proof}
+  Let $G$ be a finite group acting on a set $S$, take some $s \in S$, and let $\mathcal O_s$ be the
+  orbit of $s$.
+
+  For $s' \in \mathcal O_s$, define $G_{ss'} = \{g \in G ~|~ gs = s'\}$, the set of group elements that
+  send $s \mapsto s'$ so that, in particular, $G_{ss}$ is the stabilizer of $s$.
+
+  If $|S| = 1$ then $|\mathcal O_s| = 1$ and $|G_s| = |G|$ so the theorem holds. So let $|S| > 1$ and
+  let $t \in \mathcal O_s$ be another element of $S$ ($t \neq s$).
+
+  We'll show that $|G_{ss}| = |G_{st}|$; since $t$ is arbitrary, this means that all $G_{ss'}$ are
+  the same size. Furthermore, we'll show that the set $\{G_{ss'} ~|~ s' \in \mathcal O_s\}$
+  partitions $G$. These two facts prove the theorem, since they imply
+  that $|G| = |\mathcal O_s| |G_s|$.
+
+  To show that $|G_{ss}| = |G_{st}|$ we exhibit a bijection $f: G_{ss} \to G_{st}$.
+  Since $t \in \mathcal O_s$ we know that $G_{st}$ is not empty and so we may fix some
+  $h \in G_{st}$. Define $f(g) = hg$. The codomain of this is $G_{st}$ because $h$ sends
+  $s \mapsto t$, and $g$ sends $s \mapsto s$, so $hg$ also sends $s \mapsto t$. Now we seek an inverse to show this
+  is a bijection. Consider $f': G_{st} \to G_{ss}$ defined by $f'(g) = h^{-1}g$. This is a left
+  inverse since $f'(f(g)) = h^{-1}hg = g$ and it is a right inverse since $f(f'(g)) = hh^{-1}g$.
+  Thus we have exhibited a bijection proving that $|G_{ss}| = |G_{st}|$.
+
+  Finally we must show that the set $\{G_{ss'} ~|~ s' \in \mathcal O_s\}$ partitions $G$?
+\end{proof}
+
 
 
 
@@ -34,3 +117,60 @@
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--5-4abb.png}
 \end{mdframed}
+
+\begin{proof}
+  {\bf (a)}\\
+  Let $\sigma = (1 2 3 4)$, and let $\tau = (1 2 3)$. Thus $\tau \cdot \sigma = (1342)$ and
+  $\sigma \cdot \tau = (1324)$ and we have
+  \begin{align*}
+    p          &= 12x_1^5x_2^7x_3^0x_4^1 - 18x_1^0x_2^3x_3^1x_4^0 + 11x_1^6x_2^1x_3^3x_4^{23}\\
+    \sigma \cdot p      &= 12x_2^5x_3^7x_4^0x_1^1 - 18x_2^0x_3^3x_4^1x_1^0 + 11x_2^6x_3^1x_4^3x_1^{23} \\
+    \tau \cdot (\sigma \cdot p) &= 12x_3^5x_1^7x_4^0x_2^1 - 18x_3^0x_1^3x_4^1x_2^0 + 11x_3^6x_1^1x_4^3x_2^{23} \\
+    (\tau \cdot \sigma) \cdot p &= 12x_3^5x_1^7x_4^0x_2^1 - 18x_3^0x_1^3x_4^1x_2^0 + 11x_3^6x_1^1x_4^3x_2^{23} =  \tau \cdot (\sigma \cdot p)\\
+    (\sigma \cdot \tau) \cdot p &= 12x_3^5x_4^7x_2^0x_1^1 - 18x_3^0x_4^3x_2^1x_1^0 + 11x_3^6x_4^1x_2^3x_1^{23}.
+  \end{align*}
+
+
+  {\bf (b)}\\
+  To show that the definitions give a group action, we may show that
+  \begin{align*}
+    1p = p \text{~for all~} p \in R ~~~~~~~\text{and}~~~~~~~ (\sigma\tau) p = \sigma(\tau p) \text{~for all~} \sigma, \tau \in S_4, p \in R.
+  \end{align*}
+  The first condition relating to the identity obviously holds: $1 \in S_4$ sends any $p \in R$ to itself since it gives
+  the identity permutation of $\{ x_1, x_2, x_3, x_4 \}$ under the definitions.
+
+  For the second, let $p = \sum_{i=1}^n a_ix_1^{r_1^{(i)}} x_2^{r_2^{(i)}} x_3^{r_3^{(i)}} x_4^{r_4^{(i)}}$, for some $n \in \N$, be an arbitrary element of $R$.
+  We have
+  \begin{align*}
+    \tau p = \sum_{i=1}^n a_ix_{\tau(1)}^{r_1^{(i)}} x_{\tau(2)}^{r_2^{(i)}} x_{\tau(3)}^{r_3^{(i)}} x_{\tau(4)}^{r_4^{(i)}},
+  \end{align*}
+  hence
+  \begin{align*}
+    \sigma(\tau p) = \sum_{i=1}^n a_ix_{\sigma(\tau(1))}^{r_1^{(i)}} x_{\sigma(\tau(2))}^{r_2^{(i)}} x_{\sigma(\tau(3))}^{r_3^{(i)}} x_{\sigma(\tau(4))}^{r_4^{(i)}}.
+  \end{align*}
+  And also
+  \begin{align*}
+    (\sigma\tau)p &= \sum_{i=1}^n a_ix_{(\sigma\tau)(1)}^{r_1^{(i)}} x_{(\sigma\tau)(2)}^{r_2^{(i)}} x_{(\sigma\tau)(3)}^{r_3^{(i)}} x_{(\sigma\tau)(4)}^{r_4^{(i)}} \\
+    &= \sum_{i=1}^n a_ix_{\sigma(\tau(1))}^{r_1^{(i)}} x_{\sigma(\tau(2))}^{r_2^{(i)}} x_{\sigma(\tau(3))}^{r_3^{(i)}} x_{\sigma(\tau(4))}^{r_4^{(i)}} &\text{(associativity of function composition)}\\
+    &= \sigma(\tau p).
+  \end{align*}
+  Hence $(\sigma\tau)p = \sigma(\tau p)$, for arbitrary $\sigma, \tau, p$, as required.
+
+  {\bf (c)}\\
+  The permutations in $S_4$ that stabilize $x_4 = x_1^0x_2^0x_3^0x_4^1$ are all those that fix $4$, i.e. in whose cycle representation $4$ does not appear:
+  \begin{align*}
+    (1)\\
+    (1 2)\\
+    (1 3)\\
+    (2 3)\\
+    (1 2 3)\\
+    (1 3 2).
+  \end{align*}
+  This is clearly a subgroup: it contains the identity, the composition of two permutations that
+  fix $4$ itself fixes $4$ hence closure under the group operation, and the inverse of a
+  permutation that fixes $4$ itself fixes $4$ hence closure under taking inverses.
+
+  Viewed formally as strings, these are also an enumeration of the elements of $S_3$. This fact
+  establishes a natural bijection between the subgroup and $S_3$, and it remains only to show that
+  this bijection preserves the group operation. Let $\varphi$ be the bijection and let $x_1, x_2 \in S_3$. We have $\varphi(x_1x_2)$.
+\end{proof}
