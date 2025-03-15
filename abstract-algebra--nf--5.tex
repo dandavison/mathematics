@@ -16,24 +16,43 @@
 
 {\bf (b)}\\
 \begin{proof}
-  Let $A$ be a set with $5$ elements, so that $|S_A| = 120$.
+  Let $A = \{1,2,3,4,5\}$ be a set with $5$ elements.
 
-  We seek an injective homomorphism $\varphi: D_{12} \to S_A$ with $|\Im \varphi| = 12$.
+  We will construct an explicit faithful action $\varphi: D_{12} \to S_A$. Recall that $D_{12}$ is generated
+  by two elements: a rotation $r$ of order $6$ and a reflection $s$ of order $2$.
 
-  Consider the integers in $0, 1, \ldots, 119$ that are congruent to $0 \mod 10$.
+  Define $\varphi$ by specifying its action on the generators:
+  \begin{align*}
+    \varphi(r) &= (1~2~3~4~5) \text{~~(a 5-cycle)}\\
+    \varphi(s) &= (1~5)(2~4) \text{~~(product of disjoint transpositions)}
+  \end{align*}
+
+  This gives a faithful action because:
+  \begin{itemize}
+    \item The image of $r$ has order $5$
+    \item The image of $s$ has order $2$
+    \item Together they generate a subgroup of $S_5$ of order $12$
+    \item The action preserves the dihedral group relations
+  \end{itemize}
+  
+  Therefore we have constructed an injective homomorphism $\varphi: D_{12} \to S_A$ with $|\Im \varphi| = 12$
+  as required.
 \end{proof}
 
 {\bf (c)}\\
 \begin{proof}
-  Because the prime factorization of $12$ is $2^23$.
+  The prime factorization of $2n = 12$ is $2^23$. It is not contrained by the primality of $n$ in
+  the way that $D_{2n = 14}$ was.
 \end{proof}
 
-
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--4-50ae.png}
 \end{mdframed}
 
+TODO
 
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--5-7356.png}
 \end{mdframed}
@@ -54,22 +73,24 @@
   We thus see that there are $12$ rigid motions of the tetrahedron, and that each one can be
   achieved as a product of $2$ face rotations (either or both of which might be the identity).
 
-  Each face rotation acts on the set of $4$ vertices as a $3$-cycle, which is an even permutation,
-  since it can be written as a product of $2$ transpositions. The identity also acts on the set of
-  vertices as an even permutation. Therefore every rigid motion of the tetrahedron acts on the
-  vertices as a product of even permutations, and so acts as an even permutation.
+  We now view this group as acting on the set of $4$ vertices. Each face rotation acts on the set
+  of $4$ vertices as a $3$-cycle, which is an even permutation, since it can be written as a
+  product of $2$ transpositions. The identity also acts on the set of vertices as an even
+  permutation. Therefore every rigid motion of the tetrahedron acts on the vertices as a product of
+  even permutations, and so acts as an even permutation.
 
-  Thus the group of rigid motions of the tetrahedron, viewed as permutations, is a subset of $S_4$,
-  of size $12$, all even.
+  TODO: finish this argument properly:
 
-  Furthermore, $|A_4| = 12$, since $|S_4| = 4! = 24$, half of which are even (proof needed), so
+  I think a key point is that this is a faithful action and hence the group is isomorphic to a
+  subset of the permutations of the vertices.
 
-
-
+  I.e. the group of rigid motions of the tetrahedron is isomorphic to a subset of $S_4$, of
+  size $12$, all even. And we have $|A_4| = 12$, since $|S_4| = 4! = 24$, half of which are even
+  (proof needed).... the group of rigid motions is isomorphic to $A_4$.
 \end{proof}
 
 
-
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--5-23d3.png}
 \end{mdframed}
@@ -84,6 +105,7 @@
   orbit.
 \end{intuition*}
 
+{\bf (a)}\\
 \begin{proof}
   Let $G$ be a finite group acting on a set $S$, take some $s \in S$, and let $\mathcal O_s$ be the
   orbit of $s$.
@@ -91,13 +113,13 @@
   For $s' \in \mathcal O_s$, define $G_{ss'} = \{g \in G ~|~ gs = s'\}$, the set of group elements that
   send $s \mapsto s'$ so that, in particular, $G_{ss}$ is the stabilizer of $s$.
 
-  If $|S| = 1$ then $|\mathcal O_s| = 1$ and $|G_s| = |G|$ so the theorem holds. So let $|S| > 1$ and
+  If $|S| = 1$ then $|\mathcal O_s| = 1$ and $|G_{ss}| = |G|$ so the theorem holds. So let $|S| > 1$ and
   let $t \in \mathcal O_s$ be another element of $S$ ($t \neq s$).
 
   We'll show that $|G_{ss}| = |G_{st}|$; since $t$ is arbitrary, this means that all $G_{ss'}$ are
   the same size. Furthermore, we'll show that the set $\{G_{ss'} ~|~ s' \in \mathcal O_s\}$
   partitions $G$. These two facts prove the theorem, since they imply
-  that $|G| = |\mathcal O_s| |G_s|$.
+  that $|G| = |\mathcal O_s| |G_{ss}|$.
 
   To show that $|G_{ss}| = |G_{st}|$ we exhibit a bijection $f: G_{ss} \to G_{st}$.
   Since $t \in \mathcal O_s$ we know that $G_{st}$ is not empty and so we may fix some
@@ -107,13 +129,37 @@
   inverse since $f'(f(g)) = h^{-1}hg = g$ and it is a right inverse since $f(f'(g)) = hh^{-1}g$.
   Thus we have exhibited a bijection proving that $|G_{ss}| = |G_{st}|$.
 
-  Finally we must show that the set $\{G_{ss'} ~|~ s' \in \mathcal O_s\}$ partitions $G$?
+  Finally I think I must show that the set $\{G_{ss'} ~|~ s' \in \mathcal O_s\}$ partitions $G$?
+  Showing that they are equivalence classes is the standard / brute-force technique AIUI.
 \end{proof}
 
+\includegraphics[width=400pt]{img/abstract-algebra--nf--5-23d3.png}
+
+{\bf (b)}\\
+\begin{definition*}
+  Let $G$ be a finite group. $a \in G$ is \defn{conjugate} to $b \in G$ if there exists $x \in G$ such
+  that $a = xbx^{-1}$. (It's an equivalence relation)
+
+  The conjugacy class of $a$ is the equivalence class of elements to which it is conjugate.
+\end{definition*}
+
+\begin{intuition*}
+  Again we have a subset of a group whose size divides the group size. Examples of that that we've
+  seen are subgroups (but a conjugacy class does not necessarily contain the identity), and
+  stabilizers. And we've sort of not seen cosets of a subgroup but I think that's another key
+  example.
+\end{intuition*}
 
 
 
+\begin{proof}
+\end{proof}
 
+{\bf (c)}\\
+TODO
+
+
+\newpage
 \begin{mdframed}
 \includegraphics[width=400pt]{img/abstract-algebra--nf--5-4abb.png}
 \end{mdframed}
@@ -172,5 +218,9 @@
 
   Viewed formally as strings, these are also an enumeration of the elements of $S_3$. This fact
   establishes a natural bijection between the subgroup and $S_3$, and it remains only to show that
-  this bijection preserves the group operation. Let $\varphi$ be the bijection and let $x_1, x_2 \in S_3$. We have $\varphi(x_1x_2)$.
+  this bijection preserves the group operation. TODO: I think that's clearly true, but I was going
+  to try to think of a clean argument. Something related to the way that $S_3$ is embedded in $S_4$
+  / that if you ``ignore​'' an element of $S_4$ you have $S_3$.
 \end{proof}
+
+{\bf (d - f) TODO}\\
